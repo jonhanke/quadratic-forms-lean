@@ -8,8 +8,8 @@ Every line should list only `propext`, `Classical.choice` and `Quot.sound`; the 
 fails if any other axiom (in particular `sorryAx`) appears.
 -/
 
--- The statements are in Challenge.lean; Solution.lean proves each by a one-line appeal to the library
--- theorem named in its proof. (`lake comparator` checks the same, against Challenge.lean; see comparator.json.)
+-- The statements are in Challenge.lean; Solution.lean proves each by citing the library theorems named in
+-- its proof. (`lake comparator` checks the same, against Challenge.lean; see comparator.json.)
 -- Siegel's theorem over totally real number fields
 #print axioms QuadFormsKB.Headlines.siegel_totallyReal
 #print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank3

@@ -48,6 +48,8 @@ Unconditional:
 - `QuadFormsKB.Tamagawa.mass_eq_dcMass`, `QuadFormsKB.Tamagawa.mass_SO_eq_two_mul_mass`, `QuadFormsKB.Tamagawa.volSO_eq`, `QuadFormsKB.Tamagawa.ArchVol.archVolSO_eq_volume`: the mass as an adelic volume, the local volumes and the archimedean volume.
 - `QuadFormsKB.Tamagawa.e8_mass_check`: over <img src="../images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">, the right side for $`E_8`$ equals $`1/696729600`$, the inverse of the order of the Weyl group of $`E_8`$.
 
+The headline statements `QuadFormsKB.Headlines.tamagawa_two_totallyReal` and `QuadFormsKB.Headlines.massFormula_totallyReal` in [`Challenge.lean`](../../Challenge.lean) add, as extra conjuncts, that the product of the <img src="../images/inline/a27cf328501e.svg" align="absmiddle" alt="\alpha_{\mathfrak{p}}"> converges unconditionally, that the genus of <img src="../images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> has finitely many classes, each with a finite group $`\mathrm{O}(L')`$ (mass formula), and that the double coset space defining the $`\mathrm{SO}`$-mass in $`\tau`$ is finite, with finite stabilizers. The lemmas are in `QuadFormsKB/Tamagawa/HeadlineFacts.lean`.
+
 For an arbitrary lattice in rank $`n \ge 4`$, `QuadFormsKB.Tamagawa.massFormula_lat_all_ranks_nf` is stated with the hypothesis `QuadFormsKB.Tamagawa.RankFourUnitSiegel F`. That hypothesis is proved for every totally real $`F`$ by `rankFourUnitSiegel_nf` above, so the combination is unconditional.
 
 ## Proof outline

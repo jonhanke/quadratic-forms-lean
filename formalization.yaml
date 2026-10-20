@@ -209,9 +209,14 @@ fidelity:
     lattice O_F^n in n >= 4 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
     proved equal to the covolume for Weil's Tamagawa measure in the library. (5) Local densities are the
     classical counts beta_p = lim #{x mod p^k : Q(x) = m mod p^k} / Np^{k(n-1)}, and the mass formula uses
-    Siegel's alpha_p = beta_p / 2 for the representation of Q by itself. (6) The infinite products use
-    Mathlib's unconditional product (value 1 if not unconditionally convergent) and the regularized products
-    use a limit with a junk value if it does not exist; the library proves convergence separately.
+    Siegel's alpha_p = beta_p / 2 for the representation of Q by itself. (6) No term of the headline
+    formulas relies on a Lean default value (tprod = 1 for a non-convergent product, finsum = 0 over an
+    infinite set, Nat.card = 0 for an infinite type, a junk limit): each headline states as extra conjuncts
+    that the genus has finitely many classes, that the automorphism groups and representation sets in the
+    genus are finite, that the infinite products converge unconditionally, that L_F(1, chi) exists and is
+    positive (ranks 2 and 3, where the corrected product inside the regularized product converges
+    unconditionally), and, for tau(SO(Q)) = 2, that the SO double coset space is finite with finite
+    stabilizers.
     (7) Quadratic forms in the local-global statements are coefficient-based forms sum_{i<=j} c_ij x_i x_j;
     nondegenerate means the Hessian has nonzero determinant. (8) Literature locators marked [unverified]
     have not been checked against the sources.

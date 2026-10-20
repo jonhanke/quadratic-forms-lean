@@ -25,9 +25,10 @@ import QuadFormsKB.Tamagawa.SiegelSpaceChars
 
 This file is the one place to read to check **what the library claims**. It states the headline results; every
 proof here is a deliberate `sorry`, one per advertised theorem. The proofs are in `Solution.lean`, which declares the
-same theorems and proves each by a one-line appeal to the library theorem. `lake comparator` (configured by
-`comparator.json`) checks that each theorem of `Solution.lean` has exactly the statement given here and depends only
-on the axioms `propext`, `Classical.choice` and `Quot.sound`. To trust a headline one needs to read only
+same theorems and proves each by citing library theorems (the main theorem, and lemmas for the finiteness and
+convergence conjuncts). `lake comparator` (configured by `comparator.json`) checks that each theorem of
+`Solution.lean` has exactly the statement given here and depends only on the axioms `propext`, `Classical.choice`
+and `Quot.sound`. To trust a headline one needs to read only
 
 * this file,
 * the definitions it names, listed with file pointers in the section "Definitions used" at the end, and
@@ -41,9 +42,12 @@ form on an abstract vector space (Mathlib's `QuadraticForm F V`). Classes of lat
 full orthogonal group O(Q) (improper isometries included), and every lattice L' in a genus is weighted by 1/|O(L')|.
 F is a number field with ring of integers 𝓞 F; "totally positive" means positive under every real embedding.
 
-**Caution on products.** `∏'` is Mathlib's unconditional infinite product, which returns `1` when the product does
-not converge unconditionally; `regProd` (ranks 2 and 3) uses a limit `L_F(1, χ)` that takes a junk value if the
-limit does not exist. The library proves separately that the products and limits occurring here converge.
+**No hidden default values.** Some notions in the formulas take a default value outside their intended range:
+`∏'` (Mathlib's unconditional infinite product) is `1` when the product does not converge unconditionally, `∑ᶠ` is
+`0` over an infinite set, `Nat.card` is `0` for an infinite type, and `L_F(1, χ)` (`LOne`, a limit) is a junk value
+when the limit does not exist. Each headline therefore states, as extra conjuncts, the facts that make every such
+term meaningful: the genus has finitely many classes, the automorphism groups and representation sets are finite,
+the infinite products converge unconditionally, and L_F(1, χ) exists (and is positive).
 -/
 
 open NumberField IsDedekindDomain Module
@@ -69,76 +73,126 @@ embedding σ, and β_𝔭(L, m) the classical local density of L at the prime �
 
 section Siegel
 
+-- `IsScalarTower (𝓞 F) F V` says the two scalar actions on V agree: (a • c) • v = a • (c • v) for a ∈ 𝓞 F, c ∈ F.
+-- So the 𝓞 F-module structure (needed for lattices L ⊆ V) is the restriction of the F-vector-space structure.
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {V : Type*} [AddCommGroup V] [Module F V]
   [Module (𝓞 F) V] [IsScalarTower (𝓞 F) F V] [FiniteDimensional F V] {Q : QuadraticForm F V}
   {L : Submodule (𝓞 F) V} [L.IsLattice F]
 
 /-- **Siegel's theorem, rank n ≥ 4.** With the setting above,
 ∑_{L' ∈ Gen(L)} r_{L'}(m)/|O(L')| = (∑_{L' ∈ Gen(L)} 1/|O(L')|) · |d_F|^{-(n-1)/2} · N𝔡(L)^{-1/2}
-  · ∏_σ β_σ(m) · ∏_𝔭 β_𝔭(L, m). -/
+  · ∏_σ β_σ(m) · ∏_𝔭 β_𝔭(L, m).
+Moreover the genus of L has finitely many classes, every lattice M in the genus has a finite automorphism group
+O(M) and finitely many x ∈ M with Q(x) = m (so the sums and counts above are finite and every |O(M)| ≥ 1),
+and the product ∏_𝔭 β_𝔭(L, m) converges unconditionally. -/
 theorem siegel_totallyReal (hn : 4 ≤ finrank F V) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = massGenV Q L *
       (|(discr F : ℝ)| ^ (-((finrank F V : ℝ) - 1) / 2) * discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity (finrank F V) ‖σ (algebraMap (𝓞 F) F m)‖ 1) *
-        ∏' v, intrinsicBetaV v Q L m) := by
+        ∏' v, intrinsicBetaV v Q L m) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m := by
   sorry
 
 /-- **Siegel's theorem, rank 3** (Euler product regularized by L(1, χ_m)). With the setting above and n = 3,
 ∑_{L' ∈ Gen(L)} r_{L'}(m)/|O(L')| = (∑_{L' ∈ Gen(L)} 1/|O(L')|) · |d_F|^{-1} · N𝔡(L)^{-1/2} · ∏_σ β_σ(m)
   · L_F(1, χ_m) · ∏_𝔭 β_𝔭(L, m) (1 - χ_m(𝔭)/N𝔭),
 where χ_m is the quadratic character of F(√(-2m·det H))/F, H the Hessian of Q in a basis of V (this version
-uses the basis `finBasisOfFinrankEq`; see the next theorem for a basis-free character). -/
+uses the basis `finBasisOfFinrankEq`; see the next theorem for a basis-free character).
+Moreover the genus of L has finitely many classes, every lattice M in the genus has a finite automorphism group
+O(M) and finitely many x ∈ M with Q(x) = m (so the sums and counts above are finite and every |O(M)| ≥ 1),
+the limit L_F(1, χ_m) = lim_{s→1⁺} L_F(s, χ_m) exists and is positive, and the corrected product
+∏_𝔭 β_𝔭(L, m) (1 - χ_m(𝔭)/N𝔭) converges unconditionally. -/
 theorem siegel_totallyReal_rank3 (h : finrank F V = 3) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = massGenV Q L *
       (|(discr F : ℝ)| ^ (-((3 : ℝ) - 1) / 2) * discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 3 ‖σ (algebraMap (𝓞 F) F m)‖ 1) *
-        regProd (spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m) 1 fun v => intrinsicBetaV v Q L m) := by
+        regProd (spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m) 1 fun v => intrinsicBetaV v Q L m) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      HasLOne (spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m)
+        (LOne (spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m)) ∧
+      0 < LOne (spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m *
+        (1 - spaceChar3 (coordForm Q (finBasisOfFinrankEq F V h)) m v / (NFEuler.normP v : ℝ)) ^ (1 : ℤ) := by
   sorry
 
 /-- **Siegel's theorem, rank 3, basis-free character.** As `siegel_totallyReal_rank3`, with χ_m the character of
-F(√(-2m·disc Q))/F defined without choosing a basis. -/
+F(√(-2m·disc Q))/F defined without choosing a basis, and the same extra conjuncts. -/
 theorem siegel_totallyReal_rank3' (h : finrank F V = 3) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = massGenV Q L *
       (|(discr F : ℝ)| ^ (-((3 : ℝ) - 1) / 2) * discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 3 ‖σ (algebraMap (𝓞 F) F m)‖ 1) *
-        regProd (spaceChar3V Q m) 1 fun v => intrinsicBetaV v Q L m) := by
+        regProd (spaceChar3V Q m) 1 fun v => intrinsicBetaV v Q L m) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      HasLOne (spaceChar3V Q m) (LOne (spaceChar3V Q m)) ∧ 0 < LOne (spaceChar3V Q m) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m * (1 - spaceChar3V Q m v / (NFEuler.normP v : ℝ)) ^ (1 : ℤ) := by
   sorry
 
 /-- **Siegel's theorem, rank 2** (factor 1/2; Euler product regularized by L(1, χ_Q)^{-1}). With the setting above
 and n = 2,
 ∑_{L' ∈ Gen(L)} r_{L'}(m)/|O(L')| = (1/2) · (∑_{L' ∈ Gen(L)} 1/|O(L')|) · |d_F|^{-1/2} · N𝔡(L)^{-1/2}
   · ∏_σ β_σ(m) · L_F(1, χ_Q)^{-1} · ∏_𝔭 β_𝔭(L, m) (1 - χ_Q(𝔭)/N𝔭)^{-1},
-where χ_Q is the quadratic character of F(√(-det H))/F, H the Hessian of Q in the basis `finBasisOfFinrankEq`. -/
+where χ_Q is the quadratic character of F(√(-det H))/F, H the Hessian of Q in the basis `finBasisOfFinrankEq`.
+Moreover the genus of L has finitely many classes, every lattice M in the genus has a finite automorphism group
+O(M) and finitely many x ∈ M with Q(x) = m (so the sums and counts above are finite and every |O(M)| ≥ 1),
+the limit L_F(1, χ_Q) = lim_{s→1⁺} L_F(s, χ_Q) exists and is positive, and the corrected product
+∏_𝔭 β_𝔭(L, m) (1 - χ_Q(𝔭)/N𝔭)^{-1} converges unconditionally. -/
 theorem siegel_totallyReal_rank2 (h : finrank F V = 2) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = (1 / 2 : ℝ) * massGenV Q L *
       (|(discr F : ℝ)| ^ (-((2 : ℝ) - 1) / 2) * discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 2 ‖σ (algebraMap (𝓞 F) F m)‖ 1) *
-        regProd (spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h))) (-1) fun v => intrinsicBetaV v Q L m) := by
+        regProd (spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h))) (-1) fun v => intrinsicBetaV v Q L m) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      HasLOne (spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h)))
+        (LOne (spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h)))) ∧
+      0 < LOne (spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h))) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m *
+        (1 - spaceChar2 (coordForm Q (finBasisOfFinrankEq F V h)) v / (NFEuler.normP v : ℝ)) ^ (-1 : ℤ) := by
   sorry
 
 /-- **Siegel's theorem, rank 2, basis-free character.** As `siegel_totallyReal_rank2`, with χ_Q the character of
-F(√(-disc Q))/F defined without choosing a basis. -/
+F(√(-disc Q))/F defined without choosing a basis, and the same extra conjuncts. -/
 theorem siegel_totallyReal_rank2' (h : finrank F V = 2) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = (1 / 2 : ℝ) * massGenV Q L *
       (|(discr F : ℝ)| ^ (-((2 : ℝ) - 1) / 2) * discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 2 ‖σ (algebraMap (𝓞 F) F m)‖ 1) *
-        regProd (spaceChar2V Q) (-1) fun v => intrinsicBetaV v Q L m) := by
+        regProd (spaceChar2V Q) (-1) fun v => intrinsicBetaV v Q L m) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      HasLOne (spaceChar2V Q) (LOne (spaceChar2V Q)) ∧ 0 < LOne (spaceChar2V Q) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m * (1 - spaceChar2V Q v / (NFEuler.normP v : ℝ)) ^ (-1 : ℤ) := by
   sorry
 
 /-- **Siegel's theorem, rank 1** (factor 1/2 at every place). With the setting above and n = 1,
 ∑_{L' ∈ Gen(L)} r_{L'}(m)/|O(L')| = (∑_{L' ∈ Gen(L)} 1/|O(L')|) · 2 · N𝔡(L)^{-1/2} · ∏_σ β_σ(m)/2
-  · ∏_𝔭 β_𝔭(L, m)/2. -/
+  · ∏_𝔭 β_𝔭(L, m)/2.
+Moreover the genus of L has finitely many classes, every lattice M in the genus has a finite automorphism group
+O(M) and finitely many x ∈ M with Q(x) = m (so the sums and counts above are finite and every |O(M)| ≥ 1),
+and the product ∏_𝔭 β_𝔭(L, m)/2 converges unconditionally. -/
 theorem siegel_totallyReal_rank1 (h : finrank F V = 1) (hQ : IsTotallyPosDefV Q) (hL : IsIntegralLattice Q L)
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     repMassGenV Q L (algebraMap (𝓞 F) F m) = massGenV Q L *
       (2 * (discNormV Q L ^ (-(1 / 2 : ℝ)) *
         (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 1 ‖σ (algebraMap (𝓞 F) F m)‖ 1 / 2) *
-        ∏' v, intrinsicBetaV v Q L m / 2)) := by
+        ∏' v, intrinsicBetaV v Q L m / 2)) ∧
+      (genusClassesV Q L).Finite ∧
+      (∀ (M : Submodule (𝓞 F) V) [M.IsLattice F], SameGenusV Q L M →
+        Finite (autLatV Q M) ∧ Finite {x : V // x ∈ M ∧ Q x = algebraMap (𝓞 F) F m}) ∧
+      Multipliable fun v => intrinsicBetaV v Q L m / 2 := by
   sorry
 
 end Siegel
@@ -154,19 +208,31 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 
 /-- **τ(SO(Q)) = 2.** For Q₀ as above, the Tamagawa number of SO(Q₀) is 2. Here `tauSO Q₀` is
 μ_Tam(K) · ∑_α 1/|Γ_α| (a Tamagawa volume times a double-coset mass); the library proves it equals the covolume of
-SO(Q₀)(F) in SO(Q₀)(𝔸) for a Haar measure normalized as Weil's Tamagawa measure (`Measure.tauSO_eq_covolume`). -/
+SO(Q₀)(F) in SO(Q₀)(𝔸) for a Haar measure normalized as Weil's Tamagawa measure (`Measure.tauSO_eq_covolume`).
+Moreover the product ∏_𝔭 α_𝔭(Q₀, Q₀) in μ_Tam(K) converges unconditionally, and the double-coset space
+SO(Q₀)(F)\SO(Q₀)(𝔸_f)/SO(𝓞̂_F^n) in the mass is finite, with finite stabilizers Γ_α. -/
 theorem tamagawa_two_totallyReal (hn : 4 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ : IsTotallyPosDef (formF Q₀)) :
-    tauSO Q₀ = 2 := by
+    tauSO Q₀ = 2 ∧
+      (Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀) ∧
+      Finite (MulAction.orbitRel.Quotient ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀)))
+        (soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F n)).subgroupOf (soAf (formF Q₀)))) ∧
+      ∀ x : soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F n)).subgroupOf (soAf (formF Q₀)),
+        Finite (MulAction.stabilizer ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀))) x) := by
   sorry
 
 /-- **The Smith–Minkowski–Siegel mass formula.** For Q₀ as above and L = 𝓞_F^n,
 ∑_{L' ∈ Gen(L)} 1/|O(L')| = ( |d_F|^{-n(n-1)/4} · ∏_σ vol(SO(Q₀^σ)) · ∏_𝔭 α_𝔭(Q₀, Q₀) )^{-1},
 with σ running over the embeddings F → ℂ (all real), vol(SO(Q₀^σ)) the closed-form archimedean volume
-(`archVolSO` at the Gram determinant `detGram Q₀ σ`), and α_𝔭(Q₀, Q₀) = (1/2) β_𝔭(Q₀, Q₀) Siegel's local density. -/
+(`archVolSO` at the Gram determinant `detGram Q₀ σ`), and α_𝔭(Q₀, Q₀) = (1/2) β_𝔭(Q₀, Q₀) Siegel's local density.
+Moreover the genus of L has finitely many classes, every lattice in the genus has a finite automorphism group,
+and the product ∏_𝔭 α_𝔭(Q₀, Q₀) converges unconditionally. -/
 theorem massFormula_totallyReal (hn : 4 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ : IsTotallyPosDef (formF Q₀)) :
     mass (formF Q₀) (stdLat F n) =
       (|(discr F : ℝ)| ^ (-((n : ℝ) * (n - 1) / 4)) * (∏ σ : F →ₐ[ℚ] ℂ, archVolSO n (detGram Q₀ σ)) *
-        ∏' v : HeightOneSpectrum (𝓞 F), LocalDensity.NF.siegelDensity v Q₀ Q₀)⁻¹ := by
+        ∏' v : HeightOneSpectrum (𝓞 F), LocalDensity.NF.siegelDensity v Q₀ Q₀)⁻¹ ∧
+      (genusClasses (formF Q₀) (stdLat F n)).Finite ∧
+      (∀ M : Lat F n, SameGenus (formF Q₀) (stdLat F n).1 M.1 → Finite (autLat (formF Q₀) M.1)) ∧
+      Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀ := by
   sorry
 
 end Tamagawa
@@ -237,14 +303,17 @@ Siegel's theorem
 * `SiegelSpace.IsTotallyPosDefV Q` (Tamagawa/SiegelQuadSpace.lean): Q(x) totally positive for every x ≠ 0.
 * `SiegelSpace.massGenV`, `SiegelSpace.repMassGenV` (Tamagawa/SiegelGenusV.lean): ∑ 1/|O(L')| and
   ∑ r_{L'}(t)/|O(L')| over the classes L' in Gen(L); built from `genusClassesV`, `LatClassV.autCard`,
-  `LatClassV.repCount` (same file).
+  `LatClassV.repCount` (same file); `SiegelSpace.SameGenusV` (same file): M is in the genus of L (locally
+  isometric at every prime).
+* `Lattices.autLatV Q M` (Lattices/Basic.lean): O(M), the isometries of (V, Q) mapping M onto M.
 * `SiegelSpace.discNormV Q L` (Tamagawa/SiegelClassical.lean): N𝔡(L), the norm of the discriminant ideal of L.
 * `SiegelSpace.intrinsicBetaV v Q L m` (Tamagawa/SiegelClassical.lean): β_𝔭(L, m) =
   lim_k #{x ∈ L_𝔭/𝔭^k L_𝔭 : Q(x) ≡ m mod 𝔭^k} / N𝔭^{k(n-1)}, via `SiegelSpace.intrinsicBeta` (same file)
   in the coordinates of `Module.finBasis`.
 * `Tamagawa.archRepDensity n a d` (Tamagawa/MassInduction.lean): π^{n/2}/Γ(n/2) · a^{(n-2)/2} · d^{-1/2}.
 * `RegProd.regProd χ e f` (Siegel/RegProd.lean): L_F(1, χ)^e · ∏'_𝔭 f(𝔭)(1 - χ(𝔭)/N𝔭)^e, with `RegProd.LOne`
-  = lim_{s→1+} L_F(s, χ).
+  = lim_{s→1+} L_F(s, χ) and `RegProd.HasLOne χ c` (same file): L_F(s, χ) → c as s → 1⁺;
+  `NFEuler.normP 𝔭` (Analysis/NFEulerProduct.lean): N𝔭, the absolute norm of 𝔭.
 * `SiegelSpace.spaceChar3`, `SiegelSpace.spaceChar2` (Tamagawa/SiegelSpace.lean): χ(𝔭) = `sqChar` of
   -2m·det H, resp. -det H; `SiegelSpace.sqChar` (same file): the quadratic symbol at 𝔭 (0 at 𝔭 | 2 and at non-units).
 * `SiegelSpace.spaceChar3V`, `SiegelSpace.spaceChar2V` (Tamagawa/SiegelSpaceChars.lean): the same with the
@@ -258,7 +327,11 @@ Tamagawa number and mass formula
   `Tamagawa.Measure.tauSO_eq_covolume` (Tamagawa/Measure/AdelicSO.lean).
 * `Tamagawa.tamagawaK`, `Tamagawa.archVolSO`, `Tamagawa.detGram` (Tamagawa/MassFormula.lean): the Tamagawa volume of
   the stabilizer, the archimedean volume of SO(Q₀^σ), and |σ(det(H/2))|.
-* `Lattices.mass Q L` (Lattices/Finite.lean): ∑ over `genusClasses Q L` of 1/`LatClass.autCard`.
+* `Lattices.mass Q L` (Lattices/Finite.lean): ∑ over `genusClasses Q L` of 1/`LatClass.autCard`;
+  `Lattices.genusClasses` (same file): the classes in the genus of L.
+* `Lattices.SameGenus Q L M`, `Lattices.autLat Q M` (Lattices/Genus.lean): M is in the genus of L; O(M).
+* `Lattices.OAf`, `Lattices.ratPoints`, `Lattices.locStab` (Lattices/ClassSet.lean): O(V)(𝔸_f), the diagonal
+  O(V)(F) inside it, and the stabilizer O(L̂) of L; `Tamagawa.soAf` (Tamagawa/MassFormula.lean): SO(V)(𝔸_f).
 * `Tamagawa.stdLat F n` (Tamagawa/MassFormula.lean): the lattice 𝓞_F^n in F^n.
 * `LocalDensity.NF.siegelDensity v Q T` (LocalDensity/NFFormDensity.lean): α_𝔭(Q, T) = ε β_𝔭(Q, T), ε = 1/2 if
   T has the same rank as Q, with β_𝔭 = `localDensityForm` (same file).

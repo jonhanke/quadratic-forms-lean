@@ -43,6 +43,8 @@ All in the namespace `QuadFormsKB.Tamagawa.SiegelSpace`, unconditional:
 - `QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula2_quadraticSpace_classical'`: rank $`2`$, regularized, with the factor $`\tfrac12`$.
 - `QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula1_quadraticSpace_classical`: rank $`1`$.
 
+The headline statements `QuadFormsKB.Headlines.siegel_totallyReal`, `siegel_totallyReal_rank3`, `siegel_totallyReal_rank3'`, `siegel_totallyReal_rank2`, `siegel_totallyReal_rank2'` and `siegel_totallyReal_rank1` in [`Challenge.lean`](../../Challenge.lean) add, as extra conjuncts, the facts that make every term meaningful: the genus has finitely many classes, every lattice $`L'`$ in the genus has a finite group $`\mathrm{O}(L')`$ and finitely many $`x`$ with $`Q(x) = m`$, and the product over the primes converges unconditionally. In ranks $`2`$ and $`3`$, $`L(1,\chi) = \lim_{s \to 1^+} L(s,\chi)`$ exists and is positive, and the product corrected by the Euler factors converges unconditionally. The lemmas are in `QuadFormsKB/Tamagawa/HeadlineFacts.lean`.
+
 The natural-order versions in ranks $`3`$ and $`2`$, `siegelFormula3_quadraticSpace_natural_classical'` and `siegelFormula2_quadraticSpace_natural_classical'` (same namespace), are **conditional** on `QuadFormsKB.RegProd.NaturalOrderEulerOne` for the relevant quadratic character.
 
 ## Proof outline

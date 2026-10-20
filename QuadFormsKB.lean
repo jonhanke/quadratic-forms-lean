@@ -719,4 +719,5 @@ import QuadFormsKB.Tamagawa.SiegelQuadSpace
 import QuadFormsKB.Tamagawa.SiegelGenusV
 import QuadFormsKB.Tamagawa.SiegelClassical
 import QuadFormsKB.Tamagawa.SiegelSpaceChars
+import QuadFormsKB.Tamagawa.HeadlineFacts
 import QuadFormsKB.Tamagawa.LatIndexCard
