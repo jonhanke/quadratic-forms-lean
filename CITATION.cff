@@ -3,7 +3,7 @@ message: >-
   If you use this software, please cite it as below. QuadFormsKB was developed
   with AI assistance (Claude Code, Anthropic), designed and directed by
   Jonathan Hanke; every proof is checked by the Lean kernel.
-title: "QuadFormsKB: quadratic forms over number fields in Lean 4"
+title: "Quadratic forms over number fields in Lean 4 (QuadFormsKB)"
 type: software
 authors:
   - family-names: Hanke

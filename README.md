@@ -143,6 +143,10 @@ statements. The rest of the library (its other definitions and intermediate resu
 reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
 against the literature. Corrections and reports of mis-formalizations are very welcome.
 
+## Releases
+
+Releases are tagged with semantic versions; `main` continues to develop. The first release is [v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0) (Lean and Mathlib v4.35.0). To cite a specific version, use its release page or the "Cite this repository" button.
+
 ## License
 
 Apache License 2.0; see [LICENSE](LICENSE).
