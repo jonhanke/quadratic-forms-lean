@@ -38,10 +38,10 @@ These are grouped by how they relate to existing formalizations. Each line names
 - **Local densities:** at every prime of every number field, dyadic primes included.
 - **Class numbers:** finiteness of the class number of a genus of lattices over every number field.
 - **Strong approximation:** for the spin group of an indefinite form in $`n \ge 3`$ variables over a number field.
-- **Free genera:** every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
-- **Binary forms over ℚ:** Siegel's formula for positive definite binary forms of every discriminant.
-- **Hasse invariants:** the standard conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas; local–global isometry over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">.
-- **Sums of squares:** Legendre's three-squares theorem and the Davenport–Cassels lemma.
+- **Free genera:** over every number field, every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
+- **Binary quadratic forms over ℚ, in classical form:** Siegel's formula for positive definite binary quadratic forms of every discriminant, stated with Dirichlet's $`L(1,\chi_D)`$ and classes of forms. (Rank 2 over every totally real number field is part of Siegel's theorem above.)
+- **Hasse invariants over ℚ:** the standard conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas.
+- **Sums of squares over ℤ:** Legendre's three-squares theorem and the Davenport–Cassels lemma.
 - **Theta series:** theta inversion for totally positive definite forms over totally real number fields.
 
 **Extending results in Mathlib or Tau Ceti**
