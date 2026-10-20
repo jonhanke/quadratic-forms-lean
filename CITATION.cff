@@ -9,6 +9,8 @@ authors:
   - family-names: Hanke
     given-names: Jonathan
 license: Apache-2.0
+version: "0.1.0"
+date-released: "2026-10-20"
 repository-code: "https://github.com/jonhanke/quadratic-forms-lean"
 keywords:
   - Lean 4
