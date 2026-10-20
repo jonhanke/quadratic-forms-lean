@@ -56,8 +56,8 @@ These are grouped by how they relate to existing formalizations. Each line names
   - *Here:* over discrete valuation rings, dyadic ones included.
   - *Tau Ceti:* the Jordan splitting over the p-adic integers.
 - **Kneser neighbours**
-  - *Here:* Kneser's theorem: for $`n \ge 3`$ and a prime at which $`V`$ is isotropic and $`L`$ is unimodular (not above $`2`$), chains of neighbours of $`L`$ reach every class in the spinor genus of $`L`$, so the whole genus when it is a single spinor genus.
-  - *Tau Ceti:* the definition of neighbours and the easier fact that they lie in the genus of $`L`$.
+  - *Here:* Kneser's theorem over every number field: for $`n \ge 3`$ and a prime element $`\pi`$ of the ring of integers (not dividing $`2`$) at which $`V`$ is isotropic and $`L`$ is unimodular, chains of $`\pi`$-neighbours of $`L`$ reach every class in the spinor genus of $`L`$, so the whole genus when it is a single spinor genus.
+  - *Tau Ceti:* over ℤ only (lattices in rational quadratic spaces): the definition of neighbours and the easier fact that they lie in the genus of $`L`$.
 - **Hasse norm theorem**
   - *Here:* for quadratic extensions of number fields, without class field theory.
   - *Tau Ceti:* a reduction through class field theory.
