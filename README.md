@@ -1,6 +1,6 @@
 # Quadratic forms over number fields in Lean 4
 
-[![Lean build](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml/badge.svg)](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml)
+[![Lean build](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml/badge.svg)](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23509792.svg)](https://doi.org/10.5281/zenodo.23509792)
 
 A Lean 4 library (built on Mathlib v4.35.0) for the arithmetic theory of quadratic forms over number fields. The Lean library is called `QuadFormsKB`.
 
@@ -145,7 +145,7 @@ against the literature. Corrections and reports of mis-formalizations are very w
 
 ## Releases
 
-Releases are tagged with semantic versions; `main` continues to develop. The first release is [v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0) (Lean and Mathlib v4.35.0). To cite a specific version, use its release page or the "Cite this repository" button.
+Releases are tagged with semantic versions; `main` continues to develop. The first release is [v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0) (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23509793](https://doi.org/10.5281/zenodo.23509793). The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
 
 ## License
 
