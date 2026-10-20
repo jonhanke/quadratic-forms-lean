@@ -45,12 +45,24 @@ These are grouped by how they relate to existing formalizations. Each line names
 
 **Extending results in Mathlib or Tau Ceti**
 
-- **Witt's theorems** (extension, cancellation, decomposition, transitivity). *Here:* over every field, including characteristic $`2`$. *Tau Ceti:* fields in which $`2`$ is invertible.
-- **Isotropy in dimension $`\ge 5`$.** *Here:* over every non-archimedean completion of a number field, dyadic completions included. *Tau Ceti:* local fields in which $`2`$ is invertible.
-- **Jordan decompositions.** *Here:* over discrete valuation rings, dyadic ones included. *Tau Ceti:* the Jordan splitting over the p-adic integers.
-- **Kneser neighbours.** *Here:* Kneser's theorem: for $`n \ge 3`$ and a prime at which $`V`$ is isotropic and $`L`$ is unimodular (not above $`2`$), chains of neighbours of $`L`$ reach every class in the spinor genus of $`L`$, so the whole genus when it is a single spinor genus. *Tau Ceti:* the definition of neighbours and the easier fact that they lie in the genus of $`L`$.
-- **Hasse norm theorem.** *Here:* for quadratic extensions of number fields, without class field theory. *Tau Ceti:* a reduction through class field theory.
-- **Class number formula.** *Here:* Dirichlet's formula in the form with $`L(1,\chi_D)`$. *Mathlib:* the residue of the Dedekind zeta function.
+- **Witt's theorems** (extension, cancellation, decomposition, transitivity)
+  - *Here:* over every field, including characteristic $`2`$.
+  - *Tau Ceti:* fields in which $`2`$ is invertible.
+- **Isotropy in dimension $`\ge 5`$**
+  - *Here:* over every non-archimedean completion of a number field, dyadic completions included.
+  - *Tau Ceti:* local fields in which $`2`$ is invertible.
+- **Jordan decompositions**
+  - *Here:* over discrete valuation rings, dyadic ones included.
+  - *Tau Ceti:* the Jordan splitting over the p-adic integers.
+- **Kneser neighbours**
+  - *Here:* Kneser's theorem: for $`n \ge 3`$ and a prime at which $`V`$ is isotropic and $`L`$ is unimodular (not above $`2`$), chains of neighbours of $`L`$ reach every class in the spinor genus of $`L`$, so the whole genus when it is a single spinor genus.
+  - *Tau Ceti:* the definition of neighbours and the easier fact that they lie in the genus of $`L`$.
+- **Hasse norm theorem**
+  - *Here:* for quadratic extensions of number fields, without class field theory.
+  - *Tau Ceti:* a reduction through class field theory.
+- **Class number formula**
+  - *Here:* Dirichlet's formula in the form with $`L(1,\chi_D)`$.
+  - *Mathlib:* the residue of the Dedekind zeta function.
 
 **Also proved here, available elsewhere**
 
