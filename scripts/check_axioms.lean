@@ -8,20 +8,22 @@ Every line should list only `propext`, `Classical.choice` and `Quot.sound`; the 
 fails if any other axiom (in particular `sorryAx`) appears.
 -/
 
+-- The statements are restated in QuadFormsKB/Headlines.lean, each proved by a one-line appeal to the
+-- library theorem named in its proof.
 -- Siegel's theorem over totally real number fields
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula_quadraticSpace_classical
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula3_quadraticSpace_classical
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula3_quadraticSpace_classical'
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula2_quadraticSpace_classical
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula2_quadraticSpace_classical'
-#print axioms QuadFormsKB.Tamagawa.SiegelSpace.siegelFormula1_quadraticSpace_classical
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank3
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank3'
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank2
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank2'
+#print axioms QuadFormsKB.Headlines.siegel_totallyReal_rank1
 -- Tamagawa number and mass formula over totally real number fields
-#print axioms QuadFormsKB.Tamagawa.Measure.Weil.tamagawaNumberTwo_all_ranks_totallyReal
-#print axioms QuadFormsKB.Tamagawa.Measure.Weil.massFormula_all_ranks_totallyReal
+#print axioms QuadFormsKB.Headlines.tamagawa_two_totallyReal
+#print axioms QuadFormsKB.Headlines.massFormula_totallyReal
 -- Hilbert reciprocity and Hasse–Minkowski over number fields
-#print axioms QuadFormsKB.hilbert_reciprocity_nf
-#print axioms QuadFormsKB.hasseMinkowski_nf
-#print axioms QuadFormsKB.represents_iff_everywhere_nf
-#print axioms QuadFormsKB.Tamagawa.FormClassNF.isometricIn_of_everywhere_nf
+#print axioms QuadFormsKB.Headlines.hilbertReciprocity_numberField
+#print axioms QuadFormsKB.Headlines.hasseMinkowski_numberField
+#print axioms QuadFormsKB.Headlines.represents_iff_everywhere_numberField
+#print axioms QuadFormsKB.Headlines.isometric_of_everywhere_numberField
 -- Hasse–Minkowski over ℚ
-#print axioms QuadFormsKB.hasseMinkowski
+#print axioms QuadFormsKB.Headlines.hasseMinkowski_rat

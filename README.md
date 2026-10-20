@@ -1,5 +1,7 @@
 # QuadFormsKB
 
+[![Lean build](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml/badge.svg)](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml)
+
 A Lean 4 + Mathlib (v4.35.0) knowledge base for number theory / quadratic forms:
 
 - **Literature statements**: each result from a paper or book is a Lean declaration tagged
@@ -24,6 +26,8 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 - **[Witt's theorems](docs/results/witt.md)** (extension, cancellation, decomposition, transitivity) over every field, including characteristic $`2`$.
 
 
+**Main statements.** To check what is claimed, read one file: [`QuadFormsKB/Headlines.lean`](QuadFormsKB/Headlines.lean) restates the results above (other than Witt's theorems) in self-contained form, lists the library definitions it uses, and proves each restatement by a one-line appeal to the library theorem.
+
 ## Further results
 
 - Classification of quadratic forms over each p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> by dimension, discriminant and Hasse invariant; local–global isometry over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">; the standard Hasse invariant conventions compared.
@@ -45,6 +49,7 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 
 ```
 QuadFormsKB/
+  Headlines.lean        the headline statements, restated for human review
   Citation.lean         @[kb "<key>" "<locator>"] citation attribute (keys from references.bib)
   Defs/QuadForm.lean    the primary definition: QuadForm R n = ∑_{i≤j} c_ij x_i x_j
                         (upper-triangular coefficients, any commutative ring)
@@ -87,12 +92,14 @@ lake env lean scripts/check_axioms.lean   # axioms of the headline theorems
 
 ## Provenance
 
-QuadFormsKB was written with Claude Code (Anthropic): almost entirely by Claude Opus 5.5, with a
-small share by Claude Sonnet 5.5, and designed and directed by Jonathan Hanke, who chose the
-results, the conventions and the proof routes and reviewed the work. The proofs are trusted
-because the Lean kernel checks them, and the CI checks that the headline theorems use only the
-standard axioms. Whether the definitions and statements match the literature is what needs human
-review, and that review is at an early stage.
+QuadFormsKB was written by AI, with Claude Code (Anthropic): almost entirely by Claude Opus 5.5,
+with a small share by Claude Sonnet 5.5, in about a week of development in October 2026. Jonathan
+Hanke designed and directed it: he chose the results, the conventions and the proof routes. The
+proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
+standard axioms. The headline statements are collected in `QuadFormsKB/Headlines.lean` for human
+review; that review is in progress. As with any AI-written formalization, the definitions and
+statements should be treated as untrustworthy until checked against the literature. Human review
+of them has only begun, so corrections and reports of mis-formalizations are very welcome.
 
 ## License
 
