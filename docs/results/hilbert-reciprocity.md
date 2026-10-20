@@ -38,6 +38,10 @@ All unconditional:
 
 At each place $`v`$ the Weil constant $`\gamma_v(t)`$ is computed as a Gauss integral. The local identity $`\gamma_v(ab)\gamma_v(1) = (a,b)_v\gamma_v(a)\gamma_v(b)`$ follows from the characterization of $`(a,\cdot)_v`$ as the character whose kernel is the norm group of $`F_v(\sqrt{a})`$, the local square theorem, and a change of variables in the Gauss integral. The global product formula comes from adelic Poisson summation for a Gaussian test function Φ twisted by $`\psi(t x^2)`$: the sum of Φ over $`F`$ equals the sum of its Fourier transform over $`F`$, and evaluating both sides gives $`\gamma_\infty(t)\prod_v\gamma_v(t) = 1`$. Multiplying the local identity over all places and applying the product formula to $`ab`$, $`1`$, $`a`$ and $`b`$ leaves $`\prod_v (a,b)_v = 1`$. Finiteness of the set of places with $`(a,b)_v = -1`$ holds because $`a`$ and $`b`$ are units at all but finitely many odd places.
 
+## Related work
+
+Tau Ceti proves Hilbert reciprocity over every number field as `hilbertProductFormula` ([`NumberTheory/ClassFieldTheory/Global/Hilbert/Reciprocity.lean`](https://github.com/TauCetiProject/TauCeti/blob/main/TauCeti/NumberTheory/ClassFieldTheory/Global/Hilbert/Reciprocity.lean)), through class field theory and the sum formula for the Brauer group. The proof here is different and purely local: it uses the Weil index of a quadratic character and adelic Poisson summation, and imports no class field theory.
+
 ## References
 
 - A. Weil, *Sur certains groupes d'opérateurs unitaires*, Acta Math. 111 (1964), §§22–28 [unverified locator].

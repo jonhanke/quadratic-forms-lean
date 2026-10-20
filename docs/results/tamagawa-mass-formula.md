@@ -54,6 +54,10 @@ For an arbitrary lattice in rank $`n \ge 4`$, `QuadFormsKB.Tamagawa.massFormula_
 
 The proof follows Weil's *Adeles and Algebraic Groups*. The mass of a genus is the volume of the quotient of the finite adelic points of $`\mathrm{O}(Q)`$ by $`\mathrm{O}(Q)(F)`$ divided by the volume of the stabilizer of $`L`$, and the volume of the special orthogonal group of the completion of $`L`$ at <img src="../images/inline/38e18b91af70.svg" align="absmiddle" alt="\mathfrak{p}"> is <img src="../images/inline/c7fb6f6fe752.svg" align="absmiddle" alt="\alpha_{\mathfrak{p}}(L, L)"> at every prime, dyadic primes included. In rank $`3`$, $`\mathrm{SO}(Q) \cong D^\times/F^\times`$ for a totally definite quaternion algebra $`D`$, and $`\tau = 2`$ comes from the zeta function of a maximal order and Eichler's mass formula, with the local factors computed at the ramified and dyadic primes. In rank $`4`$, $`\mathrm{SO}(Q)`$ is described through a quaternion algebra over the discriminant extension $`F(\sqrt{d})`$, and Weil's comparison of Tamagawa measures gives $`\tau = 2`$. Higher ranks follow by Weil's induction on the dimension: fibre $`\mathrm{SO}(Q)`$ over the vectors with $`Q(x) = m`$, prove the local orbital identity at every prime, and assemble the Euler product. Rank $`2`$ comes from the mass formula of the order <img src="../images/inline/d154e857cf98.svg" align="absmiddle" alt="\mathcal{O}_F[\sqrt{-D}]"> in the CM extension $`F(\sqrt{-D})/F`$ and the relative class number formula.
 
+## Related work
+
+Tau Ceti's `LocalField/MassFormula` concerns a different mass formula (counting extensions of local fields), not the mass of a genus of quadratic lattices. Neither Mathlib nor Tau Ceti has Tamagawa numbers of orthogonal groups or the Smith–Minkowski–Siegel mass formula.
+
 ## References
 
 - A. Weil, *Adeles and Algebraic Groups*, Birkhäuser, 1982, §2.4, §3.7 (Thm 3.7.1) and §4.5 (Thm 4.5.1) [unverified locator].

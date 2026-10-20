@@ -3,34 +3,15 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import QuadFormsKB.Tamagawa.Measure.Weil.GnatSiegelTotallyReal
-import QuadFormsKB.Tamagawa.SiegelSpaceChars
-import QuadFormsKB.Tamagawa.FormClassNF
-import QuadFormsKB.Literature.LocalGlobal.NumberFieldMain
-import QuadFormsKB.Literature.LocalGlobal.HasseMinkowski
+import QuadFormsKB
 
 /-!
-# Headline statements
+# Headline statements, proved
 
-This file is the one place to read to check **what the library claims**. Each theorem below restates a headline
-result in self-contained form; its proof is a one-line appeal to the library theorem, so Lean checks that the
-restatement is exactly (definitionally) what is proved there. To trust a headline one needs to read only
-
-* this file,
-* the definitions it names, listed with file pointers in the section "Definitions used" at the end, and
-* Mathlib.
-
-The proofs themselves need not be read: they are checked by the Lean kernel, and `scripts/check_axioms.lean` checks
-that every theorem here depends only on the axioms `propext`, `Classical.choice` and `Quot.sound`.
-
-**Conventions.** Q denotes a quadratic form (`QuadForm R n`: the polynomial ∑_{i ≤ j} c_ij x_i x_j) or a quadratic
-form on an abstract vector space (Mathlib's `QuadraticForm F V`). Classes of lattices are isometry classes under the
-full orthogonal group O(Q) (improper isometries included), and every lattice L' in a genus is weighted by 1/|O(L')|.
-F is a number field with ring of integers 𝓞 F; "totally positive" means positive under every real embedding.
-
-**Caution on products.** `∏'` is Mathlib's unconditional infinite product, which returns `1` when the product does
-not converge unconditionally; `regProd` (ranks 2 and 3) uses a limit `L_F(1, χ)` that takes a junk value if the
-limit does not exist. The library proves separately that the products and limits occurring here converge.
+The declarations of `Challenge.lean`, with the same names and statements, each proved by a one-line appeal to the
+library theorem. `lake comparator` (configured by `comparator.json`) checks that every theorem here has exactly
+the statement of its counterpart in `Challenge.lean` and depends only on the axioms `propext`, `Classical.choice`
+and `Quot.sound`. Read `Challenge.lean` for the statements, their docstrings and the definitions they use.
 -/
 
 open NumberField IsDedekindDomain Module
@@ -185,11 +166,11 @@ theorem represents_iff_everywhere_numberField (Q : QuadForm F n) (hQ : Q.Nondege
     Q.RepresentsIn F c ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.RepresentsIn K c :=
   represents_iff_everywhere_nf Q hQ c hc
 
-/-- **Isometry is local–global.** Two nondegenerate quadratic forms Q, R over F in the same number of variables that
-are isometric over every completion F_v are isometric over F. (The converse is immediate by base change.) -/
-theorem isometric_of_everywhere_numberField (Q R : QuadForm F n) (hQ : Q.Nondegenerate) (hR : R.Nondegenerate)
-    (h : NFPlace.Everywhere (F := F) fun K _ _ => Q.IsometricIn K R) : Q.IsometricIn F R :=
-  FormClassNF.isometricIn_of_everywhere_nf Q R hQ hR h
+/-- **Isometry is local–global.** Two nondegenerate quadratic forms Q, R over F in the same number of variables are
+isometric over F if and only if they are isometric over every completion F_v. -/
+theorem isometric_iff_everywhere_numberField (Q R : QuadForm F n) (hQ : Q.Nondegenerate) (hR : R.Nondegenerate) :
+    Q.IsometricIn F R ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsometricIn K R :=
+  isometricIn_iff_everywhere_nf Q R hQ hR
 
 /-- **Hasse–Minkowski over ℚ.** A nondegenerate quadratic form Q over ℚ, in any number of variables, is isotropic over
 ℚ if and only if it is isotropic over ℝ and over ℚ_p for every prime p. -/
@@ -198,57 +179,5 @@ theorem hasseMinkowski_rat (Q : QuadForm ℚ n) (hQ : Q.Nondegenerate) :
   hasseMinkowski Q hQ
 
 end LocalGlobal
-
-/-! ## Definitions used
-
-The statements above use the following library definitions (all in namespace `QuadFormsKB`; paths relative to
-`QuadFormsKB/`). Everything else is Mathlib.
-
-Forms and local–global predicates
-* `QuadForm R n` (Defs/QuadForm.lean): a form ∑_{i ≤ j} c_ij x_i x_j, by its upper-triangular coefficient matrix.
-* `QuadForm.evalIn`, `QuadForm.eval` (Defs/QuadForm.lean): the value Q(x) for x ∈ K^n, K an R-algebra (resp. K = R).
-* `QuadForm.hessian` (Defs/QuadForm.lean): the Hessian matrix H = C + Cᵀ, so Q(x) = (1/2) xᵀ H x.
-* `QuadForm.Nondegenerate` (Defs/QuadForm.lean): det H ≠ 0.
-* `QuadForm.IsotropicIn K` (Defs/QuadForm.lean): Q(x) = 0 for some nonzero x ∈ K^n.
-* `QuadForm.RepresentsIn K c` (Defs/QuadForm.lean): Q(x) = c for some x ∈ K^n.
-* `QuadForm.IsometricIn K Q R` (Defs/QuadForm.lean): Q(P x) = R(x) for all x, for some P ∈ GL_n(K).
-* `RatPlace.Everywhere`, `RatPlace.atPlace` (Defs/Rational.lean): the property holds over ℝ and every ℚ_p.
-* `NFPlace`, `NFPlace.atPlace`, `NFPlace.Everywhere` (Defs/NumberField.lean): places of F (infinite places,
-  nonzero primes of 𝓞 F); the property holds over every completion (`w.Completion`, `v.adicCompletion F`).
-* `NFPlace.hilbert` (Defs/NumberField.lean): (a, b)_v, the Hilbert symbol over the completion F_v.
-* `hilbertSymbol K a b` (Defs/Hilbert.lean): 1 if z² = a x² + b y² has a nonzero solution in K, else -1.
-
-Siegel's theorem
-* `HilbertModular.realEmb F v` (HilbertModular/Congruence.lean): the real embedding F → ℝ of the place v.
-* `Lattices.IsIntegralLattice Q L` (Lattices/Basic.lean): Q(x) ∈ 𝓞 F for all x ∈ L.
-* `SiegelSpace.IsTotallyPosDefV Q` (Tamagawa/SiegelQuadSpace.lean): Q(x) totally positive for every x ≠ 0.
-* `SiegelSpace.massGenV`, `SiegelSpace.repMassGenV` (Tamagawa/SiegelGenusV.lean): ∑ 1/|O(L')| and
-  ∑ r_{L'}(t)/|O(L')| over the classes L' in Gen(L); built from `genusClassesV`, `LatClassV.autCard`,
-  `LatClassV.repCount` (same file).
-* `SiegelSpace.discNormV Q L` (Tamagawa/SiegelClassical.lean): N𝔡(L), the norm of the discriminant ideal of L.
-* `SiegelSpace.intrinsicBetaV v Q L m` (Tamagawa/SiegelClassical.lean): β_𝔭(L, m) =
-  lim_k #{x ∈ L_𝔭/𝔭^k L_𝔭 : Q(x) ≡ m mod 𝔭^k} / N𝔭^{k(N-1)}, via `SiegelSpace.intrinsicBeta` (same file)
-  in the coordinates of `Module.finBasis`.
-* `Tamagawa.archRepDensity N a d` (Tamagawa/MassInduction.lean): π^{N/2}/Γ(N/2) · a^{(N-2)/2} · d^{-1/2}.
-* `RegProd.regProd χ e f` (Siegel/RegProd.lean): L_F(1, χ)^e · ∏'_𝔭 f(𝔭)(1 - χ(𝔭)/N𝔭)^e, with `RegProd.LOne`
-  = lim_{s→1+} L_F(s, χ).
-* `SiegelSpace.spaceChar3`, `SiegelSpace.spaceChar2` (Tamagawa/SiegelSpace.lean): χ(𝔭) = `sqChar` of
-  -2m·det H, resp. -det H; `SiegelSpace.sqChar` (same file): the quadratic symbol at 𝔭 (0 at 𝔭 | 2 and at non-units).
-* `SiegelSpace.spaceChar3V`, `SiegelSpace.spaceChar2V` (Tamagawa/SiegelSpaceChars.lean): the same with the
-  basis-free `sqClassChar` and `hessDetV`.
-* `Lattices.coordForm Q e` (Lattices/Basic.lean): the form Q in the basis e, as a `QuadForm F n`.
-
-Tamagawa number and mass formula
-* `HilbertModular.formF Q₀` (HilbertModular/GenusTheta.lean): Q₀ with coefficients mapped into F.
-* `Lattices.IsTotallyPosDef`, `Lattices.IsTotallyPos` (Lattices/Finite.lean): Q(x) totally positive for x ≠ 0.
-* `Tamagawa.tauSO` (Tamagawa/MassFormula.lean): `tamagawaK Q₀ · dcMass (…)`; equal to the Tamagawa covolume by
-  `Tamagawa.Measure.tauSO_eq_covolume` (Tamagawa/Measure/AdelicSO.lean).
-* `Tamagawa.tamagawaK`, `Tamagawa.archVolSO`, `Tamagawa.detGram` (Tamagawa/MassFormula.lean): the Tamagawa volume of
-  the stabilizer, the archimedean volume of SO(Q₀^σ), and |σ(det(H/2))|.
-* `Lattices.mass Q L` (Lattices/Finite.lean): ∑ over `genusClasses Q L` of 1/`LatClass.autCard`.
-* `Tamagawa.stdLat F N` (Tamagawa/MassFormula.lean): the lattice 𝓞_F^N in F^N.
-* `LocalDensity.NF.siegelDensity v Q T` (LocalDensity/NFFormDensity.lean): α_𝔭(Q, T) = ε β_𝔭(Q, T), ε = 1/2 if
-  T has the same rank as Q, with β_𝔭 = `localDensityForm` (same file).
--/
 
 end QuadFormsKB.Headlines

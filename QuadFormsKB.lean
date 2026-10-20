@@ -33,6 +33,7 @@ import QuadFormsKB.Literature.LocalGlobal.SquaresLocalGlobal
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiNFMain
 import QuadFormsKB.Literature.LocalGlobal.PrescribedNF
 import QuadFormsKB.Literature.LocalGlobal.NumberFieldMain
+import QuadFormsKB.Literature.LocalGlobal.IsometricBaseChange
 import QuadFormsKB.LocalDensity.Basic
 import QuadFormsKB.LocalDensity.Reduction
 import QuadFormsKB.LocalDensity.Stabilization
@@ -719,4 +720,3 @@ import QuadFormsKB.Tamagawa.SiegelGenusV
 import QuadFormsKB.Tamagawa.SiegelClassical
 import QuadFormsKB.Tamagawa.SiegelSpaceChars
 import QuadFormsKB.Tamagawa.LatIndexCard
-import QuadFormsKB.Headlines

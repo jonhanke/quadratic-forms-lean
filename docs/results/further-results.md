@@ -83,6 +83,13 @@ Short statements of further results in the repository, each with its Lean names.
 
 **In Lean.** `QuadFormsKB.HilbertModular.thetaLat_inversion`, `QuadFormsKB.HilbertModular.thetaQ_inversion`, and the modularity statement `QuadFormsKB.HilbertModular.thetaQ_mem_modularFormChar'`.
 
+## Witt's theorems over every field
+
+**Statement.** Witt's extension, cancellation and decomposition theorems, and the transitivity of the orthogonal group on vectors of a given value, hold for quadratic forms over every field, including fields of characteristic $`2`$. Tau Ceti has versions for fields in which $`2`$ is invertible. Full statements, the sharp characteristic $`2`$ hypotheses and the comparison with Tau Ceti: [Witt's theorems](witt.md).
+
+**In Lean.**
+- `QuadraticForm.exists_isometryEquiv_extend`, `QuadraticForm.equivalent_of_prod_equivalent_prod`, `QuadraticForm.exists_wittDecomposition`, `QuadraticForm.wittDecomposition_unique`, `QuadraticForm.exists_isometryEquiv_apply_eq`.
+
 ## References
 
 - J.-P. Serre, *A Course in Arithmetic*, Springer GTM 7, 1973, Ch. IV and its appendix [unverified locator for the appendix].

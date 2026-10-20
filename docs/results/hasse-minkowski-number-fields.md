@@ -8,7 +8,7 @@ Let $`F`$ be a number field and let $`Q`$, $`R`$ be nondegenerate quadratic form
 
 1. **Isotropy.** $`Q`$ is isotropic over $`F`$ if and only if $`Q`$ is isotropic over $`F_v`$ for every $`v`$.
 2. **Representation.** For $`c \in F^\times`$, $`Q`$ represents $`c`$ over $`F`$ if and only if $`Q`$ represents $`c`$ over $`F_v`$ for every $`v`$.
-3. **Isometry.** If $`Q`$ and $`R`$ are isometric over $`F_v`$ for every $`v`$, then they are isometric over $`F`$. (The converse is immediate.)
+3. **Isometry.** $`Q`$ and $`R`$ are isometric over $`F`$ if and only if they are isometric over $`F_v`$ for every $`v`$.
 
 ## Scope and hypotheses
 
@@ -23,12 +23,16 @@ All unconditional:
 - `QuadFormsKB.hasseMinkowski_nf`: isotropy (Lam's route).
 - `QuadFormsKB.hasseMinkowski_nf_serre`: isotropy again, by Serre's route over $`F`$; an independent second proof.
 - `QuadFormsKB.represents_iff_everywhere_nf`: representation of $`c \ne 0`$.
-- `QuadFormsKB.Tamagawa.FormClassNF.isometricIn_of_everywhere_nf`: isometry.
+- `QuadFormsKB.isometricIn_iff_everywhere_nf`: isometry, both directions; the local-to-global direction is `QuadFormsKB.Tamagawa.FormClassNF.isometricIn_of_everywhere_nf`, the converse is base change of an isometry (`QuadFormsKB.QuadForm.isometricIn_baseChange`, over any field with $`2 \ne 0`$).
 - Ingredients: `QuadFormsKB.SqLG.isSquare_iff_everywhere` (an element of $`F`$ that is a square in every completion is a square), `QuadFormsKB.HasseNorm.hilbert_eq_one_of_everywhere` (the Hasse norm theorem for quadratic extensions), `QuadFormsKB.hilbert_reciprocity_nf` and `QuadFormsKB.PresNF.exists_prescribed_hilbert` (elements with prescribed local Hilbert symbols).
 
 ## Proof outline
 
 Diagonalize $`Q`$. In rank $`2`$, $`\langle a, b\rangle`$ is isotropic if and only if $`-ab`$ is a square, so the local–global principle for squares applies. In rank $`3`$, when $`-ab`$ is not a square, $`\langle a, b, c\rangle`$ is isotropic if and only if $`-c/a`$ is a norm from $`F(\sqrt{-ab})`$, and the Hasse norm theorem for quadratic extensions applies; it is proved with Chevalley's algebraic second inequality and no imported class field theory. Lam's route then handles rank $`4`$ by passing to the discriminant extension and rank $`n \ge 5`$ by induction, splitting off a binary form whose global value is chosen by weak approximation. Serre's route over $`F`$ replaces Dirichlet's theorem on primes in progressions by the existence of elements with prescribed local Hilbert symbols, which is proved from Hilbert reciprocity and a duality argument on $`S`$-units. Representation follows from isotropy of $`Q \perp \langle -c\rangle`$. Isometry follows by induction on $`n`$: a value of $`R`$ is represented by $`Q`$ everywhere, hence over $`F`$, and Witt cancellation at every place removes it.
+
+## Related work
+
+Tau Ceti has the induction steps of Hasse–Minkowski over number fields in rank 4 and in rank at least 5 ([`NumberTheory/QuadraticForm/Global/`](https://github.com/TauCetiProject/TauCeti/blob/main/TauCeti/NumberTheory/QuadraticForm/Global)), conditional on the lower-rank cases. Here the theorem is proved completely, in every rank, for isotropy, representation and isometry.
 
 ## References
 

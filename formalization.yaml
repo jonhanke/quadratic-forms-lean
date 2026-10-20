@@ -1,0 +1,298 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+
+project:
+  name: "QuadFormsKB: quadratic forms over number fields"
+  description: >-
+    A Lean 4 + Mathlib formalization of the arithmetic theory of quadratic forms over number fields.
+    Principal results: Siegel's theorem (the genus average of representation numbers equals a product of
+    local densities) for totally positive definite quadratic lattices of every rank, in every genus, over
+    every totally real number field; the Tamagawa number tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass
+    formula over totally real fields; Hilbert reciprocity over every number field, proved locally via the
+    Weil index; and the Hasse-Minkowski local-global principle over every number field (isotropy,
+    representation, isometry) and over the rationals. Further results include Witt's theorems over every
+    field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
+    decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
+    strong approximation for spin groups, Kneser neighbours, the Hasse norm theorem for quadratic
+    extensions, and Dirichlet's class number formula.
+  authors:
+    - "Jonathan Hanke"
+  license: "Apache-2.0"
+  responsible_maintainers:
+    - "Jonathan Hanke"
+
+classification:
+  arxiv: ["math.NT"]
+  # 11E12 quadratic forms over global rings and fields; 11E08 quadratic forms over local rings and fields;
+  # 11E41 class numbers of quadratic and Hermitian forms; 11E45 analytic theory (Epstein zeta functions;
+  # relations with automorphic forms and functions), the home of Siegel's formula; 11E57 classical groups;
+  # 03B35 mechanization of proofs and logical operations.
+  msc2020: ["11E12", "11E08", "11E41", "11E45", "11E57", "03B35"]
+
+sources:
+  - title: "Über die analytische Theorie der quadratischen Formen"
+    authors:
+      - "Carl Ludwig Siegel"
+    type: "article"
+    location: "Annals of Mathematics 36 (1935), 527-606; Hauptsatz [unverified locator]"
+    relationship: "independently-proves"
+    note: >-
+      Siegel's theorem for totally positive definite lattices over totally real fields is proved by the
+      adelic route of Weil, not by Siegel's analytic method.
+    author_endorsement: "n/a"
+  - title: "Adeles and Algebraic Groups"
+    authors:
+      - "André Weil"
+    type: "book"
+    location: "Progress in Mathematics 23, Birkhäuser, 1982; Ch. III-IV (Tamagawa measures, tau(SO) = 2) [unverified locator]"
+    relationship: "adapts"
+    note: >-
+      The proof route for tau(SO(Q)) = 2, the mass formula and Siegel's theorem: Tamagawa measures,
+      induction on the rank through stabilizers, and the identification of the mass with a covolume.
+    author_endorsement: "n/a"
+  - title: "Sur certains groupes d'opérateurs unitaires"
+    authors:
+      - "André Weil"
+    type: "article"
+    location: "Acta Mathematica 111 (1964), 143-211 (the Weil index) [unverified locator]"
+    relationship: "adapts"
+    note: "The Weil index, used for the local proof of Hilbert reciprocity."
+    author_endorsement: "n/a"
+  - title: "Introduction to Quadratic Forms"
+    authors:
+      - "O. Timothy O'Meara"
+    type: "book"
+    location: "Grundlehren 117, Springer, 1963; Ch. VI (Hasse-Minkowski, 66:1-66:4), §71 (reciprocity), Ch. IX-X (lattices, genera, spinor genera) [unverified locator]"
+    relationship: "adapts"
+    note: "Definitions of lattices, genera, classes and spinor norms, and the local-global theorems over number fields."
+    author_endorsement: "n/a"
+  - title: "A Course in Arithmetic"
+    authors:
+      - "Jean-Pierre Serre"
+    type: "book"
+    location: "Graduate Texts in Mathematics 7, Springer, 1973; Ch. III-IV"
+    relationship: "independently-proves"
+    note: "Hasse-Minkowski over the rationals and the classification of forms over Q_p, following Serre's route."
+    author_endorsement: "not-contacted"
+  - title: "Introduction to Quadratic Forms over Fields"
+    authors:
+      - "T. Y. Lam"
+    type: "book"
+    location: "AMS Graduate Studies in Mathematics 67, 2005; Ch. I (Witt), Ch. VI (Hasse-Minkowski) [unverified locator]"
+    relationship: "adapts"
+    note: "Lam's route to Hasse-Minkowski over number fields."
+    author_endorsement: "not-contacted"
+  - title: "The Algebraic and Geometric Theory of Quadratic Forms"
+    authors:
+      - "Richard Elman"
+      - "Nikita Karpenko"
+      - "Alexander Merkurjev"
+    type: "book"
+    location: "AMS Colloquium Publications 56, 2008; Thms 8.3-8.5 [unverified locator]"
+    relationship: "adapts"
+    note: "Witt's theorems in characteristic 2 with the sharp hypotheses."
+    author_endorsement: "not-contacted"
+  - title: "Local densities and explicit bounds for representability by a quadratic form"
+    authors:
+      - "Jonathan Hanke"
+    type: "article"
+    location: "Duke Mathematical Journal 124 (2004), 351-388"
+    relationship: "background"
+    note: >-
+      Local densities and Jordan decompositions over discrete valuation rings; the formalization
+      records a correction to the dyadic normal form (Lemma 2.1). The author directed the formalization.
+    author_endorsement: "participated"
+  - title: "Quadratic Forms and Automorphic Forms"
+    authors:
+      - "Jonathan Hanke"
+    type: "lecture notes"
+    id: "arXiv:1105.5759"
+    location: "Expanded notes from the 2009 Arizona Winter School (2011)"
+    relationship: "background"
+    author_endorsement: "participated"
+  - title: "Arithmetic of Quadratic Forms"
+    authors:
+      - "Yoshiyuki Kitaoka"
+    type: "book"
+    location: "Cambridge Tracts in Mathematics 106, 1993"
+    relationship: "background"
+    author_endorsement: "not-contacted"
+  - title: "Rational Quadratic Forms"
+    authors:
+      - "J. W. S. Cassels"
+    type: "book"
+    location: "Academic Press, 1978"
+    relationship: "background"
+    author_endorsement: "n/a"
+  - title: "Algebraic Number Theory"
+    authors:
+      - "Jürgen Neukirch"
+    type: "book"
+    location: "Grundlehren 322, Springer, 1999"
+    relationship: "background"
+    author_endorsement: "n/a"
+  - title: "Further references"
+    type: "bibliography"
+    location: "references.bib in this repository; each result is tagged with @[kb \"<key>\" \"<locator>\"]"
+    relationship: "background"
+
+related_formalizations:
+  - id: "https://github.com/leanprover-community/mathlib4"
+    relationship: "builds-on"
+    note: "Built on Mathlib v4.35.0 (quadratic forms, number fields, adic completions, Haar measure)."
+  - id: "https://github.com/TauCetiProject/TauCeti"
+    relationship: "independent"
+    note: >-
+      Tau Ceti formalizes Witt's theorems (extension, cancellation, decomposition), the Witt ring,
+      orthogonal groups and lattices for fields in which 2 is invertible. Developed independently; this
+      repository does not import it. The Witt theorems here also cover characteristic 2.
+
+status:
+  scope: >-
+    Formalized (the 13 statements of Challenge.lean, proved in Solution.lean): Siegel's theorem for
+    totally positive definite quadratic lattices over totally real number fields, in every rank and every
+    genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
+    unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
+    L_F(1, chi) (each with a basis-dependent and a basis-free character), rank 1 with Siegel's factor 1/2;
+    tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass formula for totally positive definite forms in
+    N >= 4 variables with coefficients in O_F, for the genus of the free lattice O_F^N (lower ranks and
+    general lattices are proved in the library but not stated in Challenge.lean); Hilbert reciprocity over
+    every number field; Hasse-Minkowski over every number field for isotropy, for representation of a
+    nonzero number, and for isometry (both directions); Hasse-Minkowski over Q in any number of variables.
+    Not formalized: Siegel's theorem for indefinite forms, representations of forms by forms (only numbers
+    by forms), and the Siegel-Weil formula beyond these cases. Over a general totally real field the
+    natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
+    hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  # No custom axioms; the standard axioms used (checked by scripts/check_axioms.lean and lake comparator):
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Claude Opus 5.5", "Claude Sonnet 5.5"]
+      framework: "Claude Code"
+      tool_setup: >-
+        Claude Code orchestrating parallel agents, each in its own git worktree and branch, with Lean kernel
+        builds (lake build) as the check and pull requests merged into the main branch; human direction
+        throughout.
+      cost:
+        wall_time: "about one week (2026-10-13 to 2026-10-20), agents running around the clock"
+        spend_usd: >-
+          subscription-based (Claude Max plan, $200/month); API-equivalent value of the tokens about
+          $1,200-1,800 (measured from local Claude Code logs)
+        hardware: "local machine (MacBook) for builds; API for models"
+      prompting_notes: >-
+        Human-written roadmaps and goals per result; agents were given design documents and handoff notes
+        from earlier sessions. The human chose the results, the conventions (e.g. classes under the full
+        orthogonal group with weights 1/|O(L)|) and the proof routes (local routes such as the Weil index
+        for Hilbert reciprocity; Weil's adelic route for Siegel's theorem).
+  spend_usd: "subscription-based (Claude Max plan); API-equivalent value about $1,200-1,800"
+  notes: >-
+    Jonathan Hanke designed and directed the project; the Lean code was written almost entirely by
+    Claude Opus 5.5, with a small share by Claude Sonnet 5.5. An orchestrating session split each result
+    into work items, launched agents on separate branches, reviewed and merged their pull requests, and
+    kept a decisions log. All proofs are checked by the Lean kernel; the headline statements were
+    collected in Challenge.lean for human review.
+
+fidelity:
+  divergences: >-
+    (1) Ranks 2 and 3 of Siegel's theorem are stated with the Euler product regularized by L_F(1, chi)
+    (the product of local densities does not converge absolutely there); the natural-order versions are
+    proved in the library only conditionally on RegProd.NaturalOrderEulerOne over a general totally real
+    field. (2) Classes of lattices are isometry
+    classes under the full orthogonal group O(L) (improper isometries included), each weighted by
+    1/|O(L)|, rather than proper classes weighted by 1/|SO(L)|. (3) Siegel's factor 1/2 appears in ranks
+    1 and 2 as in the classical statement; in rank 1 it is placed at every place. (4) The Tamagawa number
+    and mass formula statements in Challenge.lean are for forms with coefficients in O_F on the free
+    lattice O_F^N in N >= 4 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
+    proved equal to the covolume for Weil's Tamagawa measure in the library. (5) Local densities are the
+    classical counts beta_p = lim #{x mod p^k : Q(x) = m mod p^k} / Np^{k(N-1)}, and the mass formula uses
+    Siegel's alpha_p = beta_p / 2 for the representation of Q by itself. (6) The infinite products use
+    Mathlib's unconditional product (value 1 if not unconditionally convergent) and the regularized products
+    use a limit with a junk value if it does not exist; the library proves convergence separately.
+    (7) Quadratic forms in the local-global statements are coefficient-based forms sum_{i<=j} c_ij x_i x_j;
+    nondegenerate means the Hessian has nonzero determinant. (8) Literature locators marked [unverified]
+    have not been checked against the sources.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "Jonathan Hanke (in progress)"
+  notes: >-
+    The headline statements in Challenge.lean are under review by Jonathan Hanke; no external review yet.
+    Lean checks the proofs; lake comparator checks that Solution.lean proves exactly the Challenge.lean
+    statements using only the standard axioms.
+
+alignment:
+  namespace: "QuadFormsKB"
+  statements:
+    - source: "Siegel 1935, Hauptsatz [unverified locator]; Weil 1965 (Siegel's formula), totally real fields, rank >= 4"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Totally positive definite lattices of rank >= 4 over a totally real field, every genus."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], rank 3"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal_rank3"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Euler product regularized by L_F(1, chi_m); character defined via a chosen basis."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], rank 3"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal_rank3'"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "As above with a basis-free character."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], rank 2"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal_rank2"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Factor 1/2; Euler product regularized by L_F(1, chi_Q)^{-1}; character via a chosen basis."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], rank 2"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal_rank2'"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "As above with a basis-free character."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], rank 1"
+      lean: "QuadFormsKB.Headlines.siegel_totallyReal_rank1"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Factor 1/2 at every place."
+    - source: "Weil 1982, Adeles and Algebraic Groups, tau(SO) = 2 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_totallyReal"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Totally positive definite forms over O_F in N >= 4 variables, F totally real."
+    - source: "Smith-Minkowski-Siegel mass formula; Siegel 1935 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.massFormula_totallyReal"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Genus of the free lattice O_F^N, N >= 4."
+    - source: "O'Meara 1963, 71:18 (Hilbert reciprocity) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.hilbertReciprocity_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Every number field; finitely many and an even number of places with (a, b)_v = -1."
+    - source: "O'Meara 1963, 66:1 (Hasse-Minkowski) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.hasseMinkowski_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Isotropy, every number field, every number of variables."
+    - source: "O'Meara 1963, 66:3 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.represents_iff_everywhere_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Representation of a nonzero number."
+    - source: "O'Meara 1963, 66:4 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.isometric_iff_everywhere_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Isometry, both directions."
+    - source: "Serre 1973, Ch. IV, Thm 8 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.hasseMinkowski_rat"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Isotropy over Q, any number of variables."
+
+acknowledgements: >-
+  Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

@@ -33,6 +33,23 @@ All unconditional, in the namespace `QuadraticForm` (files under [QuadFormsKB/Wi
 
 The proof uses three kinds of elementary isometries, given by explicit formulas valid in every characteristic: the reflection along a vector $`z`$ with $`Q(z) \ne 0`$, the Eichler transformation attached to an isotropic vector $`z`$ and a vector orthogonal to it, and the rescaling of a hyperbolic pair. One extension step moves $`x`$ to $`y`$ while fixing a subspace: with $`z = x - y`$, reflect along $`z`$ if $`Q(z) \ne 0`$, use an Eichler transformation if $`x`$ lies outside the span of the fixed subspace, $`z`$ and $`\mathrm{rad}\, b`$, and otherwise rescale a hyperbolic pair through $`z`$. Induction on a basis of $`W`$ gives extension. Cancellation follows from extension. The decomposition splits off hyperbolic planes explicitly, and its uniqueness follows from cancellation.
 
+## Related work
+
+Mathlib (v4.35.0) has none of these theorems. [Tau Ceti](https://github.com/TauCetiProject/TauCeti) proves Witt's theorems for fields in which $`2`$ is invertible (the hypothesis `[Invertible (2 : K)]`, that is, characteristic other than $`2`$):
+
+- [Witt/Extension.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Extension.lean): `QuadraticMap.IsometryEquiv.exists_extension`, an isometry between two regular subspaces extends to the whole space.
+- [Witt/Cancellation.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Cancellation.lean): `TauCeti.equivalent_of_equivalent_prod`, cancellation of a regular finite-dimensional summand.
+- [Witt/Decomposition.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Decomposition.lean) and [Witt/Degenerate.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Degenerate.lean): the Witt decomposition of regular forms, with the uniqueness of the Witt index and of the anisotropic part, and its extension to degenerate forms.
+- [Witt/TotallyIsotropic.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/TotallyIsotropic.lean): the Witt index as the dimension of a maximal totally isotropic subspace.
+
+Tau Ceti also builds the Witt ring, the fundamental ideal and Pfister forms, which are not covered here.
+
+What the theorems here add:
+
+- All four theorems, transitivity included, hold over every field, including fields of characteristic $`2`$, with the sharp hypotheses of Elman–Karpenko–Merkurjev ($`\mathrm{rad}\, Q = 0`$ for extension and decomposition; $`Q`$ nonsingular for cancellation). The characteristic $`2`$ counterexamples above show that these hypotheses cannot be dropped.
+- Extension applies to every subspace $`W`$ and every isometric embedding $`\sigma`$ that preserves the radical of $`b`$, not only to regular subspaces.
+- Cancellation is transferred to the repository's coefficient-based forms (`QuadForm`) over any field extension, over <img src="../images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}"> and over <img src="../images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p">, where the local–global theorems use it.
+
 ## References
 
 - R. Elman, N. Karpenko and A. Merkurjev, *The Algebraic and Geometric Theory of Quadratic Forms*, AMS Colloquium Publications 56, 2008, Thms 8.3, 8.4, 8.5 [unverified locator].

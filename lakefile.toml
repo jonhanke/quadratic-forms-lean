@@ -1,6 +1,6 @@
 name = "QuadFormsKB"
 version = "0.1.0"
-defaultTargets = ["QuadFormsKB"]
+defaultTargets = ["QuadFormsKB", "Challenge", "Solution"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -13,3 +13,11 @@ rev = "v4.35.0"
 
 [[lean_lib]]
 name = "QuadFormsKB"
+
+[[lean_lib]]
+name = "Challenge"
+roots = ["Challenge"]
+
+[[lean_lib]]
+name = "Solution"
+roots = ["Solution"]

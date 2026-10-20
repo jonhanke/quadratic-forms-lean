@@ -1,0 +1,22 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.siegel_totallyReal",
+    "QuadFormsKB.Headlines.siegel_totallyReal_rank3",
+    "QuadFormsKB.Headlines.siegel_totallyReal_rank3'",
+    "QuadFormsKB.Headlines.siegel_totallyReal_rank2",
+    "QuadFormsKB.Headlines.siegel_totallyReal_rank2'",
+    "QuadFormsKB.Headlines.siegel_totallyReal_rank1",
+    "QuadFormsKB.Headlines.tamagawa_two_totallyReal",
+    "QuadFormsKB.Headlines.massFormula_totallyReal",
+    "QuadFormsKB.Headlines.hilbertReciprocity_numberField",
+    "QuadFormsKB.Headlines.hasseMinkowski_numberField",
+    "QuadFormsKB.Headlines.represents_iff_everywhere_numberField",
+    "QuadFormsKB.Headlines.isometric_iff_everywhere_numberField",
+    "QuadFormsKB.Headlines.hasseMinkowski_rat"
+  ],
+  "definition_names": [],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
+  "enable_nanoda": true
+}
