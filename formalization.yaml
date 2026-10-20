@@ -222,13 +222,14 @@ fidelity:
     have not been checked against the sources.
 
 review:
-  status: "self-assessed"
+  status: "author-reviewed: headline statements in Challenge.lean and the definitions they use"
   reviewers:
-    - "Jonathan Hanke (in progress)"
+    - "Jonathan Hanke"
   notes: >-
-    The headline statements in Challenge.lean are under review by Jonathan Hanke; no external review yet.
-    Lean checks the proofs; lake comparator checks that Solution.lean proves exactly the Challenge.lean
-    statements using only the standard axioms.
+    Jonathan Hanke reviewed the headline statements in Challenge.lean and every definition they use
+    (October 2026). The rest of the library has not been reviewed by a human, and there has been no
+    external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
+    the Challenge.lean statements using only the standard axioms.
 
 alignment:
   namespace: "QuadFormsKB"

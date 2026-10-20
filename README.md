@@ -82,7 +82,7 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 ## Layout
 
 ```
-Challenge.lean          the headline statements, for human review (proofs: deliberate sorry)
+Challenge.lean          the headline statements, human-reviewed (proofs: deliberate sorry)
 Solution.lean           the same statements, proved from the library
 comparator.json         configuration for `lake comparator` (Solution against Challenge)
 formalization.yaml      scope, sources, divergences, provenance, review (formalization.yaml v0.4)
@@ -136,10 +136,11 @@ with a small share by Claude Sonnet 5.5, in October 2026. Development took about
 prices the model usage would have cost roughly $1,200–1,800 (it ran on a flat-rate subscription).
 Jonathan Hanke designed and directed it: he chose the results, the conventions and the proof routes.
 The proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
-standard axioms. The headline statements are collected in `Challenge.lean` for human review; that
-review is in progress. As with any AI-written formalization, the definitions and statements should
-be treated as untrustworthy until checked against the literature. Human review of them has only
-begun, so corrections and reports of mis-formalizations are very welcome.
+standard axioms. The headline statements in `Challenge.lean`, and the definitions they use, were
+reviewed by Jonathan Hanke, and `lake comparator` checks that `Solution.lean` proves exactly those
+statements. The rest of the library (its other definitions and intermediate results) has not been
+reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
+against the literature. Corrections and reports of mis-formalizations are very welcome.
 
 ## License
 
