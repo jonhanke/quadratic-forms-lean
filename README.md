@@ -1,8 +1,8 @@
-# QuadFormsKB
+# Quadratic forms over number fields in Lean 4
 
 [![Lean build](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml/badge.svg)](https://github.com/jonhanke/quadratic-forms-lean/actions/workflows/build.yml)
 
-A Lean 4 + Mathlib (v4.35.0) knowledge base for number theory / quadratic forms:
+A Lean 4 library (built on Mathlib v4.35.0) for the arithmetic theory of quadratic forms over number fields. The Lean library is called `QuadFormsKB`.
 
 - **Literature statements**: each result from a paper or book is a Lean declaration tagged
   `@[kb "<source key>" "<locator>"]`.
