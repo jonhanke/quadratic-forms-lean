@@ -8,8 +8,9 @@ A Lean 4 + Mathlib (v4.35.0) knowledge base for number theory / quadratic forms:
   `@[kb "<source key>" "<locator>"]`.
 - **Definition equivalences**: competing definitions live side by side in `Defs/`, with
   their comparison (equal, strictly contained, counterexample) proved in `Equiv/`.
-- **What is proved**: every theorem is checked by the Lean kernel; the repository contains no
-  `sorry`. The CI workflow builds the library and checks that the headline theorems depend only
+- **What is proved**: every theorem is checked by the Lean kernel; the only `sorry`s in the
+  repository are the deliberate ones in [`Challenge.lean`](Challenge.lean), which states the headline
+  results without proofs. The CI workflow builds the library and checks that the headline theorems depend only
   on the standard axioms `propext`, `Classical.choice` and `Quot.sound`
   ([scripts/check_axioms.lean](scripts/check_axioms.lean)), and runs `lake comparator` to check
   the proved statements against [`Challenge.lean`](Challenge.lean).
