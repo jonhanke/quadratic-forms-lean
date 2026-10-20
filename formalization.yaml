@@ -155,7 +155,7 @@ status:
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
     L_F(1, chi) (each with a basis-dependent and a basis-free character), rank 1 with Siegel's factor 1/2;
     tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass formula for totally positive definite forms in
-    N >= 4 variables with coefficients in O_F, for the genus of the free lattice O_F^N (lower ranks and
+    n >= 4 variables with coefficients in O_F, for the genus of the free lattice O_F^n (lower ranks and
     general lattices are proved in the library but not stated in Challenge.lean); Hilbert reciprocity over
     every number field; Hasse-Minkowski over every number field for isotropy, for representation of a
     nonzero number, and for isometry (both directions); Hasse-Minkowski over Q in any number of variables.
@@ -206,9 +206,9 @@ fidelity:
     1/|O(L)|, rather than proper classes weighted by 1/|SO(L)|. (3) Siegel's factor 1/2 appears in ranks
     1 and 2 as in the classical statement; in rank 1 it is placed at every place. (4) The Tamagawa number
     and mass formula statements in Challenge.lean are for forms with coefficients in O_F on the free
-    lattice O_F^N in N >= 4 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
+    lattice O_F^n in n >= 4 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
     proved equal to the covolume for Weil's Tamagawa measure in the library. (5) Local densities are the
-    classical counts beta_p = lim #{x mod p^k : Q(x) = m mod p^k} / Np^{k(N-1)}, and the mass formula uses
+    classical counts beta_p = lim #{x mod p^k : Q(x) = m mod p^k} / Np^{k(n-1)}, and the mass formula uses
     Siegel's alpha_p = beta_p / 2 for the representation of Q by itself. (6) The infinite products use
     Mathlib's unconditional product (value 1 if not unconditionally convergent) and the regularized products
     use a limit with a junk value if it does not exist; the library proves convergence separately.
@@ -262,12 +262,12 @@ alignment:
       lean: "QuadFormsKB.Headlines.tamagawa_two_totallyReal"
       module: "Challenge / Solution"
       status: "proved"
-      note: "Totally positive definite forms over O_F in N >= 4 variables, F totally real."
+      note: "Totally positive definite forms over O_F in n >= 4 variables, F totally real."
     - source: "Smith-Minkowski-Siegel mass formula; Siegel 1935 [unverified locator]"
       lean: "QuadFormsKB.Headlines.massFormula_totallyReal"
       module: "Challenge / Solution"
       status: "proved"
-      note: "Genus of the free lattice O_F^N, N >= 4."
+      note: "Genus of the free lattice O_F^n, n >= 4."
     - source: "O'Meara 1963, 71:18 (Hilbert reciprocity) [unverified locator]"
       lean: "QuadFormsKB.Headlines.hilbertReciprocity_numberField"
       module: "Challenge / Solution"
