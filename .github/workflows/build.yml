@@ -55,6 +55,9 @@ jobs:
         run: |
           sudo apt-get update -qq >/dev/null
           sudo apt-get install -y -qq bubblewrap >/dev/null
+          # As in the Palomar template: Ubuntu 24.04 blocks unprivileged user namespaces,
+          # which bubblewrap needs. This affects only the throwaway CI runner.
+          sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
       - name: Check Solution against Challenge with lake comparator
         run: ./scripts/verify-comparator.sh
