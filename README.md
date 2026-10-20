@@ -30,18 +30,32 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 
 ## Further results
 
-- Witt's theorems (extension, cancellation, decomposition, transitivity) over every field, including characteristic $`2`$; Tau Ceti has versions for fields in which $`2`$ is invertible. See [docs/results/witt.md](docs/results/witt.md).
-- The standard Hasse invariant conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas; local–global isometry over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">. Also proved here: the classification over each p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> by dimension, discriminant and Hasse invariant (cf. Tau Ceti, over local fields in which 2 is invertible).
-- Every quadratic form of dimension $`\ge 5`$ over a non-archimedean completion of a number field is isotropic, dyadic completions included (cf. Tau Ceti, over local fields in which 2 is invertible).
-- Jordan decompositions of lattices over discrete valuation rings, including dyadic ones (Tau Ceti has the splitting over the p-adic integers), and local densities at every prime of every number field.
-- Finiteness of class numbers of lattices over every number field (over <img src="docs/images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">, cf. the reduction theory in Tau Ceti).
-- Strong approximation for the spin group of an indefinite form in $`n \ge 3`$ variables over a number field, and Kneser's neighbour method, which reaches every class of a genus that is a single spinor genus (Tau Ceti has neighbours and the same-genus lemma).
-- Every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
-- The Hasse norm theorem for quadratic extensions of number fields, without class field theory.
-- Dirichlet's class number formula in the form with the value $`L(1,\chi_D)`$ (Mathlib has the residue of the Dedekind zeta function), and Siegel's formula for positive definite binary forms over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}"> of every discriminant.
-- Legendre's three-squares theorem and the Davenport–Cassels lemma.
-- Theta inversion for totally positive definite forms over totally real number fields.
+These are grouped by how they relate to existing formalizations. Each line names the topic in bold; where Mathlib or [Tau Ceti](https://github.com/TauCetiProject/TauCeti) already has a version, the line says what is added here.
 
+**New in this library**
+
+- **Local densities:** at every prime of every number field, dyadic primes included.
+- **Class numbers:** finiteness of the class number of a genus of lattices over every number field.
+- **Strong approximation:** for the spin group of an indefinite form in $`n \ge 3`$ variables over a number field.
+- **Free genera:** every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
+- **Binary forms over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">:** Siegel's formula for positive definite binary forms of every discriminant.
+- **Hasse invariants:** the standard conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas; local–global isometry over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">.
+- **Sums of squares:** Legendre's three-squares theorem and the Davenport–Cassels lemma.
+- **Theta series:** theta inversion for totally positive definite forms over totally real number fields.
+
+**Extending results in Mathlib or Tau Ceti**
+
+- **Witt's theorems** (extension, cancellation, decomposition, transitivity). *Here:* over every field, including characteristic $`2`$. *Tau Ceti:* fields in which $`2`$ is invertible.
+- **Isotropy in dimension $`\ge 5`$.** *Here:* over every non-archimedean completion of a number field, dyadic completions included. *Tau Ceti:* local fields in which $`2`$ is invertible.
+- **Jordan decompositions.** *Here:* over discrete valuation rings, dyadic ones included. *Tau Ceti:* the Jordan splitting over the p-adic integers.
+- **Kneser neighbours.** *Here:* Kneser's theorem: for $`n \ge 3`$ and a prime at which $`V`$ is isotropic and $`L`$ is unimodular (not above $`2`$), chains of neighbours of $`L`$ reach every class in the spinor genus of $`L`$, so the whole genus when it is a single spinor genus. *Tau Ceti:* the definition of neighbours and the easier fact that they lie in the genus of $`L`$.
+- **Hasse norm theorem.** *Here:* for quadratic extensions of number fields, without class field theory. *Tau Ceti:* a reduction through class field theory.
+- **Class number formula.** *Here:* Dirichlet's formula in the form with $`L(1,\chi_D)`$. *Mathlib:* the residue of the Dedekind zeta function.
+
+**Also proved here, available elsewhere**
+
+- **Local classification:** quadratic forms over each p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> are classified by dimension, discriminant and Hasse invariant (Tau Ceti: over local fields in which $`2`$ is invertible).
+- **Class numbers over <img src="docs/images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">:** finiteness via Hermite reduction (Tau Ceti: reduction theory of positive definite lattices).
 
 **Related work.** Mathlib (the foundation of this library) and [Tau Ceti](https://github.com/TauCetiProject/TauCeti/tree/main/TauCeti) overlap with parts of this library: Witt's theorems (`LinearAlgebra/QuadraticForm/Witt/`), quadratic forms over local fields (`NumberTheory/LocalField/QuadraticForm/`), global quadratic forms and Hilbert reciprocity (`NumberTheory/QuadraticForm/Global/`, `NumberTheory/ClassFieldTheory/Global/Hilbert/`) and integral lattices (`NumberTheory/IntegralLattice/`). The pages in [docs/results/](docs/results/README.md) say what each result here adds.
 
