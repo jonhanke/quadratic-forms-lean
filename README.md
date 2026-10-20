@@ -38,7 +38,7 @@ These are grouped by how they relate to existing formalizations. Each line names
 - **Class numbers:** finiteness of the class number of a genus of lattices over every number field.
 - **Strong approximation:** for the spin group of an indefinite form in $`n \ge 3`$ variables over a number field.
 - **Free genera:** every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
-- **Binary forms over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">:** Siegel's formula for positive definite binary forms of every discriminant.
+- **Binary forms over ℚ:** Siegel's formula for positive definite binary forms of every discriminant.
 - **Hasse invariants:** the standard conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas; local–global isometry over <img src="docs/images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">.
 - **Sums of squares:** Legendre's three-squares theorem and the Davenport–Cassels lemma.
 - **Theta series:** theta inversion for totally positive definite forms over totally real number fields.
@@ -66,8 +66,12 @@ These are grouped by how they relate to existing formalizations. Each line names
 
 **Also proved here, available elsewhere**
 
-- **Local classification:** quadratic forms over each p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> are classified by dimension, discriminant and Hasse invariant (Tau Ceti: over local fields in which $`2`$ is invertible).
-- **Class numbers over <img src="docs/images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">:** finiteness via Hermite reduction (Tau Ceti: reduction theory of positive definite lattices).
+- **Local classification**
+  - *Here:* quadratic forms over each p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> are classified by dimension, discriminant and Hasse invariant.
+  - *Tau Ceti:* the same over local fields in which $`2`$ is invertible.
+- **Class numbers over ℤ**
+  - *Here:* finiteness via Hermite reduction.
+  - *Tau Ceti:* reduction theory of positive definite lattices.
 
 **Related work.** Mathlib (the foundation of this library) and [Tau Ceti](https://github.com/TauCetiProject/TauCeti/tree/main/TauCeti) overlap with parts of this library: Witt's theorems (`LinearAlgebra/QuadraticForm/Witt/`), quadratic forms over local fields (`NumberTheory/LocalField/QuadraticForm/`), global quadratic forms and Hilbert reciprocity (`NumberTheory/QuadraticForm/Global/`, `NumberTheory/ClassFieldTheory/Global/Hilbert/`) and integral lattices (`NumberTheory/IntegralLattice/`). The pages in [docs/results/](docs/results/README.md) say what each result here adds.
 
