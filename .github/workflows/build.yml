@@ -1,0 +1,40 @@
+name: build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build (with the Mathlib cache)
+        uses: leanprover/lean-action@v1
+        with:
+          use-mathlib-cache: true
+
+      - name: Check the axioms of the headline theorems
+        shell: bash
+        run: |
+          set -euo pipefail
+          lake env lean scripts/check_axioms.lean | tee axioms.txt
+          # Each headline must be reported, and depend only on the three standard axioms.
+          count=$(grep -c "depends on axioms" axioms.txt || true)
+          expected=$(grep -c "^#print axioms" scripts/check_axioms.lean)
+          if [ "$count" -ne "$expected" ]; then
+            echo "expected $expected axiom reports, got $count"; exit 1
+          fi
+          if grep -q "sorryAx" axioms.txt; then
+            echo "a headline theorem depends on sorryAx"; exit 1
+          fi
+          # Output may wrap an axiom list over several lines: join, then read every [ ... ] list.
+          bad=$(tr '\n' ' ' < axioms.txt | grep -o 'depends on axioms: \[[^]]*\]' \
+            | sed -E 's/.*\[(.*)\]/\1/' | tr ',' '\n' | sed 's/ //g' \
+            | grep -vxE 'propext|Classical\.choice|Quot\.sound' || true)
+          if [ -n "$bad" ]; then
+            echo "non-standard axioms: $bad"; exit 1
+          fi
+          echo "all headline theorems use only propext, Classical.choice, Quot.sound"
