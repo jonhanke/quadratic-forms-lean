@@ -40,7 +40,7 @@ These are grouped by how they relate to existing formalizations. Each line names
 - **Strong approximation:** for the spin group of an indefinite form in $`n \ge 3`$ variables over a number field.
 - **Free genera:** over every number field, every lattice in the genus of <img src="docs/images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> is free.
 - **Binary quadratic forms over ℚ, in classical form:** Siegel's formula for positive definite binary quadratic forms of every discriminant, stated with Dirichlet's $`L(1,\chi_D)`$ and classes of forms. (Over every totally real number field, rank 2 is part of Siegel's theorem above, and is also stated for binary quadratic forms over the ring of integers, with the product regularized by $`L_F(1,\chi)`$.)
-- **Hasse invariants over ℚ:** the standard conventions (Serre, O'Meara, Lam, Cassels) compared, with their product formulas. (Over number fields, Hasse invariants enter only through the local–global theorems above; the comparison of conventions is done over ℚ.)
+- **Hasse invariants over ℚ:** the conventions of Serre, Cassels, O'Meara, Lam and Shimura (Hasse's original invariant) compared, with their product formulas. O'Meara and Shimura define theirs over number fields and their completions; here they are formalized and compared only for forms over ℚ and the places of ℚ.
 - **Sums of squares over ℤ:** Legendre's three-squares theorem and the Davenport–Cassels lemma.
 - **Theta series:** theta inversion for totally positive definite forms over totally real number fields.
 
