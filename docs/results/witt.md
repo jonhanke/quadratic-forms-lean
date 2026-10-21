@@ -35,7 +35,7 @@ The proof uses three kinds of elementary isometries, given by explicit formulas 
 
 ## Related work
 
-Mathlib (v4.35.0) has none of these theorems. [Tau Ceti](https://github.com/TauCetiProject/TauCeti) proves Witt's theorems for fields in which $`2`$ is invertible (the hypothesis `[Invertible (2 : K)]`, that is, characteristic other than $`2`$):
+Mathlib (v4.35.0) has none of these theorems. [Tau Ceti](https://github.com/TauCetiProject/TauCeti) proves Witt's theorems for fields of characteristic $`\ne 2`$ ($`2`$ invertible) (the hypothesis `[Invertible (2 : K)]`, that is, characteristic other than $`2`$):
 
 - [Witt/Extension.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Extension.lean): `QuadraticMap.IsometryEquiv.exists_extension`, an isometry between two regular subspaces extends to the whole space.
 - [Witt/Cancellation.lean](https://github.com/TauCetiProject/TauCeti/blob/74eb8ad6d30556874e04961e11aa23f2957df73c/TauCeti/LinearAlgebra/QuadraticForm/Witt/Cancellation.lean): `TauCeti.equivalent_of_equivalent_prod`, cancellation of a regular finite-dimensional summand.

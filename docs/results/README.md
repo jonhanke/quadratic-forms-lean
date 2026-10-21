@@ -16,7 +16,7 @@ One page per main result of the repository, with the precise statement, its scop
 
 | Page | Result |
 |---|---|
-| [Witt's theorems](witt.md) | extension, cancellation, decomposition and transitivity over every field, characteristic 2 included (Tau Ceti has versions for fields in which 2 is invertible) |
+| [Witt's theorems](witt.md) | extension, cancellation, decomposition and transitivity over every field, characteristic 2 included (Tau Ceti has versions for fields of characteristic ≠ 2 (2 invertible)) |
 | [Further results](further-results.md) | local isotropy, Jordan decompositions and local densities, class number finiteness, strong approximation and Kneser neighbours, free genera, the Hasse norm theorem, Dirichlet's class number formula and binary Siegel over <img src="../images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">, sums of squares, theta inversion |
 
 Conventions: classes of lattices are isometry classes under the full orthogonal group (improper isometries included), and each class is weighted by the inverse of the order of its orthogonal group. Bibliographic entries are in [references.bib](../../references.bib); locators marked "[unverified locator]" have not been checked against the source.

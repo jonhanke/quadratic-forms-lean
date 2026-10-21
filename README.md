@@ -48,10 +48,7 @@ These are grouped by how they relate to existing formalizations. Each line names
 
 - **Witt's theorems** (extension, cancellation, decomposition, transitivity)
   - *Here:* over every field, including characteristic $`2`$.
-  - *Tau Ceti:* fields in which $`2`$ is invertible.
-- **Isotropy in dimension $`\ge 5`$**
-  - *Here:* over every non-archimedean completion of a number field, dyadic completions included.
-  - *Tau Ceti:* local fields in which $`2`$ is invertible.
+  - *Tau Ceti:* fields of characteristic $`\ne 2`$.
 - **Jordan decompositions**
   - *Here:* over discrete valuation rings, dyadic ones included.
   - *Tau Ceti:* the Jordan splitting over the p-adic integers.
@@ -64,12 +61,15 @@ These are grouped by how they relate to existing formalizations. Each line names
 - **Class number formula**
   - *Here:* Dirichlet's formula in the form with $`L(1,\chi_D)`$.
   - *Mathlib:* the residue of the Dedekind zeta function.
-- **Local classification**
-  - *Here:* quadratic forms over the p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p">, for every rational prime p including p = 2, are classified by dimension, discriminant and Hasse invariant (for forms with rational coefficients).
-  - *Tau Ceti:* the same over every non-archimedean local field in which $`2`$ is invertible (such as the completions F<sub>𝔭</sub> of a number field at primes 𝔭 not above 2), so not over the dyadic field ℚ<sub>2</sub>.
 
 **Also proved here, available elsewhere**
 
+- **Isotropy in dimension $`\ge 5`$**
+  - *Here:* over every non-archimedean completion of a number field, dyadic completions included.
+  - *Tau Ceti:* over every non-archimedean local field of characteristic $`\ne 2`$, dyadic fields included.
+- **Local classification**
+  - *Here:* quadratic forms over the p-adic field <img src="docs/images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p">, for every rational prime p including p = 2, are classified by dimension, discriminant and Hasse invariant (for forms with rational coefficients).
+  - *Tau Ceti:* the same over every non-archimedean local field of characteristic $`\ne 2`$, dyadic fields included.
 - **Class numbers over ℤ**
   - *Here:* finiteness via Hermite reduction.
   - *Tau Ceti:* reduction theory of positive definite lattices.
