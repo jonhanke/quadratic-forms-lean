@@ -1,5 +1,6 @@
 /-
 # Constant terms of a weight-2 form on $\Gamma_1(N)$ at the cusps
+
 For $f \in M_2(\Gamma_1(N))$ (Mathlib's `ModularForm (Gamma1 N) 2`) and $\gamma \in \mathrm{SL}_2(\mathbb{Z})$:
 
 * `tendsto_cuspVal`: $f\,|_2\,\gamma \to c_f(\gamma)$ at $i\infty$, with $c_f(\gamma)$ the constant term of the $q$-expansion of

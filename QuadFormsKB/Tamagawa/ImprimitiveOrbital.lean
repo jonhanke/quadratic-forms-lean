@@ -5,8 +5,7 @@
 split space $V = F_\mathfrak p e_0\perp(F_\mathfrak p^n, Q')$ with $Q = \langle m\rangle\perp Q'$, the standard lattice $L = \mathfrak o_\mathfrak p^{n+1}$ and
 $K = O(L)$ (`stdStab`), with the near counts and orbit machinery of `OrbitCount.lean` and `LocalOrbitalBad.lean`.
 
-The primitive case proves Weil's local orbital identity for the lattice
-$L = \mathfrak o_\mathfrak p e_0\perp\mathfrak o_\mathfrak p^n$ and the **primitive** split vector $e_0$.
+`LocalOrbital.lean` proves Weil's local orbital identity for the lattice $L = \mathfrak o_\mathfrak p e_0\perp\mathfrak o_\mathfrak p^n$ and the **primitive** split vector $e_0$.
 In the orbital Euler product the vector is $\xi = \varpi^je_0$ ($j = \mathrm{ord}_\mathfrak p\mathfrak b$), and the local types are the $K$-orbits on
 $\{x \in L : Q(x) = \varpi^{2j}m\}$: vectors $\varpi^iy$ with $y$ primitive of norm $\varpi^{2(j-i)}m$ for every $0 \le i \le j$ (Hanke's
 *Zero* type $\varpi\mid x$, and the *Good*/*Bad* types of the primitive part; Hanke 2004, Def. 3.1, §3). We do not classify them:
@@ -51,8 +50,7 @@ level set). For an integral model $Q_o$ of $Q$ (nondegenerate), two solutions $y
 involution $\sigma$ of $V$ with $\sigma y_0 = x$ and $\varpi^c\sigma$ integral, with $J = K\cap\sigma K\sigma$ (`Jsub`), for
 $r \ge f + 1 + 2c$ ($\pi^f\,\Vert\,4t$), $k \ge r + c + e$, $k \ge 2e+1$ ($\pi^e\,\Vert\,2t$):
 $$N_{k,r}(Kx)\cdot[J : J\cap\mathrm{Stab}_K(x)] = N_{k,r}(Ky_0)\cdot[J : J\cap\mathrm{Stab}_K(y_0)].$$
-*Proof:* `nearCount_mul_relIndex` at $y_0$ and at $x$, and `nearCount_eq_of_involution` for $Jy_0$ and
-$Jx = \sigma Jy_0\sigma$. -/
+*Proof:* `nearCount_mul_relIndex` at $y_0$ and at $x$, and `nearCount_eq_of_involution` for $Jy_0$ and $Jx = \sigma Jy_0\sigma$. -/
 @[kb "weil1982" "§3.4 (orbit measures, any base vector) [unverified]"]
 theorem nearCount_mul_relIndex_eq_gen {Qo : QuadForm 𝔬 N} (hQo : IsIntModel v Q Qo) (hQnd : Qo.Nondegenerate)
     {t : 𝔬} (ht : t ≠ 0) (y₀ x : Fin N → 𝔬) (hy₀ : Qo.eval y₀ = t) (hx : Qo.eval x = t)
@@ -425,8 +423,7 @@ local notation "QS" => splitForm m Q'
 For $Q = \langle m\rangle\perp Q'$ with integral models $Q_o = \langle m_o\rangle\perp Q_o'$ (nondegenerate, $m_o \ne 0$), and $c \in \mathfrak o_\mathfrak p$, $c \ne 0$:
 there is $r_0$ such that for every $r \ge r_0$ and all large $k$
 $$W_\mathfrak p(L, c)\cdot N_{k,r}(K\,c\,e_0) = \#\{x \bmod \varpi^k : Q(x) \equiv c^2m\},\qquad L = \mathfrak o_\mathfrak p^{n+1}.$$
-*Proof:* as for `localTypeOrbitCount_of_invariant`, with $c\,e_0$ for $e_0$: the $K$-orbits on $\{Q = c^2m\}$ are the
-local types
+*Proof:* as `localTypeOrbitCount_of_invariant`, with $c\,e_0$ for $e_0$: the $K$-orbits on $\{Q = c^2m\}$ are the local types
 (`exists_type_dataG`, `mem_orbit_of_stdStabG`), and the orbit of $x = \sigma(c\,e_0)$ has $w(\sigma L)$ times as many points as the
 orbit of $c\,e_0$ (`nearCount_mul_relIndex_eq_gen`, `relIndex_stabOf_smul_e₀`, `relIndex_stabOf_xG`). -/
 @[kb "weil1982" "§3.4 (orbits of the local fibration, imprimitive base vector) [unverified]"]
@@ -766,12 +763,9 @@ $n \ge 1$ variables), $m \in F^\times$ with $m = m_o \in \mathfrak o_\mathfrak p
 $Q_o = \langle m_o\rangle\perp Q_0'$ over $\mathfrak o_\mathfrak p$. For every $j \ge 0$:
 $$W_\mathfrak p(L, \varpi^j)\cdot\alpha_\mathfrak p(Q_o) = q^{en}\,\alpha_\mathfrak p(Q_0')\,q^{j(n-1)}\,\beta_\mathfrak p(Q_o, \varpi^{2j}m_o),$$
 $W_\mathfrak p(L,\varpi^j)$ = `locTypeSumG` (the local types of the pairs (lattice, $\varpi^je_0$)), $\alpha_\mathfrak p$ = `localDensityForm`,
-$\beta_\mathfrak p$ = `localDensity`. For $j = 0$ this is the identity. *Proof:* `localTypeOrbitCountG` with
-$c = \varpi^j$, the scaling
-$N(\varpi^jKe_0) = q^{j(n+1)}N(Ke_0)$ (`nearCount_smul_pow`), the $N(Ke_0) = |O(Q\bmod\varpi^K)e_0|$
-(`card_orbitSet_eq_nearCount`)
-and the fibration count $A_{\varpi^K}(L,L) = |O(Q\bmod\varpi^K)e_0|\,q^{en}A_{\varpi^K}(L',L')$
-(`repCountForm_splitForm_orbit`). -/
+$\beta_\mathfrak p$ = `localDensity`. For $j = 0$ this is the identity. *Proof:* `localTypeOrbitCountG` with $c = \varpi^j$, the scaling
+$N(\varpi^jKe_0) = q^{j(n+1)}N(Ke_0)$ (`nearCount_smul_pow`), the $N(Ke_0) = |O(Q\bmod\varpi^K)e_0|$ (`card_orbitSet_eq_nearCount`)
+and the fibration count $A_{\varpi^K}(L,L) = |O(Q\bmod\varpi^K)e_0|\,q^{en}A_{\varpi^K}(L',L')$ (`repCountForm_splitForm_orbit`). -/
 @[kb "weil1982" "§3.4 (local fibration, imprimitive vector) [unverified]"]
 theorem localIdentity_imprimitive (Q₀' : QuadForm (𝓞 F) n) (hQ' : Q₀'.Nondegenerate) (hn : 1 ≤ n) {m : F}
     (hm : m ≠ 0) {mo : 𝔬} (hmoF : ((mo : 𝔬) : Fv) = algebraMap F Fv m) (j : ℕ) {e : ℕ}

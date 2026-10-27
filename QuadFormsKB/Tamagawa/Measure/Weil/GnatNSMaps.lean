@@ -1,7 +1,7 @@
 /-
 # Non-square discriminant: the maps $G^\natural(\mathbb A_F)\to SO(V)(\mathbb A_f)$ and $\to G_\infty$
 
-**Layer:** as `GnatNSAdelic`; $G^\natural$ = the `gnatBC bK 0 hb₀ hA0 hB0` (with $A' = a$, $B' = b$ in $K$), $Q_0 = q_{\mathrm{ns}}(a,b,d)$
+**Layer:** as `GnatNSAdelic`; $G^\natural$ = `gnatBC bK 0 hb₀ hA0 hB0` (with $A' = a$, $B' = b$ in $K$), $Q_0 = q_{\mathrm{ns}}(a,b,d)$
 = `qNS a b d`.
 
 **Defines/proves**

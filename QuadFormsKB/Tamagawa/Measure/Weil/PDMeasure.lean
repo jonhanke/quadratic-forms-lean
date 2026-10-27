@@ -184,8 +184,7 @@ instance countable_pdGammaSplit (ha : a ≠ 0) (hb : b ≠ 0) : Countable (pdGam
 
 /-- **Transport of the Tamagawa covolume along $PD^\times \cong SO(D^0)$** (`covolume_eq_of_localFactors`).
 For left-invariant s-finite measures $\mu_\infty$ on $PD^\times(F_\infty)$ and $\mu_f$ on $PD^\times(\mathbb A_f)$ with
-$(c_\infty)_*\mu_\infty = r_\infty\,\mu^{\mathrm{Tam}}_\infty$, $(c_f)_*\mu_f = r_f\,\mu_f$ (`muArchTamSO`,
-`muFin` with $\lambda_v = 1$) and $r_\infty r_f = 1$ (Weil's product formula), the covolume of $PD^\times(F)$ equals
+$(c_\infty)_*\mu_\infty = r_\infty\,\mu^{\mathrm{Tam}}_\infty$, $(c_f)_*\mu_f = r_f\,\mu_f$ (`muArchTamSO`, `muFin` with $\lambda_v = 1$) and $r_\infty r_f = 1$ (Weil's product formula), the covolume of $PD^\times(F)$ equals
 the covolume of $SO(V)(F)$ for `muTam`. -/
 @[kb "weil1982" "§2.3, Thm 2.3.1; §3.7(a), p. 63"]
 theorem covolume_pd_eq_covolume_muTam (ha : a ≠ 0) (hb : b ≠ 0) (hQ : (Q₀).Nondegenerate)

@@ -295,7 +295,7 @@ theorem tprod_mul_of_eq_one_off {ι : Type*} {a b : ι → ℝ≥0∞} (ha : ∀
 
 /-- **The product of Weil's local gauge-form volumes** $\prod_v|\omega|_v(\mathrm{SL}_2(\mathcal O_v))$ is
 `finFactorSL2` $=\operatorname{vol}(\hat{\mathcal O})^3\prod_v(1 - N(v)^{-2})$. -/
-@[kb "weil1982" "§2.3, p. 21 (product of local volumes, λ_v = 1) [page checked]"]
+@[kb "weil1982" "§2.3, p. 21 (product of local volumes, λ_v = 1) [page checked in the design table]"]
 theorem tprod_muGaugeV_intMat :
     ∏' v : HeightOneSpectrum (𝓞 F), muGaugeV v (intMat v) = finFactorSL2 F := by
   simp_rw [← muTV_eq_muGaugeV, muTV_intMat]

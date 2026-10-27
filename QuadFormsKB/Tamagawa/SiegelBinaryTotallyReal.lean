@@ -38,8 +38,8 @@ $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^2)}\frac{r_M(m)}{|O(M)
   and is positive (`lOne_chiP_binary`).
 * *The product.* $\prod_\mathfrak p$ is Mathlib's unconditional `tprod`; the corrected factors
   $\beta_\mathfrak p(1-\chi_Q(\mathfrak p)/N\mathfrak p)^{-1}$ are $1$ outside a finite set when $m$ is represented by $Q$ over $F$,
-  and some factor is $0$ otherwise (`multipliable_corrected_nf`), so the product is a genuine finite product (the regularized product,
-  "$L^{-1}\times$ finite product").
+  and some factor is $0$ otherwise (`multipliable_corrected_nf`), so the product is a genuine finite product
+  ("$L^{-1}\times$ finite product").
 * *No hypothesis* on the discriminant of $Q$, on primitivity, on the class number, or on the primes dividing $m$ or $2\det H_Q$.
 
 **Proves (unconditional; packaging of `siegelFormulaAt2_nf`).**
@@ -53,6 +53,7 @@ $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^2)}\frac{r_M(m)}{|O(M)
 * `multipliable_corrected_nf`, `archRepDensity_two`.
 
 Source: Siegel 1935, Hauptsatz ($n = 2$, $\varepsilon = \tfrac12$); Siegel 1937 (over number fields) [unverified locators].
+
 -/
 
 open NumberField IsDedekindDomain Filter

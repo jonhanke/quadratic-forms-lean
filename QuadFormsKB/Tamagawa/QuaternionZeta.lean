@@ -16,7 +16,7 @@ $D = (a,b)_F$ totally definite, $\Lambda = \mathcal O_F\langle 1, i, j, k\rangle
   `Quat.pureForm`: `map_normForm`, `map_pureFormO`);
 * **the zeta function of $D$, multiplicatively** (`zetaD` = `globalZeta` of the norm form for the Gaussian
   $\Phi_w = e^{-\pi\,\mathrm{nrd}_w}$; Weil's (2), with $s \mapsto s + 2$ and without the convergence factors), and **its residue**
-  $\lim_{s\to0^+}s\,Z_D(s) = \rho_F\int_{D_{\mathbb A}}\Phi\,dx$ (`tendsto_mul_zetaD`; the global zeta residue theorem in rank $n = 4$, which it allows);
+  $\lim_{s\to0^+}s\,Z_D(s) = \rho_F\int_{D_{\mathbb A}}\Phi\,dx$ (`tendsto_mul_zetaD`; `ZetaResidue` in rank $n = 4$);
 * **the additive zeta of the $SO_4$-genus** of $\Lambda$ (`genusAdditiveZeta`) and its residue $\frac{\rho_F}2\,\tau(SO(\Lambda))\int\Phi$
   (`tendsto_mul_additiveZetaD`);
 * **the reduction of the base case to Weil's comparison of residues** (`tamagawaNumberTwo_pureForm_iff`): for $h_F = 1$ and
@@ -31,7 +31,7 @@ $\sum_{[I]}|O_l(I)^\times/\mathcal O_F^\times|^{-1}$ for the left ideal classes 
 $SO(D,\mathrm{nrd}) = (D^\times\times D^\times)/\ldots$ (Thm. 3.3.1). That needs orders, ideal classes and their unit groups in
 quaternion algebras over $F$, which are not in Mathlib or this repository.
 
-Sources: Weil 1982, §§3.1–3.2, 3.7 (locators checked against the printed book; printed page numbers are page headers); Vignéras 1980,
+Sources: Weil 1982, §§3.1–3.2, 3.7 (printed page numbers are page headers); Vignéras 1980,
 Ch. III §5 and Ch. V (zeta functions of orders, the mass formula) [unverified]; Voight 2021, Ch. 25–26 (zeta functions of
 quaternion orders, Eichler's mass formula) [unverified].
 -/
@@ -72,10 +72,9 @@ theorem map_normForm (a b : 𝓞 F) :
   fin_cases i <;> fin_cases j <;> rfl
 
 /-- **The zeta function of $D = (a,b)_F$, multiplicatively** (Weil 1982, §3.1, (2), p. 36, and the Euler product pp. 36–38, for
-the standard order and the Gaussian test function $\Phi_w(x) = e^{-\pi\,\mathrm{nrd}_w(x)}$, $\Phi_v = \mathbf 1_{\Lambda_v}$):
-$$Z_D(s) = |d_F|^{-2}\prod_w\int_{D_w}|\mathrm{nrd}\,x|_w^s\Phi_w\,dx\prod_v\int_{\Lambda_v}|\mathrm{nrd}\,x|_v^s\,dx.$$
+the standard order and the Gaussian test function $\Phi_w(x) = e^{-\pi\,\mathrm{nrd}_w(x)}$, $\Phi_v = \mathbf 1_{\Lambda_v}$): the $$Z_D(s) = |d_F|^{-2}\prod_w\int_{D_w}|\mathrm{nrd}\,x|_w^s\Phi_w\,dx\prod_v\int_{\Lambda_v}|\mathrm{nrd}\,x|_v^s\,dx.$$
 Weil's $Z_\Phi(s)$ is this at $s - 2$ ($\omega = N(x)^{-2}dx$), times his convergence factors $\prod_v(1 - N\mathfrak p^{-1})^{-1}$
-(absorbed into $\zeta_F(1+s)$). Real $s > 0$. -/
+(absorbed by `ZetaResidue` into $\zeta_F(1+s)$). Real $s > 0$. -/
 @[kb "weil1982" "§3.1, (2), p. 36, and the multiplicative calculation, pp. 36-38"]
 def zetaD (a b : 𝓞 F) (s : ℝ) : ℝ := globalZeta (normForm a b) (gaussian (normForm a b) π) s
 
@@ -84,7 +83,7 @@ variable [IsTotallyReal F]
 /-- **The residue of the zeta function of $D$** (Weil 1982, §3.1, p. 38, shifted to $s = 0$): for $D = (a,b)_F$ totally
 definite ($\langle 1,-a,-b,ab\rangle$ totally positive definite),
 $$\lim_{s\to0^+}s\,Z_D(s) = \rho_F\int_{D_{\mathbb A}}\Phi\,dx,$$
-$\rho_F$ = `dedekindZeta_residue F`. It is `tendsto_mul_globalZeta_zero_gaussian` with $n = 4$. -/
+$\rho_F$ = `dedekindZeta_residue F`. `tendsto_mul_globalZeta_zero_gaussian` with $n = 4$. -/
 @[kb "weil1982" "§3.1, p. 38 (residue ρ_k ∫Φ of the multiplicative zeta of D)"]
 theorem tendsto_mul_zetaD {a b : 𝓞 F} (hpd : IsTotallyPosDef (formF (normForm a b))) :
     Tendsto (fun s => s * zetaD a b s) (𝓝[>] 0)
@@ -128,7 +127,7 @@ theorem tamagawaNumberTwo_normForm_iff [IsPrincipalIdealRing (𝓞 F)] {a b : �
 
 /-- **The base case $\tau(SO_3) = 2$ for $(D^0, \mathrm{nrd})$, reduced to Weil's comparison of residues** ($F$ totally real of degree
 $\ge 2$, $h_F = 1$, $a, b \in \mathcal O_F$ with $D = (a,b)_F$ totally definite): the following are equivalent:
-1. $\tau(SO(\langle -a,-b,ab\rangle)) = 2$ (the lattice $\mathcal O_Fi\oplus\mathcal O_Fj\oplus\mathcal O_Fk$);
+1. $\tau(SO(\langle -a,-b,ab\rangle)) = 2$ (the sense, the lattice $\mathcal O_Fi\oplus\mathcal O_Fj\oplus\mathcal O_Fk$);
 2. the additive zeta of the $SO_4$-genus of the standard order has the residue of the zeta function of $D$:
    $\lim_{s\to0^+}s\,Z^+(s) = \rho_F\int_{D_{\mathbb A}}\Phi\,dx\ (= \lim_{s\to0^+}s\,Z_D(s))$.
 

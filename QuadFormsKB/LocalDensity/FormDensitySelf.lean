@@ -1,5 +1,6 @@
 /-
 # The self-density $\beta_\pi(L, L)$ and the orthogonal group mod $\pi^k$
+
 **Layer:** DVR, every residue characteristic.
 
 **Defines** `DVR.orthMod Q π k`, the **orthogonal group of $Q$ mod $\pi^k$**: the $X \in \mathrm{GL}_n(R/\pi^k)$

@@ -1,17 +1,17 @@
 /-
 # The adelic Tamagawa measure on $SO(V)(\mathbb A)$ and $\tau(SO) = \mathrm{covol}$
 
-**Layer:** number fields; the library's concrete groups (`Lattices/ClassSet.lean`): $O(V)(\mathbb A_f)$ = `OAf QF`, the
+**Layer:** number fields; the KB's concrete groups (`Lattices/ClassSet.lean`): $O(V)(\mathbb A_f)$ = `OAf QF`, the
 restricted product of the $O(V)(F_v)$ with respect to the $O(V)(\mathfrak o_v)$, and its subgroup
 $SO(V)(\mathbb A_f)$ = `soAf QF`. Definite case: $Q_0$ over $\mathcal O_F$, nondegenerate, $Q_0 \otimes F$ totally positive
 definite, $F$ totally real, $L = \mathcal O_F^n$.
 
 **Defines**
 * the restricted-product topology on `OAf Q` (Mathlib's `Πʳ` topology, a locally compact topological group because the
-  $O(V)(\mathfrak o_v)$ are compact open) and its **Borel** $\sigma$-algebra;
+  $O(V)(\mathfrak o_v)$ are compact open, `LocalSO.lean`) and its **Borel** $\sigma$-algebra;
 * `SOAf Q₀` = $SO(V)(\mathbb A_f)$ (closed subgroup, subspace topology, Borel), `KSO Q₀` = $SO(\hat L)$ (compact open),
   `GammaSOf Q₀` = $SO(V)(F) \le SO(V)(\mathbb A_f)$ (exactly the groups in `tauSO`);
-* `finFactor Q₀ λ` $= \prod'_v \mu_v(SO(L_v))$ for the local measures $\mu_v$ = `muLocSO v Q₀ λ_v`, and
+* `finFactor Q₀ λ` $= \prod'_v \mu_v(SO(L_v))$ for the local measures $\mu_v$ = `muLocSO v Q₀ λ_v` of `LocalSO.lean`, and
   `muFin Q₀ λ`: **the Haar measure on $SO(V)(\mathbb A_f)$ normalized by $\mu_f(SO(\hat L)) = \prod'_v \mu_v(SO(L_v)) =
   \prod'_v\alpha_v(L,L)/\lambda_v$**;
 * `realEmb σ`, `Qσ Q₀ σ`: the real form at each embedding $\sigma : F \to \mathbb C$ (real since $F$ is totally real);
@@ -27,8 +27,7 @@ definite, $F$ totally real, $L = \mathcal O_F^n$.
 * `countable_GammaSO`, `GammaSO_inj`, `map_snd_GammaSO` ($\Gamma_f$ = `GammaSOf`), `finite_orbits_SO`, `finite_stabilizer_SO`
   ($SO$-level finiteness of $\Gamma_f\backslash SO(V)(\mathbb A_f)/SO(\hat L)$ and of the $\Gamma_f\cap\alpha K\alpha^{-1}$),
   `sigmaFinite_muFin` ($SO(V)(\mathbb A_f)$ is a countable union of translates of $SO(\hat L)$);
-* abstract: `finite_orbits_of_finiteIndex`, `exists_isNeat_of_reps_sep`, `covolume_eq_measure_mul_dcMass_of_sep` (the
-  unfolding with a separating *family* of open normal subgroups instead of a sequence; no countability needed);
+* abstract: `finite_orbits_of_finiteIndex`, `exists_isNeat_of_reps_sep`, `covolume_eq_measure_mul_dcMass_of_sep` (the unfolding with a separating *family* of open normal subgroups instead of a sequence; no countability needed);
 * `covolume_muAdele`: $\mathrm{covol}(SO(V)(F)\backslash SO(V)(\mathbb A), \mu_{\mathbb A}) = c_F\,\mu_\infty(G_\infty)\,\mu_f(SO(\hat L))\,
   \mathrm{mass}_{SO}$ for every $\lambda$;
 * **`tauSO_eq_covolume`**: for $\lambda_v = 1$, `tauSO Q₀` $= \mathrm{covol}(SO(V)(F)\backslash SO(V)(\mathbb A), \mu_{\mathbb A})$
@@ -40,10 +39,10 @@ $\tau(G) = \mathrm{vol}(G_{\mathbb A}/G_k)$), no longer definitionally the mass 
 
 **What the measure is (and is not yet).** $\mu_f$ is a genuine left Haar measure on the locally compact group
 $SO(V)(\mathbb A_f)$, normalized on the compact open $SO(\hat L)$ by the product of the local masses
-$\mu_v(SO(L_v)) = \alpha_v/\lambda_v$ (see `muLocSO`). The *product characterization* ($\mu_f$ agrees with $\prod_v\mu_v$ on boxes
-$\prod_{v\in S}U_v\times\prod_{v\notin S}SO(L_v)$) is not used here. The identification of
-$\mu_v$, $\mu_\sigma$ with gauge-form (Leray) measures is made in `LerayArch.lean` (`pi_lerayMeasure_eq_muInf`)
-at the real places and in `LerayCongruence.lean` at the finite places.
+$\mu_v(SO(L_v)) = \alpha_v/\lambda_v$ of `LocalSO.lean`. The *product characterization* ($\mu_f$ agrees with $\prod_v\mu_v$ on boxes
+$\prod_{v\in S}U_v\times\prod_{v\notin S}SO(L_v)$) is in `ProductSO.lean`; it is not used here. The identification of
+$\mu_v$, $\mu_\sigma$ with gauge-form (Leray) measures is in the `Leray*` files.
+
 -/
 import QuadFormsKB.Tamagawa.Measure.LocalSO
 import QuadFormsKB.Tamagawa.Measure.ArchSO
@@ -107,8 +106,7 @@ theorem exists_avoiding (K : Subgroup G) (P : Subgroup G → Prop) (hK : P K)
       · exact haN (Subgroup.mem_inf.mp hmem).2
       · exact hNS s hs hs1 (Subgroup.mem_inf.mp hmem).1
 
-/-- **Neat subgroups with a separating family** (variant of `exists_isNeat_of_reps`): given finite
-representatives of
+/-- **Neat filtration member with a separating family** (variant of `exists_isNeat_of_reps`): given finite representatives of
 $\Gamma\backslash G/K$ with finite stabilizers, and a property $P$ of subgroups (each $N$ with $P(N)$ is normal in $K$ and
 contained in $K$; $P(K)$; $P$ stable under $\cap$; every $s \in K\setminus 1$ avoided by some $N$), some $N$ with $P(N)$
 is neat for $\Gamma$. -/
@@ -151,7 +149,7 @@ section Mass
 variable {A B : Type*} [Group A] [Group B] [MeasurableSpace A] [MeasurableSpace B]
   [MeasurableMul A] [MeasurableMul B]
 
-/-- **The L4 unfolding with a separating family** (`covolume_eq_measure_mul_dcMass` with the filtration replaced by
+/-- **The unfolding with a separating family** (`covolume_eq_measure_mul_dcMass` with the filtration replaced by
 the hypothesis `hsep`: every $s \in K\setminus 1$ lies outside some measurable subgroup $N \le K$, normal in $K$, of finite
 index). Then
 $$\mathrm{covol}(\Gamma\backslash(G_\infty\times G_f), \mu_\infty\times\mu_f) = \mu_\infty(G_\infty)\cdot\mu_f(K)\cdot
@@ -290,7 +288,6 @@ theorem coe_locStab_std :
   ext h; exact mem_locStab_intVec Q h
 
 /-- **$O(\hat L)$ is open in $O(V)(\mathbb A_f)$.** -/
-@[kb "omeara1963" "§101A, 101:4 (ii), p. 289"]
 theorem isOpen_locStab : IsOpen (locStab Q (stdLat F n) : Set (OAf Q)) := by
   rw [coe_locStab_std]
   exact RestrictedProduct.isOpen_forall_mem (fun v => isOpen_stdStab v Q)
@@ -668,7 +665,7 @@ def cF (F : Type) [Field F] [NumberField F] (n : ℕ) : ℝ := |(discr F : ℝ)|
 theorem cF_nonneg : 0 ≤ cF F n := Real.rpow_nonneg (abs_nonneg _) _
 
 /-- **The archimedean Tamagawa factor** $c_F\cdot\mu_\infty$ on $G_\infty = \prod_\sigma SO(Q_\sigma)(\mathbb R)$, with
-$\mu_\infty = \prod_\sigma\mu_\sigma$ ($\mu_\sigma(SO(Q_\sigma)(\mathbb R)) = $ `archVolSO`). -/
+$\mu_\infty = \prod_\sigma\mu_\sigma$ (`ArchSO.lean`, $\mu_\sigma(SO(Q_\sigma)(\mathbb R)) = $ `archVolSO`). -/
 @[kb "weil1982" "§2.3, p. 21 (Tamagawa measure)"]
 def muInfTam (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef QF) : Measure (ArchSOProd (realQ Q₀)) :=
   haveI : ∀ σ, Fact (IsPosDefR (realQ Q₀ σ)) := fun σ => ⟨isPosDefR_realQ Q₀ hQ hpd σ⟩

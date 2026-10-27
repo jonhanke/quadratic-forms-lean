@@ -11,7 +11,7 @@ hyperbolic plane). In the **hyperbolic split** coordinates $p = x_0 + x_1$, $q =
 $Q = c\,pq + Q'(x')$, and $e = e_0 + e_1$ is isotropic.
 
 This file proves the cone orbital identity at the real places. The route: **an explicit parabolic slice obtained from the
-two sphere identities** (no new Leray analysis on $M_n(\mathbb R)$, no limit $c \to 0$):
+two sphere identities of `SphereLeray.lean`** (no new Leray analysis on $M_n(\mathbb R)$, no limit $c \to 0$):
 
 1. (`lintegral_sig_graph`) **the hyperbolic-split chart of the sphere** $S_c$: in the graph coordinates
    $(q, x') \mapsto (p, q, x')$, $p = (c - Q'(x'))/(cq)$, the Leray measure is $\sigma_c = dq\,dx'/(2|c||q|)$ on
@@ -657,7 +657,7 @@ theorem measurable_secC : Measurable (secC hc hQ') := by
     (continuous_nG hc hQ').comp (continuous_tl.comp (continuous_subtype_val.comp continuous_subtype_val))
   exact (hc1.mul hc2).measurable
 
-/-- **The parabolic sphere section** as the `SphSection`. -/
+/-- **The parabolic sphere section** as `SphSection`. -/
 def coneSphSection : SphSection c (Qm c Q') := ⟨secC hc hQ', measurable_secC hc hQ', secC_spec hc hQ'⟩
 
 

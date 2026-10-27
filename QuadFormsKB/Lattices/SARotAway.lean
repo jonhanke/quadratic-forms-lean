@@ -6,7 +6,7 @@
 **Defines** `RotApproxAt Q p`: `RotApprox Q` for finite sets $T \not\ni \mathfrak p$, with no integrality asked at
 $\mathfrak p$.
 
-**Proves** the versions of O'Meara 104:4 (steps 1a–1c) and of the bridge 104:5 away from $\mathfrak p$:
+**Proves** the versions of O'Meara 104:4 and of the bridge 104:5 away from $\mathfrak p$:
 `pair_approxAt`, `list_approxAt`, `eqPair_approxAt`, `rotApproxAt_of_vecApproxAt_of_correction`,
 `approx_of_rotApproxAt` (the proofs of `Lattices/SARotations.lean` with $T$ replaced by $T \setminus \{\mathfrak p\}$ where
 needed). The ternary case and the input `StrongApproximationSpinAt F` are in `Lattices/SATernaryAway.lean`.

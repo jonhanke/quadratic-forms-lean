@@ -15,8 +15,7 @@ $\operatorname{nrd}|_{V_0} = \langle 1, -ad, -bd, abd\rangle$ = `V0Form a b d` (
   $x \mapsto \operatorname{nrd}(\alpha)^{-1}\alpha x\sigma(\bar\alpha)$; isometry (`Q4_phiLin`), multiplicative (`phiLin_mul`).
 * Reflections $s_u(x) = -u\bar x u/\operatorname{nrd}u$ (`emb_refl4`), $s_us_w = \varphi_{u\bar w}$ (`phiLin_reflUnit`),
   $\det s_u = -1$ (`det_refl4`), $\det\varphi_\alpha = 1$ (`det_phiLin`).
-* `phiSO : G^♮ →* SO(V0Form)`, **surjective** (`phiSO_surjective`: two reflections move $g(1)$ to $1$, then
-  `exists_eq_smul_conjLin` on $1^\perp = \delta D^0$), **kernel $K^\times$** (`ker_phiSO`, via `ker_conjSO`),
+* `phiSO : G^♮ →* SO(V0Form)`, **surjective** (`phiSO_surjective`: two reflections move $g(1)$ to $1$, then `exists_eq_smul_conjLin` on $1^\perp = \delta D^0$), **kernel $K^\times$** (`ker_phiSO`, via `ker_conjSO`),
   so **`gnatQuotEquivSO`**: $G^\natural(K)/K^\times \cong SO(\langle 1,-ad,-bd,abd\rangle)(K)$.
 * Item 1: `exists_isometric_smul_V0Form` (every nondegenerate quaternary $V$ is $c\cdot$`V0Form a b d`, $d \equiv \operatorname{disc}V$)
   and **`nonempty_SO_mulEquiv_gnat`**: the same $a, b, d \in k^\times$ give $SO(V)(K) \cong G^\natural(K)/K^\times$ for every
@@ -618,7 +617,7 @@ theorem Q4_e0 : Q4 a b d (Pi.single 0 1) = 1 := by simp [Q4]
 
 theorem B4_e0 (v : Fin 4 → K) : B4 a b d v (Pi.single 0 1) = 2 * v 0 := by simp [B4]
 
-/-- **Reduction step:** two reflections move `g(1)` back to `1` (as in `exists_step`). -/
+/-- **Reduction step:** two reflections move `g(1)` back to `1` (`exists_step` pattern). -/
 theorem exists_refl_pair (h2 : (2 : K) ≠ 0) (ha : a ≠ 0) (hd : d ≠ 0) {g : (Fin 4 → K) →ₗ[K] (Fin 4 → K)}
     (hg : IsIsom4 a b d g) :
     ∃ (u w : Fin 4 → K) (hu : Q4 a b d u ≠ 0) (hw : Q4 a b d w ≠ 0),
@@ -929,7 +928,7 @@ theorem eval_smul_V0Form (c a b d : F) (v : Fin 4 → F) :
 
 /-- **Every nondegenerate quaternary form is `c · ⟨1, −ad, −bd, abd⟩ = c · (V_0, nrd)`** (characteristic `0`),
 with `d ≡ disc V` modulo squares: `d · det H_V` is a square (`H_V` the Hessian). Explicitly, if
-`V ≅ ⟨c₀, c₁, c₂, c₃⟩` then `c = c₀`, `a = −c₃/c₂`, `b = −c₃/c₁`, `d = c₁c₂/(c₀c₃)`; in the notation of the design
+`V ≅ ⟨c₀, c₁, c₂, c₃⟩` then `c = c₀`, `a = −c₃/c₂`, `b = −c₃/c₁`, `d = c₁c₂/(c₀c₃)`; in the notation
 (`V ≅ c⟨1, −a′, −b′, a′b′/d⟩`) `a′ = ad`, `b′ = bd`. -/
 @[kb "weil1982" "§3.7, p. 64 [unverified]"]
 theorem exists_isometric_smul_V0Form (V : QuadForm F 4) (hV : V.Nondegenerate) :
@@ -1005,7 +1004,7 @@ theorem map_smul_V0Form (c a b d : k) :
   ext i j
   fin_cases i <;> fin_cases j <;> simp [QuadForm.map, V0Form, QuadForm.diag]
 
-/-- **`SO(V) ≅ G^♮/G_m` on `K`-points for every extension `K`** (item 3 of the design, with item 1): for a
+/-- **`SO(V) ≅ G^♮/G_m` on `K`-points for every extension `K`**: for a
 nondegenerate quaternary form `V` over a field `k` of characteristic `0` there are `a, b, d ∈ k^×` with
 `d ≡ disc V` (`d · det H_V` a square) such that for **every** field `K ⊇ k`,
 $$SO(V)(K) \;\cong\; G^\natural(K)/K^\times, \qquad G^\natural = \{\alpha \in ((a,b)_{K[\delta]/(\delta^2-d)})^\times : \operatorname{nrd}\alpha \in K^\times\}.$$

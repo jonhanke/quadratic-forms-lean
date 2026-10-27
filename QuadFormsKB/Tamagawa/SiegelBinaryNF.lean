@@ -6,27 +6,26 @@ import QuadFormsKB.Tamagawa.BinaryTauNF
 **Layer:** $F$ a totally real number field (any class number); $Q$ a totally positive definite **binary** form over $\mathcal O_F$,
 $L = \mathcal O_F^2$, $m \in \mathcal O_F$ totally positive.
 
-**Statement** (`SiegelFormulaAt2`, the rank-2 twin of the `SiegelFormulaAt3`, Siegel's constant $\varepsilon = \tfrac12$):
+**Statement** (`SiegelFormulaAt2`, the rank-2 twin of `SiegelFormulaAt3`, Siegel's constant $\varepsilon = \tfrac12$):
 $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{r_M(m)}{|O(M)|} = \tfrac12\,\mathrm{Mass}(L)\cdot S^{\mathrm{reg}}_2(Q,m),\qquad
 S^{\mathrm{reg}}_2(Q,m) = |d_F|^{-1/2}\prod_\sigma\beta_\sigma(m)\cdot L_F(1,\chi_Q)^{-1}\prod_\mathfrak p\frac{\beta_\mathfrak p(Q,m)}{1-\chi_Q(\mathfrak p)N\mathfrak p^{-1}}$$
-(the `siegelProduct2Reg`; $\chi_Q$ = the `chiP · Q`, the quadratic character of $F(\sqrt{-\det H_Q})/F$; regularized
-product `regProd`).
+(`siegelProduct2Reg`; $\chi_Q$ = `chiP · Q`, the quadratic character of $F(\sqrt{-\det H_Q})/F$; regularized product).
 
 **Proves (unconditional)**
 * **`siegelFormulaAt2_nf`**: `SiegelFormulaAt2 Q m` for every totally positive definite binary $Q$ over $\mathcal O_F$ and every totally
   positive $m$ — every prime included (dyadic and ramified), every discriminant (the local factors are the library's
-  `NF.localDensity` of $Q$ itself, not evaluated in closed form), every class number. For $m$ represented over $F$ it is the
-  step $1\to2$ (`two_mul_tamagawaKReg_mul_repMass`) with the $\tau^{\mathrm{reg}}(SO_2) = 2$ (`binaryTamagawaTwoReg_nf`);
+  `NF.localDensity` of $Q$ itself, not evaluated in closed form), every class number. For $m$ represented over $F$ it is the step $1\to2$ (`two_mul_tamagawaKReg_mul_repMass`) with $\tau^{\mathrm{reg}}(SO_2) = 2$ (`binaryTamagawaTwoReg_nf`);
   otherwise both sides vanish (`siegelProduct2Reg_eq_zero_of_not_rep`, Hasse–Minkowski over $F$).
 * `genusAverage_eq_nf`: the same as an average, $\mathrm{repMass}/\mathrm{Mass} = \tfrac12 S^{\mathrm{reg}}_2$.
 * **`siegelFormulaAt2_natural_nf`**: given only `NaturalOrderEulerOne (chiP · Q)` (a prime ideal theorem for $\chi_Q$; convention-level
   input, a theorem over $\mathbb Q$), the regularized value is the natural-order limit of $\prod_{N\mathfrak p\le X}\beta_\mathfrak p(Q,m)$.
 
-**Route**: the τ route, not the genus-by-genus formula `siegel_binaryF_genus'` (already unconditional:
+**Route:** the τ route, not the genus-by-genus formula `siegel_binaryF_genus'` (already unconditional:
 `posClassNumberRelation`), which is stated over $K^+$ for a free $\mathcal O_K$ with $\nu$ prime to $2\Delta$ only.
 
 Source: Siegel 1935, Hauptsatz ($n = 2$, $\varepsilon = \tfrac12$); Siegel 1937 (over number fields); Weil 1982, §4.5 and Thm. 3.7.1
 [unverified locators].
+
 -/
 
 open NumberField IsDedekindDomain Filter
@@ -112,7 +111,7 @@ theorem siegelFormulaAt2_of_tau (Q : QuadForm (𝓞 F) 2) (hpd : IsTotallyPosDef
 binary $Q$ over $\mathcal O_F$ and every totally positive $m \in \mathcal O_F$,
 $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^2)}\frac{r_M(m)}{|O(M)|} = \tfrac12\,\mathrm{Mass}(\mathcal O_F^2)\cdot
 |d_F|^{-1/2}\prod_\sigma\beta_\sigma(m)\cdot L_F(1,\chi_Q)^{-1}\prod_\mathfrak p\frac{\beta_\mathfrak p(Q,m)}{1-\chi_Q(\mathfrak p)N\mathfrak p^{-1}}.$$
-Any class number, every prime (dyadic and ramified included), every discriminant of $Q$. From the
+Any class number, every prime (dyadic and ramified included), every discriminant of $Q$. From
 `binaryTamagawaTwoReg_nf` ($\tau^{\mathrm{reg}}(SO_2) = 2$) and `siegelFormulaAt2_of_tau`. -/
 @[kb "siegel1935" "Hauptsatz, n = 2 (ε = 1/2, regularized), over a totally real field [unverified]"]
 theorem siegelFormulaAt2_nf (Q : QuadForm (𝓞 F) 2) (hpd : IsTotallyPosDef (formF Q)) {m : 𝓞 F}

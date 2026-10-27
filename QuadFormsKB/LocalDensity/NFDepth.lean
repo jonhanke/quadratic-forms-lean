@@ -1,5 +1,6 @@
 /-
 # Depth and stability bounds over $\mathbb{Q}$ and over a number field
+
 **Layer:** ℚ (forms `QuadForm ℤ n` at a prime $p$, via $\mathbb{Z}_p$: `Bridge.lean`, `BridgeExplicit.lean`) and number
 field (forms `QuadForm (𝓞 F) n` at a prime $\mathfrak p$ = `v`, via $\mathfrak o_\mathfrak p$: `NFBridge.lean`, `NFLocal.lean`).
 

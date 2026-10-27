@@ -741,9 +741,8 @@ is $\mathrm{GL}_n(R)$-equivalent to a form in local normal form (2-dimensional b
 $\pi \mid 2$), and equivalent forms have the same counts, **provided $\pi^2 \nmid 2$** (non-dyadic, or dyadic
 with $v_\pi(2) = 1$; this covers every prime of $\mathbb{Q}$).
 
-*Erratum candidate*: at ramified dyadic primes the paper's normal form need
-not exist: $Q = x^2 + \pi xy + y^2$ over $\mathbb{Z}_2[\sqrt2]$, $\pi = \sqrt2$, is a counterexample (in-session
-agent, 2026-10-15). The corrected statement valid at every prime is `exists_jordanFormW`. -/
+*Erratum candidate:* at ramified dyadic primes the paper's normal form need
+not exist: $Q = x^2 + \pi xy + y^2$ over $\mathbb{Z}_2[\sqrt2]$, $\pi = \sqrt2$, is a counterexample. The corrected statement valid at every prime is `exists_jordanFormW`. -/
 @[kb "hanke2004" "Lemma 2.1, p. 355"]
 theorem exists_jordanForm (Q : QuadForm R n) (hQ : Q.Nondegenerate) (π : R) (hπ : Irreducible π)
     (h2 : ¬ π ^ 2 ∣ 2) :

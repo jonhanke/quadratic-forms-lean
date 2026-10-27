@@ -126,7 +126,7 @@ lemma gramDet_eq_det (Q : QuadForm ℤ 4) : gramDet Q = (gramMatrix Q).det := by
 lemma gramDet_pos (hQ : Q.PosDef) : 0 < gramDet Q := by
   rw [gramDet]; have := det_hessian_pos hQ; positivity
 
-/-- **The $q$-coefficients of $E_Q$ are $a_E(m) = \beta_\infty(m)\prod_p\beta_p(m)$** (step S4). -/
+/-- **The $q$-coefficients of $E_Q$ are $a_E(m) = \beta_\infty(m)\prod_p\beta_p(m)$**. -/
 @[kb "siegel1935" "Eisenstein coefficients = β_∞ · singular series, n = 4 [unverified]"]
 theorem eisQCoeff_thetaGen (hQ : Q.PosDef) {m : ℕ} (hm : 1 ≤ m) :
     haveI := neZeroN hQ

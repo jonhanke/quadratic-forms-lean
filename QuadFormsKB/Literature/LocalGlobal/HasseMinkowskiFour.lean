@@ -27,8 +27,7 @@ isotropic).
 
 *Caution.* The often-quoted form "$(x, -ab)_K = (a, b)_K$" needs bimultiplicativity of the
 symbol, which holds over $\mathbb{Q}_p$ and $\mathbb{R}$ but **not** over $\mathbb{Q}$: for $a = b = -1$,
-$x = 3$ it gives $-1 = -1$ although $-X^2 - Y^2 = 3$ has no rational solution (counterexample
-found by llmprove). -/
+$x = 3$ it gives $-1 = -1$ although $-X^2 - Y^2 = 3$ has no rational solution (counterexample). -/
 @[kb "serre1973" "Ch. IV §2.2, Thm. 6 (n = 2) [unverified]"]
 theorem binary_represents_iff (K : Type*) [Field K] [CharZero K] (a b x : K) (ha : a ≠ 0)
     (hb : b ≠ 0) (hx : x ≠ 0) :
@@ -195,7 +194,7 @@ theorem binary_represents_rat_of_everywhere (a b x : ℚ) (ha : a ≠ 0) (hb : b
 /-- **Hasse–Minkowski for diagonal quaternary forms:** for nonzero rationals,
 $\langle a_1, a_2, -a_3, -a_4 \rangle$ is isotropic over $\mathbb{Q}$ iff it is isotropic over every
 completion. -/
-@[kb "serre1973" "Ch. IV §3.2, Thm. 8 (n = 4) [unverified]; cassels1978 Ch. 6, §5, p. 83"]
+@[kb "serre1973" "Ch. IV §3.2, Thm. 8 (n = 4) [unverified]"]
 theorem hasseMinkowski_diag_four (a₁ a₂ a₃ a₄ : ℚ) (h₁ : a₁ ≠ 0) (h₂ : a₂ ≠ 0) (h₃ : a₃ ≠ 0)
     (h₄ : a₄ ≠ 0) :
     (QuadForm.diag ![a₁, a₂, -a₃, -a₄]).IsotropicIn ℚ ↔

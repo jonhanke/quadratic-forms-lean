@@ -359,7 +359,7 @@ is 1-dimensional, and $t \ge \mu$ for every unimodular pair block), for $k \ge 2
 $$r^{\mathrm{Good}}_{\pi^{k+l}}(m) = q^{(n-1)l}\, r^{\mathrm{Good}}_{\pi^k}(m).$$
 With $t = e$ this is `repCountGood_add` ($k \ge 2e + 1$, the paper's bound, independent of $f$). With $t = 0$
 (every unimodular block binary with unit middle coefficient) it holds from $k = 1$, for every $e$.
-*Update (candidate; pending author):* in the corrected normal form a binary block
+*Update (candidate; pending author; `docs/updates-and-errata.md`):* in the corrected normal form a binary block
 may have $b = \pi^\mu\beta$ with $\mu \ge 1$ (ramified dyadic primes), and then the level is $2\mu + 1$, not $1$; for
 1-dimensional blocks $2e + 1$ is sharp (`LocalDensity.localDensity_sumTwoSq_two`). -/
 @[kb "hanke2004" "Lemma 3.2, eq. (3.1), p. 358; proof, p. 359"]

@@ -27,9 +27,7 @@ Each $F_v$ ($v \mid p$) is made a $\mathbb{Q}_p$-algebra for the fixed $p$ throu
 into one product.
 
 Sources: Neukirch, *Algebraic Number Theory*, Ch. II, Prop. 8.3 and Cor. 8.4 [unverified]; Cassels–Fröhlich
-Ch. II (Cassels, *Global fields*), §9, second Cor., p. 55 (trace = sum of the traces on the factors), and §10,
-Thm., (10.2), p. 57 ($k_v\otimes_kK = \bigoplus_jK_j$); Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2, p. 309
-($\lambda = \Lambda\circ S_{k/R}$), and the proof of Lemma 4.1.5, p. 331.
+Ch. II (Cassels, *Global fields*) §10 [unverified]; Tate's thesis, Cassels–Fröhlich Ch. XV §2.2 [unverified].
 -/
 
 open IsDedekindDomain NumberField WithZero MeasureTheory
@@ -467,7 +465,7 @@ lemma addChar_map_sum {ι A M : Type*} [AddCommMonoid A] [CommMonoid M] (ψ : Ad
 
 /-- **Local–global compatibility of the standard characters at $p$:** for $x \in F$,
 $\prod_{v \mid p} \psi_v(x) = \psi_p(\operatorname{Tr}_{F/\mathbb{Q}} x)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, proof of Lemma 4.1.5, p. 331 (the trace is the sum of the local traces); Ch. II (Cassels), §9, second Cor., p. 55"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 and §4.1 [unverified]"]
 theorem prod_psiV_Sp (x : F) :
     ∏ w : Sp F q, psiV w.1 (algebraMap F (w.1.adicCompletion F) x) =
       psiP (((Algebra.trace ℚ F x : ℚ)) : ℚ_[q]) := by

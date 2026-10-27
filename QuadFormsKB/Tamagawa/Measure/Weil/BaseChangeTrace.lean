@@ -16,8 +16,7 @@ For finite $K/k$ of number fields, a finite place $v$ of $k$ and a place $w\mid 
   proved from continuity and density of $\mathbb{Q}$.
 
 Sources: Neukirch, *Algebraic Number Theory*, Ch. II (8.3, 8.4) and Ch. VII §5 (the local-global trace) [unverified];
-Cassels–Fröhlich Ch. II (Cassels), §9, second Cor., p. 55, and §10, (10.2), p. 57 (not §14); Tate, Ch. XV, p. 309
-($\lambda = \Lambda\circ S_{k/R}$ through the absolute trace); Mathlib `Algebra.trace_trace`, `Algebra.QuasiFinite.finite_primesOver`.
+Cassels–Fröhlich Ch. II §14 [unverified]; Mathlib `Algebra.trace_trace`, `Algebra.QuasiFinite.finite_primesOver`.
 -/
 
 open IsDedekindDomain NumberField Topology Filter
@@ -110,7 +109,7 @@ theorem algebraMap_instAlgebraLocal (w : HeightOneSpectrum (𝓞 K)) [h : Fact (
     algebraMap (v.adicCompletion k) (w.adicCompletion K) = localRingHom v w h.out := rfl
 
 /-- **The local trace** $\operatorname{Tr}_{K_w/k_v}:K_w\to k_v$ ($w\mid v$), for the algebra structure `localAlg`. -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §9, second Cor., p. 55 (Trace_{K_j/A}), with §10, (10.2), p. 57"]
+@[kb "casselsfrohlich1967" "Ch. II §14 / Ch. XV §2.2, local trace [unverified]; Neukirch II.8 [unverified]"]
 def localTrace (w : HeightOneSpectrum (𝓞 K)) (h : underPlace (k := k) w = v) :
     (letI := localAlg v w h; w.adicCompletion K →ₗ[v.adicCompletion k] v.adicCompletion k) :=
   letI := localAlg v w h
@@ -134,7 +133,7 @@ theorem psiV_eq_psiP_trace_FvQ (q : ℕ) [Fact q.Prime] (w : Analysis.Sp K q) (y
   rfl
 
 /-- **$\psi_{K,w}=\psi_{k,v}\circ\operatorname{Tr}_{K_w/k_v}$** (local character compatibility). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 309 (λ = Λ ∘ S_{k/R}, through the absolute trace); Neukirch II.8 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (ψ_w = ψ_v ∘ Tr_{K_w/k_v}); Neukirch II.8 [unverified]"]
 theorem psiV_localTrace (w : Analysis.Sp K (Analysis.resChar v)) (h : underPlace (k := k) w.1 = v)
     (y : w.1.adicCompletion K) :
     Analysis.psiV w.1 y = Analysis.psiV v (localTrace v w.1 h y) := by

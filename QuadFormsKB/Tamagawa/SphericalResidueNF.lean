@@ -2,9 +2,9 @@
 # Weil's (8) over every number field, every signature, every Schwartz $\Phi_\infty$
 
 **Layer:** global assembly on top of `ZetaResidue.lean`, `SphericalResidue.lean` and the archimedean lemmas of
-`ArchTestFn.lean`. Weil 1982, §4.5, (1)–(2), p. 102 and (8), p. 108 (KB-checked locators).
+`ArchTestFn.lean`. Weil 1982, §4.5, (1)–(2), p. 102 and (8), p. 108 (locators checked).
 
-**What is added to `SphericalResidue.lean`.**
+**What is added to `SphericalResidue`.**
 1. **Complex places.** At a complex place $w$ the form is $Q_w = \sigma_w(Q)$ on $\mathbb C^n$ (`cplxForm`, $\sigma_w$ = Mathlib's
    `InfinitePlace.embedding`), the absolute value is $|z|_{\mathbb C} = |z|^2$ and the measure is $2^n$ times Lebesgue measure
    ($2\,dx\,dy$ on each coordinate, the self-dual measure for $z \mapsto e^{2\pi i\,\mathrm{Tr}_{\mathbb C/\mathbb R}z}$; Weil §2.1.1 [unverified]
@@ -12,10 +12,9 @@
    is a square, and $T(\rho)_{\mathbb C} = \{(x,y) : Q_w(x) = \rho y^2\} \to \{Q_w \ne 0\}$, $(x,y) \mapsto x$, is two-to-one and carries the gauge-form
    measure to $2^ndx$, so Weil's local spherical factor is $Z_w(s,\rho) = 2Z_w(s)$, **independent of $\rho$** (as at a finite place,
    `sphLocal`, and a real place, `sphArchAt`). Hence `sphericalZetaAtNF` $= Z(s,\rho)\cdot\prod_{w\ \mathrm{complex}}2Z_w(s)$.
-   The real-places-only residue over a general $F$ is $2^{-r_2}\rho_F\int\Phi$
-   (`tendsto_mul_sphericalZeta_zero_real`), the $2^{-r_2}$ coming from $|\Lambda_S| = 2^{|S| + r_1 + r_2}$; the complex
-   factors supply $2^{r_2}$.
-2. **Any sign of $\Phi_\infty$.** The sandwich needs $\Phi_w \ge 0$. All objects are multilinear in $(\Phi_w)_w$, so writing
+   The real-places-only residue over a general $F$ is $2^{-r_2}\rho_F\int\Phi$ (`tendsto_mul_sphericalZeta_zero_real`), the
+   $2^{-r_2}$ coming from $|\Lambda_S| = 2^{|S| + r_1 + r_2}$; the complex factors supply $2^{r_2}$.
+2. **Any sign of $\Phi_\infty$.** the sandwich needs $\Phi_w \ge 0$. All objects are multilinear in $(\Phi_w)_w$, so writing
    $\Phi_w = \Phi_w^+ - \Phi_w^-$ expands $Z(s)$ and $\int\Phi$ into $2^{r_1+r_2}$ signed terms with nonnegative data (`sel`, `sgn`), each
    summable and with the right residue.
 3. **No null-cone hypothesis**: proved for every nondegenerate $Q$ (`ArchTest.ae_realVal_ne_zero_of_nondegenerate`,
@@ -247,8 +246,7 @@ Tamagawa (self-dual) measure: $|d_F|^{-n/2}\prod_{w\ \mathrm{real}}\int_{\mathbb
 def phiIntegralNF (Φ : RealPlace F → (Fin n → ℝ) → ℝ) (Ψ : ComplexPlace F → (Fin n → ℂ) → ℝ) : ℝ :=
   phiIntegral Φ * ∏ w, 2 ^ n * ∫ x, Ψ w x
 
-/-- **Weil's spherical zeta function with the complex places** $Z(s,\rho)$ (Weil 1982, §4.5, (1), p. 102): the
-`sphericalZetaAt` (real and finite places) times the complex local factors $Z_w(s,\rho) = 2Z_w(s)$, which do not depend on $\rho$
+/-- **Weil's spherical zeta function with the complex places** $Z(s,\rho)$ (Weil 1982, §4.5, (1), p. 102): `sphericalZetaAt` (real and finite places) times the complex local factors $Z_w(s,\rho) = 2Z_w(s)$, which do not depend on $\rho$
 (every $\rho \in \mathbb C^\times$ is a square; $T(\rho)_{\mathbb C} \to \{Q_w \ne 0\}$ is two-to-one). -/
 @[kb "weil1982" "§4.5, (1), p. 102 (spherical zeta-function)"]
 def sphericalZetaAtNF (Q : QuadForm (𝓞 F) n) (Φ : RealPlace F → (Fin n → ℝ) → ℝ)
@@ -398,7 +396,7 @@ $$\lim_{s\to0^+}s\sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho) = \rho_F\int_{V(\m
 $Z(s,\rho)$ Weil's spherical zeta function with all places (`sphericalZetaAtNF`), $\rho_F$ = `dedekindZeta_residue F`, $dx$ the
 Tamagawa measure (`phiIntegralNF`). No null-cone hypothesis (proved from nondegeneracy).
 
-*Proof.* For nonnegative data, the residue statement of `SphericalResidue.lean` over a general field (`tendsto_mul_sphericalZeta_zero_real`, residue $2^{-r_2}\rho_F\int\Phi$
+*Proof.* For nonnegative data, `SphericalResidue` over a general field (`tendsto_mul_sphericalZeta_zero_real`, residue $2^{-r_2}\rho_F\int\Phi$
 from the real places) times the continuous complex factors $\prod_w2Z_w(s) \to 2^{r_2}\prod_w2^n\int\Psi_w$. In general, expand
 $\Phi_w = \Phi_w^+ - \Phi_w^-$, $\Psi_w = \Psi_w^+ - \Psi_w^-$ multilinearly; every term is summable over $\rho$ for $s > 0$. -/
 @[kb "weil1982" "§4.5, (8), p. 108 (residue of Z(s) = Σ_ρ Z(s,ρ) at s = 0)"]

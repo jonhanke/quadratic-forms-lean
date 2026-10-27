@@ -4,7 +4,7 @@
 **Layer:** DVR, at a **dyadic** prime: $R$ a complete DVR (`IsAdicComplete (maximalIdeal R) R`) with uniformizer
 $\pi \mid 2$, $2 \ne 0$, finite residue field $\mathbb{F}$ of characteristic $2$.
 
-**Proves** that for an even unimodular $Q$ ($\pi \nmid N$, so $n = 2r$ and $Q \cong$ `pairSumForm A` with all $b_i$ units) the Arf sign $\varepsilon$ = `arfSignQ Q π` (the dyadic $\Phi_n(\mathfrak p)$) is the square class of the
+**Proves** that for an even unimodular $Q$ ($\pi \nmid N$, so $n = 2r$ and $Q \cong$ `pairSumForm A` with all $b_i$ units, `exists_pairSum_of_isLocalLevel_zero`) the Arf sign $\varepsilon$ = `arfSignQ Q π` (the dyadic $\Phi_n(\mathfrak p)$) is the square class of the
 normalized discriminant $\Delta = (-1)^{n/2}\det H$:
 $$\varepsilon = +1 \iff \Delta \in (R^\times)^2 \iff \Delta \in (K^\times)^2 \qquad(\texttt{arfSignQ\_eq\_one\_iff},\ \texttt{arfSignQ\_eq\_one\_iff\_isSquare\_frac}),$$
 and $\Delta = B^2(1 - 4T)$ with $B$ a unit (`exists_disc_eq_sq_mul_one_sub_four_of_level_zero`), so $K(\sqrt\Delta)/K$ is
@@ -149,7 +149,7 @@ theorem two_dvd_sub_one_of_sq_eq {π : R} (hπ : Irreducible π) {t y : R}
 $\bar t \in \wp(\mathbb{F}) = \{z^2 + z\}$. *Proof:* $1 - 4t = (1 - 2x)^2 \iff x^2 - x + t = 0$; a root of $X^2 - X + t$ mod $\pi$
 is simple (derivative $2x - 1$ a unit) and lifts by Hensel's lemma; conversely every square root of $1 - 4t$ is
 $\equiv 1 \pmod 2$ (`two_dvd_sub_one_of_sq_eq`). -/
-@[kb "omeara1963" "§63A, 63:1 (proof), 63:3, 63:4, pp. 159–161"]
+@[kb "omeara1963" "63:3, 63:4 (squares among 1 + 4𝔬 at dyadic primes) [unverified]"]
 theorem isSquare_one_sub_four_mul_iff [IsAdicComplete (IsLocalRing.maximalIdeal R) R] {π : R}
     (hπ : Irreducible π) (h2 : π ∣ 2) (h20 : (2 : R) ≠ 0) (t : R) :
     IsSquare (1 - 4 * t) ↔ ∃ z : 𝔽, z ^ 2 + z = res t := by
@@ -354,7 +354,7 @@ $Q$ even unimodular, i.e. $\pi \nmid N$, $n = 2r \ge 2$): with $\Delta = (-1)^{n
 $$\varepsilon(Q \bmod \pi) = +1 \iff \Delta \in (R^\times)^2.$$
 Since $\Delta \equiv 1 \pmod 4$ up to unit squares (`exists_disc_eq_sq_mul_one_sub_four_of_level_zero`), $K(\sqrt\Delta)/K$ is
 unramified, and $\varepsilon$ is its Frobenius: $+1$ iff it splits (is trivial). -/
-@[kb "omeara1963" "§93D, 93:16, p. 259; 93:18, p. 260 (dyadic unimodular lattices)"]
+@[kb "omeara1963" "93:16, 93:18 (Arf invariant vs discriminant of a dyadic unimodular lattice) [unverified]"]
 theorem arfSignQ_eq_one_iff [Fintype 𝔽] [DecidableEq 𝔽] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     (Q : QuadForm R n) {π : R} (hπ : Irreducible π) (h2 : π ∣ 2) (h20 : (2 : R) ≠ 0)
     (hL : IsLocalLevel Q π 0) (hn : 1 ≤ n) :

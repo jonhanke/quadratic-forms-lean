@@ -20,7 +20,7 @@ characteristic (dyadic included). Used for Weil's local orbital identity at the 
   $X^*$ with $Q \circ X^* = Q$ and $X^* \equiv X \bmod \pi^{K-d}$ (the differential of $X \mapsto Q\circ X$ has image
   $\supseteq \pi^d\,\mathrm{Sym}$, `formD_surj`).
 
-(Hensel's lemma in several variables; O'Meara 1963, 13:8, p. 26, is the one-variable form; Kitaoka 1993, §5.6 [unverified] for the isometry
+(Hensel's lemma in several variables; O'Meara 1963, §13 [unverified]; Kitaoka 1993, §5.6 [unverified] for the isometry
 case.) Indices are 0-based.
 -/
 import QuadFormsKB.LocalDensity.FormDensityStab
@@ -66,7 +66,7 @@ theorem newton_step (π : R) (F : (ι → R) → (κ → R)) (D : (ι → R) →
 /-- **Newton's method for quadratic maps over a complete DVR** (exact lifting): a solution of $F \equiv \vec t$ mod
 $\pi^K$, $K \ge 2d+1$, is congruent mod $\pi^{K-d}$ to an exact solution, provided the image of the differential contains
 $\pi^dR^\kappa$ at every solution mod $\pi^K$. -/
-@[kb "omeara1963" "§13D, 13:8, p. 26 (Hensel's lemma); cassels1978 Ch. 3, Lemma 4.1, p. 47"]
+@[kb "omeara1963" "§13 (Hensel's lemma) [unverified]"]
 theorem newton_lift [IsAdicComplete (IsLocalRing.maximalIdeal R) R] {π : R} (hπ : Irreducible π)
     (F : (ι → R) → (κ → R)) (D : (ι → R) → (ι → R) →ₗ[R] (κ → R))
     (hF : ∀ x w (c : R), F (x + c • w) = F x + c • D x w + c ^ 2 • F w) (t : κ → R) (d K : ℕ)
@@ -135,7 +135,7 @@ def evalD {n : ℕ} (Q : QuadForm R n) (x : Fin n → R) : (Fin n → R) →ₗ[
 
 /-- **Exact Hensel lifting for $Q(\vec x) = m$** at every prime (dyadic included): if $\pi^e \,\Vert\, 2m$, $K \ge 2e+1$ and
 $\pi^K \mid Q(\vec x) - m$, then $Q(\vec x^*) = m$ for some $\vec x^* \equiv \vec x \bmod \pi^{K-e}$. -/
-@[kb "omeara1963" "§13D, 13:8, p. 26 (Hensel's lemma); cassels1978 Ch. 3, Lemma 4.1, p. 47"]
+@[kb "omeara1963" "§13 (Hensel's lemma) [unverified]"]
 theorem exists_eval_eq_of_dvd [IsAdicComplete (IsLocalRing.maximalIdeal R) R] {π : R} (hπ : Irreducible π)
     {n : ℕ} (Q : QuadForm R n) {m : R} {e K : ℕ} (he : π ^ e ∣ 2 * m) (he' : ¬ π ^ (e + 1) ∣ 2 * m)
     (hK : 2 * e + 1 ≤ K) (x : Fin n → R) (hx : π ^ K ∣ Q.eval x - m) :

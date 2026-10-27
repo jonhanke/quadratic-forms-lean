@@ -32,7 +32,7 @@ variable {F : Type} [Field F] [NumberField F] {n : ℕ}
 local notation "N𝔭" v => (Ideal.absNorm (HeightOneSpectrum.asIdeal v) : ℝ)
 
 /-- **The good-prime shape holds at every good prime** (Hanke 2004, Lemma 2.1, p. 355, case $\mathfrak p \nmid 2$, with the
-determinant tracked): if $\mathfrak p \nmid 2\det H$ (`IsGoodPrimeNF Q v`), then over
+determinant tracked, over $F$): if $\mathfrak p \nmid 2\det H$ (`IsGoodPrimeNF Q v`), then over
 $\mathfrak o_\mathfrak p$ the form $Q$ has the counts $r_{\varpi^k}(m)$ of a diagonal form $\langle a_0, \dots, a_{n-1}\rangle$ with
 unit $a_i$ and $2^n\prod_i a_i = u^2\,\iota(\det H)$ for a unit $u$ (`GoodPrimeShape Q v`). Proof: `DVR.exists_diag_of_unimodular`
 applied to `NF.Qp v Q` at $\varpi$, with $\det H(Q_\mathfrak p) = \iota(\det H)$ (`NF.det_hessian_Qp`). -/

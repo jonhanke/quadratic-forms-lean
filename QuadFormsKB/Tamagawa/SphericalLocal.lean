@@ -786,7 +786,6 @@ end Classes
 
 /-- **Square classes are open** in $F_v$ ($\rho \ne 0$): by the local square theorem, $t$ close to $t_0 = \rho y_0^2$ has
 $t/t_0$ a square. -/
-@[kb "omeara1963" "§63A, 63:1b, p. 159"]
 theorem isOpen_sqClass {ρ : Fv} (hρ : ρ ≠ 0) : IsOpen (SphericalZeta.sqClass ρ) := by
   rw [Metric.isOpen_iff]
   rintro t₀ ⟨y₀, hy₀, rfl⟩

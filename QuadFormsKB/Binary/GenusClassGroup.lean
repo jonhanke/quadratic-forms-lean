@@ -5,8 +5,8 @@ import QuadFormsKB.Binary.GenusCount
 
 Gauss composition makes the proper ($\mathrm{SL}_2(\mathbb{Z})$-) classes of primitive positive definite forms of
 discriminant $D$ into a finite abelian group $\mathrm{Cl}(D)$ of order $h(D)$; for fundamental $D$ it is the ideal
-class group of $\mathbb{Q}(\sqrt D)$. That identification (forms ↔ ideals) is not used here,
-so this file states what is needed from it as a named **interface** (`IsFormClassGroup`) and proves the genus-theory
+class group of $\mathbb{Q}(\sqrt D)$. That identification (forms ↔ ideals) is made in `GenusComposition.lean`;
+this file states what the genus theory needs from it as a named **interface** (`IsFormClassGroup`) and proves the genus-theory
 consequences from it:
 
 * the genus characters give a homomorphism $\gamma : \mathrm{Cl}(D) \to \{\pm 1\}^t$ (`genusHom`) whose image is the
@@ -24,7 +24,7 @@ Cox, Theorem 3.15 / Corollary 3.14) is not proved here; it needs the count of am
 theorem $\ker\gamma = \mathrm{Cl}^2$ with $|\mathrm{Cl}[2]| = 2^{t-1}$ is proved in `GenusDuplication.lean`
 (`principalGenus_eq_sq`, `card_twoTorsion`).
 
-The interface fields of `IsFormClassGroup` are exactly the composition facts used: (for a commutative group $G$, finite in the count, and a class map) a surjective class map from
+The interface fields of `IsFormClassGroup` are exactly the facts used: (for a commutative group $G$, finite in the count, and a class map) a surjective class map from
 `PosForms D`, classes lying inside genera (proper equivalence implies $\mathbb{Z}_p$- and $\mathbb{R}$-equivalence),
 and multiplicativity of the genus characters under composition (Cox, Lemma 3.17 and Theorem 3.15's proof: if
 $f$ and $g$ represent $m$ and $m'$ prime to $D$, their composite represents $mm'$).
@@ -52,8 +52,8 @@ Fields:
 - `genusVec_mul`: the genus characters are multiplicative: if $[h] = [f][g]$ then $\chi_p(h) = \chi_p(f)\chi_p(g)$
   for all $p \mid D$.
 
-*Classification:* an interface, not a cited theorem: The axioms of composition used in this file. It
-is not equivalent to the conclusions drawn from it (the class count needs the genus theory of this file on top). -/
+*Classification:* an interface, not a cited theorem: the axioms of composition that the genus theory uses. It
+is not equivalent to the conclusions drawn from it (the class count needs the genus theory on top). -/
 @[kb "cox2013" "§3.A–B, Thm. 3.9 and Lemma 3.17 (interface) [unverified]"]
 structure IsFormClassGroup (D : ℤ) (G : Type*) [CommGroup G] (cls : PosForms D → G) : Prop where
   /-- Every class contains a primitive positive definite form. -/

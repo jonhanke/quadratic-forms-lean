@@ -44,7 +44,7 @@ lemma norm_eq_absNorm_pow {x : Fv} (hx : x ≠ 0) :
 
 /-- **The Haar modulus of $F_v$ is the normalized absolute value:** $|x|_v = \|x\|$ (Mathlib's norm on
 `v.adicCompletion F`, normalized by $N(v)$). -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §7, Def. and Thm., p. 51; §11, p. 59 (multiplication by a multiplies Haar measure by |a|, which characterizes the normalized valuation); Ch. XV (Tate), Lemma 2.2.5, p. 310"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §11, normalized valuations and Haar measure [unverified]"]
 theorem modK_eq_norm {x : Fv} (hx : x ≠ 0) : Analysis.Weil.modK Fv x = ‖x‖ := by
   set n : ℤ := WithZero.log (Valued.v x) with hn
   have hvx : Valued.v x = WithZero.exp n := (WithZero.exp_log ((Valued.v).ne_zero_iff.mpr hx)).symm
@@ -81,7 +81,7 @@ lemma hasFiniteMulSupport_modK {t : F} (ht : t ≠ 0) :
 
 /-- **The product formula for the modulus:** for $t \in F^\times$,
 $$|t|_\infty\prod_v|t|_v = 1,\qquad |t|_\infty = \prod_{w\ \mathrm{real}}|t_w|\prod_{w\ \mathrm{complex}}|t_w|^2.$$ -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §12, Thm., p. 60 (proof p. 61; second proof §14, p. 66); Ch. XV (Tate), §4.3, Thm. 4.3.1, p. 334"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §12, product formula [unverified]"]
 theorem prod_modulus_eq_one {t : F} (ht : t ≠ 0) :
     mixedEmbedding.norm (mixedEmbedding F t) *
       ∏ᶠ v : HeightOneSpectrum (𝓞 F),
@@ -118,7 +118,7 @@ lemma hilbInf_eq (a b : F) :
 
 /-- **Hilbert reciprocity, product form:** for $a, b \in F^\times$,
 $$\prod_{w\mid\infty}(a,b)_w\cdot\prod_v(a,b)_v = 1.$$ -/
-@[kb "omeara1963" "§71D, 71:18, p. 201"]
+@[kb "omeara1963" "§71:18 [unverified]"]
 theorem prod_hilbert_eq_one {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
     (hilbInf (mixedEmbedding F a) (mixedEmbedding F b) : ℂ) *
       ∏ᶠ v : HeightOneSpectrum (𝓞 F),

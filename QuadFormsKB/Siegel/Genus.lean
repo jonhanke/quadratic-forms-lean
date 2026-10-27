@@ -208,12 +208,8 @@ for all $\vec{x} \in \mathbb{Z}^n$, for some $g \in \mathrm{GL}_n(\mathbb{Z})$ (
 *Convention:* classes are **$\mathrm{GL}_n(\mathbb{Z})$-classes**, not proper
 ($\mathrm{SL}_n(\mathbb{Z})$) classes, throughout the Siegel files.
 
-*Cassels (Ch. 9, §1, p. 127):* $g(\mathbf x) = f(T\mathbf x)$ with $\det T = \pm 1$, the same relation; he defines
-$I$-equivalence in general as mutual representation (Ch. 1, §2, p. 5), which is $\mathrm{GL}_n(I)$-equivalence for
-regular forms (Lemma 2.1, p. 7), and he also uses proper equivalence ($\det T = 1$).
-
 *See also:* `intEquiv_iff_equivZ` (the AWS notes' `EquivZ` on Hessians), `IntEquiv.sameGenus`. -/
-@[kb "cassels1978" "Ch. 9, §1, (1.1), p. 127; Ch. 1, §2, Lemma 2.1, p. 7"]
+@[kb "cassels1978" "Ch. 9, §1, p. 128 [unverified]"]
 def IntEquiv (Q Q' : QuadForm ℤ n) : Prop := IsometricGL Q Q'
 
 /-- `IntEquiv` as a setoid on integral forms in $n$ variables. -/
@@ -326,12 +322,11 @@ $$\forall p\ \exists g_p \in \mathrm{GL}_n(\mathbb{Z}_p):\ Q(g_p\vec{x}) = Q'(\v
 The forms are base-changed coefficientwise (`QuadForm.map (Int.castRingHom ℤ_[p])`), so at $p = 2$ this is
 equivalence of the integral forms (not of their Gram matrices).
 
-*Conventions:* $\mathrm{GL}$ (not $\mathrm{SL}$) at every place, as in Cassels (Ch. 9, §1, p. 128, and (4.1), p. 139:
-$\det T_p$ a unit of $\mathbb Z_p$), who defines the genus for regular classically integral forms only. Equivalent formulations (local lattices,
+*Conventions:* $\mathrm{GL}$ (not $\mathrm{SL}$) at every place. Equivalent formulations (local lattices,
 double cosets) are in `Literature/AWS/Adelic.lean` (`latGenus`); a bridge is a follow-up.
 
 *See also:* `IntEquiv.sameGenus`, `genusClasses`. -/
-@[kb "cassels1978" "Ch. 9, §1, p. 128, and §4, (4.1), p. 139"]
+@[kb "cassels1978" "Ch. 9, §1, genus, p. 128 [unverified]"]
 def SameGenus (Q Q' : QuadForm ℤ n) : Prop :=
   (∀ (p : ℕ) [Fact p.Prime],
       IsometricGL (Q.map (Int.castRingHom ℤ_[p])) (Q'.map (Int.castRingHom ℤ_[p]))) ∧
@@ -459,7 +454,7 @@ theorem nondegenerate {Q : IntQF n} (hQ : Q.PosDef) : Q.Nondegenerate := by
 nonzero $\vec{x} \in \mathbb{R}^n$. (This settles the parenthetical remark in `IntQF.PosDef`.) *Proof:* $Q \ge 0$ on
 $\mathbb{R}^n$; a real zero $\vec{x} \ne 0$ of a semidefinite form lies in the kernel of $H$, so $\det H = 0$,
 contradicting `nondegenerate`. -/
-@[kb "cassels1978" "Ch. 9, §1, p. 131 (a positive definite form defines an ellipsoid)"]
+@[kb "cassels1978" "Ch. 9 [unverified]"]
 theorem evalIn_real_pos {Q : IntQF n} (hQ : Q.PosDef) (x : Fin n → ℝ) (hx : x ≠ 0) :
     0 < Q.evalIn ℝ x := by
   rcases (hQ.evalIn_real_nonneg x).lt_or_eq with h | h
@@ -563,13 +558,13 @@ theorem finite_setOf_eval_le {Q : IntQF n} (hQ : Q.PosDef) (M : ℤ) :
     exact_mod_cast this
 
 /-- **$r_Q(m)$ is finite** for positive definite $Q$: $\{\vec{x} \in \mathbb{Z}^n : Q(\vec{x}) = m\}$ is finite. -/
-@[kb "cassels1978" "Ch. 9, §1, p. 131, (1.2)–(1.3); §6, p. 146"]
+@[kb "cassels1978" "Ch. 9 [unverified]"]
 theorem repSet_finite {Q : IntQF n} (hQ : Q.PosDef) (m : ℤ) : (Siegel.repSet Q m).Finite :=
   (hQ.finite_setOf_eval_le m).subset fun _ hx => le_of_eq hx
 
 /-- **$\mathrm{Aut}(Q)$ is finite** for positive definite $Q$: the $j$-th column of $g \in \mathrm{Aut}(Q)$ represents
 $Q(\vec{e}_j)$, and there are finitely many such vectors. -/
-@[kb "cassels1978" "Ch. 13, §1, p. 284 (O(f) is finite for definite f); Ch. 9, §6, p. 146"]
+@[kb "cassels1978" "Ch. 9, Lemma on finiteness of O(f) [unverified]"]
 theorem finite_aut {Q : IntQF n} (hQ : Q.PosDef) : Finite (Siegel.Aut Q) := by
   set t : Fin n → Set (Fin n → ℤ) := fun j => Siegel.repSet Q (Q.eval (Pi.single j 1))
   have ht : {f : Fin n → Fin n → ℤ | ∀ j, f j ∈ t j}.Finite :=

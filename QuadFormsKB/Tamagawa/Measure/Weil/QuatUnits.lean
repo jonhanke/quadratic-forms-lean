@@ -1,7 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.Ideles
 
 /-!
-# The unit group $(\mathbb H\otimes\mathbb A)^\times$
+# The unit group $(\mathbb H\otimes\mathbb A)^\times$ ($A = \mathbb H[F,a,b]$)
 
 * `QuaternionAlgebra.mapRingHom` (generic): a ring homomorphism $f : R\to S$ induces
   $\mathbb H[R,c_1,c_2,c_3]\to\mathbb H[S,d_1,d_2,d_3]$ when $f(c_i) = d_i$.

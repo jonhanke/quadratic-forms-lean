@@ -7,16 +7,14 @@ and the local condition `LocalSpinorUnits` (`Lattices/SpinorLocal.lean`).
 **Proves**
 * `exists_evalIn_eq_mul` (**global spinor norms**): if $n \ge 3$ and $Q$ is isotropic at every infinite place of $F$, then
   for every $a \in F^\times$ there are anisotropic $x, y \in F^n$ with $Q(x) = a\,Q(y)$; hence
-  $\theta(\tau_x\tau_y) = a\,F^{\times 2}$ and $\theta(O^+(V)) = F^\times/F^{\times2}$ (O'Meara 1963, 101:8, p. 291, in the case
-  where no real place is anisotropic).
+  $\theta(\tau_x\tau_y) = a\,F^{\times 2}$ and $\theta(O^+(V)) = F^\times/F^{\times2}$ (O'Meara 1963, 101:8 [unverified]).
   *Proof:* $\langle b\rangle \perp \langle -ab\rangle$ ($Q \cong \langle b_0, \dots, b_{n-1}\rangle$) has rank $2n \ge 6$, so it
   is isotropic at every finite place (`LocalRankFive.isotropic_diag_five`) and, containing $Q$, at every infinite
   place; by Hasse–Minkowski (`hasseMinkowski_nf`) it is isotropic over $F$. If the isotropic vector has $Q(y) = 0$, then
   $Q$ is isotropic, hence universal.
 * `sameSpinorGenus_of_sameGenus` (**genus = spinor genus**): if moreover $\mathcal O_F$ is a PID and
   `LocalSpinorUnits Q v L` holds at every finite $\mathfrak p$, then every lattice in the genus of $L$ is in the spinor
-  genus of $L$ (O'Meara 1963, 102:9, p. 304; Cassels 1978, Ch. 11, Lemma 3.6, Corollary, p. 213, over $\mathbb{Q}$: if $U_p \subseteq \theta(O(\Lambda_p))$ for all $p$, the
-genus is one spinor genus).
+  genus of $L$ (O'Meara 1963, 102:9 [unverified]; Cassels 1978, Ch. 11, Thm. 3.? [unverified]).
 * `genus_eq_class_of_localSpinorUnits`: with Eichler's theorem (conditional on `StrongApproximationSpin F`), for
   $n \ge 3$ every lattice in the genus of $L$ is isometric to $L$: **class number one of the genus**.
 -/
@@ -59,11 +57,10 @@ theorem isotropicIn_diag_finite {m : ℕ} (hm : 5 ≤ m) (c : Fin m → F) (hc :
   rw [QuadForm.evalIn_diag] at hy
   simpa using hy
 
-/-- **Global values of an indefinite form** (O'Meara 1963, 101:8, p. 291, the case where $V$ is isotropic at every
-real place, so that $\theta(O^+(V))$ is all of $F^\times/F^{\times 2}$): if $Q$ is nondegenerate in $n \ge 3$
+/-- **Global values of an indefinite form** (O'Meara 1963, 101:8 [unverified]): if $Q$ is nondegenerate in $n \ge 3$
 variables and isotropic at every infinite place of $F$, then for every $a \in F^\times$ there are $x, y \in F^n$ with
 $Q(y) \ne 0$ and $Q(x) = a\,Q(y)$. -/
-@[kb "omeara1963" "§101B, 101:8, p. 291 (and its proof)"]
+@[kb "omeara1963" "101:8 [unverified]"]
 theorem exists_evalIn_eq_mul (Q : QuadForm F n) (hQ : Q.Nondegenerate) (hn : 3 ≤ n)
     (hinf : ∀ w : InfinitePlace F, Q.IsotropicIn w.Completion) {a : F} (ha : a ≠ 0) :
     ∃ x y : Fin n → F, Q.evalIn F y ≠ 0 ∧ Q.evalIn F x = a * Q.evalIn F y := by
@@ -209,18 +206,21 @@ theorem spinorNorm_orthMap_symm_mul (hQ : Q.Nondegenerate) (v : HeightOneSpectru
   simp only [symmProd, valProd, List.map_cons, List.map_nil, List.prod_cons, List.prod_nil, mul_one] at this
   rw [this, hval, hval, map_mul]
 
-/-- **The adelic decomposition behind "genus = spinor genus", with a proper rational factor**: under the hypotheses of
-`sameSpinorGenus_of_sameGenus` ($\mathcal O_F$ a PID, $Q$ nondegenerate in $n\ge3$ variables and isotropic at every
-infinite place, `LocalSpinorUnits Q v L` at every finite prime), every $h\in O(V)(\mathbb A_f)$ factors as
-$$h = \gamma\,k\,u,\qquad \gamma\in O(V)(F),\ \det\gamma = 1,\quad k\in O'(V_{\mathbb A_f}),\quad u\in O(\hat L).$$
-The rational factor is $\gamma = \tau_x\tau_y$, a product of two symmetries, hence a rotation; this is what makes the
-statement usable for the proper classes ($SO$ double cosets; `Indefinite/OneClass.lean`). -/
-theorem exists_spinorDecomp [IsPrincipalIdealRing (𝓞 F)] (hQ : Q.Nondegenerate) (hn : 3 ≤ n)
+/-- **Genus = spinor genus** (O'Meara 1963, 102:9 [unverified]): let $\mathcal O_F$ be a PID, $Q$ nondegenerate in
+$n \ge 3$ variables and isotropic at every infinite place, and $L$ a lattice such that `LocalSpinorUnits Q v L` holds at
+every finite prime $\mathfrak p$ ($\theta(O(L_\mathfrak p)) \supseteq \mathfrak o_\mathfrak p^\times$, with an improper element).
+Then every lattice in the genus of $L$ lies in the spinor genus of $L$. By `localSpinorUnits_of_unimodular` the local
+condition holds automatically at every $\mathfrak p \nmid 2\det H$. Unconditional (no cited inputs). -/
+@[kb "omeara1963" "102:9 [unverified]"]
+theorem sameSpinorGenus_of_sameGenus [IsPrincipalIdealRing (𝓞 F)] (hQ : Q.Nondegenerate) (hn : 3 ≤ n)
     (hinf : ∀ w : InfinitePlace F, Q.IsotropicIn w.Completion) (L : Lat F n)
-    (hloc : ∀ v, LocalSpinorUnits Q v L) (h : OAf Q) :
-    ∃ γ : orthGroup Q F, ((γ : GL (Fin n) F) : Matrix (Fin n) (Fin n) F).det = 1 ∧
-      ∃ k ∈ spinorKernelAf Q, ∃ u ∈ locStab Q L, h = diagF Q γ * k * u := by
+    (hloc : ∀ v, LocalSpinorUnits Q v L) {M : Lat F n} (hM : SameGenus Q L.1 M.1) :
+    SameSpinorGenus Q L M := by
   classical
+  let _ : MulAction (OAf Q) (Lat F n) := latAction Q
+  -- `M = h L`
+  have hMo : M ∈ MulAction.orbit (OAf Q) L := by rw [orbit_eq_genus]; exact hM
+  obtain ⟨h, rfl⟩ := hMo
   -- local spinor norms `θ(h_v) = x_v`
   have hx : ∀ v : HeightOneSpectrum (𝓞 F), ∃ x : v.adicCompletion F, x ≠ 0 ∧
       spinorNorm Q (v.adicCompletion F) (h v) = sqClassOf x := by
@@ -306,29 +306,10 @@ theorem exists_spinorDecomp [IsPrincipalIdealRing (𝓞 F)] (hQ : Q.Nondegenerat
       change (orthMap Q _ γ)⁻¹ * h v * ((kv v)⁻¹ * ((orthMap Q _ γ)⁻¹ * h v))⁻¹ = kv v
       group
     rw [this]; exact hkv v
-  refine ⟨γ, ?_, k, hk, u, hu, by simp only [k]; group⟩
-  rw [Subgroup.coe_mul, Units.val_mul, det_mul, symm_det Q F hx0, symm_det Q F hy]
-  norm_num
-
-/-- **Genus = spinor genus** (a variant of O'Meara 1963, 102:9, p. 304, which assumes $J_F = P_DJ_F^S$ and
-$\theta(O^+(L_\mathfrak p)) \supseteq \mathfrak u_\mathfrak p$ and concludes $\mathrm{spn}^+L = \mathrm{gen}\,L$): let $\mathcal O_F$ be a PID, $Q$ nondegenerate in
-$n \ge 3$ variables and isotropic at every infinite place, and $L$ a lattice such that `LocalSpinorUnits Q v L` holds at
-every finite prime $\mathfrak p$ ($\theta(O(L_\mathfrak p)) \supseteq \mathfrak o_\mathfrak p^\times$, with an improper element).
-Then every lattice in the genus of $L$ lies in the spinor genus of $L$. By `localSpinorUnits_of_unimodular` the local
-condition holds automatically at every $\mathfrak p \nmid 2\det H$. Unconditional (no cited inputs). -/
-@[kb "omeara1963" "§102B, 102:9, p. 304; cassels1978 Ch. 11, Thm. 1.5, p. 203; Ch. 11, Lemma 3.6, Cor., p. 213"]
-theorem sameSpinorGenus_of_sameGenus [IsPrincipalIdealRing (𝓞 F)] (hQ : Q.Nondegenerate) (hn : 3 ≤ n)
-    (hinf : ∀ w : InfinitePlace F, Q.IsotropicIn w.Completion) (L : Lat F n)
-    (hloc : ∀ v, LocalSpinorUnits Q v L) {M : Lat F n} (hM : SameGenus Q L.1 M.1) :
-    SameSpinorGenus Q L M := by
-  let _ : MulAction (OAf Q) (Lat F n) := latAction Q
-  -- `M = h L`
-  have hMo : M ∈ MulAction.orbit (OAf Q) L := by rw [orbit_eq_genus]; exact hM
-  obtain ⟨h, rfl⟩ := hMo
-  obtain ⟨γ, -, k, hk, u, hu, hh⟩ := exists_spinorDecomp Q hQ hn hinf L hloc h
   refine (mem_latSpinorGenus Q).mpr ⟨γ, k, hk, ?_⟩
   have huL : latSMul Q u L = L :=
     MulAction.mem_stabilizer_iff.mp ((stabilizer_eq_locStab Q L).symm ▸ hu)
+  have hh : h = diagF Q γ * k * u := by simp only [k]; group
   change h • L = (diagF Q γ) • (k • L)
   conv_lhs => rw [hh, mul_smul, mul_smul]
   change diagF Q γ • (k • latSMul Q u L) = _
@@ -337,7 +318,7 @@ theorem sameSpinorGenus_of_sameGenus [IsPrincipalIdealRing (𝓞 F)] (hQ : Q.Non
 /-- **Class number one of the genus** for indefinite forms with large local spinor norms: under the hypotheses of
 `sameSpinorGenus_of_sameGenus`, every lattice in the genus of $L$ is isometric to $L$. **Conditional** on the named
 input `StrongApproximationSpin F` (through Eichler's theorem). -/
-@[kb "omeara1963" "§102B, 102:9, p. 304; §104, 104:5, p. 319; §104, 104:8, p. 320; cassels1978 Ch. 11, Thm. 1.5, p. 203; Ch. 11, Lemma 3.6, Cor., p. 213"]
+@[kb "omeara1963" "102:9, 104:5 [unverified]"]
 theorem isIsometric_of_sameGenus [IsPrincipalIdealRing (𝓞 F)] (hSA : StrongApproximationSpin F)
     (hQ : Q.Nondegenerate) (hn : 3 ≤ n) (hinf : ∀ w : InfinitePlace F, Q.IsotropicIn w.Completion) (L : Lat F n)
     (hloc : ∀ v, LocalSpinorUnits Q v L) {M : Lat F n} (hM : SameGenus Q L.1 M.1) :
@@ -354,7 +335,7 @@ def stdLat : Lat F n := ⟨intVec, intVec_isLattice⟩
 $\mathcal O_F$ (a PID), nondegenerate, $n \ge 3$, isotropic at every infinite place, the genus of $L = \mathcal O_F^n$ equals its
 spinor genus as soon as `LocalSpinorUnits` holds at the primes $\mathfrak p \mid 2\det H$; at all other primes it holds
 by `localSpinorUnits_of_unimodular`. -/
-@[kb "omeara1963" "§92, 92:5, p. 249; §102B, 102:9, p. 304"]
+@[kb "omeara1963" "92:5, 102:9 [unverified]"]
 theorem sameSpinorGenus_of_sameGenus_std [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadForm (𝓞 F) n)
     (hQ : (Q₀.map (algebraMap (𝓞 F) F)).Nondegenerate) (hn : 3 ≤ n)
     (hinf : ∀ w : InfinitePlace F, (Q₀.map (algebraMap (𝓞 F) F)).IsotropicIn w.Completion)

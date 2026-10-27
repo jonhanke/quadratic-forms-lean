@@ -6,7 +6,7 @@ import QuadFormsKB.Literature.LocalGlobal.NumberFieldMain
 /-!
 # The exact number of genera of binary lattices over $F$
 
-$E/F$ quadratic, $\delta$ = `relD`, $\psi_v = (\delta, \cdot)_v$ = `genusSym`. Previously proved: The genus of a normalized lattice
+$E/F$ quadratic, $\delta$ = `relD`, $\psi_v = (\delta, \cdot)_v$ = `genusSym`. The genus of a normalized lattice
 $(\mathfrak A, \frac{\eta}{a}N)$ is its vector $(\psi_v(\eta a))_v$, supported (CM, totally positive) on $S = \{\mathfrak p \mid 2\delta\}$ with
 product one, so there are at most $2^{|S|-1}$ genera (`ncard_genera_le`). Here:
 
@@ -25,7 +25,7 @@ product one, so there are at most $2^{|S|-1}$ genera (`ncard_genera_le`). Here:
 * **The exact count** (`ncard_genera_eq`, CM): the genus vectors of the totally positive definite normalized lattices
   are exactly the sign vectors on the set $T$ of **ramified** finite primes with product one (`mem_genusVectors_iff`);
   there are $2^{|T|-1}$ of them ($1$ if $T = \emptyset$). Existence is by elements with prescribed Hilbert symbols
-  (`NFInputs.exists_prescribed_hilbert_nf`, now proved). $T \subseteq \{\mathfrak p \mid 2\delta\}$ (`two_relD_mem_of_ramified`).
+  (`NFInputs.exists_prescribed_hilbert_nf`). $T \subseteq \{\mathfrak p \mid 2\delta\}$ (`two_relD_mem_of_ramified`).
 
 No unit index enters: the lattices range over **all** units $\eta$ with $\eta a \gg 0$. (The genera met with one fixed scale,
 e.g. only $\eta = 1$, can be fewer; that count involves $[\mathcal O_F^{\times,+} : \mathcal O_F^{\times,+} \cap N(E^\times)]$ and is not formalized.)
@@ -119,7 +119,7 @@ theorem valuation_norm_even {𝔭 : HeightOneSpectrum (𝓞 F)} (h𝔭 : relChar
 
 /-- **The genus character at an inert prime is the parity of the valuation** (every inert $\mathfrak p$, dyadic included):
 for $x \in F^\times$ with $v_\mathfrak p(x) = \exp(n)$, $\psi_\mathfrak p(x) = 1 \iff n$ is even. -/
-@[kb "omeara1963" "§63B, 63:11a, p. 165; 63:3, 63:4, p. 161; serre1973 Ch. III §1.2 (Thm. 1, case F = Q_p); 63:16, p. 169"]
+@[kb "omeara1963" "§63:11a [unverified]; serre1973 Ch. III §1.2 (Thm. 1, case F = Q_p)"]
 theorem genusSym_inert_iff {𝔭 : HeightOneSpectrum (𝓞 F)} (h𝔭 : relChar E 𝔭 = -1) {x : F} (hx : x ≠ 0)
     {n : ℤ} (hn : 𝔭.valuation F x = WithZero.exp n) :
     genusSym E (NFPlace.finite 𝔭) x = 1 ↔ Even n := by
@@ -288,7 +288,6 @@ theorem not_isSquare_relD_of_not_split {𝔭 : HeightOneSpectrum (𝓞 F)} (h : 
 
 /-- **Local nondegeneracy:** if $\delta \notin F_\mathfrak p^{\times 2}$ then $(\delta, x)_\mathfrak p = -1$ for some $x \in F_\mathfrak p^\times$
 (`SqDual.hilbCl_nondeg_fin`). -/
-@[kb "omeara1963" "§63B, 63:13, p. 166"]
 theorem exists_hilbertSymbol_neg {𝔭 : HeightOneSpectrum (𝓞 F)}
     (h : ¬ IsSquare (algebraMap F (𝔭.adicCompletion F) (relD F E))) :
     ∃ x : 𝔭.adicCompletion F, x ≠ 0 ∧
@@ -430,7 +429,7 @@ theorem signOf_coe (e : ℤˣ) : signOf (e : ℤ) = e := by
 positive normalized value $x$ iff $\varphi = 1$ off the genus primes $T$, $\varphi = \pm 1$ on $T$, and $\prod_{\mathfrak p \in T}\varphi(\mathfrak p) = 1$.
 Existence: elements with prescribed Hilbert symbols (`NFInputs.exists_prescribed_hilbert_nf`), then a norm ideal with even
 valuations at the inert primes (`exists_relNorm_eq`, `genusSym_inert_iff`). -/
-@[kb "hecke1923" "§48 [unverified]; omeara1963 §71D, 71:19, p. 203 (prescribed Hilbert symbols); cf. genusChar_surjective"]
+@[kb "hecke1923" "§48 [unverified]; omeara1963 §71:19 (prescribed Hilbert symbols); cf. genusChar_surjective"]
 theorem mem_genusVectors_iff {T : Finset (HeightOneSpectrum (𝓞 F))} (hT : ∀ 𝔭, 𝔭 ∈ T ↔ relChar E 𝔭 = 0)
     (φ : NFPlace F → ℤ) :
     φ ∈ (fun (x : F) v => genusSym E v x) '' posNormValues E ↔
@@ -540,7 +539,7 @@ theorem mem_genusVectors_iff {T : Finset (HeightOneSpectrum (𝓞 F))} (hT : ∀
 
 /-- **The exact number of genera of totally positive definite normalized binary lattices over $F$** ($E/F$ CM):
 $$\#\{(\psi_v(x))_v : x \in \texttt{posNormValues}\} = 2^{|T|-1}, \qquad T = \{\mathfrak p : \mathfrak p \text{ ramified in } E\}$$
-(natural-number subtraction: $1$ genus when $T = \emptyset$). Upper bound: The argument with $T$ for $S$; lower bound: every
+(natural-number subtraction: $1$ genus when $T = \emptyset$). Upper bound: the argument with $T$ for $S$; lower bound: every
 product-one sign vector on $T$ occurs (`mem_genusVectors_iff`). By `isometryEquiv_iff_genusSym` the genus vector is the
 rational genus. Over $\mathbb Q$ this is Gauss's $2^{t-1}$ (`card_genera`). -/
 @[kb "hecke1923" "§48 [unverified]; cf. card_genera"]

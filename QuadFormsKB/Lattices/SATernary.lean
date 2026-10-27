@@ -157,7 +157,6 @@ theorem nrd_scalarUnit {A B : K} (c : K) (hc : c ≠ 0) :
 /-- **Rotations in $O'(V_K)$ are conjugations by norm-one quaternions** (O'Meara 57:13, as used in 104:4 step 2):
 for $\varphi \in O'(V_K)$ there is $\alpha \in D_K^\times$ with $\operatorname{nrd}\alpha = 1$ and $P^{-1}\varphi P = (y \mapsto
 \alpha y\alpha^{-1})$. -/
-@[kb "omeara1963" "§57, 57:13, p. 148 (conjugation by a quaternion), as used in 104:4, step 2; §104, proof of 104:4, step 2, pp. 317–319"]
 theorem exists_conj_of_mem_spinorKernel (hd : d ≠ 0) (hsim : SimAt Q a b d P K) {φ : orthGroup Q K}
     (hφ : φ ∈ spinorKernel Q K) :
     ∃ α : (ℍ[K, algebraMap F K a, algebraMap F K b])ˣ, Quat.nrd (α : ℍ[K, algebraMap F K a, algebraMap F K b]) = 1 ∧
@@ -368,7 +367,6 @@ theorem continuous_conjMat (a b : F) (P : GL (Fin 3) F) :
 space $(D, \operatorname{nrd})$: approximate the local norm-one quaternions $\alpha_\mathfrak p$ with
 $P^{-1}\varphi_\mathfrak pP = (y \mapsto \alpha_\mathfrak p y \alpha_\mathfrak p^{-1})$ by $\alpha \in D$ of norm $1$, integral off $T$, and take
 $\sigma = P\,(y \mapsto \alpha y\bar\alpha)\,P^{-1}$. -/
-@[kb "omeara1963" "§104, proof of 104:4, step 2, pp. 317–319"]
 theorem rotApprox_ternary {Q : QuadForm F 3} (hQ : Q.Nondegenerate) {a b d : F} (ha : a ≠ 0) (hd : d ≠ 0)
     {P : GL (Fin 3) F} (hsim : ∀ (K : Type) [Field K] [Algebra F K] [CharZero K], SimAt Q a b d P K)
     (hV : VecApprox (Quat.nrdForm a b)) : RotApprox Q := by
@@ -559,7 +557,6 @@ theorem rotApprox_ternary_of {Q : QuadForm F 3} (hQ : Q.Nondegenerate)
 
 /-- **Strong approximation for rotations of an isotropic ternary space** (O'Meara 104:4 step 2 with 104:3 in the
 isotropic case): unconditional. -/
-@[kb "omeara1963" "§104, proof of 104:4, step 2, pp. 317–319"]
 theorem rotApprox_ternary_isotropic {Q : QuadForm F 3} (hQ : Q.Nondegenerate) (hiso : Q.IsotropicIn F) :
     RotApprox Q :=
   rotApprox_ternary_of hQ fun _ _ ha hb hI =>

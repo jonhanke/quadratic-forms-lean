@@ -33,8 +33,7 @@ coordinates $E$), so nothing is gained by splitting; the representation of $\mat
 $\mathrm{SL}_2(k)$ for fields $k \to F_\infty$) still needs the presentation for a product of fields (gap 4, open).
 
 Sources: Weil, Acta Math. 111 (1964), §§14, 26 [unverified]; Kudla, *Notes on the local theta correspondence*
-(1996), §I.1 [unverified]; Tate's thesis (Cassels–Fröhlich Ch. XV, §2.2, Thm. 2.2.2, p. 310; the dilation formula as in the proof of
-Thm. 4.2.1, p. 333).
+(1996), §I.1 [unverified]; Tate's thesis (Cassels–Fröhlich Ch. XV, §2.2) [unverified].
 -/
 import Mathlib
 import QuadFormsKB.Citation
@@ -150,7 +149,7 @@ lemma fourierInf_coe_schwartz (G : SchwartzMap V∞ ℂ) :
   rfl
 
 /-- **The Fourier transform of a Schwartz function on $F_\infty$ is Schwartz.** -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310 (Tate uses the class 𝔅₁, not Schwartz functions)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (the Fourier transform on $\\mathcal S(F_\\infty)$) [unverified]"]
 theorem fourierInf_mem_schwartzInf {f : V∞ → ℂ} (hf : f ∈ schwartzInf (F := F)) :
     fourierInf f ∈ schwartzInf (F := F) := by
   obtain ⟨G, rfl⟩ := hf
@@ -173,7 +172,7 @@ lemma Jinf_Tinf (x : V∞) : Jinf (Tinf x) = Sinf x := by
   simp only [Tinf_apply, map_neg, ContinuousLinearEquiv.symm_apply_apply, conjC_conjC, neg_neg]
 
 /-- **Fourier inversion on $F_\infty$**: $\hat{\hat f}(x) = f(-x)$ for Schwartz $f$ (self-dual measure). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310 (f̂̂(ξ) = f(−ξ))"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (Fourier inversion at the infinite places) [unverified]"]
 theorem fourierInf_fourierInf {f : V∞ → ℂ} (hf : f ∈ schwartzInf (F := F)) (x : V∞) :
     fourierInf (fourierInf f) x = f (-x) := by
   obtain ⟨G, rfl⟩ := hf
@@ -239,7 +238,7 @@ lemma abs_det_mulLeft_inf (t : V∞) :
   rw [abs_of_nonneg (Complex.normSq_nonneg _), Complex.sq_norm]
 
 /-- **Dilation:** $\widehat{D_tf}(y) = |t|_\infty^{-1}\hat f(t^{-1}y)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2, proof of Thm. 4.2.1, p. 333 (ĝ(x) = |a|^{−1} f̂(x/a) for g(x) = f(ax)); Lemma 2.2.5, p. 310"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (the modulus of $F_\\infty$) [unverified]"]
 theorem fourierInf_dil {f : V∞ → ℂ} (hf : f ∈ schwartzInf (F := F)) (t : (V∞)ˣ) (y : V∞) :
     fourierInf (dil (t : V∞) f) y =
       ((mixedEmbedding.norm (t : V∞) : ℝ) : ℂ)⁻¹ * fourierInf f (((t⁻¹ : (V∞)ˣ) : V∞) * y) := by

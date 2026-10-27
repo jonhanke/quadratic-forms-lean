@@ -116,8 +116,8 @@ $$\mathrm{Mass}(L) = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{1}{|O(M
   \Gamma = O(V)(F),\ K = O(\hat L),$$
 for every lattice $L$ (both sides are `finsum`s, matched term by term; they are finite sums for an integral $L$ in a
 totally positive definite space, `genusClasses_finite`) (AWS notes (4.11)–(4.12) over $F$; Weil 1982, §3.5
-[unverified locator]). Classes and $O(M)$ include improper isometries (the library's convention). -/
-@[kb "hanke2011aws" "§4.6, (4.11)-(4.12) (over F); cassels1978 App. B, §4, (4.11)–(4.19), pp. 380–382"]
+[unverified locator]). Classes and $O(M)$ include improper isometries (the convention of this repository). -/
+@[kb "hanke2011aws" "§4.6, (4.11)-(4.12) (over F)"]
 theorem mass_eq_dcMass (L : Lat F n) :
     mass Q L = dcMass (ratPoints Q) (locStab Q L) := by
   classical
@@ -323,7 +323,7 @@ theorem mass_SO_eq_two_mul_mass (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : Is
 index (e.g. a principal congruence subgroup) and any left Haar measure $\mu$ on the commensurability class of
 $O(\hat L)$ (`idxVol`),
 $$\mathrm{Mass}(L)\cdot\mu(O(\hat L)) = \mu(K')\cdot\mathrm{dcMass}(O(V)(F), K') =: \mathrm{vol}(O(V)(F)\backslash O(V)(\mathbb A_f)).$$ -/
-@[kb "weil1982" "§2.4, p. 23 (τ = volume of the quotient); Lemma 2.4.2, p. 26 (unfolding over a discrete group, discrete version); cassels1978 App. B, §4, (4.11)–(4.19), pp. 380–382"]
+@[kb "weil1982" "§2.4, p. 23 (τ = volume of the quotient); Lemma 2.4.2, p. 26 (unfolding over a discrete group, discrete version)"]
 theorem mass_mul_vol_eq {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) (L : Lat F n) (hLi : IsIntegral Q L.1)
     (K₀ : Subgroup (OAf Q)) (c : ℝ) (K' : Subgroup (OAf Q)) (hle : K' ≤ locStab Q L)
     (hK : (locStab Q L).Commensurable K₀) (hK' : K'.Commensurable K₀) :
@@ -383,10 +383,10 @@ def tamagawaK : ℝ :=
 $SO(V)(F\otimes\mathbb R)$ is compact, $SO(V)(F)\backslash SO(V)(\mathbb A) = \bigsqcup_\alpha \Gamma_\alpha\backslash(SO(V)(F\otimes\mathbb R)\times
 \alpha K_f)$ with $\Gamma_\alpha = SO(V)(F)\cap\alpha K_f\alpha^{-1}$ finite, so this is the Tamagawa volume of the quotient (the
 unfolding; Weil 1982, §2.4, p. 23 for $\tau(G) = \mathrm{vol}(G_{\mathbb A}/G_k)$ and Lemma 2.4.2, p. 26 for the unfolding).
-*Proved:* this definition equals the covolume of $SO(V)(F)$ in $SO(V)(\mathbb A)$ for a genuine Haar measure
+*Proved*: this definition equals the covolume of $SO(V)(F)$ in $SO(V)(\mathbb A)$ for a genuine Haar measure
 $\mu_{\mathbb A} = c_F\,\mu_\infty\times\mu_f$ (`Measure.tauSO_eq_covolume`, `Tamagawa/Measure/AdelicSO.lean`).
-*Erratum (KB):* an earlier version cited Weil 1982 "§3.5" here; §3.5 of Weil's book is the symplectic group. -/
-@[kb "weil1982" "§2.4, p. 23 (τ(G) = vol(G_𝔸/G_k)); Lemma 2.4.2, p. 26 (unfolding); cassels1978 App. B, §4, (4.11)–(4.19), pp. 380–382"]
+*Erratum:* an earlier version cited Weil 1982 "§3.5" here; §3.5 of Weil's book is the symplectic group. -/
+@[kb "weil1982" "§2.4, p. 23 (τ(G) = vol(G_𝔸/G_k)); Lemma 2.4.2, p. 26 (unfolding)"]
 def tauSO : ℝ :=
   tamagawaK Q₀ * dcMass ((ratPoints QF).subgroupOf (soAf QF)) ((locStab QF (stdLat F n)).subgroupOf (soAf QF))
 
@@ -403,11 +403,10 @@ $\mu_f(SO(\hat L)) = \prod'_v\mu_v(SO(L_v)) = \prod'_\mathfrak p\alpha_\mathfrak
 this hypothesis says exactly that the Tamagawa covolume is $2$ (Weil 1982, §2.4, p. 23: $\tau(G) = \mathrm{vol}(G_{\mathbb A}/G_k)$),
 and it is no longer *definitionally* the mass formula. Remaining fidelity gaps: the
 product characterization of $\mu_f$ on boxes and the identification of the local measures with gauge-form (Leray)
-measures; the local masses themselves are proved ($\mathrm{vol}(SO(L_\mathfrak p)) = \alpha_\mathfrak p(L,L)$, the
-archimedean
+measures; the local masses themselves are proved ($\mathrm{vol}(SO(L_\mathfrak p)) = \alpha_\mathfrak p(L,L)$, the archimedean
 volume). The mass formula still follows from this hypothesis by a short computation; what has changed is that the
 hypothesis is now an independent statement about $\mathrm{vol}(SO(V)(F)\backslash SO(V)(\mathbb A))$. -/
-@[kb "weil1982" "Ch. IV (τ(SO) = 2) [unverified]; cassels1978 App. B, Thm. 4.1, p. 380"]
+@[kb "weil1982" "Ch. IV (τ(SO) = 2) [unverified]"]
 def TamagawaNumberTwo : Prop := tauSO Q₀ = 2
 
 /-- **The Smith–Minkowski–Siegel mass formula, conditional on $\tau(SO) = 2$:** for $Q_0$ over $\mathcal O_F$ nondegenerate,
@@ -418,7 +417,7 @@ $$\mathrm{Mass}(L) = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{1}{|O(M
 $2 = \tau(SO)$ cancels the factor $2 = [O:SO]$; in Siegel's normalization this is the classical
 $\mathrm{Mass}(L) = 2\prod_p\alpha_p(L,L)^{-1}\cdot\prod_{j=1}^n\pi^{-j/2}\Gamma(j/2)\cdot\det(L)^{(n+1)/2}$ over $\mathbb Q$ (Kitaoka 1993,
 Thm 6.8.1 [unverified]; Conway–Sloane 1988, (2)). -/
-@[kb "kitaoka1993" "Thm 6.8.1 (mass formula) [unverified]; cassels1978 App. B, (3.2), p. 375"]
+@[kb "kitaoka1993" "Thm 6.8.1 (mass formula) [unverified]"]
 theorem massFormula (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosDef QF)
     (hLi : IsIntegral QF (stdLat F n).1) (hτ : TamagawaNumberTwo Q₀) :
     mass QF (stdLat F n) = (tamagawaK Q₀)⁻¹ := by
@@ -501,8 +500,9 @@ theorem hasProd_siegelDensity_odd (m : ℕ) (Q₀ : QuadForm (𝓞 F) (2 * m + 1
 /-- **The mass formula, explicit form for odd $n = 2m+1$** (conditional on $\tau(SO) = 2$):
 $$\mathrm{Mass}(\mathcal O_F^n) = |d_F|^{n(n-1)/4}\Big(\prod_\sigma\mathrm{vol}(SO(V_\sigma))\Big)^{-1}
   \Big(\prod_{\mathfrak p\mid 2\det H}\alpha_\mathfrak p\lambda_\mathfrak p\Big)^{-1}\prod_{i=1}^m\zeta_F(2i).$$
-The only non-explicit factors are the finitely many bad local densities $\alpha_\mathfrak p$, $\mathfrak p \mid 2\det H$ (closed forms at odd bad primes and dyadic primes are not given here). -/
-@[kb "kitaoka1993" "Thm 6.8.1 [unverified]; cassels1978 App. B, (3.2), p. 375"]
+The only non-explicit factors are the finitely many bad local densities $\alpha_\mathfrak p$, $\mathfrak p \mid 2\det H$ (closed forms
+at odd bad primes and dyadic primes are not given here). -/
+@[kb "kitaoka1993" "Thm 6.8.1 [unverified]"]
 theorem massFormula_odd (m : ℕ) (Q₀ : QuadForm (𝓞 F) (2 * m + 1)) (hQ : Q₀.Nondegenerate)
     (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F)))
     (hLi : IsIntegral (Q₀.map (algebraMap (𝓞 F) F)) (stdLat F (2 * m + 1)).1) (hτ : TamagawaNumberTwo Q₀) :
@@ -597,7 +597,7 @@ theorem hasProd_siegelDensity_even (m : ℕ) (hm : 2 ≤ m) (Q₀ : QuadForm (�
 /-- **The mass formula, explicit form for even $n = 2m$, $m \ge 2$** (conditional on $\tau(SO) = 2$):
 $$\mathrm{Mass}(\mathcal O_F^n) = |d_F|^{n(n-1)/4}\Big(\prod_\sigma\mathrm{vol}(SO(V_\sigma))\Big)^{-1}
   \Big(\prod_{\mathfrak p\mid 2\det H}\alpha_\mathfrak p\lambda_\mathfrak p\Big)^{-1} L_F(m,\chi)\prod_{i=1}^{m-1}\zeta_F(2i).$$ -/
-@[kb "kitaoka1993" "Thm 6.8.1 [unverified]; cassels1978 App. B, (3.2), p. 375"]
+@[kb "kitaoka1993" "Thm 6.8.1 [unverified]"]
 theorem massFormula_even (m : ℕ) (hm : 2 ≤ m) (Q₀ : QuadForm (𝓞 F) (2 * m)) (hQ : Q₀.Nondegenerate)
     (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F)))
     (hLi : IsIntegral (Q₀.map (algebraMap (𝓞 F) F)) (stdLat F (2 * m)).1) (hτ : TamagawaNumberTwo Q₀) :

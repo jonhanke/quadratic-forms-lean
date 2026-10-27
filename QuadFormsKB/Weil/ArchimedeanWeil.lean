@@ -6,8 +6,8 @@
 **The Weil identity** (`weilInf_identity_schwartz`): for every Schwartz function $f$ on $F_\infty$, every unit
 $b \in F_\infty^\times$ and $c = -(4b)^{-1}$,
 $$\mathcal F\big(\psi_\infty(bx^2)\,\hat f\big)(y) = \gamma_\infty(b)\,\psi_\infty(cy^2)\,\mathcal F\big(\psi_\infty(cx^2)f\big)(2cy).$$
-The Gaussian case is `weilInf_identity`.
-*Proof* (regularization): with $r_\varepsilon(x) = e^{-\varepsilon\|x\|^2}$ (`regInf`, a product over the places),
+Previously it was available only for the Gaussian (`weilInf_identity`). *Proof* (regularization): with $r_\varepsilon(x) = e^{-\varepsilon\|x\|^2}$
+(`regInf`, a product over the places),
 1. $\mathcal F(\psi(bx^2)\hat f)(y) = \lim_{\varepsilon\to0^+}\int r_\varepsilon(x)\psi(bx^2)\hat f(x)\psi(xy)\,dx$ (dominated convergence,
    $\hat f$ integrable);
 2. for $\varepsilon > 0$, Fubini gives $\int f(z)K_\varepsilon(z + y)\,dz$ with $K_\varepsilon = \mathcal F(r_\varepsilon\psi(bx^2))$ (`kerInf`), a product of

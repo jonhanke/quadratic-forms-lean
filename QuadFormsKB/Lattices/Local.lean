@@ -14,7 +14,7 @@ $\mathfrak p^k\mathfrak o_\mathfrak p^n = \{y : v(y_i) \le e^{-k}\ \forall i\}$ 
 $\mathrm{glue}(M) = \{x \in F^n : x \in M_\mathfrak p\ \forall \mathfrak p\}$ of a family of local lattices.
 
 **Proves** the local–global correspondence for lattices over the Dedekind domain $\mathcal O_F$
-(O'Meara 1963, §81E, p. 218: 81:14 and $L = \bigcap_\mathfrak p L_\mathfrak p$; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]; the
+(O'Meara 1963, §81:14 and §81:F [unverified]; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]; the
 $F = \mathbb Q$ case is Lemma 4.5.1 of the AWS notes, `AWS.LatticeGluing`, there an input):
 * `loc_isLattice`: $L_\mathfrak p$ is a local lattice; `loc_eventually_std`: $L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for
   almost all $\mathfrak p$;
@@ -511,7 +511,7 @@ local notation "𝔬" => v.adicCompletionIntegers F
 
 /-- **The localization** $L_\mathfrak p = \mathfrak o_\mathfrak p L \subseteq F_\mathfrak p^n$ of an $\mathcal O_F$-submodule
 $L \subseteq F^n$: the $\mathfrak o_\mathfrak p$-span of the image of $L$ under $F^n \to F_\mathfrak p^n$. -/
-@[kb "omeara1963" "§81E, p. 217 (localization L_𝔭)"]
+@[kb "omeara1963" "§81 (localization L_𝔭) [unverified]"]
 def loc (L : Submodule (𝓞 F) (Fin n → F)) : Submodule 𝔬 (Fin n → Fv) :=
   Submodule.span 𝔬 (locVec v '' L)
 
@@ -576,7 +576,7 @@ theorem exists_valued_int_eq {d : 𝓞 F} (hd : d ≠ 0) :
   exact ⟨(-k).toNat, by rw [hk]; congr 1; omega⟩
 
 /-- **$L_\mathfrak p$ is a lattice** in $F_\mathfrak p^n$ (finitely generated over $\mathfrak o_\mathfrak p$, spanning). -/
-@[kb "omeara1963" "§81E, pp. 217–218"]
+@[kb "omeara1963" "§81 [unverified]"]
 theorem loc_isLattice {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLattice F) :
     (loc v L).IsLattice Fv := by
   obtain ⟨d, hd, h1, h2⟩ := exists_global_bounds hL
@@ -594,9 +594,9 @@ theorem loc_eq_std_of_not_mem {L : Submodule (𝓞 F) (Fin n → F)} {d : 𝓞 F
 
 end Localization
 
-/-- **$L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for almost all $\mathfrak p$** (O'Meara §81E, p. 218, the remark before 81:14; AWS notes
+/-- **$L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for almost all $\mathfrak p$** (O'Meara §81:14 [unverified]; AWS notes
 p. 61 for $F = \mathbb Q$, `AWS.loc_eventually_std`). -/
-@[kb "omeara1963" "§81E, p. 218 (L_𝔭 = K_𝔭 for almost all 𝔭, from 81:11)"]
+@[kb "omeara1963" "§81:14 [unverified]"]
 theorem loc_eventually_std {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLattice F) :
     ∀ᶠ v : HeightOneSpectrum (𝓞 F) in Filter.cofinite, loc v L = std v := by
   obtain ⟨d, hd, h1, h2⟩ := exists_global_bounds hL
@@ -722,9 +722,9 @@ theorem exists_mem_approx {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLatti
 
 end Approx
 
-/-- **A lattice is the intersection of its localizations** (O'Meara §81E, p. 218; for $F = \mathbb Q$,
+/-- **A lattice is the intersection of its localizations** (O'Meara §81:F [unverified]; for $F = \mathbb Q$,
 `AWS.mem_iff_forall_loc`): $x \in L$ iff $x \in L_\mathfrak p$ for every prime $\mathfrak p$. -/
-@[kb "omeara1963" "§81E, p. 218 (L = ⋂_𝔭 (V ∩ L_𝔭))"]
+@[kb "omeara1963" "§81 [unverified]"]
 theorem mem_iff_forall_loc {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLattice F) (x : Fin n → F) :
     x ∈ L ↔ ∀ v : HeightOneSpectrum (𝓞 F), locVec v x ∈ loc v L := by
   refine ⟨fun hx v => locVec_mem_loc v hx, fun h => ?_⟩
@@ -791,7 +791,7 @@ namespace LocFamily
 
 /-- **The gluing** $\mathrm{glue}(M) = \{x \in F^n : x \in M_\mathfrak p \text{ for every prime } \mathfrak p\}$ of a family of local
 lattices: an $\mathcal O_F$-submodule of $F^n$. -/
-@[kb "omeara1963" "§81E, 81:14, p. 218"]
+@[kb "omeara1963" "§81:14 [unverified]"]
 def glue (M : LocFamily F n) : Submodule (𝓞 F) (Fin n → F) where
   carrier := {x | ∀ w, locVec w x ∈ M.M w}
   add_mem' hx hy w := by rw [map_add]; exact (M.M w).add_mem (hx w) (hy w)
@@ -869,9 +869,9 @@ theorem glue_isLattice (M : LocFamily F n) : M.glue.IsLattice F := by
   exact isLattice_of_global_bounds hD h1 h2
 
 /-- **Gluing (existence half of the local–global correspondence):** the localizations of $\mathrm{glue}(M)$ are the
-$M_\mathfrak p$ (O'Meara §81E, 81:14, p. 218; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]). For
+$M_\mathfrak p$ (O'Meara §81:14 [unverified]; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]). For
 $F = \mathbb Q$ this is the AWS notes' Lemma 4.5.1 (`AWS.LatticeGluing`, an input there). -/
-@[kb "omeara1963" "§81E, 81:14, p. 218"]
+@[kb "omeara1963" "§81:14 [unverified]"]
 theorem loc_glue (M : LocFamily F n) (v : HeightOneSpectrum (𝓞 F)) : loc v M.glue = M.M v := by
   apply le_antisymm
   · rw [loc, Submodule.span_le]
@@ -921,7 +921,7 @@ theorem loc_glue (M : LocFamily F n) (v : HeightOneSpectrum (𝓞 F)) : loc v M.
 
 /-- **The local–global correspondence for lattices over $\mathcal O_F$:** a family $(M_\mathfrak p)$ of local lattices,
 almost all standard, is the family of localizations of exactly one global lattice. -/
-@[kb "omeara1963" "§81E, 81:14, p. 218 (existence); p. 218 (L = K ⇔ L_𝔭 = K_𝔭 ∀𝔭); cassels1978 Ch. 11, Thm. 1.1, p. 198"]
+@[kb "omeara1963" "§81:14 [unverified]"]
 theorem existsUnique_loc_eq (M : LocFamily F n) :
     ∃! L : Submodule (𝓞 F) (Fin n → F), L.IsLattice F ∧ ∀ v, loc v L = M.M v :=
   ⟨M.glue, ⟨M.glue_isLattice, M.loc_glue⟩, fun _ ⟨hL, hloc⟩ =>

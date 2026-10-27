@@ -33,7 +33,7 @@ any two lattices.
   $\mathrm{Mass}(L) = \mu_{\mathrm{Tam}}(K_{SO}(L))^{-1}$, given $\tau(Q_0) = 2$.
 
 Sources: Weil 1982, §2.2.1, p. 14 (local measures are independent of the coordinates), Thm. 2.3.1, pp. 21–22 (product formula),
-§2.4, p. 22, §3.4 [unverified] (Haar measures of lattice stabilizers); O'Meara 1963, §81B–C, 81:5–81:8, pp. 212–213 (81:5 is the Steinitz form $L = \mathfrak o x_1 + \dots + \mathfrak a x_n$).
+§2.4, p. 22, §3.4 [unverified] (Haar measures of lattice stabilizers); O'Meara 1963, §81:5–81:8 (Steinitz class) [unverified].
 -/
 import QuadFormsKB.Tamagawa.LocalSmith
 import QuadFormsKB.Tamagawa.TernaryReduction
@@ -59,10 +59,8 @@ def tamagawaKLat (Q₀ : QuadForm (𝓞 F) n) (L : Lat F n) : ℝ :=
   tamagawaK Q₀ * relRatio (locStab (Q₀.map (algebraMap (𝓞 F) F)) L)
     (locStab (Q₀.map (algebraMap (𝓞 F) F)) (stdLat F n))
 
-/-- **The $\tau(SO(V))$ computed with an arbitrary lattice $L$**:
-$\mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{mass}_{SO}(L)$ with
-$\mathrm{mass}_{SO}(L) = 2\,\mathrm{Mass}(L)$ (each $O$-class is two $SO$-classes or one with an improper automorphism; the
-`mass_SO_eq_two_mul_mass`, written out here in the $O$-form). -/
+/-- **The $\tau(SO(V))$ computed with an arbitrary lattice $L$**: $\mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{mass}_{SO}(L)$ with
+$\mathrm{mass}_{SO}(L) = 2\,\mathrm{Mass}(L)$ (each $O$-class is two $SO$-classes or one with an improper automorphism; `mass_SO_eq_two_mul_mass`, written out here in the $O$-form). -/
 def tauSOLat (Q₀ : QuadForm (𝓞 F) n) (L : Lat F n) : ℝ :=
   tamagawaKLat Q₀ L * (2 * mass (Q₀.map (algebraMap (𝓞 F) F)) L)
 
@@ -262,8 +260,7 @@ theorem tamagawaK_compMat_eq (hn0 : n ≠ 0) (hn2 : n ≠ 2) (Q₀ : QuadForm (�
   rw [Finset.prod_congr rfl fun σ _ => hσ σ, Finset.prod_mul_distrib, Finset.prod_inv_distrib, Finset.prod_pow]
   ring
 
-/-- **The $\tau(SO)$ is invariant under every integral change of lattice, over every number field** (the
-`tauSO_smul_compMat` without `IsPrincipalIdealRing`, $c = 1$): $\tau(Q_0\circ G) = \tau(Q_0)$ for $G \in M_n(\mathcal O_F)$, $\det G \ne 0$
+/-- **The $\tau(SO)$ is invariant under every integral change of lattice, over every number field** (`tauSO_smul_compMat` without `IsPrincipalIdealRing`, $c = 1$): $\tau(Q_0\circ G) = \tau(Q_0)$ for $G \in M_n(\mathcal O_F)$, $\det G \ne 0$
 ($n \ne 0, 2$, $Q_0$ totally positive definite).
 *Proof:* $\mathrm{Mass}(Q_0\circ G, \mathcal O_F^n) = \mathrm{Mass}(Q_0, G\mathcal O_F^n)$ (`mass_similar`), $\mu(K_{SO})$ of $Q_0\circ G$ is
 $\mu(K_{SO}(G\mathcal O_F^n))$ for $Q_0$ (`tamagawaK_compMat_eq`: the $\alpha$ law at every prime and the product formula), and

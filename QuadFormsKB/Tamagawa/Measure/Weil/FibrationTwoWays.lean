@@ -20,8 +20,8 @@ This is the measure-theoretic core of Weil's computation of $\int_{\Gamma\backsl
 $B = \{1\le\|a\|<e\}$, $S = \mathrm{SL}_1$, $Z = \mathbb A^\times$ is the centre and $c = \tfrac12\operatorname{vol}(F^\times\backslash\mathbb A^1)$
 because $\|\operatorname{nrd}z\| = \|z\|^2$ on the centre.
 
-The proofs follow `tsum_kern_exactFD` (the sets $E_\delta$ form an exact fundamental domain for
-$g^{-1}(\Gamma\cap K)g$), plus Mathlib's `IsFundamentalDomain.measure_set_eq` for invariant sets.
+The proofs follow `tsum_kern_exactFD` (the sets $E_\delta$ form an exact fundamental domain for $g^{-1}(\Gamma\cap K)g$),
+plus Mathlib's `IsFundamentalDomain.measure_set_eq` for invariant sets.
 -/
 
 open MeasureTheory Measure Set Function

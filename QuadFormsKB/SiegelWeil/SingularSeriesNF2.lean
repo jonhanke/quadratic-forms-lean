@@ -3,8 +3,7 @@
 
 **Layer:** finite (algebraic) plus one limit. $F$ totally real, $\mathcal O = \mathcal O_F$, $\mathfrak d^{-1}$ the inverse different,
 $e(x) = e^{2\pi ix}$, $\operatorname{Tr} = \operatorname{Tr}_{F/\mathbb Q}$, $Q$ a quadratic form over $\mathcal O$ in $n$ variables,
-$G_Q(u)$ = `gaussAvg` and
-$\mathrm{ss}_Q(\mu)(x) = G_Q(\tilde x)e(-\operatorname{Tr}\mu\tilde x)$ = `ssFun` on $F/\mathcal O$.
+$G_Q(u)$ = `gaussAvg` and $\mathrm{ss}_Q(\mu)(x) = G_Q(\tilde x)e(-\operatorname{Tr}\mu\tilde x)$ = `ssFun` on $F/\mathcal O$.
 
 **Why grouping.** For $n = 4$ the singular series $\sum_{u\in F/\mathcal O}G_Q(u)e(-\operatorname{Tr}\mu u)$ does **not** converge absolutely
 ($|G_Q(u)| \asymp N(\mathfrak q)^{-2}$ on the $\asymp N(\mathfrak q)^2$ classes of denominator $\mathfrak q$), so `singSeries_eq` (which assumes

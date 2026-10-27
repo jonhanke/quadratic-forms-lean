@@ -8,23 +8,19 @@ $\beta_\mathfrak p$ = `LocalDensity.NF.localDensity` ($\operatorname{Vol}(\mathf
 
 **Main theorem** (`siegelFormula_nf_four`): for $\nu \in \mathcal O_F$ totally positive,
 $$\frac1{\mathrm{Mass}(L)}\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{r_M(\nu)}{|O(M)|} = |d_F|^{-3/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu).$$
-Together with `siegelFormula_nf` ($n \ge 6$) this is `siegelFormula_nf_of_two_le`: Siegel's formula over $F$ for
-every even $n = 2k \ge 4$ ($d \ge 2$ when $k = 2$). Also `siegelFormulaAt_of_pid_four` (the input `SiegelFormulaAt`
-for $n = 4$).
+Together with `siegelFormula_nf` ($n \ge 6$) this is `siegelFormula_nf_of_two_le`: Siegel's formula over $F$ for every even
+$n = 2k \ge 4$ ($d \ge 2$ when $k = 2$). Also `siegelFormulaAt_of_pid_four` (the input `SiegelFormulaAt` for $n = 4$).
 
 **Convention for the conditionally convergent objects.** $\prod_\mathfrak p\beta_\mathfrak p(\nu)$ converges absolutely for $n = 4$
 (`Siegel.multipliable_eulerFactorNF`) and is the unconditional product (`tprod`). The singular series is **not** absolutely convergent over
 $u \in F/\mathcal O$ for $n = 4$; it is summed grouped by denominators (the rows $(C, t)$ of `SingularNF.ssPart`), where it converges
 absolutely (`qCoeff_eisQ2_eq`), and its value is identified through the truncations $S_{(X!)^E}$ (`SingularNF.tsum_ssPart_eq`).
 
-**Proof.** The weight-2 cusp-form property of $\theta_{\mathrm{Gen}} - E_Q$ and the Hecke/Kneser vanishing argument
-  give $\theta_{\mathrm{Gen}} = E_Q$ once `EisHeckeRel Q₀ (eisQ2 …)` holds (`qCoeff_eisQ2_eq_genus_avg`). Its
-  coefficients:
+**Proof.** `Cuspidal2.lean` and `SiegelHecke.lean` give $\theta_{\mathrm{Gen}} = E_Q$ once `EisHeckeRel Q₀ (eisQ2 …)` holds (`qCoeff_eisQ2_eq_genus_avg`). Its coefficients:
 * `eisQ2_coeff_eq_discr_mul_aENF`: $a_\nu(E_Q) = |d_F|^{-3/2}\mathrm{aENF}(\nu)$ for $\nu \gg 0$ in $\mathcal O_F$ (`qCoeff_eisQ2_eq`, `tsum_ssPart_eq`,
-  the archimedean constant `eisArch_eq`, which covers $k = 2$);
+  The archimedean constant `eisArch_eq`, which covers $k = 2$);
 * `eisQ2_coeff_eq_zero_of_not_int`, `eisQ2_coeff_eq_zero_of_not_pos`: $a_\mu(E_Q) = 0$ for $\mu \in \mathfrak d^{-1}\setminus\mathcal O_F$ or $\mu \not\gg 0$;
-* **`eisHeckeRel_eisQ2`**: The $T(\pi^2)$ relations, prime by prime from these and `aENF_mul_pi_sq` (valid for
-  $k = 2$).
+* **`eisHeckeRel_eisQ2`**: the $T(\pi^2)$ relations, prime by prime from these and `aENF_mul_pi_sq` (valid for $k = 2$).
 
 **Cross-check with $\mathbb Q$.** Over $\mathbb Q$ the quaternary case is `Siegel.GenusEis.siegelFormula_quaternary`: `genusRepAvg Q m = aE Q m`
 for $m \ge 1$, i.e. the same genus average equals $\beta_\infty(m)\prod_p\beta_p(m)$. `siegelFormula_nf_four` has the same shape with the factor
@@ -72,9 +68,8 @@ lemma lipCoeff_two_ne_zero {μ : F} (hμ : ∀ v, 0 < realEmb F v μ) : lipCoeff
 include hQ hn hlev h𝔑 hfree hd in
 /-- **Siegel's formula for the coefficients of $E_Q$ in weight 2** ($n = 4$, $d \ge 2$, free genus): for $\nu \in \mathcal O_F$ totally positive,
 $$a_\nu(E_Q) = |d_F|^{-3/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu) = |d_F|^{-3/2}\,\texttt{aENF}\ Q_0\ \nu.$$
-The $n = 4$ case of `eisQ_coeff_eq_discr_mul_aENF`: The coefficient is $C_Qc_{\mathcal O}\Lambda_2(\nu)$ times the
-singular series grouped by denominators (`qCoeff_eisQ2_eq`), which is $|d_F|\prod_\mathfrak p\beta_\mathfrak p(\nu)$
-(`SingularNF.tsum_ssPart_eq`). -/
+The $n = 4$ case of `eisQ_coeff_eq_discr_mul_aENF`: the coefficient is $C_Qc_{\mathcal O}\Lambda_2(\nu)$ times the singular series
+grouped by denominators (`qCoeff_eisQ2_eq`), which is $|d_F|\prod_\mathfrak p\beta_\mathfrak p(\nu)$ (`SingularNF.tsum_ssPart_eq`). -/
 @[kb "hanke2004" "(5.3), p. 368, over F, n = 4: a_E(ν) = |d_F|^{-3/2} ∏_v β_v(ν) (weight 2, corrected constant) [unverified]"]
 theorem eisQ2_coeff_eq_discr_mul_aENF {ν : 𝓞 F} (hν : ∀ v, 0 < realEmb F v (ιO ν)) :
     qCoeff (eisQ2 Q₀ 𝔑 h𝔑) (oBasis F) (realVec (ιO ν)) =
@@ -186,7 +181,7 @@ end Coeff
 
 /-! ### The weight-2 inputs for every totally real $F$ (any class number)
 
-The genus of $\mathcal O_F^4$ is free for every $F$ (`genusFree_formF`, Steinitz), so both Hecke/Kneser inputs for $E = E_Q$ in weight 2 are theorems
+The genus of $\mathcal O_F^4$ is free for every $F$ (`genusFree_formF`, Steinitz), so both inputs for $E = E_Q$ in weight 2 are theorems
 without $h_F = 1$. (The vanishing step for $n = 4$ and $h_F > 1$ is not covered: `eq_zero_of_heckeRel'` needs $k \ge 3$.) -/
 
 /-- **The $T(\pi^2)$ relations for the weight-2 Eisenstein series, every totally real $F$** ($n = 4$, $d \ge 2$, any class number):
@@ -197,8 +192,8 @@ theorem eisHeckeRel_eisQ2' {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (f
     EisHeckeRel Q₀ (eisQ2 Q₀ 𝔑 h𝔑) :=
   eisHeckeRel_eisQ2 hQ hn hlev h𝔑 (genusFree_formF hQ) hd
 
-/-- **The weight-2 input `ThetaGenSubCusp2` for $E = E_Q$, every totally real $F$** ($n = 4$, $d \ge 2$, any class
-number; via `thetaGen_sub_eisQ2_mem_cuspFormChar'`). -/
+/-- **The weight-2 input `ThetaGenSubCusp2` for $E = E_Q$, every totally real $F$** ($n = 4$, $d \ge 2$, any class number; via
+`thetaGen_sub_eisQ2_mem_cuspFormChar'`). -/
 @[kb "siegel1935" "θ_Gen − E_Q ∈ S₂ discharges ThetaGenSubCusp2, any class number [unverified]"]
 theorem thetaGenSubCusp2_eisQ2' {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) (hn : n = 2 * 2)
     {𝔑 : Ideal (𝓞 F)} (hlev : IsThetaLevelF Q₀ 𝔑) (h𝔑 : 𝔑 ≠ ⊥) (hd : 2 ≤ Fintype.card (InfinitePlace F)) :
@@ -252,8 +247,8 @@ theorem qCoeff_eisQ2_eq_genus_avg_of_pid {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTo
 For $Q_0$ totally positive definite over $\mathcal O_F$ in $n = 4$ variables and $\nu \in \mathcal O_F$ totally positive,
 $$\mathrm{Mass}(\mathcal O_F^4)^{-1}\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^4)}\frac{r_M(\nu)}{|O(M)|}
   = |d_F|^{-3/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu)\quad(= |d_F|^{-3/2}\,\texttt{aENF}\ Q_0\ \nu).$$
-The weight-2 case of `siegelFormula_nf`. Over $\mathbb Q$ ($d = 1$) the same statement is
-`Siegel.GenusEis.siegelFormula_quaternary` (there $|d_F| = 1$). -/
+The weight-2 case of `siegelFormula_nf`. Over $\mathbb Q$ ($d = 1$) the same statement is `Siegel.GenusEis.siegelFormula_quaternary`
+(there $|d_F| = 1$). -/
 @[kb "siegel1935" "Hauptsatz over a totally real F, h_F = 1, n = 4 (d ≥ 2): genus average = |d_F|^{-3/2} β_∞ ∏ β_𝔭 [unverified]"]
 theorem siegelFormula_nf_four {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) (hn : n = 4)
     (hd : 2 ≤ Fintype.card (InfinitePlace F)) {ν : 𝓞 F} (hν : ∀ v, 0 < realEmb F v (ιO ν)) :
@@ -288,7 +283,7 @@ theorem siegelFormula_nf_of_two_le {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyP
     exact siegelFormula_nf_four hQ (by omega) (hd hk2) hν
   · exact siegelFormula_nf hQ hn hk3 hν
 
-/-- **Siegel's formula over $F$ for $n = 4$ with the `repMass`**: $\mathrm{repMass}(\mathcal O_F^4, \nu) = \mathrm{Mass}(\mathcal O_F^4)\cdot
+/-- **Siegel's formula over $F$ for $n = 4$ with `repMass`**: $\mathrm{repMass}(\mathcal O_F^4, \nu) = \mathrm{Mass}(\mathcal O_F^4)\cdot
 |d_F|^{-3/2}\,\mathrm{aENF}(\nu)$ ($h_F = 1$, $d \ge 2$, $\nu \gg 0$). -/
 @[kb "siegel1935" "Hauptsatz over F (repMass form), h_F = 1, n = 4, d ≥ 2 [unverified]"]
 theorem siegelFormula_nf_four_repMass {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) (hn : n = 4)
@@ -304,10 +299,9 @@ theorem siegelFormula_nf_four_repMass {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotal
   conv_lhs => rw [← Quotient.out_eq c]
   rfl
 
-/-- **The input `SiegelFormulaAt` is a theorem for $n = 4$** ($F$ totally real of degree $d \ge 2$, $h_F = 1$, $Q_0$
-totally positive definite quaternary, $m \gg 0$):
-$\mathrm{repMass}(\mathcal O_F^4, m) = \mathrm{Mass}(\mathcal O_F^4)\cdot S(L, m)$ with the `siegelProduct`. -/
-@[kb "siegel1935" "Hauptsatz over F: The SiegelFormulaAt, h_F = 1, n = 4, d ≥ 2 [unverified]"]
+/-- **The input `SiegelFormulaAt` is a theorem for $n = 4$** ($F$ totally real of degree $d \ge 2$, $h_F = 1$, $Q_0$ totally positive
+definite quaternary, $m \gg 0$): $\mathrm{repMass}(\mathcal O_F^4, m) = \mathrm{Mass}(\mathcal O_F^4)\cdot S(L, m)$ with `siegelProduct`. -/
+@[kb "siegel1935" "Hauptsatz over F: SiegelFormulaAt, h_F = 1, n = 4, d ≥ 2 [unverified]"]
 theorem siegelFormulaAt_of_pid_four {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) (hn : n = 4)
     (hd : 2 ≤ Fintype.card (InfinitePlace F)) {m : 𝓞 F} (hm : ∀ v, 0 < realEmb F v (ιO m)) :
     QuadFormsKB.Tamagawa.SiegelFormulaAt Q₀ m := by

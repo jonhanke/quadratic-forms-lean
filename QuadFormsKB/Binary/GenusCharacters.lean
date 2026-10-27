@@ -35,9 +35,7 @@ $D \equiv b'^2 \pmod{4m}$ for an equivalent form $[m, b', c']$).
 
 Sources: Gauss, *Disquisitiones Arithmeticae*, §§229–233 (the characters of a form); Cox, *Primes of the Form
 $x^2 + ny^2$*, §3.B (Lemma 3.17, Theorem 3.15) and §6.A; Buell, *Binary Quadratic Forms*, Ch. 4; Cassels, *Rational
-Quadratic Forms*, Ch. 14, §3, pp. 339–340, and §5, p. 344 (Cassels describes the $\mathbb{Z}_p$-classes by the units they
-represent and names the characters $\chi_p$ only in §5; his Ch. 14 forms are non-classical, $D = b^2 - 4ac = -4d(f)$, (1.5),
-p. 331, with proper classes).
+Quadratic Forms*, Ch. 14, §2.
 -/
 
 set_option linter.unusedSectionVars false
@@ -495,7 +493,7 @@ theorem exists_subst_a_eq (f : BinQF) {x y : ℤ} (hxy : IsCoprime x y) :
 there are coprime $x, y > 0$ with $p \nmid f(x, y)$ for every prime $p \mid N$. Explicitly, $x$ is the product of the
 primes $p \mid N$ with $p \mid a$, $p \nmid c$, and $y$ the product of the primes $p \mid N$ with $p \nmid a$; then
 $f(x, y) \equiv ax^2$, $cy^2$ or $bxy \not\equiv 0 \pmod p$ (no Chinese remainder theorem needed). -/
-@[kb "cox2013" "§2.A, Lemma 2.25 [unverified]; cassels1978 Ch. 14, Lemma 2.1, p. 334"]
+@[kb "cox2013" "§2.A, Lemma 2.25 [unverified]"]
 theorem exists_coprime_value {f : BinQF} (hf : Primitive f) {N : ℕ} (hN : N ≠ 0) :
     ∃ x y : ℤ, 0 < x ∧ 0 < y ∧ IsCoprime x y ∧
       ∀ p : ℕ, p.Prime → p ∣ N → ¬ (p : ℤ) ∣ f.eval x y := by

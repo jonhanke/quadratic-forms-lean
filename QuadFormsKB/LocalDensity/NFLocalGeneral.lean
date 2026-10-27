@@ -1,5 +1,6 @@
 /-
 # Local densities over a number field: general forms at every prime $\mathfrak p \nmid N$
+
 **Layer:** number field ($Q$ = `QuadForm (𝓞 F) n` at a finite prime $\mathfrak p$ = `v`, uniformizer $\varpi$ = `unif v`).
 **Defines** "$\mathfrak p \nmid N$" (`NF.NotDvdLevel v Q`: $\varpi^0$ is a local level of $Q \otimes \mathfrak o_\mathfrak p$, i.e. $H^{-1}$ is integral
 at $\mathfrak p$ with diagonal in $2\mathfrak o_\mathfrak p$; Hanke 2004, p. 355). **Proves**, for a general nondegenerate form, at

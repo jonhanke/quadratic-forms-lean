@@ -7,7 +7,7 @@ import QuadFormsKB.Tamagawa.SiegelSpaceFormula
 import QuadFormsKB.Lattices.Basic
 
 /-!
-# Siegel's formula for an abstract quadratic space over a totally real number field
+# Siegel's formula for an abstract quadratic space over a totally real number field (gv)
 
 **Layer:** $F$ a totally real number field; $(V, q)$ a finite-dimensional quadratic space over $F$ given by Mathlib's
 `q : QuadraticForm F V`, totally positive definite ($\sigma(q(x)) > 0$ for every nonzero $x \in V$ and every real embedding
@@ -37,6 +37,7 @@ basis (`spaceBeta_compMat`, `detGramF_compMat`); only the products are intrinsic
 densities in a chosen basis $e$.
 
 Source: Siegel 1935, Hauptsatz; Siegel 1937 (over number fields) [unverified locators].
+
 -/
 
 open NumberField IsDedekindDomain Filter Module
@@ -62,7 +63,7 @@ variable {n : ℕ}
 
 /-- **Total positive definiteness of an abstract quadratic space:** $\sigma(q(x)) > 0$ for every nonzero $x \in V$ and every
 embedding $\sigma : F \to \mathbb C$ (so $F$ totally real makes this positive definiteness at every real place). -/
-@[kb "omeara1963" "§61A, p. 154 (positive definite), at every real spot"]
+@[kb "omeara1963" "§66 (positive definite at each real place) [unverified]"]
 def IsTotallyPosDefV (q : QuadraticForm F V) : Prop := ∀ x : V, x ≠ 0 → IsTotallyPos (q x)
 
 /-- **The coordinate vectors of $L$** in the basis $e$: $\{e^*(x) : x \in L\} \subseteq F^n$. -/

@@ -1,8 +1,7 @@
 /-
 # The local Hilbert symbol over $\mathbb{Q}_p$ (Serre, *A Course in Arithmetic*, II–III)
 
-The steps toward Hilbert reciprocity $\prod_v (a,b)_v = 1$ (`hilbert_product_formula`).
-Every element of $\mathbb{Q}_p^\times$ is $p^k u$ with $k \in \mathbb{Z}$ and $u$ a
+The steps toward Hilbert reciprocity $\prod_v (a,b)_v = 1$ (`hilbert_product_formula`). Every element of $\mathbb{Q}_p^\times$ is $p^k u$ with $k \in \mathbb{Z}$ and $u$ a
 $p$-adic unit, so everything is stated for such products.
 
 * squares in $\mathbb{Q}_p$: for $p$ odd via the residue of $u$ in $\mathbb{F}_p$; for
@@ -29,7 +28,7 @@ noncomputable def unitChar (u : ℤ_[p]ˣ) : ℤ :=
 
 /-- **A $p$-adic unit is a square in $\mathbb{Q}_p$ iff its residue is a square in
 $\mathbb{F}_p$** ($p$ odd; Hensel's lemma). -/
-@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]; cassels1978 Ch. 3, Lemma 1.6, p. 40"]
+@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]"]
 theorem isSquare_unit_iff (hp2 : p ≠ 2) (u : ℤ_[p]ˣ) :
     IsSquare ((u : ℤ_[p]) : ℚ_[p]) ↔ IsSquare (PadicInt.toZMod (u : ℤ_[p])) := by
   constructor
@@ -77,7 +76,7 @@ theorem isSquare_unit_iff (hp2 : p ≠ 2) (u : ℤ_[p]ˣ) :
 
 /-- **Squares in $\mathbb{Q}_p^\times$, $p$ odd:** $p^k u$ (with $u$ a unit, $k \in \mathbb{Z}$) is a
 square in $\mathbb{Q}_p$ iff $k$ is even and the residue of $u$ is a square in $\mathbb{F}_p$. -/
-@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]; cassels1978 Ch. 3, Cor. to Lemma 1.6, p. 40"]
+@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]"]
 theorem isSquare_zpow_mul_unit_iff (hp2 : p ≠ 2) (k : ℤ) (u : ℤ_[p]ˣ) :
     IsSquare ((p : ℚ_[p]) ^ k * ((u : ℤ_[p]) : ℚ_[p])) ↔
       Even k ∧ IsSquare (PadicInt.toZMod (u : ℤ_[p])) := by
@@ -156,7 +155,7 @@ theorem isSquare_zpow_mul_unit_iff (hp2 : p ≠ 2) (k : ℤ) (u : ℤ_[p]ˣ) :
 /-! ### Squares in $\mathbb{Q}_2$ -/
 
 /-- **A $2$-adic unit is a square in $\mathbb{Q}_2$ iff it is $\equiv 1 \pmod 8$.** -/
-@[kb "serre1973" "Ch. II §3.3, Thm. 4 [unverified]; cassels1978 Ch. 3, Lemma 1.6, p. 40"]
+@[kb "serre1973" "Ch. II §3.3, Thm. 4 [unverified]"]
 theorem isSquare_two_adic_unit_iff (u : ℤ_[2]ˣ) :
     IsSquare ((u : ℤ_[2]) : ℚ_[2]) ↔ PadicInt.toZModPow 3 (u : ℤ_[2]) = 1 := by
   have key : ∀ y : ZMod (2^3), IsUnit y → y^2 = 1 := by decide
@@ -195,7 +194,7 @@ theorem isSquare_two_adic_unit_iff (u : ℤ_[2]ˣ) :
     rw [← PadicInt.coe_mul, ← sq, sub_eq_zero.1 hz]
 
 /-- **Squares in $\mathbb{Q}_2^\times$:** $2^k u$ is a square iff $k$ is even and $u \equiv 1 \pmod 8$. -/
-@[kb "serre1973" "Ch. II §3.3, Thm. 4 [unverified]; cassels1978 Ch. 3, Cor. to Lemma 1.6, p. 40"]
+@[kb "serre1973" "Ch. II §3.3, Thm. 4 [unverified]"]
 theorem isSquare_two_zpow_mul_unit_iff (k : ℤ) (u : ℤ_[2]ˣ) :
     IsSquare ((2 : ℚ_[2]) ^ k * ((u : ℤ_[2]) : ℚ_[2])) ↔
       Even k ∧ PadicInt.toZModPow 3 (u : ℤ_[2]) = 1 := by
@@ -274,7 +273,7 @@ theorem isSquare_two_zpow_mul_unit_iff (k : ℤ) (u : ℤ_[2]ˣ) :
 
 /-- **$(u, v)_p = 1$ for $p$-adic units, $p$ odd:** the conic $z^2 = u x^2 + v y^2$ has an
 $\mathbb{F}_p$-point (Chevalley–Warning) that lifts to $\mathbb{Q}_p$ (Hensel). -/
-@[kb "serre1973" "Ch. III §1.2 [unverified]; cassels1978 Ch. 3, Lemma 2.1 (i), (ii), (iv), (v), p. 42"]
+@[kb "serre1973" "Ch. III §1.2 [unverified]"]
 theorem hilbertSymbol_units (hp2 : p ≠ 2) (u v : ℤ_[p]ˣ) :
     hilbertSymbol ℚ_[p] ((u : ℤ_[p]) : ℚ_[p]) ((v : ℤ_[p]) : ℚ_[p]) = 1 := by
   classical
@@ -337,7 +336,7 @@ with $u, v \in \mathbb{Z}_p^\times$ and $\alpha, \beta \ge 0$,
 $$(a, b)_p = (-1)^{\alpha \beta \varepsilon(p)} \left(\frac{u}{p}\right)^{\beta}
 \left(\frac{v}{p}\right)^{\alpha}, \qquad \varepsilon(p) = \tfrac{p-1}{2}.$$
 (Negative exponents reduce to these, since the symbol depends only on square classes.) -/
-@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]; cassels1978 Ch. 3, §2, tables (α)–(γ), pp. 42–44"]
+@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]"]
 theorem hilbertSymbol_odd_formula (hp2 : p ≠ 2) (α β : ℕ) (u v : ℤ_[p]ˣ) :
     hilbertSymbol ℚ_[p] ((p : ℚ_[p]) ^ α * ((u : ℤ_[p]) : ℚ_[p]))
         ((p : ℚ_[p]) ^ β * ((v : ℤ_[p]) : ℚ_[p])) =
@@ -638,7 +637,7 @@ def twoOmega (r : ZMod (2 ^ 3)) : ℕ := if r = 1 ∨ r = 7 then 0 else 1
 /-- **The Hilbert symbol over $\mathbb{Q}_2$:** for $a = 2^\alpha u$, $b = 2^\beta v$ with
 $u, v \in \mathbb{Z}_2^\times$ and $\alpha, \beta \ge 0$,
 $$(a, b)_2 = (-1)^{\varepsilon(u)\varepsilon(v) + \alpha\, \omega(v) + \beta\, \omega(u)}.$$ -/
-@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]; cassels1978 Ch. 3, §2, tables (α)–(γ), pp. 42–44"]
+@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]"]
 theorem hilbertSymbol_two_formula (α β : ℕ) (u v : ℤ_[2]ˣ) :
     hilbertSymbol ℚ_[2] ((2 : ℚ_[2]) ^ α * ((u : ℤ_[2]) : ℚ_[2]))
         ((2 : ℚ_[2]) ^ β * ((v : ℤ_[2]) : ℚ_[2])) =
@@ -1029,7 +1028,7 @@ $a, a', b \in \mathbb{Q}_p$,
 $$(a a', b)_p = (a, b)_p\, (a', b)_p.$$
 Follows from the explicit formulas (`hilbertSymbol_odd_formula`, `hilbertSymbol_two_formula`)
 after writing each element as $p^k u$ and reducing exponents mod $2$. -/
-@[kb "serre1973" "Ch. III §1.2, Thm. 2 [unverified]; cassels1978 Ch. 3, Lemma 2.1 (i), (ii), (iv), (v), p. 42"]
+@[kb "serre1973" "Ch. III §1.2, Thm. 2 [unverified]"]
 theorem hilbertSymbol_padic_mul_left (a a' b : ℚ_[p]) (ha : a ≠ 0) (ha' : a' ≠ 0) (hb : b ≠ 0) :
     hilbertSymbol ℚ_[p] (a * a') b = hilbertSymbol ℚ_[p] a b * hilbertSymbol ℚ_[p] a' b := by
   have hsqL : ∀ (a b c : ℚ_[p]), c ≠ 0 → hilbertSymbol ℚ_[p] (c ^ 2 * a) b = hilbertSymbol ℚ_[p] a b := by

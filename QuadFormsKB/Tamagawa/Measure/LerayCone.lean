@@ -9,13 +9,12 @@ The null cone $C^\circ_v = \{Q = 0\} \smallsetminus \{0\}$ of $V_v = F_v^n$ carr
 degree $n - 2$). Its volume on the **primitive** vectors $L_v \smallsetminus \pi L_v$ of $L_v = \mathcal O_v^n$ is the
 `coneFactor`
 $$\gamma_v(Q) = \lim_{j\to\infty} q_v^{\,j}\,c_j(Q_v),\qquad c_j = r^*_{\mathfrak p^j}(0)/q^{jn}$$
-(the `cSeq`: the thickened volume
-$\mathrm{vol}\{x \in L_v \smallsetminus \pi L_v : Q(x) \in \mathfrak p^j\}/\mathrm{vol}(\mathfrak p^j)$,
-standard Haar measure). The lemma `cSeq_geom` makes the sequence eventually constant, so the limit exists at **every**
-finite place (dyadic included). At a good place $v \nmid 2\det H_Q$,
+(`cSeq`: the thickened volume $\mathrm{vol}\{x \in L_v \smallsetminus \pi L_v : Q(x) \in \mathfrak p^j\}/\mathrm{vol}(\mathfrak p^j)$,
+standard Haar measure). `cSeq_geom` makes the sequence eventually constant, so the limit exists at **every** finite place
+(dyadic included). At a good place $v \nmid 2\det H_Q$,
 $$\gamma_v = (N_1 - 1)\,q^{1-n},\qquad N_1 = \#\{x \in \mathbb F_q^n : \bar Q(x) = 0\},$$
 which is $1 - q^{1-n}$ for $n$ odd and $1 - q^{1-n} + \varepsilon(q-1)q^{-n/2}$ for $n$ even
-(this is $1 - q^{1-n} + \eta(q^{1-n/2} - q^{-n/2})$, now proved).
+(this is the design doc's $1 - q^{1-n} + \eta(q^{1-n/2} - q^{-n/2})$, now proved).
 
 **Headline** (`multipliable_coneFactor`): for $n \ge 5$ the Euler product $\prod_v\gamma_v(Q)$ converges absolutely; the bound
 $|\gamma_v - 1| \le 2N\mathfrak p_v^{-2}$ holds at every good place. The threshold is sharp: $n = 4$ gives
@@ -185,8 +184,8 @@ theorem abs_coneFactor_sub_one_le (Q : QuadForm (𝓞 F) n) (hQ : Q.Nondegenerat
     rw [expr, abs_neg, abs_of_pos (inv_pos.mpr hqm)]
     exact inv_anti₀ (hpos 2) (pow_le_pow_right₀ hq1 (by omega))
 
-/-- **The cone Euler product converges absolutely for $n \ge 5$** ($I_C < \infty \iff$ the cone Euler
-product converges, iff $m > 4$; Weil §4.5 p. 108 for the analogous product of the zeta functions). -/
+/-- **The cone Euler product converges absolutely for $n \ge 5$** (design doc §9b Step 3: "$I_C < \infty \iff$ the cone Euler
+product converges, iff $m > 4$"; Weil §4.5 p. 108 for the analogous product of the zeta functions). -/
 @[kb "weil1982" "§4.5, p. 108 and §2.4 (cone term converges, m > 4) [unverified]"]
 theorem multipliable_coneFactor (Q : QuadForm (𝓞 F) n) (hQ : Q.Nondegenerate) (hn : 5 ≤ n) :
     Multipliable (coneFactor Q) :=

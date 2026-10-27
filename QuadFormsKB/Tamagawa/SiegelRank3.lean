@@ -11,17 +11,16 @@ Hessian $H$ and $d_Q = \det(H/2)$, the standard lattice $L = \mathcal O_F^3$, an
 **Why a new statement.** `siegelProduct` takes $\prod_\mathfrak p\beta_\mathfrak p(L,m)$ as Mathlib's unconditional
 `tprod`. In rank $3$ the good factors are $\beta_\mathfrak p = 1 + \chi_m(\mathfrak p)/N\mathfrak p$, which are not unconditionally
 multipliable, so `tprod` returns its junk value $1$ whenever no $\beta_\mathfrak p$ vanishes (`siegelProduct_of_not_multipliable`),
-and `SiegelFormulaAt Q₀ m` is then a false statement. Following the
-regularization convention, the rank-3 product is **defined** as the regularized product
+and `SiegelFormulaAt Q₀ m` is then a false statement. Hence the rank-3 product is **defined** as the regularized product
 $$\prod_\mathfrak p\beta_\mathfrak p(L,m) := L_F(1,\chi_m)\prod_\mathfrak p\beta_\mathfrak p(L,m)\bigl(1-\chi_m(\mathfrak p)N\mathfrak p^{-1}\bigr)$$
 (`RegProd.regProd`), whose right-hand product converges absolutely (`multipliable_localDensity_mul_chiTern`).
-We use a separate `siegelProduct3` / `SiegelFormulaAt3`; the rank $\ge 4$ objects are unchanged.
+There is a separate `siegelProduct3` / `SiegelFormulaAt3`; the rank $\ge 4$ objects are unchanged.
 
 **Definitions.**
 * `chiTern Q₀ m` $= \chi_m$: $\chi_m(\mathfrak p) = \left(\frac{-2\det H\cdot m}{\mathfrak p}\right)$ for $\mathfrak p \nmid 2\det H$,
   else $0$ (it is `Siegel.psiNF Q₀ m`, Hanke's $\psi_{T'}$; $0$ also at $\mathfrak p \mid m$). Since
-  $-2\det H\,m = 16\cdot(-m\,d_Q)$, $\chi_m(\mathfrak p) = \left(\frac{-m\,d_Q}{\mathfrak p}\right)$: the normalizing constant
-  is $c = 1$. **Matched against `chiP`:** $\chi_m(\mathfrak p)$ is the character of the quaternary form
+  $-2\det H\,m = 16\cdot(-m\,d_Q)$, $\chi_m(\mathfrak p) = \left(\frac{-m\,d_Q}{\mathfrak p}\right)$: the normalizing constant of the
+  design doc is $c = 1$. **Matched against `chiP`:** $\chi_m(\mathfrak p)$ is the character of the quaternary form
   $\langle -m\rangle \perp Q_0$ at every prime (`chiTern_eq_chiP`).
 * `siegelProductWith Q₀ m P` $= |d_F|^{-(N-1)/2}\prod_\sigma\beta_\sigma(m)\cdot P$ (`siegelProduct` is the case
   $P = $ `tprod`, `siegelProduct_eq_with`), and `siegelProduct3 Q₀ m` its rank-3 case with $P$ the regularized product.
@@ -31,6 +30,7 @@ We use a separate `siegelProduct3` / `SiegelFormulaAt3`; the rank $\ge 4$ object
 1 - N\mathfrak p^{-2}$ at $\mathfrak p \nmid 2\det H$, $m \notin \mathfrak p^2$), `multipliable_localDensity_mul_chiTern` (the corrected
 product converges absolutely for $Q_0$ nondegenerate and $m \ne 0$), `abs_chiTern_le`, `chiTern_eq_chiP`,
 `siegelProduct_of_not_multipliable` (the junk value of the product).
+
 -/
 
 open NumberField IsDedekindDomain
@@ -92,7 +92,7 @@ theorem quadraticChar_mul_inv_sq {K : Type*} [Field K] [Fintype K] [DecidableEq 
     (a : K) : quadraticChar K (a * (y ^ 2)⁻¹) = quadraticChar K a := by
   rw [← inv_pow, map_mul, quadraticChar_sq_one' (inv_ne_zero hy), mul_one]
 
-/-- **The normalizing constant $c$ is $1$** (the character of DVR.`chiDiscT` at a good prime): Hanke's
+/-- **The constant $c$ of the design doc is $1$** (the character of DVR.`chiDiscT` at a good prime): Hanke's
 $\chi((-1)^{(n-1)/2}D_QT)$ for $n = 3$ at $\mathfrak p \nmid 2$ is the residue symbol of $-2\det H\cdot T$. -/
 theorem chiDiscT_Qp_eq_charNF (Q₀ : QuadForm (𝓞 F) 3) (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (T : 𝓞 F) :
     DVR.chiDiscT (NF.Qp v Q₀) (NF.ι v T) = Siegel.charNF v ((-1) ^ ((3 - 1) / 2) * (2 * Q₀.hessian.det) * T) := by
@@ -226,8 +226,7 @@ section Siegel
 variable {N : ℕ}
 
 /-- **The local side of Siegel's formula with a given value $P$ of $\prod_\mathfrak p\beta_\mathfrak p$:**
-$|d_F|^{-(N-1)/2}\prod_{\sigma : F\to\mathbb C}\beta_\sigma(m)\cdot P$ ($\beta_\sigma$ = `archRepDensity`).
-`siegelProduct` is the case $P = $ `tprod` (`siegelProduct_eq_with`), `siegelProduct3` the rank-3 regularized case. -/
+$|d_F|^{-(N-1)/2}\prod_{\sigma : F\to\mathbb C}\beta_\sigma(m)\cdot P$ ($\beta_\sigma$ = `archRepDensity`). `siegelProduct` is the case $P = $ `tprod` (`siegelProduct_eq_with`), `siegelProduct3` the rank-3 regularized case. -/
 def siegelProductWith (Q₀ : QuadForm (𝓞 F) N) (m : 𝓞 F) (P : ℝ) : ℝ :=
   |(discr F : ℝ)| ^ (-((N : ℝ) - 1) / 2) *
     (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity N ‖σ (algebraMap (𝓞 F) F m)‖ (detGram Q₀ σ)) * P
@@ -236,7 +235,7 @@ theorem siegelProduct_eq_with (Q₀ : QuadForm (𝓞 F) N) (m : 𝓞 F) :
     siegelProduct Q₀ m = siegelProductWith Q₀ m (∏' v, NF.localDensity v Q₀ m) := rfl
 
 /-- **The junk value of `siegelProduct`.** If $v \mapsto \beta_\mathfrak p(L,m)$ is not unconditionally
-multipliable (rank $3$ with no vanishing $\beta_\mathfrak p$), Mathlib's `tprod`
+multipliable (rank $3$ with no vanishing $\beta_\mathfrak p$; as explained above), Mathlib's `tprod`
 is $1$ and `siegelProduct Q₀ m` silently drops every finite factor. -/
 theorem siegelProduct_of_not_multipliable (Q₀ : QuadForm (𝓞 F) N) (m : 𝓞 F)
     (h : ¬ Multipliable fun v => NF.localDensity v Q₀ m) : siegelProduct Q₀ m = siegelProductWith Q₀ m 1 := by
@@ -249,7 +248,7 @@ $$S_3(L,m) = |d_F|^{-1}\prod_{\sigma : F\to\mathbb C}\beta_\sigma(m)\cdot L_F(1,
 $\beta_\sigma$ = `archRepDensity 3 |σ(m)| (detGram Q₀ σ)`, $\beta_\mathfrak p$ = `NF.localDensity`, $\chi_m$ = `chiTern Q₀ m`, the last two
 factors being `regProd (chiTern Q₀ m) 1 β`. The product converges absolutely for $Q_0$ nondegenerate, $m \ne 0$
 (`multipliable_localDensity_mul_chiTern`). Over $\mathbb Q$ it is Hanke's (5.3) read in the natural order
-(see `isEulerProductValue_eulerProductReg3`). -/
+(the identification is `RatBridge3.siegelFormula3_iff_siegelFormulaAt3`). -/
 @[kb "siegel1935" "Hauptsatz, n = 3 (local side, regularized) [unverified]"]
 def siegelProduct3 (Q₀ : QuadForm (𝓞 F) 3) (m : 𝓞 F) : ℝ :=
   siegelProductWith Q₀ m (regProd (chiTern Q₀ m) 1 fun v => NF.localDensity v Q₀ m)
@@ -264,8 +263,8 @@ Field:
 *Independence (hypothesis hygiene):* as for `SiegelFormulaAt`, a statement about the genus average
 $\mathrm{repMass}/\mathrm{Mass}$ of representation numbers of the number $m$; homogeneous in the weights $1/|O(M)|$, so it
 says nothing about $\mathrm{Mass}(L)$ itself. Siegel's constant in rank $3$ is $\varepsilon = 1$. Over $\mathbb Q$ it is
-`Siegel.SiegelFormula3` with $P$ the regularized value (`RatBridge3.siegelFormula3_iff_siegelFormulaAt3`). Planned
-proof: Weil's step from rank $2$. -/
+`Siegel.SiegelFormula3` with $P$ the regularized value (`RatBridge3.siegelFormula3_iff_siegelFormulaAt3`). Proof:
+Weil's step from rank $2$ (see `SiegelRank3Frame`, `SiegelRank3NF`). -/
 @[kb "siegel1935" "Hauptsatz, n = 3 [unverified]"]
 structure SiegelFormulaAt3 (Q₀ : QuadForm (𝓞 F) 3) (m : 𝓞 F) : Prop where
   repMass_eq : repMass (QFof Q₀) (stdLat F 3) (algebraMap (𝓞 F) F m) =

@@ -2,7 +2,7 @@
 # Siegel's formula over every totally real field in the language of forms
 
 **Layer:** $F$ a totally real number field, **any class number**; $Q$ a totally positive definite form over $\mathcal O_F$; $m \in \mathcal O_F$
-totally positive. The KB's Siegel formulas over $F$ are stated for the lattice classes in the genus of $\mathcal O_F^N$ in $(F^N, Q)$.
+totally positive. The library's Siegel formulas over $F$ are stated for the lattice classes in the genus of $\mathcal O_F^N$ in $(F^N, Q)$.
 By `FormClassNF.bijOn_formClass` (every lattice in that genus is free, `genusFree_formF`; Hasse–Minkowski over $F$ for the converse)
 these are the classical sums over $\mathrm{GL}_N(\mathcal O_F)$-classes $[Q']$ of totally positive definite forms over $\mathcal O_F$ in the
 genus of $Q$ (`formGenusClasses`), with weights $1/|\mathrm{Aut}_{\mathrm{GL}_N(\mathcal O_F)}(Q')|$ (improper automorphisms included) and
@@ -14,7 +14,7 @@ $r_{Q'}(m) = \#\{x \in \mathcal O_F^N : Q'(x) = m\}$:
 * `siegelFormulaAt3_totallyReal_forms` ($N = 3$, unconditional; regularized product `siegelProduct3`);
 * `siegelFormulaAt_totallyReal_forms` ($N \ge 4$, unconditional; `siegelProduct`).
 
-Sources: Siegel, Ann. Math. 36 (1935), 38 (1937) [unverified locators]; Steinitz 1911; O'Meara 1963, 81:5, p. 212, §82, pp. 220–238.
+Sources: Siegel, Ann. Math. 36 (1935), 38 (1937) [unverified locators]; Steinitz 1911; O'Meara 1963, 81:5, §82 [unverified].
 -/
 import QuadFormsKB.Tamagawa.FormClassNF
 import QuadFormsKB.Tamagawa.SiegelBinaryTotallyReal

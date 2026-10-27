@@ -1,11 +1,11 @@
 /-
-# The genus of $\mathcal O_F^n$ is free, for every totally real $F$
+# The genus of $\mathcal O_F^n$ is free, for every totally real $F$ (cuspidality, the coefficient formula and the Hecke relations without $h_F = 1$)
 
 **Setting.** $F$ a totally real number field (any class number), $Q_0$ a totally positive definite form over $\mathcal O_F$ in
 $n = 2k$ variables, $L = \mathcal O_F^n$ (`stdLat`).
 
 **Main results.**
-* **`genusFree_of_nondegenerate`**, **`genusFree_formF`**: The hypothesis `GenusFree` holds for every nondegenerate $Q$ over every
+* **`genusFree_of_nondegenerate`**, **`genusFree_formF`**: the hypothesis `GenusFree` holds for every nondegenerate $Q$ over every
   number field (Steinitz, `Lattices.Steinitz.exists_latOf_of_sameGenus`): every lattice in the genus of $\mathcal O_F^n$ is
   $\gamma\mathcal O_F^n$. Before, it was proved only for $\mathcal O_F$ a PID (`genusFree_of_isPrincipalIdealRing`).
 * Consequently, without $[\texttt{IsPrincipalIdealRing}\ \mathcal O_F]$:
@@ -15,11 +15,11 @@ $n = 2k$ variables, $L = \mathcal O_F^n$ (`stdLat`).
   - **`eisQ_coeff_eq_discr_mul_aENF'`**: $a_\nu(E_Q) = |d_F|^{-(n-1)/2}\,\mathrm{aENF}(\nu)$ for $\nu \gg 0$, $k \ge 3$;
   - **`eisHeckeRel_eisQ'`**: `EisHeckeRel Q₀ (eisQ Q₀ k)` (the $T(\pi^2)$ relations of $E_Q$ at prime elements $\pi$).
 
-The theta series treated earlier are those of free lattices; this file shows that no non-free lattice occurs in the
-genus of $\mathcal O_F^n$, so the modularity suffices for $\theta_{\mathrm{Gen}}$ (lattices with nontrivial Steinitz
-class only enter the Hecke argument at non-principal primes).
+The theta series of `ThetaInversion.lean` are those of free lattices; this file shows that no non-free lattice occurs in the genus of
+$\mathcal O_F^n$, so the modularity suffices for $\theta_{\mathrm{Gen}}$ (lattices with nontrivial Steinitz class only enter the Hecke
+argument at non-principal primes).
 
-Sources: Steinitz (1911); O'Meara (1963), 81:5, p. 212, §82, pp. 220–238.
+Sources: Steinitz (1911); O'Meara (1963), 81:5, §82 [unverified].
 -/
 import QuadFormsKB.Lattices.Steinitz
 import QuadFormsKB.HilbertModular.EisHecke
@@ -42,12 +42,12 @@ local notation "ιO" => algebraMap (𝓞 F) F
 
 /-- **The genus of $\mathcal O_F^n$ is free** for every nondegenerate $Q$ on $F^n$ and every number field $F$ (`GenusFree`, no class-number
 hypothesis): every lattice $M$ in the genus of $\mathcal O_F^n$ is $\gamma\mathcal O_F^n$. -/
-@[kb "omeara1963" "§82, §102A, p. 297 (genus); §81A, 81:5, p. 212 (Steinitz form)"]
+@[kb "omeara1963" "§82 (genus of a free lattice is free; Steinitz class a genus invariant) [unverified]"]
 theorem genusFree_of_nondegenerate (Q : QuadForm F n) (hQ : Q.Nondegenerate) : GenusFree Q stdLat :=
   fun M hM => Steinitz.exists_latOf_of_sameGenus Q hQ M.2 hM
 
 /-- **`GenusFree` for a totally positive definite form over $\mathcal O_F$** (every totally real $F$). -/
-@[kb "omeara1963" "§102A, p. 297 (genus); §81A, 81:5, p. 212"]
+@[kb "omeara1963" "§82 (genus of 𝓞_F^n free, any class number) [unverified]"]
 theorem genusFree_formF [IsTotallyReal F] {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) :
     GenusFree (formF Q₀) stdLat :=
   genusFree_of_nondegenerate _ hQ.nondegenerate
@@ -76,7 +76,7 @@ theorem thetaGen_sub_eisQ_mem_cuspFormChar' (hk : 3 ≤ k) :
 
 include hQ hlev h𝔑 in
 /-- **$\theta_{\mathrm{Gen}} - E_Q \in S_2(\Gamma_0(\mathfrak N), \chi_Q)$ for quaternary forms, every totally real $F$ of degree $d \ge 2$**
-(without $h_F = 1$). -/
+(weight 2, without $h_F = 1$). -/
 @[kb "siegel1935" "θ_Gen − E_Q ∈ S₂, over F, any class number [unverified]"]
 theorem thetaGen_sub_eisQ2_mem_cuspFormChar' (hn : n = 2 * 2) (hd : 2 ≤ Fintype.card (InfinitePlace F)) :
     thetaGen (formF Q₀) stdLat - eisQ2 Q₀ 𝔑 h𝔑 ∈
@@ -85,8 +85,8 @@ theorem thetaGen_sub_eisQ2_mem_cuspFormChar' (hn : n = 2 * 2) (hd : 2 ≤ Fintyp
 
 end C5a
 
-/-- **The coefficients of $E_Q$ for every totally real $F$**: $a_\nu(E_Q) = |d_F|^{-(n-1)/2}\,\mathrm{aENF}(\nu)$ for
-$\nu \in \mathcal O_F$ totally positive, $n = 2k \ge 6$ (no class-number hypothesis). -/
+/-- **The coefficient formula for $E_Q$ for every totally real $F$**: $a_\nu(E_Q) = |d_F|^{-(n-1)/2}\,\mathrm{aENF}(\nu)$ for $\nu \in \mathcal O_F$ totally positive,
+$n = 2k \ge 6$ (no class-number hypothesis). -/
 @[kb "hanke2004" "(5.3) with the corrected constant, Fourier coefficients of E_Q over F, any class number"]
 theorem eisQ_coeff_eq_discr_mul_aENF' {Q₀ : QuadForm (𝓞 F) n}
     (hQ : IsTotallyPosDef (formF Q₀)) {k : ℕ} (hn : n = 2 * k) {𝔑 : Ideal (𝓞 F)} (hlev : IsThetaLevelF Q₀ 𝔑)
@@ -95,9 +95,8 @@ theorem eisQ_coeff_eq_discr_mul_aENF' {Q₀ : QuadForm (𝓞 F) n}
       (((Real.sqrt |(discr F : ℝ)|)⁻¹ ^ (n - 1) * QuadFormsKB.Siegel.aENF Q₀ ν : ℝ) : ℂ) :=
   eisQ_coeff_eq_discr_mul_aENF hQ hn hlev h𝔑 (genusFree_formF hQ) hk hν
 
-/-- **The $T(\pi^2)$ relations for every totally real $F$**: `EisHeckeRel Q₀ (eisQ Q₀ k)` for $k \ge 3$ (no
-class-number hypothesis). The relations are stated at prime elements $\pi$, i.e. at the principal primes
-$\mathfrak p = (\pi)$. -/
+/-- **The $T(\pi^2)$ relations for every totally real $F$**: `EisHeckeRel Q₀ (eisQ Q₀ k)` for $k \ge 3$ (no class-number hypothesis). The relations are
+stated at prime elements $\pi$, i.e. at the principal primes $\mathfrak p = (\pi)$. -/
 @[kb "shimura1978" "T(π²) relations for E_Q over F, any class number [unverified]"]
 theorem eisHeckeRel_eisQ' {Q₀ : QuadForm (𝓞 F) n}
     (hQ : IsTotallyPosDef (formF Q₀)) {k : ℕ} (hn : n = 2 * k) {𝔑 : Ideal (𝓞 F)} (hlev : IsThetaLevelF Q₀ 𝔑)

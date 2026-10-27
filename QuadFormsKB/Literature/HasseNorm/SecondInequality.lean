@@ -201,7 +201,7 @@ open scoped Classical in
 $|T| \ge r_\infty - 1 + |S|$ and the Kummer property (`hBsq`, from `isSquare_of_isSquare_local`), the
 $(S\cup T)$-units that are local norms at $S \cup \infty$ have index $\ge 2^{s'-1}$, $s'$ = number of non-split
 places of $S \cup \infty$. -/
-@[kb "milne2020cft" "Ch. VII, §6 (second inequality, n = 2) [unverified]; omeara1963 §65D, 65:21, p. 185"]
+@[kb "milne2020cft" "Ch. VII, §6 (second inequality, n = 2) [unverified]"]
 theorem two_pow_le_index_locNorms {L : Type} [Field L] [NumberField L] [Algebra F L]
     [Algebra.IsQuadraticExtension F L] (a : F) (hd : ¬ IsSquare a) (s : L)
     (hs : s ^ 2 = algebraMap F L a)

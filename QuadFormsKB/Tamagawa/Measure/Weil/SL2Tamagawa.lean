@@ -7,9 +7,8 @@ $F$ any number field, $\mu_T$ the fibration (Tamagawa) measure on $\mathrm{SL}_2
 
 **`tamagawa_SL2`**: `covolume (SL(2, F)) (SL2A F) (muT F) = 1`, i.e. $\tau(\mathrm{SL}_2) = \operatorname{vol}(\mathrm{SL}_2(\mathbb A_F)/\mathrm{SL}_2(F)) = 1$.
 
-*Proof* (Siegel–Weil, Siegel mean value and Poisson summation): for the test function
-$\Phi_u = G_u\otimes\mathbf 1_{\hat{\mathcal O}^2}$ ($G_u$ a scaled Gaussian on $F_\infty^2$) and its dual
-$\Psi_u = |d_F|^{-1}\hat G_u\otimes\mathbf 1_{(\mathfrak d^{-1}\hat{\mathcal O})^2}$,
+*Proof* (Siegel–Weil): for the test function $\Phi_u = G_u\otimes\mathbf 1_{\hat{\mathcal O}^2}$
+($G_u$ a scaled Gaussian on $F_\infty^2$) and its dual $\Psi_u = |d_F|^{-1}\hat G_u\otimes\mathbf 1_{(\mathfrak d^{-1}\hat{\mathcal O})^2}$,
 the **adelic Poisson formula** $\sum_{\xi\in F^2}\Phi_u(g\xi) = \sum_{\eta\in F^2}\Psi_u(g^*\eta)$, $g^* = (\operatorname{adj}g)^{\mathsf T}$,
 holds for every $g\in\mathrm{SL}_2(\mathbb A_F)$ (`poisson_adelic`): by strong approximation (`exists_mul_slEmb_inv_mem_K`)
 one may take $g_f\in\mathrm{SL}_2(\hat{\mathcal O})$, and then both sides are the archimedean lattice sums of
@@ -279,7 +278,7 @@ theorem poisson_adelic_K (u : Vˣ) {h : SL2A F} (hh : h ∈ KSub F) :
 
 /-- **The adelic Poisson formula** $\sum_{\xi\in F^2}\Phi_u(g\xi) = \sum_{\eta\in F^2}\Psi_u(g^*\eta)$ for every
 $g\in\mathrm{SL}_2(\mathbb A_F)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2, Lemma 4.2.4 (Poisson formula), p. 333, and Thm. 4.2.1 (Riemann–Roch theorem), p. 333"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm 4.2.1 (adelic Poisson) [unverified]"]
 theorem poisson_adelic (u : Vˣ) (g : SL2A F) :
     ∑' ξ : Fin 2 → F, PhiA u ((g : Matrix (Fin 2) (Fin 2) (Adeles F)).mulVec (diagVec F (Fin 2) ξ)) =
       ∑' η : Fin 2 → F, PsiA u ((starSL g : Matrix (Fin 2) (Fin 2) (Adeles F)).mulVec (diagVec F (Fin 2) η)) := by

@@ -5,15 +5,14 @@ import QuadFormsKB.Binary.SiegelBinary
 import QuadFormsKB.Siegel.NFMainTerm
 
 /-!
-# Siegel's constant for binary forms over a totally real field: The $|d_F|^{-1/2}$ check (partial)
+# Siegel's constant for binary forms over a totally real field: the $|d_F|^{-1/2}$ check
 
 Siegel's formula for $n = 2$ over a totally real $F$ of degree $d$ predicts, for a genus $\mathcal G$ of totally positive binary
 $\mathcal O_F$-lattices of "discriminant $E$" ($E/F$ CM) and $\nu \gg 0$,
 $$r_\mathcal G(\nu) = \varepsilon\cdot|d_F|^{-(n-1)/2}\cdot\beta_\infty(\nu)\cdot L(1,\chi_{E/F})^{-1}\cdot C_\mathcal G(\nu),\qquad \varepsilon = \tfrac12,$$
 in the repository's normalizations (Lebesgue $\beta_w$, $\mathrm{vol}(\mathcal O_\mathfrak p) = 1$, `eisQ_coeff_eq_discr_mul_aENF` for the factor
-$|d_F|^{-(n-1)/2}$, the regularized product convention: $C_\mathcal G(\nu)$ is the finite product of
-$\beta_\mathfrak p(\nu)/(1 - \chi(\mathfrak p)N\mathfrak p^{-1})$ over $\mathfrak p \mid \nu\,\mathfrak d_{E/F}$).
-This file proves the **archimedean and $L$-value part** of that constant:
+$|d_F|^{-(n-1)/2}$, the regularized product convention: $C_\mathcal G(\nu)$ is the finite product of $\beta_\mathfrak p(\nu)/(1 - \chi(\mathfrak p)N\mathfrak p^{-1})$ over
+$\mathfrak p \mid \nu\,\mathfrak d_{E/F}$). This file proves the **archimedean and $L$-value part** of that constant:
 
 * **`betaInfNF_binary`:** for every binary form $Q$ over $\mathcal O_F$, $\beta_\infty(\nu) = \pi^{r_1}\prod_w D_w^{-1/2}$, independent of $\nu$
   ($n = 2$: the exponent $(n-2)/2$ vanishes); $D_w = \det(H_w/2)$ (`Siegel.gramDetNF`).
@@ -24,7 +23,7 @@ This file proves the **archimedean and $L$-value part** of that constant:
   **This is the check of the factor $|d_F|^{-(n-1)/2} = |d_F|^{-1/2}$ for $n = 2$:** $\beta_\infty \propto |d_F|$ and $L(1,\chi)^{-1} \propto |d_F|^{-1/2}$,
   so exactly the factor $|d_F|^{-1/2}$ makes the constant a rational number built from class numbers and units, as the genus
   average (a ratio of integers) requires; with the factor omitted the constant would be $\sqrt{|d_F|}\,Q_Kw_Kh_{K^+}/(2h_K)$.
-* **`siegelConstant_rat`** (cross-check at $F = \mathbb Q$): for $D < 0$ fundamental and $f$ of discriminant $D$,
+* **`siegelConstant_rat`** (cross-check at $F = \mathbb Q$ against `SiegelBinary.lean`): for $D < 0$ fundamental and $f$ of discriminant $D$,
   $\tfrac12\,\beta_\infty\,L(1,\chi_D)^{-1} = \frac{w}{2h}$, the constant of `siegelSide_explicit`; this is the formula above with
   $|d_\mathbb Q| = 1$, $Q = 1$, $h_\mathbb Q = 1$.
 
@@ -107,7 +106,7 @@ theorem card_realPlace : Fintype.card (Siegel.RealPlace K⁺) = finrank ℚ K⁺
 /-- **Siegel's constant for $n = 2$ over $F = K^+$: the $|d_F|^{-1/2}$ check.** For $Q$ totally positive with the determinant of
 the norm lattice (`HasNormLatticeDet`), every $\nu$, and $\lambda = L(1,\chi_{K/K^+}) = \lim_{s\to1^+}L(s,\chi_{K/K^+})$:
 $$\tfrac12\,|d_{K^+}|^{-1/2}\,\beta_\infty(\nu)\,\lambda^{-1} = \frac{Q_K\,w_K\,h_{K^+}}{2\,h_K}.$$ -/
-@[kb "hanke2004" "(5.3)–(5.5); Washington Thm. 4.17 [unverified]; eisQ_coeff_eq_discr_mul_aENF"]
+@[kb "hanke2004" "(5.3)–(5.5); Washington Thm. 4.17 [unverified]; cf. eisQ_coeff_eq_discr_mul_aENF"]
 theorem siegelConstant_binaryF {Q : QuadForm (𝓞 K⁺) 2} (hQ : Siegel.IsTotallyPosDef Q)
     (hdet : HasNormLatticeDet K Q) (ν : K⁺) {lam : ℝ} (hlam : Tendsto (relLR K⁺ K) (𝓝[>] 1) (𝓝 lam)) :
     (1 / 2 : ℝ) * |(discr K⁺ : ℝ)| ^ (-(1 / 2 : ℝ)) * Siegel.betaInfNF Q ν / lam =

@@ -2,8 +2,8 @@
 # Input theorems for Hasse–Minkowski over a number field
 
 This file defines the two input bundles for Hasse–Minkowski over a number field $F$:
-`HMInputs F` (Serre's route) and `LamInputs` (Lam's route). The input statements themselves, first
-stated here with `sorry`, now live in `NumberFieldMain.lean`, downstream of their proofs:
+`HMInputs F` (Serre's route) and `LamInputs` (Lam's route). The input statements themselves live in
+`NumberFieldMain.lean`, downstream of their proofs:
 
 - quadratic Hilbert reciprocity over $F$: `hilbert_reciprocity_nf`, proved as
   `HN.hilbert_product_formula_nf` (`HasseNorm/Reciprocity.lean`);
@@ -31,12 +31,12 @@ variable {F : Type} [Field F] [NumberField F]
 /-! The four input statements first stated here (`isSquare_iff_everywhere_nf`,
 `exists_prescribed_hilbert_nf`, `hilbert_eq_one_of_everywhere_nf`, `hilbertSymbol_mul_left_finite_nf`)
 and the bundle `hmInputs` now live in `NumberFieldMain.lean` (same names, docstrings and `@[kb]` tags),
-downstream of the proofs. All four are proved there (including `exists_prescribed_hilbert_nf`). -/
+downstream of the proofs. All four are proved there (`exists_prescribed_hilbert_nf`). -/
 
 /-- **The inputs for Hasse–Minkowski over $F$, as one hypothesis.** `HMInputs F` bundles the five
 input statements (stated in `NumberFieldMain.lean`; fields named after them), so that the reduction of Hasse–Minkowski to the
-inputs can be proved **without** `sorry`. Every step in `HasseMinkowskiNF.lean` takes `I : HMInputs F`
-as an explicit hypothesis and is therefore kernel-checked and shown as *proved*. (`hasseMinkowski_nf`
+inputs is proved separately from the inputs. Every step in `HasseMinkowskiNF.lean` takes `I : HMInputs F`
+as an explicit hypothesis. (`hasseMinkowski_nf`
 itself uses Lam's route, `LamInputs`, which is proved; `hmInputs` in `NumberFieldMain.lean` is proved too.)
 
 - `reciprocity`: `hilbert_reciprocity_nf`;

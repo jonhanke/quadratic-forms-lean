@@ -15,8 +15,7 @@ $\mathcal O_F$-lattice for every $c \in F^\times$. This file classifies these la
   $c'\,N(\lambda) = c$ (from `isometricLattices_iff`).
 * **Ideal classes** (`exists_smulLat_iff`): $\mathfrak B = \lambda\mathfrak A$ for some $\lambda \in E^\times$ iff
   $[\mathfrak A] = [\mathfrak B]$ in $\mathrm{Cl}_E$ (Mathlib's `ClassGroup (𝓞 E)`).
-* **Similarity classes ↔ $\mathrm{Cl}_E$ up to conjugation** (`isSimilarLat_ideal_iff`, the GL convention used here:
-  a class and
+* **Similarity classes ↔ $\mathrm{Cl}_E$ up to conjugation** (`isSimilarLat_ideal_iff`, the convention of this repository: a class and
   its conjugate): $(\mathfrak A, N)$ and $(\mathfrak B, N)$ are similar (isometric after scaling the form by some
   $a \in F^\times$) iff $[\mathfrak B] = [\mathfrak A]$ or $[\mathfrak B] = \sigma_*[\mathfrak A]$, $\sigma_*$ = `conjClass`.
 * **Conjugation is inversion modulo the classes of $F$** (`mul_conjIdeal`, `mul_conjClass`, `conjClass_eq_inv_mod`):
@@ -26,7 +25,7 @@ $\mathcal O_F$-lattice for every $c \in F^\times$. This file classifies these la
   `idealClass_conj`: $[\mathfrak a_{\bar f}] = [\mathfrak a_f]^{-1}$.
 
 Hence: the similarity classes of the lattices $(\mathfrak A, N)$ are $\mathrm{Cl}_E$ modulo $c \sim \sigma_*c$, and modulo the image of
-the ideals of $F$ they are $\mathrm{Cl}_E/\iota(\mathrm{Cl}_F)$ modulo $c \sim c^{-1}$ (classes and inverses, as for the GL-classes of binary forms over $\mathbb Z$). The
+the ideals of $F$ they are $\mathrm{Cl}_E/\iota(\mathrm{Cl}_F)$ modulo $c \sim c^{-1}$ (classes and inverses, as for the GL-classes). The
 finer isometry classes (fixing the scale $c$) are counted by the units: see `RelFormAut.lean` and `RelRepCount.lean`.
 
 The proof of $\mathfrak A\sigma(\mathfrak A) = N_{E/F}(\mathfrak A)\mathcal O_E$ uses only principal ideals: for $\mathfrak A^h = (\alpha)$ ($h$ the class
@@ -34,7 +33,7 @@ number) both sides have $h$-th power $(\alpha\,\sigma\alpha) = (N\alpha)$, and $
 unique (`ideal_pow_left_injective`, by unique factorization).
 
 Sources: Shimura, *Arithmetic of Quadratic Forms* (2010), §4 (binary forms over number fields) [unverified locator];
-O'Meara §82C, p. 222 (classes of lattices); Cox §7 (the case $F = \mathbb Q$).
+O'Meara §82 (classes of lattices) [unverified]; Cox §7 (the case $F = \mathbb Q$).
 -/
 
 open NumberField Module
@@ -76,7 +75,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 variable (F) in
 /-- **The ideal lattice** of $\mathfrak A \subseteq \mathcal O_E$: $\mathfrak A$ as an $\mathcal O_F$-submodule of $E$ (an $\mathcal O_F$-lattice of rank $2$
 in the $F$-space $E$ when $\mathfrak A \ne 0$; projective, not necessarily free). -/
-@[kb "omeara1963" "§81A, p. 209 (lattice on a vector space)"]
+@[kb "omeara1963" "§81 (lattices) [unverified]"]
 def idealLat (𝔄 : Ideal (𝓞 E)) : Submodule (𝓞 F) E :=
   (IsLocalization.coeSubmodule E 𝔄).restrictScalars (𝓞 F)
 
@@ -188,7 +187,7 @@ theorem exists_smulLat_iff (𝔄 𝔅 : (Ideal (𝓞 E))⁰) :
 /-- **Isometry of ideal lattices.** For $c, c' \in F^\times$ and nonzero $\mathfrak A, \mathfrak B \subseteq \mathcal O_E$:
 $(\mathfrak A, cN) \cong (\mathfrak B, c'N)$ iff $\mathfrak B = \lambda\mathfrak A$ or $\mathfrak B = \lambda\,\sigma(\mathfrak A)$ for some
 $\lambda \in E^\times$ with $c'\,N(\lambda) = c$. -/
-@[kb "omeara1963" "§82A, p. 220; Shimura (2010) §4 [unverified]"]
+@[kb "omeara1963" "§82; Shimura (2010) §4 [unverified]"]
 theorem isometricLattices_ideal_iff {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) (𝔄 𝔅 : Ideal (𝓞 E)) :
     Lattices.IsometricLattices (c • normForm F E) (c' • normForm F E) (idealLat F 𝔄) (idealLat F 𝔅) ↔
       ∃ l : E, l ≠ 0 ∧ c' * Algebra.norm F l = c ∧
@@ -197,7 +196,7 @@ theorem isometricLattices_ideal_iff {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) (
   rw [isometricLattices_iff hc hc', conjLat_idealLat]
 
 /-- **Similar lattices:** $(L, Q)$ and $(L', Q)$ are similar if $(L, aQ) \cong (L', Q)$ for some $a \in F^\times$. -/
-@[kb "omeara1963" "§82J, p. 238 (scaling a lattice, L^α)"]
+@[kb "omeara1963" "§82 (similarity of lattices) [unverified]"]
 def IsSimilarLat (Q : QuadraticForm F E) (L L' : Submodule (𝓞 F) E) : Prop :=
   ∃ a : F, a ≠ 0 ∧ Lattices.IsometricLattices (a • Q) Q L L'
 
@@ -217,7 +216,7 @@ theorem conjClass_mk0 (𝔄 : (Ideal (𝓞 E))⁰) :
 
 /-- **Similarity classes ↔ $\mathrm{Cl}_E$ up to conjugation.** For nonzero $\mathfrak A, \mathfrak B \subseteq \mathcal O_E$, the lattices
 $(\mathfrak A, N)$ and $(\mathfrak B, N)$ are similar iff $[\mathfrak B] = [\mathfrak A]$ or $[\mathfrak B] = \sigma_*[\mathfrak A]$. -/
-@[kb "omeara1963" "§82J, p. 238; Shimura (2010) §4 [unverified]"]
+@[kb "omeara1963" "§82; Shimura (2010) §4 [unverified]"]
 theorem isSimilarLat_ideal_iff (𝔄 𝔅 : (Ideal (𝓞 E))⁰) :
     IsSimilarLat (normForm F E) (idealLat F (𝔄 : Ideal (𝓞 E))) (idealLat F (𝔅 : Ideal (𝓞 E))) ↔
       ClassGroup.mk0 𝔅 = ClassGroup.mk0 𝔄 ∨ ClassGroup.mk0 𝔅 = conjClass F E (ClassGroup.mk0 𝔄) := by

@@ -213,7 +213,6 @@ coordinates. If attained on the diagonal, split off a 1-dimensional block. Other
 entry $\pi^\mu\beta$: if $\pi \mid 2$ split off the 2-dimensional block ($G_{ii} = \pi^{\mu+1}a'$, $G_{jj} = \pi^{\mu+1}c'$ by
 minimality, so $\delta = \pi^2 a'c' - \beta^2$ is a unit; no condition on $v_\pi(2)$ is needed); if
 $\pi \nmid 2$, first replace $x_i$ by $x_i + x_j$ to move the valuation to the diagonal. -/
-@[kb "omeara1963" "§91C and §93D (existence of a Jordan splitting; the uniqueness 91:9 is not formalized)"]
 theorem dvr_stepGen {π : R} (hπ : Irreducible π) (c : Matrix (Fin n) (Fin n) R)
     (D : Finset (Fin n)) (P : Finset (Fin n × Fin n)) (ν : Fin n → ℕ) (hdet : (c + cᵀ).det ≠ 0)
     (hJ : DvrJInvGen π (c + cᵀ) D P ν) (hD : D ≠ Finset.univ) :
@@ -498,7 +497,6 @@ $\pi \mid 2$), and equivalent forms have the same counts $r_{\pi^k}(m)$ for all 
 $v_\pi(2)$: at ramified dyadic primes the 2-dimensional blocks may have diagonal coefficients $c_{ii}$ with
 $v(c_{ii}) < \nu$ (e.g. $x^2 + \pi xy + y^2$ over $\mathbb{Z}_2[\sqrt2]$, $\nu = 1$), as long as
 $v(2c_{ii}) > \nu$. -/
-@[kb "omeara1963" "§91C and §93D (existence of a Jordan splitting; the uniqueness 91:9 is not formalized); §91B, p. 243 (Jordan splitting, row 91.d1; Gram matrix form); cassels1978 Ch. 8, Thm. 3.1, pp. 115–116 (existence)"]
 theorem exists_jordanFormGen (Q : QuadForm R n) (hQ : Q.Nondegenerate) (π : R) (hπ : Irreducible π)
     (h20 : (2 : R) ≠ 0) :
     ∃ (Q' : QuadForm R n) (P : Finset (Fin n × Fin n)) (ν : Fin n → ℕ),
@@ -557,7 +555,6 @@ p. 355, corrected for ramified dyadic primes). $Q$ over the DVR $R$ is block dia
 So $w$ is Hanke's $\nu$ ($Q = \bigoplus_j \pi^{\nu_j} Q_j$, $Q_j$ primitive), and Good type (Def. 3.1) is
 `IsGoodType (unimodularCoords w)`. When $\pi^2 \nmid 2$ this is exactly `IsJordanForm`
 (`isJordanForm_iff_isJordanFormW`). -/
-@[kb "omeara1963" "§91B, p. 243 (Jordan splitting, row 91.d1; the Gram matrix form of a Jordan splitting of a lattice)"]
 def IsJordanFormW (Q : QuadForm R n) (π : R) (P : Finset (Fin n × Fin n)) (w : Fin n → ℕ) : Prop :=
   (P.Nonempty → π ∣ 2) ∧
   (∀ e ∈ P, e.1 < e.2) ∧
@@ -648,7 +645,7 @@ with $2 \ne 0$ has a $\mathrm{GL}_n(R)$-equivalent form $Q'$ in normal form `IsJ
 exponents $w$; 2-dimensional blocks only when $\pi \mid 2$) with the same counts $r_{\pi^k}(m)$ for all $k, m$.
 No hypothesis on $v_\pi(2)$.
 
-*Update* (Lemma 2.1): the printed normal form (`IsJordanForm`) need not
+*Update* (`docs/updates-and-errata.md`, Lemma 2.1 entry): the printed normal form (`IsJordanForm`) need not
 exist at ramified dyadic primes ($x^2 + \pi xy + y^2$ over $\mathbb{Z}_2[\sqrt2]$); recording the scale exponent
 $\mu$ of each 2-dimensional block besides $w$ repairs it, and for $\pi^2 \nmid 2$ nothing changes
 (`isJordanForm_iff_isJordanFormW`). -/

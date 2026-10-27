@@ -21,7 +21,7 @@ class of the genus (`kneser_reach_genus`).
    [unverified]). Over $\mathbb Z$ this is the elementary-divisor argument; not formalized here.
 
 **Inputs.** `StrongApproximationSpinAt F` is strong approximation for the rotation group with respect to
-$S = \{(\pi)\} \cup \{\infty\}$ (O'Meara 1963, 104:4, p. 315, which uses 104:3, p. 311): it is the variant of the input
+$S = \{(\pi)\} \cup \{\infty\}$ (O'Meara 1963, 104:3–104:4 [unverified]): it is the variant of the input
 `StrongApproximationSpin F` (`Lattices/StrongApproximation.lean`, $S = \{\infty\}$, **indefinite** forms only) that applies to
 **definite** forms, which is the case of interest for the neighbour method. `LocalNeighborChain F` is a purely local,
 elementary statement (proof planned). Neither is equivalent to `kneser_reach`: the first is about the adelic group, the
@@ -49,11 +49,11 @@ For every $n \ge 3$, every nondegenerate `Q : QuadForm F n`, every finite place 
 $\gamma \in O'(V)$ (`spinorKernel Q F`) such that $\gamma^{-1}h$ stabilizes $L_\mathfrak q$ at **every finite place
 $\mathfrak q \ne \mathfrak p$** (no condition at $\mathfrak p$).
 
-This is the density of $O'(V)$ in $O'(V_{\mathbb A^S})$ for $S = \{\mathfrak p\} \cup \{\infty\}$ (O'Meara 1963, 104:4,
-p. 315, there for an indefinite set of spots; Kneser 1966; it follows from strong approximation for $\mathrm{Spin}(V)$, which is simply connected and
+This is the density of $O'(V)$ in $O'(V_{\mathbb A^S})$ for $S = \{\mathfrak p\} \cup \{\infty\}$ (O'Meara 1963, 104:3–104:4
+[unverified]; Kneser 1966; it follows from strong approximation for $\mathrm{Spin}(V)$, which is simply connected and
 non-compact at $\mathfrak p$). **Not proved in this repository.** Compare `StrongApproximationSpin F`
 ($S = \{\infty\}$, indefinite $Q$); this variant is the one needed for definite forms (Kneser's neighbour method). -/
-@[kb "omeara1963" "§104, 104:4, p. 315 (S = finite primes except 𝔭)"]
+@[kb "omeara1963" "104:3-104:4, strong approximation for rotations [unverified]"]
 structure StrongApproximationSpinAt (F : Type) [Field F] [NumberField F] : Prop where
   /-- $O'(V_{\mathbb A_f}) \subseteq O'(V)\cdot\prod_{\mathfrak q \ne \mathfrak p} O(L_\mathfrak q)$ for $V_\mathfrak p$ isotropic, $\dim V \ge 3$. -/
   approx : ∀ {n : ℕ} (Q : QuadForm F n), 3 ≤ n → Q.Nondegenerate → ∀ v : HeightOneSpectrum (𝓞 F),
@@ -64,7 +64,7 @@ structure StrongApproximationSpinAt (F : Type) [Field F] [NumberField F] : Prop 
 /-- **Unimodular at $\mathfrak p$** (for an integral lattice $L$): the dual $L^\# = \{x : B(x, L) \subseteq \mathcal O_F\}$ lies in
 $L$ locally at $\mathfrak p$, i.e. every $x \in L^\#$ has $x \in L_\mathfrak p$ ($B(x, y) = x^{\mathsf T}Hy$, `bil`). With $L$ integral
 ($L \subseteq L^\#$) this says $L^\#_\mathfrak p = L_\mathfrak p$. For $L = \mathcal O_F^n$ and $\pi \nmid 2$ it amounts to $\pi \nmid \det H$. -/
-@[kb "omeara1963" "§82G, p. 231 (unimodular lattice); 82:14b, p. 232 (L unimodular ⇔ L^# = L)"]
+@[kb "omeara1963" "§82, unimodular lattice [unverified]"]
 def IsUnimodularAt (Q : QuadForm F n) (L : Submodule (𝓞 F) (Fin n → F)) (v : HeightOneSpectrum (𝓞 F)) : Prop :=
   ∀ x : Fin n → F, (∀ y ∈ L, bil Q y x ∈ (algebraMap (𝓞 F) F).range) → locVec v x ∈ loc v L
 
@@ -124,7 +124,7 @@ theorem kneser_reach (hSA : StrongApproximationSpinAt F) (hLoc : LocalNeighborCh
 
 /-- **Kneser's theorem for a genus that is one spinor genus** (conditional as `kneser_reach`): if every lattice in the genus
 of $L$ is in the spinor genus of $L$ (e.g. over $\mathbb Q$ when all local spinor norms $\theta(O^+(L_p))$ contain the units,
-O'Meara 102:9, p. 304, and 104:5, p. 319; `Lattices/SpinorGlobal.lean` on branch `spinor-genera`), then the $\pi$-neighbour
+O'Meara 102:9, 104:5 [unverified]; `Lattices/SpinorGlobal.lean` on branch `spinor-genera`), then the $\pi$-neighbour
 graph starting at $L$ reaches every class of the genus of $L$. -/
 @[kb "kneser1957" "Satz 2 [unverified]"]
 theorem kneser_reach_genus (hSA : StrongApproximationSpinAt F) (hLoc : LocalNeighborChain F) (hn : 3 ≤ n)

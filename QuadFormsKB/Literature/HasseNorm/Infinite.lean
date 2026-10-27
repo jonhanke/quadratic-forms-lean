@@ -271,7 +271,7 @@ theorem prod_absNorm_pow_ordTwo (S : Finset (HeightOneSpectrum (𝓞 K)))
 open scoped Classical in
 /-- **The product formula for square classes:** for $S \supseteq$ the dyadic primes,
 $\prod_{v \in S} [K_v^\times : K_v^{\times2}] \cdot \prod_{v \mid \infty} [K_v^\times : K_v^{\times2}] = 4^{|S| + r_\infty}$. -/
-@[kb "milne2020cft" "Ch. VII, Lemma 6.6 (n = 2) [unverified]; omeara1963 §65B, 65:7, p. 178"]
+@[kb "milne2020cft" "Ch. VII, Lemma 6.6 (n = 2) [unverified]"]
 theorem prod_index_sq (S : Finset (HeightOneSpectrum (𝓞 K)))
     (hS : ∀ v : HeightOneSpectrum (𝓞 K), (2 : 𝓞 K) ∈ v.asIdeal → v ∈ S) :
     (∏ v ∈ S, (powMonoidHom 2 : (v.adicCompletion K)ˣ →* (v.adicCompletion K)ˣ).range.index) *

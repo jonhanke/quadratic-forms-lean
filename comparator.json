@@ -14,34 +14,9 @@
     "QuadFormsKB.Headlines.hasseMinkowski_numberField",
     "QuadFormsKB.Headlines.represents_iff_everywhere_numberField",
     "QuadFormsKB.Headlines.isometric_iff_everywhere_numberField",
-    "QuadFormsKB.Headlines.hasseMinkowski_rat",
-    "QuadFormsKB.Headlines.tamagawa_two_numberField",
-    "QuadFormsKB.Headlines.tamagawa_two_space",
-    "QuadFormsKB.Headlines.tamagawa_one_rankOne",
-    "QuadFormsKB.Headlines.tamagawa_two_binary",
-    "QuadFormsKB.Headlines.tamagawa_two_space_binary",
-    "QuadFormsKB.Headlines.tamagawa_one_binary_isotropic",
-    "QuadFormsKB.Headlines.tamagawa_one_space_binary_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_numberField",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_numberField",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2",
-    "QuadFormsKB.Headlines.siegel_indefinite_ternary",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_ternary_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_corank1",
-    "QuadFormsKB.Headlines.siegel_indefinite_binary",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_corank0",
-    "QuadFormsKB.Headlines.siegelForms_totallyReal",
-    "QuadFormsKB.Headlines.gauss_threeSquares",
-    "QuadFormsKB.Headlines.jacobi_twoSquares",
-    "QuadFormsKB.Headlines.siegel_twoSquares",
-    "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq"
+    "QuadFormsKB.Headlines.hasseMinkowski_rat"
   ],
   "definition_names": [],
-  "permitted_axioms": [
-    "propext",
-    "Quot.sound",
-    "Classical.choice"
-  ],
+  "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"],
   "enable_nanoda": true
 }

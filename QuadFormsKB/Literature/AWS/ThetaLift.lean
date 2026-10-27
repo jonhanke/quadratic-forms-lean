@@ -327,7 +327,7 @@ theorem thetaKernel_mul_mem (hG : LatticeGluing n) (z : ℍ) (α : OA Q.hessian)
   Quadratic Forms*, Lem. 21.6, and Weil, *Basic Number Theory*, V Thm. 2);
 - `finite_classes`: the class number is finite, $|O(V)\backslash O(V_\mathbb{A})/K_\mathbb{A}| < \infty$
   (reduction theory; Borel–Harish-Chandra; for positive definite $Q$ also elementary, e.g. Cassels,
-  *Rational Quadratic Forms*, Ch. 9, Thm. 1.1, p. 128, and Lemma 4.1, Cor. 1, p. 139);
+  *Rational Quadratic Forms*, Ch. 9, Thm. 1.1);
 - `finite_aut`: each $O(V) \cap \alpha K_\mathbb{A}\alpha^{-1} = \mathrm{Aut}(\alpha L)$ is finite (true for
   positive definite $Q$: $\mathrm{Aut}(L)$ permutes the finitely many vectors of bounded length;
   the notes, p. 64: "the finite group of rational automorphisms $\mathrm{Aut}(L_i)$").

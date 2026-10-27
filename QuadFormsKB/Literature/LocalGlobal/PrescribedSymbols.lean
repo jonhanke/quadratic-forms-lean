@@ -247,7 +247,7 @@ theorem exists_rat_approx_sq_classes (T : Finset Nat.Primes) (q : Nat.Primes →
 /-- **A prime in a given residue class, avoiding a finite set** (Dirichlet): for $m \ge 1$ and $r$
 coprime to $m$, and any finite set $T$ of primes, there is a prime $\ell \notin T$ with
 $\ell \equiv r \pmod m$. -/
-@[kb "serre1973" "Ch. VI §4 [unverified]; cassels1978 Ch. 6, Thm. 5.1, p. 83 (Dirichlet)"]
+@[kb "serre1973" "Ch. VI §4 [unverified]"]
 theorem exists_prime_mod_not_mem (m : ℕ) (hm : 0 < m) (r : ℤ) (hr : IsCoprime r m)
     (T : Finset ℕ) : ∃ ℓ : ℕ, ℓ.Prime ∧ ℓ ∉ T ∧ (ℓ : ℤ) ≡ r [ZMOD m] := by
   haveI : NeZero m := ⟨by omega⟩

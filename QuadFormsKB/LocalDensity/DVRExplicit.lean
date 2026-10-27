@@ -246,7 +246,6 @@ theorem isotropicIn_of_primitive_pow_dvd [Finite (IsLocalRing.ResidueField R)]
 /-- **Bounded valuation of primitive vectors** (Hanke 2004, p. 363, O'Meara 91:1) over a complete $R$ with
 finite residue field: if $Q$ is anisotropic over $K$, there is $C$ such that for $k \ge C$ every solution of
 $Q(\vec{x}) \equiv 0 \pmod{\pi^k}$ is of Zero type. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
 theorem exists_isZeroType_of_anisotropic [Finite (IsLocalRing.ResidueField R)]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R] (K : Type*) [Field K] [Algebra R K]
     [IsFractionRing R K] (Q : QuadForm R n) (π : R) (hπ : Irreducible π)
@@ -293,13 +292,13 @@ theorem eventually_repCountOf_nonZero_eq_zero [Finite (IsLocalRing.ResidueField 
   exact Dvd.dvd.mul_right (pow_dvd_pow _ (by omega)) _
 
 /-- **Lemma 3.8, corrected** (Hanke 2004, p. 363; fix (b) of the erratum confirmed by the author, see
-`LocalDensity.anisotropic_iff_zeroType`), over a complete DVR $R$ with finite
+`docs/updates-and-errata.md` and `LocalDensity.anisotropic_iff_zeroType`), over a complete DVR $R$ with finite
 residue field and fraction field $K$ (e.g. $\mathfrak{o}_\mathfrak{p} \subset F_\mathfrak{p}$ at **any** prime
 $\mathfrak{p}$, dyadic or not): for $m$ $\pi$-stable (Def. 3.6), $Q$ is anisotropic over $K$ iff for all large $k$
 every solution of $Q(\vec{x}) \equiv \pi^2 m \pmod{\pi^k}$ is of Zero type.
 
 *Erratum:* the paper states the conclusion for $m$ itself (with $\mathfrak{p} \mid m$), which is false (see the
-$\mathbb{Q}$ version). *Update (candidate; pending author):* the paper's
+$\mathbb{Q}$ version). *Update (candidate; pending author, `docs/updates-and-errata.md`):* the paper's
 nondegeneracy and the normal form are not needed; nor is
 $\pi \nmid 2$. Completeness of $R$ is needed for ($\Rightarrow$) (over $\mathbb{Z}_{(5)}$, $x^2 + y^2$ is anisotropic
 over $\mathbb{Q}$ but has primitive zeros mod every $5^k$); the paper's $\mathfrak{o}_\mathfrak{p}$ is complete.

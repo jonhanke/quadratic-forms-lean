@@ -8,8 +8,7 @@ $F$ is any number field, $D = \mathbb H[F,a,b]$ ($a,b\in\mathcal O_F\setminus0$)
 $Z = \mathbb A^\times$ its centre (`quatScalar`), $PD^\times(\mathbb A) = G/Z$ (`PDAdele`).
 
 * **`muPD`**: Weil's Tamagawa measure on $PD^\times(\mathbb A)$, the quotient of `tamQuat` by `tamIdeles`:
-  the Haar measure with $\int_G f\,d\mu_G = \int_{G/Z}\int_Z f(gz)\,d\mu_Z\,d\mu_{PD}$ (**`fibMeas_muPD`**; the
-  section-free fibration `NormalFib.fibMeas`, generalized to a non-commutative base). The global factors
+  the Haar measure with $\int_G f\,d\mu_G = \int_{G/Z}\int_Z f(gz)\,d\mu_Z\,d\mu_{PD}$ (**`fibMeas_muPD`**; the section-free fibration `NormalFib.fibMeas`, generalized to a non-commutative base). The global factors
   $\rho_F^{-1}$ and the convergence factors $\lambda_v$ of the two measures cancel in the quotient.
 * **`muPDOne`**: the same quotient for the norm-one groups, $G^1 = \mathbb H_{\mathbb A}^1\to PD^\times(\mathbb A)$ with
   kernel $\mathbb A^1$ (`fibMeas_muPDOne`), and **`muPD_eq`**: $\mu_{PD} = 2\,\mu^1_{PD}$. The 2 is Weil's: on the
@@ -712,8 +711,7 @@ any number field**, conditional only on the **local measure comparison**: if Wei
 $\mu_\infty\times\mu_f$ along $PD^\times(\mathbb A)\cong PD^\times(F_\infty)\times PD^\times(\mathbb A_f)$ with
 $(c_\infty)_*\mu_\infty = r_\infty\,\mu^{\mathrm{Tam}}_\infty$, $(c_f)_*\mu_f = r_f\,\mu_f^{SO}$ and $r_\infty r_f = 1$
 (Weil's Thm 2.3.1: $\prod_v r_v = 1$; the local ratios), then $\tau(SO(V)) = 2$ for `muTam`.
-*Proof.* $\tau(PD^\times) = 2$ (`tamagawa_PD_division`), transported by `covolume_eq_of_map` and
-`tamagawaNumberTwoAdelic_iff_covolume_pd`. -/
+*Proof.* $\tau(PD^\times) = 2$ (`tamagawa_PD_division`), transported by `covolume_eq_of_map` and `tamagawaNumberTwoAdelic_iff_covolume_pd`. -/
 @[kb "weil1982" "Thm 3.2.1, p. 43; §2.3, Thm 2.3.1; §3.7(a), p. 63"]
 theorem tamagawaNumberTwoAdelic_of_division (ha0 : a ≠ 0) (hb0 : b ≠ 0)
     (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) (hQ : (QuatZeta.pureFormO a b).Nondegenerate)

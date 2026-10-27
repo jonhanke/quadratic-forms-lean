@@ -78,7 +78,7 @@ theorem trdGram_det_ne_zero {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) : (16 : F) *
 
 /-- **Global product of the trace-normalization factors**: $\prod_v|\det G|_v = \|-16a^2b^2\|_{\mathbb A} = 1$ for
 $a, b\in F^\times$ (product formula). -/
-@[kb "weil1982" "§2.3 [unverified page] (trd normalization: ∏_v |det G|_v^{1/2} = 1)"]
+@[kb "weil1982" "§2.3 [unverified page]"]
 theorem ideleNorm_det_trdGram {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
     ideleNorm F (diagUnits F (Units.mk0 _ (neg_ne_zero.mpr (trdGram_det_ne_zero ha hb)))) = 1 :=
   ideleNorm_diagUnits _

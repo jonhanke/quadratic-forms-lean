@@ -1,5 +1,5 @@
 /-
-# Theta series over $F$: The cusp data of $\theta_Q$ are genus invariants, prime by prime
+# Theta series over $F$: the cusp data of $\theta_Q$ are genus invariants, prime by prime
 
 Let $F$ be totally real and $Q, Q'$ forms over $\mathcal{O}_F$ in the same genus (`FormSameGenus`: equivalent over every
 $\mathfrak o_\mathfrak p$ and every $\mathbb{R}$). This file shows that $\theta_Q$ and $\theta_{Q'}$ have **the same constant term at every
@@ -18,7 +18,7 @@ $\mathcal{O}_F/I \cong \prod_{\mathfrak p^e\|I}\mathcal{O}_F/\mathfrak p^e$ (Mat
   ($N(w) = 1$ as $w \gg 0$);
 * `thetaCuspConst_eq`, `thetaMultF_eq`, `thetaMultG_eq`: the theta constants at every cusp agree;
 * **`tendsto_thetaQ_slash_genus`**: $\lim\theta_Q\,|_k\,A = \lim\theta_{Q'}\,|_k\,A$ for every $A \in \mathrm{SL}_2(F)$, and
-  `exists_tendsto_thetaQ_slash`: The limit exists at every cusp (`tendsto_thetaQ_slash`);
+  `exists_tendsto_thetaQ_slash`: the limit exists at every cusp (`tendsto_thetaQ_slash`);
 * **`thetaCharF_eq_of_formSameGenus`**: $\chi_Q = \chi_{Q'}$ for a common level $\mathfrak N$;
 * `thetaQ_mem_modularFormChar'`: $\theta_Q \in M_k(\Gamma_0(\mathfrak N), \chi_Q)$ for **every** degree $d \ge 1$ (the cusp condition
   from the explicit limits, no Koecher);
@@ -27,8 +27,7 @@ $\mathcal{O}_F/I \cong \prod_{\mathfrak p^e\|I}\mathcal{O}_F/\mathfrak p^e$ (Mat
 Over $\mathbb{Q}$ this is `Siegel.ThetaCuspidal` (`SameGenus.isometricGL_zmod`, `SameGenus.gaussSum_eq`, `SameGenus.det_hessian_eq`).
 
 Sources: Iwaniec, *Topics in Classical Automorphic Forms*, §10.4 (Gauss sums and the genus) [unverified]; Cassels,
-*Rational Quadratic Forms*, Ch. 9, Lemma 4.2, Cor. 1 and its Note, p. 140 (over $\mathbb{Z}$: in a genus there is an $f^*$
-properly equivalent to $f$ with $f^* \equiv g \pmod M$, a stronger statement than equivalence modulo $M$); Shimura (1973), §2 [unverified].
+*Rational Quadratic Forms*, Ch. 9 §1 (genus and congruences) [unverified]; Shimura (1973), §2 [unverified].
 -/
 import QuadFormsKB.HilbertModular.CuspClasses
 import QuadFormsKB.HilbertModular.CuspValues
@@ -117,7 +116,7 @@ theorem isometricGL_quot_pow {Q Q' : QuadForm (𝓞 F) n} (v : HeightOneSpectrum
 /-- **Forms in one genus are equivalent modulo every nonzero ideal** $I$ of $\mathcal{O}_F$: there is
 $\bar g \in \mathrm{GL}_n(\mathcal{O}_F/I)$ with $\bar Q(\bar gx) = \bar Q'(x)$. *Proof:* prime by prime (`isometricGL_quot_pow`) and the
 Chinese remainder theorem (`IsDedekindDomain.quotientEquivPiFactors`, `IsometricGL.piRing`). -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.2, Cor. 1 and Note, p. 140 (over ℤ)"]
+@[kb "cassels1978" "Ch. 9, §1 (genus and congruences), over 𝓞_F [unverified]"]
 theorem _root_.QuadFormsKB.Lattices.FormSameGenus.isometricGL_quot {Q Q' : QuadForm (𝓞 F) n} (h : Lattices.FormSameGenus Q Q')
     {I : Ideal (𝓞 F)} (hI : I ≠ ⊥) :
     IsometricGL (Q.map (Ideal.Quotient.mk I)) (Q'.map (Ideal.Quotient.mk I)) := by
@@ -320,7 +319,7 @@ noncomputable def thetaCuspVal (Q : QuadForm (𝓞 F) n) (k : ℕ) (A : SL(2, F)
       gaussSumF Q (exists_cuspDenom A).choose_spec.2.choose
         (exists_cuspDenom A).choose_spec.2.choose_spec.choose 0
 
-/-- **$\theta_Q$ has a constant term at every cusp** (`tendsto_thetaQ_slash`,`tendsto_thetaQ_slash_of_c_eq_zero`). -/
+/-- **$\theta_Q$ has a constant term at every cusp** (`tendsto_thetaQ_slash`, `tendsto_thetaQ_slash_of_c_eq_zero`). -/
 theorem tendsto_thetaQ_slash_thetaCuspVal {Q : QuadForm (𝓞 F) n} (hQ : IsTotPosGram (gramF Q)) {k : ℕ}
     (hn : n = 2 * k) (A : SL(2, F)) :
     Tendsto (thetaQ Q ∣[(k : ℤ)] slHom (realEmb F) A) atImInftyPi (𝓝 (thetaCuspVal Q k A)) := by

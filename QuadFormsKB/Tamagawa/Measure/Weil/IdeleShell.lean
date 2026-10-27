@@ -9,8 +9,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.IdeleClassVolume
 * **`tamIdeles_exactFD_logShell`**: for every exact fundamental domain $D$ of $F^\times$ in $\mathbb A_F^\times$ and every interval
   $[\alpha,\beta)$,
   $$\mu\big(D\cap\{x : \log\|x\|_{\mathbb A}\in[\alpha,\beta)\}\big) = \operatorname{vol}(F^\times\backslash\mathbb A_F^1)\cdot(\beta-\alpha).$$
-  *Proof.* Through the splitting $\mathbb A^\times\cong\mathbb A^1\times\mathbb R_{>0}$ (`ideleSplit`,
-  $\mu\mapsto\mu^1\times dt/t$), every slice
+  *Proof.* Through the splitting $\mathbb A^\times\cong\mathbb A^1\times\mathbb R_{>0}$ (`ideleSplit`, $\mu\mapsto\mu^1\times dt/t$), every slice
   $\{y : y\,s(t)\in D\}$ is an exact fundamental domain of $F^\times$ in $\mathbb A^1$, of $\mu^1$-measure
   $\operatorname{vol}(F^\times\backslash\mathbb A^1)$; integrate over $t$ (Tonelli).
 * `tamIdeles_exactFD_logShell_eq_residue`: the same with $\rho_F$ (`muIdeleClass_univ_eq_residue`).

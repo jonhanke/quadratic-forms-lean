@@ -18,16 +18,13 @@ for **any** number field $F$ (no class-number hypothesis). Consequently the inpu
 1. *Diagonal global $P$* (`alphaLaw_diag_global`): the local change-of-lattice identity `LatChange.localDensity_mul_relRatio`
    (valid at every prime, proved from the box formula `LatChange.selfDensity_formula` by Hensel lifting; no split vectors)
    for $c = 1$, $D = \mathrm{diag}(c_a)$, $c_a \in \mathcal O_F$, rewritten in the groups `KL`.
-2. *Local Smith normal form* (`exists_smith_local`): $P = U\,\mathrm{diag}(a)\,V$ over the DVR $\mathfrak o_\mathfrak p$ (the
-   `exists_smith_decomp` over any PID), $a_i = u_i\varpi^{k_i}$.
+2. *Local Smith normal form* (`exists_smith_local`): $P = U\,\mathrm{diag}(a)\,V$ over the DVR $\mathfrak o_\mathfrak p$ (`exists_smith_decomp` over any PID), $a_i = u_i\varpi^{k_i}$.
 3. *Globalization* (`exists_global_right_mul`): approximate $U$ by a global $U' \in M_N(\mathcal O_F)$ with
    $U' \equiv U \bmod \varpi^K$, $K > \max k_i$; then $U'\,\mathrm{diag}(\varpi^{k}) = P\,X$ with $X \in \mathrm{GL}_N(\mathfrak o_\mathfrak p)$.
-4. The moves: invariance under $P \mapsto PX$ (`alphaLaw_mul_right`), the cocycle (`alphaLaw_mul`), and the trivial
-law for
+4. The moves: invariance under $P \mapsto PX$ (`alphaLaw_mul_right`), the cocycle (`alphaLaw_mul`), and the trivial law for
    $U' \in \mathrm{GL}_N(\mathfrak o_\mathfrak p)$; $Q_0\circ U'$ is again global, so step 1 applies to it.
 
-This replaces the dyadic split-vector induction that was previously left open: the only local input needed is now
-proved.
+This replaces a dyadic split-vector induction: the only local input needed there is now proved.
 -/
 
 open Matrix MulAction
@@ -45,7 +42,7 @@ variable {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
 local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
-/-! ### Stabilizers in `orthGroup` versus the `KL` -/
+/-! ### Stabilizers in `orthGroup` versus `KL` -/
 
 section KL
 
@@ -296,8 +293,7 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 theorem dyadicAlphaLaw (Q₀ : QuadForm (𝓞 F) (n + 1)) (hQ₀ : Q₀.Nondegenerate) : DyadicAlphaLaw Q₀ :=
   ⟨fun v _ P hP => alphaLaw_global v Q₀ hQ₀ P hP⟩
 
-/-- **The input `OrbitalLocalIdentities` is a theorem**: the local orbital identity holds at every non-standard prime
-of every
+/-- **The input `OrbitalLocalIdentities` is a theorem**: the local orbital identity holds at every non-standard prime of every
 adapted frame of every nondegenerate $Q_0$ (any class number; the dyadic primes included). -/
 @[kb "weil1982" "§3.4 and §4.5, p. 109 (local orbital identities at all non-standard primes) [unverified]"]
 theorem orbitalLocalIdentities (Q₀ : QuadForm (𝓞 F) (n + 1)) (hQ₀ : Q₀.Nondegenerate) : OrbitalLocalIdentities Q₀ :=
@@ -334,14 +330,14 @@ theorem massFormula_all_ranks_of_ternary (hd : 2 ≤ Fintype.card (InfinitePlace
   massFormula_all_ranks hd hT (oddRankOrbitalLocalIdentities F) hN Q₀ hpd
 
 /-- **Siegel's formula for numbers in every rank $N \ge 4$, conditional only on `TernaryTamagawaTwo F`** (even $N$:
-unconditional; odd $N$: the frame identity with the local identities now proved). -/
+unconditional; odd $N$: `siegelFormulaAt_of_massFormula` with the local identities now proved). -/
 @[kb "weil1982" "§4.5, p. 100 (Siegel's theorem as a consequence of τ = 2), Thm 4.5.1, p. 109"]
 theorem siegelFormulaAt_all_ranks_of_ternary (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : TernaryTamagawaTwo F)
     {N : ℕ} (hN : 4 ≤ N) (Q₀ : QuadForm (𝓞 F) N) (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 F}
     (hm : ∀ v, 0 < realEmb F v (algebraMap (𝓞 F) F m)) : SiegelFormulaAt Q₀ m :=
   siegelFormulaAt_all_ranks hd hT (oddRankOrbitalLocalIdentities F) hN Q₀ hpd hm
 
-/-- **Odd rank in the `aENF` form, conditional only on `TernaryTamagawaTwo F`**:
+/-- **Odd rank in the form, conditional only on `TernaryTamagawaTwo F`**:
 $\mathrm{repMass} = \mathrm{Mass}\cdot|d_F|^{-(N-1)/2}\,\mathtt{aENF}(Q_0, m)$, $N = n + 1 \ge 5$ odd. -/
 @[kb "weil1982" "§4.5, p. 100; Thm 4.5.1, p. 109"]
 theorem siegelFormula_odd_aENF_of_ternary (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : TernaryTamagawaTwo F)

@@ -2,19 +2,17 @@
 # Reducing $\tau(SO_4) = 2$ for class number $h_F > 1$
 
 **Layer:** a totally real number field $F$, **any class number**; `tauSO`; the rank-4 input `QuaternaryTamagawaTwo F`
-(it implies $\tau = 2$, the mass formula and Siegel's formula in every rank $\ge 4$,
-`tamagawaNumberTwo_of_quaternary_nf`).
+(it implies $\tau = 2$, the mass formula and Siegel's formula in every rank $\ge 4$, `tamagawaNumberTwo_of_quaternary_nf`).
 
-Earlier files reduced the rank-4 input to the ternary one, and the ternary one to the pure quaternion forms, but only
-for $\mathcal O_F$ a PID: both reductions used the change of lattice `tauSO_smul_compMat` (global Smith normal form).
-With its non-PID version (`LatChange.tauSO_smul_compMat_nf`, `Tamagawa/LatticeChangeNF.lean`) they go through for
-every totally real $F$:
+`TauFour` and `TernaryReduction` reduced the rank-4 input to the ternary one, and the ternary one to the pure quaternion forms, but only for $\mathcal O_F$ a
+PID: both reductions used the change of lattice `tauSO_smul_compMat` (global Smith normal form). With its non-PID version
+(`LatChange.tauSO_smul_compMat_nf`, `Tamagawa/LatticeChangeNF.lean`) they go through for every totally real $F$:
 
 * **`quaternaryTamagawaTwo_of_unitSplit_nf`**: `QuaternaryTamagawaTwo F` follows from $\tau = 2$ for the forms $\langle 1\rangle\perp Q_3$
   ($Q_3$ ternary); `quaternaryTamagawaTwo_of_diag_nf`: from $\tau = 2$ for the diagonal forms $\langle 1, b, c, d\rangle$, $b, c, d \in \mathcal O_F$
   (every quaternary space is similar to one of these, and $\tau$ is a similarity invariant, `LatChange.tauSO_eq_of_similar_nf`).
 * **`RankFourUnitSiegel F`** (named input): Siegel's formula in rank 4 for the number $1$ and the lattices $\mathcal O_F\perp L_3$. It is a
-  theorem for $\mathcal O_F$ a PID of degree $\ge 2$ (via Hilbert modular forms, `rankFourUnitSiegel_of_pid`) and for $F = \mathbb Q$ (`rankFourUnitSiegel_rat`); for $h_F > 1$ Hilbert modular forms cover only rank $\ge 6$ (`siegelFormulaAt'`, given `PrincipalPrimeSupply`).
+  theorem for $\mathcal O_F$ a PID of degree $\ge 2$ (Hilbert modular forms, `rankFourUnitSiegel_of_pid`) and for $F = \mathbb Q$ (`rankFourUnitSiegel_rat`); for $h_F > 1$ that argument covers only rank $\ge 6$ (`siegelFormulaAt'`, given `PrincipalPrimeSupply`).
 * **`quaternaryTamagawaTwo_of_ternary_nf`**, `ternaryTamagawaTwo_of_quaternary_nf`, **`ternaryTamagawaTwo_iff_quaternary_nf`**:
   given `RankFourUnitSiegel F`, the ternary and quaternary inputs are equivalent over every totally real $F$.
 * **`ternaryTamagawaTwo_of_pureForm_nf`**: `TernaryTamagawaTwo F` follows from $\tau = 2$ for the pure quaternion forms
@@ -195,20 +193,18 @@ $\mathrm{repMass}(\langle 1\rangle\perp Q_3, 1) = \mathrm{Mass}\cdot S(L, 1)$ (`
 Field:
 - `siegel`: the statement above.
 
-*Status.* A theorem for $\mathcal O_F$ a PID with $[F:\mathbb Q] \ge 2$ (via Hilbert modular forms, `rankFourUnitSiegel_of_pid`) and for $F = \mathbb Q$
-(through the bridge, `rankFourUnitSiegel_rat`). For $h_F > 1$ Hilbert modular forms prove Siegel's formula
-only in rank $\ge 6$ (`HilbertModular.siegelFormulaAt'`, given `PrincipalPrimeSupply F`); rank 4 there needs prime
-counting among principal primes (`HeckeVanishingNP`). It is Siegel's formula (a statement about representation
-numbers), not a statement about $\tau$: it is not equivalent to `QuaternaryTamagawaTwo F` or to
-`TernaryTamagawaTwo F`, which it is used to compare. -/
+*Status.* A theorem for $\mathcal O_F$ a PID with $[F:\mathbb Q] \ge 2$ (Hilbert modular forms, `rankFourUnitSiegel_of_pid`) and for $F = \mathbb Q$
+(through the bridge, `rankFourUnitSiegel_rat`). For $h_F > 1$ that argument proves Siegel's formula only in rank $\ge 6$
+(`HilbertModular.siegelFormulaAt'`, given `PrincipalPrimeSupply F`); rank 4 there needs prime counting among principal primes
+(`HeckeVanishingNP`). It is Siegel's formula (a statement about representation numbers), not a statement about $\tau$: it is not
+equivalent to `QuaternaryTamagawaTwo F` or to `TernaryTamagawaTwo F`, which it is used to compare. -/
 @[kb "siegel1935" "Hauptsatz, n = 4, m = 1 (rank-4 Siegel for the number 1; input for h_F > 1) [unverified]"]
 structure RankFourUnitSiegel (F : Type) [Field F] [NumberField F] : Prop where
   siegel : ∀ Q₃ : QuadForm (𝓞 F) 3, IsTotallyPosDef (formF (splitForm 1 Q₃)) → SiegelFormulaAt (splitForm 1 Q₃) 1
 
 variable [IsTotallyReal F]
 
-/-- `RankFourUnitSiegel F` holds for $\mathcal O_F$ a PID of degree $\ge 2$ (via Hilbert modular forms,
-`siegelFormulaAt_of_pid_four`). -/
+/-- `RankFourUnitSiegel F` holds for $\mathcal O_F$ a PID of degree $\ge 2$ (Hilbert modular forms, `siegelFormulaAt_of_pid_four`). -/
 theorem rankFourUnitSiegel_of_pid [IsPrincipalIdealRing (𝓞 F)] (hd : 2 ≤ Fintype.card (InfinitePlace F)) :
     RankFourUnitSiegel F :=
   ⟨fun _ hpd => siegelFormulaAt_of_pid_four (n := 4) hpd rfl hd realEmb_one_pos⟩
@@ -218,7 +214,7 @@ theorem rankFourUnitSiegel_rat : RankFourUnitSiegel ℚ :=
   ⟨fun _ hpd => RatBridge.siegelFormulaAt_rat_four hpd realEmb_one_pos⟩
 
 /-- **$\tau(SO_4) = 2$ from $\tau(SO_3) = 2$ over every totally real field**, given rank-4 Siegel for the number $1$:
-$\tau(\langle 1\rangle\perp Q_3) = 2$ by `tamagawaNumberTwo_four_of_three_of_siegel` (no PID), and every quaternary $\tau$
+$\tau(\langle 1\rangle\perp Q_3) = 2$ by the step (`tamagawaNumberTwo_four_of_three_of_siegel`, no PID), and every quaternary $\tau$
 is such a $\tau$ (`quaternaryTamagawaTwo_of_unitSplit_nf`, the non-PID change of lattice). -/
 @[kb "weil1982" "§3.7, pp. 62-65; Thm. 3.7.1 (m = 4), p. 65; any class number, given rank-4 Siegel for m = 1"]
 theorem quaternaryTamagawaTwo_of_ternary_nf (hT : TernaryTamagawaTwo F) (hS : RankFourUnitSiegel F) :
@@ -287,7 +283,7 @@ section Pure
 
 variable [IsTotallyReal F]
 
-/-- **$\tau(Q_0') = \tau(\langle -a,-b,ab\rangle)$ over every number field** (the version of `tauSO_eq_tauSO_pureFormO` without the PID). -/
+/-- **$\tau(Q_0') = \tau(\langle -a,-b,ab\rangle)$ over every number field** (`tauSO_eq_tauSO_pureFormO` without the PID). -/
 theorem tauSO_eq_tauSO_pureFormO_nf (Q₀' : QuadForm (𝓞 F) 3) (hQ : Q₀'.Nondegenerate)
     (hpd : IsTotallyPosDef (Q₀'.map (algebraMap (𝓞 F) F))) :
     ∃ a b : 𝓞 F, a ≠ 0 ∧ b ≠ 0 ∧ IsTotallyPosDef ((pureFormO a b).map (algebraMap (𝓞 F) F)) ∧
@@ -331,8 +327,7 @@ theorem tauSO_eq_tauSO_pureFormO_nf (Q₀' : QuadForm (𝓞 F) 3) (hQ : Q₀'.No
     rw [← h1, ← smul_diag_compMat_eq_pureFormO, tauSO_smul_compMat_diagonal (by norm_num) (by norm_num) _ hQD
       hpdD hc' cv hcv hpdP]
 
-/-- **The ternary input reduces to the pure quaternion forms over every totally real field** (the version of
-`ternaryTamagawaTwo_of_pureForm` without the PID): if $\tau(\langle -a,-b,ab\rangle) = 2$ for all $a, b \in \mathcal O_F\setminus0$ with
+/-- **The ternary input reduces to the pure quaternion forms over every totally real field** (`ternaryTamagawaTwo_of_pureForm` without the PID): if $\tau(\langle -a,-b,ab\rangle) = 2$ for all $a, b \in \mathcal O_F\setminus0$ with
 $\langle -a,-b,ab\rangle$ totally positive definite, then `TernaryTamagawaTwo F`. -/
 @[kb "weil1982" "§3.7(a), p. 62-63 (every ternary space is similar to (D^0, nrd)); any class number"]
 theorem ternaryTamagawaTwo_of_pureForm_nf
@@ -344,7 +339,7 @@ theorem ternaryTamagawaTwo_of_pureForm_nf
 
 /-- **$\tau = 2$ in every rank $N \ge 4$, every totally real field, from the pure quaternion forms** and rank-4 Siegel for the
 number $1$: the two remaining inputs for $h_F > 1$ are $\tau(\langle -a,-b,ab\rangle) = 2$ (the standard orders of the totally definite
-quaternion algebras $(a,b)_F$; stage 2, the quaternion route) and `RankFourUnitSiegel F`. -/
+quaternion algebras $(a,b)_F$) and `RankFourUnitSiegel F`. -/
 @[kb "weil1982" "§3.7, Thm. 3.7.1; Thm. 4.5.1, p. 109; any class number (given τ = 2 for ⟨-a,-b,ab⟩ and rank-4 Siegel for m = 1)"]
 theorem tamagawaNumberTwo_of_pureForm_nf
     (h : ∀ a b : 𝓞 F, a ≠ 0 → b ≠ 0 → IsTotallyPosDef ((pureFormO a b).map (algebraMap (𝓞 F) F)) →

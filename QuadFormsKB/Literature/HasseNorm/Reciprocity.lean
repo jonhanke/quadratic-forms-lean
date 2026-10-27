@@ -315,7 +315,7 @@ $\prod_v (a,b)_v = 1$.
 *Proof* (Weil's route, no class field theory): the local identities
 $\gamma_v(ab)\gamma_v(1) = (a,b)_v\gamma_v(a)\gamma_v(b)$ at every place multiply, by Weil's product formula
 $\prod_v\gamma_v(t) = 1$ (`weilInf_mul_finprod_weilV`, adelic Poisson summation), to $\prod_v(a,b)_v = 1$. -/
-@[kb "omeara1963" "§71D, 71:18, p. 201"]
+@[kb "omeara1963" "§71:18 [unverified]"]
 theorem hilbert_product_formula_nf (a b : F) (ha : a ≠ 0) (hb : b ≠ 0) :
     {v : NFPlace F | v.hilbert a b = -1}.Finite ∧ Even {v : NFPlace F | v.hilbert a b = -1}.ncard := by
   set Sinf : Set (InfinitePlace F) := {w | (NFPlace.infinite w).hilbert a b = -1}

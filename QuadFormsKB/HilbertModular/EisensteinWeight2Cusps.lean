@@ -11,7 +11,7 @@ $H_{W',2}(z, s) = N(D)^{-2}\prod_v|\sigma_v(D)|^{-2s}H_{W_A,2}(z, s)$ (`heckeSer
 $$E_{W,2}\,|_2\,A = N(D)^2\,E_{W',2}\qquad(\texttt{eis2\_slash\_eq\_scale}),$$
 and hence (`tendsto_eis2_atImInfty` for $W'$)
 $$\lim(E_{W,2}\,|_2\,A)(z) = N(D)^2\mathrm c(W') = \mathrm c(W_A)\qquad(\textbf{\texttt{tendsto\_eis2\_slash}}),$$
-the same formula as for $k \ge 3$ (`tendsto_eisSeries_slash`, `eisConst_slashWeight`). This closes the gap 1.
+the same formula as for $k \ge 3$ (`tendsto_eisSeries_slash`, `eisConst_slashWeight`).
 
 Sources: Hecke (1927) [unverified]; Shimura (Duke 1978), Prop. 3.4 [unverified]; Freitag (1990), Ch. I §5 [unverified].
 -/
@@ -290,7 +290,7 @@ theorem eis2_slash_eq_scale (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hW : In
 
 /-- **Weight-2 constant terms at every cusp** ($d \ge 2$): for an integral weight $W$ of weight 2 and every
 $A \in \mathrm{SL}_2(F)$, $(E_{W,2}\,|_2\,A)(z) \to \mathrm c_\infty(W_A) = \sum_{t\in U\backslash F^\times}W(-tA_{10}, tA_{00})N(t)^{-2}$
-(`eisConst_slashWeight`) as $\min_v\operatorname{Im}z_v \to \infty$: The same formula as in weight $k \ge 3$. -/
+(`eisConst_slashWeight`) as $\min_v\operatorname{Im}z_v \to \infty$: the same formula as in weight $k \ge 3$. -/
 @[kb "shimura1978" "Prop. 3.4, constant terms of the weight-2 Eisenstein series at every cusp [unverified]"]
 theorem tendsto_eis2_slash (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hW : IntWeight W 2 𝔐)
     (A : SL(2, F)) :

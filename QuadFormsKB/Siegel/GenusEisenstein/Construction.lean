@@ -1,5 +1,6 @@
 /-
 # The Eisenstein part of a weight-2 form on $\Gamma_1(N)$
+
 For every $f \in M_2(\Gamma_1(N))$ we build an Eisenstein series $E_f$ (`eisQ f`, a finite combination of the series
 $E_W$ of `EisensteinWt2`) with the same constant term as $f$ at every cusp, so that $f - E_f$ is a cusp form
 (`cuspPart f`, **`cuspPart_apply`**). Applied to $f = \Theta_{\mathrm{Gen}(Q)}$ this is the Eisenstein series $E_Q$ of Siegel's

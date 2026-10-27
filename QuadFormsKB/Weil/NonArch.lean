@@ -52,7 +52,7 @@ variable (K : Type*) [NontriviallyNormedField K] [IsUltrametricDist K] [ProperSp
 /-- **Test functions on a non-archimedean local field $K$:** the locally constant compactly supported
 $f : K \to \mathbb C$, i.e. there are $R$ and $\varepsilon > 0$ with $f(x) \ne 0 \Rightarrow \|x\| \le R$ and
 $f(x+h) = f(x)$ for $\|h\| \le \varepsilon$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §1.3, pp. 307–308 (Tate's class 𝔅₁: f continuous and integrable with f̂ integrable)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (Schwartz–Bruhat functions) [unverified]"]
 def SBK : Submodule ℂ (K → ℂ) where
   carrier := {f | ∃ R ε : ℝ, 0 < ε ∧ (∀ x, f x ≠ 0 → ‖x‖ ≤ R) ∧ ∀ x h, ‖h‖ ≤ ε → f (x + h) = f x}
   zero_mem' := ⟨0, 1, one_pos, fun x h => absurd rfl h, fun _ _ _ => rfl⟩

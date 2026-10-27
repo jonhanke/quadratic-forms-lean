@@ -3,7 +3,7 @@
 
 **Setting.** $F$ totally real, $Q_0$ a form over $\mathcal{O}_F$ in $n = 2k$ variables, $Q = Q_0 \otimes F$ on $V = F^n$ (`formF Q₀`), and
 $L = \mathcal{O}_F^n$ (`stdLat`). The genus and the class set are those of `Lattices` (`Lattices.genusClasses`, `Lattices.mass`): classes of
-lattices $M \subseteq F^n$ in the genus of $L$ in $(V, Q)$, with weights $1/|O(M)|$ (full orthogonal group, the library's convention).
+lattices $M \subseteq F^n$ in the genus of $L$ in $(V, Q)$, with weights $1/|O(M)|$ (full orthogonal group, the convention of this repository).
 
 **Definitions.**
 * `thetaLatt Q M` $= \theta_M(z) = \sum_{x\in M}e\big(\sum_v\sigma_v(Q(x))z_v\big)$ for any $\mathcal{O}_F$-lattice $M \subseteq F^n$;
@@ -30,7 +30,7 @@ over **every** number field, any class number (`genusFree_of_nondegenerate`, `ge
 Over $\mathbb{Q}$: `Siegel.thetaGen`, `Siegel.thetaGenCusp` (`Siegel/ThetaCuspidal.lean`).
 
 Sources: Siegel, *Über die analytische Theorie der quadratischen Formen*, Ann. of Math. 36 (1935) [unverified]; Shimura (1973),
-§2 [unverified]; O'Meara (1963), §82C, p. 222 (class), §102A, p. 297 (genus); O'Meara does not treat the mass.
+§2 [unverified]; O'Meara (1963), §§82, 102 (genus, class, mass) [unverified].
 -/
 import QuadFormsKB.HilbertModular.ThetaGenusInv
 import QuadFormsKB.HilbertModular.ThetaPosDef
@@ -93,8 +93,8 @@ def GenusFree (Q : QuadForm F n) (L : Lat F n) : Prop :=
 /-- **The genus theta series** (mass-weighted, Siegel's average):
 $$\theta_{\mathrm{Gen}(L)}(z) = \mathrm{Mass}(L)^{-1}\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{\theta_M(z)}{|O(M)|},\qquad
   \mathrm{Mass}(L) = \sum_{\mathrm{cls}(M)}\frac1{|O(M)|},$$
-summed over the classes of the genus (`genusClasses`, a `finsum`), $\theta_M$ for the representative `c.out`, $O(M)$
-the full orthogonal group (`LatClass.autCard`). Parameters: `Q` (the form on $F^n$), `L` (the lattice). -/
+summed over the classes of `Lattices.genusClasses` (`genusClasses`, a `finsum`), $\theta_M$ for the representative `c.out`, $O(M)$ the full orthogonal
+group (`LatClass.autCard`). Parameters: `Q` (the form on $F^n$), `L` (the lattice). -/
 @[kb "siegel1935" "the genus theta series (Siegel's average), over F [unverified]"]
 noncomputable def thetaGen (Q : QuadForm F n) (L : Lat F n) (z : InfinitePlace F → UpperHalfPlane) : ℂ :=
   ((mass Q L : ℝ) : ℂ)⁻¹ * ∑ᶠ c ∈ genusClasses Q L, ((LatClass.autCard Q c : ℂ))⁻¹ * thetaLatt Q c.out.1 z

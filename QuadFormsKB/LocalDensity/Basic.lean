@@ -36,7 +36,7 @@ $\nu_j = 0$): $\vec{x}$ is of Good type if it is **not** of Zero type and $x_i \
 some $i \in S_0$. (Def. 3.1 asks that $\pi^{\nu_j}\vec{x}_j \not\equiv \vec{0} \pmod p$ for some component $j$;
 this fails automatically when $\nu_j \ge 1$, so only the unimodular components matter.)
 
-*Update*: The basis-free reformulation of Remark 3.1.1 is valid only for
+*Update* (`docs/updates-and-errata.md`): the basis-free reformulation of Remark 3.1.1 is valid only for
 odd $p$ (`isGoodType_diag_iff_hessian` below); at $p = 2$ no criterion in terms of $B$ and $Q \bmod 2$
 alone reproduces Def. 3.1, so the type is defined from the Jordan splitting. -/
 def IsGoodType (S₀ : Finset (Fin n)) (p k : ℕ) (x : Fin n → ZMod (p ^ k)) : Prop :=
@@ -60,7 +60,7 @@ attained for large $k$, when $Q$ is nondegenerate and $m \ne 0$: `localDensity_e
 
 *Normalization.* This matches Siegel's definition (5.1),
 $\beta_p(m) = \lim_{U \to \{m\}} \mathrm{Vol}(Q^{-1}(U))/\mathrm{Vol}(U)$ with $\mathrm{Vol}(\mathbb{Z}_p) = 1$:
-taking $U = m + p^k\mathbb{Z}_p$ gives $r_{p^k}(m)\,p^{-kn} / p^{-k}$. *Erratum* (confirmed by the author 2026-10-15): The paper's (5.2) prints
+taking $U = m + p^k\mathbb{Z}_p$ gives $r_{p^k}(m)\,p^{-kn} / p^{-k}$. *Erratum* (`docs/updates-and-errata.md`, confirmed by the author 2026-10-15): the paper's (5.2) prints
 the denominator as $q^{(n-1)(\nu-1)}$; the correct one, used here, is $q^{\nu(n-1)}$. -/
 noncomputable def localDensity (Q : QuadForm ℤ n) (p : ℕ) (m : ℤ) : ℝ :=
   Filter.limUnder Filter.atTop fun k : ℕ => (repCount Q p k m : ℝ) / (p : ℝ) ^ (k * (n - 1))
@@ -539,7 +539,7 @@ $\vec{x}$ is of Good type iff it is not of Zero type and $B(\vec{x}, \vec{e}_j) 
 some $j$, i.e. some entry of $H\vec{x}$ is nonzero mod $p$ ($H$ the Hessian). This is the
 basis-free description $\vec{x} \notin L^{p} = \{\vec{x} : B(\vec{x}, L) \subseteq p\mathbb{Z}_p\}$.
 
-*Update*: Remark 3.1.1 prints $B(\vec{x}, L) \subseteq \mathfrak{o}_\mathfrak{p}$; it
+*Update* (`docs/updates-and-errata.md`): Remark 3.1.1 prints $B(\vec{x}, L) \subseteq \mathfrak{o}_\mathfrak{p}$; it
 should be $\subseteq \mathfrak{p}$, and the reformulation holds only for odd $p$ (at $p = 2$:
 $Q = x_0^2 + x_1^2$, $\vec{x} = (1,1)$ is Good, but $Q(\vec{x})$ and all $B(\vec{x}, \cdot)$ vanish mod 2).
 *Proof:* $(H\vec{x})_j = 2 a_j x_j$ and $2$ is a unit mod odd $p$. -/

@@ -5,11 +5,11 @@
 order with $\mathcal O_F$-basis $e$ and Gram matrix $A_{\mathcal O}$ of $\operatorname{nrd}$ in $e$ (`gramMat`).
 
 * `qv_gramMat`, `gramMat_transform`, `isTotPosGram_gramMat`: the Gram matrix of $(\sum_i\xi_if_i, \operatorname{nrd})$ and its positivity.
-* `epsteinSumIdeal_eq`: the Epstein sum of a left ideal $J$ (the `epsteinSumIdeal`) is the Epstein zeta function of the lattice
+* `epsteinSumIdeal_eq`: the Epstein sum of a left ideal $J$ (`epsteinSumIdeal`) is the Epstein zeta function of the lattice
   $(\mathcal O_F^4, A_J)$, $A_J$ the Gram matrix of a basis of $J$ (`epsteinLat`).
 * **Eichler's mass formula** (`eichler_mass_formula`): with $\Lambda = \frac{\rho_F}2\,c_{\mathcal O}/K$,
   $$\Lambda\sum_{[J]\ne0}[\Gamma_J : \mathcal O_F^\times]^{-1} = \rho_F\,\zeta_F(2)\prod_{\mathfrak p\in\operatorname{Ram}_f(D)}(1 - N\mathfrak p^{-1}),$$
-  $c_{\mathcal O} = (\prod_v\sqrt{\det\sigma_v(A_{\mathcal O})})^{-1}|d_F|^{-2}$ (the `latConst`), $K = |d_F|^{-1/2}\pi^{-2d}$ (`epsteinConst F 4 0`). Equivalently
+  $c_{\mathcal O} = (\prod_v\sqrt{\det\sigma_v(A_{\mathcal O})})^{-1}|d_F|^{-2}$ (`latConst`), $K = |d_F|^{-1/2}\pi^{-2d}$ (`epsteinConst F 4 0`). Equivalently
   $\sum_{[J]}[\Gamma_J:\mathcal O_F^\times]^{-1} = 2\,|d_F|^{3/2}(\prod_v\sqrt{\det\sigma_v(A_{\mathcal O})})\,\pi^{-2d}\zeta_F(2)\prod_{\mathfrak p\in\mathrm{Ram}_f}(1-N\mathfrak p^{-1})$.
   *Proof:* compare the residues at $s = 2$ of the two sides of the class decomposition (`zetaO_eq_tsum_class`): the Euler product on
   the left, and on the right $N(\nu_J)^{s}E'_J(s)$ (`epsteinSum_eq`) with $\operatorname{Res}E'_J = \frac{\rho_F}{2}c_J/K$ (`tendsto_sub_mul_epsteinLat`)
@@ -163,7 +163,7 @@ theorem prod_abs_realEmb_eq (x : F) : ∏ v : InfinitePlace F, |realEmb F v x| =
   rw [hm, pow_one, ← InfinitePlace.norm_embedding_of_isReal (IsTotallyReal.isReal v), Real.norm_eq_abs]
   rfl
 
-/-- **The lattice constant of a sublattice** $f = eB$: $c_f\cdot|N(\det B)| = c_e$ (the `latConst`, unit ideals). -/
+/-- **The lattice constant of a sublattice** $f = eB$: $c_f\cdot|N(\det B)| = c_e$ (`latConst`, unit ideals). -/
 theorem latConst_gramMat_mul (hdef : IsTotDefinite a b) {e f : Fin 4 → QuatF F a b} (hlie : LinearIndependent F e)
     (B : Matrix (Fin 4) (Fin 4) (𝓞 F)) (hf : ∀ j, f j = ∑ i, algebraMap (𝓞 F) F (B i j) • e i) (hdet : B.det ≠ 0) :
     AdditiveZeta.latConst (gramMat f) (oneIdeals4 F) * |(Algebra.norm ℚ (algebraMap (𝓞 F) F B.det) : ℝ)| =
@@ -310,7 +310,7 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] [IsPrincipalIdea
   {a b : 𝓞 F} {O : Subalgebra (𝓞 F) (QuatF F a b)}
 
 /-- **The mass constant** $\Lambda = \frac{\rho_F}{2}c_{\mathcal O}/K$: $c_{\mathcal O}$ the lattice constant of $(\mathcal O, \operatorname{nrd})$ in the basis
-$e$ (the `latConst`), $K = |d_F|^{-1/2}\pi^{-2d}$ (`epsteinConst F 4 0`). -/
+$e$ (`latConst`), $K = |d_F|^{-1/2}\pi^{-2d}$ (`epsteinConst F 4 0`). -/
 def massConst (e : Module.Basis (Fin 4) (𝓞 F) (Subalgebra.toSubmodule O)) : ℝ :=
   dedekindZeta_residue F / 2 * AdditiveZeta.latConst (gramMat fun i => (e i : QuatF F a b)) (oneIdeals4 F) /
     epsteinConst F 4 0

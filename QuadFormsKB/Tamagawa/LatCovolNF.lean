@@ -1,5 +1,6 @@
 /-
 # Covolumes of presented lattices, for every class number
+
 **Layer:** $F$ a number field (any class number), $n \in \mathbb N$. A *presented lattice* is
 $$L(P,\mathfrak a) = \{P\xi : \xi_i \in \mathfrak a_i\} \subset F^n,\qquad P \in \mathrm{GL}_n(F),\ \mathfrak a_1,\dots,\mathfrak a_n\ \text{fractional ideals}$$
 (every $\mathcal O_F$-lattice has such a presentation, by Steinitz). Its *covolume* relative to $\mathcal O_F^n$ is
@@ -9,8 +10,7 @@ $\operatorname{covol}(P,\mathfrak a) = |N_{F/\mathbb Q}(\det P)|\prod_iN(\mathfr
   (as ℤ-lattices in the ℚ-space $F^n$: a ℚ-basis of $F^n$ spanning $L$ over ℤ is $P\,(\beta^{(i)}_k e_i)$, $\beta^{(i)}$ a ℤ-basis of $\mathfrak a_i$;
   its determinant against $(\omega_ke_i)$, $\omega$ an integral basis, is $N(\det P)\prod_i\det(\beta^{(i)}/\omega)$, `det_presBasis`,
   and $|\det(\beta^{(i)}/\omega)| = N(\mathfrak a_i)$, Mathlib's `det_basisOfFractionalIdeal_eq_absNorm`).
-* **`latConst_mul_covol`**: the lattice constant of $L(P,\mathfrak a)$ with Gram matrix $P^{\mathsf T}A_0P$ times
-  $\operatorname{covol}(P,\mathfrak a)$ is the
+* **`latConst_mul_covol`**: the lattice constant of $L(P,\mathfrak a)$ with Gram matrix $P^{\mathsf T}A_0P$ times $\operatorname{covol}(P,\mathfrak a)$ is the
   lattice constant of $(\mathcal O_F^n, A_0)$; hence **`latConst_eq_mul_relIndex`**: $c_{L'} = c_L\,[L':L]$ for $L \subseteq L'$.
 
 No basis of an $\mathcal O_F$-module is chosen: only ℤ-bases of fractional ideals (always free over ℤ) and ℚ-bases.

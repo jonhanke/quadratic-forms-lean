@@ -9,8 +9,7 @@ $\operatorname{nrd}(J) = (\operatorname{nrd}x : x \in J) \subseteq \mathcal O_F$
 (`localIdeal`). This file proves
 $$\{J : \operatorname{nrd}(J) = (n)\} \;\simeq\; \prod_{v \mid n}\{I \subseteq \mathcal O_v : \operatorname{nrd}(I) = \mathfrak p_v^{v(n)}\},\qquad
   J \mapsto (J_v)_{v\mid n},$$
-and hence, with the local counts, that the number of integral left ideals of reduced norm $(n)$
-is $\prod_{v\mid n}a_v(v(n))$
+and hence, with the local counts, that the number of integral left ideals of reduced norm $(n)$ is $\prod_{v\mid n}a_v(v(n))$
 (`card_ideal_nrd_eq_prod`): the Euler product of the zeta function $\zeta_{\mathcal O}(s) = \sum_J N(\operatorname{nrd}J)^{-s}$.
 
 **Ingredients.**

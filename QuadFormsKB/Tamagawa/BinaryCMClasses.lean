@@ -16,7 +16,8 @@ import QuadFormsKB.Tamagawa.BinaryCMGenus
 * **`exists_pair_of_genus`**: every lattice $M$ in the genus of $\mathcal O_E$ is $c^{-1}(d^{-1}\mathfrak A)$ with $N_{E/F}\mathfrak A = (d^2)$
   (`exists_mem_eval_not_mem` and Mathlib's $N\mathfrak A = (N(x) : x \in \mathfrak A)$, `Ideal.relNorm_apply`).
 
-Source: O'Meara 1963, §§81–82, pp. 208–238, §102A, p. 297; Shimura 2010, §4 [unverified].
+Source: O'Meara 1963, §§81–82, 102 [unverified]; Shimura 2010, §4 [unverified].
+
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero

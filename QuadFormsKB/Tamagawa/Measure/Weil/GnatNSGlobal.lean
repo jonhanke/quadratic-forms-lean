@@ -1,5 +1,5 @@
 /-
-# Non-square discriminant: adelic isomorphism $\Phi : P\cong SO(\langle1,-ad,-bd,abd\rangle)(\mathbb A_F)$
+# Non-square discriminant: the adelic isomorphism $\Phi : P\cong SO(\langle1,-ad,-bd,abd\rangle)(\mathbb A_F)$ and the global points
 
 
 **Layer:** as `GnatNSMaps`.

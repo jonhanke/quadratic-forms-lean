@@ -16,9 +16,10 @@ import QuadFormsKB.Tamagawa.SiegelRank3NF
   totally positive $m$; **`siegelFormulaAt3_natural_nf_uncond`**: the natural-order reading, given only `NaturalOrderEulerOne (chiTern Q₀ m)`.
 
 *Proof of the mass formula:* $E = F(\sqrt{-D})$ (`exists_sqrtExt_of_not_isSquare`), and `massFormula_of_discr` (the mass of $\mathcal O_E$,
-the local factors, the regulator relation) with the discriminant relation `discr_relation` (conductor and different).
+The local factors, the regulator relation) with the discriminant relation `discr_relation` (conductor and different).
 
 Source: Siegel 1935, Hauptsatz; Weil 1982, Thm. 3.7.1 (τ = 2) [unverified locators]; Shimura 2010, §4 [unverified].
+
 -/
 
 open NumberField IsDedekindDomain

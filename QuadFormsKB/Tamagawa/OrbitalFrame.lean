@@ -15,7 +15,7 @@ $b_i \perp \xi$, so that $Q(g x) = \rho x_0^2 + Q'(x_1, \dots, x_{N-1})$, $g = (
 * `AdaptedFrame`, `exists_adaptedFrame`: if $Q$ represents $\rho \ne 0$ over $F$, there are $g \in \mathrm{GL}_N(F)$ and a form $Q_0'$ over
   $\mathcal O_F$ in $N - 1$ variables with $Q\circ g = \langle\rho\rangle\perp Q_0'$.
 
-Sources: Weil 1982, §4.5, p. 109 (coordinates adapted to $\xi_\rho$) [unverified]; O'Meara 1963, 42:1, p. 90, and 42:4, p. 91. Indices are
+Sources: Weil 1982, §4.5, p. 109 (coordinates adapted to $\xi_\rho$) [unverified]; O'Meara 1963, §42 [unverified]. Indices are
 0-based ($e_0$ is the first basis vector).
 -/
 import QuadFormsKB.Tamagawa.IdealEuler
@@ -229,10 +229,9 @@ theorem compMat_smul_coeff {A : Type*} [CommRing A] {N r : ℕ} (Q : QuadForm A 
     ring
   · simp
 
-/-- **Existence of an adapted frame** (O'Meara 1963, 42:4, p. 91, with 42:1, p. 90): if $Q(\xi) = \rho \ne 0$ for some $\xi \in F^{n+1}$, then $Q$ has a frame
+/-- **Existence of an adapted frame** (O'Meara 1963, §42 [unverified]): if $Q(\xi) = \rho \ne 0$ for some $\xi \in F^{n+1}$, then $Q$ has a frame
 adapted to $\rho$. *Proof:* $\xi^\perp = \ker B(\xi, \cdot)$ has dimension $n$ and does not contain $\xi$ ($B(\xi,\xi) = 2\rho$); take $\xi$ and $d$ times a
 basis of $\xi^\perp$, $d \in \mathcal O_F$ clearing the denominators of the Gram form on $\xi^\perp$. -/
-@[kb "omeara1963" "§42, 42:4, p. 91, with 42:1, p. 90 (a regular subspace splits; orthogonal base)"]
 theorem exists_adaptedFrame (Q : QuadForm F (n + 1)) {ξ : Fin (n + 1) → F} {ρ : F} (hξ : Q.eval ξ = ρ)
     (hρ : ρ ≠ 0) : Nonempty (AdaptedFrame Q ρ) := by
   classical

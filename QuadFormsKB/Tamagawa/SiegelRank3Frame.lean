@@ -13,38 +13,36 @@ Hessian $H$, $d_Q = \det(H/2)$), a totally positive $m \in \mathcal O_F$, and an
 $Q_0\circ g = \langle m\rangle\perp Q_0'$ (`AdaptedFrame`) with **binary** complement $Q_0'$.
 
 This is the rank-3 analogue of `two_mul_tamagawaK_mul_repMass_frame` (which needs $N \ge 4$: in rank 3 the plain products
-$\prod\beta_\mathfrak p$ and $\prod\alpha_\mathfrak p(Q_0')$ do not converge unconditionally). The plan:
+$\prod\beta_\mathfrak p$ and $\prod\alpha_\mathfrak p(Q_0')$ do not converge unconditionally).
 
-**1. The character $\chi_m$ is quadratic (§1).** With $\delta_m = -2\det H\cdot m$ (`deltaTern`; $\chi_m(\mathfrak p) =
+**1. The character $\chi_m$ is quadratic.** With $\delta_m = -2\det H\cdot m$ (`deltaTern`; $\chi_m(\mathfrak p) =
 (\delta_m/\mathfrak p)$, `chiTern`), $\delta_m$ is totally negative, hence not a square, and $E_m = F(\sqrt{\delta_m})$ is a
 quadratic extension (`exists_sqrtExt_deltaTern`). At every $\mathfrak p \nmid 2\delta_m$, $\chi_m(\mathfrak p) = \chi_{E_m/F}(\mathfrak p)$
 (`relChar_eq_charNF`), so `chiTern Q₀ m` is `IsAlmostRelChar` and **$L_F(1,\chi_m)$ exists and is positive**
 (`lOne_chiTern_pos`, via `exists_hasLOne_of_almost_relChar`). No hypothesis.
 
-**2. $\chi' = \chi_m$ (§2).** The binary character $\chi'(\mathfrak p)$ = `chiP` of $Q_0'$ is $(-\det H'/\mathfrak p)$ at good
+**2. $\chi' = \chi_m$.** The binary character $\chi'(\mathfrak p)$ = `chiP` of $Q_0'$ is $(-\det H'/\mathfrak p)$ at good
 $\mathfrak p$ (`chiP_binary_eq_charNF`). The frame gives $\det(g)^2\det H = 2m\det H'$, so $-\det H' = \theta'^2$ with
 $\theta' = \sqrt{\delta_m}\,\det g/(2m) \in E_m$: $\chi'$ is also almost $\chi_{E_m/F}$, and **$\chi' = \chi_m$ outside a finite
 set** (`chiP_frame_eq_chiTern`).
 
-**3. Good-prime values (§3).** $\alpha_\mathfrak p(Q_0') = 1 - \chi'(\mathfrak p)/N\mathfrak p$ at $\mathfrak p \nmid 2\det H'$
+**3. Good-prime values.** $\alpha_\mathfrak p(Q_0') = 1 - \chi'(\mathfrak p)/N\mathfrak p$ at $\mathfrak p \nmid 2\det H'$
 (`siegelDensity_binary_good`), so $\alpha_\mathfrak p(Q_0')(1-\chi'(\mathfrak p)/N\mathfrak p)^{-1}$ has finite support
-(`multipliable_siegelDensity_binary_reg`, `regProd_siegelDensity_binary`). For $\beta_\mathfrak p$:
-`localDensity_mul_one_sub_chiTern`.
+(`multipliable_siegelDensity_binary_reg`, `regProd_siegelDensity_binary`). For $\beta_\mathfrak p$: `localDensity_mul_one_sub_chiTern`.
 
-**4. The regularized rank-2 Tamagawa measure (§4).** `tamagawaKReg Q'` $= |d_F|^{-1/2}\prod_\sigma\mathrm{vol}(SO(V'_\sigma))\cdot
+**4. The regularized rank-2 Tamagawa measure.** `tamagawaKReg Q'` $= |d_F|^{-1/2}\prod_\sigma\mathrm{vol}(SO(V'_\sigma))\cdot
 L_F(1,\chi')^{-1}\prod_\mathfrak p\alpha_\mathfrak p(Q')(1-\chi'(\mathfrak p)/N\mathfrak p)^{-1}$ (convergence factors
-$\lambda_\mathfrak p = L_\mathfrak p(1,\chi')$), and `tauSOReg Q'` $=$ `tamagawaKReg Q'` $\cdot\,\mathrm{mass}_{SO}$, exactly as
-`tauSO` with the regularized measure (`tauSOReg_eq`: $= $ `tamagawaKReg Q'` $\cdot\,2\,\mathrm{Mass}(Q')$).
+$\lambda_\mathfrak p = L_\mathfrak p(1,\chi')$), and `tauSOReg Q'` $=$ `tamagawaKReg Q'` $\cdot\,\mathrm{mass}_{SO}$, exactly as `tauSO` with the regularized measure (`tauSOReg_eq`: $= $ `tamagawaKReg Q'` $\cdot\,2\,\mathrm{Mass}(Q')$).
 `regProd_congr_finite`: the regularized product does not see a change of $\chi$ at finitely many primes.
 
-**5. The rank-3 frame identity (§5)** (`two_mul_tamagawaK_mul_repMass_frame3`), unconditional:
+**5. The rank-3 frame identity** (`two_mul_tamagawaK_mul_repMass_frame3`), unconditional:
 $$2\,\mu_{\mathrm{Tam}}(K_{SO}(Q_0))\cdot\mathrm{repMass}(\mathcal O_F^3, m) = \tau^{\mathrm{reg}}(SO(Q_0'))\cdot S_3(L, m),$$
 $S_3$ = `siegelProduct3` (regularized). No hypothesis: the local orbital identities are the theorem
 `orbitalLocalIdentities`. With $\tau(SO(Q_0)) = 2$ (`TamagawaNumberTwo`, from `TernaryTamagawaTwo`) and
-$\tau^{\mathrm{reg}}(SO(Q_0')) = 2$ it is `SiegelFormulaAt3 Q₀ m` (`siegelFormulaAt3_of_frame`); for every $m$ from
-`BinaryTamagawaTwoReg F` (`siegelFormulaAt3_of_tau`, using
-`siegelProduct3_eq_zero_of_not_rep` when $Q_0$ does not represent $m$ over $F$); `BinaryTamagawaTwoReg F` is proved
-(`binaryTamagawaTwoReg_nf` in `Tamagawa/BinaryTauNF.lean`).
+$\tau^{\mathrm{reg}}(SO(Q_0')) = 2$ it is `SiegelFormulaAt3 Q₀ m` (`siegelFormulaAt3_of_frame`); for every $m$ with the
+named input `BinaryTamagawaTwoReg F` (`siegelFormulaAt3_of_tau`, using
+`siegelProduct3_eq_zero_of_not_rep` when $Q_0$ does not represent $m$ over $F$).
+
 -/
 
 open NumberField IsDedekindDomain Matrix Filter Topology
@@ -218,8 +216,8 @@ variable (v : HeightOneSpectrum (𝓞 F))
 local notation "𝔽" => IsLocalRing.ResidueField (v.adicCompletionIntegers F)
 local notation "res" => IsLocalRing.residue (v.adicCompletionIntegers F)
 
-/-- **The binary character at a good prime:** for $\mathfrak p \nmid 2\det H'$, `chiP v Q'` $= (-\det H'/\mathfrak p)$
-(the discriminant $(-1)\det(H'/2) = -\det H'/4$, and $4$ is a square). -/
+/-- **The binary character at a good prime:** for $\mathfrak p \nmid 2\det H'$, `chiP v Q'` $= (-\det H'/\mathfrak p)$ (the
+discriminant $(-1)\det(H'/2) = -\det H'/4$, and $4$ is a square). -/
 theorem chiP_binary_eq_charNF (Q' : QuadForm (𝓞 F) 2) (h2 : (2 : 𝓞 F) ∉ v.asIdeal)
     (hd : Q'.hessian.det ∉ v.asIdeal) :
     chiP v Q' = (Siegel.charNF v (-Q'.hessian.det) : ℝ) := by
@@ -366,15 +364,14 @@ variable (Q' : QuadForm (𝓞 F) 2)
 $\chi'$ = `chiP · Q'`):
 $$\mu^{\mathrm{reg}}_{\mathrm{Tam}}(K_{SO}) = |d_F|^{-1/2}\prod_\sigma\mathrm{vol}(SO(V'_\sigma))\cdot
 L_F(1,\chi')^{-1}\prod_\mathfrak p\alpha_\mathfrak p(Q')\bigl(1-\chi'(\mathfrak p)N\mathfrak p^{-1}\bigr)^{-1}.$$
-This is `tamagawaK` with `tprod` replaced by `regProd (chiP · Q') (-1)` (the plain product diverges). The corrected
-product has finite support (`multipliable_siegelDensity_binary_reg`). -/
+`tamagawaK` with `tprod` replaced by `regProd (chiP · Q') (-1)` (the plain product diverges). The corrected product has
+finite support (`multipliable_siegelDensity_binary_reg`). -/
 @[kb "weil1982" "§2.3 and Lemma 2.4.2 (convergence factors λ_v = L_v(1, χ)) [unverified]"]
 def tamagawaKReg : ℝ :=
   (|(discr F : ℝ)|) ^ (-((2 : ℝ) * (2 - 1) / 4)) * (∏ σ : F →ₐ[ℚ] ℂ, archVolSO 2 (detGram Q' σ)) *
     regProd (fun v => chiP v Q') (-1) fun v => NF.siegelDensity v Q' Q'
 
-/-- **$\tau^{\mathrm{reg}}(SO(V'))$ for a totally definite binary $V'$:** `tamagawaKReg Q'` times the $SO$-mass, exactly as for
-`tauSO`. Its value is $2$ (`binaryTamagawaTwoReg_nf`). -/
+/-- **$\tau^{\mathrm{reg}}(SO(V'))$ for a totally definite binary $V'$:** `tamagawaKReg Q'` times the $SO$-mass, exactly as `tauSO`. Its value $2$ is `BinaryTamagawaTwoReg`. -/
 @[kb "weil1982" "§2.4, p. 23 and Lemma 2.4.2, p. 26 (rank 2, regularized measure) [unverified]"]
 def tauSOReg : ℝ :=
   tamagawaKReg Q' * dcMass ((ratPoints (formF Q')).subgroupOf (soAf (formF Q')))
@@ -393,8 +390,8 @@ section Frame3
 
 variable [IsTotallyReal F]
 
-/-- `two_mul_tamagawaK_mul_repMass_frame3` with the form in $2 + 1$ variables (the proof of the frame identity at $n = 2$,
-with the regularized products). -/
+/-- `two_mul_tamagawaK_mul_repMass_frame3` with the form in $2 + 1$ variables (the frame-identity proof at $n = 2$, with the
+regularized products). -/
 theorem two_mul_tamagawaK_mul_repMass_frame3_aux (Q₀ : QuadForm (𝓞 F) (2 + 1)) (hpd : IsTotallyPosDef (formF Q₀))
     {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m))
     (fr : AdaptedFrame (formF Q₀) (algebraMap (𝓞 F) F m)) :
@@ -415,7 +412,7 @@ theorem two_mul_tamagawaK_mul_repMass_frame3_aux (Q₀ : QuadForm (𝓞 F) (2 + 
     exact isTotallyPosDef_of_splitForm h1
   have hgli : ∀ v, OrbitalLocalIdentityAt v Q₀ fr := fun v =>
     orbitalLocalIdentityAt_all (orbitalLocalIdentities Q₀ hQ₀) hQ₀ (by norm_num) hρ fr v
-  -- the local factors (as in the frame identity)
+  -- the local factors
   set W0 : HeightOneSpectrum (𝓞 F) → ℝ := fun v => locW v fr 0
   set α : HeightOneSpectrum (𝓞 F) → ℝ := fun v => NF.siegelDensity v Q₀ Q₀
   set α' : HeightOneSpectrum (𝓞 F) → ℝ := fun v => NF.siegelDensity v fr.Q' fr.Q'
@@ -551,9 +548,9 @@ number; Weil 1982, §4.5, p. 100 and p. 109 [unverified], at $N = 3$). For $Q_0$
 $\mathcal O_F$ ($F$ totally real, any class number), $m \in \mathcal O_F$ totally positive and any adapted frame
 $Q_0\circ g = \langle m\rangle\perp Q_0'$:
 $$2\,\mu_{\mathrm{Tam}}(K_{SO}(Q_0))\cdot\mathrm{repMass}(\mathcal O_F^3, m) = \tau^{\mathrm{reg}}(SO(Q_0'))\cdot S_3(L, m),$$
-$S_3$ = `siegelProduct3` (with $L_F(1,\chi_m)$), $\tau^{\mathrm{reg}}$ = `tauSOReg` (with $L_F(1,\chi')^{-1}$).
-**Unconditional**: the local orbital identities are the theorem `orbitalLocalIdentities`.
-*Proof.* The proof of `two_mul_tamagawaK_mul_repMass_frame_aux` with $n = 2$; the two divergent products are replaced by
+$S_3$ = `siegelProduct3` (with $L_F(1,\chi_m)$), $\tau^{\mathrm{reg}}$ = `tauSOReg` (with $L_F(1,\chi')^{-1}$). **Unconditional**: the
+local orbital identities are the theorem `orbitalLocalIdentities`.
+*Proof.* the proof (`two_mul_tamagawaK_mul_repMass_frame_aux`) with $n = 2$; the two divergent products are replaced by
 $\prod\beta_\mathfrak p(1-\chi_m/N\mathfrak p)$ (absolutely convergent) and $\prod\alpha_\mathfrak p(Q_0')(1-\chi_m/N\mathfrak p)^{-1}$ (finite support,
 `hasFiniteMulSupport_siegelDensity_binary_reg`, using $\chi' = \chi_m$ off a finite set, `chiP_frame_eq_chiTern`); the factors
 $L_F(1,\chi_m)^{\pm1}$ cancel (`lOne_chiTern_pos`, `regProd_congr_finite`). -/
@@ -589,7 +586,7 @@ theorem siegelProduct3_eq_zero_of_not_rep (Q₀ : QuadForm (𝓞 F) 3) (hpd : Is
 
 end Frame3
 
-/-! ### The interface for $\tau^{\mathrm{reg}}(SO_2) = 2$ -/
+/-! ### The interface: $\tau^{\mathrm{reg}}(SO_2) = 2$ -/
 
 /-- **Input: the regularized Tamagawa number of every totally definite binary form over $\mathcal O_F$ is $2$**
 ($\tau^{\mathrm{reg}}(SO(V')) = 2$; Ono / Weil for the norm torus $R^1_{E/F}\mathbb G_m$, with convergence factors
@@ -598,8 +595,8 @@ $\lambda_\mathfrak p = L_\mathfrak p(1,\chi')$ [unverified]).
 Field:
 - `tau_eq_two`: `tauSOReg Q' = 2` for every `Q' : QuadForm (𝓞 F) 2` with `formF Q'` totally positive definite.
 
-*Status.* Established by the backwards Weil step $1\to2$ from the binary Siegel formula and $\tau(SO_1) = 1$
-(`tauSO_rankOne_eq_one`), with the regularized change of lattice; the theorem is `binaryTamagawaTwoReg_nf`.
+*Status.* A theorem: over ℚ (`binaryTamagawaTwoReg_rat`, by the backwards Weil step $1\to2$ from the binary Siegel formula and
+$\tau(SO_1) = 1$, `tauSO_rankOne_eq_one`) and over every totally real $F$ (`binaryTamagawaTwoReg_nf`).
 *Independence (hypothesis hygiene):* a statement about binary forms only (their regularized local volumes and $SO$-mass);
 it mentions no ternary form, no number $m$ and no representation count, so it is not equivalent to Siegel's formula in
 rank 3 (which also needs `TernaryTamagawaTwo` and the frame identity). -/
@@ -631,7 +628,7 @@ theorem siegelFormulaAt3_of_frame (Q₀ : QuadForm (𝓞 F) 3) (hpd : IsTotallyP
 
 /-- **Siegel's formula in rank 3** (`SiegelFormulaAt3`) for every totally positive $m$, from $\tau(SO(Q_0)) = 2$ and
 `BinaryTamagawaTwoReg F` (both sides vanish when $Q_0$ does not represent $m$ over $F$). With `TernaryTamagawaTwo`
-this reduces the rank-3 formula to `BinaryTamagawaTwoReg`, which is proved (`binaryTamagawaTwoReg_nf`). -/
+this leaves `BinaryTamagawaTwoReg` as the only rank-3 input. -/
 @[kb "siegel1935" "Hauptsatz, n = 3 (regularized; from τ(SO_3) = τ(SO_2) = 2) [unverified]"]
 theorem siegelFormulaAt3_of_tau (Q₀ : QuadForm (𝓞 F) 3) (hpd : IsTotallyPosDef (formF Q₀))
     (hτ : TamagawaNumberTwo Q₀) (h2 : BinaryTamagawaTwoReg F) {m : 𝓞 F}

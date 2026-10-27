@@ -17,7 +17,7 @@ From these data:
   $M = (D_E\otimes\mathbb A_k)^\times$);
 * $p : G^\natural\to A_+$, $(m,a)\mapsto a$, surjective, with kernel $\cong\ker\nu$ (`kerSEquiv`);
 * the centre $Z = \{(s(u), u^2)\}\cong\mathbb A_k^\times$ (`zHom`, `kerZEquiv`) and $P := G^\natural/Z$ (`P`, the group
-  $SO(V)(\mathbb A_k)$), $\pi : G^\natural\to P$;
+  $SO(V)(\mathbb A_k)$ in the intended application), $\pi : G^\natural\to P$;
 * the Tamagawa-type measure $\mu_G$ := the fibred measure of $\mu_S$ (on $\ker\nu$) over `tamIdeles` restricted to $A_+$ (`muG`),
   and Weil's quotient measure $\mu_P = \mu_G/\mu_Z$, $\mu_Z$ = `tamIdeles` on the centre (`muP`, `fibMeas_muP`);
 * $\Gamma := \{(\gamma, f) : \gamma\in\Gamma_M,\ f\in k^\times\}\le G^\natural$ (`gam`) and its image $\pi(\Gamma)$ in $P$
@@ -205,7 +205,7 @@ instance normal_range_zHom : d.zHom.range.Normal :=
     refine ⟨u, ?_⟩
     rw [← d.zHom_central u g, mul_assoc, mul_inv_cancel, mul_one]⟩
 
-/-- $P = G^\natural/Z$ ($= SO(V)(\mathbb A_k)$). -/
+/-- $P = G^\natural/Z$ ($= SO(V)(\mathbb A_k)$ in the intended application). -/
 abbrev P : Type _ := d.G ⧸ d.zHom.range
 
 instance : MeasurableSpace d.P := borel _
@@ -602,8 +602,7 @@ theorem discreteTopology_gamP (hsΓ : ∀ u, d.s u ∈ d.ΓM ↔ u ∈ diagUnits
 
 omit [IsTopologicalGroup M] [LocallyCompactSpace M] [T2Space M] [SecondCountableTopology M] [MeasurableSpace M]
   [BorelSpace M] [IsTopologicalGroup T] [T2Space T] [DiscreteTopology d.ΓM] [Countable d.ΓM] in
-/-- Transport of an exact fundamental domain along a group isomorphism matching the subgroups (as
-`isExactFD_image_mulEquiv`). -/
+/-- Transport of an exact fundamental domain along a group isomorphism matching the subgroups (as `isExactFD_image_mulEquiv`). -/
 theorem _root_.QuadFormsKB.Tamagawa.Measure.Weil.isExactFD_image_mulEquiv' {H K : Type*} [Group H] [Group K]
     [MeasurableSpace H] [MeasurableSpace K] (e : H ≃* K) (hem : Measurable e.symm) (A : Subgroup H)
     (B : Subgroup K) (hAB : ∀ x, e x ∈ B ↔ x ∈ A) {E : Set H} (hE : IsExactFD (Γ := A) E) :
@@ -731,8 +730,8 @@ theorem muA_shell (heich : ∀ f : kˣ, diagUnits k f ∈ d.Apos → ∃ γ ∈ 
     · rintro ⟨⟨a, ha, rfl⟩, hb⟩; exact ⟨a, ⟨ha, hb⟩, rfl⟩
   rw [himg, tamIdeles_exactFD_logShell hFD, sub_zero, ENNReal.ofReal_one, mul_one]
 
-/-- **The centre.** The $Z$-fibres of $p^{-1}(B)$ have mass
-$\tfrac12\operatorname{vol}(k^\times\backslash\mathbb A^1)$, since $\log\|p(z(u)g)\| = 2\log\|u\| + \log\|p(g)\|$. -/
+/-- **The centre.** The $Z$-fibres of $p^{-1}(B)$ have mass $\tfrac12\operatorname{vol}(k^\times\backslash\mathbb A^1)$, since
+$\log\|p(z(u)g)\| = 2\log\|u\| + \log\|p(g)\|$. -/
 theorem muZ_shell (hsΓ : ∀ u, d.s u ∈ d.ΓM ↔ u ∈ diagUnitsSub k) {DZ : Set d.π.ker}
     (hDZ : IsExactFD (Γ := NormalFib.gammaK d.π d.gam) DZ) (g : d.G) :
     d.muZ (DZ ∩ {z : d.π.ker | (z : d.G) * g ∈ d.p ⁻¹' d.shellB}) =

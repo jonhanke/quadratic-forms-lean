@@ -11,13 +11,9 @@ $(D\otimes\mathbb A)^\times$ and $\operatorname{nrd} = $ `nrdHom` instead of the
 * `posA a b`: $A_+ = \{u\in\mathbb A^\times : u_w > 0$ at the real places where $D$ ramifies$\}$, open (`isOpen_posA`), and
   **`mem_posA_iff_exists_nrd`**: $A_+ = \operatorname{nrd}((D\otimes\mathbb A)^\times)$ (`exists_nrdUnit_eq`, `nrdUnit_pos_of_ramified`);
 * `exists_diag_mul_mem_posA`: every $F^\times$-orbit in $\mathbb A^\times$ meets $A_+$ (weak approximation of signs);
-* `exists_global_nrd`: $F^\times\cap A_+\subseteq\operatorname{nrd}(D^\times)$ (Hasse–Schilling–Maass/Eichler,
-  `eichler_norm_theorem_general`);
-* `kerNrdEquiv`: $\ker(\operatorname{nrd})\cong$ the `SL1A`, matching the global points (`kerNrdEquiv_mem_iff`);
-* `muSL1N`: the Tamagawa measure `muSL1` on $\ker\operatorname{nrd}$; `adK_nrdHom_eq`: conjugation by a unit only
-  depends on its norm-one part (the central section `quatSplit`). Its covolume $1$ (`covolume_muSL1N`) and its conjugation
-  invariance (`map_adK_muSL1N`), for every quaternion algebra, are in `GnatSquare.lean` (they use the split
-  $\tau(\mathrm{SL}_1) = 1$, which is downstream of this file);
+* `exists_global_nrd`: $F^\times\cap A_+\subseteq\operatorname{nrd}(D^\times)$ (Hasse–Schilling–Maass/Eichler, `eichler_norm_theorem_general`);
+* `kerNrdEquiv`: $\ker(\operatorname{nrd})\cong$ `SL1A`, matching the global points (`kerNrdEquiv_mem_iff`);
+* `muSL1N`: the Tamagawa measure `muSL1` on $\ker\operatorname{nrd}$; **`covolume_muSL1N`**: covolume $1$ for division $D$ (`tamagawa_SL1_division_unconditional`); **`map_adK_muSL1N`**: invariant under conjugation by every unit (`map_adK_muSL1` and the central section `quatSplit`);
 * `hdiv_of_totallyNeg`: a totally definite $D$ ($a, b$ negative at every real place) over a totally real $F$ is a division algebra.
 -/
 
@@ -109,7 +105,7 @@ theorem mem_quatOne_of_mem_ker {x : (QuatAdele a b)ˣ} (hx : x ∈ (nrdHom a b).
   have : nrdUnit x = 1 := hx
   rw [this, ideleNorm_one]
 
-/-- **$\ker(\operatorname{nrd} : (D\otimes\mathbb A)^\times\to\mathbb A^\times)\cong$ the `SL1A`** (inside $\mathbb H_{\mathbb A}^1$). -/
+/-- **$\ker(\operatorname{nrd} : (D\otimes\mathbb A)^\times\to\mathbb A^\times)\cong$ `SL1A`** (inside $\mathbb H_{\mathbb A}^1$). -/
 def kerNrdEquiv : (nrdHom a b).ker ≃ₜ* SL1A a b where
   toFun x := ⟨⟨x, mem_quatOne_of_mem_ker a b x.2⟩, mem_SL1A.2 x.2⟩
   invFun y := ⟨(y : quatOne a b), mem_SL1A.1 y.2⟩
@@ -164,7 +160,7 @@ variable {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
 include ha0 hb0 in
 theorem coe_ne_zero_of (h : a ≠ 0) : (a : F) ≠ 0 := by simpa using h
 
-/-- **the Tamagawa measure of $\mathrm{SL}_1$ on $\ker\operatorname{nrd}$.** -/
+/-- **The Tamagawa measure of $\mathrm{SL}_1$ on $\ker\operatorname{nrd}$.** -/
 def muSL1N : Measure (nrdHom (a : F) (b : F)).ker :=
   (muSL1 (valued_coe_le_one a) (valued_coe_le_one b) (by simpa using ha0) (by simpa using hb0)).map
     (kerNrdEquiv (a : F) (b : F)).symm
@@ -173,6 +169,47 @@ instance : (muSL1N ha0 hb0).IsHaarMeasure := by
   have := isHaarMeasure_muSL1 (valued_coe_le_one a) (valued_coe_le_one b) (F := F)
     (by simpa using ha0) (by simpa using hb0)
   exact ContinuousMulEquiv.isHaarMeasure_map _ _
+
+/-- **$\tau(\mathrm{SL}_1(D)) = 1$ on $\ker\operatorname{nrd}$** (division $D$, every number field). -/
+theorem covolume_muSL1N (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) :
+    covolume ((quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      (nrdHom (a : F) (b : F)).ker (muSL1N ha0 hb0) = 1 := by
+  have hH := isHaarMeasure_muSL1 (valued_coe_le_one a) (valued_coe_le_one b) (F := F)
+    (by simpa using ha0) (by simpa using hb0)
+  obtain ⟨DK, hDK⟩ := exists_exactFD_SL1F (a := (a : F)) (b := (b : F))
+  have hFD : IsExactFD (Γ := (quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      ((kerNrdEquiv (a : F) (b : F)).symm '' DK) :=
+    isExactFD_image_mulEquiv' (kerNrdEquiv (a : F) (b : F)).symm.toMulEquiv
+      (kerNrdEquiv (a : F) (b : F)).continuous.measurable _ _
+      (fun y => by
+        rw [← kerNrdEquiv_mem_iff]
+        change (kerNrdEquiv _ _) ((kerNrdEquiv _ _).symm y) ∈ _ ↔ _
+        rw [ContinuousMulEquiv.apply_symm_apply]) hDK
+  have : SMulInvariantMeasure ((quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      (nrdHom (a : F) (b : F)).ker (muSL1N ha0 hb0) := ⟨fun γ s _ => measure_preimage_mul _ _ _⟩
+  have hm : Measurable (kerNrdEquiv (a : F) (b : F)).symm := (kerNrdEquiv _ _).symm.continuous.measurable
+  have ha0' : (a : F) ≠ 0 := by simpa using ha0
+  have hb0' : (b : F) ≠ 0 := by simpa using hb0
+  have h1 := covolume_SL1_eq (valued_coe_le_one a) (valued_coe_le_one b) ha0' hb0' hDK
+  rw [tamagawa_SL1_division_unconditional ha0 hb0 hdiv] at h1
+  rw [(hFD.isFundamentalDomain _).covolume_eq_volume, muSL1N, Measure.map_apply hm hFD.1,
+    (kerNrdEquiv (a : F) (b : F)).symm.injective.preimage_image]
+  exact h1.symm
+
+/-- **Conjugation by any unit of $D\otimes\mathbb A$ preserves `muSL1N`** (division $D$). -/
+theorem map_adK_muSL1N (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) (m : (QuatAdele (a : F) (b : F))ˣ) :
+    (muSL1N ha0 hb0).map (NormalFib.adK (nrdHom (a : F) (b : F)) m) = muSL1N ha0 hb0 := by
+  rw [adK_nrdHom_eq, muSL1N]
+  have h1 : Measurable (kerNrdEquiv (a : F) (b : F)) := (kerNrdEquiv _ _).continuous.measurable
+  have h2 : Measurable (kerNrdEquiv (a : F) (b : F)).symm := (kerNrdEquiv _ _).symm.continuous.measurable
+  have h3 := NormalFib.measurable_adK (nrdOne (a : F) (b : F)) (quatSplit (a : F) (b : F) m).1
+  rw [Measure.map_map (h2.comp (h3.comp h1)) h2]
+  have : ((kerNrdEquiv (a : F) (b : F)).symm ∘ NormalFib.adK (nrdOne (a : F) (b : F)) (quatSplit _ _ m).1 ∘
+      kerNrdEquiv (a : F) (b : F)) ∘ (kerNrdEquiv (a : F) (b : F)).symm =
+      (kerNrdEquiv (a : F) (b : F)).symm ∘ NormalFib.adK (nrdOne (a : F) (b : F)) (quatSplit _ _ m).1 := by
+    funext y; simp
+  rw [this, ← Measure.map_map h2 h3,
+    map_adK_muSL1 (valued_coe_le_one a) (valued_coe_le_one b) _ _ hdiv]
 
 end Kernel
 

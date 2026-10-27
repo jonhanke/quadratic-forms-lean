@@ -3,6 +3,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.SL2Measure
 /-!
 # Siegel's mean value theorem for $\mathrm{SL}_2$ and finiteness of $\operatorname{vol}(\mathrm{SL}_2(\mathbb A_F)/\mathrm{SL}_2(F))$
 
+
 $F$ any number field, $\mu_T$ the fibration (Tamagawa) measure on $\mathrm{SL}_2(\mathbb A_F)$ (`SL2Measure.lean`),
 $\mathrm{SL}_2(F)$ acting on the right ($G_{\mathbb A}/G_k$, AAG §2.4).
 
@@ -10,11 +11,11 @@ $\mathrm{SL}_2(F)$ acting on the right ($G_{\mathbb A}/G_k$, AAG §2.4).
   $\mathrm{SL}_2(F)/N(F)\cong F^2\setminus 0$): for every fundamental domain $D$ of $G_{\mathbb A}/G_k$ and every
   measurable $f : \mathbb A_F^2\to[0,\infty]$,
   $$\int_D\sum_{\xi\in F^2\setminus0} f(g\xi)\,d\mu_T(g) = \int_{\mathbb A_F^2} f(y)\,dy .$$
-  *Proof:* $\mathrm{SL}_2(F)$ is transitive on $F^2\setminus 0$ with stabilizer $N(F)$ at $e_1$; the orbit unfolding of
-  Siegel's finiteness criterion reduces the left side to $\int_E f(ge_1)\,d\mu_T$ over an exact fundamental domain $E$
-  of $N(F)$, and in the coordinates $g = s(y)n(x)$ one can take $E = \{x\in D_{\mathbb A}\}$ ($D_{\mathbb A}$ the
-  fundamental domain of $F$ in $\mathbb A_F$, volume $1$),
-  so the integral is $\operatorname{vol}(\mathbb A_F/F)\int_P f\,dy = \int f\,dy$ ($P$ conull).
+  *Proof:* $\mathrm{SL}_2(F)$ is transitive on $F^2\setminus 0$ with stabilizer $N(F)$ at $e_1$; the orbit unfolding
+  reduces the left side to $\int_E f(ge_1)\,d\mu_T$ over an exact fundamental domain $E$ of $N(F)$, and in the
+  coordinates $g = s(y)n(x)$ one can take $E = \{x\in D_{\mathbb A}\}$ ($D_{\mathbb A}$ the fundamental domain of $F$ in
+  $\mathbb A_F$, volume $1$), so the integral is $\operatorname{vol}(\mathbb A_F/F)\int_P f\,dy = \int f\,dy$
+  ($P$ conull).
 * **Finiteness**: by adelic Minkowski there is a compact $C\subseteq\mathbb A_F^2$ with
   $\sum_{\xi\ne0}1_C(g\xi)\ge1$ for all $g$, so $\mu_T(D)\le\operatorname{vol}(C) < \infty$ (`muT_fundDomain_lt_top`); and
   $\mu_T(D) > 0$ (`muT_fundDomain_ne_zero`). Hence **`covolume_muT_lt_top`** and, for every Haar measure $\mu$,

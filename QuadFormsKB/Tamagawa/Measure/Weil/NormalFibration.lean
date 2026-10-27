@@ -4,8 +4,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.OrbitFibration
 # Haar measures fibred along a surjective homomorphism, without a section
 
 **Generic, Mathlib-only hypotheses (upstreamable).** Let $N : G\to Q$ be a surjective measurable homomorphism onto a
-group (commutative in the first use; generalized to any $Q$, e.g. $PD^\times(\mathbb A)$), $K = \ker N$, $\mu_K$ a
-left-invariant measure on $K$ and $\mu_Q$ a left-invariant measure on $Q$.
+group (commutative in the use; generalized to any $Q$, e.g. $PD^\times(\mathbb A)$), $K = \ker N$, $\mu_K$ a left-invariant measure on $K$ and $\mu_Q$ a left-invariant measure on $Q$.
 Weil's measure on $G$ "fibred over $Q$ with fibre measure $\mu_K$" (Weil 1982, §2.4, Thm 2.4.4 [unverified page]) is
 $$\nu(E) = \int_Q \mu_K\{k\in K : g_q k\in E\}\,d\mu_Q(q),\qquad N(g_q) = q,$$
 and the inner integrand does not depend on the choice of $g_q$ in the coset $g_qK$ (left invariance of $\mu_K$).

@@ -12,15 +12,15 @@ explicit value $P(m)$ of the conditionally convergent Euler product) and their b
 * `HilbertModular.siegelProductWith_eq_discr_mul_aEWithNF`: for $F$ totally real and $Q_0$ totally positive definite,
   `siegelProductWith Q₀ m P` $= |d_F|^{-(N-1)/2}\cdot$ `Siegel.aEWithNF Q₀ m P` for every value $P$ (the archimedean half of
   `siegelProduct_eq_discr_mul_aENF`, with $P$ free).
-* `Siegel.eulerProductReg3 Q m`: the regularized value of $\prod_p\beta_p(m)$ (regularized by $L(1,\chi_m)$),
-  defined through
+* `Siegel.eulerProductReg3 Q m`: the regularized value of $\prod_p\beta_p(m)$, defined through
   $Q\otimes\mathcal O_{\mathbb Q}$: $L(1,\chi_m)\prod_p\beta_p(m)(1-\chi_m(p)/p)$.
 * `RatBridge3.siegelProduct3_up`: `siegelProduct3 (up Q) m = Siegel.aEWith Q m (eulerProductReg3 Q m)`.
 * **Bridge** `RatBridge3.siegelFormula3_iff_siegelFormulaAt3`: Hanke's `SiegelFormula3 Q (eulerProductReg3 Q)` holds iff
   `SiegelFormulaAt3 (up Q) m` holds for every integer $m \ge 1$; and `siegelFormulaAt3_of_siegelFormula3`.
 
 The natural-order identification $P(m) = $ `eulerProductReg3 Q m` (`IsEulerProductValue`, which Hanke's rank-3 corollaries
-`thm_5_4_genus3`, `thm_5_7_a_genus`, … assume) is in `RatHeadline3` (via `EulerOne.tendsto_prod_primesBelow`).
+`thm_5_4_genus3`, `thm_5_7_a_genus`, … assume) is proved in `RatHeadline3` (via `EulerOne.tendsto_prod_primesBelow`).
+
 -/
 
 open NumberField Matrix IsDedekindDomain
@@ -96,7 +96,7 @@ namespace QuadFormsKB.Siegel
 
 open QuadFormsKB.Tamagawa
 
-/-- **The regularized value of $\prod_p\beta_p(m)$ for a ternary form over $\mathbb Z$** (regularized by $L(1,\chi_m)$):
+/-- **The regularized value of $\prod_p\beta_p(m)$ for a ternary form over $\mathbb Z$**:
 $$P_{\mathrm{reg}}(m) = L(1,\chi_m)\prod_p\beta_p(m)\Bigl(1-\frac{\chi_m(p)}{p}\Bigr),\qquad \chi_m(p) = \Bigl(\frac{-2\det H\cdot m}{p}\Bigr)\ (p \nmid 2\det H),$$
 computed through $Q\otimes\mathcal O_{\mathbb Q}$ (`RegProd.regProd` of `chiTern` and `NF.localDensity`; the primes of
 $\mathcal O_{\mathbb Q}$ are the rational primes and `NF.localDensity_rat` gives $\beta_\mathfrak p = \beta_p$). The value to use as

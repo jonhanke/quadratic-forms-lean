@@ -10,10 +10,9 @@ ideals in $\mathcal O_F$ are principal; Hilbert class field + Chebotarev, `Hecke
 $$\frac{1}{\mathrm{Mass}(L)}\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{r_M(\nu)}{|O(M)|} = |d_F|^{-(n-1)/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu).$$
 For $\mathcal O_F$ a PID the input is a theorem (`principalPrimeSupply_of_pid`), recovering `siegelFormula_nf`.
 
-**What changed against the class number one case** (`SiegelFormulaNF.lean`, $h_F = 1$):
-1. The genus of $\mathcal O_F^n$ is free for every $F$ (`genusFree_formF`, Steinitz), so the modularity, the cusp-form
-property ($\theta_{\mathrm{Gen}} - E_Q \in S_k$), the coefficients of $E_Q$ and `EisHeckeRel` hold for every $F$
-(`SteinitzGenus.lean`);
+**What changed against `SiegelFormulaNF.lean`** ( $h_F = 1$):
+1. the genus of $\mathcal O_F^n$ is free for every $F$ (`genusFree_formF`, Steinitz), so the modularity, the cuspidality ($\theta_{\mathrm{Gen}} - E_Q \in S_k$),
+   the coefficient formula for $E_Q$ and `EisHeckeRel` hold for every $F$ (`SteinitzGenus.lean`);
 2. Kneser neighbours at **principal** primes stay in the genus for every $F$ (`NeighborsNP.lean`), giving the $T(\pi^2)$ relation of the genus
    average (`HeckeGenusNP.lean`);
 3. the vanishing argument uses only the principal primes, hence the input (`eq_zero_of_heckeRel'`).
@@ -21,7 +20,7 @@ property ($\theta_{\mathrm{Gen}} - E_Q \in S_k$), the coefficients of $E_Q$ and 
 **Where the class group enters.** Only in step 3: at a non-principal prime $\mathfrak p$ the $\mathfrak p$-neighbour sum of $r_{M'}(\nu)$ involves
 $r_{\mathfrak p^{-1}M}(\nu)$, a representation number of the genus of $\mathfrak p^{-1}L$ (Steinitz class $[\mathfrak p]^{-n}$), i.e. another
 component of the adelic Hilbert modular form; theta series of single lattices live on one group, and no multi-component form is needed anywhere
-else. Removing the input needs either class field theory (the input itself) or the $h_F$-component version of the theta-series and Eisenstein-series results (theta series of the
+else. Removing the input needs either class field theory (the input itself) or the $h_F$-component version of the theta and Eisenstein constructions (theta series of the
 non-free lattices $\mathfrak a^{-1}\mathcal O_F^n$ and the Eisenstein series of their genera).
 
 Sources: Siegel, Ann. Math. 36 (1935) and 38 (1937) [unverified]; Hanke 2004, (5.3); Kneser 1957; Eichler 1952 [unverified].
@@ -267,7 +266,7 @@ theorem siegelFormula_nf' (hPS : PrincipalPrimeSupply F) {Q₀ : QuadForm (𝓞 
   refine Finset.sum_congr rfl fun c _ => ?_
   rw [div_eq_inv_mul]
 
-/-- **Siegel's formula over $F$ with the `repMass`**, any class number, $n \ge 6$ (given `PrincipalPrimeSupply F`). -/
+/-- **Siegel's formula over $F$ with `repMass`**, any class number, $n \ge 6$ (given `PrincipalPrimeSupply F`). -/
 @[kb "siegel1935" "Hauptsatz over F (repMass form), any class number, n ≥ 6 (given PrincipalPrimeSupply) [unverified]"]
 theorem siegelFormula_nf_repMass' (hPS : PrincipalPrimeSupply F) {Q₀ : QuadForm (𝓞 F) n}
     (hQ : IsTotallyPosDef (formF Q₀)) {k : ℕ}
@@ -283,9 +282,8 @@ theorem siegelFormula_nf_repMass' (hPS : PrincipalPrimeSupply F) {Q₀ : QuadFor
   conv_lhs => rw [← Quotient.out_eq c]
   rfl
 
-/-- **The input `SiegelFormulaAt` is a theorem for every totally real $F$** ($n = 2k \ge 6$, $m \gg 0$), given
-`PrincipalPrimeSupply F`. -/
-@[kb "siegel1935" "Hauptsatz over F: The SiegelFormulaAt, any class number, n ≥ 6 (given PrincipalPrimeSupply) [unverified]"]
+/-- **The input `SiegelFormulaAt` is a theorem for every totally real $F$** ($n = 2k \ge 6$, $m \gg 0$), given `PrincipalPrimeSupply F`. -/
+@[kb "siegel1935" "Hauptsatz over F: SiegelFormulaAt, any class number, n ≥ 6 (given PrincipalPrimeSupply) [unverified]"]
 theorem siegelFormulaAt' (hPS : PrincipalPrimeSupply F) {Q₀ : QuadForm (𝓞 F) n}
     (hQ : IsTotallyPosDef (formF Q₀)) {k : ℕ}
     (hn : n = 2 * k) (hk : 3 ≤ k) {m : 𝓞 F} (hm : ∀ v, 0 < realEmb F v (ιO m)) :

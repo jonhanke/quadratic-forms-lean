@@ -90,7 +90,7 @@ theorem hilbertSymbol_eq_one_iff_isotropic (K : Type*) [Field K] [CharZero K] (a
       linear_combination -hx
 
 /-- Symmetry. -/
-@[kb "serre1973" "Ch. III, §1.1, Prop. 2; cassels1978 Ch. 3, Lemma 2.1 (i), (ii), (iv), (v), p. 42"]
+@[kb "serre1973" "Ch. III, §1.1, Prop. 2"]
 theorem hilbertSymbol_comm (K : Type*) [Field K] (a b : K) :
     hilbertSymbol K a b = hilbertSymbol K b a := by
   unfold hilbertSymbol
@@ -116,7 +116,7 @@ theorem hilbertSymbol_comm (K : Type*) [Field K] (a b : K) :
   · rfl
 
 /-- `(a, -a) = 1`. -/
-@[kb "serre1973" "Ch. III, §1.1, Prop. 2; cassels1978 Ch. 3, Lemma 2.1 (i), (ii), (iv), (v), p. 42"]
+@[kb "serre1973" "Ch. III, §1.1, Prop. 2"]
 theorem hilbertSymbol_self_neg (K : Type*) [Field K] (a : K) : hilbertSymbol K a (-a) = 1 := by
   unfold hilbertSymbol
   rw [if_pos]
@@ -134,7 +134,7 @@ theorem hilbertSymbol_one_right (K : Type*) [Field K] (a : K) : hilbertSymbol K 
   · ring
 
 /-- Over `ℝ`: `(a, b) = -1` iff `a < 0` and `b < 0`. -/
-@[kb "serre1973" "Ch. III, §1.2; omeara1963 §61A, 61:2, p. 156 ((a,b) = -1 exactly when a, b < 0); cassels1978 Ch. 3, §2, tables (α)–(γ), pp. 42–44"]
+@[kb "serre1973" "Ch. III, §1.2"]
 theorem hilbertSymbol_real (a b : ℝ) (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSymbol ℝ a b = -1 ↔ a < 0 ∧ b < 0 := by
   unfold hilbertSymbol

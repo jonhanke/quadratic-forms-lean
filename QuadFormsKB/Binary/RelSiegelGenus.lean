@@ -5,8 +5,8 @@ import QuadFormsKB.Binary.RelGenusGroup
 /-!
 # Siegel's formula genus by genus for binary lattices over a totally real field
 
-$E/F$ CM, $(C, \eta)$ the proper classes of normalized lattices $L_{C,\eta} = (\mathfrak A_C, c_{C,\eta}N)$,
-$c_{C,\eta} = \eta/a_C$ (`scaleOf`). The **genus** of $L_{C,\eta}$ is the vector $(\psi_v(c_{C,\eta}))_v$.
+$E/F$ CM, $(C, \eta)$ the proper classes of normalized lattices $L_{C,\eta} = (\mathfrak A_C, c_{C,\eta}N)$, $c_{C,\eta} = \eta/a_C$ (`scaleOf`).
+The **genus** of $L_{C,\eta}$ is the vector $(\psi_v(c_{C,\eta}))_v$.
 
 * **`sum_genus_repNumLat`** (every $\nu \ne 0$, unconditional): all representations of $\nu$ come from the genus of $\nu$:
   $\sum_{(C,\eta) \in \mathcal G} r_{L_{C,\eta}}(\nu) = [\psi(\nu) = \mathcal G]\cdot\sum_{\text{all }(C,\eta)} r_{L_{C,\eta}}(\nu)$.
@@ -17,19 +17,18 @@ $c_{C,\eta} = \eta/a_C$ (`scaleOf`). The **genus** of $L_{C,\eta}$ is the vector
   primes of the norm form $Q_b$,
   $$r_{\mathcal G}(\nu) = \tfrac12\,|d_F|^{-1/2}\,\beta_\infty(\nu)\,L(1,\chi_{K/F})^{-1}\prod_{\mathfrak p \in T}\bigl(1 + \psi_\mathfrak p(\nu)\varphi_\mathfrak p\bigr)
      \prod_{\mathfrak p \mid \nu}\frac{\beta_\mathfrak p(Q_b, \nu)}{1 - \chi(\mathfrak p)N\mathfrak p^{-1}},$$
-  $r_\mathcal G(\nu)$ = the average of $r_L(\nu)$ over the proper classes $L$ in $\mathcal G$ (since every $|SO(L)| = w_K$, the
-  `properAutEquiv`, this is the mass-weighted average; that identification is a remark, not formalized), $T$ = the
+  $r_\mathcal G(\nu)$ = the average of $r_L(\nu)$ over the proper classes $L$ in $\mathcal G$ (since every $|SO(L)| = w_K$, `properAutEquiv`, this is the mass-weighted average; that identification is a remark, not formalized), $T$ = the
   ramified primes. This is Siegel's formula for $n = 2$, $\varepsilon = \frac12$, regularized product
- , with the **ramified local densities entering as** $\beta_\mathfrak p^{\mathcal G}(\nu) = 1 + \psi_\mathfrak p(\nu)\varphi_\mathfrak p \in \{0, 2\}$ for $\nu$ a
+, with the **ramified local densities entering as** $\beta_\mathfrak p^{\mathcal G}(\nu) = 1 + \psi_\mathfrak p(\nu)\varphi_\mathfrak p \in \{0, 2\}$ for $\nu$ a
   $\mathfrak p$-unit — the classical value, *not* computed here as a local density.
 
 **The input** `PosClassNumberRelation K`: $\#\{\text{totally positive proper classes}\}\cdot Q_K\,h_{K^+}\,2^t = 2\cdot 2^{t-1}\,h_K$
 ($= h_K/(Q_Kh_{K^+})$ classes for $t \ge 1$, $2h_K/(Q_Kh_{K^+})$ for $t = 0$). Classically this is a consequence of class field theory
 (the norm map $\mathrm{Cl}_K \to \mathrm{Cl}^+_{K^+}$ and Hasse's unit index; cf. Chevalley's ambiguous class number formula);
 over $\mathbb Q$ it is $h^+(D) = h(D)$. **Given the rest of this file it is equivalent to the formula** (by the summed
-formula `sum_repNumLat_eq_prod_localDensity` and the equal size of genera). **Proved in** `RelClassNumber.lean`
-(`posClassNumberRelation`, without class field theory: ambiguous ideals and Hilbert 90); `siegel_binaryF_genus'` there
-is the unconditional formula.
+formula `sum_repNumLat_eq_prod_localDensity` and the equal size of genera). **Proved** (`RelClassNumber.lean`,
+`posClassNumberRelation`, without class field theory: ambiguous ideals and Hilbert 90); `siegel_binaryF_genus'` there is the
+unconditional formula.
 
 Sources: Siegel, *Ann. Math.* 36 (1935), Hauptsatz [unverified]; Hanke (2004) (5.3); Shimura (2010) §4 [unverified].
 -/
@@ -163,7 +162,7 @@ local notation3 "K⁺" => NumberField.maximalRealSubfield K
 primes of $K^+$ in $K$): $\#G^+\cdot Q_K\,h_{K^+}\,2^t = 2\cdot2^{t-1}\,h_K$ (natural-number $t - 1$). A class-field-theory statement
 (norm map $\mathrm{Cl}_K \to \mathrm{Cl}^+_{K^+}$, Hasse's unit index); over $\mathbb Q$, $h^+(D) = h(D)$. *Not* definitionally the conclusion
 of `siegel_binaryF_genus`, but mathematically equivalent to it given the proved summed formula (see the module docstring).
-**Proved** in `RelClassNumber.lean`: `posClassNumberRelation`. -/
+**Proved** in `RelClassNumber.lean`: `posClassNumberRelation` (`RelClassNumber.lean`). -/
 structure PosClassNumberRelation : Prop where
   card_eq : ∀ T : Finset (HeightOneSpectrum (𝓞 K⁺)), (∀ 𝔭, 𝔭 ∈ T ↔ relChar K 𝔭 = 0) →
     (Nat.card {g : PairClass K⁺ K // IsPos K g} : ℝ) * IsCMField.indexRealUnits K * classNumber K⁺ * 2 ^ T.card =

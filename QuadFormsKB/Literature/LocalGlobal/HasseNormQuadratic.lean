@@ -65,7 +65,7 @@ of $M \otimes_F L$ iff $(a, b)_M = 1$.
 by $y = x_0 + x_1 s$ has matrix $\begin{pmatrix} x_0 & a x_1 \\ x_1 & x_0 \end{pmatrix}$, so
 `Algebra.norm M y` $= x_0^2 - a x_1^2$; $y$ is a unit iff its norm is nonzero. Conclude with the conic
 criterion `hilbertSymbol_eq_one_iff_conic` and $(a, b) = (b, a)$. -/
-@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]; omeara1963 §65A, p. 176 (local norm if and only if the Hilbert symbol is 1)"]
+@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]"]
 theorem norm_tensor_iff_hilbert {L : Type} [Field L] [NumberField L] [Algebra F L] (a : F)
     (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)

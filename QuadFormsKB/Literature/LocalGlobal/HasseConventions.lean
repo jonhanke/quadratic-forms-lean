@@ -4,7 +4,7 @@
 For a nondegenerate diagonal form $\langle a_0,\dots,a_{n-1}\rangle$, $a_i \in \mathbb{Q}^\times$, at a place
 $v$ of $\mathbb{Q}$ (so over $\mathbb{R}$ or $\mathbb{Q}_p$), the literature uses several invariants
 built from the Hilbert symbols $(a_i,a_j)_v$. Each is defined here as its own declaration
-(`RatPlace.hasseSerre`, `hasseCassels`, `hasseOMeara`, `hasseLam`, `hasseShimura`, `hasseConwaySloane`), then:
+(`RatPlace.hasseSerre`, `hasseCassels`, `hasseOMeara`, `hasseLam`, `hasseShimura`), then:
 
 * the exact conversions (Section "Conversions"): with $d = \prod a_i$, $\delta = (-1)^{n(n-1)/2} d$,
   $S = \varepsilon\,(d,d) = \varepsilon\,(-1,d) = \varepsilon\,(\delta,\delta)\,(-1,-1)^{n(n-1)/2}
@@ -14,6 +14,7 @@ built from the Hilbert symbols $(a_i,a_j)_v$. Each is defined here as its own de
   (`hasseInvariant_isometric`), over $\mathbb{R}$ (Sylvester's law, Mathlib) and the invariance of the
   discriminant square class;
 * the product formula over all places of $\mathbb{Q}$ in each convention.
+
 -/
 import QuadFormsKB.Literature.LocalGlobal.PadicClassification
 import QuadFormsKB.Literature.LocalGlobal.HilbertReciprocity
@@ -72,12 +73,11 @@ end RatPlace
 /-! ### The conventions -/
 
 /-- **The determinant $d = \prod_i a_i$ of the diagonal form $\langle a_0,\dots,a_{n-1}\rangle$**
-(coefficients in a commutative ring $R$; used for $R = \mathbb{Q}$ here and for a number field $F$ in
-`HasseConventionsNF.lean`; for $a_i \in \mathbb{Q}^\times$ an element of $\mathbb{Q}^\times$, well defined modulo squares in each completion). Serre's
+(an element of $\mathbb{Q}^\times$, well defined modulo squares in each completion). Serre's
 $d$ (IV.1.1, p. 27: $\det$ of the Gram matrix, "disc"; written $d(Q)$ in IV.2.1, p. 35), Cassels'
 $d(f)$ (Ch. 4 §1, p. 55: the determinant, as an element of $k^\times/(k^\times)^2$), O'Meara's $dV$,
 Lam's $d$ (the "determinant"; Lam's $d_\pm$ is `diagSignedDisc`). -/
-def diagDet {R : Type*} [CommMonoid R] (a : Fin n → R) : R := ∏ i, a i
+def diagDet (a : Fin n → ℚ) : ℚ := ∏ i, a i
 
 /-- **The signed discriminant $\delta = (-1)^{n(n-1)/2} \prod_i a_i$** of
 $\langle a_0,\dots,a_{n-1}\rangle$ (0-based indices; $n(n-1)/2$ is the number of pairs $i < j$).
@@ -86,7 +86,7 @@ Shimura's discriminant coset $\delta_0(\varphi) = (-1)^{n(n-1)/2}\det(\Phi)\,F^{
 artificial"; the Gram matrix of $\varphi$ in an orthogonal basis is $\mathrm{diag}(a_i)$, so this is
 exactly `diagSignedDisc`, up to squares); Lam's signed discriminant $d_\pm$ (V.2.? [unverified;
 Lam's book is not available locally]). -/
-def diagSignedDisc {R : Type*} [CommRing R] (a : Fin n → R) : R := (-1) ^ (n * (n - 1) / 2) * ∏ i, a i
+def diagSignedDisc (a : Fin n → ℚ) : ℚ := (-1) ^ (n * (n - 1) / 2) * ∏ i, a i
 
 namespace RatPlace
 
@@ -106,9 +106,9 @@ noncomputable def hasseSerre (v : RatPlace) (a : Fin n → ℚ) : ℤ :=
 Quadratic Forms*, Ch. 4, §1, p. 55):
 $$c_v = \prod_{0 \le i < j < n} (a_i, a_j)_v,$$
 **excluding** the diagonal pairs. This is Serre's $\varepsilon_v$ (`hasseCassels_eq_hasseSerre`, `rfl`).
-*Clarification:* Cassels' product is sometimes recorded as $\prod_{i\le j}$; checked
+*Clarification:* Cassels' product is $\prod_{i<j}$, not $\prod_{i\le j}$; checked
 against the book (p. 55 and Lemma 2.3(iii), p. 58: $c(f+g) = (d(f),d(g))\,c(f)c(g)$, which is
-the $i<j$ product), it is $\prod_{i<j}$. Cassels' footnote there warns that "there are several
+the $i<j$ product). Cassels' footnote there warns that "there are several
 definitions of the Hasse–Minkowski invariant in the literature. Each differs from the other by a
 factor depending on the number of variables and the determinant." The $i\le j$ product is
 `hasseOMeara`. -/
@@ -125,15 +125,15 @@ $$S_v = \prod_{0 \le i \le j < n} (a_i, a_j)_v,$$
 $S_{\mathfrak p}(U\perp W) = S_{\mathfrak p}U\cdot(dU,dW)\cdot S_{\mathfrak p}W$ (the $\alpha_i$ are the
 entries of an orthogonal splitting). The Hasse *algebra* it is built from is §58, p. 150. This is also
 Hasse's original $\alpha_v$ (see `hasseShimura`). Related to Serre's by $S_v = \varepsilon_v\,(d,d)_v$
-(`hasseOMeara_eq`). *Clarification:* this product is sometimes attributed to Cassels as well; Cassels'
+(`hasseOMeara_eq`). *Clarification:* this product is not Cassels'; Cassels'
 $c$ is the $i<j$ product (`hasseCassels`). -/
-@[kb "omeara1963" "§63B, p. 167 (Hasse symbol S_p V); §58, p. 150 (Hasse algebra)"]
+@[kb "omeara1963" "§63B, p. 167 (Hasse algebra: §58, p. 150)"]
 noncomputable def hasseOMeara (v : RatPlace) (a : Fin n → ℚ) : ℤ :=
   ∏ i, ∏ j, if i ≤ j then v.hilbert (a i) (a j) else 1
 
 /-- **Lam's Hasse–Witt invariant $s$** of $\langle a_0,\dots,a_{n-1}\rangle$ (*Introduction to
 Quadratic Forms over Fields*, V.3 [unverified locator and formula; Lam's book is not available
-locally]):
+locally, so this is not checked against it]):
 $$s_v = \prod_{0 \le i < j < n} (a_i, a_j)_v.$$
 Same formula as Serre's $\varepsilon$ (`hasseLam_eq_hasseSerre`). Lam's *Witt invariant* $c$ (the
 class of the Clifford algebra) differs from $s$ by a factor depending on $n \bmod 8$ and $d$; it
@@ -150,29 +150,11 @@ forms by the dimension, the discriminant $\delta_0$ (`diagSignedDisc`, §22.6), 
 $s_v$ and the characteristic (Clifford) algebra $Q(\varphi)$ (Thm. 28.9). In §28.13 he describes
 Hasse's $\alpha_v(\varphi) = \prod_{i\le j}(a_i,a_j)_v$ (this declaration) and says "Some later
 authors chose $\alpha'_v(\varphi) = \prod_{i<j}(a_i,a_j)_v$ instead" (`hasseSerre`), remarking that both
-equal $-1$ at $v=2$ for the hyperbolic form $x_1x_2+x_3x_4$ over $\mathbb{Q}$. (It is sometimes
-recorded as $\prod_{i<j}$ for Shimura.) Same formula as `hasseOMeara`
+equal $-1$ at $v=2$ for the hyperbolic form $x_1x_2+x_3x_4$ over $\mathbb{Q}$. Same formula as `hasseOMeara`
 (`hasseShimura_eq_hasseOMeara`). -/
 @[kb "shimura2010" "§28.13, p. 160"]
 noncomputable def hasseShimura (v : RatPlace) (a : Fin n → ℚ) : ℤ :=
   ∏ i, ∏ j, if i ≤ j then v.hilbert (a i) (a j) else 1
-
-/-- **Conway–Sloane's Hasse–Minkowski invariant $(f)_p$** of $f = \langle a_0,\dots,a_{n-1}\rangle$
-(*Sphere Packings, Lattices and Groups*, Ch. 15, §5.3, p. 373, eq. (17), following Cassels, p. 55):
-$$(f)_p = (A_1, A_2, \dots, A_n)_p = \prod_{1 \le i < j \le n} (A_i, A_j)_p,$$
-here 0-based ($A_{i+1}$ is `a i`), **excluding** the diagonal pairs. Conway–Sloane call the archimedean place the
-"prime $-1$" (Ch. 15, §4.4, Note after Theorem 2, p. 370); it is `RatPlace.infinite` here. Same formula as Serre's $\varepsilon$
-(`hasseConwaySloane_eq_hasseSerre`, `rfl`). The book avoids the Hilbert symbol in its own development (§5, p. 370); it states (§5.3) that
-$(f)_p = \pm1$ according as the $p$-excess of $f$ is or is not $\equiv$ that of the "standard" form
-$f_0 = \mathrm{diag}\{A_1\cdots A_n, 1, \dots, 1\}$ (mod 8), which is
-`ConwaySloane.hasseConwaySloane_eq_one_iff`. -/
-@[kb "conwaysloane1999" "Ch. 15, §5.3, p. 373, eq. (17)"]
-noncomputable def hasseConwaySloane (v : RatPlace) (a : Fin n → ℚ) : ℤ :=
-  ∏ i, ∏ j, if i < j then v.hilbert (a i) (a j) else 1
-
-/-- Conway–Sloane's $(f)_p$ is Serre's $\varepsilon$. -/
-theorem hasseConwaySloane_eq_hasseSerre (v : RatPlace) (a : Fin n → ℚ) :
-    v.hasseConwaySloane a = v.hasseSerre a := rfl
 
 /-- Lam's $s$ is Serre's $\varepsilon$. -/
 theorem hasseLam_eq_hasseSerre (v : RatPlace) (a : Fin n → ℚ) :
@@ -457,7 +439,7 @@ theorem RatPlace.hilbert_signedDisc_self_isometric (v : RatPlace) (a b : Fin n �
   (((sameSq_of_isometric v a b h).mul_left ((-1) ^ (n * (n - 1) / 2))).hilbert_self).symm
 
 /-- **Isometry invariance of Cassels' $c_v$** (`hasseSerre_isometric`, as $c = \varepsilon$). -/
-@[kb "cassels1978" "Ch. 4, Lemma 2.2, p. 57, and Cor. 1, p. 58"]
+@[kb "cassels1978" "Ch. 4, §1, p. 55; Cor. 1 to Lemma 2.2, p. 58"]
 theorem RatPlace.hasseCassels_isometric (v : RatPlace) (a b : Fin n → ℚ) (ha : ∀ i, a i ≠ 0)
     (hb : ∀ i, b i ≠ 0)
     (h : RatPlace.atPlace (fun K _ _ => (diag a).IsometricIn K (diag b)) v) :
@@ -466,7 +448,7 @@ theorem RatPlace.hasseCassels_isometric (v : RatPlace) (a b : Fin n → ℚ) (ha
 
 /-- **Isometry invariance of O'Meara's $S_v$**, from `hasseSerre_isometric` and
 `hasseOMeara_eq` ($S = \varepsilon\,(d,d)$). -/
-@[kb "omeara1963" "§63B, p. 167 (S_p V independent of the splitting)"]
+@[kb "omeara1963" "§63B, p. 167"]
 theorem RatPlace.hasseOMeara_isometric (v : RatPlace) (a b : Fin n → ℚ) (ha : ∀ i, a i ≠ 0)
     (hb : ∀ i, b i ≠ 0)
     (h : RatPlace.atPlace (fun K _ _ => (diag a).IsometricIn K (diag b)) v) :
@@ -489,14 +471,6 @@ theorem RatPlace.hasseShimura_isometric (v : RatPlace) (a b : Fin n → ℚ) (ha
     (h : RatPlace.atPlace (fun K _ _ => (diag a).IsometricIn K (diag b)) v) :
     v.hasseShimura a = v.hasseShimura b :=
   RatPlace.hasseOMeara_isometric v a b ha hb h
-
-/-- **Isometry invariance of Conway–Sloane's $(f)_p$** (`hasseSerre_isometric`, as $(f)_p = \varepsilon$). -/
-@[kb "conwaysloane1999" "Ch. 15, §5.3, p. 373, eq. (17)"]
-theorem RatPlace.hasseConwaySloane_isometric (v : RatPlace) (a b : Fin n → ℚ) (ha : ∀ i, a i ≠ 0)
-    (hb : ∀ i, b i ≠ 0)
-    (h : RatPlace.atPlace (fun K _ _ => (diag a).IsometricIn K (diag b)) v) :
-    v.hasseConwaySloane a = v.hasseConwaySloane b :=
-  RatPlace.hasseSerre_isometric v a b ha hb h
 
 end Invariance
 
@@ -557,14 +531,14 @@ theorem hasseSerre_product_formula (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0) :
   finprod_pairs (fun i j => i < j) a ha
 
 /-- **Product formula for Cassels' $c$.** -/
-@[kb "cassels1978" "Ch. 6, Lemma 1.1, p. 76 (from Ch. 3, Lemma 3.4, p. 46); c defined in Ch. 4, §1, p. 55"]
+@[kb "cassels1978" "Ch. 4, §1, p. 55"]
 theorem hasseCassels_product_formula (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0) :
     Function.HasFiniteMulSupport (fun v : RatPlace => v.hasseCassels a) ∧
       ∏ᶠ v : RatPlace, v.hasseCassels a = 1 :=
   finprod_pairs (fun i j => i < j) a ha
 
 /-- **Product formula for O'Meara's $S$.** -/
-@[kb "omeara1963" "§66, 66:6, p. 189; §72, 72:1 (3), p. 203"]
+@[kb "omeara1963" "§63B, p. 167"]
 theorem hasseOMeara_product_formula (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0) :
     Function.HasFiniteMulSupport (fun v : RatPlace => v.hasseOMeara a) ∧
       ∏ᶠ v : RatPlace, v.hasseOMeara a = 1 :=
@@ -583,15 +557,6 @@ theorem hasseShimura_product_formula (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0)
     Function.HasFiniteMulSupport (fun v : RatPlace => v.hasseShimura a) ∧
       ∏ᶠ v : RatPlace, v.hasseShimura a = 1 :=
   finprod_pairs (fun i j => i ≤ j) a ha
-
-/-- **Product formula for Conway–Sloane's $(f)_p$** over all $p$, including $p = -1$ (their name for $\infty$).
-Conway–Sloane replace it by their sum formula (15)/oddity formula (16) (`ConwaySloane.sum_excess_eq_zero`,
-`ConwaySloane.oddity_formula`). -/
-@[kb "conwaysloane1999" "Ch. 15, §5.3, p. 373, eq. (17); §5.1, p. 371"]
-theorem hasseConwaySloane_product_formula (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0) :
-    Function.HasFiniteMulSupport (fun v : RatPlace => v.hasseConwaySloane a) ∧
-      ∏ᶠ v : RatPlace, v.hasseConwaySloane a = 1 :=
-  finprod_pairs (fun i j => i < j) a ha
 
 end Product
 

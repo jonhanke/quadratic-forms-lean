@@ -3,30 +3,27 @@ import QuadFormsKB.Tamagawa.Measure.Weil.MuTamSOCorollaries
 import QuadFormsKB.Tamagawa.RankFourFromTau
 
 /-!
-# Reduction to a named input: $\tau(SO_4) = 2$ and `RankFourUnitSiegel F` from Weil's measure comparison for
-$G^\natural$
+# Reduction to a named input: $\tau(SO_4) = 2$ and `RankFourUnitSiegel F` from Weil's measure comparison for $G^\natural$
 
 
 **Layer:** $F$ a number field (totally real for the lattice corollaries), quaternary forms over $\mathcal O_F$, `muTam`,
-the quotient measures (`GnatSquare.lean`, `GnatBaseChange.lean`).
+The quotient measures (`GnatSquare.lean`, `GnatBaseChange.lean`).
 
-It is proved that $\operatorname{vol}(P(F)\backslash P(\mathbb A),\mu_P) = 2$ for $P = G^\natural/\mathbb G_m$ with
-Weil's quotient measure, in both
-discriminant cases (`covolume_gnatSq`, `covolume_gnatBC`). The remaining step is the identification of
-$(P,\pi(\Gamma),\mu_P)$ with
+The covolume theorems proved $\operatorname{vol}(P(F)\backslash P(\mathbb A),\mu_P) = 2$ for $P = G^\natural/\mathbb G_m$ with Weil's quotient measure, in both
+discriminant cases (`covolume_gnatSq`, `covolume_gnatBC`). The remaining step is the identification of $(P,\pi(\Gamma),\mu_P)$ with
 $(SO(V)(\mathbb A), SO(V)(F), \mu_{\mathrm{Tam}})$. It is **not** proved here; it is the named input
 
 * **`GnatTamagawaComparison F`**: for the two explicit models, the norm forms
   $q_{\mathrm{sq}}(a,b) = \langle1,-a,-b,ab\rangle$ ($E = F\times F$, $V = (D,\operatorname{nrd})$, `qSq`) and
   $q_{\mathrm{ns}}(a,b,d) = \langle1,-ad,-bd,abd\rangle$ ($E = K = F(\sqrt d)$, $V = V_0\subset D_E$, `qNS`; `V0Form` with integral
   coefficients), there is an isomorphism of topological groups $\Phi : P\cong SO(V)(\mathbb A)$ carrying $\pi(\Gamma)$ onto $SO(V)(F)$ and
-  $\mu_P$ onto `muTam`. Its content is (i) the adelic form of the isomorphism $SO(V)\cong G^\natural/\mathbb G_m$ (`pdAdeleEquiv` analogue:
+  $\mu_P$ onto `muTam`. Its content is (i) the adelic form of the $SO(V)\cong G^\natural/\mathbb G_m$ (`pdAdeleEquiv` analogue:
   continuity, integrality at almost all places, open mapping) and (ii) Weil's Thm 2.3.1 for the isogeny-free quotient
   $G^\natural\to SO(V)$: local ratios $r_v$ of the two Haar measures with $\prod_v r_v = 1$ (the generic transport
   `covolume_eq_of_localFactors`). It mentions no Tamagawa number, no covolume and no Siegel formula, so it is not equivalent to
   any conclusion below; it holds for every quaternion algebra (split or not) and every $d$.
 
-From it, with the proved covolume (no Fujisaki, no zeta function of $D$, no CFT):
+From it, with `covolume_gnatSq`, `covolume_gnatBC` (no Fujisaki, no zeta function of $D$, no CFT):
 * `tamagawaNumberTwoAdelic_qSq`, `tamagawaNumberTwoAdelic_qNS`: Weil's adelic $\tau(SO(V)) = 2$ for the two model forms (division $D$);
 * **`quaternaryTamagawaTwo_of_gnatComparison`** ($F$ totally real, any class number): $\tau(SO_4) = 2$ for every totally positive definite
   quaternary form over $\mathcal O_F$ (`TamagawaNumberTwo`); every such form is, up to change of lattice, a model form
@@ -99,12 +96,12 @@ theorem covolume_eq_of_continuousMulEquiv {G G' : Type*} [Group G] [Group G'] [T
 /-- **Weil's adelic $\tau(SO(\langle1,-a,-b,ab\rangle)) = 2$** for a quaternion division algebra $\mathbb H[F,a,b]$, given the input. -/
 @[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65; Thm 2.3.1"]
 theorem tamagawaNumberTwoAdelic_qSq (hC : GnatTamagawaComparison F) {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
-    (hQ : (qSq a b).Nondegenerate) :
+    (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) (hQ : (qSq a b).Nondegenerate) :
     TamagawaNumberTwoAdelic (qSq a b) hQ := by
   obtain ⟨Φ, hΓ, hμ⟩ := hC.square a b ha0 hb0 hQ
   have := (gnatSqO ha0 hb0).isHaarMeasure_muP (muSq ha0 hb0)
   unfold TamagawaNumberTwoAdelic
-  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatSq ha0 hb0]
+  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatSq ha0 hb0 hdiv]
 
 /-- **Weil's adelic $\tau(SO(\langle1,-ad,-bd,abd\rangle)) = 2$** for $K = F(\sqrt d)$ and a quaternion division algebra
 $\mathbb H[K,a,b]$, given the input. -/
@@ -113,12 +110,12 @@ theorem tamagawaNumberTwoAdelic_qNS (hC : GnatTamagawaComparison F) {a b d : �
     [NumberField K] [Algebra F K] (bK : Module.Basis (Fin 2) F K) (hb₀ : bK 0 = 1)
     (hb₁ : bK 1 * bK 1 = algebraMap F K (d : F)) {α β : 𝓞 K} (hα : (α : K) = algebraMap F K (a : F))
     (hβ : (β : K) = algebraMap F K (b : F)) (hα0 : α ≠ 0) (hβ0 : β ≠ 0)
-    (hQ : (qNS a b d).Nondegenerate) :
+    (hdiv : ∀ ξ : ℍ[K,(α : K),(β : K)], ξ ≠ 0 → IsUnit ξ) (hQ : (qNS a b d).Nondegenerate) :
     TamagawaNumberTwoAdelic (qNS a b d) hQ := by
   obtain ⟨Φ, hΓ, hμ⟩ := hC.nonsquare a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hQ
   have := (gnatBCO bK 0 hb₀ hα0 hβ0).isHaarMeasure_muP (muBC bK 0 hb₀ hα0 hβ0)
   unfold TamagawaNumberTwoAdelic
-  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatBC bK 0 hb₀ hα0 hβ0]
+  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatBC bK 0 hb₀ hα0 hβ0 hdiv]
 
 /-! ### Positivity bookkeeping -/
 
@@ -285,7 +282,7 @@ $a = -b_2b_3$, $b = -b_1b_3$, $d = b_1b_2b_3$ (scaled by squares), $\langle1,b_1
 $\langle1,-ad,-bd,abd\rangle = \langle1,-a,-b,ab\rangle\circ\operatorname{diag}(1,t,t,t)$ and `tamagawaNumberTwoAdelic_qSq` applies ($D = (a,b)_F$ totally
 definite, hence division); otherwise $K = F(\sqrt d)$ is a totally real number field (`isTotallyReal_quadFieldOf`), $D' = (a,b)_K$ is
 totally definite and `tamagawaNumberTwoAdelic_qNS` applies. Finally `tamagawaNumberTwoAdelic_iff` (definite case). -/
-@[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65; any class number"]
+@[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65"]
 theorem quaternaryTamagawaTwo_of_gnatComparison (hC : GnatTamagawaComparison F) : QuaternaryTamagawaTwo F := by
   refine quaternaryTamagawaTwo_of_diag_nf fun c hc hpd => ?_
   set e : Fin 4 → 𝓞 F := Fin.cons 1 c
@@ -354,8 +351,10 @@ theorem quaternaryTamagawaTwo_of_gnatComparison (hC : GnatTamagawaComparison F) 
     have hQsq : (qSq a' b').Nondegenerate := nondegenerate_of_map hpdsq.nondegenerate
     rw [← hqH]
     refine tamagawaNumberTwo_compMat_of hQsq hpdsq hH ?_
+    have hdiv := hdiv_of_totallyNeg (F := F) (a := (a' : F)) (b := (b' : F))
+      (fun w hw => emb_neg_of_isTotallyPos_neg hna w hw) (fun w hw => emb_neg_of_isTotallyPos_neg hnb w hw)
     exact (tamagawaNumberTwoAdelic_iff (qSq a' b') hQsq (by norm_num) hpdsq (isIntegral_std _)).1
-      (tamagawaNumberTwoAdelic_qSq hC ha0 hb0 hQsq)
+      (tamagawaNumberTwoAdelic_qSq hC ha0 hb0 hdiv hQsq)
   · -- non-square discriminant: `K = F(√d')`
     push_neg at hsq
     have := fact_irreducible_quadPoly (d' : F) hsq
@@ -372,13 +371,19 @@ theorem quaternaryTamagawaTwo_of_gnatComparison (hC : GnatTamagawaComparison F) 
     have hβ0 : β ≠ 0 := fun h => hb0 (RingOfIntegers.coe_injective (by
       have h' : algebraMap F K (b' : F) = 0 := congrArg Subtype.val h
       rw [map_eq_zero] at h'; simpa using h'))
+    have hdiv : ∀ ξ : ℍ[K,(α : K),(β : K)], ξ ≠ 0 → IsUnit ξ := by
+      refine hdiv_of_totallyNeg (fun w hw => ?_) (fun w hw => ?_)
+      · change embedding_of_isReal hw (algebraMap F K (a' : F)) < 0
+        rw [embedding_of_isReal_algebraMap]; exact emb_neg_of_isTotallyPos_neg hna _ _
+      · change embedding_of_isReal hw (algebraMap F K (b' : F)) < 0
+        rw [embedding_of_isReal_algebraMap]; exact emb_neg_of_isTotallyPos_neg hnb _ _
     exact (tamagawaNumberTwoAdelic_iff (qNS a' b' d') hQns (by norm_num) hpdns (isIntegral_std _)).1
       (tamagawaNumberTwoAdelic_qNS hC (quadBasis (d' : F)) (quadBasis_zero _) (quadBasis_one_sq _)
-        (α := α) (β := β) rfl rfl hα0 hβ0 hQns)
+        (α := α) (β := β) rfl rfl hα0 hβ0 hdiv hQns)
 
 /-- **`RankFourUnitSiegel F` for every totally real field (any class number), given Weil's measure comparison for $G^\natural$**
 (route 2: $\tau(SO_4) = 2$ ⇒ rank-4 Siegel, `rankFourUnitSiegel_of_quaternary`). -/
-@[kb "weil1982" "§4.5, p. 100 (Siegel from τ = 2); §3.7, Thm 3.7.1 (m = 4); any class number"]
+@[kb "weil1982" "§4.5, p. 100 (Siegel from τ = 2); §3.7, Thm 3.7.1 (m = 4)"]
 theorem rankFourUnitSiegel_of_gnatComparison (hC : GnatTamagawaComparison F) : RankFourUnitSiegel F :=
   rankFourUnitSiegel_of_quaternary (quaternaryTamagawaTwo_of_gnatComparison hC)
 
@@ -389,7 +394,7 @@ theorem tamagawaNumberTwo_all_ranks_of_gnatComparison (hC : GnatTamagawaComparis
   tamagawaNumberTwo_all_ranks_nf (rankFourUnitSiegel_of_gnatComparison hC) hN Q₀ hpd
 
 /-- **The mass formula in every rank $N\ge4$ over every totally real field**, given `GnatTamagawaComparison F`. -/
-@[kb "weil1982" "Thm 4.5.1, p. 109; mass formula; any class number, given the measure comparison"]
+@[kb "weil1982" "Thm 4.5.1, p. 109; any class number, given the measure comparison"]
 theorem massFormula_all_ranks_of_gnatComparison (hC : GnatTamagawaComparison F) {N : ℕ} (hN : 4 ≤ N)
     (Q₀ : QuadForm (𝓞 F) N) (hpd : IsTotallyPosDef (formF Q₀)) : MassFormulaHolds Q₀ :=
   massFormula_all_ranks_nf (rankFourUnitSiegel_of_gnatComparison hC) hN Q₀ hpd

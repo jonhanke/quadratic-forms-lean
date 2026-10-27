@@ -1,7 +1,7 @@
 /-
-# The Euler product of the local zeta functions
-**Layer:** number field; the local factors are those defined in (`LocalZeta.lean`, `LocalZetaGood.lean`), and only the
-Euler-product
+# The Euler product of the local zeta functions: Weil's multiplicative calculation
+
+**Layer:** number field; the local factors are the (`LocalZeta.lean`, `LocalZetaGood.lean`), and only the Euler-product
 assembly is global.
 
 **Setting.** $F$ a number field, $Q$ = `QuadForm (𝓞 F) n` nondegenerate, $n \ge 4$ (Weil needs $m > 4$ for the
@@ -11,17 +11,16 @@ $dx_v$ the **standard** Haar measure on $F_v^n$ (`haarV`, $\operatorname{vol}(\m
 Real $s \ge 0$ only.
 
 **The local factors.**
-* `zetaStd Q v s` $= Z_v(s) = \int_{L_v}|Q(x)|_v^s\,dx_v$ (the `zetaInt` with `haarV`); $Z_v(0) = 1$.
+* `zetaStd Q v s` $= Z_v(s) = \int_{L_v}|Q(x)|_v^s\,dx_v$ (`zetaInt` with `haarV`); $Z_v(0) = 1$.
 * `zetaWeil Q v s` $= Z_v(s)/(1-q_v^{-1})$: **Weil's** $Z_\mathfrak p(s)$ of §4.3, (1)–(2), p. 89, for the measure
   $d'x_v = (1-q_v^{-1})^{-1}dx_v$ with Weil's convergence factor $1 - q_v^{-1}$ (Lemma 4.3.1, p. 88).
-* `zetaRatio Q v s` $= Z_v(s)/\lambda_v(s)$, $\lambda_v(s) = (1-q_v^{-1})/(1-q_v^{-1-s})$ (the `lambdaV`), so that
+* `zetaRatio Q v s` $= Z_v(s)/\lambda_v(s)$, $\lambda_v(s) = (1-q_v^{-1})/(1-q_v^{-1-s})$ (`lambdaV`), so that
   $$\text{Weil's } Z_\mathfrak p(s) = \zeta_v(1+s)\cdot\frac{Z_v(s)}{\lambda_v(s)},\qquad \zeta_v(s) = (1-q_v^{-s})^{-1}
   \qquad(\texttt{zetaWeil\_eq}).$$
 
 **Results.**
 * `continuousOn_zetaInt`: $s \mapsto Z_v(s)$ is continuous on $[0,\infty)$ (every finite place, any $\nu$).
-* `abs_zetaRatio_sub_one_le_normP`: $|Z_v/\lambda_v - 1| \le 2N\mathfrak p_v^{-2}$ for $v \nmid 2\det H_Q$, all
-  $s \ge 0$.
+* `abs_zetaRatio_sub_one_le_normP`: $|Z_v/\lambda_v - 1| \le 2N\mathfrak p_v^{-2}$ for $v \nmid 2\det H_Q$, all $s \ge 0$.
 * `multipliable_zetaRatio`: $\prod_v Z_v(s)/\lambda_v(s)$ converges absolutely for every $s \ge 0$.
 * **`hasProd_zetaWeil`** (**the Euler product**, Weil §4.5, p. 106 and pp. 107–108): for real $s > 0$,
   $$\prod_v Z_\mathfrak p(s) = \zeta_F(1+s)\cdot\prod_v\frac{Z_v(s)}{\lambda_v(s)},$$
@@ -183,8 +182,7 @@ theorem continuousOn_zetaRatio (Q : QuadForm (𝓞 F) n) (hQ : Q.Nondegenerate) 
   (continuousOn_zetaInt v (haarV v) _ (NF.nondegenerate_Qp v hQ) hn).div (continuousOn_lambdaV v)
     fun s hs => lambdaV_ne_zero v s hs
 
-/-- **The bound in terms of $N\mathfrak p_v$** (Weil 1982, §4.5, p. 107, $1 - q^{-m'} < e(\mathfrak p) < 1 + q^{-m'}$,
-$m' \ge 2$):
+/-- **The bound in terms of $N\mathfrak p_v$** (Weil 1982, §4.5, p. 107, $1 - q^{-m'} < e(\mathfrak p) < 1 + q^{-m'}$, $m' \ge 2$):
 at a good place, for $n \ge 4$ and all $s \ge 0$, $|Z_v(s)/\lambda_v(s) - 1| \le 2N\mathfrak p_v^{-2}$. -/
 theorem abs_zetaRatio_sub_one_le_normP (Q : QuadForm (𝓞 F) n) (hn : 4 ≤ n) {v : HeightOneSpectrum (𝓞 F)}
     (hv : IsGoodPlace Q v) {s : ℝ} (hs : 0 ≤ s) :

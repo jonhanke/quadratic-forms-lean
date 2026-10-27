@@ -7,7 +7,7 @@ A **local adapted basis** (`LTZ v O`) is an $\mathfrak o_v$-basis $E_0, \dots, E
 ($\operatorname{re} = 0$). It exists at every place (`LTZ.exists`: from a local frame, subtracting multiples of the vector whose reduced
 trace has minimal valuation; no global basis of $\mathcal O$). For such a basis:
 * $E_1, E_2, E_3$ is an $\mathfrak o_v$-basis of $\mathcal O_v^0$ (`LTZ.mem_Ov0_iff`), so with $P$ their $i,j,k$-coordinates,
-  $(\mathcal O^0)_v = P\,\mathfrak o_v^3$ (`LTZ.loc_eq`, using `mem_loc_pureSub_iff`);
+  $(\mathcal O^0)_v = P\,\mathfrak o_v^3$ (`LTZ.loc_eq`);
 * $\det(\text{coordinates of }E) = \operatorname{re}(E_0)\det P$ (`LTZ.det_coordV`);
 * the local form $T = \langle -a,-b,ab\rangle\circ P$ is integral (`LTZ.formT`, with `LTZ.map_formT`).
 

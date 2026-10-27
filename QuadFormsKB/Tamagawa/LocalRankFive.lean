@@ -139,7 +139,7 @@ theorem evalIn_diag_five (b : Fin 5 → Kv) (x : Fin 5 → Kv) :
 
 /-- **Quaternary forms with non-square determinant are isotropic over $F_v$** (Serre IV §2.2, Thm. 6, $n = 4$):
 if $b_0, \dots, b_3 \in F_v^\times$ and $b_0b_1b_2b_3$ is not a square, $\langle b_0,b_1,b_2,b_3\rangle$ is isotropic. -/
-@[kb "serre1973" "Ch. IV §2.2, Thm. 6 (n = 4) [unverified]; omeara1963 §63C, 63:17 and 63:18, pp. 169–170"]
+@[kb "serre1973" "Ch. IV §2.2, Thm. 6 (n = 4) [unverified]"]
 theorem isotropic_four_of_not_isSquare (b : Fin 4 → Kv) (hb : ∀ i, b i ≠ 0)
     (hd : ¬ IsSquare (b 0 * b 1 * b 2 * b 3)) : (QuadForm.diag b).IsotropicIn Kv := by
   have h0 := hb 0; have h1 := hb 1; have h2 := hb 2; have h3 := hb 3
@@ -243,7 +243,7 @@ theorem exists_value_avoiding {a₀ a₁ c : Kv} (h0 : a₀ ≠ 0) (h1 : a₁ �
   omega
 
 /-- **Diagonal forms of rank $5$ over $F_v$ are isotropic.** -/
-@[kb "serre1973" "Ch. IV §2.2, Thm. 6, Cor. 2 [unverified]; omeara1963 §63C, 63:19, p. 170"]
+@[kb "serre1973" "Ch. IV §2.2, Thm. 6, Cor. 2 [unverified]"]
 theorem isotropic_diag_five (a : Fin 5 → Kv) (ha : ∀ i, a i ≠ 0) : (QuadForm.diag a).IsotropicIn Kv := by
   have h0 := ha 0; have h1 := ha 1; have h2 := ha 2; have h3 := ha 3; have h4 := ha 4
   by_cases hA : IsSquare (-(a 0 * a 1))
@@ -278,7 +278,7 @@ theorem isotropic_diag_five (a : Fin 5 → Kv) (ha : ∀ i, a i ≠ 0) : (QuadFo
 
 /-- **Every nondegenerate form of rank $5$ over a non-archimedean completion $F_v$ is isotropic** (O'Meara 63:19;
 Serre 1973, Ch. IV, §2.2, Thm. 6, Cor. 2 for $\mathbb Q_p$). -/
-@[kb "serre1973" "Ch. IV §2.2, Thm. 6, Cor. 2 [unverified]; omeara1963 §63C, 63:19, p. 170"]
+@[kb "serre1973" "Ch. IV §2.2, Thm. 6, Cor. 2 [unverified]"]
 theorem isotropic_five (Q : QuadForm Kv 5) (hQ : Q.Nondegenerate) : Q.IsotropicIn Kv := by
   obtain ⟨a, ha, hiso⟩ := FieldGen.exists_isometric_diag Q hQ
   rw [FieldGen.isotropicIn_iff_of_isometricIn Kv hiso]
@@ -287,7 +287,7 @@ theorem isotropic_five (Q : QuadForm Kv 5) (hQ : Q.Nondegenerate) : Q.IsotropicI
 end LocalRankFive
 
 /-- **The input holds:** `Quat.LocalRankFiveIsotropic F` for every number field $F$. -/
-@[kb "omeara1963" "§63C, 63:19, p. 170"]
+@[kb "omeara1963" "63:19 [unverified]"]
 theorem Quat.localRankFiveIsotropic (F : Type) [Field F] [NumberField F] : Quat.LocalRankFiveIsotropic F :=
   ⟨fun v Q hQ => LocalRankFive.isotropic_five v Q hQ⟩
 

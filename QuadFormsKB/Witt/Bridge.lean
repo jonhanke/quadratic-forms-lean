@@ -152,7 +152,7 @@ Let $F \subseteq K$ be fields (`Algebra F K`), $Q$ a form in $k$ variables and $
 $n$ variables over $F$. If $Q$ and $Q_1$ are nondegenerate ($\det(C + C^{\mathsf T}) \neq 0$; this
 is nonsingularity of the polar form, in every characteristic) and
 $Q \perp Q_1 \cong Q \perp Q_2$ over $K$, then $Q_1 \cong Q_2$ over $K$. -/
-@[kb "ekm2008" "Thm 8.4; cassels1978 Ch. 2, Thm. 4.1, Cor. 1–2, pp. 21–22 (Witt cancellation)"]
+@[kb "ekm2008" "Thm 8.4"]
 theorem isometricIn_of_orthSum {Q : QuadForm F k} {Q₁ Q₂ : QuadForm F n} (hQ : Q.Nondegenerate)
     (hQ₁ : Q₁.Nondegenerate) (h : (orthSum Q Q₁).IsometricIn K (orthSum Q Q₂)) :
     Q₁.IsometricIn K Q₂ := by

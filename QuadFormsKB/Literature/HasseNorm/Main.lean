@@ -36,7 +36,7 @@ variable {F : Type} [Field F] [NumberField F]
 open scoped Classical in
 /-- **The Hasse norm theorem for $F(\sqrt a)$, $a \in \mathcal O_F$** (core of `hilbert_eq_one_of_everywhere`):
 for $a \in \mathcal O_F$ not a square and $b \in F^\times$ with $(a,b)_v = 1$ at every place, $(a, b)_F = 1$. -/
-@[kb "milne2020cft" "Ch. VII §6 and Hasse norm theorem (n = 2) [unverified]; omeara1963 §65D, 65:23, p. 186"]
+@[kb "milne2020cft" "Ch. VII §6 and Hasse norm theorem (n = 2) [unverified]"]
 theorem hasse_norm_integral (a : 𝓞 F) (hd : ¬ IsSquare (a : F)) (b : F) (hb : b ≠ 0)
     (h : ∀ v : NFPlace F, v.hilbert (a : F) b = 1) : hilbertSymbol F (a : F) b = 1 := by
   classical
@@ -189,7 +189,7 @@ places (class group generators, dyadic primes, supports of $a, b$) and the auxil
 $(S \cup T)$-units that are local norms at $S \cup \infty$ have index $\ge 2^{s'-1}$
 (`two_pow_le_index_locNorms`, the second inequality), which is exactly the index $2^{s'-1}$ of the global
 norms (`index_normsF_eq`, the first-inequality count); so local norms are global norms, and $b$ is one. -/
-@[kb "omeara1963" "§65D, 65:23, p. 186 (Hasse Norm Theorem)"]
+@[kb "omeara1963" "§65 (Hasse norm theorem) [unverified]"]
 theorem hilbert_eq_one_of_everywhere (a b : F) (ha : a ≠ 0) (hb : b ≠ 0)
     (h : ∀ v : NFPlace F, v.hilbert a b = 1) : hilbertSymbol F a b = 1 := by
   classical

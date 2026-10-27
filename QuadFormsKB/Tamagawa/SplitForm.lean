@@ -135,7 +135,7 @@ variable {R : Type*} [CommRing R] {n : ℕ}
 
 /-- **The split form** $\langle a\rangle \perp Q'$: $Q(x_0, x_1, \dots, x_n) = a x_0^2 + Q'(x_1, \dots, x_n)$
 (coefficient matrix `cornerMat a Q'.coeff`). -/
-@[kb "omeara1963" "§42A, p. 88 (orthogonal sum)"]
+@[kb "omeara1963" "§42 (orthogonal sum) [unverified]"]
 def splitForm (a : R) (Q' : QuadForm R n) : QuadForm R (n + 1) where
   coeff := cornerMat a Q'.coeff
   upper := by
@@ -275,8 +275,8 @@ theorem exists_orthEmb_eq (K : Type*) [Field K] [Algebra F K] (hm : algebraMap F
 
 /-- **Witt transitivity on $\{v : Q(v) = m\}$:** for $Q = \langle m\rangle \perp Q'$ nondegenerate and $m \ne 0$, every
 $v \in F^{n+1}$ with $Q(v) = m$ is $\gamma e_0$ for some $\gamma \in O(Q)(F)$ (Witt's theorem,
-`QuadraticForm.exists_isometryEquiv_apply_eq_of_nondegenerate`; O'Meara 42:17, p. 98). -/
-@[kb "omeara1963" "§42F, 42:17, p. 98 (Witt's theorem); cassels1978 Ch. 2, Lemma 4.2, Cor. 1, p. 20"]
+`QuadraticForm.exists_isometryEquiv_apply_eq_of_nondegenerate`; O'Meara 42:17 [unverified]). -/
+@[kb "omeara1963" "42:17 (Witt) [unverified]"]
 theorem exists_orthGroup_mulVec_eq (hQ : (QS).Nondegenerate) (hm : m ≠ 0) {v : Fin (n + 1) → F}
     (hv : (QS).eval v = m) :
     ∃ γ : orthGroup QS F, (γ : GL (Fin (n + 1)) F).val *ᵥ (e₀ : Fin (n + 1) → F) = v := by

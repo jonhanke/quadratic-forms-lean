@@ -4,12 +4,12 @@ import QuadFormsKB.Tamagawa.Measure.Weil.NrdSurjective
 /-!
 # The Tamagawa measure of $\mathrm{SL}_1(D)$ and the fibration $c_A' = \tau(\mathrm{SL}_1)\cdot\operatorname{vol}(F^\times\backslash\mathbb A^1)$
 
-$\mathbb H = \mathbb H[F,a,b]$ over any number field $F$ ($a, b\in F^\times$ integral at every finite place, as in the construction of `tamQuat`),
+$\mathbb H = \mathbb H[F,a,b]$ over any number field $F$ ($a, b\in F^\times$ integral at every finite place),
 any signature. Notation:
 * $G^1 = \mathbb H_{\mathbb A}^1$ (`quatOne`) with the canonical Haar measure $\mu^1$ (`muQuatOneTam`), the norm-one
   part of $\omega_\infty\times\prod_v\lambda_v^{-1}\omega_v$, $\omega = \|\operatorname{nrd}x\|^{-2}dx$;
 * $\mathbb A^1_+ = \{u\in\mathbb A^1 : u_w > 0$ at the real places $w$ where $\mathbb H$ ramifies$\}$ (`posOne`), an
-  open subgroup of $\mathbb A^1$, with the restriction $\mu_+$ of the measure $\mu^1_{\mathbb A}$ (`muIdeleOne`);
+  open subgroup of $\mathbb A^1$, with the restriction $\mu_+$ of the $\mu^1_{\mathbb A}$ (`muIdeleOne`);
 * $N = \operatorname{nrd} : G^1\to\mathbb A^1_+$ (`nrdOne`), **surjective** (`nrdOne_surjective`, from
   `exists_nrdUnit_eq`), with kernel $\mathrm{SL}_1(\mathbb H)(\mathbb A)$ (`SL1A`).
 
@@ -198,7 +198,7 @@ theorem isMulLeftInvariant_comap_subgroup {G : Type*} [Group G] [TopologicalSpac
   rw [this, measure_preimage_mul]
 
 variable (a b) in
-/-- **The measure $\mu_+$ on $\mathbb A^1_+$**: the restriction of the measure $\mu^1_{\mathbb A}$ (`muIdeleOne`). -/
+/-- **The measure $\mu_+$ on $\mathbb A^1_+$**: the restriction of the $\mu^1_{\mathbb A}$ (`muIdeleOne`). -/
 def muPosOne : Measure (posOne a b) := (muIdeleOne F).comap Subtype.val
 
 theorem measurableEmbedding_posOne : MeasurableEmbedding (Subtype.val : posOne a b → ideleOne F) :=
@@ -551,8 +551,8 @@ end Tamagawa
 variable (F) in
 /-- **Input (named): the volume of the idele class group of norm one is the residue $\rho_F$** for the measure
 $\mu^1_{\mathbb A}$ on $F^\times\backslash\mathbb A^1$ (`muIdeleClass`). This is Weil's Thm 3.1.1 (iii) for $\mathbb G_m$
-(p. 41). The KB proves it (`IdeleClass.ideleClassLIntegral_comp_ideleNorm`) in a concrete model of the unramified
-ideles, bridged to `muIdeleClass`, which proves this input for every number field
+(p. 41). The library proves it (`IdeleClass.ideleClassLIntegral_comp_ideleNorm`) in a concrete model of the unramified
+ideles; this is bridged to `muIdeleClass` and proves this input for every number field
 (`IdeleClassVolume.lean`, `idelesClassVolumeResidue`; then `tamagawa_SL1_division_unconditional`). It is not
 equivalent to $\tau(\mathrm{SL}_1) = 1$ (it does not mention quaternions). -/
 structure IdeleClassVolumeResidue : Prop where

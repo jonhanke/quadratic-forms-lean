@@ -1,9 +1,8 @@
 /-
-# $(D\otimes F_\infty)^\times/F_\infty^\times \cong SO(D^0)(F_\infty)$
+# $(D\otimes F_\infty)^\times/F_\infty^\times \cong SO(D^0)(F_\infty)$ (archimedean part)
 
 **Layer:** $F$ a number field, $a, b \in \mathcal O_F \setminus 0$, $Q_0$ = `QuatZeta.pureFormO a b`;
-$D\otimes F_\infty$ = `QuatInf` (over Mathlib's `mixedSpace F`), and
-$G_\infty = \prod_{w\ \mathrm{real}}SO(Q^{\sigma_w})(\mathbb R)
+$D\otimes F_\infty$ = `QuatInf` (over Mathlib's `mixedSpace F`), and $G_\infty = \prod_{w\ \mathrm{real}}SO(Q^{\sigma_w})(\mathbb R)
 \times\prod_{w\ \mathrm{complex}}SO(Q^{\tau_w})(\mathbb C)$ = `GInfSO Q₀` (any signature).
 
 **Defines/proves**

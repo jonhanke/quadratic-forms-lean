@@ -1,11 +1,10 @@
 /-
-# The $\tau(SO)$ does not depend on the lattice
+# the $\tau(SO)$ does not depend on the lattice
 
 **Layer:** a totally real number field $F$; the Tamagawa number `tauSO` of a form over $\mathcal O_F$ (computed with the
 standard lattice $\mathcal O_F^n$).
 
-The Tamagawa number is defined as $\tau(SO(V)) = \mu_{\mathrm{Tam}}(K_{SO})\cdot\mathrm{mass}_{SO}$ with the lattice
-$L = \mathcal O_F^n$ of the form $Q_0$. A
+$\tau(SO(V)) = \mu_{\mathrm{Tam}}(K_{SO})\cdot\mathrm{mass}_{SO}$ is defined with the lattice $L = \mathcal O_F^n$ of the form $Q_0$. A
 different lattice $M = g\mathcal O_F^n$ in the same space, or a rescaling, is the form $Q_1 = c\,(Q_0\circ g)$. This file proves
 $\tau(Q_1) = \tau(Q_0)$:
 * `mass_similar`: $\mathrm{Mass}(c\,(Q\circ g), L) = \mathrm{Mass}(Q, gL)$ (similar spaces, transported classes and genera);
@@ -18,8 +17,7 @@ $\tau(Q_1) = \tau(Q_0)$:
   PID (Smith normal form, `Submodule.exists_smith_normal_form_of_rank_eq`).
 
 Sources: Weil 1982, §2.2.1, p. 14 (local measures are independent of the coordinates), Thm. 2.3.1, pp. 21–22
-($(c\omega) = (\omega)$, product formula) and §2.4, p. 22 (the Tamagawa measure does not depend on $\omega$) — checked against the
-printed book; O'Meara 1963, §102A, p. 297 (the genus; O'Meara does not treat the mass).
+($(c\omega) = (\omega)$, product formula) and §2.4, p. 22 (the Tamagawa measure does not depend on $\omega$); O'Meara 1963, §102 (mass of a genus) [unverified].
 -/
 import QuadFormsKB.Tamagawa.LatticeChangeLocal
 import QuadFormsKB.Tamagawa.LocalOrbitalGlobal
@@ -368,8 +366,7 @@ theorem archVolSO_Q₁ (Q₀ : QuadForm (𝓞 F) n) {c : 𝓞 F} (hc : c ≠ 0) 
         archVolSO n (detGram Q₀ σ) := by ring
     _ = _ := by rw [e, one_mul]
 
-/-- **The $\tau(SO)$ is invariant under $Q_0 \mapsto c\,(Q_0\circ D)$**, $D = \mathrm{diag}(c_0,\dots,c_{n-1})$ over
-$\mathcal O_F$
+/-- **The $\tau(SO)$ is invariant under $Q_0 \mapsto c\,(Q_0\circ D)$**, $D = \mathrm{diag}(c_0,\dots,c_{n-1})$ over $\mathcal O_F$
 ($c, c_a \ne 0$; $n \ne 0, 2$ so that $\prod_\mathfrak p\alpha_\mathfrak p$ converges; both forms totally positive definite): the form
 of the lattice $D\mathcal O_F^n$, rescaled by $c$, has the same Tamagawa number.
 
@@ -497,8 +494,7 @@ theorem detGram_compMat_unimodular (Q₀ : QuadForm (𝓞 F) n) (U : GL (Fin n) 
   simp only [detGram, hessian_compMat, det_mul, det_transpose, map_mul, map_div₀, norm_mul, norm_div]
   ring
 
-/-- **The Tamagawa number $\tau(SO)$ is invariant under $\mathrm{GL}_n(\mathcal O_F)$:**
-$\tau(Q_0\circ U) = \tau(Q_0)$. -/
+/-- **$\tau(SO)$ is invariant under $\mathrm{GL}_n(\mathcal O_F)$:** $\tau(Q_0\circ U) = \tau(Q_0)$. -/
 theorem tauSO_compMat_unimodular (hn0 : n ≠ 0) (Q₀ : QuadForm (𝓞 F) n) (hQ₀ : Q₀.Nondegenerate)
     (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F))) (U : GL (Fin n) (𝓞 F))
     (hpdU : IsTotallyPosDef ((Q₀.compMat U.val).map (algebraMap (𝓞 F) F))) :
@@ -648,8 +644,7 @@ theorem nondegenerate_compMat_unimodular {S : QuadForm (𝓞 F) n} (hS : S.Nonde
   rw [QuadForm.Nondegenerate, hessian_compMat, det_mul, det_mul, det_transpose]
   exact mul_ne_zero (mul_ne_zero hdetU.ne_zero hS) hdetU.ne_zero
 
-/-- **The $\tau(SO)$ does not depend on the lattice** (nor on rescaling): for $\mathcal O_F$ a PID,
-$g \in M_n(\mathcal O_F)$ with
+/-- **The $\tau(SO)$ does not depend on the lattice** (nor on rescaling): for $\mathcal O_F$ a PID, $g \in M_n(\mathcal O_F)$ with
 $\det g \ne 0$ and $c \in \mathcal O_F\setminus 0$ (both forms totally positive definite, $n \ne 0, 2$),
 $$\tau\big(c\,(Q_0\circ g)\big) = \tau(Q_0),$$
 i.e. the Tamagawa number computed with the lattice $g\mathcal O_F^n$ (and the form rescaled by $c$) is the one computed with $\mathcal O_F^n$.

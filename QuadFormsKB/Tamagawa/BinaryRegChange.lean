@@ -2,8 +2,7 @@
 # Binary regularized bookkeeping: $\tau^{\mathrm{reg}}(SO_2)$ under change of lattice and rescaling
 
 **Layer:** a totally real number field $F$ (any class number); binary forms $Q'$ over $\mathcal O_F$, totally positive definite.
-We define $\tau^{\mathrm{reg}}(Q')$ (`tauSOReg`) as the combinatorial $\tau(SO)$ with the divergent rank-2 product
-$\prod_\mathfrak p\alpha_\mathfrak p$ replaced by
+Earlier work defined $\tau^{\mathrm{reg}}(Q')$ (`tauSOReg`) as the $\tau(SO)$ with the divergent rank-2 product $\prod_\mathfrak p\alpha_\mathfrak p$ replaced by
 `regProd (chiP · Q') (-1)`. The rank $\ge3$ invariance theorems (`tauSO_compMat_nf`, `tauSO_smul_compMat_diagonal`) need $n\ne2$ only
 to split $\prod\alpha_\mathfrak p\cdot\prod r_\mathfrak p$; here the same local identities are used, with the finitely supported
 corrections moved through `regProd` instead.
@@ -536,7 +535,7 @@ Field:
 - `tau_eq_two`: `tauSOReg (diagForm1 D) = 2` for every `D : 𝓞 F` with `formF (diagForm1 D)` totally positive definite.
 
 *Status.* Equivalent to `BinaryTamagawaTwoReg F` (`binaryTamagawaTwoReg_iff`), by the regularized change of lattice and rescaling;
-this is the smaller statement that needs only one representative per square class of $\det H'$
+this is the smaller statement that is proved over ℚ and over $F$, one representative per square class of $\det H'$
 (`binaryTamagawaTwoReg_of_family`). *Independence:* a statement about binary forms only, as `BinaryTamagawaTwoReg`. -/
 @[kb "weil1982" "Thm. 3.7.1 (τ = 2), rank 2 with convergence factors, norm forms [unverified]"]
 structure BinaryTamagawaTwoRegDiag (F : Type) [Field F] [NumberField F] : Prop where
@@ -556,8 +555,7 @@ theorem binaryTamagawaTwoReg_iff : BinaryTamagawaTwoReg F ↔ BinaryTamagawaTwoR
   ⟨BinaryTamagawaTwoReg.toDiag, BinaryTamagawaTwoRegDiag.toReg⟩
 
 /-- **Reduction to any family of representatives of the square classes of $\det H'$** (e.g. over ℚ the primitive forms of
-fundamental discriminant, `PosForms D`; or scaled norm forms): if
-$\tau^{\mathrm{reg}}(R) = 2$ for all totally definite $R$ in a
+fundamental discriminant, `PosForms D`; or scaled norm forms): if $\tau^{\mathrm{reg}}(R) = 2$ for all totally definite $R$ in a
 family $\mathcal R$ such that every totally definite binary $Q'$ has some $R\in\mathcal R$ with $\det H_R\,u^2 = \det H_{Q'}\,w^2$ for nonzero
 $u,w\in\mathcal O_F$, then `BinaryTamagawaTwoReg F`. -/
 theorem binaryTamagawaTwoReg_of_family (𝓡 : Set (QuadForm (𝓞 F) 2))

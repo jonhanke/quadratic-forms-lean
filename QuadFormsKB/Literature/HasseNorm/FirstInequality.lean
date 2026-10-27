@@ -578,7 +578,7 @@ $$[F_S^\times : N L_{S_L}^\times] \cdot 2^{\operatorname{rk} L_{S_L}^\times} = 2
 with $\operatorname{rk} F_S^\times = r_\infty(F) - 1 + |S|$ and $\operatorname{rk} L_{S_L}^\times = r_\infty(L) - 1 + |S_L|$.
 (*Proof.* `herbrand_formula` and `finrank_fixed_add_anti` for $\sigma$ on $L_{S_L}^\times$, whose fixed part is
 $F_S^\times$ by `range_inclS`.) -/
-@[kb "milne2020cft" "Ch. VII §3 (Herbrand quotient of S-units) [unverified]; omeara1963 §65B, 65:10, p. 179"]
+@[kb "milne2020cft" "Ch. VII §3 (Herbrand quotient of S-units) [unverified]"]
 theorem index_normsF_mul (hσ : σ ≠ 1) (S : Finset (HeightOneSpectrum (𝓞 F)))
     (h1 : herbrandM1 (σS σ S) = 1) :
     (normsF σ S).index * 2 ^ (Units.rank L + (overS (L := L) S).card) =

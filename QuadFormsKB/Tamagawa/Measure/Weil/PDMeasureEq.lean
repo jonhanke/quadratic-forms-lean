@@ -10,8 +10,8 @@
 *Proof.* Both are Haar measures, so they are proportional (`isMulLeftInvariant_eq_smul`), and they give the same covolume
 $2$ to $PD^\times(F)\leftrightarrow SO(D^0)(F)$: `tamagawa_PD_division` (Weil's centre argument: $\tau(SL_1(D)) = 1$ and
 Fujisaki/zeta) on one side, the ternary lattice route `tamagawaNumberTwoAdelic_ternary` (Siegel's mass formula for ternary
-forms) on the other. No local computation is needed: this is how the archimedean bookkeeping
-(`omegaQuatInf` on product shells) is bypassed.
+forms) on the other. No local computation is needed: this is how the archimedean bookkeeping of
+`omegaQuatInf` on product shells is bypassed.
 
 Source: Weil 1982, Thm 3.2.1, p. 43; Thm 2.3.1 [unverified page].
 -/

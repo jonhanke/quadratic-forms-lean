@@ -6,7 +6,7 @@ with $|\chi(\mathfrak p)| \le 1$ (`hχ`). The intended case is the quadratic res
 for $\mathfrak p \nmid \mathfrak N$ and $\chi(\mathfrak p) = 0$ for $\mathfrak p \mid \mathfrak N$ (`charOff 𝔑 χ` makes a $\pm1$-valued $\chi$ vanish on
 $\mathfrak p \mid \mathfrak N$, so the factors there are $1$). For real $s > 1$,
 $$L_F(s,\chi) = \prod_{\mathfrak p}\big(1 - \chi(\mathfrak p)N\mathfrak p^{-s}\big)^{-1}\qquad(\texttt{LFunctionNF}),$$
-an absolutely convergent product (`hasProd_LFunctionNF`, via `multipliable_of_abs_sub_one_le`). This file proves
+an absolutely convergent product (`hasProd_LFunctionNF`, via the Euler product convergence lemmas). This file proves
 $$\zeta_F(s)^{-1} \le L_F(s,\chi) \le \zeta_F(s),\qquad L_F(s,\chi)^{-1} \ge \zeta_F(s)^{-1} \ge \zeta(s)^{-d},$$
 and the lower bound behind Hanke 2004 Thm 5.7(c)'s constant $E_n(X)$ (with $s = (n-1)/2$, $n \ge 5$ odd):
 $$L_F(s,\chi) \ge \prod_{\mathfrak p}(1 + N\mathfrak p^{-s})^{-1} \ge E(X) =
@@ -120,7 +120,7 @@ theorem lFactor_pos (hχ : ∀ 𝔭, |χ 𝔭| ≤ 1) (hs : 1 < s) (𝔭 : Heigh
   obtain ⟨h0, h1⟩ := rpow_neg_mem (two_le_normP 𝔭) hs.le
   exact inv_pos.mpr (one_sub_mul_pos (hχ 𝔭) h0 h1)
 
-/-- **$L_F(s,\chi)$ converges absolutely for real $s > 1$** (by `multipliable_of_abs_sub_one_le` with $|\ell_{\mathfrak p} - 1| \le 2N\mathfrak p^{-s}$). -/
+/-- **$L_F(s,\chi)$ converges absolutely for real $s > 1$** (by the Euler product convergence criterion with $|\ell_{\mathfrak p} - 1| \le 2N\mathfrak p^{-s}$). -/
 theorem hasProd_LFunctionNF (hχ : ∀ 𝔭, |χ 𝔭| ≤ 1) (hs : 1 < s) :
     HasProd (lFactor χ s) (LFunctionNF χ s) := by
   refine (multipliable_of_abs_sub_one_le (lFactor χ s) (C := 2) hs

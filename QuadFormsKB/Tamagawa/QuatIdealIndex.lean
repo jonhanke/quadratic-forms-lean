@@ -8,8 +8,7 @@ Let $J$ be a left ideal with $\operatorname{nrd}(J) \ne 0$, generated over $\mat
 $\det B \ne 0$. Then (`span_det_eq_sq`)
 $$(\det B) = \operatorname{nrd}(J)^2 \quad\text{as ideals of } \mathcal O_F,$$
 i.e. the $\mathcal O_F$-index $[\mathcal O : J]$ is $\operatorname{nrd}(J)^2$. *Proof, at each finite place $v$:* $J_v = \mathcal O_v\alpha$ (local principality,
-`exists_localIdeal_eq_rTrans`) with $(\operatorname{nrd}\alpha) = \operatorname{nrd}(J)\mathfrak o_v$ (`leftNrdIdeal_eq_of_idealSet_eq_rTrans`, the
-`leftNrdIdeal_localIdeal`); the families $(f_j)$ and $(e_i\alpha)$ generate the same $\mathfrak o_v$-module $J_v$, so in the $F_v$-basis $E = \iota_v(e)$ of
+`exists_localIdeal_eq_rTrans`) with $(\operatorname{nrd}\alpha) = \operatorname{nrd}(J)\mathfrak o_v$ (`leftNrdIdeal_eq_of_idealSet_eq_rTrans`, `leftNrdIdeal_localIdeal`); the families $(f_j)$ and $(e_i\alpha)$ generate the same $\mathfrak o_v$-module $J_v$, so in the $F_v$-basis $E = \iota_v(e)$ of
 $D_v$ their coordinate matrices satisfy $B = RU$, $R = BW$ with $U, W$ integral; hence $\det U \in \mathfrak o_v^\times$ and
 $\det B \sim \det R = \det(x\mapsto x\alpha) = \operatorname{nrd}(\alpha)^2$ (`det_mulRight`). Divisibility is local (`dvd_of_forall_ι_dvd`).
 

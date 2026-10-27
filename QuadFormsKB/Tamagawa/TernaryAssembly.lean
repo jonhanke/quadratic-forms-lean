@@ -46,9 +46,8 @@ def tzFactor (v : HeightOneSpectrum (𝓞 F)) (ram : Prop) [Decidable ram] (D' �
 variable [IsPrincipalIdealRing (𝓞 F)]
 
 open Classical in
-/-- **Input: the local densities of the trace-zero lattice of a local maximal order** (the local computation at the bad
-primes). For every totally definite $(a,b)_F$, maximal $\mathcal O$ with trace-zero frame $e$ and
-$Q_0 = Q_{\mathcal O^0}$, and every finite place $v$,
+/-- **Input: the local densities of the trace-zero lattice of a local maximal order** (the local computation at the bad places). For every totally definite $(a,b)_F$, maximal $\mathcal O$ with trace-zero frame $e$ and $Q_0 = Q_{\mathcal O^0}$, and every
+finite place $v$,
 $$\alpha_v(Q_0, Q_0) = (1-q_v^{-2})\,\varepsilon_v\,|8|_v^{-1}\,|\det\tfrac12H_{Q_0}|_v^{-3/2}\,|\operatorname{re}e_0|_v.$$
 
 Field:
@@ -56,7 +55,7 @@ Field:
 
 *Hypothesis hygiene.* This is a statement about the local lattice $\mathcal O_v^0 \subseteq D_v$ alone (split: $\mathfrak{sl}_2(\mathfrak o_v)$ with
 $-\det$; ramified: the trace-zero part of the valuation ring); it is not the global conclusion. At good primes it is the
-classical $\alpha_v = 1 - q_v^{-2}$ (`volSO_good_odd`). Its proof at the bad primes is the local computation referred to above. -/
+classical $\alpha_v = 1 - q_v^{-2}$ (`volSO_good_odd`). -/
 @[kb "voight2021" "§§13.3, 22.1 (local maximal orders, ternary lattice); Weil 1982, §3.7(a)"]
 structure TraceZeroLocalFactors (F : Type) [Field F] [NumberField F] [IsPrincipalIdealRing (𝓞 F)] : Prop where
   factor : ∀ (a b : 𝓞 F) (ha : a ≠ 0) (hb : b ≠ 0), IsTotDefinite a b →

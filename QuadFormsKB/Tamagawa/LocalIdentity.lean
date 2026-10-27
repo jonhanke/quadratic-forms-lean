@@ -9,7 +9,7 @@ $O(e_0^\perp)$ gives, at a prime where $L = \mathfrak o e_0 \perp L'$ is unimodu
 weight $1$, and $|2m|_\pi = 1$),
 $$\beta_\pi(L', L')\cdot\beta_\pi(L, m) = \beta_\pi(L, L)\qquad(\text{equivalently } \alpha_\pi(L')\,\beta_\pi(L, m) = \alpha_\pi(L)).$$
 This file **proves** it from the closed forms (`localIdentity_good_odd`, `localIdentity_good_even`; over $F$:
-`localIdentity_good`). It is the good-prime case of the `LocalOrbitalIdentity` and confirms its normalization there
+`localIdentity_good`). It is the good-prime case of `LocalOrbitalIdentity` and confirms its normalization there
 (the fibration constant $|2m|_\pi^{-n}$ is $1$). *Proof:* for $n + 1 = 2k + 1$ odd,
 $2(1 - \chi q^{-k})\prod_{i<k-1}(1 - q^{-2(i+1)})\cdot(1 + \chi q^{-k}) = 2\prod_{i<k}(1 - q^{-2(i+1)})$ since the character of
 $m$ by $L$ is that of $L'$: $(-1)^k\det(L)\,m = (-1)^k m^2\det(L')$ (`chiDiscT_splitForm`); for $n + 1 = 2k$ even, the

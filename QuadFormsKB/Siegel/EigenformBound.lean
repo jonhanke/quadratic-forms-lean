@@ -1,5 +1,6 @@
 /-
 # The cusp-form coefficient bound (4.8) from the eigenform decomposition and Deligne's bound
+
 Hanke 2004, p. 367: a cusp form $g(z) = \sum_{m \ge 1}b(m)e(mz)$ of integral weight $k$ on $\Gamma_0(N)$ with character
 $\chi$ is written as
 $$g = \sum_{i=1}^r\gamma_ig_i \qquad (4.7)$$

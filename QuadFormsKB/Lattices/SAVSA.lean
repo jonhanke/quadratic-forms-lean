@@ -5,7 +5,7 @@
 `InfinitePlace F`), with the mixed embedding $F \to F_{\mathbb R} = \mathbb R^{r_1} \times \mathbb C^{r_2}$
 (Mathlib's `mixedEmbedding`).
 
-**Proves** `exists_very_strong_approx` (O'Meara 1973, 33:11 (§33G), p. 77, the form used in step 4 of 104:3): for a
+**Proves** `exists_very_strong_approx` (O'Meara 1973, 33:? (§33G) [unverified], the form used in step 4 of 104:3): for a
 finite set $T$ of finite primes with neighbourhoods $O_\mathfrak p$ of points $b_\mathfrak p$, an infinite place $q_0$, a set
 $S$ of infinite places with $q_0 \notin S$ and bounds $\delta > 0$, $R$, there is $\beta \in F$ with $\beta \in O_\mathfrak p$ on
 $T$, $\beta$ integral at every other finite prime, $w(\beta) < \delta$ for $w \in S$ and $w(\beta) > R$ for $w \notin S$.
@@ -82,8 +82,8 @@ theorem exists_small_away (q₀ : InfinitePlace F) {ε : ℝ} (hε : 0 < ε) :
   rw [h_geqf w hw] at this
   exact this
 
-/-- **Very strong approximation** (O'Meara 1973, §33G, 33:11, p. 77); see the module docstring. -/
-@[kb "omeara1963" "§33G, 33:11, p. 77 (very strong approximation); cassels1978 Ch. 11, Lemma 8.1, p. 231"]
+/-- **Very strong approximation** (O'Meara 1973, §33G [unverified]); see the module docstring. -/
+@[kb "omeara1963" "§33G, very strong approximation [unverified]"]
 theorem exists_very_strong_approx (T : Finset (HeightOneSpectrum (𝓞 F)))
     (b : ∀ v : HeightOneSpectrum (𝓞 F), v.adicCompletion F)
     (O : ∀ v : HeightOneSpectrum (𝓞 F), Set (v.adicCompletion F)) (hO : ∀ v ∈ T, O v ∈ 𝓝 (b v))
@@ -318,11 +318,11 @@ theorem exists_small_away_prime (p : HeightOneSpectrum (𝓞 F)) {ε : ℝ} (hε
       _ < 1 := pow_lt_one₀ hε.le hε1 Module.finrank_pos.ne'
   linarith
 
-/-- **Very strong approximation with the free place a finite prime $\mathfrak p$** (O'Meara §33G, 33:11, p. 77, with $q = \mathfrak p$): for a
+/-- **Very strong approximation with the free place a finite prime $\mathfrak p$** (O'Meara §33G [unverified]): for a
 finite set $T \not\ni \mathfrak p$ of primes with neighbourhoods $O_\mathfrak q$, a set $S$ of infinite places and bounds, there
 is $\beta \in F$ with $\beta \in O_\mathfrak q$ on $T$, integral at every prime $\notin T \cup \{\mathfrak p\}$, $w(\beta) < \delta$
 on $S$, $w(\beta) > R$ off $S$, and $v_\mathfrak p(\beta) > e^{K}$. -/
-@[kb "omeara1963" "§33G, 33:11, p. 77 (free spot q = 𝔭); cassels1978 Ch. 11, Lemma 8.1, p. 231"]
+@[kb "omeara1963" "§33G, very strong approximation [unverified]"]
 theorem exists_very_strong_approx_at (p : HeightOneSpectrum (𝓞 F)) (T : Finset (HeightOneSpectrum (𝓞 F)))
     (hpT : p ∉ T) (b : ∀ v : HeightOneSpectrum (𝓞 F), v.adicCompletion F)
     (O : ∀ v : HeightOneSpectrum (𝓞 F), Set (v.adicCompletion F)) (hO : ∀ v ∈ T, O v ∈ 𝓝 (b v))

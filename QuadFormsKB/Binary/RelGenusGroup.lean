@@ -6,8 +6,7 @@ import QuadFormsKB.Binary.RelGenusExact
 # The composition group of normalized binary lattices over $F$; classes per genus
 
 $E/F$ quadratic. A **normalized pair** is $(\mathfrak A, a)$ with $\mathfrak A \ne 0$ an ideal of $\mathcal O_E$ and $a \in \mathcal O_F$ with
-$N_{E/F}\mathfrak A = (a)$; it stands for the binary $\mathcal O_F$-lattice $(\mathfrak A, a^{-1}N)$, whose norm ideal is $\mathcal O_F$ (the normalized lattice
-$(\mathfrak A_C, \frac{\eta}{a_C}N)$ is the pair $(\mathfrak A_C, \eta^{-1}a_C)$). Two pairs are **properly equivalent**,
+$N_{E/F}\mathfrak A = (a)$; it stands for the binary $\mathcal O_F$-lattice $(\mathfrak A, a^{-1}N)$, whose norm ideal is $\mathcal O_F$ (the $(\mathfrak A_C, \frac{\eta}{a_C}N)$ is the pair $(\mathfrak A_C, \eta^{-1}a_C)$). Two pairs are **properly equivalent**,
 $(\mathfrak A, a) \sim (\mathfrak B, b)$, iff $\mathfrak B = \lambda\mathfrak A$ and $b = N(\lambda)a$ for some $\lambda \in E^\times$, i.e. iff
 $x \mapsto \lambda x$ is an isometry $(\mathfrak A, a^{-1}N) \to (\mathfrak B, b^{-1}N)$ (`isometricLattices_ideal_iff`, the proper half).
 In integral form: $\alpha\mathfrak A = \beta\mathfrak B$ and $N(\beta)b = N(\alpha)a$ with $\alpha, \beta \in \mathcal O_E \setminus 0$.
@@ -163,19 +162,18 @@ theorem pairCon_mul_normUnit {p q : NormPairs F E}
       rw [← algebraMap_normUnit]; push_cast; rfl
     rw [e]; simp [nrm]; ring
 
-/-- The normalized lattice $(\mathfrak A_C, \frac{\eta}{a_C}N)$ as a pair $(\mathfrak A_C, \eta^{-1}a_C)$ ($\eta$ =
-`η.out`). -/
+/-- The normalized lattice $(\mathfrak A_C, \frac{\eta}{a_C}N)$ as a pair $(\mathfrak A_C, \eta^{-1}a_C)$ ($\eta$ = `η.out`). -/
 def pairOf (C : PNClass F E) (η : unitQuot F E) : NormPairs F E :=
   ⟨(classRep E C.1, ((η.out⁻¹ : (𝓞 F)ˣ) : 𝓞 F) * normGen C), classRep_ne_bot _, by
     show Ideal.relNorm (𝓞 F) (classRep E C.1 : Ideal (𝓞 E)) = Ideal.span {((η.out⁻¹ : (𝓞 F)ˣ) : 𝓞 F) * normGen C}
     rw [Ideal.span_singleton_mul_left_unit (Units.isUnit _), span_normGen]⟩
 
 variable (F E) in
-/-- **Parametrization of the classes:** $(C, \eta) \mapsto [(\mathfrak A_C, \eta^{-1}a_C)]$. -/
+/-- **The parametrization of the classes:** $(C, \eta) \mapsto [(\mathfrak A_C, \eta^{-1}a_C)]$. -/
 def classOf (x : PNClass F E × unitQuot F E) : PairClass F E := (pairOf x.1 x.2 : PairClass F E)
 
 /-- **`classOf` is a bijection** $\{C \in \mathrm{Cl}_E : N\mathfrak A_C \text{ principal}\} \times \mathcal O_F^\times/N(\mathcal O_E^\times) \to$ classes of pairs
-(so the proper classes of normalized lattices are exactly the pairs $(C, \eta)$, and there are finitely many). -/
+(so the proper classes of normalized lattices are exactly the $(C, \eta)$, and there are finitely many). -/
 @[kb "shimura2010" "§4 [unverified]"]
 theorem classOf_bijective : Function.Bijective (classOf F E) := by
   constructor

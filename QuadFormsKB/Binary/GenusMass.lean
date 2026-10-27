@@ -7,22 +7,21 @@ import QuadFormsKB.Siegel.ThetaCuspidal
 For a fundamental discriminant $D < 0$ with $t$ prime factors, class number $h = h(D)$ and $w = |\mathcal O_{K_D}^\times|$
 ($= 6, 4, 2$), and a genus $\mathcal G$ of primitive positive definite forms of discriminant $D$:
 $$\mathrm{Mass}(\mathcal G) = \sum_{[f] \in \mathcal G} \frac{1}{|\mathrm{Aut}(f)|} = \frac{h}{2^{t-1}} \cdot \frac{1}{2w}$$
-(`mass_genus`), with the repo's `Siegel.mass` (the library's convention: $\mathrm{GL}_2(\mathbb{Z})$-classes,
+(`mass_genus`), with the repo's `Siegel.mass` (the convention of this repository: $\mathrm{GL}_2(\mathbb{Z})$-classes,
 $\mathrm{Aut}(f) \le \mathrm{GL}_2(\mathbb{Z})$). The chain (the list):
 
 1. **The genus consists of primitive forms of discriminant $D$** (`mem_primPosForm_of_sameGenus`): positive
    definiteness and $\det H = -\operatorname{disc}$ are genus invariants (`Siegel.SameGenus.posDef`,
    `Siegel.SameGenus.det_hessian_eq`), and a form of fundamental discriminant is primitive (`isPrimitive_of_fund`).
-   So `Siegel.genusClasses f` is the image of the $\mathrm{GL}_2(\mathbb{Z})$-classes of the `PrimPosForm D` lying in
+   So `Siegel.genusClasses f` is the image of the $\mathrm{GL}_2(\mathbb{Z})$-classes of `PrimPosForm D` lying in
    $\mathcal G$ (`genusClasses_eq_image`).
 2. **The $\mathrm{GL}/\mathrm{SL}$ fibre identity** (`card_fiber_mul_aut`):
    $\#\{\text{proper classes in a GL-class } G\}\cdot|\mathrm{Aut}(G)| = 2w$, so a $\frac{1}{|\mathrm{Aut}|}$-weighted
    sum over GL-classes is $\frac{1}{2w}$ times the plain sum over proper classes (`sum_div_aut_genus`).
-3. **Each genus has $h/2^{t-1}$ proper classes** (`card_slClasses_in_genus`, unconditional by the
-   `isFormClassGroup`).
+3. **Each genus has $h/2^{t-1}$ proper classes** (`card_slClasses_in_genus`, unconditional by `isFormClassGroup`).
 
 Sources: Siegel (1935), the mass in the binary case; Gauss, *Disq. Arith.* §252 [unverified]; Cox, §3.B (Thm. 3.15),
-§7 [unverified locator]; Conway–Sloane, *Sphere Packings, Lattices and Groups*, Ch. 16, §2, Theorems 1–2, pp. 408–409 (the mass $\sum 1/|\mathrm{Aut}(L)|$ of a genus, stated there for unimodular lattices).
+§7 [unverified locator]; Conway–Sloane, *SPLAG*, Ch. 16, §§4–7 (the mass as a sum of $1/|\mathrm{Aut}|$) [unverified].
 -/
 
 open QuadraticAlgebra NumberField
@@ -67,7 +66,7 @@ $g$ is in the genus of $f$ (`Siegel.SameGenus`), then $\operatorname{disc} g = D
 primitive. Positive definiteness is read at the real place (`Siegel.SameGenus.posDef`), the discriminant
 $= -\det H$ at every $p$ (`Siegel.SameGenus.det_hessian_eq`), and primitivity follows from $D$ fundamental
 (`isPrimitive_of_fund`). -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.1 and (4.1), p. 139; Ch. 14, (1.5), p. 331 (D = −4d)"]
+@[kb "cassels1978" "Ch. 9, §1 (discriminant and definiteness are genus invariants) [unverified]"]
 theorem mem_primPosForm_of_sameGenus (f : PrimPosForm D) {g : BinQF} (h : SameGenus f.1 g) :
     g.disc = D ∧ g.PosDef ∧ g.IsPrimitive := by
   have hf : IntQF.PosDef f.1 := (intQF_posDef_iff _).mpr f.2.2.1
@@ -179,8 +178,8 @@ definite form $f$ of discriminant $D$, with the repo's `Siegel.mass` ($\mathrm{G
 of $f$, weights $1/|\mathrm{Aut}|$, $\mathrm{Aut} \le \mathrm{GL}_2(\mathbb{Z})$),
 $$\mathrm{Mass}(f) = \sum_{[g] \in \mathrm{Gen}(f)} \frac{1}{|\mathrm{Aut}(g)|} = \frac{h}{2^{t-1}\cdot 2w}.$$
 Every genus has the same mass, $\frac{1}{2^{t-1}}$ of the total $\mathrm{GL}$-mass $\frac{h}{2w}$ (Dirichlet's formula for the
-$\mathrm{SL}$-mass is $h/w$). Source: Siegel's mass formula in the binary case. (Conway–Sloane, Ch. 16, §2, pp. 408–409, uses the same
-mass $\sum 1/|\mathrm{Aut}|$ but treats only unimodular lattices, not binary forms.) Cox, Thm. 3.15 [unverified locator]. -/
+$\mathrm{SL}$-mass is $h/w$). Source: Siegel's mass formula in the binary case; Conway–Sloane, *SPLAG*, Ch. 16
+[unverified locator]; Cox, Thm. 3.15 [unverified locator]. -/
 @[kb "gauss1801" "§252 (equal number of classes per genus) [unverified]"]
 theorem mass_genus [Fact (D < 0)] (f : PosForms D) :
     Siegel.mass f.1 = (classNumber (QField D) : ℝ) /

@@ -212,7 +212,6 @@ theorem comap_sqHom_inf {k : ℕ} (hk : sExp v < k) :
       calc Valued.v ((u : Fv) - 1) ^ 2 ≤ exp (-(k : ℤ)) ^ 2 := pow_le_pow_left₀ zero_le hu' 2
         _ ≤ _ := by rw [← exp_nsmul, exp_le_exp, nsmul_eq_mul]; push_cast; omega
 
-@[kb "omeara1963" "§63A, 63:1b, p. 159"]
 theorem isOpen_sqSub : IsOpen (sqSub F v : Set Fvˣ) :=
   Subgroup.isOpen_mono (oneSub_le_sqSub v (k := sExp v + 1) (by omega)) (isOpen_oneSub v _ _)
 

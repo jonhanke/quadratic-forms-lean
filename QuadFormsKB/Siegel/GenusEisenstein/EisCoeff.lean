@@ -1,5 +1,6 @@
 /-
 # The $q$-coefficients of the Eisenstein part $E_f$
+
 For $f \in M_2(\Gamma_1(N))$ and $m \ge 1$ (`hasSum_eisQCoeff`):
 $$e_f(m) = -8\pi^2 m\sum_{X \ge 1}\frac{1}{X^2}\sum_{\substack{0 \le Y < X\\ \gcd(Y, X) = 1}}W(X, Y)\,e\Big(\frac{mY}{X}\Big),$$
 an absolutely convergent series, where $W$ = `eisW f` (so $W(X, Y) = c_f(\gamma)/2$ for $v(\gamma) = (X, Y)$, by

@@ -13,8 +13,7 @@ For $(\alpha,\beta)$ with $\operatorname{nrd}\alpha = \operatorname{nrd}\beta$ a
 
 *Proof.* The columns of $\phi(\alpha,\beta)$ are the coordinates of $\alpha e_j\beta^{-1}$ ($e_j = 1, i, j, k$). With
 $\gamma = \alpha\beta^{-1} = \phi(\alpha,\beta)(1)$: $\alpha e_j\beta^{-1} - e_j = (\gamma-1)\beta e_j\beta^{-1} + (\beta e_j\beta^{-1} - e_j)$, and
-$\beta e_j\beta^{-1} - e_j$ is read off the conjugation matrix `conjGL β` (trace zero part). For the converse,
-`re_ne_zero_of_conjGL_mem_ballOne`, `mem_latP_of_conjMat_mem_ballOne` and `mem_lamCong_iff`.
+$\beta e_j\beta^{-1} - e_j$ is read off the conjugation matrix `conjGL β` (trace zero part). For the converse, `re_ne_zero_of_conjGL_mem_ballOne`, `mem_latP_of_conjMat_mem_ballOne` and `mem_lamCong_iff`.
 
 Source: Weil 1982, §3.7, p. 65 [unverified page].
 -/

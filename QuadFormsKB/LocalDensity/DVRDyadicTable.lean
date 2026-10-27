@@ -340,7 +340,7 @@ theorem pidx_val {r : ℕ} (i : Fin r) (j : Fin 2) : (pidx i j : ℕ) = j + 2 * 
 
 /-- **The orthogonal sum of binary blocks** $\bigoplus_{i<r} (a_i x_{2i}^2 + b_i x_{2i}x_{2i+1} + c_i x_{2i+1}^2)$ over a
 commutative ring $S$, for $A_i = (a_i, b_i, c_i)$; coordinates $2i, 2i+1$ (`pidx i 0`, `pidx i 1`). -/
-@[kb "omeara1963" "§93B, p. 255 (binary lattices A(α,β)); §93D, 93:15, p. 258"]
+@[kb "omeara1963" "§93 (dyadic unimodular splitting) [unverified]"]
 def pairSumForm {S : Type*} [CommRing S] {r : ℕ} (A : Fin r → S × S × S) : QuadForm S (r * 2) :=
   QuadForm.ofUpper fun k l =>
     if (finProdFinEquiv.symm k).1 = (finProdFinEquiv.symm l).1 then
@@ -699,7 +699,7 @@ $\Phi_n$ defined only for $\mathfrak p \nmid 2N$): for $\pi \mid 2$ (any $e$), $
 units, $r \ge 2$ and $\pi \nmid T'$,
 $$C_\pi(T') = \frac{q^{(n-2)/2}}{q^{(n-2)/2} - \varepsilon},\qquad \varepsilon = \texttt{pairArf}\,A,$$
 the printed even-$n$ entry with $\Phi_n(\mathfrak p) := \varepsilon$ (`DVR.table2_even_unit` for $\pi \nmid 2$).
-*Update (candidate generalization; pending author):* Table 2 thus holds at dyadic
+*Update (candidate generalization; pending author; `docs/updates-and-errata.md`):* Table 2 thus holds at dyadic
 $\mathfrak p \nmid N$, with $\Phi_n(\mathfrak p)$ the Arf sign. -/
 @[kb "hanke2004" "Table 2, p. 370 (dyadic, even unimodular)"]
 theorem table2_even_unit_pairSum [Fintype 𝔽] [DecidableEq 𝔽] {r : ℕ} (A : Fin r → R × R × R) (π : R)

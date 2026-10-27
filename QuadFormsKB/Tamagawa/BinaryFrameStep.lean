@@ -10,7 +10,7 @@ a totally positive $a \in \mathcal O_F$, and an adapted frame $Q\circ g = \langl
 
 This is the frame identity (`two_mul_tamagawaK_mul_repMass_frame3`) one rank lower: now the *form* is binary, so both
 $\prod_\mathfrak p\alpha_\mathfrak p(Q)$ (`tamagawaK`) and $\prod_\mathfrak p\beta_\mathfrak p(Q, a)$ diverge, and both are regularized by
-the same character $\chi_Q$ = `chiP · Q` with exponent $-1$:
+the same character $\chi_Q$ = `chiP · Q` with exponent $-1$ (`docs/rank3-siegel-design.md` §2.2, option (ii)):
 
 * `siegelProduct2Reg Q a` $= |d_F|^{-1/2}\prod_\sigma\beta_\sigma(a)\cdot L_F(1,\chi_Q)^{-1}\prod_\mathfrak p\beta_\mathfrak p(Q,a)
   (1-\chi_Q(\mathfrak p)/N\mathfrak p)^{-1}$ (the rank-2 analogue of `siegelProduct3`; the product has finite support,
@@ -19,7 +19,7 @@ the same character $\chi_Q$ = `chiP · Q` with exponent $-1$:
   $$2\,\mu^{\mathrm{reg}}_{\mathrm{Tam}}(K_{SO}(Q))\cdot\mathrm{repMass}(\mathcal O_F^2, a) = \tau(SO(Q''))\cdot S^{\mathrm{reg}}_2(Q, a).$$
   The local orbital identities are `orbitalLocalIdentities` ($n = 1$ included); the factors $L_F(1,\chi_Q)^{-1}$ on the
   two sides are the same and cancel.
-* With $\tau(SO_1) = 1$ (`tauSO_rankOne_eq_one`): `two_mul_tamagawaKReg_mul_repMass` —
+* With the $\tau(SO_1) = 1$ (`tauSO_rankOne_eq_one`): `two_mul_tamagawaKReg_mul_repMass` —
   $2\,\mu^{\mathrm{reg}}(Q)\,\mathrm{repMass}(Q, a) = S^{\mathrm{reg}}_2(Q, a)$ for every totally positive $a$ represented by $Q$
   over $F$ — and `tauSOReg_eq_two_iff`: $\tau^{\mathrm{reg}}(SO(Q)) = 2$ iff $S^{\mathrm{reg}}_2(Q,a) = 2\,\mathrm{repMass}/\mathrm{Mass}$
   at one $a$ with $\mathrm{repMass}(Q, a) \ne 0$ (i.e. the binary Siegel formula with $\varepsilon = \frac12$ at one number).
@@ -27,6 +27,7 @@ the same character $\chi_Q$ = `chiP · Q` with exponent $-1$:
   part 2 to compare $\chi_Q$ with $\chi_D$ over $\mathbb Q$ without computing residue symbols).
 
 Part 2 (`BinaryTauRat.lean`) feeds in the binary Siegel formula over $\mathbb Q$.
+
 -/
 
 open NumberField IsDedekindDomain Matrix Filter Topology
@@ -80,8 +81,7 @@ set_option maxHeartbeats 800000 in
 $N = 2$). For $Q$ totally positive definite binary over $\mathcal O_F$ ($F$ totally real, any class number), $a \in \mathcal O_F$
 totally positive and any adapted frame $Q\circ g = \langle a\rangle\perp Q''$:
 $$2\,\mu^{\mathrm{reg}}_{\mathrm{Tam}}(K_{SO}(Q))\cdot\mathrm{repMass}(\mathcal O_F^2, a) = \tau(SO(Q''))\cdot S^{\mathrm{reg}}_2(Q, a).$$
-**Unconditional.** *Proof.* As for `two_mul_tamagawaK_mul_repMass_frame3` with $n = 1$: the per-prime identity
-(`locW_mul_siegelDensity_frame2`) gives
+**Unconditional.** *Proof.* the proof with $n = 1$: the per-prime identity (`locW_mul_siegelDensity_frame2`) gives
 $\beta_\mathfrak p\lambda_\mathfrak p^{-1} = W_\mathfrak p(0)\cdot\alpha_\mathfrak p(Q)\lambda_\mathfrak p^{-1}/(\alpha_\mathfrak p(Q'')E_\mathfrak p)$ with
 $\lambda_\mathfrak p = 1-\chi_Q(\mathfrak p)/N\mathfrak p$; $W$, $E$, $\alpha(Q)\lambda^{-1}$ have finite support and $\prod\alpha(Q'')$ converges
 (rank one), so $\prod\beta\lambda^{-1}$ converges and the two factors $L_F(1,\chi_Q)^{-1}$ cancel. -/
@@ -271,8 +271,8 @@ theorem localDensity_eq_one_sub_chiP (Q : QuadForm (𝓞 F) 2) (hpd : IsTotallyP
   rw [_root_.zpow_neg_one, mul_inv_eq_one₀ hl] at h1
   exact h1
 
-/-- **$\tau^{\mathrm{reg}}(SO_2) = 2$ from the binary Siegel formula at one number** (the backwards step $1 \to 2$).
-If, for one totally positive $a$ with $\mathrm{repMass}(\mathcal O_F^2, a) \ne 0$,
+/-- **$\tau^{\mathrm{reg}}(SO_2) = 2$ from the binary Siegel formula at one number** (the backwards step $1 \to 2$,
+`docs/rank3-siegel-design.md` §2.2 option (ii)). If, for one totally positive $a$ with $\mathrm{repMass}(\mathcal O_F^2, a) \ne 0$,
 Siegel's formula with $\varepsilon = \frac12$ holds,
 $$\mathrm{repMass}(\mathcal O_F^2, a) = \tfrac12\,\mathrm{Mass}(\mathcal O_F^2)\cdot S^{\mathrm{reg}}_2(Q, a),$$
 then $\tau^{\mathrm{reg}}(SO(Q)) = 2$. (With `two_mul_tamagawaKReg_mul_repMass`: $2\mu^{\mathrm{reg}}\,\mathrm{repMass} =

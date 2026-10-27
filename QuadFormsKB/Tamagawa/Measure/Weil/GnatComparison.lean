@@ -7,15 +7,14 @@
 * **`GnatTamagawaComparisonDef F`** (input, the definite part of `GnatTamagawaComparison F`): the same statement for totally
   definite $D$ only ($-a, -b\gg0$, and $d\gg0$ in the non-square case). `GnatTamagawaComparison.toDef`.
 * With it: **`quaternaryTamagawaTwo_of_gnatComparisonDef`** ($\tau(SO_4) = 2$, every totally real $F$, any class number),
-  **`rankFourUnitSiegel_of_gnatComparisonDef`**, and the all-ranks consumers (the same proofs as for
-  `GnatTamagawaComparison`, which only ever apply the input to totally definite quaternion algebras).
+  **`rankFourUnitSiegel_of_gnatComparisonDef`**, and the all-ranks consumers (the same proofs as the covolume results, which only ever apply the
+  input to totally definite quaternion algebras).
 * **`GnatMeasureComparison F`** (input, measure only): for the explicit isomorphisms `sqPEquiv` and `nsPEquiv`,
   $\Phi_*\mu_P = \mu_{\mathrm{Tam}}$; the definite version **`GnatMeasureComparisonDef F`**.
-* **The reduction in this form:** **`gnatTamagawaComparison_of_measure`**
-  (`GnatMeasureComparison F → GnatTamagawaComparison F`) and **`gnatTamagawaComparisonDef_of_measure`**: the isomorphism
-  $P\cong SO(V)(\mathbb A)$ and $\Phi(\pi(\Gamma)) = SO(V)(F)$ are now proved
-  (`sqPEquiv`, `map_gamP_sqPEquiv`, `nsPEquiv`, `map_gamP_nsPEquiv`); only Weil's local-ratio identity
-  $\Phi_*\mu_P = \mu_{\mathrm{Tam}}$ (Thm 2.3.1) remains.
+* **In this form:** **`gnatTamagawaComparison_of_measure`** (`GnatMeasureComparison F → GnatTamagawaComparison F`) and
+  **`gnatTamagawaComparisonDef_of_measure`**: the isomorphism $P\cong SO(V)(\mathbb A)$ and $\Phi(\pi(\Gamma)) = SO(V)(F)$ are now proved
+  (`sqPEquiv`, `map_gamP_sqPEquiv`, `nsPEquiv`, `map_gamP_nsPEquiv`); only Weil's local-ratio identity $\Phi_*\mu_P = \mu_{\mathrm{Tam}}$
+  (Thm 2.3.1) remains.
 
 *Hypothesis hygiene.* `GnatMeasureComparison` compares two explicit Haar measures on $SO(V)(\mathbb A)$ along an explicit
 isomorphism; it mentions no lattice, covolume, Tamagawa number or representation count.
@@ -40,8 +39,7 @@ variable {F : Type} [Field F] [NumberField F]
 /-! ### The definite comparison -/
 
 variable (F) in
-/-- **Input (named): Weil's measure comparison for $G^\natural\to SO(V)$, $m = 4$, totally definite $D$** — the fields of
-`GnatTamagawaComparison F` restricted to $-a, -b$ totally positive (and $d$ totally positive in the non-square case), which is all the
+/-- **Input (named): Weil's measure comparison for $G^\natural\to SO(V)$, $m = 4$, totally definite $D$** — the fields of `GnatTamagawaComparison F` restricted to $-a, -b$ totally positive (and $d$ totally positive in the non-square case), which is all the
 reduction to $\tau(SO_4) = 2$ uses.
 
 Fields: `square`, `nonsquare` as in `GnatTamagawaComparison`, with the extra hypotheses `hna : IsTotallyPos (-(a : F))`,
@@ -70,12 +68,12 @@ theorem GnatTamagawaComparison.toDef (hC : GnatTamagawaComparison F) : GnatTamag
 @[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65; Thm 2.3.1"]
 theorem tamagawaNumberTwoAdelic_qSq_def (hC : GnatTamagawaComparisonDef F) {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
     (hna : IsTotallyPos (-(a : F))) (hnb : IsTotallyPos (-(b : F)))
-    (hQ : (qSq a b).Nondegenerate) :
+    (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) (hQ : (qSq a b).Nondegenerate) :
     TamagawaNumberTwoAdelic (qSq a b) hQ := by
   obtain ⟨Φ, hΓ, hμ⟩ := hC.square a b ha0 hb0 hna hnb hQ
   have := (gnatSqO ha0 hb0).isHaarMeasure_muP (muSq ha0 hb0)
   unfold TamagawaNumberTwoAdelic
-  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatSq ha0 hb0]
+  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatSq ha0 hb0 hdiv]
 
 /-- Weil's adelic $\tau(SO(\langle1,-ad,-bd,abd\rangle)) = 2$ for totally definite $D'$, given the definite input. -/
 @[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65; Thm 2.3.1"]
@@ -84,12 +82,12 @@ theorem tamagawaNumberTwoAdelic_qNS_def (hC : GnatTamagawaComparisonDef F) {a b 
     (hb₁ : bK 1 * bK 1 = algebraMap F K (d : F)) {α β : 𝓞 K} (hα : (α : K) = algebraMap F K (a : F))
     (hβ : (β : K) = algebraMap F K (b : F)) (hα0 : α ≠ 0) (hβ0 : β ≠ 0)
     (hna : IsTotallyPos (-(a : F))) (hnb : IsTotallyPos (-(b : F))) (hdpos : IsTotallyPos (d : F))
-    (hQ : (qNS a b d).Nondegenerate) :
+    (hdiv : ∀ ξ : ℍ[K,(α : K),(β : K)], ξ ≠ 0 → IsUnit ξ) (hQ : (qNS a b d).Nondegenerate) :
     TamagawaNumberTwoAdelic (qNS a b d) hQ := by
   obtain ⟨Φ, hΓ, hμ⟩ := hC.nonsquare a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hna hnb hdpos hQ
   have := (gnatBCO bK 0 hb₀ hα0 hβ0).isHaarMeasure_muP (muBC bK 0 hb₀ hα0 hβ0)
   unfold TamagawaNumberTwoAdelic
-  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatBC bK 0 hb₀ hα0 hβ0]
+  rw [covolume_eq_of_continuousMulEquiv _ _ Φ hΓ _ _ hμ, covolume_gnatBC bK 0 hb₀ hα0 hβ0 hdiv]
 
 section Reduction
 
@@ -97,8 +95,7 @@ open QuadForm LatChange
 
 variable [IsTotallyReal F]
 
-/-- **$\tau(SO_4) = 2$ over every totally real field (any class number), given the definite comparison**: the proof of
-`quaternaryTamagawaTwo_of_gnatComparison`, which only applies the input to totally definite quaternion algebras. -/
+/-- **$\tau(SO_4) = 2$ over every totally real field (any class number), given the definite comparison**: the proof of `quaternaryTamagawaTwo_of_gnatComparison`, which only applies the input to totally definite quaternion algebras. -/
 @[kb "weil1982" "§3.7, Thm 3.7.1 (m = 4), p. 65"]
 theorem quaternaryTamagawaTwo_of_gnatComparisonDef (hC : GnatTamagawaComparisonDef F) : QuaternaryTamagawaTwo F := by
   refine quaternaryTamagawaTwo_of_diag_nf fun c hc hpd => ?_
@@ -168,8 +165,10 @@ theorem quaternaryTamagawaTwo_of_gnatComparisonDef (hC : GnatTamagawaComparisonD
     have hQsq : (qSq a' b').Nondegenerate := nondegenerate_of_map hpdsq.nondegenerate
     rw [← hqH]
     refine tamagawaNumberTwo_compMat_of hQsq hpdsq hH ?_
+    have hdiv := hdiv_of_totallyNeg (F := F) (a := (a' : F)) (b := (b' : F))
+      (fun w hw => emb_neg_of_isTotallyPos_neg hna w hw) (fun w hw => emb_neg_of_isTotallyPos_neg hnb w hw)
     exact (tamagawaNumberTwoAdelic_iff (qSq a' b') hQsq (by norm_num) hpdsq (isIntegral_std _)).1
-      (tamagawaNumberTwoAdelic_qSq_def hC ha0 hb0 hna hnb hQsq)
+      (tamagawaNumberTwoAdelic_qSq_def hC ha0 hb0 hna hnb hdiv hQsq)
   · -- non-square discriminant: `K = F(√d')`
     push_neg at hsq
     have := fact_irreducible_quadPoly (d' : F) hsq
@@ -186,9 +185,15 @@ theorem quaternaryTamagawaTwo_of_gnatComparisonDef (hC : GnatTamagawaComparisonD
     have hβ0 : β ≠ 0 := fun h => hb0 (RingOfIntegers.coe_injective (by
       have h' : algebraMap F K (b' : F) = 0 := congrArg Subtype.val h
       rw [map_eq_zero] at h'; simpa using h'))
+    have hdiv : ∀ ξ : ℍ[K,(α : K),(β : K)], ξ ≠ 0 → IsUnit ξ := by
+      refine hdiv_of_totallyNeg (fun w hw => ?_) (fun w hw => ?_)
+      · change embedding_of_isReal hw (algebraMap F K (a' : F)) < 0
+        rw [embedding_of_isReal_algebraMap]; exact emb_neg_of_isTotallyPos_neg hna _ _
+      · change embedding_of_isReal hw (algebraMap F K (b' : F)) < 0
+        rw [embedding_of_isReal_algebraMap]; exact emb_neg_of_isTotallyPos_neg hnb _ _
     exact (tamagawaNumberTwoAdelic_iff (qNS a' b' d') hQns (by norm_num) hpdns (isIntegral_std _)).1
       (tamagawaNumberTwoAdelic_qNS_def hC (quadBasis (d' : F)) (quadBasis_zero _) (quadBasis_one_sq _)
-        (α := α) (β := β) rfl rfl hα0 hβ0 hna hnb hdpos hQns)
+        (α := α) (β := β) rfl rfl hα0 hβ0 hna hnb hdpos hdiv hQns)
 
 /-- **`RankFourUnitSiegel F`, every totally real field, given the definite comparison.** -/
 @[kb "weil1982" "§4.5, p. 100; §3.7, Thm 3.7.1 (m = 4)"]
@@ -258,8 +263,7 @@ theorem GnatMeasureComparison.toDef (hM : GnatMeasureComparison F) : GnatMeasure
   ⟨fun a b ha0 hb0 _ _ hQ => hM.square a b ha0 hb0 hQ,
    fun a b d K _ _ _ bK hb₀ hb₁ α β hα hβ hα0 hβ0 _ _ _ hQ => hM.nonsquare a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hQ⟩
 
-/-- **`GnatTamagawaComparison F` reduces to the measure identity** (the isomorphism and the global points are
-proved). -/
+/-- **`GnatTamagawaComparison F` reduces to the measure identity** (the isomorphism and the global points are proved). -/
 @[kb "weil1982" "§3.7, pp. 64-65; Thm 2.3.1 [unverified page]"]
 theorem gnatTamagawaComparison_of_measure (hM : GnatMeasureComparison F) : GnatTamagawaComparison F :=
   ⟨fun a b ha0 hb0 hQ => ⟨sqPEquiv ha0 hb0, map_gamP_sqPEquiv ha0 hb0, hM.square a b ha0 hb0 hQ⟩,
@@ -268,7 +272,7 @@ theorem gnatTamagawaComparison_of_measure (hM : GnatMeasureComparison F) : GnatT
         (ne_zero_of_algebraMap_eq hβ hβ0) (d_ne_zero_of_basis hb₁),
       map_gamP_nsPEquiv hb₀ hb₁ hα hβ _ _ _ _ _, hM.nonsquare a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hQ⟩⟩
 
-/-- **Definite case:`GnatTamagawaComparisonDef F` reduces to `GnatMeasureComparisonDef F`.** -/
+/-- **Definite case: `GnatTamagawaComparisonDef F` reduces to `GnatMeasureComparisonDef F`.** -/
 @[kb "weil1982" "§3.7, pp. 64-65; Thm 2.3.1 [unverified page]"]
 theorem gnatTamagawaComparisonDef_of_measure (hM : GnatMeasureComparisonDef F) : GnatTamagawaComparisonDef F :=
   ⟨fun a b ha0 hb0 hna hnb hQ => ⟨sqPEquiv ha0 hb0, map_gamP_sqPEquiv ha0 hb0, hM.square a b ha0 hb0 hna hnb hQ⟩,

@@ -17,7 +17,7 @@ $(\mathbb H\otimes\mathbb A_f)^\times$. For $z\in(\mathbb H\otimes\mathbb A_f)^\
   the product of the self-dual local zeta functions of the norm form with Weil's convergence factors (absolutely
   convergent, `hasProd_quatSelfDualZeta`).
 * **`tendsto_mul_quatFinZeta`**: $(s-2)\int\mathbf 1_{\hat\Lambda}\|\operatorname{nrd}z\|_f^s\,d\mu_f\to|d_F|^{-2}\rho_F$ as $s\to2^+$
-  ($\zeta_F(s-1)$ times an Euler product continuous at $s = 2$ with value $1$ in the standard normalization).
+  (the factor $\zeta_F(s-1)$ times an Euler product continuous at $s = 2$ with value $1$ in the standard normalization).
 
 **Outside results used**: Mathlib's `lintegral_iSup_directed_of_measurable`,
 `tendsto_atTop_iSup` (monotone exhaustion of the restricted product), `Filter.Tendsto.div`; the library's Euler product

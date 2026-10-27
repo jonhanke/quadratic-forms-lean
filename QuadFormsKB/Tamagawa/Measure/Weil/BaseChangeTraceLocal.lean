@@ -2,7 +2,8 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeQuat
 import QuadFormsKB.Tamagawa.Measure.Weil.TrdSelfDual
 
 /-!
-# The local $\psi_v\circ\operatorname{Tr}_{K/k}$ self-dual measure
+# The local $\psi_v\circ\operatorname{Tr}_{K/k}$ self-dual measure (local part)
+
 The diagonal self-duality (`selfDual_diag_iff`, for $F_v^4$) for an arbitrary finite index set $\iota$, and its
 application to a quadratic extension $K = k(\delta)$, $\delta^2 = d$, with basis $b = (1,\delta)$:
 
@@ -13,9 +14,9 @@ application to a quadratic extension $K = k(\delta)$, $\delta^2 = d$, with basis
 * **`traceFactor_eq_diagFactorN`**: the local factor `traceFactor b v` $=|\det G|_v^{1/2}$ of `BaseChangeMeasure.lean`
   is $\prod_i|g_i|_v^{1/2}$ for $g = (2, 2d)$. Hence (**`selfDual_trace_iff`**) `traceFactor b v`$\cdot dx_v^{\otimes2}$ is
   the unique $\psi_v\circ\operatorname{Tr}_{K/k}$-self-dual multiple of the coordinate measure on $K\otimes_kk_v = k_v^2$;
-  with `finprod_traceFactor_mul_inf` (product $=1$) and `map_adeleBaseChange_muAddVec` this completes item 2:
+  with `finprod_traceFactor_mul_inf` (product $=1$) and `map_adeleBaseChange_muAddVec` this completes the construction:
   the restricted product of the local $\psi_v\circ\operatorname{Tr}$-self-dual measures is `muAddVec k (Fin 2)`, which
-  `adeleBaseChange b` carries to `muAdd K`. (The archimedean self-duality is not formalized; only the
+  `adeleBaseChange b` carries to `muAdd K`. (The archimedean self-duality is, as elsewhere in the library, not formalized; only the
   factor $|\det G|_\infty^{1/2}$ enters.)
 -/
 
@@ -134,7 +135,7 @@ theorem diagFactorN_sq_mul (g : ι → Kv) (hg : ∀ i, g i ≠ 0) :
 
 /-- **Self-duality for a diagonal pairing on $F_v^\iota$**: $r\,dx_v^{\otimes\iota}$ ($r\ge0$) satisfies Fourier inversion
 on all box indicators iff $r = \prod_i|g_i|_v^{1/2}$ (`selfDual_diag_iff` for any finite $\iota$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (the self-dual measure) and Thm. 2.2.2, p. 310"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified] (self-dual measures)"]
 theorem selfDual_diagN_iff (g : ι → Kv) (hg : ∀ i, g i ≠ 0) (r : ℝ) (hr : 0 ≤ r) :
     (∀ c k, fourierDiagInvN v (ENNReal.ofReal r • volVN v) g
         (fourierDiagN v (ENNReal.ofReal r • volVN v) g (boxIndN v c k)) = boxIndN v c k) ↔
@@ -236,7 +237,7 @@ include hb0 hb1 in
 /-- **The local $\psi_v\circ\operatorname{Tr}_{K/k}$-self-dual measure on $K\otimes_kk_v = k_v^2$** is
 `traceFactor b v`$\cdot dx_v^{\otimes2}$, and it is the only multiple of $dx_v^{\otimes2}$ that is self-dual
 ($\operatorname{Tr}(xy) = 2x_0y_0 + 2dx_1y_1$ by `traceMatrix_basisOneDelta`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (the self-dual measure) and Thm. 2.2.2, p. 310 (local factors |det G|_v^{1/2})"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
 theorem selfDual_trace_iff (hd : d ≠ 0) (v : HeightOneSpectrum (𝓞 k)) (r : ℝ) (hr : 0 ≤ r) :
     (∀ c kk, fourierDiagInvN v (ENNReal.ofReal r • volVN v) (fun i => algebraMap k _ (![2, 2 * d] i))
         (fourierDiagN v (ENNReal.ofReal r • volVN v) (fun i => algebraMap k _ (![2, 2 * d] i))

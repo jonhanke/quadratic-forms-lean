@@ -2,7 +2,7 @@
 # Rank one over $\mathbb Z$: $\langle a\rangle$, its genus, its mass, and why Siegel's formula degenerates
 
 **Layer:** integral forms `QuadForm ℤ 1` (`Defs/QuadForm.lean`), with the genus, classes, automorphisms and masses of
-`Siegel/Genus.lean`, `Siegel/Mass.lean` ($\mathrm{GL}_n(\mathbb Z)$-classes, $\mathrm{Aut} \subseteq \mathrm{GL}_1(\mathbb Z)$; the convention used throughout), the
+`Siegel/Genus.lean`, `Siegel/Mass.lean` ($\mathrm{GL}_n(\mathbb Z)$-classes, $\mathrm{Aut} \subseteq \mathrm{GL}_1(\mathbb Z)$; the convention of this repository), the
 local densities $\beta_p(m)$ of `LocalDensity/Basic.lean` and the Euler factors of `Siegel/LocalProduct.lean`.
 
 **The form.** $\langle a\rangle = $ `unary a`, $Q(x_0) = a\,x_0^2$ (0-based: one variable $x_0$). Every
@@ -34,7 +34,7 @@ local densities $\beta_p(m)$ of `LocalDensity/Basic.lean` and the Euler factors 
 $1 + O(1)$, not $1 + O(p^{-2})$; the Euler product is an $L(1, \chi)$-type product with nothing to cancel the pole of
 $\zeta$ when $\chi_{am}$ is trivial. In rank $1$, $SO_1$ is the trivial group, $\tau(SO_1) = 1$ (not $2$), and
 Siegel's $\varepsilon = \tfrac12$ for $r = n$ appears as $\mathrm{Mass}(\langle a\rangle) = \tfrac12$ (see
-`Tamagawa/RankOneNF.lean`).
+`Tamagawa/RankOneNF.lean` and `docs/survey-weil-tamagawa.md`, "Rank 1").
 -/
 import QuadFormsKB.Siegel.Mass
 import QuadFormsKB.Siegel.LocalProduct
@@ -46,9 +46,8 @@ namespace QuadFormsKB.Siegel.RankOne
 /-! ### The unary form $\langle a\rangle$ -/
 
 /-- **The unary form** $\langle a\rangle$: $Q(x_0) = a\,x_0^2$ over $\mathbb Z$ (one variable, 0-based index $0$;
-Cassels 1978, Ch. 9, §1, p. 128: integral forms in $n \ge 1$ variables; Cassels has no separate discussion of rank
-one). -/
-@[kb "cassels1978" "Ch. 9, §1, p. 128 (integral forms, n ≥ 1)"]
+Cassels 1978, Ch. 9 [unverified], rank-one lattices). -/
+@[kb "cassels1978" "Ch. 9, rank-one lattices ⟨a⟩ [unverified]"]
 def unary (a : ℤ) : QuadForm ℤ 1 := QuadForm.diag fun _ => a
 
 /-- $\langle a\rangle$ after any base change $f : \mathbb Z \to S$: $Q(x) = f(a)\,x_0^2$. -/
@@ -117,12 +116,12 @@ theorem repNum_unary_zero {a : ℤ} (ha : a ≠ 0) : repNum (unary a) 0 = 1 := b
   rw [repNum, this]; simp
 
 open Classical in
-/-- **The representation numbers of $\langle a\rangle$** (representations as in Cassels 1978, Ch. 1, §2, (2.3), p. 5): for $a \ne 0$ and $m \ne 0$,
+/-- **The representation numbers of $\langle a\rangle$** (Cassels 1978, Ch. 9 [unverified]): for $a \ne 0$ and $m \ne 0$,
 $$r_{\langle a\rangle}(m) = \#\{x_0 \in \mathbb Z : a x_0^2 = m\} = \begin{cases} 2 & m = ak^2 \text{ for some } k \in \mathbb Z,\\
 0 & \text{otherwise}\end{cases}$$
 ($k \ne 0$ automatically since $m \ne 0$; equivalently, $m/a$ is the square of a nonzero integer). For $m = 0$,
 $r(0) = 1$ (`repNum_unary_zero`). -/
-@[kb "cassels1978" "Ch. 1, §2, (2.3), p. 5 (representations)"]
+@[kb "cassels1978" "Ch. 9 (rank one) [unverified]"]
 theorem repNum_unary {a m : ℤ} (ha : a ≠ 0) (hm : m ≠ 0) :
     repNum (unary a) m = if ∃ k : ℤ, m = a * k ^ 2 then 2 else 0 := by
   split_ifs with h
@@ -152,8 +151,8 @@ theorem card_GL_one_int : Nat.card (GL (Fin 1) ℤ) = 2 := by
   rw [Nat.card_congr (Units.mapEquiv (Matrix.uniqueRingEquiv (m := Fin 1) (A := ℤ)).toMulEquiv).toEquiv,
     Nat.card_eq_fintype_card, Fintype.card_units_int]
 
-/-- **$O(\langle a\rangle)(\mathbb Z) = \{\pm 1\}$ has order $2$** (for every $a$; $O(f)$ as in Cassels 1978, Ch. 9, §1, p. 127). -/
-@[kb "cassels1978" "Ch. 9, §1, p. 127 (the group O(f) of integral automorphs)"]
+/-- **$O(\langle a\rangle)(\mathbb Z) = \{\pm 1\}$ has order $2$** (for every $a$; Cassels 1978, Ch. 9 [unverified]). -/
+@[kb "cassels1978" "Ch. 9 (rank one: O = {±1}) [unverified]"]
 theorem card_aut_unary (a : ℤ) : Nat.card (Aut (unary a)) = 2 := by
   rw [aut_unary_eq_top, Subgroup.card_top, card_GL_one_int]
 
@@ -172,7 +171,7 @@ theorem natAbs_eq_of_forall_prime_pow_dvd {a b : ℤ}
 /-- **The genus of $\langle a\rangle$:** $\langle b\rangle$ is in the genus of $\langle a\rangle$ (`SameGenus`: equivalent over
 every $\mathbb Z_p$ and over $\mathbb R$) iff $b = a$. *Proof:* over $\mathbb Z_p$, $b = a u^2$ with $u \in \mathbb Z_p^\times$, so
 $\|b\|_p = \|a\|_p$ for every $p$ and $|b| = |a|$; over $\mathbb R$, $b = a t^2$ with $t \ne 0$ fixes the sign. -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.1, p. 139"]
+@[kb "cassels1978" "Ch. 9, §1 (genus), rank one [unverified]"]
 theorem sameGenus_unary_iff (a b : ℤ) : SameGenus (unary a) (unary b) ↔ b = a := by
   constructor
   · rintro ⟨hp, ⟨g, hg⟩⟩
@@ -214,9 +213,9 @@ theorem sameGenus_unary_iff (a b : ℤ) : SameGenus (unary a) (unary b) ↔ b = 
       simp [this]
   · rintro rfl; exact SameGenus.refl _
 
-/-- **The genus of $\langle a\rangle$ is a single class** (Cassels 1978, Ch. 9, Lemma 4.1, p. 139: the determinant is a genus invariant, and for $n = 1$ it is the form): the set of
+/-- **The genus of $\langle a\rangle$ is a single class** (Cassels 1978, Ch. 9 [unverified]): the set of
 $\mathrm{GL}_1(\mathbb Z)$-classes in the genus of $\langle a\rangle$ is $\{[\langle a\rangle]\}$, for every $a \in \mathbb Z$. -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.1, p. 139"]
+@[kb "cassels1978" "Ch. 9, §1 (class number of a genus), rank one [unverified]"]
 theorem genusClasses_unary (a : ℤ) : genusClasses (unary a) = {classOf (unary a)} := by
   ext c
   induction c using Quotient.inductionOn with

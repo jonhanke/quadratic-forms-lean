@@ -7,7 +7,7 @@
   i.e. $\Phi_*\mu_P = \mu_{\mathrm{Tam}}$ for $\Phi$ = `sqPEquiv` and every totally definite $D = (a,b)_F$
   (`map_muP_sqPEquiv_eq_muTam`).
 * **`tamagawaNumberTwoAdelic_qSq_totallyDefinite`** (unconditional): Weil's $\tau(SO(\langle1,-a,-b,ab\rangle)) = 2$ (adelic,
-  with `muTam`) for every totally definite quaternion algebra $(a,b)_F$ over every totally real $F$.
+  `muTam`) for every totally definite quaternion algebra $(a,b)_F$ over every totally real $F$.
 * **`GnatMeasureComparisonNSDef F`** (input, named): the remaining `nonsquare` field (the non-square-discriminant model
   $\langle1,-ad,-bd,abd\rangle$, $\Phi$ = `nsPEquiv`). **`gnatMeasureComparisonDef_of_ns`**: it implies
   `GnatMeasureComparisonDef F`; hence the consumers `rankFourUnitSiegel_of_ns`, `quaternaryTamagawaTwo_of_ns`,
@@ -50,10 +50,12 @@ theorem gnatMeasureComparisonDef_square (a b : 𝓞 F) (ha0 : a ≠ 0) (hb0 : b 
 theorem tamagawaNumberTwoAdelic_qSq_totallyDefinite {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
     (hna : IsTotallyPos (-(a : F))) (hnb : IsTotallyPos (-(b : F))) (hQ : (qSq a b).Nondegenerate) :
     TamagawaNumberTwoAdelic (qSq a b) hQ := by
+  have hdiv := hdiv_of_totallyNeg (F := F) (a := (a : F)) (b := (b : F))
+    (fun w hw => emb_neg_of_isTotallyPos_neg hna w hw) (fun w hw => emb_neg_of_isTotallyPos_neg hnb w hw)
   have := (gnatSqO ha0 hb0).isHaarMeasure_muP (muSq ha0 hb0)
   unfold TamagawaNumberTwoAdelic
   rw [covolume_eq_of_continuousMulEquiv _ _ (sqPEquiv ha0 hb0) (map_gamP_sqPEquiv ha0 hb0) _ _
-    (map_muP_sqPEquiv_eq_muTam ha0 hb0 hna hnb hQ), covolume_gnatSq ha0 hb0]
+    (map_muP_sqPEquiv_eq_muTam ha0 hb0 hna hnb hQ), covolume_gnatSq ha0 hb0 hdiv]
 
 variable (F) in
 /-- **Input (named): the non-square half of `GnatMeasureComparisonDef`** — Weil's local-ratio identity

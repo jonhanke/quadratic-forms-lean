@@ -5,13 +5,12 @@ import QuadFormsKB.HilbertModular.SteinitzGenus
 /-!
 # Weil's fibration over the spheres, reduced to the orbital Euler product
 
-**Setting.** $F$ totally real, $Q_0$ nondegenerate over $\mathcal O_F$ in $n \ge 1$ variables, $Q_0\otimes F$
-totally positive definite, $L = \mathcal O_F^n$, the genus of $L$ free (`GenusFree`; automatic for $\mathcal O_F$ a
-PID), $M_c$ the classes of the genus with Gram forms $A_c$ (`classForm`),
-$\mu = \mu_{\mathrm{Tam}}(K_{SO})$ (`tamagawaK`), $\Phi_w = e^{-\pi Q_w}$.
+**Setting** (the scope). $F$ totally real, $Q_0$ nondegenerate over $\mathcal O_F$ in $n \ge 1$ variables, $Q_0\otimes F$ totally
+positive definite, $L = \mathcal O_F^n$, the genus of $L$ free (`GenusFree`; automatic for $\mathcal O_F$ a PID), $M_c$ the classes of the
+genus with Gram forms $A_c$ (`classForm`), $\mu = \mu_{\mathrm{Tam}}(K_{SO})$ (`tamagawaK`), $\Phi_w = e^{-\pi Q_w}$.
 
-**The target.** The input `SphericalFibration Q₀ (sphFamily Q₀) τ'`:
-$Z^+(s) = \sum_\rho\frac{\tau'_\rho}2Z(s,\rho)$ for $s > 0$ (Weil 1982, §4.5, p. 109).
+**The target.** the input `SphericalFibration Q₀ (sphFamily Q₀) τ'`: $Z^+(s) = \sum_\rho\frac{\tau'_\rho}2Z(s,\rho)$ for $s > 0$
+(Weil 1982, §4.5, p. 109).
 
 **What is proved here.** Combining the $\rho$-wise unfolding of $Z^+$ (`SphericalUnfold.additiveZeta_eq_tsum_sqClasses`), the
 archimedean Mellin integral (`archMellin_eq`) and the archimedean spherical factor (`sphArchAt_gaussian`):
@@ -20,8 +19,8 @@ every totally positive representative $\rho$ of a square class and $s > 0$,
 $$2\mu\sum_{\mathfrak b}N\mathfrak b^{-n-2s}\sum_{\mathrm{cls}M}\frac{\#\{\eta\in\mathfrak b^{-1}M : Q(\eta) = \rho\}}{|O(M)|}
   = \tau'_\rho\,|d_F|^{-\frac{n-1}2}\prod_w\frac{2\pi^{n/2}\sigma_w(\rho)^{\frac n2+s}}{\Gamma(\frac n2)\sqrt{\det A_w}}\prod_vZ_\mathfrak p(s,\rho)
   \qquad(\texttt{OrbitalEulerProduct}),$$
-$Z_\mathfrak p(s,\rho)$ = `sphLocal`. Consequently $\tau(SO(V)) = 2$ given `OrbitalEulerProduct` and
-`ComplementTauTwo` (`tamagawaNumberTwo_of_orbitalEulerProduct`).
+$Z_\mathfrak p(s,\rho)$ = `sphLocal`. Consequently $\tau(SO(V)) = 2$ given `OrbitalEulerProduct` and `ComplementTauTwo`
+(`tamagawaNumberTwo_of_orbitalEulerProduct`).
 
 **Status of `OrbitalEulerProduct`.** It is Siegel's theorem for the numbers $\rho b^2$, with the constant $\tau'_\rho$ in place of
 $\tau(G)$, summed against $N\mathfrak b^{-n-2s}$: the combinatorial heart of Weil's p. 109. It is recorded as an `interface` (the target of
@@ -280,14 +279,13 @@ theorem genusAdditiveZeta_eq_tsum (Q₀ : QuadForm (𝓞 F) n) (hpd : IsTotallyP
   refine Finset.sum_congr rfl fun c _ => ?_
   rw [ENNReal.toReal_mul, ENNReal.toReal_ofReal (inv_nonneg.2 (Nat.cast_nonneg _)), div_eq_mul_inv]
 
-/-- **Weil's fibration over the spheres from the orbital Euler product** (Weil 1982, §4.5, p. 109). For $Q_0$
-nondegenerate over $\mathcal O_F$, $n \ge 1$, $Q_0\otimes F$ totally positive definite, the genus of $\mathcal O_F^n$
-free, and any $\tau'$: `OrbitalEulerProduct Q₀ τ'` implies `SphericalFibration Q₀ (sphFamily Q₀) τ'`, i.e. for $s > 0$
+/-- **Weil's fibration over the spheres from the orbital Euler product** (Weil 1982, §4.5, p. 109). For $Q_0$ nondegenerate
+over $\mathcal O_F$, $n \ge 1$, $Q_0\otimes F$ totally positive definite, the genus of $\mathcal O_F^n$ free, and any $\tau'$:
+`OrbitalEulerProduct Q₀ τ'` implies `SphericalFibration Q₀ (sphFamily Q₀) τ'`, i.e. for $s > 0$
 $$Z^+(s) = \sum_{\rho\in F^\times/F^{\times2}}\frac{\tau'_\rho}2Z(s,\rho)$$
-(summable), with exactly the $Z(s,\rho)$ for the Gaussian $\Phi_w = e^{-\pi Q_w}$ and the $Z^+$. Proved: the unfolding
-over the spheres and $F^\times$ (`additiveZeta_eq_tsum_sqClasses`), the archimedean integrals (`archMellin_eq`,
-`sphArchAt_gaussian`), the vanishing at the square classes that are not totally positive, and the constants
-($|d_F|^{-1/2}|d_F|^{-(n-1)/2} = |d_F|^{-n/2}$). -/
+(summable), with exactly the $Z(s,\rho)$ for the Gaussian $\Phi_w = e^{-\pi Q_w}$ and the $Z^+$. Proved: the unfolding over the
+spheres and $F^\times$ (`additiveZeta_eq_tsum_sqClasses`), the archimedean integrals (`archMellin_eq`, `sphArchAt_gaussian`), the
+vanishing at the square classes that are not totally positive, and the constants ($|d_F|^{-1/2}|d_F|^{-(n-1)/2} = |d_F|^{-n/2}$). -/
 @[kb "weil1982" "§4.5, p. 109 (Z(s) = Σ_ρ Z(s,ρ) via Lemma 2.4.2 on T(ρ)); (1)–(2), p. 102"]
 theorem sphericalFibration_of_orbitalEulerProduct (Q₀ : QuadForm (𝓞 F) n) (hn : 1 ≤ n)
     (hpd : IsTotallyPosDef (formF Q₀)) (hfree : GenusFree (formF Q₀) stdLat) {τ' : SqClasses F → ℝ}
@@ -320,9 +318,8 @@ theorem tamagawaNumberTwo_of_orbitalEulerProduct (Q₀ : QuadForm (𝓞 F) n) (h
 
 /-! ### Without the scope hypothesis (Steinitz: the genus of $\mathcal O_F^n$ is free for every $F$) -/
 
-/-- **The Tamagawa number two for every totally real $F$**: `tamagawaNumberTwo_of_sphericalFibration` with `GenusFree`
-discharged by Steinitz (`genusFree_formF`, any class number). For $n \ge 5$: `SphericalFibration` and
-`ComplementTauTwo` give $\tau(SO(V)) = 2$. -/
+/-- **For every totally real $F$**: `tamagawaNumberTwo_of_sphericalFibration` with `GenusFree` discharged by Steinitz
+(`genusFree_formF`, any class number). For $n \ge 5$: `SphericalFibration` and `ComplementTauTwo` give $\tau(SO(V)) = 2$. -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109"]
 theorem tamagawaNumberTwo_of_sphericalFibration' (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hn : 5 ≤ n)
     (hpd : IsTotallyPosDef (formF Q₀)) {τ' : SqClasses F → ℝ}

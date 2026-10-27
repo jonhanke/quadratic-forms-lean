@@ -13,7 +13,7 @@ $a_{\mathfrak p} \ge 0$,
 $$c\Big(\prod_{\mathfrak p \in s}\mathfrak p^{a_\mathfrak p}\Big) = \prod_{\mathfrak p \in s}\ \sum_{j=0}^{a_\mathfrak p}\chi(\mathfrak p)^j
   = \sum_{\mathfrak d \mid \mathfrak m}\chi(\mathfrak d)$$
 (the second form, with $\chi$ extended multiplicatively to ideals, is `relNormCount_prod_eq_sum`: the divisors
-$\mathfrak d = \prod\mathfrak p^{j_\mathfrak p}$, $0 \le j_\mathfrak p \le a_\mathfrak p$). This is the input over $F$ for the D4/D5 representation counts.
+$\mathfrak d = \prod\mathfrak p^{j_\mathfrak p}$, $0 \le j_\mathfrak p \le a_\mathfrak p$). This is the input over $F$ for the representation counts.
 
 **The proof is local, one prime at a time** (`relNormCount_pow_mul`): for $\mathfrak p \nmid \mathfrak n$,
 $c(\mathfrak p^a\mathfrak n) = S_a(\chi(\mathfrak p))\,c(\mathfrak n)$ with $S_a(x) = \sum_{j \le a}x^j$ (`geomSum`), by induction on $a$, using only:
@@ -328,7 +328,7 @@ theorem relNormCount_pow_mul (hdeg : Module.finrank F E = 2) (𝔭 : HeightOneSp
   rw [hC0] at this
   exact this
 
-/-- **Ideal counts by relative norm** (the input over $F$ for D4/D5): for a finite set $s$ of nonzero primes of $F$ and
+/-- **Ideal counts by relative norm** (the input over $F$ for the representation counts): for a finite set $s$ of nonzero primes of $F$ and
 exponents $a_\mathfrak p$,
 $$\#\Big\{\mathfrak A \subseteq \mathcal O_E : N_{E/F}\mathfrak A = \prod_{\mathfrak p \in s}\mathfrak p^{a_\mathfrak p}\Big\}
   = \prod_{\mathfrak p \in s}\ \sum_{j=0}^{a_\mathfrak p}\chi_{E/F}(\mathfrak p)^j .$$

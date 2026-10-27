@@ -11,7 +11,7 @@ diagonal unimodular forms $\langle a_0, \dots, a_{n-1}\rangle$ ($a_i \in R^\time
 * `exists_perp_eval_eq`: if moreover $\sum_i t_i^2/a_i$ is a unit, every $c \in R$ is $\sum a_i z_i^2$ with $t \cdot z = 0$
   (the complement of a unit-norm vector is unimodular, O'Meara 92:1b).
 
-*Method (a simplification of O'Meara's sublattice arguments).* For a set $J$ of
+*Method (a simplification of O'Meara's sublattice arguments, recorded in `docs/updates-and-errata.md`).* For a set $J$ of
 indices not containing $k$, the vectors supported on $J \cup \{k\}$ with $t \cdot z = 0$ form a free module with basis
 indexed by $J$, on which the form is $\langle a_j\rangle_{j \in J} + a_k (\sum_J t_j y_j / t_k)^2$; by the matrix determinant
 lemma its Hessian determinant is a unit times $\sigma_J = t_k^2/a_k + \sum_J t_j^2/a_j$. Among three indices $j_0, j_1, j_2
@@ -126,9 +126,8 @@ include hπ h2
 theorem not_dvd_of_isUnit {x : R} (hx : IsUnit x) : ¬ π ∣ x := fun h =>
   hπ.not_isUnit (isUnit_of_dvd_unit h hx)
 
-/-- **A unimodular form in $m \ge 3$ variables represents every element** of $R$ (O'Meara 1963, 92:1b, p. 247, there over a non-dyadic local field):
+/-- **A unimodular form in $m \ge 3$ variables represents every element** of $R$ (O'Meara 1963, 92:1b [unverified]):
 units by `exists_eval_eq_unit_dvr`; for $c \in \pi R$ solve $a_0x_0^2 + a_1x_1^2 = c - a_2$ (a unit) and take $x_2 = 1$. -/
-@[kb "omeara1963" "§92, 92:1b, p. 247 (a unimodular lattice represents every unit); §104, proof of 104:3, step 3, p. 313"]
 theorem exists_eval_eq_dvr {m : ℕ} (Q₀ : QuadForm R m) (hdet : ¬ π ∣ Q₀.hessian.det) (hm : 3 ≤ m) (c : R) :
     ∃ x, Q₀.eval x = c := by
   by_cases hc : IsUnit c
@@ -316,7 +315,6 @@ include hQ₀ in
 $n \ge 4$, $x_0 \in \mathfrak o_\mathfrak p^n$): every unit $c$ is $Q(y)$ with $y \in \mathfrak o_\mathfrak p^n$, $B(x_0, y) = 0$, if
 $x_0$ is primitive; every $c \in \mathfrak o_\mathfrak p$ is, if $Q(x_0)$ is a unit. (O'Meara 1973, 104:3 step 3, via 82:15,
 82:17, 92:1b; here from the diagonal lemmas above.) -/
-@[kb "omeara1963" "§104, proof of 104:3, step 3, p. 313"]
 theorem exists_perp_std (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hk : k ∉ v.asIdeal) (hdet : Q₀.hessian.det ∉ v.asIdeal)
     (hn : 4 ≤ n) {x₀ : Fin n → Fv} (hx₀ : x₀ ∈ std v) {c : Fv}
     (hc : ((∃ i, Valued.v (x₀ i) = 1) ∧ Valued.v c = 1) ∨ (Valued.v c ≤ 1 ∧ Valued.v (Q.evalIn Fv x₀) = 1)) :

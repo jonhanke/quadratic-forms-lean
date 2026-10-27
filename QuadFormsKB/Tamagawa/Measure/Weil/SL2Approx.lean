@@ -33,7 +33,7 @@ local notation "AF" => FiniteAdeleRing (𝓞 F) F
 /-! ### $F$ is dense in $\mathbb A_f$ -/
 
 /-- **$F$ is dense in the finite adeles.** -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §15, Thm. (strong approximation), p. 67"]
+@[kb "casselsfrohlich1967" "Ch. II §15 (strong approximation) [unverified]"]
 theorem denseRange_algebraMap_finiteAdele : DenseRange (algebraMap F AF) := by
   intro x
   rw [mem_closure_iff_nhds]
@@ -387,7 +387,7 @@ theorem nmA_mem_closure (x : Adeles F) : nmA x ∈ (HSub F).topologicalClosure :
 
 /-- **Strong approximation for $\mathrm{SL}_2$ over a number field**: every $g\in\mathrm{SL}_2(\mathbb A_F)$ is
 $k\gamma$ with $k\in\mathrm{SL}_2(F_\infty)\times\mathrm{SL}_2(\hat{\mathcal O})$ and $\gamma\in\mathrm{SL}_2(F)$. -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §15, Thm. (strong approximation), p. 67 (the additive group only)"]
+@[kb "casselsfrohlich1967" "Ch. II §15 (strong approximation) [unverified]"]
 theorem exists_mul_slEmb_inv_mem_K (g : SL2A F) : ∃ γ : SL(2, F), g * (slEmb F γ)⁻¹ ∈ KSub F := by
   have hg : g ∈ (HSub F).topologicalClosure := by
     rw [eq_factor g]

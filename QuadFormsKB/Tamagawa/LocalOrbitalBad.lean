@@ -4,8 +4,7 @@
 **Layer:** the completions $\mathfrak o_\mathfrak p \subset F_\mathfrak p$ of a number field at a finite prime $\mathfrak p$ (`LocalDensity.NF`,
 `Lattices/`), with the local types of `LocalOrbital.lean`; the counting is in `OrbitCount.lean`.
 
-Setting as in `LocalOrbital.lean`: $Q = \langle m\rangle\perp Q'$ over $\mathcal O_F$ (`splitForm m₀ Q₀'`),
-$L = \mathfrak o_\mathfrak p^{n+1}$, $K = O(L)$ (`stdStab`),
+Setting as in `LocalOrbital.lean`: $Q = \langle m\rangle\perp Q'$ over $\mathcal O_F$ (`splitForm m₀ Q₀'`), $L = \mathfrak o_\mathfrak p^{n+1}$, $K = O(L)$ (`stdStab`),
 $H = O(Q')(F_\mathfrak p)$ acting through $\mathrm{diag}(1, \cdot)$, $Y_\mathfrak p = \{M \in O(V)L : e_0 \in M\}$, $K_0' = O(\mathfrak o_\mathfrak p^n)$,
 $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$ (`locWeight`), $W_\mathfrak p = \sum_t w(t)$ (`locTypeSum`).
 
@@ -30,7 +29,7 @@ $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$ (`locWeight`), $W_\mathfrak 
 * `locWeightInvariant`: an alternative, global proof of `LocWeightInvariant` at $\mathfrak p \mid 2m$, from the finiteness of the
   mass (`compWeight_smul`), for $Q$ totally positive definite.
 
-Sources: Weil 1982, §3.4 [unverified]; Kitaoka 1993, §5.6 and §6.8 [unverified]; O'Meara 1963, §§91–93, pp. 239–279 (background);
+Sources: Weil 1982, §3.4 [unverified]; Kitaoka 1993, §5.6 and §6.8 [unverified]; O'Meara 1963, §§91–93 [unverified];
 Hanke 2004, §3 (local densities by counting) [unverified]. Indices are 0-based ($e_0$ is the first basis vector).
 -/
 import QuadFormsKB.Tamagawa.OrbitCount
@@ -162,8 +161,7 @@ theorem evalIn_splitForm_eq_eval (z : Fin (n + 1) → Fv) :
 
 /-- **An involution moving $e_0$ to $x$** (Witt, explicitly): for $x \in F_\mathfrak p^{n+1}$ with $Q(x) = m \ne 0$ there is
 $\sigma \in O(V)(F_\mathfrak p)$ with $\sigma^2 = 1$ and $\sigma e_0 = x$: the reflection in $x - e_0$, or $-1$ times the reflection
-in $x + e_0$ (`exists_refl_e₀`, over the field $F_\mathfrak p$; the argument of O'Meara 1963, proof of 42:16, step 1, pp. 97–98). -/
-@[kb "omeara1963" "§42F, proof of 42:16, step 1, pp. 97–98"]
+in $x + e_0$ (`exists_refl_e₀`, over the field $F_\mathfrak p$; O'Meara 1963, §42 [unverified]). -/
 theorem exists_inv_e₀ (hm : m ≠ 0) (x : Fin (n + 1) → Fv) (hx : (QS).evalIn Fv x = algebraMap F Fv m) :
     ∃ σ : orthGroup QS Fv, σ * σ = 1 ∧ (σ : GL (Fin (n + 1)) Fv).val *ᵥ (e₀ : Fin (n + 1) → Fv) = x := by
   have h4 : IsUnit (4 * algebraMap F Fv m) :=

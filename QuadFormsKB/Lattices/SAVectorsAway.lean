@@ -25,7 +25,6 @@ variable {F : Type} [Field F] [NumberField F] {m : ℕ}
 
 /-- **The isotropic place of $V$ in O'Meara 104:3, step 4:** if $V_K$ is isotropic and $1 - (\lambda\beta)^{-2}$ is a square
 in $K$, then $c = a(1 - \lambda^2\beta^2)$ is represented by $U_K = v_0^\perp$ ($Q(v_0) = \lambda^2 a$). -/
-@[kb "omeara1963" "§104, proof of 104:3, step 4, pp. 314–315"]
 theorem representsIn_of_isotropic_perp (Q : QuadForm F (m + 1)) {v₀ : Fin (m + 1) → F}
     {Mb : Matrix (Fin (m + 1)) (Fin m) F} {Nb : Matrix (Fin m) (Fin (m + 1)) F}
     (hMN : ∀ (K : Type) [Field K] [Algebra F K] (x : Fin (m + 1) → K),
@@ -78,7 +77,6 @@ theorem representsIn_of_isotropic_perp (Q : QuadForm F (m + 1)) {v₀ : Fin (m +
 set_option maxHeartbeats 1600000 in
 /-- **The core of O'Meara 104:3 with the free place a finite prime $\mathfrak p$** (after the reductions): $T \ne \emptyset$,
 $\mathfrak p \notin T$, and $T \cup \{\mathfrak p\}$ contains every bad prime; no integrality is asked at $\mathfrak p$. -/
-@[kb "omeara1963" "§104, proof of 104:3, step 4, pp. 314–315"]
 theorem vecApprox_core_at (Q : QuadForm F (m + 1)) (hQ : Q.Nondegenerate) (hm : 3 ≤ m) (p : HeightOneSpectrum (𝓞 F))
     (hp : Q.IsotropicIn (p.adicCompletion F)) {Q₀ : QuadForm (𝓞 F) (m + 1)} {k : 𝓞 F}
     (hQ₀ : Q₀.map (algebraMap (𝓞 F) F) = (algebraMap (𝓞 F) F k) • Q)
@@ -498,7 +496,7 @@ def VecApproxAt {n : ℕ} (Q : QuadForm F n) (p : HeightOneSpectrum (𝓞 F)) : 
 
 /-- **O'Meara 1973, 104:3 away from a prime $\mathfrak p$ at which $V$ is isotropic**: `VecApproxAt Q p` for every
 nondegenerate $Q$ in $n \ge 4$ variables with $V_\mathfrak p$ isotropic (no condition at the infinite places). -/
-@[kb "omeara1963" "§104, 104:3, pp. 311–315 (S = finite primes except 𝔭); cassels1978 Ch. 11, Thm. 8.1, p. 231"]
+@[kb "omeara1963" "104:3 (S = finite primes except p), PDF pp. 319-323"]
 theorem vecApproxAt_of_isotropicAt (Q : QuadForm F (m + 1)) (hm : 3 ≤ m) (hQ : Q.Nondegenerate)
     (p : HeightOneSpectrum (𝓞 F)) (hp : Q.IsotropicIn (p.adicCompletion F)) : VecApproxAt Q p := by
   classical

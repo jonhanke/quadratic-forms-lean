@@ -3,6 +3,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 
 /-!
 # Base change of adeles: the adelic norm and the Haar modulus
+
 $K/k$ a finite extension of number fields, $b$ a $k$-basis of $K$, $\Psi$ = `adeleBaseChange b`.
 
 * `adeleLmat b y` : the matrix over $\mathbb A_k$ of multiplication by $y\in\mathbb A_K$ in the coordinates $b$, with

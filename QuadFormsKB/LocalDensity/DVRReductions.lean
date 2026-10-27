@@ -301,7 +301,7 @@ theorem repCount_eq_add_types_of_finite (Q : QuadForm R n) (π : R) (S₀ : Fins
 
 /-- **Types partition the solutions** (Hanke 2004, Def. 3.1), for a uniformizer $\pi$ and a finite residue field.
 
-*Correction:* first stated without `Irreducible π` and finiteness, which is false
+*Correction:* an earlier version was stated without `Irreducible π` and finiteness, which is false
 because `Nat.card` of an infinite set is 0 (e.g. $\pi = 0$ over $\mathbb{Z}_2$: the left side is 0, the Zero-type
 count is 1). The version without the finite residue field is `repCount_eq_add_types_of_finite`. -/
 @[kb "hanke2004" "Def. 3.1, p. 358"]

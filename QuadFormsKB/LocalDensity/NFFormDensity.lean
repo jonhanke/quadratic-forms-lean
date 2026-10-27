@@ -1,5 +1,6 @@
 /-
 # Densities of forms by forms at every prime of a number field, and of lattices
+
 **Layer:** DVR (equivalence invariance) and number field ($Q, T$ = `QuadForm (𝓞 F) n`, `QuadForm (𝓞 F) r`, a finite
 prime $\mathfrak p$ = `v`).
 
@@ -16,8 +17,7 @@ prime $\mathfrak p$ = `v`).
   (`localDensityForm_unary`).
 * **Genus invariance:** forms in the same genus (`Lattices.FormSameGenus`) have the same densities at every
   $\mathfrak p$, in either argument (`localDensityForm_formSameGenus_left/right`).
-* **Lattices:** for integral free lattices $L = \gamma\mathcal O_F^n \subset (F^n, Q)$ and
-  $M = \delta\mathcal O_F^r \subset (F^r, Q')$,
+* **Lattices:** for integral free lattices $L = \gamma\mathcal O_F^n \subset (F^n, Q)$ and $M = \delta\mathcal O_F^r \subset (F^r, Q')$,
   `latDensity` $\beta_\mathfrak p(L, M)$ is the density of their Gram forms; it depends only on the genera of $L$ and $M$
   (`latDensity_sameGenus_left/right`), in particular not on the bases. Free lattices are the locally free case;
   for a non-free $L$ the same definition applies to a basis of the free $\mathfrak o_\mathfrak p$-module $L_\mathfrak p$ (not

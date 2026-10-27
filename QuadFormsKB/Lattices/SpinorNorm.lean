@@ -8,7 +8,7 @@ symmetries $\tau_x$ and the spinor kernel $O'(V)(K)$ (`Lattices/SpinorKernel.lea
 
 **Proves**
 * `isSquare_valProd_of_symmProd_eq_one` (**well-definedness**): if $\tau_{x_1}\cdots\tau_{x_r} = 1$ with all $Q(x_i) \ne 0$
-  and $Q$ nondegenerate, then $Q(x_1)\cdots Q(x_r) \in K^{\times 2}$ (O'Meara 1963, 54:6, p. 136, as used in §55, p. 137);
+  and $Q$ nondegenerate, then $Q(x_1)\cdots Q(x_r) \in K^{\times 2}$ (O'Meara 1963, 55:1 [unverified]);
 * `spinorNormHom`: the **spinor norm** $\theta : O(V)(K) \to K^\times/K^{\times 2}$ (`SqClass K`), a group homomorphism with
   $\theta(\tau_{x_1}\cdots\tau_{x_r}) = Q(x_1)\cdots Q(x_r)\,K^{\times 2}$ (`spinorNorm_symmProd`, `spinorNorm_symm`);
 * `spinorKernel_eq_ker`: $O'(V)(K) = \ker\theta \cap SO(V)(K)$, i.e. the definition of `spinorKernel` by spinor words
@@ -54,7 +54,6 @@ theorem polar_qk (x y : Fin n → K) : QuadraticMap.polar (qk Q K) x y = qbil Q 
 /-! ### Clifford words in vectors -/
 
 /-- $-\iota(x)\iota(z) = \iota(\tau_x z)\,\iota(x)$ for anisotropic $x$. -/
-@[kb "cassels1978" "Ch. 10, (3.2), p. 176"]
 theorem neg_ι_mul_ι {x : Fin n → K} (hx : Q.evalIn K x ≠ 0) (z : Fin n → K) :
     -(ι (qk Q K) x * ι (qk Q K) z) =
       ι (qk Q K) (((symm Q K x : GL (Fin n) K) : Matrix (Fin n) (Fin n) K) *ᵥ z) * ι (qk Q K) x := by
@@ -240,7 +239,6 @@ theorem Pj_of_twisted {g : CliffordAlgebra (qk Q K)} (j : Fin n)
 
 /-- **The twisted center of $C(V)$ is $K$:** if $\alpha(g)\,\iota(e_j) = \iota(e_j)\,g$ for every vector $e_j$ of an
 orthogonal basis of anisotropic vectors, then $g \in K$. -/
-@[kb "cassels1978" "Ch. 10, Lemma 2.3, p. 174"]
 theorem mem_range_algebraMap_of_twisted (g : CliffordAlgebra (qk Q K))
     (hg : ∀ j, involute g * ub Q e j = ub Q e j * g) :
     g ∈ Set.range (algebraMap K (CliffordAlgebra (qk Q K))) := by
@@ -283,12 +281,12 @@ end Center
 
 /-! ### Well-definedness of the spinor norm -/
 
-/-- **The spinor norm is well defined** (O'Meara 1963, 54:6, p. 136, as used in §55, p. 137): if $Q$ is nondegenerate, $Q(x_i) \ne 0$ and
+/-- **The spinor norm is well defined** (O'Meara 1963, 55:1 [unverified]): if $Q$ is nondegenerate, $Q(x_i) \ne 0$ and
 $\tau_{x_1}\cdots\tau_{x_r} = 1$, then $Q(x_1)\cdots Q(x_r)$ is a square in $K$.
 
-*Update (simplification):* the Clifford-algebra proof needs only that $C(V)$ is spanned by
+*Update (simplification, `docs/updates-and-errata.md`):* the Clifford-algebra proof needs only that $C(V)$ is spanned by
 the basis words, not the basis theorem $\dim C(V) = 2^n$ (`mem_range_algebraMap_of_twisted`). -/
-@[kb "omeara1963" "§55, p. 137 (well-definedness of the spinor norm, via 54:6)"]
+@[kb "omeara1963" "§55 (spinor norm well defined) [unverified]"]
 theorem isSquare_valProd_of_symmProd_eq_one (hQ : Q.Nondegenerate) (xs : List (Fin n → K))
     (hxs : ∀ x ∈ xs, Q.evalIn K x ≠ 0) (h1 : symmProd Q K xs = 1) : IsSquare (valProd Q K xs) := by
   have : Invertible (2 : K) := invertibleOfNonzero two_ne_zero
@@ -394,15 +392,15 @@ theorem sqClassOf_valProd_eq (hQ : Q.Nondegenerate) {xs ys : List (Fin n → K)}
 
 open scoped Classical in
 /-- **The spinor norm** $\theta(\sigma) = Q(x_1)\cdots Q(x_r)\,K^{\times 2}$ for any factorization
-$\sigma = \tau_{x_1}\cdots\tau_{x_r}$ into symmetries (O'Meara 1963, §55, p. 137). For nondegenerate $Q$ such a
+$\sigma = \tau_{x_1}\cdots\tau_{x_r}$ into symmetries (O'Meara 1963, §55 [unverified]). For nondegenerate $Q$ such a
 factorization exists (`exists_symmProd_eq`) and the class does not depend on it (`sqClassOf_valProd_eq`). -/
-@[kb "omeara1963" "§55, p. 137 (spinor norm θ)"]
+@[kb "omeara1963" "§55, spinor norm θ [unverified]"]
 def spinorNorm (σ : orthGroup Q K) : SqClass K :=
   if h : ∃ xs : List (Fin n → K), (∀ x ∈ xs, Q.evalIn K x ≠ 0) ∧ symmProd Q K xs = σ then
     sqClassOf (valProd Q K h.choose) else 1
 
 /-- $\theta(\tau_{x_1}\cdots\tau_{x_r}) = Q(x_1)\cdots Q(x_r)\,K^{\times 2}$. -/
-@[kb "omeara1963" "§55, p. 137"]
+@[kb "omeara1963" "§55 [unverified]"]
 theorem spinorNorm_symmProd (hQ : Q.Nondegenerate) (xs : List (Fin n → K))
     (hxs : ∀ x ∈ xs, Q.evalIn K x ≠ 0) : spinorNorm Q K (symmProd Q K xs) = sqClassOf (valProd Q K xs) := by
   have hex : ∃ ys : List (Fin n → K), (∀ y ∈ ys, Q.evalIn K y ≠ 0) ∧ symmProd Q K ys = symmProd Q K xs :=
@@ -412,15 +410,15 @@ theorem spinorNorm_symmProd (hQ : Q.Nondegenerate) (xs : List (Fin n → K))
   exact sqClassOf_valProd_eq Q K hQ hex.choose_spec.1 hxs hex.choose_spec.2
 
 /-- $\theta(\tau_x) = Q(x)\,K^{\times 2}$. -/
-@[kb "omeara1963" "§55, p. 137"]
+@[kb "omeara1963" "§55 [unverified]"]
 theorem spinorNorm_symm (hQ : Q.Nondegenerate) {x : Fin n → K} (hx : Q.evalIn K x ≠ 0) :
     spinorNorm Q K (symm Q K x) = sqClassOf (Q.evalIn K x) := by
   have := spinorNorm_symmProd Q K hQ [x] (by simpa using hx)
   simpa [symmProd, valProd] using this
 
 /-- **The spinor norm is a homomorphism** $\theta : O(V)(K) \to K^\times/K^{\times 2}$ for nondegenerate $Q$
-(O'Meara 1963, §55, p. 137). -/
-@[kb "omeara1963" "§55, p. 137 (θ(στ) = θ(σ)θ(τ))"]
+(O'Meara 1963, §55 [unverified]). -/
+@[kb "omeara1963" "§55 [unverified]"]
 def spinorNormHom (hQ : Q.Nondegenerate) : orthGroup Q K →* SqClass K where
   toFun := spinorNorm Q K
   map_one' := by
@@ -456,9 +454,9 @@ theorem detHom_symmProd (xs : List (Fin n → K)) (hxs : ∀ x ∈ xs, Q.evalIn 
     have e : symmProd Q K (x :: xs) = symm Q K x * symmProd Q K xs := by simp [symmProd]
     rw [e, map_mul, Units.val_mul, ih', detHom_val, symm_det Q K hx, List.length_cons, pow_succ']
 
-/-- **$O'(V) = \ker\theta \cap SO(V)$** (O'Meara 1963, §55, p. 137): the spinor kernel defined by spinor words
+/-- **$O'(V) = \ker\theta \cap SO(V)$** (O'Meara 1963, §55 [unverified]): the spinor kernel defined by spinor words
 (`spinorKernel`) is the kernel of the spinor norm on the rotations. -/
-@[kb "omeara1963" "§55, p. 137 (O'(V) = ker θ on O⁺(V))"]
+@[kb "omeara1963" "§55, O'(V) = ker θ on O⁺(V) [unverified]"]
 theorem spinorKernel_eq_ker (hQ : Q.Nondegenerate) :
     spinorKernel Q K = (spinorNormHom Q K hQ).ker ⊓ (detHom Q K).ker := by
   ext σ
@@ -493,7 +491,6 @@ theorem sq_mem_spinorKernel (hQ : Q.Nondegenerate) (σ : orthGroup Q K) : σ ^ 2
     simp
 
 /-- **Commutators of isometries are spinor-kernel elements**: $O(V)/O'(V)$ is abelian. -/
-@[kb "cassels1978" "Ch. 10, Thm. 3.2, p. 179 (Ω ⊆ Θ)"]
 theorem commutator_mem_spinorKernel (hQ : Q.Nondegenerate) (σ τ : orthGroup Q K) :
     σ * τ * σ⁻¹ * τ⁻¹ ∈ spinorKernel Q K := by
   rw [spinorKernel_eq_ker Q K hQ]

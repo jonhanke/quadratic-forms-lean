@@ -1,5 +1,6 @@
 /-
 # A weight-2 cusp form with $T(p^2)$-type growth vanishes
+
 **Theorem** (`coeff_eq_zero_of_sq_growth`). Let $f$ be a weight-2 cusp form for an arithmetic group $\Gamma$ with
 $1$ a strict period, $f = \sum_n a(n)q^n$. If there is $M \ge 1$ such that
 $$\|a(p^2m)\| \ge \tfrac{p^2}{2}\,\|a(m)\| \qquad (p \text{ prime},\ p \nmid M,\ m \ge 1,\ p \nmid m),$$
@@ -17,7 +18,7 @@ $\sum_{n < X}\|a(n)\|^2 \le CX^2$ for weight-2 cusp forms (Mathlib's
 $|f(\tau)| \le C/\operatorname{Im}\tau$).
 
 This is an elementary substitute for Deligne's bound in the vanishing argument (only Hecke's mean-square bound is
-used; cf. Rankin 1939). No published antecedent of exactly this argument was found.
+used; cf. Rankin 1939). No published antecedent of exactly this argument was found (see `docs/siegel.md`).
 -/
 import Mathlib.NumberTheory.ModularForms.Bounds
 import Mathlib.NumberTheory.Chebyshev

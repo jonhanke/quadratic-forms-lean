@@ -6,8 +6,7 @@
 * `exists_ideal_basis`: a left ideal $J$ with $\operatorname{nrd}(J) \ne 0$ is a free $\mathcal O_F$-module of rank 4 (a lattice, `IsLattice.rank'`),
   with basis $f_j = \sum_iB_{ij}e_i$, $\det B \ne 0$.
 * `exists_small_mem`: $J$ contains $x \ne 0$ with $|N(\operatorname{nrd}x)| \le C\,N(\operatorname{nrd}J)$, $C$ depending only on $(\mathcal O, e)$.
-  *Proof:* the pigeonhole of O'Meara 103:2 (`ClassFin.exists_pigeon`) with $T^{4d} > |N\det B| = N(\operatorname{nrd}J)^2$ (the
-  `span_det_eq_sq`) gives $\xi \ne 0$ with $B\xi$ of $\omega$-coordinates $< T$, and $|\varphi(\operatorname{nrd}x)| \le C_\varphi T^2$ at every
+  *Proof:* the pigeonhole of O'Meara 103:2 (`ClassFin.exists_pigeon`) with $T^{4d} > |N\det B| = N(\operatorname{nrd}J)^2$ (`span_det_eq_sq`) gives $\xi \ne 0$ with $B\xi$ of $\omega$-coordinates $< T$, and $|\varphi(\operatorname{nrd}x)| \le C_\varphi T^2$ at every
   embedding.
 * **`finite_classes`**: the class set is finite. *Proof:* $J' = \nu^{-1}J\bar x$ is an integral ideal in the class of $J$
   (`mem_colon_iff`) with $N(\operatorname{nrd}J') = |N\operatorname{nrd}x|/N(\nu) \le C$; there are finitely many integral ideals of bounded

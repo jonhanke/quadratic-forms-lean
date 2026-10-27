@@ -10,8 +10,7 @@ $$\zeta_{\mathcal O}(s) = \sum_{\mathfrak n}c(\mathfrak n)\,N\mathfrak n^{-s} = 
 (`hasSum_zetaO`; Voight's $\zeta_{\mathcal O}(s)$ of (26.3.2) is this at $2s$), and
 $$\lim_{s\to2^+}(s-2)\,\zeta_{\mathcal O}(s) = \rho_F\,\zeta_F(2)\prod_{\mathfrak p\in\mathrm{Ram}_f(D)}(1 - N\mathfrak p^{-1})\qquad(\texttt{tendsto\_sub\_mul\_zetaO}).$$
 
-*Proof.* `card_ideal_nrd_eq` writes $c((n)) = \prod_{v\mid n}a_v(\operatorname{ord}_vn)$;
-the Euler product over exponent vectors
+*Proof.* `card_ideal_nrd_eq` writes $c((n)) = \prod_{v\mid n}a_v(\operatorname{ord}_vn)$; the Euler product over exponent vectors
 (`hasSum_finsupp_finprod`, `fracIdealEquiv`) with the local factors (`hasSum_localFactor_split/ramified`) and the
 Euler product of $\zeta_F$ (`hasProd_dedekindZeta`) give the product; the residue comes from $\zeta_F(1 + t) \sim \rho_F/t$
 (`tendsto_mul_dedekindZetaR_one_add`) and the continuity of $\zeta_F$ at $2$.

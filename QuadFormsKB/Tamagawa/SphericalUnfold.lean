@@ -4,24 +4,23 @@ import QuadFormsKB.Tamagawa.SphericalZeta
 /-!
 # The $\rho$-wise unfolding of Weil's additive zeta function
 
-**Setting** (as in `AdditiveZeta.lean`). $F$ totally real, $L = \bigoplus_iI_ie_i \subset V = F^n$ with a totally
-positive Gram matrix $A$ ($Q(\xi) = \xi^{\mathsf T}A\xi$ = `qv A ξ`), $\Phi = \Phi_\infty\otimes\mathbf 1_{\hat L}$ with
-the Gaussian $\Phi_\infty(y) = \exp(-\pi\sum_w\varphi_w(Q)(y_w))$, and the measure $d^\times z$ on $I_F/F^\times$
-and on $I_F$.
+**Setting** (as in `AdditiveZeta.lean`). $F$ totally real, $L = \bigoplus_iI_ie_i \subset V = F^n$ with a totally positive
+Gram matrix $A$ ($Q(\xi) = \xi^{\mathsf T}A\xi$ = `qv A ξ`), $\Phi = \Phi_\infty\otimes\mathbf 1_{\hat L}$ with the Gaussian
+$\Phi_\infty(y) = \exp(-\pi\sum_w\varphi_w(Q)(y_w))$, and the measure $d^\times z$ on $I_F/F^\times$ and on $I_F$.
 
 **The unfolding** (Weil 1982, §4.5, p. 109: the $\mathbb G_m$-half of Lemma 2.4.2 applied to $T(\rho)$). Since $Q$ is anisotropic,
 $V(F)\setminus0$ is the disjoint union over the square classes $\rho \in F^\times/F^{\times2}$ of the shells
 $\{\xi : Q(\xi)\in\rho F^{\times2}\}$, and $(\lambda,\eta) \mapsto \lambda\eta$ maps $F^\times\times\{Q(\eta) = \rho\}$ two-to-one onto the shell
 (`tsum_shell_eq`). The sum over $\lambda \in F^\times$ unfolds the integral over $I_F/F^\times$ to one over $I_F$
-(`ideleLIntegral_eq_ideleClassLIntegral`), and on $I_F$ the integrand factors into the ideal $\mathfrak b$ of the
-finite part and the infinite part $x$:
+(`ideleLIntegral_eq_ideleClassLIntegral`), and on $I_F$ the integrand factors into the ideal $\mathfrak b$ of the finite part and
+the infinite part $x$:
 $$Z^+_L(s) = \sum_{\rho\in F^\times/F^{\times2}}\frac{|d_F|^{-1/2}}{2}\,I_\rho(s)\sum_{\mathfrak b}N\mathfrak b^{-n-2s}\,
   \#\{\eta\in\mathfrak b^{-1}L : Q(\eta) = \rho\}\qquad(\texttt{additiveZeta\_eq\_tsum\_sqClasses}),$$
 $I_\rho(s) = \int_{F_\infty}N(x)^{n+2s}\exp(-\pi\sum_w\sigma_w(\rho)x_w^2)\,dx/N(x)$ (`archMellin`), an equality in $[0,\infty]$ for every real
 $s$; $\rho$ runs over the representatives `Quotient.out` of the square classes. For $\rho$ totally positive,
 $I_\rho(s) = \prod_w\Gamma(\frac n2+s)(\pi\sigma_w(\rho))^{-n/2-s}$ (`archMellin_eq`).
 
-This is the first of the three layers of `SphericalFibration` : it is unconditional.
+This is the first of the three layers of `SphericalFibration`: it is unconditional.
 -/
 
 open NumberField NumberField.InfinitePlace NumberField.mixedEmbedding MeasureTheory Set Matrix Filter Topology

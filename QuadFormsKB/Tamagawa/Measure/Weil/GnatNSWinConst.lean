@@ -10,8 +10,8 @@ split, inert, ramified, dyadic); $\Phi$ = `localPi b v` $: F_v^2\to\prod_{w\mid 
 * **`localConst_sq_mul`**: $c_v^2\,|4d|_v = 1$, i.e. $c_v = |\det(\operatorname{Tr}(b_ib_j))|_v^{-1/2}$ at every finite place,
   by lattice duality ($\Phi^{-1}(\prod_w\mathfrak p_w^{-d_w})$ is the trace dual of $\Phi^{-1}(\prod_w\mathcal O_w) = A\mathcal O_v^2$).
 
-Source: Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2, p. 310 (self-dual measures), and §3.3, p. 327
-($\operatorname{vol}(L)\operatorname{vol}(L^\perp)=1$); Neukirch, *Algebraic Number Theory*, III.2 (discriminant and different) [unverified].
+Source: Tate's thesis, Cassels–Fröhlich Ch. XV §2.2 (self-dual measures, $\operatorname{vol}(L)\operatorname{vol}(L^\perp)=1$)
+[unverified]; Neukirch, *Algebraic Number Theory*, III.2 (discriminant and different) [unverified].
 -/
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatNSWinUnits
 

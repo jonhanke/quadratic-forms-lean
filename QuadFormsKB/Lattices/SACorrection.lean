@@ -11,7 +11,7 @@ $g \in \Omega(V_\mathfrak p)$ at every other prime. This is the hypothesis of `r
 (step 1c of O'Meara 1973, 104:4, p. 316), which O'Meara obtains from 95:1 (local index $(O' : \Omega) \le 2$ for quaternary
 spaces) and 101:9 (global elements with prescribed classes modulo $\Omega$).
 
-*Simplification.* No index computation is needed:
+*Simplification (recorded in `docs/updates-and-errata.md`).* No index computation is needed:
 * the coset $\tau_{x_1}\cdots\tau_{x_r}\Omega$ depends only on the square classes of the $Q(x_i)$
   (`symmProd_inv_mul_mem_of_forall₂`: $\tau_x\tau_y \in \Omega$ when $Q(y)/Q(x)$ is a square);
 * the primes at which $V_\mathfrak p$ is anisotropic form a finite set $A$ (`finite_anisotropic`), and outside it
@@ -226,7 +226,6 @@ theorem isSquare_prod_div {K : Type*} [Field K] (l : List K) {r : K} (hr : r ≠
   exact h1.div ⟨r ^ (k + 1), by ring⟩
 
 /-- The image of a product of rational symmetries. -/
-@[kb "omeara1963" "§101B, p. 289 (localization of an isometry; (τ_u)_{𝔭} = τ_{u_{𝔭}})"]
 theorem orthMap_symmProd (v : HeightOneSpectrum (𝓞 F)) (xs : List (Fin n → F)) :
     orthMap Q (v.adicCompletion F) (symmProd Q F xs) = symmProd Q (v.adicCompletion F) (xs.map (locVec v)) := by
   rw [symmProd, symmProd, map_list_prod, List.map_map, List.map_map]
@@ -310,7 +309,6 @@ theorem exists_list_approx (T : Finset (HeightOneSpectrum (𝓞 F))) (hT : T.Non
       exact List.Forall₂.cons (hyT v hv) (hrel v hv)
 
 /-- **$Q$ represents $c$ over $K$ when $Q$ is isotropic over $K$.** -/
-@[kb "cassels1978" "Ch. 2, Lemma 2.1, Cor. 2, p. 15"]
 theorem representsIn_of_isotropicIn (K : Type*) [Field K] [Algebra F K] (hQ : Q.Nondegenerate) (c : F)
     (h : Q.IsotropicIn K) : Q.RepresentsIn K c := by
   rw [QuadForm.representsIn_iff_isotropicIn_orthSum K hQ c]
@@ -366,11 +364,10 @@ theorem representsIn_valProd (hQ : Q.Nondegenerate) (hn : 4 ≤ n) (ys : List (F
         rw [valProd, map_list_prod]
       rw [e, hs]; ring
 
-/-- **The correction step of O'Meara 104:4 (step 1c), proved without 95:1 and 101:9:** for $n \ge 4$, a finite set
+/-- **The correction step of O'Meara 104:4, proved without 95:1 and 101:9:** for $n \ge 4$, a finite set
 $T$ of finite primes and $\varphi_\mathfrak p \in O'(V_\mathfrak p)$ ($\mathfrak p \in T$) there is $g \in O'(V)$ with
 $g\varphi_\mathfrak p \in \Omega(V_\mathfrak p)$ for $\mathfrak p \in T$ and $g \in \Omega(V_\mathfrak p)$ for $\mathfrak p \notin T$
 ($\Omega$ = commutator subgroup). See the module docstring for the construction. -/
-@[kb "omeara1963" "§104, proof of 104:4, step 1c, pp. 316–317"]
 theorem exists_correction (hQ : Q.Nondegenerate) (hn : 4 ≤ n) (T : Finset (HeightOneSpectrum (𝓞 F)))
     (φ : ∀ v : HeightOneSpectrum (𝓞 F), orthGroup Q (v.adicCompletion F))
     (hφ : ∀ v ∈ T, φ v ∈ spinorKernel Q (v.adicCompletion F)) :
@@ -486,13 +483,12 @@ theorem exists_correction (hQ : Q.Nondegenerate) (hn : 4 ≤ n) (T : Finset (Hei
 
 /-- **Step 1 of O'Meara 104:4 for $n \ge 4$ in general:** `VecApprox Q` implies `RotApprox Q` for every nondegenerate
 $Q$ in $n \ge 4$ variables (no isotropy hypothesis on the $V_\mathfrak p$; the correction is `exists_correction`). -/
-@[kb "omeara1963" "§104, proof of 104:4, step 1c, pp. 316–317"]
 theorem rotApprox_of_vecApprox_of_four_le (hQ : Q.Nondegenerate) (hn : 4 ≤ n) (hV : VecApprox Q) : RotApprox Q :=
   rotApprox_of_vecApprox_of_correction Q hQ (by omega) hV fun T φ hφ => exists_correction Q hQ hn T φ hφ
 
 /-- **Strong approximation for rotations from `VecStrongApproximation F` alone** (O'Meara 1973, 104:4 and 104:5):
 the named input `QuaternarySpinorInput F` (95:1, 101:9) is not needed, by `exists_correction`. -/
-@[kb "omeara1963" "§104, 104:4, 104:5, pp. 315–319"]
+@[kb "omeara1963" "104:4, 104:5, PDF pp. 323-327"]
 theorem strongApproximationSpin_of_vecInput (hV : VecStrongApproximation F) : StrongApproximationSpin F := by
   refine strongApproximationSpin_of_spinApprox fun {n} Q hn hQ hind => spinApprox_of_rotApprox Q ?_
   rcases Nat.lt_or_ge n 4 with h3 | h4

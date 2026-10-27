@@ -2,6 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.QuatTamagawa
 
 /-!
 # Chart lemmas without finiteness hypotheses, and as equalities of measures
+
 Instances of the abstract results `ChartData.measure_chartBox_of_measurable` (monotone exhaustion) and
 `ChartData.map_restrict_chart_eq_pi` (π-λ, `Measure.pi_eq`) of `ChartAbstract.lean`:
 

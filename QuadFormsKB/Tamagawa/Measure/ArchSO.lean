@@ -294,8 +294,7 @@ namespace ArchSO
 
 variable (Q : QuadForm ℝ n) [hQ : Fact (IsPosDefR Q)]
 
-/-- **Link to the gauge-form volume:** for $n \ge 1$ the total mass of $\mu_\sigma$ is the gauge-form volume of
-$SO(Q)$ (Siegel's limit). -/
+/-- **Link to the volume:** for $n \ge 1$ the total mass of $\mu_\sigma$ is the gauge-form volume of $SO(Q)$ (Siegel's limit). -/
 theorem mu_univ_eq_volume (hn : 1 ≤ n) :
     mu Q Set.univ = ENNReal.ofReal (ArchVol.archVolSOLim Q) := by
   rw [mu_univ, ArchVol.archVolSO_eq_volume hQ.out hn]

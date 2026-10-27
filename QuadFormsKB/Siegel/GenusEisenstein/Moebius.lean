@@ -1,5 +1,6 @@
 /-
 # A Möbius identity for Eisenstein constant terms
+
 `tsum_moebius_mul`: for bounded $\varphi : \mathbb{N} \to \mathbb{C}$,
 $$\sum_{g \ge 1}\frac{\mu(g)}{g^2}\sum_{n \ge 1}\frac{\varphi(gn)}{n^2} = \varphi(1)$$
 (group the absolutely convergent double sum by $m = gn$ and use $\sum_{g \mid m}\mu(g) = [m = 1]$).

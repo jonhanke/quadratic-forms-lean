@@ -1,5 +1,6 @@
 /-
 # Local densities of forms by forms over a DVR: definitions and the bridge to numbers
+
 **Layer:** DVR ($R$ a discrete valuation ring with uniformizer $\pi$ and residue field of size $q$, e.g. the
 completion $\mathfrak o_\mathfrak p$ of a number field at a finite prime, or $\mathbb Z_p$).
 

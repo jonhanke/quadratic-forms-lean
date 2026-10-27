@@ -1,5 +1,6 @@
 /-
 # The $T(p^2)$-type relation for $a_E$ at good primes
+
 For $Q$ positive definite quaternary, $p$ an odd prime with $p \nmid \det H$, $\varepsilon = \left(\frac{\det H}{p}\right)$ and
 $m \ge 1$ with $p \nmid m$:
 $$a_E(p^2m) = (p^2 + 1 + \varepsilon p)\,a_E(m)$$

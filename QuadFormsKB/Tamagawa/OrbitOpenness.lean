@@ -9,7 +9,7 @@ characteristic, dyadic included). No completeness is used here.
   $y' = y + \pi^s w$, the matrix
   $$T = 1 + \pi^{s-f}\rho'^{-1}\big(y\,\tilde a^{\mathsf T} + w\,\tilde b^{\mathsf T}\big)$$
   (`openMat`; $4m - \pi^{2s}Q(w) = \pi^f\rho'$, $m = \pi^\mu\nu$) satisfies $Q \circ T = Q$ and $Ty = y'$. Over the fraction field it
-  is $\tau_{y+y'}\tau_y$ (Weil 1982, §3.4 [unverified]; O'Meara 1963, §42E, pp. 96–97); written this way it is visibly
+  is $\tau_{y+y'}\tau_y$ (Weil 1982, §3.4 [unverified]; O'Meara 1963, §42 [unverified]); written this way it is visibly
   integral and $\equiv 1 \bmod \pi^{s-f}$. The identity behind $Q \circ T = Q$ is a polynomial identity (`open_key`).
 * `exists_openMat` (**quantitative openness**): if $Q(y) = Q(y') = m \ne 0$, $\pi^f \,\Vert\, 4m$ and $y' \equiv y \bmod \pi^s$ with
   $s \ge f + 1$, there is $T \in M_{n}(R)$ with $Q\circ T = Q$, $Ty = y'$ and $T \equiv 1 \bmod \pi^{s-f}$.

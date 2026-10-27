@@ -16,11 +16,8 @@ variables ($V = F^n$ with $Q = Q_0\otimes F$, any signature at the real places, 
 * `GInfSO Q₀` $= G_\infty = \prod_{w\ \mathrm{real}}SO(Q^{\sigma_w})(\mathbb R)\times\prod_{w\ \mathrm{complex}}SO(Q^{\tau_w})(\mathbb C)$
   and `SOAdele Q₀` $= SO(V)(\mathbb A) = G_\infty\times SO(V)(\mathbb A_f)$ (`SOAf`);
 * `diagSOAdele Q₀`, `GammaSOAdele Q₀` $= SO(V)(F)$ embedded diagonally (generalizing `GammaSO` to every signature);
-* `cxWeil F n` $= 2^{n(n-1)r_2/2}$, Weil's normalization $|dz\wedge d\bar z| = 2\,dx\,dy$ at the $r_2$ complex places
-  ($1$ for totally real $F$);
-* `muArchTamSO Q₀ hQ` $= c_F\,2^{n(n-1)r_2/2}\cdot\mu_\infty^{\mathrm{Leray}}$ ($c_F = |d_F|^{-n(n-1)/4}$ = `cF`,
-  `muArchNF`);
-* **`muTam Q₀ hQ λ`** $= c_F\,2^{n(n-1)r_2/2}\,\mu_\infty^{\mathrm{Leray}}\times\mu_f$, $\mu_f$ = `muFin Q₀ λ` (normalized by
+* `muArchTamSO Q₀ hQ` $= c_F\cdot\mu_\infty^{\mathrm{Leray}}$ ($c_F = |d_F|^{-n(n-1)/4}$ = `cF`, `muArchNF`);
+* **`muTam Q₀ hQ λ`** $= c_F\,\mu_\infty^{\mathrm{Leray}}\times\mu_f$, $\mu_f$ = `muFin Q₀ λ` (normalized by
   $\mu_f(SO(\hat L)) = \prod'_v\mu_v(SO(L_v))$ with the local measures `muLocSO v Q₀ λ_v`; equal to the restricted product
   $\prod_v\lambda_v^{-1}\mu_v$ on every box by `muFin_boxSO`, `map_restrict_muFin_KSO`);
 * **`TamagawaNumberTwoAdelic Q₀`**: $\mathrm{covol}(SO(V)(F), SO(V)(\mathbb A), \mu_{\mathrm{Tam}}) = 2$ (with $\lambda_v = 1$).
@@ -31,7 +28,7 @@ variables ($V = F^n$ with $Q = Q_0\otimes F$, any signature at the real places, 
   any signature: $SO(V)(\mathbb A_f)/SO(\hat L)$ injects into the countable set of lattices);
 * `muTam` is left invariant and $\sigma$-finite;
 * **specialization** (`map_muAdele_eq_muTam`, `covolume_muTam_eq_covolume_muAdele`): for $F$ totally real and $Q$ totally
-  positive definite, a measurable group isomorphism $SO(V)(\mathbb A)_{\mathrm{emb}}\cong SO(V)(\mathbb A)$ (reindexing real
+  positive definite, a measurable group isomorphism $SO(V)(\mathbb A)_{\mathrm{prod}}\cong SO(V)(\mathbb A)$ (reindexing real
   embeddings by real places) carries `GammaSO` to `GammaSOAdele` and `muAdele` to `muTam`; hence
   **`tamagawaNumberTwoAdelic_iff`**: `TamagawaNumberTwoAdelic Q₀ ↔ TamagawaNumberTwo Q₀` (no PID, no class-number hypothesis),
   and the corollaries `tamagawaNumberTwoAdelic_ternary` (every totally real $F$), `tamagawaNumberTwoAdelic_all_ranks`
@@ -205,41 +202,12 @@ theorem sigmaFinite_muFin' (lam : HeightOneSpectrum (𝓞 F) → ℝ) : SigmaFin
 instance sigmaFinite_muFin_inst (lam : HeightOneSpectrum (𝓞 F) → ℝ) : SigmaFinite (muFin Q₀ lam) :=
   sigmaFinite_muFin' Q₀ lam
 
-variable (F) in
-/-- **Weil's normalization factor at the complex places** for $SO_n$: $2^{\dim SO_n\cdot r_2} = 2^{n(n-1)r_2/2}$,
-$r_2$ the number of complex places of $F$. At a complex place Weil's gauge measure (1982, §2.2) takes
-$|dz\wedge d\bar z| = 2\,dx\,dy$ per complex coordinate, the self-dual measure for the trace pairing
-$(z, z')\mapsto 2\operatorname{Re}(zz')$; the complex Leray measure `LerayComplex.lerayMeasureC` takes the real
-Lebesgue measure $dx\,dy$ on $M_n(\mathbb C)$ ($n^2$ coordinates) and on the coefficient space ($n(n+1)/2$
-coordinates), so the two differ by $2^{n^2 - n(n+1)/2} = 2^{n(n-1)/2}$ at each complex place. Equal to $1$ when $F$ is
-totally real (`cxWeil_eq_one`). -/
-def cxWeil (n : ℕ) : ℝ := (2 : ℝ) ^ (n * (n - 1) / 2 * nrComplexPlaces F)
-
-theorem cxWeil_pos : 0 < cxWeil F n := by unfold cxWeil; positivity
-
-theorem cxWeil_eq_one [IsTotallyReal F] : cxWeil F n = 1 := by
-  rw [cxWeil, IsTotallyReal.nrComplexPlaces_eq_zero, mul_zero, pow_zero]
-
-/-- $2^{3r_2} = 8^{r_2}$: Weil's factor for $SO_3$. -/
-theorem cxWeil_three : cxWeil F 3 = (8 : ℝ) ^ nrComplexPlaces F := by
-  rw [cxWeil, pow_mul]; norm_num
-
-/-- **The archimedean Tamagawa factor** $c_F\cdot 2^{n(n-1)r_2/2}\cdot\mu_\infty^{\mathrm{Leray}}$ on $G_\infty$, with
-$c_F = |d_F|^{-n(n-1)/4}$ (`cF`, Weil's $\mu_k^{-\dim SO_n}$ with $\mu_k = |d_F|^{1/2}$), $\mu_\infty^{\mathrm{Leray}}$ the
-product of the gauge-form (Leray) measures at the real and complex places (`muArchNF`), and
-$2^{n(n-1)r_2/2}$ = `cxWeil F n` converting the complex Leray measures (built from $dx\,dy$) to Weil's normalization
-$|dz\wedge d\bar z| = 2\,dx\,dy$ (Weil 1982, §2.2), the normalization of $c_F$ and of the adelic measures
-`omegaQuatInf`, `omegaInf`. *Update (2026-10-22):* the factor `cxWeil` was missing before, so `muTam` was
-$8^{-r_2}$ times Weil's measure for ternary $Q$. -/
-@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure, factor μ_k^{-dim}); §2.2 (gauge forms, |dz∧dz̄| at complex places) [unverified]"]
+/-- **The archimedean Tamagawa factor** $c_F\cdot\mu_\infty^{\mathrm{Leray}}$ on $G_\infty$, with
+$c_F = |d_F|^{-n(n-1)/4}$ (`cF`, Weil's $\mu_k^{-\dim SO_n}$ with $\mu_k = |d_F|^{1/2}$) and $\mu_\infty^{\mathrm{Leray}}$ the
+product of the gauge-form (Leray) measures at the real and complex places (`muArchNF`). -/
+@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure, factor μ_k^{-dim}); §2.2 (gauge forms) [unverified]"]
 def muArchTamSO (hQ : Q₀.Nondegenerate) : Measure (GInfSO Q₀) :=
-  ENNReal.ofReal (cF F n * cxWeil F n) • muArchNF QF (gramDetR_QRe_ne_zero Q₀ hQ) (gramDetC_QCx_ne_zero Q₀ hQ)
-
-/-- `muArchTamSO` over a totally real field: $c_F\cdot\mu_\infty^{\mathrm{Leray}}$ (no complex places). -/
-theorem muArchTamSO_of_isTotallyReal [IsTotallyReal F] (hQ : Q₀.Nondegenerate) :
-    muArchTamSO Q₀ hQ =
-      ENNReal.ofReal (cF F n) • muArchNF QF (gramDetR_QRe_ne_zero Q₀ hQ) (gramDetC_QCx_ne_zero Q₀ hQ) := by
-  rw [muArchTamSO, cxWeil_eq_one, mul_one]
+  ENNReal.ofReal (cF F n) • muArchNF QF (gramDetR_QRe_ne_zero Q₀ hQ) (gramDetC_QCx_ne_zero Q₀ hQ)
 
 /-- **Weil's Tamagawa measure on $SO(V)(\mathbb A)$**, any signature, any number field, with convergence factors
 $(\lambda_v)$: $\mu_{\mathrm{Tam}} = c_F\,\mu_\infty^{\mathrm{Leray}}\times\mu_f$, where $\mu_f$ = `muFin Q₀ λ` is the Haar
@@ -266,9 +234,9 @@ instance (hQ : Q₀.Nondegenerate) (lam : HeightOneSpectrum (𝓞 F) → ℝ) : 
 instance (hQ : Q₀.Nondegenerate) (lam : HeightOneSpectrum (𝓞 F) → ℝ) : SigmaFinite (muTam Q₀ hQ lam) := by
   unfold muTam; infer_instance
 
-/-- `muTam` is the product $c_F\,2^{n(n-1)r_2/2}\cdot(\mu_\infty^{\mathrm{Leray}}\times\mu_f)$. -/
+/-- `muTam` is the product $c_F\cdot(\mu_\infty^{\mathrm{Leray}}\times\mu_f)$. -/
 theorem muTam_eq_smul (hQ : Q₀.Nondegenerate) (lam : HeightOneSpectrum (𝓞 F) → ℝ) :
-    muTam Q₀ hQ lam = ENNReal.ofReal (cF F n * cxWeil F n) •
+    muTam Q₀ hQ lam = ENNReal.ofReal (cF F n) •
       (muArchNF QF (gramDetR_QRe_ne_zero Q₀ hQ) (gramDetC_QCx_ne_zero Q₀ hQ)).prod (muFin Q₀ lam) := by
   rw [muTam, muArchTamSO, Measure.prod_smul_left]
 
@@ -448,8 +416,7 @@ instance secondCountable_SOAf : SecondCountableTopology (SOAf Q₀) := by
 /-- **$SO(V)(\mathbb A)$ is second countable.** -/
 instance secondCountable_SOAdele : SecondCountableTopology (SOAdele Q₀) := inferInstance
 
-/-- **$SO(V)(F)\backslash SO(V)(\mathbb A)$ has a measurable fundamental domain** for every measure (any signature;
-`exists_isFundamentalDomain` for the discrete countable subgroup `GammaSOAdele`), so the covolume is the measure of any
+/-- **$SO(V)(F)\backslash SO(V)(\mathbb A)$ has a measurable fundamental domain** for every measure (any signature; `exists_isFundamentalDomain` for the discrete countable subgroup `GammaSOAdele`), so the covolume is the measure of any
 fundamental domain, not the junk value $0$. -/
 @[kb "weil1982" "§2.4, p. 23 (fundamental domain for G_k in G_𝔸) [unverified]"]
 theorem hasFundamentalDomain_GammaSOAdele (μ : Measure (SOAdele Q₀)) :
@@ -574,8 +541,7 @@ theorem isPosDefR_QRe (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef QF) (w : 
     IsPosDefR (QRe Q₀ w) := by
   rw [QRe, QuadForm_map_map]; exact isPosDefR_map Q₀ _ hQ hpd
 
-/-- The relabelling carries the measure $\mu_\infty$ on the embedding-indexed
-product to the measure $\mu_\infty$ on the place-indexed product (definite case). -/
+/-- The relabelling carries the $\mu_\infty$ to the $\mu_\infty$ (definite case). -/
 theorem map_archRelabel_muInf (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef QF) :
     haveI : ∀ σ, Fact (IsPosDefR (realQ Q₀ σ)) := fun σ => ⟨isPosDefR_realQ Q₀ hQ hpd σ⟩
     haveI : ∀ w, Fact (IsPosDefR (QRe Q₀ w)) := fun w => ⟨isPosDefR_QRe Q₀ hQ hpd w⟩
@@ -603,14 +569,13 @@ theorem measurable_archEquivM1d : Measurable (archEquivM1d Q₀) :=
 theorem measurable_archEquivM1d_symm : Measurable (archEquivM1d Q₀).symm :=
   (measurable_archRelabel_symm Q₀).comp measurable_fst
 
-/-- **The archimedean Tamagawa measures agree** (totally real, totally definite): the comparison carries
-$c_F\,\mu_\infty$ to $c_F\,\mu_\infty^{\mathrm{Leray}}$ (`pi_lerayMeasure_eq_muInf`). -/
-@[kb "weil1982" "§2.2–2.3 (gauge forms at real places); agreement of the two archimedean measures [unverified]"]
+/-- **The archimedean Tamagawa measures agree** (totally real, totally definite): the comparison carries the $c_F\,\mu_\infty$ to $c_F\,\mu_\infty^{\mathrm{Leray}}$ (`pi_lerayMeasure_eq_muInf`). -/
+@[kb "weil1982" "§2.2–2.3 (gauge forms at real places) [unverified]"]
 theorem map_muInfTam (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosDef QF) :
     (muInfTam Q₀ hQ hpd).map (archEquivM1d Q₀) = muArchTamSO Q₀ hQ := by
   have : ∀ σ, Fact (IsPosDefR (realQ Q₀ σ)) := fun σ => ⟨isPosDefR_realQ Q₀ hQ hpd σ⟩
   have : ∀ w, Fact (IsPosDefR (QRe Q₀ w)) := fun w => ⟨isPosDefR_QRe Q₀ hQ hpd w⟩
-  rw [muInfTam, muArchTamSO_of_isTotallyReal, Measure.map_smul]
+  rw [muInfTam, muArchTamSO, Measure.map_smul]
   congr 1
   have hfun : (archEquivM1d Q₀ : ArchSOProd (realQ Q₀) → GInfSO Q₀) =
       (fun x => (x, (default : ∀ w : {w : InfinitePlace F // w.IsComplex}, ArchSOC (QCx Q₀ w)))) ∘
@@ -621,7 +586,7 @@ theorem map_muInfTam (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosD
   · congr 2
   · exact (measurable_archEquivM1d Q₀).aemeasurable
 
-/-- **The adelic comparison** $SO(V)(\mathbb A)_{\mathrm{emb}} = \prod_\sigma SO(Q^\sigma)(\mathbb R)\times SO(V)(\mathbb A_f)
+/-- **The adelic comparison** $SO(V)(\mathbb A)_{\mathrm{prod}} = \prod_\sigma SO(Q^\sigma)(\mathbb R)\times SO(V)(\mathbb A_f)
 \cong SO(V)(\mathbb A)$ = `SOAdele Q₀`. -/
 def adeleEquivM1d : ArchSOProd (realQ Q₀) × SOAf Q₀ ≃* SOAdele Q₀ :=
   (archEquivM1d Q₀).prodCongr (MulEquiv.refl _)
@@ -641,9 +606,9 @@ theorem map_GammaSO : (GammaSO Q₀).map (adeleEquivM1d Q₀).toMonoidHom = Gamm
     Matrix.GeneralLinearGroup.map (embedding_of_isReal w.2) ((γ : orthGroup QF F) : GL (Fin n) F)
   rw [embedding_realPlaceEquiv (realPlaceEquiv.apply_symm_apply w)]
 
-/-- **Weil's measure specializes to the earlier one** (totally real $F$, totally positive definite $Q$, any $\lambda$): the comparison
+/-- **Weil's measure specializes to `muAdele`** (totally real $F$, totally positive definite $Q$, any $\lambda$): the comparison
 isomorphism carries `muAdele` to `muTam`. -/
-@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure); `muAdele` [unverified]"]
+@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure); cf. muAdele [unverified]"]
 theorem map_muAdele_eq_muTam (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosDef QF) (lam : HeightOneSpectrum (𝓞 F) → ℝ) :
     (muAdele Q₀ hQ hpd lam).map (adeleEquivM1d Q₀) = muTam Q₀ hQ lam := by
   have h := map_prodMap_prod (measurable_archEquivM1d Q₀) measurable_id (muInfTam Q₀ hQ hpd) (muFin Q₀ lam)
@@ -653,7 +618,7 @@ theorem map_muAdele_eq_muTam (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTot
   exact h
 
 /-- **Covolume comparison**: $\mathrm{covol}(\Gamma, SO(V)(\mathbb A), \mu_{\mathrm{Tam}}) =
-\mathrm{covol}(\Gamma, SO(V)(\mathbb A)_{\mathrm{emb}}, \mu_{\mathbb A})$ for totally real $F$, totally definite $Q$, any $\lambda$. -/
+\mathrm{covol}(\Gamma, SO(V)(\mathbb A)_{\mathrm{prod}}, \mu_{\mathbb A})$ for totally real $F$, totally definite $Q$, any $\lambda$. -/
 @[kb "weil1982" "§2.4, p. 23 (τ(G) = vol(G_𝔸/G_k))"]
 theorem covolume_muTam_eq_covolume_muAdele (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosDef QF)
     (lam : HeightOneSpectrum (𝓞 F) → ℝ) :

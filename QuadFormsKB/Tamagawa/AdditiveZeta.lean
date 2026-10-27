@@ -10,8 +10,7 @@ matrix $A$ (`IsTotPosGram A`; $Q(\xi) = \xi^{\mathsf T}A\xi$), and $\Phi = \Phi_
 $\Phi_\infty(y) = \exp(-\pi\sum_v\varphi_v(Q)(y_v))$. A totally positive definite form is anisotropic ("index 0" in Weil's §4.4,
 p. 97), so $V(F)\setminus0$ contains no isotropic vectors and the only boundary terms come from $\xi = 0$.
 
-**The additive zeta function** (Weil 1982, §4.4, (4), p. 97, for one lattice; the genus version is `AdditiveGenus.lean`): with the
-integral over the idele class group in the concrete cone model (`IdeleClass.ideleClassLIntegral`, unramified ideles
+**The additive zeta function** (Weil 1982, §4.4, (4), p. 97, for one lattice; the genus version is `AdditiveGenus.lean`): with the integral over the idele class group in the concrete cone model (`IdeleClass.ideleClassLIntegral`, unramified ideles
 $z = (x,\mathfrak b)$, $|z| = N(x)/N(\mathfrak b)$),
 $$Z^+_L(s) = \int_{I_F/F^\times}|z|^{n+2s}\sum_{\xi\in V(F)\setminus0}\Phi(\xi z)\,d^\times z
   = \int_{I_F/F^\times}|z|^{n+2s}\sum_{\xi\in\mathfrak b^{-1}L\setminus0}e^{-\pi\sum_v|x_v|^2\varphi_v(Q(\xi))}\,d^\times z
@@ -21,7 +20,7 @@ an element of $[0,\infty]$; $\Phi_f(\xi z_f) = \mathbf 1[\xi\in\mathfrak b^{-1}L
 **Main results** (all unconditional; axioms `propext`, `Classical.choice`, `Quot.sound`):
 * `tsum_gaussTerm_inversion`: theta inversion at imaginary arguments (real form of `thetaLat_inversion`): Poisson
   summation on $L \subset (F\otimes\mathbb R)^n$ for the Gaussian, the substitute for the adelic Poisson formula on $V(\mathbb A)$
-  for $\Phi_f = \mathbf 1_{\hat L}$;
+ for $\Phi_f = \mathbf 1_{\hat L}$;
 * `thetaZero_decay`, `exists_cone_upper`, `cone_lower`: the theta series without its constant term decays like $e^{-\delta m}$,
   and the fundamental cone has bounded shape ($|x_v| \asymp N(x)^{1/d}$);
 * `poisson_pointwise`: $|z|^{n+2s}(1+\Theta^0_L(z)) = c_L|z|^{2s}(1+\Theta^{\#0}_L(z^{-1}))$ with $c_L$ = `latConst` $=\hat\Phi(0)$;
@@ -32,7 +31,7 @@ an element of $[0,\infty]$; $\Phi_f(\xi z_f) = \mathbf 1[\xi\in\mathfrak b^{-1}L
 
 **Normalizations.** $d^\times z$ is Weil's Tamagawa measure on $I_F/F^\times$, so $\int_{|z|\le1}|z|^a\,d^\times z = \rho_F/a$
 (`ideleClassLIntegral_le_one_rpow`). $c_L = (\prod_v\sqrt{\det\varphi_v(A)})^{-1}(\prod_i\Delta(I_i))^{-1}$, $\Delta(I) = N(I)\,d_F^{1/2}$
-(`embDet_eq`), is $\int_{V(\mathbb A)}\Phi\,dx$ for the self-dual measure; for $L = \mathcal O_F^n$ it equals `GlobalZeta.phiIntegral` of the
+(`embDet_eq`), is $\int_{V(\mathbb A)}\Phi\,dx$ for the self-dual measure; for $L = \mathcal O_F^n$ it equals `phiIntegral` of the
 Gaussian $e^{-\pi Q_w}$ (`phiIntegral_gaussian_pi`, `AdditiveGenus.lean`). Weil's exponent $|t|^{2s+m}$ is our $|z|^{n+2s}$.
 
 **Not done.** The substitution $z \mapsto z^{-1}$ in the dual term (so $B(s)$ is not rewritten as $Z^\Psi_+(-s-\frac n2)$), complex $s$
@@ -312,7 +311,7 @@ def latConst (A : Matrix (Fin n) (Fin n) F) (I : Fin n → (FractionalIdeal (�
 $$\sum_{\xi\in L}e^{-\pi\sum_v\varphi_v(Q(\xi))t_v} = c_L\prod_vt_v^{-n/2}\sum_{\mu\in L^\#}e^{-\pi\sum_v\varphi_v(Q^\#(\mu))\,4/t_v}.$$
 This is Poisson summation for $\Phi = \Phi_\infty\otimes\mathbf 1_{\hat L}$ on $V(F) \subset V(\mathbb A)$ (Weil §4.4, p. 97) at the idele $z$ with
 $|x_v|^2 = t_v$, $\hat\Phi(0) = c_L$. -/
-@[kb "weil1982" "§4.4, p. 97 (Poisson summation Σ_ξΦ(Xξz) = |z̄z|^{-δm/2}Σ_ηΨ(X′ηz̄⁻¹)); C3 thetaLat_inversion"]
+@[kb "weil1982" "§4.4, p. 97 (Poisson summation Σ_ξΦ(Xξz) = |z̄z|^{-δm/2}Σ_ηΨ(X′ηz̄⁻¹)); cf. thetaLat_inversion"]
 theorem tsum_gaussTerm_inversion {A : Matrix (Fin n) (Fin n) F} (hA : IsTotPosGram A)
     (I : Fin n → (FractionalIdeal (𝓞 F)⁰ F)ˣ) {t : InfinitePlace F → ℝ} (ht : ∀ v, 0 < t v) :
     ∑' k, gaussTerm A (latVec I k) t = latConst A I * (∏ v, t v ^ (-(n : ℝ) / 2)) *

@@ -18,6 +18,7 @@ So $q^{-k}\#\{N = 1\} = |\Gamma_1^\times|\,j_k/(q(q-1))$ with $j_k = [(\mathfrak
 form of $\Gamma$ at $1$ is a unit count times a norm index.
 
 Source: Siegel 1935 / Kitaoka 1993, §5.6 (local densities as limits of counts) [unverified].
+
 -/
 
 open NumberField IsDedekindDomain QuadraticAlgebra

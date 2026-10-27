@@ -1,5 +1,5 @@
 /-
-# `ThetaSplit` from the cuspidality of $\Theta_Q - \Theta_{\mathrm{Gen}(Q)}$
+# `ThetaSplit` from the cuspidality of $\Theta_Q - \Theta_{\mathrm{Gen}(Q)}$ (part A)
 
 For a positive definite form $Q$ in $n = 2k$ variables with `GenusFinite`, put
 $$c(m) = r_Q(m) - a_E(m), \qquad a_E(m) = \texttt{genusRepAvg}\ Q\ m$$

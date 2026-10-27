@@ -1,5 +1,6 @@
 /-
-# Constant terms of weight-2 Eisenstein series at every cusp
+# Constant terms of weight-2 Eisenstein series at every cusp (deliverable 3)
+
 For $W$ of total mass $0$ and $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in \mathrm{SL}_2(\mathbb{Z})$, the constant term of
 $E_W$ at the cusp $\gamma\infty = a/c$ is (`tendsto_eis2_slash`)
 $$\lim_{\operatorname{Im}\tau\to\infty}(E_W\,|_2\,\gamma)(\tau) = \sum_{n \in \mathbb{Z}}\frac{W(-nc,\ na)}{n^2},$$

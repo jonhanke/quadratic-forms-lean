@@ -2,9 +2,9 @@
 # Averaging a symmetric invariant relation over orbits
 
 **Setting.** A group $G$ acts on a set $X$; $R$ is a $G$-invariant symmetric relation on $X$ with finite fibres
-$N(x) = \{y : R(x, y)\}$ (in the application: $X$ = lattices, $G = O(V)(F)$, $R$ = "is a $\mathfrak p$-neighbour of");
-$s \subseteq X$ is a finite set of representatives of distinct orbits, closed under $R$ up to $G$ (the classes of a
-genus, which neighbours do not leave), with finite stabilizers $G_x$ (the groups $O(M)$).
+$N(x) = \{y : R(x, y)\}$ (in the application: $X$ = lattices, $G = O(V)(F)$, $R$ = "is a $\mathfrak p$-neighbour of"); $s \subseteq X$ is a finite set
+of representatives of distinct orbits, closed under $R$ up to $G$ (the classes of a genus, which neighbours do not leave), with
+finite stabilizers $G_x$ (the groups $O(M)$).
 
 **Theorem** (`sum_inv_card_stab_sum_nb`, the double-counting identity behind the Eichler commutation relation averaged over a
 genus). For every $G$-invariant $f : X \to \mathbb C$,

@@ -11,7 +11,7 @@ i.e. every $h \in O'(V_{\mathbb A_f})$ is $h = \gamma k$ with $\gamma \in O'(V)$
 $k \in O(\hat L)$ (`locStab Q L`).
 
 **Status: cited input, not proved here.** This is the strong approximation theorem for rotations, Kneser 1956 and
-Eichler 1952 (O'Meara 1963, 104:4, p. 315; Cassels 1978, Ch. 10, Thm. 7.1, p. 186, over $\mathbb{Q}$, for the spin group; its Corollary, p. 187): if $\dim V \ge 3$ and
+Eichler 1952 (O'Meara 1963, 104:3 [unverified]; Cassels 1978, Ch. 10 Thm 7.1 [unverified]): if $\dim V \ge 3$ and
 $V_w$ is isotropic at some infinite place $w$, then $O'(V)$ is dense in $O'(V_{\mathbb A_f})$ (the adelic group away
 from the infinite places). The statement here is the density statement tested against the open subgroups
 $O(\hat L) \cap O'(V_{\mathbb A_f})$: if $O'(V)$ is dense then $h\,O(\hat L)^{-1}$ (an open neighbourhood of $h$) meets
@@ -22,8 +22,8 @@ $F_w$-isotropic; Kneser 1966, Platonov 1969) and $\theta(\text{local spinor kern
 needs some $\gamma \in O(V)$ with $\gamma L = hL$; the input gives $\gamma$ in the smaller group $O'(V)$ and for every
 $h \in O'(V_{\mathbb A_f})$, a statement about the group, not about the lattice $hL$ alone.
 
-**Interface (stable; consumed by the Kneser-connectivity work).** Do not change the
-signature of `StrongApproximationSpin` or of its field `approx` without updating the code that depends on it.
+**Interface (stable; consumed by the Kneser-connectivity work, branch `kneser-connectivity`).** Do not change the
+signature of `StrongApproximationSpin` or of its field `approx` without updating `docs/handoff/spinor-genera.md`.
 -/
 import QuadFormsKB.Lattices.SpinorKernel
 
@@ -41,10 +41,9 @@ For every $n \ge 3$ and every form `Q : QuadForm F n` that is nondegenerate (`Q.
 $h \in O'(V_{\mathbb A_f})$ (`spinorKernelAf Q`), there is a rational $\gamma \in O'(V)$ (`spinorKernel Q F`) with
 $\gamma^{-1}h \in O(\hat L)$ (`locStab Q L`), i.e. $h \in O'(V)\,O(\hat L)$.
 
-Kneser 1956 / Eichler 1952; O'Meara 1963, 104:4, p. 315 (stated there with approximation on a finite set $T$ and
-integrality on $S - T$; the form here is the consequence for $S$ = the finite places and an isotropic infinite place); Cassels 1978, Ch. 10, Thm. 7.1, p. 186, and Corollary, p. 187 (over $\mathbb{Q}$). **Not proved in
-this repository**: every theorem using it is conditional on it. -/
-@[kb "omeara1963" "§104, 104:4, p. 315; cassels1978 Ch. 10, Thm. 7.1, Cor., p. 187"]
+Kneser 1956 / Eichler 1952; O'Meara 1963, 104:3 [unverified]; Cassels 1978, Ch. 10 [unverified]. **Not proved in
+this repository**: every theorem using it is conditional on it (classified as an input in `docs/inputs.toml`). -/
+@[kb "omeara1963" "104:3, strong approximation for rotations [unverified]"]
 structure StrongApproximationSpin (F : Type*) [Field F] [NumberField F] : Prop where
   /-- $O'(V_{\mathbb A_f}) \subseteq O'(V) \cdot O(\hat L)$ for nondegenerate indefinite $V$ of dimension $n \ge 3$. -/
   approx : ∀ {n : ℕ} (Q : QuadForm F n), 3 ≤ n → Q.Nondegenerate → IsIndefinite Q →

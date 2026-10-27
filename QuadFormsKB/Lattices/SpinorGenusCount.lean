@@ -13,9 +13,7 @@
   $$\{\text{spinor genera in } \mathrm{gen}(L)\} \;\simeq\; O(V)(\mathbb A_f)/J_L \qquad (\texttt{spinorGeneraEquivQuot}),$$
   a quotient **group** that is abelian and of exponent $2$ (`spinorGeneraQuot_mul_self`): the number of spinor genera in
   a genus is the index $[O(V)(\mathbb A_f) : O(V)O'(V_{\mathbb A_f})O(\hat L)]$, a power of $2$ when finite
-  (O'Meara 1963, §102B, 102:7–102:8, pp. 300–302, where the count is an idèle-class index of $F$ and the group index
-  appears in the proof of 102:7, p. 301; Cassels 1978, Ch. 11, Thm. 1.2, p. 202 (finite, a power of $2$) and §3, Thm. 3.1, p. 211 (the spinor genera in a genus
-are a principal homogeneous set of a finite group of exponent $2$), over $\mathbb{Q}$).
+  (O'Meara 1963, 102:7–102:8 [unverified]; Cassels 1978, Ch. 11 §3 [unverified]).
 -/
 import QuadFormsKB.Lattices.SpinorGenus
 import QuadFormsKB.Lattices.SpinorNorm
@@ -35,13 +33,11 @@ theorem sq_mem_spinorKernelAf (hQ : Q.Nondegenerate) (h : OAf Q) : h ^ 2 ∈ spi
   sq_mem_spinorKernel Q (v.adicCompletion F) hQ (h v)
 
 /-- **Commutators of adelic isometries lie in $O'(V_{\mathbb A_f})$.** -/
-@[kb "omeara1963" "§101D, p. 296 (J_V' is normal and contains the commutators); §102B, proof of 102:7, step 1, pp. 300–301"]
 theorem commutator_mem_spinorKernelAf (hQ : Q.Nondegenerate) (g h : OAf Q) :
     g * h * g⁻¹ * h⁻¹ ∈ spinorKernelAf Q := fun v =>
   commutator_mem_spinorKernel Q (v.adicCompletion F) hQ (g v) (h v)
 
 /-- A subgroup containing $O'(V_{\mathbb A_f})$ is normal (it contains all commutators). -/
-@[kb "omeara1963" "§101D, p. 296 (J_V' is normal and contains the commutators); §102B, proof of 102:7, step 1, pp. 300–301"]
 theorem normal_of_spinorKernelAf_le (hQ : Q.Nondegenerate) {H : Subgroup (OAf Q)} (hH : spinorKernelAf Q ≤ H) :
     H.Normal where
   conj_mem x hx g := by
@@ -50,7 +46,7 @@ theorem normal_of_spinorKernelAf_le (hQ : Q.Nondegenerate) {H : Subgroup (OAf Q)
     rw [this]; exact H.mul_mem hc hx
 
 /-- $J_L = O(V)\,O'(V_{\mathbb A_f})\,O(\hat L)$. -/
-@[kb "omeara1963" "§102B, 102:7 and 102:7a, pp. 300–302 (the group J'_V P_V J_L)"]
+@[kb "omeara1963" "102:7 [unverified]"]
 def spnLocGroup (L : Lat F n) : Subgroup (OAf Q) := spnGroup Q ⊔ locStab Q L
 
 theorem spnGroup_normal (hQ : Q.Nondegenerate) : (spnGroup Q).Normal :=
@@ -60,7 +56,6 @@ theorem spnLocGroup_normal (hQ : Q.Nondegenerate) (L : Lat F n) : (spnLocGroup Q
   normal_of_spinorKernelAf_le Q hQ ((spinorKernelAf_le_spnGroup Q).trans le_sup_left)
 
 /-- For $N$ normal: $g' \in NgH \iff g^{-1}g' \in N \sqcup H$. -/
-@[kb "omeara1963" "§102B, proof of 102:7, step 1, pp. 300–301"]
 theorem doset_rel_iff_of_normal {G : Type*} [Group G] (N H : Subgroup G) [N.Normal] (g g' : G) :
     DoubleCoset.setoid (N : Set G) H g g' ↔ g⁻¹ * g' ∈ N ⊔ H := by
   rw [DoubleCoset.rel_iff, ← SetLike.mem_coe, Subgroup.normal_mul]
@@ -81,9 +76,9 @@ def dosetEquivQuot (hQ : Q.Nondegenerate) (L : Lat F n) :
     rfl
 
 /-- **The spinor genera in $\mathrm{gen}(L)$ form the group $O(V)(\mathbb A_f)/O(V)O'(V_{\mathbb A_f})O(\hat L)$**
-(O'Meara 1963, §102B, proof of 102:7, p. 301; 102:8, p. 302): the number of spinor genera in the genus is the index
+(O'Meara 1963, 102:7–102:8 [unverified]): the number of spinor genera in the genus is the index
 $[O(V)(\mathbb A_f) : J_L]$. -/
-@[kb "omeara1963" "§102B, 102:7a, p. 302 (and the proof of 102:7, steps 1–2, pp. 300–301); cassels1978 Ch. 11, Thm. 3.1, p. 211"]
+@[kb "omeara1963" "102:7-102:8 [unverified]"]
 def spinorGeneraEquivQuot (hQ : Q.Nondegenerate) (L : Lat F n) :
     @AWS.ClassesInGenus (OAf Q) (Lat F n) _ (latAction Q) (spnGroup Q) L ≃ OAf Q ⧸ spnLocGroup Q L :=
   (dosetEquivSpinorGenera Q L).symm.trans (dosetEquivQuot Q hQ L)
@@ -92,8 +87,8 @@ instance spnLocGroup_normal' [hQ : Fact Q.Nondegenerate] (L : Lat F n) : (spnLoc
   spnLocGroup_normal Q hQ.out L
 
 /-- **The spinor-genus group is an elementary abelian $2$-group**: every element squares to $1$ (O'Meara 1963,
-102:8, p. 302). -/
-@[kb "omeara1963" "§102B, 102:8 and 102:8a, pp. 302–304; cassels1978 Ch. 11, Thm. 1.2, p. 202"]
+102:8 [unverified]). -/
+@[kb "omeara1963" "102:8 [unverified]"]
 theorem spinorGeneraQuot_mul_self [hQ : Fact Q.Nondegenerate] (L : Lat F n) (x : OAf Q ⧸ spnLocGroup Q L) :
     x * x = 1 := by
   induction x using QuotientGroup.induction_on with
@@ -102,7 +97,6 @@ theorem spinorGeneraQuot_mul_self [hQ : Fact Q.Nondegenerate] (L : Lat F n) (x :
     exact le_sup_left (a := spnGroup Q) (spinorKernelAf_le_spnGroup Q (sq_mem_spinorKernelAf Q hQ.out g))
 
 /-- The spinor-genus group is abelian. -/
-@[kb "omeara1963" "§102B, 102:8 and 102:8a, pp. 302–304; cassels1978 Ch. 11, Thm. 1.2, p. 202"]
 theorem spinorGeneraQuot_comm [hQ : Fact Q.Nondegenerate] (L : Lat F n) (x y : OAf Q ⧸ spnLocGroup Q L) :
     x * y = y * x := by
   induction x using QuotientGroup.induction_on with

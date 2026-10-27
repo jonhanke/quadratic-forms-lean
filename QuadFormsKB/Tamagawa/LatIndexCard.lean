@@ -9,12 +9,13 @@ import Mathlib.NumberTheory.Height.NumberField
 import Mathlib.NumberTheory.NumberField.ProductFormula
 
 /-!
-# The index of a lattice is the module index
+# The index of a lattice is the module index (gx task 1)
+
 **Layer:** $F$ a number field (any class number); $L$ an $\mathcal O_F$-lattice in $F^N$ (`Lat F N`, any Steinitz class).
 
 gd defined $\mathrm{latIndex}(L) = \prod_\mathfrak p\|\det A_\mathfrak p\|_\mathfrak p$ ($A_\mathfrak p$ a local basis of $L_\mathfrak p$), the volume of $L$
 for the product of the Haar measures with $\mathrm{vol}(\mathfrak o_\mathfrak p^N) = 1$. This file identifies it with the module
-index (O'Meara 1963, §81D, p. 216, the index $(L : K)$ through the invariant factors):
+index (O'Meara 1963, §81 [unverified]):
 
 * **`latIndex_eq_inv_covol`**: for a presentation $L = P\,(\bigoplus_i\mathfrak a_ie_i)$ ($P \in \mathrm{GL}_N(F)$, $\mathfrak a_i$ fractional
   ideals; `glImage P (diagLat 𝔞)`), $\mathrm{latIndex}(L) = \big(|N_{F/\mathbb Q}\det P|\prod_iN(\mathfrak a_i)\big)^{-1}$ = `(covol P 𝔞)⁻¹`,
@@ -35,8 +36,9 @@ index (O'Meara 1963, §81D, p. 216, the index $(L : K)$ through the invariant fa
 (`FinitePlace.prod_eq_inv_abs_norm`) and Mathlib's height identity $N(x_{i1}, \dots, x_{ik})\cdot\prod_\mathfrak p\max_j\|x_{ij}\|_\mathfrak p = 1$
 (`absNorm_mul_finprod_finitePlace_eq_one`). No structure theory of modules over Dedekind domains is used.
 
-Sources: O'Meara 1963, §81D, 81:11–81:12, pp. 214–216 (invariant factors, the index $(L:K)$), and §82E, p. 228 (volume); Neukirch 1999, Ch. III §1 (product formula)
+Sources: O'Meara 1963, §81 (index ideal, volume of a lattice) [unverified]; Neukirch 1999, Ch. III §1 (product formula)
 [unverified].
+
 -/
 
 open NumberField IsDedekindDomain Module Matrix
@@ -207,10 +209,10 @@ theorem norm_algebraMap_eq_mk (v : HeightOneSpectrum (𝓞 F)) (y : F) :
   rw [FinitePlace.equivHeightOneSpectrum_symm_apply, FinitePlace.embedding_apply]
   rfl
 
-/-- **The index of a presented lattice** (cf. O'Meara 1963, §81D, p. 216): for $L = P(\bigoplus_i\mathfrak a_ie_i)$,
+/-- **The index of a presented lattice** (O'Meara 1963, §81 [unverified]): for $L = P(\bigoplus_i\mathfrak a_ie_i)$,
 $$\mathrm{latIndex}(L) = \prod_\mathfrak p\|\det A_\mathfrak p\|_\mathfrak p = \Big(|N_{F/\mathbb Q}(\det P)|\prod_iN(\mathfrak a_i)\Big)^{-1} = N(\mathfrak a_L)^{-1},$$
 $\mathfrak a_L = (\det P)\prod_i\mathfrak a_i$ the index ideal of $L$ relative to $\mathcal O_F^N$. -/
-@[kb "omeara1963" "§81D, p. 216 ((L:K) via invariant factors); §103, 103:1, p. 305"]
+@[kb "omeara1963" "§81 (index ideal / volume of a lattice) [unverified]"]
 theorem latIndex_eq_inv_covol (L : Lat F N) (P : GL (Fin N) F) (𝔞 : Fin N → FracIdeal F)
     (hL : L.1 = glImage P (diagLat 𝔞)) : latIndex L = (covol P.val 𝔞)⁻¹ := by
   classical
@@ -270,9 +272,8 @@ theorem latIndex_eq_inv_covol (L : Lat F N) (P : GL (Fin N) F) (𝔞 : Fin N →
 
 /-! ### Every lattice is presented (Steinitz) -/
 
-/-- **Every lattice has a presentation** $L = P(\bigoplus_i\mathfrak a_ie_i)$ (Steinitz 1911; O'Meara 81:5, p. 212), from
+/-- **Every lattice has a presentation** $L = P(\bigoplus_i\mathfrak a_ie_i)$ (Steinitz 1911; O'Meara 81:5 [unverified]), from
 `exists_eq_glImage_steinitzLat` ($\mathfrak a = (\mathcal O_F, \dots, \mathcal O_F, \mathfrak c)$). -/
-@[kb "omeara1963" "§81A, 81:5, p. 212 (Steinitz form of a lattice)"]
 theorem exists_presentation (L : Lat F N) :
     ∃ (P : GL (Fin N) F) (𝔞 : Fin N → FracIdeal F), L.1 = glImage P (diagLat 𝔞) := by
   classical
@@ -338,9 +339,9 @@ theorem relIndex_mul_covol {L M : Lat F N} (hLM : L.1 ≤ M.1) :
   rw [hP, hP', glImage_diagLat_toAddSubgroup, glImage_diagLat_toAddSubgroup]
   exact relIndex_presGrp (P.isUnit.map Matrix.detMonoidHom).ne_zero (P'.isUnit.map Matrix.detMonoidHom).ne_zero hle
 
-/-- **Multiplicativity of the index** (O'Meara 1963, §81D, p. 216): for lattices $L \subseteq M$,
+/-- **Multiplicativity of the index** (O'Meara 1963, §81 [unverified]): for lattices $L \subseteq M$,
 $\mathrm{latIndex}(M) = [M : L]\cdot\mathrm{latIndex}(L)$, i.e. $\prod_\mathfrak p\|\det(L_\mathfrak p/M_\mathfrak p)\|_\mathfrak p = [M : L]^{-1}$. -/
-@[kb "omeara1963" "§81D, p. 216"]
+@[kb "omeara1963" "§81 (multiplicativity of the index ideal) [unverified]"]
 theorem latIndex_mul_relIndex {L M : Lat F N} (hLM : L.1 ≤ M.1) :
     latIndex M = (L.1.toAddSubgroup.relIndex M.1.toAddSubgroup : ℝ) * latIndex L := by
   obtain ⟨P, P', 𝔞, 𝔞', hP, hP', h⟩ := relIndex_mul_covol hLM
@@ -357,7 +358,7 @@ theorem relIndex_ne_zero {L M : Lat F N} (hLM : L.1 ≤ M.1) : L.1.toAddSubgroup
   exact (covol_pos P.val (P.isUnit.map Matrix.detMonoidHom).ne_zero 𝔞).ne' h.symm
 
 /-- **`latIndex` is the inverse module index** for $L \subseteq \mathcal O_F^N$: $\mathrm{latIndex}(L) = [\mathcal O_F^N : L]^{-1}$. -/
-@[kb "omeara1963" "§81D, p. 216"]
+@[kb "omeara1963" "§81 (index ideal; N(𝔞_L) = [𝓞^N : L]) [unverified]"]
 theorem latIndex_eq_inv_relIndex {L : Lat F N} (hL : L.1 ≤ (stdLat F N).1) :
     latIndex L = ((L.1.toAddSubgroup.relIndex (stdLat F N).1.toAddSubgroup : ℕ) : ℝ)⁻¹ := by
   have h := latIndex_mul_relIndex hL
@@ -372,7 +373,7 @@ theorem latIndex_eq_inv_card {L : Lat F N} (hL : L.1 ≤ (stdLat F N).1) :
 
 /-- **`latIndex` as a generalized module index** for every lattice $L$:
 $\mathrm{latIndex}(L) = [L : L\cap\mathcal O_F^N]\,/\,[\mathcal O_F^N : L\cap\mathcal O_F^N]$ (Mathlib's `relIndex`: $H$`.relIndex`$K = [K : H\cap K]$). -/
-@[kb "omeara1963" "§81D, p. 216; cassels1978 Ch. 7, §3, p. 104 (relative determinant); Ch. 11, Lemma 2.1, p. 206"]
+@[kb "omeara1963" "§81 (index ideal of two lattices) [unverified]"]
 theorem latIndex_eq_relIndex_div (L : Lat F N) :
     latIndex L = ((stdLat F N).1.toAddSubgroup.relIndex L.1.toAddSubgroup : ℝ) /
       (L.1.toAddSubgroup.relIndex (stdLat F N).1.toAddSubgroup : ℝ) := by
@@ -400,7 +401,7 @@ variable {V : Type*} [AddCommGroup V] [Module F V] [Module (𝓞 F) V] [IsScalar
 
 /-- **The index of two lattices in a quadratic space** (basis-free): for $\mathcal O_F$-lattices $L \subseteq M$ in $V$ and any
 basis $e$, $\mathrm{latIndex}(e^*M) = [M : L]\cdot\mathrm{latIndex}(e^*L)$, i.e. $\prod_\mathfrak p\|\det(L_\mathfrak p/M_\mathfrak p)\|_\mathfrak p = [M : L]^{-1}$. -/
-@[kb "omeara1963" "§81D, p. 216"]
+@[kb "omeara1963" "§81 (index of two lattices on V) [unverified]"]
 theorem latIndex_coordLat_mul_relIndex (e : Basis (Fin n) F V) {L M : Submodule (𝓞 F) V} [L.IsLattice F]
     [M.IsLattice F] (hLM : L ≤ M) :
     latIndex (coordLat e M) = (L.toAddSubgroup.relIndex M.toAddSubgroup : ℝ) * latIndex (coordLat e L) := by

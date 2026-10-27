@@ -25,7 +25,7 @@ and $L' = \mathcal O_F^n$; the mass formula in the explicit form $\mathrm{Mass}(
   $\mathrm{Mass}(L)$: it is the statement $r_{\mathrm{gen}}(L, m) = (\text{local densities of } m)$ for the *ratio*
   $\mathrm{repMass}/\mathrm{Mass}$, true or false independently of the value of $\mathrm{Mass}(L)$. It is the degree-1 Siegel
   formula, supplied over $\mathbb Q$ for $n+1 = 4$ by `siegelFormula_quaternary` (after the form/lattice bridge)
-  and over $F$ by the Siegel–Weil formula.
+  and over $F$ by the Hilbert-modular-form argument.
 * `LocalOrbitalIdentity Q₀' m` mentions **no global classes and no masses**: only local densities, the norm of $2m$, and
   the sum over $O(Q')(\mathbb A_f)$-orbits of index ratios of compact open subgroups. It is a product of purely local
   statements (one per prime; the identity holds with all factors $1$ at primes $\mathfrak p \nmid 2m\det H$), so it does
@@ -33,7 +33,7 @@ and $L' = \mathcal O_F^n$; the mass formula in the explicit form $\mathrm{Mass}(
 * The induction hypothesis is the mass formula itself, in rank $n$.
 
 Given 1 (proved) and 4 (proved), the three inputs imply the conclusion; none of them alone is equivalent to it.
-In particular this file does not use the `TamagawaNumberTwo` (which is definitionally the mass formula); instead it
+In particular this file does not use `TamagawaNumberTwo` (which is definitionally the mass formula); instead it
 **proves** `TamagawaNumberTwo` for $Q_0$ from the induction (`tamagawaNumberTwo_succ`).
 
 ## Scope
@@ -169,7 +169,7 @@ $S = |d_F|^{-(N-1)/2}\,$`aENF` (real places ↔ embeddings; proved as `HilbertMo
 *Warning: meaningful only for $N \ge 4$.* For $N = 3$ the factors $\beta_\mathfrak p = 1 + \chi_m(\mathfrak p)/N\mathfrak p$ are
 not unconditionally multipliable, so `tprod` returns its junk value $1$ whenever no $\beta_\mathfrak p$ vanishes
 (`siegelProduct_of_not_multipliable`) and the finite factors are dropped. In rank $3$ use `siegelProduct3`
-(`Tamagawa/SiegelRank3.lean`, the regularized product `regProd`). -/
+(`Tamagawa/SiegelRank3.lean`, the regularized product). -/
 @[kb "siegel1935" "Hauptsatz (local side, over F) [unverified]"]
 def siegelProduct (Q₀ : QuadForm (𝓞 F) N) (m : 𝓞 F) : ℝ :=
   |(discr F : ℝ)| ^ (-((N : ℝ) - 1) / 2) *
@@ -187,7 +187,7 @@ Field:
 \mathrm{repMass}/\mathrm{Mass}$ equals the product of the local densities **of the number $m$**. It is homogeneous in the
 weights $1/|O(M)|$ (scaling all of them leaves it unchanged), so it carries no information about the value of
 $\mathrm{Mass}(L)$; the mass formula is not a consequence of it alone. Over $\mathbb Q$ for $N = 4$ it is
-(`Siegel.siegelFormula_quaternary`, for forms over $\mathbb Z$; bridged to lattices in $\mathbb Q^4$ by `RatBridge.siegelFormulaAt_rat_four`); over $F$ it is the Siegel–Weil formula. Valid for $N \ge 4$ with `tprod` (absolute convergence; $N = 3$ needs a
+`Siegel.siegelFormula_quaternary`, for forms over $\mathbb Z$; bridged to lattices in $\mathbb Q^4$ by `RatBridge.siegelFormulaAt_rat_four`); over $F$ it is the Siegel–Weil formula. Valid for $N \ge 4$ with `tprod` (absolute convergence; $N = 3$ needs a
 regularized product), and $N \ge 2$ in Siegel's theorem with his factor $\varepsilon = 1/2$ at $N = 2$.
 
 *Warning: use only for $N \ge 4$.* **False at $N = 1$:** for $Q_0 = \langle a\rangle$ over $\mathbb Z$ (more generally every
@@ -195,9 +195,8 @@ represented $m = cs^2$) the Euler factors are $\beta_p(m) = 2p^{v_p(2as)} \ge 2$
 value $1$, and the literal statement is refuted (`SiegelRankOne.not_siegelFormulaAt_rankOne_int`). The correct rank-one statement carries
 Siegel's $\varepsilon = \tfrac12$ at every place: `SiegelRankOne.siegelFormulaOne_self` (at $m = c$), `siegelFormulaOne_sq`
 (every $m = cs^2$ over $\mathcal O_F$) and `siegelFormulaOne_int` (every $m \ge 1$ over $\mathbb Z$), all with `siegelProductOne`.
-**False at $N = 3$** in general (see below; use `SiegelFormulaAt3`). For $N = 3$ (with $m$ locally represented everywhere) `siegelProduct` is the junk
-value $|d_F|^{-1}\prod_\sigma\beta_\sigma(m)$, so this structure is then a false statement in general.
-The rank-3 statement is `SiegelFormulaAt3` (`Tamagawa/SiegelRank3.lean`). Theorems
+**False at $N = 3$** in general (argued below; use `SiegelFormulaAt3`). For $N = 3$ (with $m$ locally represented everywhere) `siegelProduct` is the junk
+value $|d_F|^{-1}\prod_\sigma\beta_\sigma(m)$, so this structure is then a false statement in general (see `SiegelRank3`). The rank-3 statement is `SiegelFormulaAt3` (`Tamagawa/SiegelRank3.lean`). Theorems
 taking `SiegelFormulaAt` with complement rank $2$ (total rank $3$), e.g. `massFormula_succ` without a rank guard, are vacuous
 there. -/
 @[kb "siegel1935" "Hauptsatz [unverified]"]
@@ -227,8 +226,7 @@ values: $1 + \chi(\mathfrak p)N\mathfrak p^{-n/2}$, resp. $1 - \chi N\mathfrak p
 *Independence (hypothesis hygiene):* only local densities, index ratios of compact open subgroups of
 $O(Q')(\mathbb A_f)$ and $|N(2m)|$ occur; no class, class number, automorphism group or mass. Its truth is decided
 prime by prime. It is *not* proved here (the local orbit decomposition at the bad primes and the factorization of
-the type sum over the primes are the open part of the induction); the archimedean half is proved
-(`archProd_splitForm`). -/
+the type sum over the primes are the open part of the Siegel formula for numbers); the archimedean half is proved (`archProd_splitForm`). -/
 @[kb "weil1982" "§3.4 (local fibration) [unverified]"]
 structure LocalOrbitalIdentity {n : ℕ} (Q₀' : QuadForm (𝓞 F) n) (m : 𝓞 F) : Prop where
   typeSum_eq :

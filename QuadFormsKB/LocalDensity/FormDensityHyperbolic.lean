@@ -1,5 +1,6 @@
 /-
 # The self-density of the hyperbolic plane
+
 **Layer:** DVR, every residue characteristic (dyadic included: $H$ is even unimodular).
 
 **Proves** `localDensityForm_hyperbolic`: for the hyperbolic plane $H(x_0, x_1) = x_0 x_1$,
@@ -20,7 +21,6 @@ set_option linter.unusedSectionVars false
 set_option linter.deprecated false
 
 /-- **The hyperbolic plane** $H(x_0, x_1) = x_0 x_1$ (coefficients $c_{01} = 1$, $c_{00} = c_{11} = 0$). -/
-@[kb "omeara1963" "§42, p. 94 (hyperbolic plane, row 42.d3; scaled by 1/2)"]
 def hyperbolic (A : Type*) [CommRing A] : QuadForm A 2 := QuadForm.ofUpper ![![0, 1], ![0, 0]]
 
 section Field

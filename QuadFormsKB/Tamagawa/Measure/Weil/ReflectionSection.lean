@@ -4,6 +4,7 @@ import QuadFormsKB.Citation
 /-!
 # Orbits of $\mathrm{SO}(V)$ on the quadrics $\{q = c\}$, $c\ne0$, with an explicit measurable section
 
+
 **Generic, Mathlib-only hypotheses (upstreamable).** $R$ is a field with $2\ne0$, $H\in M_n(R)$ symmetric,
 $q(x) = x^{\mathsf T}Hx$, $B(x, y) = x^{\mathsf T}Hy$ (for the library's `QuadForm`, $H$ = `hessian` and $q = 2Q$). For $q(u)\ne0$ the
 reflection $\tau_u x = x - \frac{2B(u, x)}{q(u)}u$ is the matrix `refl H u` $= 1 - \frac{2}{q(u)}\,u\,(Hu)^{\mathsf T}$, with
@@ -16,8 +17,7 @@ $$ s(x) = \begin{cases}\tau_{x + x_0}\,\tau_{x_0} & q(x + x_0)\ne 0,\\ \tau_{x -
 **`sphereSec_mem`** $s(x)^{\mathsf T}Hs(x) = H$ and $\det s(x) = 1$, and **`measurable_sphereSec`** ($R$ with measurable
 field operations). Consequences:
 
-* **`exists_SO_mulVec_eq`** (Witt's theorem for nonzero values, in the library's matrix form):
-  if $q(x) = q(y) = c\ne0$ then
+* **`exists_SO_mulVec_eq`** (Witt's theorem for nonzero values, in the library's matrix form): if $q(x) = q(y) = c\ne0$ then
   $y = gx$ for some $g$ with $g^{\mathsf T}Hg = H$, $\det g = 1$; so for every field $R\supseteq F$ (local $F_v$, $\mathbb R$,
   $\mathbb C$, or $F$ itself) the $\mathrm{SO}(V)(R)$-orbits on $\{q = c\}$, $c\ne0$, are the whole quadric;
 * **`exists_orth_anisotropic`**: such a $w$ exists when $\det H\ne0$ and $n\ge2$.
@@ -159,7 +159,7 @@ theorem qH_sub_ne_zero (hH : Hᵀ = H) (h2 : (2 : R) ≠ 0) (D : SphereData H) {
   exact D.hx₀ ((mul_eq_zero.1 this).resolve_left h4)
 
 /-- **$s(x)x_0 = x$** on the quadric $q(x) = q(x_0)$. -/
-@[kb "weil1982" "§2.4 (orbits of SO(V) on {q = c}) [unverified page]; omeara1963 §42F, 42:17, p. 98 (Witt's theorem)"]
+@[kb "weil1982" "§2.4 (orbits of SO(V) on {q = c}) [unverified page]; omeara1963 §42 (Witt's theorem) [unverified]"]
 theorem sphereSec_mulVec (hH : Hᵀ = H) (h2 : (2 : R) ≠ 0) (D : SphereData H) {x : Fin n → R}
     (hx : qH H x = qH H D.x₀) : sphereSec D x *ᵥ D.x₀ = x := by
   unfold sphereSec
@@ -210,7 +210,7 @@ theorem sphereSec_mem (hH : Hᵀ = H) (h2 : (2 : R) ≠ 0) (D : SphereData H) {x
 
 /-- **Witt's theorem for nonzero values, explicit form:** if $q(x) = q(y)\ne 0$ (and an anisotropic vector orthogonal
 to $x$ exists, e.g. by `exists_orth_anisotropic`), then $y = gx$ with $g^{\mathsf T}Hg = H$, $\det g = 1$. -/
-@[kb "omeara1963" "§42F, 42:17, p. 98 (Witt's theorem)"]
+@[kb "omeara1963" "§42 (Witt's theorem) [unverified]; weil1982 §2.4 [unverified page]"]
 theorem exists_SO_mulVec_eq (hH : Hᵀ = H) (h2 : (2 : R) ≠ 0) (D : SphereData H) {y : Fin n → R}
     (hy : qH H y = qH H D.x₀) :
     ∃ g : Matrix (Fin n) (Fin n) R, gᵀ * H * g = H ∧ g.det = 1 ∧ g *ᵥ D.x₀ = y :=

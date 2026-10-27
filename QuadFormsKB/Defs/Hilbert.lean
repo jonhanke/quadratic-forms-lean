@@ -41,7 +41,7 @@ properties also need $\operatorname{char} K \ne 2$.
 See also: `RatPlace.hilbert` ($(a,b)_v$ for $a, b \in \mathbb{Q}$),
 `hilbertSymbol_eq_one_iff_conic`, `hilbertSymbol_eq_one_iff_isotropic`,
 `hilbertSymbol_real`. -/
-@[kb "serre1973" "Ch. III, §1.1; omeara1963 §63B, p. 164 (Hilbert symbol); cassels1978 Ch. 3, §2, p. 41 (Hilbert norm residue symbol)"]
+@[kb "serre1973" "Ch. III, §1.1"]
 noncomputable def hilbertSymbol (K : Type*) [Field K] (a b : K) : ℤ :=
   if ∃ x y z : K, (x, y, z) ≠ 0 ∧ z ^ 2 = a * x ^ 2 + b * y ^ 2 then 1 else -1
 

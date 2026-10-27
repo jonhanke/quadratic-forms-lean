@@ -1,5 +1,6 @@
 /-
-# Local densities over a DVR: $\beta_\pi(m)$ as an explicit finite computation at every prime
+# Local densities over a DVR: $\beta_\pi(m)$ as an explicit finite computation at every prime (Plan A3)
+
 **Layer:** DVR ($R$ a discrete valuation ring with uniformizer $\pi$, finite residue field of size $q$, $2 \ne 0$,
 $e = \mathrm{ord}_\pi 2$). The interest is in **dyadic** $\pi \mid N$ of any ramification, where Hanke 2004 says the
 densities "must be computed on a case-by-case basis" (p. 362); nothing below assumes $\pi \nmid 2$ or $\pi \nmid N$.
@@ -185,7 +186,7 @@ of any ramification): for $\pi \nmid m$,
 $$\beta_\pi(m) = \frac{r_{\pi^{2e+1}}(m)}{q^{(2e+1)(n-1)}}, \qquad e = \mathrm{ord}_\pi 2.$$
 *Proof:* in a normal form (`exists_jordanFormW`, same counts) all solutions of a unit are of Good type
 (`repCount_eq_good_of_not_dvd`), and Good-type counts lift from level $2e + 1$ (`repCountGood_add`).
-*Update (candidate; pending author):* p. 362 leaves the dyadic case to "a case-by-case
+*Update (candidate; pending author; `docs/updates-and-errata.md`):* p. 362 leaves the dyadic case to "a case-by-case
 basis"; for units the solutions mod $4\mathfrak p$ always suffice, whatever $N$ is. -/
 @[kb "hanke2004" "Remark 3.4.1(a), p. 361; p. 359, p. 362 (\"mod 4𝔭\", every dyadic 𝔭)"]
 theorem localDensity_unit_eq_level (Q : QuadForm R n) (hQ : Q.Nondegenerate) (π : R) (hπ : Irreducible π)
@@ -322,7 +323,7 @@ without the stability hypothesis; the explicit form that p. 362 leaves to "a cas
 for $\pi^a \,\|\, m$ and every $K \ge \mathrm{ord}_\pi(4N) + 1$ (`depthLevel Q π e`),
 $$\beta_\pi(m) = \sum_{j=0}^{\lfloor a/2\rfloor} q^{j(2-n)}\, \frac{r^{\mathrm{Good}\cup\mathrm{Bad}}_{\pi^K}(m/\pi^{2j})}{q^{K(n-1)}}.$$
 Each term is a count over $(R/\pi^K)^n$; the sum has $\lfloor a/2 \rfloor + 1$ terms.
-*Update (candidate; pending author):* this is (5.7) without the $\mathfrak p$-stability hypothesis,
+*Update (candidate; pending author; `docs/updates-and-errata.md`):* this is (5.7) without the $\mathfrak p$-stability hypothesis,
 and the explicit dyadic formula that p. 362 leaves to "a case-by-case basis". -/
 @[kb "hanke2004" "§3, (5.7), p. 369; p. 362 (dyadic case-by-case), explicit"]
 theorem localDensity_eq_dyadicFormula (Q : QuadForm R n) (hQ : Q.Nondegenerate) (π : R) (hπ : Irreducible π)

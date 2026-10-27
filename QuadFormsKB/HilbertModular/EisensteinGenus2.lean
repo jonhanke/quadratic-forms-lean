@@ -24,16 +24,14 @@ $$\sum_C\sum_S(-1)^{|S|}\,\mathrm c\big((\Phi_{C,\mathfrak d_S})_A\big) = \mathr
 
 **Ray classes** (`RayClass.lean`). If $\kappa(\mathfrak d) = \kappa(\mathfrak d')$ then $\mathfrak d = \lambda\mathfrak d'$ with $(\lambda - 1)\mathfrak d' \subseteq \mathfrak N$, so
 $\Phi_{C,\mathfrak d}(y) = \Phi_{C,\mathfrak d'}(\lambda^{-1}y)$ (`eisWt2_eq_scale`) and $\mathrm c((\Phi_{C,\mathfrak d})_A) = N(\lambda)^{-2}\mathrm c((\Phi_{C,\mathfrak d'})_A)$
-(`eisConst_scaleWeight`). Grouping $S$ by the finitely many keys $r$ (with a fixed ideal $\mathfrak d_r$ of key
-$r$):
+(`eisConst_scaleWeight`). Grouping $S$ by the finitely many keys $r$ (with a fixed ideal $\mathfrak d_r$ of key $r$):
 $$E_f^{(2)} = \sum_C\sum_ra_r\,E_2(\cdot; \Phi_{C,\mathfrak d_r}),\qquad a_r = \sum_{S:\ \kappa(\mathfrak d_S) = r}(-1)^{|S|}N(\lambda_S)^{-2}$$
 (`eisGen2`, `eisGen2Coeff`), a **finite** combination of weight-2 series of periodic weights, and its constant term at $A\infty$ is
 $\sum_C\sum_ra_r\,\mathrm c((\Phi_{C,\mathfrak d_r})_A) = \mathrm{cv}_2(f, A)$ (`tendsto_eisGen2_slash`, with `tendsto_eis2_slash`).
 
 **Main results** ($d \ge 2$): `eisGen2_mem_modularFormChar` ($E_f^{(2)} \in M_2(\Gamma_0(\mathfrak N), \chi)$) and
 **`sub_eisGen2_mem_cuspFormChar`**: $f - E_f^{(2)} \in S_2(\Gamma_0(\mathfrak N), \chi)$ for $f \in M_2(\Gamma_0(\mathfrak N), \chi)$ with constant terms at all
-cusps. Holomorphy and the absence of a non-holomorphic correction term hold for every integral weight when $d \ge 2$ (the
-`tendsto_heckeSeries_two`, `isHolomorphic_eis2`).
+cusps. Holomorphy and the absence of a non-holomorphic correction term hold for every integral weight when $d \ge 2$ (`tendsto_heckeSeries_two`, `isHolomorphic_eis2`).
 
 Sources: Hecke, *Theorie der Eisensteinschen Reihen höherer Stufe und ihre Anwendung auf Funktionentheorie und Arithmetik*,
 Abh. Math. Sem. Hamburg 5 (1927) [unverified]; Shimura (Duke 1978), §3 and Prop. 3.4 [unverified]; Freitag (1990), Ch. I §5
@@ -474,7 +472,7 @@ variable {f : (InfinitePlace F → ℍ) → ℂ} {𝔑 : Ideal (𝓞 F)} {χ : M
 variable (f) in
 open Classical in
 /-- **The part of $\varphi_f$ on the vectors with ideal $\mathfrak b_C$**: $[\mathfrak b(y) = \mathfrak b_C]\,\varphi_f(y)$. Summed over $C$ it is
-the $W_f$ (`sum_redPart`). -/
+The $W_f$ (`sum_redPart`). -/
 noncomputable def redPart (C : ClassGroup (𝓞 F)) (y : F × F) : ℂ :=
   if cuspIdeal y.1 y.2 = ((repIdeal C : Ideal (𝓞 F)) : FI) then phiF f 2 y else 0
 
@@ -832,10 +830,9 @@ noncomputable def eisGen2' [Fintype (RayKeyT 𝔑)] (h𝔑 : 𝔑 ≠ ⊥) : (In
 variable (f 𝔑) in
 /-- **The weight-2 Eisenstein series with the constant terms of $f$**:
 $$E^{(2)}_f = \sum_{C\in\mathrm{Cl}_F}\sum_{r}a_r\,E_2(\cdot; \Phi_{C,\mathfrak d_r}),$$
-a finite combination of the weight-2 series (`eis2`, Hecke's limit) of the **integral** (periodic) weights
-$\Phi_{C,\mathfrak d_r}$ (`eisWt2`, level $\mathfrak N\mathfrak b_C\mathfrak d_r$), $r$ over the finitely many
-ray-class keys modulo $\mathfrak N$ (`rayKey`), with the Möbius coefficients $a_r$ (`eisGen2Coeff`). Parameters: `f`,
-`𝔑` (level), `h𝔑 : 𝔑 ≠ ⊥`. -/
+a finite combination of the weight-2 series (`eis2`, Hecke's limit) of the **integral** (periodic) weights $\Phi_{C,\mathfrak d_r}$
+(`eisWt2`, level $\mathfrak N\mathfrak b_C\mathfrak d_r$), $r$ over the finitely many ray-class keys modulo $\mathfrak N$ (`rayKey`), with the Möbius
+coefficients $a_r$ (`eisGen2Coeff`). Parameters: `f`, `𝔑` (level), `h𝔑 : 𝔑 ≠ ⊥`. -/
 @[kb "hecke1927" "Eisenstein series of weight 2 and level 𝔑 with prescribed constant terms [unverified]"]
 noncomputable def eisGen2 (h𝔑 : 𝔑 ≠ ⊥) : (InfinitePlace F → ℍ) → ℂ :=
   letI := finite_rayKey (F := F) h𝔑
@@ -905,8 +902,7 @@ theorem eisGen2_mem_modularFormChar (hd : 2 ≤ Fintype.card (InfinitePlace F)) 
 
 /-- **Every $f \in M_2(\Gamma_0(\mathfrak N), \chi)$ with constant terms at all cusps is Eisenstein plus cuspidal** ($d \ge 2$):
 $$f - E^{(2)}_f \in S_2(\Gamma_0(\mathfrak N), \chi),$$
-with $E^{(2)}_f$ (`eisGen2`) a finite combination of weight-2 series of periodic weights. The weight-2 analogue of the
-`sub_eisGen_mem_cuspFormChar` ($k \ge 3$). -/
+with $E^{(2)}_f$ (`eisGen2`) a finite combination of weight-2 series of periodic weights. The weight-2 analogue of `sub_eisGen_mem_cuspFormChar` ($k \ge 3$). -/
 @[kb "shimura1978" "§3, M₂ = E₂ ⊕ S₂ (Eisenstein part with the same constant terms), [F:ℚ] ≥ 2 [unverified]"]
 theorem sub_eisGen2_mem_cuspFormChar (hd : 2 ≤ Fintype.card (InfinitePlace F)) (h𝔑 : 𝔑 ≠ ⊥)
     (hfM : f ∈ modularFormChar 𝔑 χ 2) (hf : HasCuspLimits f 2) :

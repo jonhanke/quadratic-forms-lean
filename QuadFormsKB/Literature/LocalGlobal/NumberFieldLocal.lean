@@ -131,7 +131,7 @@ $f(1) = 1 - c \in \mathfrak{p}$ while $f'(1) = 2$ is a unit because $2 \notin \m
 (Mathlib: `HenselianLocalRing`, which holds for complete local rings, or Newton iteration via
 `Polynomial.exists_aeval_eq_zero_of_..`/`hensels_lemma`-style results for complete normed rings) gives a root.
 Note $\|\cdot\|$ on $F_{\mathfrak{p}}$ satisfies $\|x\| < 1 \iff v(x) < 1$ (`Valued.toNormedField`). -/
-@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]; omeara1963 §63A, 63:1 and 63:1a, p. 159"]
+@[kb "serre1973" "Ch. II §3.3, Thm. 3 [unverified]"]
 theorem isSquare_of_valuation_sub_one_lt_nf (v : HeightOneSpectrum (𝓞 F))
     (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (c : F) (hc : v.valuation F (c - 1) < 1) :
     IsSquare (algebraMap F (v.adicCompletion F) c) := by
@@ -200,7 +200,7 @@ $x, y \in \mathcal{O}_F$ with $b_0 x^2 + b_1 y^2 + b_2 \in \mathfrak{p}$. Then
 $c = -(b_0 x^2 + b_1 y^2)/b_2 \equiv 1 \bmod \mathfrak{p}$, so $c = z^2$ in $F_{\mathfrak{p}}$ by
 `isSquare_of_valuation_sub_one_lt_nf`, and $(x, y, z) \ne 0$ is a zero of
 $\langle b_0, b_1, b_2 \rangle$. -/
-@[kb "omeara1963" "§63C, 63:14, p. 167; cassels1978 Ch. 3, Lemma 1.7, p. 41"]
+@[kb "omeara1963" "§63 [unverified]"]
 theorem isotropic_diag_units_nf (v : HeightOneSpectrum (𝓞 F)) (h2 : (2 : 𝓞 F) ∉ v.asIdeal)
     (m : ℕ) (hm : 3 ≤ m) (a : Fin m → F) (ha : ∀ i, v.valuation F (a i) = 1) :
     (QuadForm.diag a).IsotropicIn (v.adicCompletion F) := by
@@ -296,7 +296,7 @@ theorem isotropic_diag_units_nf (v : HeightOneSpectrum (𝓞 F)) (h2 : (2 : 𝓞
 
 /-- **Finitely many bad finite places:** for $a_0, \dots, a_{m-1} \in F^\times$, only finitely many
 nonzero primes $\mathfrak{p}$ of $\mathcal{O}_F$ contain $2$ or give some $a_i$ a nonzero valuation. -/
-@[kb "omeara1963" "§33B, 33:1, p. 66 (|a|_p = 1 for almost all p); §66, 66:6, p. 189"]
+@[kb "omeara1963" "§33 [unverified]"]
 theorem finite_bad_places_nf (m : ℕ) (a : Fin m → F) (ha : ∀ i, a i ≠ 0) :
     {v : HeightOneSpectrum (𝓞 F) | (2 : 𝓞 F) ∈ v.asIdeal ∨ ∃ i, v.valuation F (a i) ≠ 1}.Finite := by
   have h2 : (2 : 𝓞 F) ≠ 0 := two_ne_zero

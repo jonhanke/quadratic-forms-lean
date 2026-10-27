@@ -21,7 +21,7 @@ free over $\mathcal O_F$). With the relative discriminant $\Delta_{E/F}(b) = \de
   $D_w = \det(H_w/2) = -\sigma_w(\Delta)/4$ at each real place $w$.
 * **`hasNormLatticeDet`**: for a CM field $K$, $F = K^+$, and any $\mathcal O_{K^+}$-basis $b$ of $\mathcal O_K$, $Q_b$ is totally positive definite
   (`isTotallyPosDef_normFormBasis`; $N_{K/K^+}(x) = |x|^2$ under every embedding) and satisfies the condition
-  `HasNormLatticeDet`: $\prod_w D_w = |d_K|/(4^d|d_{K^+}|^2)$. Hence **`siegelConstant_binaryF_basis`**: The Siegel constant
+  `HasNormLatticeDet`: $\prod_w D_w = |d_K|/(4^d|d_{K^+}|^2)$. Hence **`siegelConstant_binaryF_basis`**: the Siegel constant
   holds for the norm lattice with no condition left.
 
 Sources: Neukirch, *Algebraic Number Theory*, Ch. III §2, Cor. 2.10 (discriminant tower) [unverified locator]; Fröhlich–Taylor
@@ -121,7 +121,7 @@ variable (b : Basis (Fin 2) (𝓞 F) (𝓞 E))
 
 /-- **The norm form of $\mathcal O_E$ in the $\mathcal O_F$-basis $b$:** $Q_b(x_0, x_1) = N(b_0)x_0^2 + \mathrm{Tr}(b_0\sigma b_1)x_0x_1 + N(b_1)x_1^2$
 (`Algebra.intNorm`, `Algebra.intTrace`), so that $Q_b(x) = N_{E/F}(x_0b_0 + x_1b_1)$ (`normFormBasis_eval`). -/
-@[kb "omeara1963" "§82B, p. 221 (matrix of a free lattice); hanke2004 §5"]
+@[kb "omeara1963" "§57 (norm form) [unverified]; hanke2004 §5"]
 def normFormBasis : QuadForm (𝓞 F) 2 :=
   QuadForm.ofUpper ![![Algebra.intNorm (𝓞 F) (𝓞 E) (b 0), Algebra.intTrace (𝓞 F) (𝓞 E) (b 0 * conjO F E (b 1))],
     ![0, Algebra.intNorm (𝓞 F) (𝓞 E) (b 1)]]
@@ -145,7 +145,7 @@ theorem algebraMap_smul_O (a : 𝓞 F) (y : 𝓞 E) :
   rw [Algebra.smul_def, map_mul, ← IsScalarTower.algebraMap_apply, IsScalarTower.algebraMap_apply (𝓞 F) F E]
 
 /-- **$Q_b$ is the norm form:** $Q_b(x_0, x_1) = N_{E/F}(x_0b_0 + x_1b_1)$ for $x_0, x_1 \in \mathcal O_F$. -/
-@[kb "omeara1963" "§82B, p. 221"]
+@[kb "omeara1963" "§57 [unverified]"]
 theorem normFormBasis_eval (x : Fin 2 → 𝓞 F) :
     (normFormBasis b).eval x = Algebra.intNorm (𝓞 F) (𝓞 E) (x 0 • b 0 + x 1 • b 1) := by
   apply FaithfulSMul.algebraMap_injective (𝓞 F) F
@@ -157,7 +157,7 @@ theorem normFormBasis_eval (x : Fin 2 → 𝓞 F) :
   ring
 
 /-- **The Hessian determinant of $Q_b$ is $-\Delta_{E/F}(b)$:** $4N(b_0)N(b_1) - \mathrm{Tr}(b_0\sigma b_1)^2 = -\det(\mathrm{Tr}_{E/F}(b_jb_l))$. -/
-@[kb "omeara1963" "§82B, p. 222 (discriminant of a free lattice)"]
+@[kb "omeara1963" "§57 [unverified]"]
 theorem hessian_det_normFormBasis :
     algebraMap (𝓞 F) F (normFormBasis b).hessian.det = -Algebra.discr F (fun j => ((b j : 𝓞 E) : E)) := by
   apply (algebraMap F E).injective
@@ -290,10 +290,9 @@ theorem isTotallyPosDef_normFormBasis (b : Basis (Fin 2) (𝓞 K⁺) (𝓞 K)) :
       rw [key]; nlinarith [sq_nonneg (2 * a * y 0 + m * y 1), mul_pos hD hy1]
     nlinarith
 
-/-- **The condition `HasNormLatticeDet` holds for the norm form:** for $K$ CM and any $\mathcal O_{K^+}$-basis $b$ of
-$\mathcal O_K$, $\prod_w D_w(Q_b) = |d_K|/(4^d|d_{K^+}|^2)$, $d = [K^+ : \mathbb Q]$. (From
-$D_w = -\sigma_w(\Delta)/4 > 0$ and the discriminant tower $d_K = d_{K^+}^2 N_{K^+/\mathbb Q}(\Delta)$,
-`discr_tower`.) -/
+/-- **The condition `HasNormLatticeDet` holds for the norm form:** for $K$ CM and any $\mathcal O_{K^+}$-basis $b$ of $\mathcal O_K$,
+$\prod_w D_w(Q_b) = |d_K|/(4^d|d_{K^+}|^2)$, $d = [K^+ : \mathbb Q]$. (From $D_w = -\sigma_w(\Delta)/4 > 0$ and the discriminant tower
+$d_K = d_{K^+}^2 N_{K^+/\mathbb Q}(\Delta)$, `discr_tower`.) -/
 @[kb "neukirch1999" "Ch. III §2, Cor. 2.10 [unverified]; hanke2004 (5.5)"]
 theorem hasNormLatticeDet (b : Basis (Fin 2) (𝓞 K⁺) (𝓞 K)) : HasNormLatticeDet K (normFormBasis b) := by
   constructor
@@ -320,9 +319,8 @@ theorem hasNormLatticeDet (b : Basis (Fin 2) (𝓞 K⁺) (𝓞 K)) : HasNormLatt
 open Classical in
 /-- **Siegel's constant for $n = 2$ over $F = K^+$, unconditionally for the norm lattice:** for $K$ CM, any $\mathcal O_{K^+}$-basis $b$ of
 $\mathcal O_K$, every $\nu$, and $\lambda = L(1,\chi_{K/K^+})$,
-$\tfrac12\,|d_{K^+}|^{-1/2}\,\beta_\infty(\nu)\,\lambda^{-1} = \dfrac{Q_K\,w_K\,h_{K^+}}{2\,h_K}$ for the norm form $Q_b$ (the
-`siegelConstant_binaryF` with its condition discharged by `hasNormLatticeDet`). -/
-@[kb "hanke2004" "(5.3)–(5.5); Washington Thm. 4.17 [unverified]; eisQ_coeff_eq_discr_mul_aENF"]
+$\tfrac12\,|d_{K^+}|^{-1/2}\,\beta_\infty(\nu)\,\lambda^{-1} = \dfrac{Q_K\,w_K\,h_{K^+}}{2\,h_K}$ for the norm form $Q_b$ (`siegelConstant_binaryF` with its condition discharged by `hasNormLatticeDet`). -/
+@[kb "hanke2004" "(5.3)–(5.5); Washington Thm. 4.17 [unverified]; cf. eisQ_coeff_eq_discr_mul_aENF"]
 theorem siegelConstant_binaryF_basis (b : Basis (Fin 2) (𝓞 K⁺) (𝓞 K)) (ν : K⁺) {lam : ℝ}
     (hlam : Tendsto (relLR K⁺ K) (𝓝[>] 1) (𝓝 lam)) :
     (1 / 2 : ℝ) * |(discr K⁺ : ℝ)| ^ (-(1 / 2 : ℝ)) * Siegel.betaInfNF (normFormBasis b) ν / lam =

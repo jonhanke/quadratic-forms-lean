@@ -61,7 +61,7 @@ $\operatorname{rk} A$ is the $\mathbb{Z}$-rank (`finrank ℤ A`) and $A[2] = \ke
 *Proof.* With $T$ the (finite) torsion subgroup, $[A : 2A] = [A : 2A + T]\,[2A + T : 2A]$. The first
 factor is $[A/T : 2(A/T)] = 2^{\operatorname{rk}}$ ($A/T$ is free of the same rank); the second is
 $[T : T \cap 2A] = [T : 2T] = |T[2]| = |A[2]|$ (if $2y \in T$ then $y \in T$). -/
-@[kb "milne2020cft" "Ch. II §3 (Herbrand quotient) [unverified]; omeara1963 §65B, 65:5, p. 177"]
+@[kb "milne2020cft" "Ch. II §3 (Herbrand quotient) [unverified]"]
 theorem index_range_two [Module.Finite ℤ A] :
     (nsmulAddMonoidHom (α := A) 2).range.index =
       2 ^ finrank ℤ A * Nat.card (nsmulAddMonoidHom (α := A) 2).ker := by
@@ -293,7 +293,7 @@ i.e. the Herbrand quotient is $h^0/h^{-1} = 2^{\operatorname{rk} M^+ - \operator
 $[M^+ : 2M^+] = h^0 \cdot [M : M^+ + M^-]$; likewise $[M^- : 2M^-] = h^{-1} \cdot [M : M^+ + M^-]$, and the
 index $[M : M^+ + M^-]$ is finite since $2M \subseteq M^+ + M^-$. By `index_range_two`,
 $[M^\pm : 2M^\pm] = 2^{\operatorname{rk} M^\pm} |M^\pm[2]|$, and $M^+[2] = M^-[2]$ ($-x = x$ when $2x = 0$). -/
-@[kb "milne2020cft" "Ch. II §3 (Herbrand quotient), Ch. VII §3 [unverified]; omeara1963 §65B, 65:9, p. 179 (Herbrand's lemma, involution case)"]
+@[kb "milne2020cft" "Ch. II §3 (Herbrand quotient), Ch. VII §3 [unverified]"]
 theorem herbrand_formula [Module.Finite ℤ M] :
     herbrand0 σ * 2 ^ finrank ℤ (normHom σ).ker = herbrandM1 σ * 2 ^ finrank ℤ (diffHom σ).ker ∧
       herbrand0 σ ≠ 0 ∧ herbrandM1 σ ≠ 0 := by

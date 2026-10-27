@@ -11,8 +11,8 @@ Lebesgue measure on $\mathbb R^d$.
 $$\sum_{b\in\mathcal O}N(z + u + b)^{-k} = c_{\mathcal O}\sum_{\mu\in\mathfrak d^{-1},\ \mu\gg0}
   \Big(\frac{(-2\pi i)^k}{(k-1)!}\Big)^dN(\mu)^{k-1}e(\operatorname{Tr}\mu(z + u)),$$
 $c_{\mathcal O}$ = `latConst` of the lattice $\sigma(\mathcal O) \subset \mathbb R^d$ $= \operatorname{covol}(\sigma(\mathcal O))^{-1} = |d_F|^{-1/2}$ (`latConst_one`).
-This is `hasSum_row` with $c = 1$ and the weight $1$ on $\mathcal O$ (which is not unit equivariant for odd $k$,
-hence the separate statement; the proof is the same Poisson summation, `hasSum_lattice_fourier`).
+This is `hasSum_row` with $c = 1$ and the weight $1$ on $\mathcal O$ (which is not unit equivariant for odd $k$, hence the
+separate statement; the proof is the same Poisson summation, `hasSum_lattice_fourier`).
 
 Sources: Shimura, *The special values of the zeta functions associated with Hilbert modular forms*, Duke Math. J. 45
 (1978), §3, (3.4)–(3.11) [unverified]; Siegel, *Über die analytische Theorie der quadratischen Formen III*, Ann. Math. 38
@@ -40,7 +40,7 @@ local notation "ιO" => algebraMap (𝓞 F) F
 /-! ### The lattice $\sigma(\mathcal O)$ -/
 
 variable (F) in
-/-- The lattice basis of $\sigma(\mathcal O_F) \subset \mathbb R^d$ (the `koecherBasis` of the unit ideal). -/
+/-- The lattice basis of $\sigma(\mathcal O_F) \subset \mathbb R^d$ (`koecherBasis` of the unit ideal). -/
 abbrev oBasis : Module.Basis (Fin (Module.finrank ℚ F)) ℝ (InfinitePlace F → ℝ) :=
   koecherBasis (1 : (FractionalIdeal (𝓞 F)⁰ F)ˣ)
 
@@ -844,8 +844,7 @@ theorem isLatticePeriodic_eisQ (hk : 3 ≤ k) : IsLatticePeriodic (eisQ Q₀ k) 
   linear_combination this
 
 include hQ hn hlev h𝔑 hfree in
-/-- **$a_{E_Q}(\mu)$ is the $\mu$-th Fourier coefficient of $E_Q$** ($k \ge 3$, $\mu \in \mathfrak d^{-1}\setminus 0$): with the
-`qCoeff` (the coefficient defined by integration over $\mathbb R^d/\sigma(\mathcal O)$, normalized by $e(\operatorname{Tr}\mu z)$),
+/-- **$a_{E_Q}(\mu)$ is the $\mu$-th Fourier coefficient of $E_Q$** ($k \ge 3$, $\mu \in \mathfrak d^{-1}\setminus 0$): with `qCoeff` (the coefficient defined by integration over $\mathbb R^d/\sigma(\mathcal O)$, normalized by $e(\operatorname{Tr}\mu z)$),
 $$\mathrm{qCoeff}(E_Q, \mu) = a_{E_Q}(\mu)\quad(\texttt{eisQCoeff}).$$ -/
 @[kb "siegel1935" "the Fourier coefficients of the genus Eisenstein series over F [unverified]"]
 theorem qCoeff_eisQ (hk : 3 ≤ k) {m : Fin (Module.finrank ℚ F) → ℤ} (hm : m ≠ 0) :

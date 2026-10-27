@@ -11,7 +11,7 @@ $\mu_v$ = `muLoc v Q₀ 1`, which is Weil's gauge-form measure $|dX/d\Phi|_v$ (`
 
 **Main theorem** (`muLoc_congSub_eq`): for $K_m = O(V)(F_v)\cap(1+\pi^mM_n(\mathfrak o_v))$ and $2d+1 \le j \le m$,
 $$\mu_v(K_m) = q^{-(m+j)\,n(n-1)/2}\cdot\#\{Z \in M_n(\mathfrak o_v/\pi^j) : D_1Z \equiv 0 \bmod \pi^j\},$$
-$D_1$ = the differential of $X\mapsto Q\circ X$ at $X = 1$ (the `formD Q 1`): $Z \mapsto (B_Q(e_i, Z_i),
+$D_1$ = the differential of $X\mapsto Q\circ X$ at $X = 1$ (`formD Q 1`): $Z \mapsto (B_Q(e_i, Z_i),
 B_Q(e_i,Z_l)+B_Q(Z_i,e_l))$, i.e. the coefficients of $Z^{\mathsf T}H + HZ$. So the gauge-form volume of a small
 congruence subgroup is a *linear* count: the Lie algebra $\mathfrak{so}(Q)$ measured against $dX/d\Phi$.
 
@@ -20,14 +20,11 @@ congruence subgroup is a *linear* count: the Lie algebra $\mathfrak{so}(Q)$ meas
 $1 + \pi^m(\tilde Z + \pi^jM_n(\mathfrak o))$ over the solutions $Z$ of $\tilde G \equiv 0 \bmod \pi^j$
 (`volM_ballOne_inter_thick`), and the Leray quotient at level $m+j$ is $\#S_j/q^{(m+j)n(n-1)/2}$. The map $\tilde G$
 satisfies $\tilde G(Z + cW) = \tilde G(Z) + c\,D_{1+\pi^mZ}W + c^2\pi^m(Q\circ W)$, and $D_{1+\pi^m Z}$ has image
-$\supseteq\pi^dR^{N}$ at every solution (`formD_surj`), so the counting Hensel lemma (`card_sol_succ_gen`, the
-`card_sol_succ` with an arbitrary quadratic term) makes the quotients constant for $j \ge 2d+1$; the
-`lerayApprox_ballOne_eventually` identifies the constant with $\mu_v(K_m)$; for $j \le m$ the term $\pi^m(Q\circ Z)$
+$\supseteq\pi^dR^{N}$ at every solution (`formD_surj`), so the counting Hensel lemma (`card_sol_succ_gen`, `card_sol_succ` with an arbitrary quadratic term) makes the quotients constant for $j \ge 2d+1$; `lerayApprox_ballOne_eventually` identifies the constant with $\mu_v(K_m)$; for $j \le m$ the term $\pi^m(Q\circ Z)$
 vanishes mod $\pi^j$.
 
 Sources: A. Weil, *Adeles and Algebraic Groups* (1982), §2.2 (gauge forms; volumes by counting mod $\mathfrak p^k$)
-[unverified]; Siegel 1935, Hilfssatz 13 (stabilization) [unverified]; the counting Hensel lemma is the
-(`FormDensityHensel.lean`, a multivariable form of Hanke 2004, Lemma 3.2).
+[unverified]; Siegel 1935, Hilfssatz 13 (stabilization) [unverified]; the counting Hensel lemma is the (`FormDensityHensel.lean`, a multivariable form of Hanke 2004, Lemma 3.2).
 -/
 
 namespace QuadFormsKB.LocalDensity.DVR

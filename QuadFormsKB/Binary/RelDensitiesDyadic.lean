@@ -25,7 +25,7 @@ $-\det H = \theta_b^2$ with $\theta_b = b_0\sigma b_1 - \sigma b_0\,b_1$, $\sigm
 So at every prime $\mathfrak p \nmid \Delta_{E/F}(b)\nu$ (dyadic or not) $\beta_\mathfrak p(Q_b, \nu) = 1 - \chi_{E/F}(\mathfrak p)N\mathfrak p^{-1}$: the factors that the
 regularized product absorbs into $L(1, \chi_{E/F})^{-1}$ are the true local densities.
 
-Sources: Hanke (2004), Remark 3.4.1(a), Remark 5.4.1(b); O'Meara 93:16, p. 259 (background); Neukirch I §8 [unverified].
+Sources: Hanke (2004), Remark 3.4.1(a), Remark 5.4.1(b); O'Meara 93:16 [unverified]; Neukirch I §8 [unverified].
 -/
 
 open NumberField Module IsDedekindDomain
@@ -123,7 +123,7 @@ theorem conj_thetaB (b : Basis (Fin 2) (𝓞 F) (𝓞 E)) :
 open Classical in
 /-- **The splitting character is the quadratic symbol of the discriminant** at every $\mathfrak p \nmid \Delta_{E/F}(b)$, dyadic included:
 $\chi_{E/F}(\mathfrak p) = 1$ if $-\det H(Q_b)$ is a square in $F_\mathfrak p$, and $-1$ otherwise. -/
-@[kb "neukirch1999" "Ch. I §8 [unverified]; omeara1963 §63A, 63:3, p. 161 (unramified quadratic extensions)"]
+@[kb "neukirch1999" "Ch. I §8 [unverified]; omeara1963 93:16 [unverified]"]
 theorem relChar_eq_quadSymbol (b : Basis (Fin 2) (𝓞 F) (𝓞 E)) {𝔭 : HeightOneSpectrum (𝓞 F)}
     (hΔ : (normFormBasis b).hessian.det ∉ 𝔭.asIdeal) :
     relChar E 𝔭 = if IsSquare (algebraMap F (𝔭.adicCompletion F)
@@ -157,7 +157,7 @@ theorem arfSignQ_normFormBasis (b : Basis (Fin 2) (𝓞 F) (𝓞 E)) {𝔭 : Hei
 
 /-- **Local densities of the norm form at the unramified dyadic primes, $\nu$ a unit:** for $\mathfrak p \mid 2$, $\mathfrak p \nmid \Delta_{E/F}(b)$,
 $\nu \notin \mathfrak p$: $\beta_\mathfrak p(Q_b, \nu) = 1 - \chi_{E/F}(\mathfrak p)/N\mathfrak p$. -/
-@[kb "hanke2004" "Remark 3.4.1(a), p. 361 (dyadic p ∤ N); cf. D5 localDensity_good_binary"]
+@[kb "hanke2004" "Remark 3.4.1(a), p. 361 (dyadic p ∤ N); cf. localDensity_good_binary"]
 theorem localDensity_normFormBasis_dyadic (b : Basis (Fin 2) (𝓞 F) (𝓞 E)) {𝔭 : HeightOneSpectrum (𝓞 F)}
     (h2 : (2 : 𝓞 F) ∈ 𝔭.asIdeal) (hΔ : (normFormBasis b).hessian.det ∉ 𝔭.asIdeal) {ν : 𝓞 F}
     (hν : ν ∉ 𝔭.asIdeal) :

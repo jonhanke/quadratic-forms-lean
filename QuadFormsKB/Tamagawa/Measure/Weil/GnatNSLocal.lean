@@ -1,10 +1,10 @@
 /-
-# Non-square discriminant, locally: $G^\natural(K)/K^\times\cong SO(\langle1,-ad,-bd,abd\rangle)(K)$
+# Non-square discriminant, locally: $G^\natural(K)/K^\times\cong SO(\langle1,-ad,-bd,abd\rangle)(K)$ in the forms needed adelically
 
 
-**Layer:** a field $K$ with $2\ne0$ and $A, B, D\in K^\times$; $E = K[\delta]/(\delta^2-D)$, $D_E = (A,B)_E$,
-$G^\natural\le D_E^\times$ and $\varphi : G^\natural\to SO(V_0)$ (`Quat.Gnat.phiSO`), uniform in $D$ (square or not);
-then a number field $F$, the integral model `qNS a b d` and the completions $F_v$.
+**Layer:** a field $K$ with $2\ne0$ and $A, B, D\in K^\times$; the $E = K[\delta]/(\delta^2-D)$, $D_E = (A,B)_E$, $G^\natural\le D_E^\times$
+and $\varphi : G^\natural\to SO(V_0)$ (`Quat.Gnat.phiSO`), uniform in $D$ (square or not); then a number field $F$, the integral
+model `qNS a b d` and the completions $F_v$.
 
 **Defines/proves**
 * **`phiLin_eq_inv`**: $\varphi_\alpha(v) = \alpha\,v\,\sigma(\alpha^{-1})$ (no division by $\operatorname{nrd}\alpha$), so the matrix of $\varphi_\alpha$ is

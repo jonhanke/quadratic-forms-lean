@@ -4,7 +4,7 @@
 **Layer:** forms over a commutative ring (column peeling), then a DVR $R$ with finite residue field of odd size $q$
 ($\pi \nmid 2$) and a unimodular form ($\pi \nmid \det H_Q$).
 
-Witt's theorem over $\mathbb F_q$ is **not** needed to compute $|O_n(\mathbb F_q)|$:
+Witt's theorem over $\mathbb F_q$ is **not** needed (nor the order $|O_n(\mathbb F_q)|$):
 we count self-representations column by column. For $T = \langle t_0, \dots, t_{r}\rangle$ diagonal and a first column
 $x$ with $Q(x) = t_0$, the remaining columns lie in $x^\perp$, and $x^\perp$ carries a form $Q'_x$ in $n - 1$ variables
 with $\det H_{Q'_x} \equiv \det H_Q/(2t_0)$ up to unit squares (`exists_split`); every $Q'_x$ has the **same** count by

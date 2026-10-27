@@ -2,7 +2,7 @@
 # Classes of lattices in the genus of $\mathcal O_F^n$ are classes of forms over $\mathcal O_F$, every number field
 
 **Layer.** $F$ a totally real number field, **any class number**; $Q_0$ a totally positive definite form over $\mathcal O_F$ in
-$n$ variables; $V = (F^n, Q_0)$, $L = \mathcal O_F^n$. Siegel's formula is stated with the *lattice* objects: the
+$n$ variables; $V = (F^n, Q_0)$, $L = \mathcal O_F^n$. Route W states Siegel's formula with the *lattice* objects: the
 $O(V)(F)$-classes of lattices in the genus of $L$ (`Lattices.genusClasses`), $|O(M)|$ (`LatClass.autCard`) and $r_M(m)$
 (`LatClass.repCount`). This file identifies them with the classical *forms* objects over $\mathcal O_F$:
 
@@ -18,14 +18,14 @@ $O(V)(F)$-classes of lattices in the genus of $L$ (`Lattices.genusClasses`), $|O
 $\det\sigma_\mathfrak p = \pm1$; O'Meara 81:5, §82). Its Gram form $Q_\gamma$ (`gramZ`) is a form over $\mathcal O_F$ in the genus of $Q_0$
 (`formSameGenus_gramZ`); isometric free lattices have $\mathrm{GL}_n(\mathcal O_F)$-equivalent Gram forms and conversely
 (`isIsometric_latOf_iff`). (2) Conversely a form $Q'$ in the genus of $Q_0$ is $F$-equivalent to $Q_0$ (**Hasse–Minkowski over $F$
-for isometry**, `isometricIn_of_everywhere_nf`, proved here from the library's `represents_iff_everywhere_nf` and Witt cancellation as in
+for isometry**, `isometricIn_of_everywhere_nf`, proved here from `represents_iff_everywhere_nf` and Witt cancellation as in
 Serre IV §3.3, Thm 9), so $Q' = Q_\gamma$ for a lattice $\gamma\mathcal O_F^n$ in the genus (`sameGenus_latOf_iff`).
 
 *Convention.* `formGenusClasses Q₀` asks for $Q'$ totally positive definite in addition to `FormSameGenus Q₀ Q'`. (This is implied
 by the real places of `FormSameGenus`; it is kept explicit so that the nondegeneracy needed by Hasse–Minkowski is immediate.)
 Classes are $\mathrm{GL}_n$ (not $\mathrm{SL}_n$) classes; $\mathrm{Aut}$ includes improper automorphisms, matching $O(M)$.
 
-Sources: Steinitz, Math. Ann. 71 (1911); O'Meara 1963, 81:5, p. 212, §82, §102A, p. 297, 66:3–66:4, p. 189 (O'Meara derives 66:4 directly from 66:3); Serre 1973, IV §3.3, Thm 9.
+Sources: Steinitz, Math. Ann. 71 (1911); O'Meara 1963, 81:5, §82, §102, 66:3 [unverified]; Serre 1973, IV §3.3, Thm 9.
 -/
 import QuadFormsKB.Tamagawa.RatBridge
 import QuadFormsKB.HilbertModular.SteinitzGenus
@@ -120,7 +120,7 @@ variable {F : Type} [Field F] [NumberField F]
 
 /-- **The classes of forms in the genus of $Q_0$** over $\mathcal O_F$: $\mathrm{GL}_n(\mathcal O_F)$-classes of totally positive definite
 forms $Q'$ over $\mathcal O_F$ with $Q' \cong Q_0$ over every $\mathfrak o_\mathfrak p$ and every real place (`FormSameGenus`). -/
-@[kb "omeara1963" "§102A, p. 297; §82B, 82:1, p. 222"]
+@[kb "omeara1963" "§102 (classes in the genus of a form) [unverified]"]
 def formGenusClasses (Q₀ : QuadForm (𝓞 F) n) : Set (FormClass (𝓞 F) n) :=
   {c | ∃ Q' : QuadForm (𝓞 F) n, Quotient.mk _ Q' = c ∧ FormSameGenus Q₀ Q' ∧ IsTotallyPosDef (formF Q')}
 
@@ -149,7 +149,7 @@ theorem everywhere_mono {P P' : (K : Type) → [Field K] → [Algebra F K] → P
 over $F$ that are isometric over every completion $F_v$ are isometric over $F$. *Proof* as `isometric_of_everywhere` over $\mathbb Q$:
 split off a value $b$ of $R$ (represented by $Q$ everywhere, hence over $F$, `represents_iff_everywhere_nf`), cancel it at every place
 (Witt, `isometricIn_of_diag_cons`) and induct. -/
-@[kb "omeara1963" "§66, 66:4, p. 189 (Hasse–Minkowski Theorem); cassels1978 Ch. 6, Thm. 1.2, p. 76"]
+@[kb "omeara1963" "66:4 [unverified]"]
 theorem isometricIn_of_everywhere_nf : ∀ {n : ℕ} (Q R : QuadForm F n), Q.Nondegenerate → R.Nondegenerate →
     NFPlace.Everywhere (F := F) (fun K _ _ => Q.IsometricIn K R) → Q.IsometricIn F R
   | 0, Q, R, _, _, _ => ⟨1, by simp, fun x => by simp [QuadForm.evalIn]⟩
@@ -294,7 +294,7 @@ theorem exists_latOf_of_formSameGenus (hpd : IsTotallyPosDef (formF Q₀)) {Q' :
 /-- **The class map** $\mathrm{cls}(M) \mapsto [\text{Gram form of } M]$ is a bijection from the classes of lattices in the genus of
 $\mathcal O_F^n$ in $(F^n, Q_0)$ onto the $\mathrm{GL}_n(\mathcal O_F)$-classes of forms in the genus of $Q_0$, over every totally real
 number field, any class number. -/
-@[kb "omeara1963" "§82B, 82:1, p. 222; §102A, p. 297"]
+@[kb "omeara1963" "§§82, 102 (classes of lattices in gen(𝓞_F^n) = classes of forms; Steinitz) [unverified]"]
 theorem bijOn_formClass (hpd : IsTotallyPosDef (formF Q₀)) :
     Set.BijOn (fun c : LatClass (formF Q₀) => (Quotient.mk (formSetoid (𝓞 F) n) (latForm Q₀ c.out)))
       (genusClasses (formF Q₀) (stdLat F n)) (formGenusClasses Q₀) := by
@@ -353,7 +353,7 @@ theorem repCount_eq_formClass (hpd : IsTotallyPosDef (formF Q₀)) {c : LatClass
   rfl
 
 /-- **$\mathrm{Mass}(Q_0) = \mathrm{Mass}(\mathcal O_F^n)$**: the mass over $\mathrm{GL}_n(\mathcal O_F)$-classes of forms in the genus of $Q_0$ is
-the lattice mass of the genus of $\mathcal O_F^n$ in $(F^n, Q_0)$, every totally real $F$, any class number. -/
+The mass of the genus of $\mathcal O_F^n$ in $(F^n, Q_0)$, every totally real $F$, any class number. -/
 @[kb "siegel1935" "Mass of a genus of forms = lattice mass, over F [unverified]"]
 theorem formMass_eq (hpd : IsTotallyPosDef (formF Q₀)) :
     formMass Q₀ = Lattices.mass (formF Q₀) (stdLat F n) := by

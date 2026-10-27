@@ -5,9 +5,9 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChange
 # Non-square discriminant: $G^\natural\subset(D'\otimes\mathbb A_K)^\times$ via base change
 
 **Layer:** a finite extension $K/k$ of number fields with a $k$-basis $b$ of $K$ containing $1$ (`b i₀ = 1`), and a quaternion
-algebra $D' = \mathbb H[K,\alpha,\beta]$ over $K$, division or split ($\alpha,\beta\in\mathcal O_K\setminus0$). For $V$ quaternary with non-square
-discriminant $d$, we take $K = E = k(\sqrt d)$ and $D' = D\otimes_kK = D_E$; then
-$D_E\otimes_k\mathbb A_k\cong D'\otimes_K\mathbb A_K$ and
+**division** algebra $D' = \mathbb H[K,\alpha,\beta]$ over $K$ ($\alpha,\beta\in\mathcal O_K\setminus0$). For $V$ quaternary with non-square
+discriminant $d$, one takes $K = E = k(\sqrt d)$ and $D' = D\otimes_kK = D_E$; then $D_E\otimes_k\mathbb A_k\cong D'\otimes_K\mathbb A_K$
+and
 $$G^\natural(\mathbb A_k) = \{\alpha\in(D'\otimes\mathbb A_K)^\times : \operatorname{nrd}\alpha\in\mathbb A_k^\times\}.$$
 Nothing below uses that $K/k$ is quadratic.
 
@@ -19,8 +19,7 @@ Nothing below uses that $K/k$ is quadratic.
   $A_+ = \iota^{-1}(\operatorname{nrd}(M))$, $\Gamma_M = D'^\times$.
 * **`covolume_gnatBC`**: for Weil's quotient measure $\mu_P$ (fibre $\mu_{\mathrm{SL}_1(D')}$ over $\mathbb A_K$, base `tamIdeles` of $k$),
   $$\operatorname{vol}(P(k)\backslash P(\mathbb A_k),\ \mu_P) = 2,$$
-  **unconditionally**: $\tau(\mathrm{SL}_1(D')) = 1$ over the number field $K$ (`tauSL1EqOne` at $K$; $D'$ may be split even
-  when $D$ is not), the
+  **unconditionally**: $\tau(\mathrm{SL}_1(D')) = 1$ over the number field $K$ (`tamagawa_SL1_division_unconditional` at $K$), the
   rest is `GnatData.covolume_muP`. The Weil restriction $R_{K/k}\mathrm{SL}_1(D')(\mathbb A_k) = \mathrm{SL}_1(D')(\mathbb A_K)$ is used in the
   form "$\ker\nu$ *is* $\mathrm{SL}_1(D')(\mathbb A_K)$" (no measure transport is needed because $\mu_S$ is defined on $\mathbb A_K$).
 -/
@@ -220,25 +219,22 @@ instance : DiscreteTopology (gnatBCO b i₀ hb₀ hα0 hβ0).ΓM := discreteTopo
 instance : Countable (gnatBCO b i₀ hb₀ hα0 hβ0).ΓM :=
   inferInstanceAs (Countable (quatUnitsSub (α : K) (β : K)))
 
-/-- The measure $\mu_{\mathrm{SL}_1(D')}$ on $\ker\nu$ of `gnatBCO` (the same measure as `muSL1N`). -/
+/-- The $\mu_{\mathrm{SL}_1(D')}$ on $\ker\nu$ of `gnatBCO` (the same measure as `muSL1N`). -/
 def muBC : Measure ((gnatBCO b i₀ hb₀ hα0 hβ0).ν : (QuatAdele (α : K) (β : K))ˣ →* (Adeles K)ˣ).ker :=
   muSL1N hα0 hβ0
 
 instance : (muBC b i₀ hb₀ hα0 hβ0).IsHaarMeasure := inferInstanceAs (muSL1N hα0 hβ0).IsHaarMeasure
 
-/-- **Non-square discriminant (and every finite extension $K/k$):
-$\operatorname{vol}(P(k)\backslash P(\mathbb A_k)) = 2$** for Weil's
-quotient measure on $P = G^\natural/\mathbb G_m$,
-$G^\natural = \{g\in(D'\otimes\mathbb A_K)^\times : \operatorname{nrd}g\in\mathbb A_k^\times\}$,
-$\mu_{G^\natural}$ fibred over `tamIdeles` of $k$ with fibre the measure $\mu_{\mathrm{SL}_1(D')}$ over $K$,
-for every quaternion algebra $D'$ over $K$, division or split. Unconditional
-(the input $\tau(\mathrm{SL}_1(D')) = 1$ is `tauSL1EqOne` over the number field $K$, via `covolume_muSL1N`). -/
+/-- **Non-square discriminant (and every finite extension $K/k$): $\operatorname{vol}(P(k)\backslash P(\mathbb A_k)) = 2$** for Weil's
+quotient measure on $P = G^\natural/\mathbb G_m$, $G^\natural = \{g\in(D'\otimes\mathbb A_K)^\times : \operatorname{nrd}g\in\mathbb A_k^\times\}$, $\mu_{G^\natural}$ fibred over
+`tamIdeles` of $k$ with fibre the $\mu_{\mathrm{SL}_1(D')}$ over $K$, for every quaternion division algebra $D'$ over $K$. Unconditional
+(the input $\tau(\mathrm{SL}_1(D')) = 1$ is `tamagawa_SL1_division_unconditional` over the number field $K$). -/
 @[kb "weil1982" "§3.7, pp. 64-65 (m = 4, non-square discriminant) [unverified page]; §1.3 (restriction of scalars) [unverified]; §3.2, p. 43"]
-theorem covolume_gnatBC :
+theorem covolume_gnatBC (hdiv : ∀ ξ : ℍ[K,(α : K),(β : K)], ξ ≠ 0 → IsUnit ξ) :
     covolume (gnatBCO b i₀ hb₀ hα0 hβ0).gamP (gnatBCO b i₀ hb₀ hα0 hβ0).P
       ((gnatBCO b i₀ hb₀ hα0 hβ0).muP (muBC b i₀ hb₀ hα0 hβ0)) = 2 := by
   have h := (gnatBCO b i₀ hb₀ hα0 hβ0).covolume_muP (muBC b i₀ hb₀ hα0 hβ0) (gnatBC_hsΓ _ _ _ _ _)
-    (gnatBC_heich _ _ _ _ _) (gnatBC_hsign _ _ _ _ _) (map_adK_muSL1N hα0 hβ0) (covolume_muSL1N hα0 hβ0)
+    (gnatBC_heich _ _ _ _ _) (gnatBC_hsign _ _ _ _ _) (map_adK_muSL1N hα0 hβ0 hdiv) (covolume_muSL1N hα0 hβ0 hdiv)
   rw [h, mul_one]
 
 end

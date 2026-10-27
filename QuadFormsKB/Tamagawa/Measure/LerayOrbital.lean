@@ -9,8 +9,7 @@ import QuadFormsKB.Siegel.NFMainTerm
 /-!
 # The local orbital identity in measure form, on $SO(L_v)$
 
-Setting of `LocalOrbital.lean` and `LocalOrbitalBad.lean`: $Q_0 = \langle m\rangle\perp Q_0'$ (`splitForm m Q₀'`) over
-$\mathcal O_F$ in $n + 1$ variables, $m \ne 0$, $Q_0'$
+Setting: $Q_0 = \langle m\rangle\perp Q_0'$ (`splitForm m Q₀'`) over $\mathcal O_F$ in $n + 1$ variables, $m \ne 0$, $Q_0'$
 nondegenerate, $L_v = \mathcal O_v^{n+1} = \mathcal O_ve_0\perp L'_v$, $G = SO(V_v)$, $H = SO(e_0^\perp) = SO(V'_v)$, $K = SO(L_v)$,
 $K_H = SO(L'_v)$ ($= K\cap H$ for the split lattice: an isometry of $L_v$ fixing $e_0$ preserves $L_v\cap e_0^\perp = L_v'$).
 
@@ -20,7 +19,7 @@ which is the measure $dx/dQ_0$ on the sphere $T(m)_v = \{Q_0 = m\}$.
 
 **`localOrbitalIdentity_measure`** (the orbital identity in measure form, for the test function $\Phi_v = \mathbf 1_{L_v}$):
 $$W_v\cdot\mu_G(K)\cdot|2m|_v^{\,n} = \mu_H(K_H)\cdot\sigma_m(T(m)_v\cap L_v),$$
-$W_v = \sum_t w_v(t)$ the sum of the local weights over the $K$-orbit types of $T(m)_v\cap L_v$ (the `locTypeSum`; $W_v = 1$ if
+$W_v = \sum_t w_v(t)$ the sum of the local weights over the $K$-orbit types of $T(m)_v\cap L_v$ (`locTypeSum`; $W_v = 1$ if
 $v \nmid 2m$). It is the counting identity with $\alpha_v(L,L) = \mu_G(K)$ (`muLocSO_soStabSO`),
 $\alpha_v(L',L') = \mu_H(K_H)$ and $\beta_v(L, m) = \sigma_m(T(m)_v\cap L_v)$ (this file's `lerayMeasure_latL`).
 -/
@@ -107,7 +106,7 @@ theorem evalIn_orthGroup (Q₀ : QuadForm (𝓞 F) n) (g : orthGroup (Q₀.map (
   exact mul_left_cancel₀ two_ne_zero h4
 
 /-- **$SO(V)(F_v)$-invariance of the Leray measure** (the first half of the orbital identity: $\sigma_\rho$ is the invariant
-measure on the sphere $T(\rho)_v$ and on the cone $C^\circ_v$): for $g \in SO(V)(F_v)$ (the `SOv`), $g_*\sigma_\rho = \sigma_\rho$. -/
+measure on the sphere $T(\rho)_v$ and on the cone $C^\circ_v$): for $g \in SO(V)(F_v)$ (`SOv`), $g_*\sigma_\rho = \sigma_\rho$. -/
 theorem lerayMeasure_map_soSub (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (ρ : Fv) (g : SOv v Q₀) :
     Measure.map (fun x : Fin n → Fv => ((g.1 : GL (Fin n) Fv) : Matrix (Fin n) (Fin n) Fv) *ᵥ x)
         (lerayMeasure v (haarV v) (NF.Qp v Q₀) (NF.nondegenerate_Qp v hQ) ρ) =

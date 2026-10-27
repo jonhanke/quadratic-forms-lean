@@ -48,7 +48,7 @@ non-archimedian component $h_\infty$ of $h_\mathbb{A}$" should read "archimedean
 
 Following Tau Ceti (`TauCeti/NumberTheory/QuadraticForm/OrthogonalGroup/FiniteAdelic.lean`), the
 finite adelic orthogonal group is a restricted product over `PrimeIdx`; we do not import Tau Ceti
-(decision pending) and use matrices instead of its `QuadraticForm` isometries.
+and use matrices instead of its `QuadraticForm` isometries.
 -/
 import QuadFormsKB.Literature.AWS.DoubleCosets
 
@@ -618,7 +618,7 @@ def latGenus (L : Lat n) : Set (Lat n) :=
 the gluing input (Lemma 4.5.1). For the converse inclusion the notes take "$h_p$ to be the element of
 the orthogonal group carrying $L_p$ to $L'_p$ at the finitely many primes where $L_p \ne L'_p$, and
 … all other components $h_v$ as the identity". -/
-@[kb "hanke2011aws" "§4.5, Lemma 4.5.2, p. 62; omeara1963 §102A, p. 298 (K ∈ genL if and only if K = Σ L for some Σ ∈ J_V)"]
+@[kb "hanke2011aws" "§4.5, Lemma 4.5.2, p. 62"]
 theorem orbit_eq_genus (hG : LatticeGluing n) (L : Lat n) :
     @MulAction.orbit (OA H) (Lat n) (latAction H hG).toSMul L = latGenus H L := by
   letI := latAction H hG

@@ -17,7 +17,7 @@ Let $K$ be any field (characteristic $2$ allowed).
 `QuadraticMap.radical Q` $= \{v \in \operatorname{rad} b : Q(v) = 0\}$ is $0$ (in characteristic
 $\neq 2$: $Q$ nondegenerate).
 * `QuadraticForm.exists_wittDecomposition` (**Witt decomposition**; EKM Thm 8.5, Lam Ch. I
-  §4, Scharlau Ch. 1 §5, O'Meara 42:10, p. 95, and the index $\mathrm{ind}\,V$, §42F, p. 99; Lam and Scharlau locators unverified):
+  §4, Scharlau Ch. 1 §5, O'Meara §42 [locators unverified]):
   $Q \cong \mathbb{H}^m \perp Q_{\mathrm{an}}$ with $Q_{\mathrm{an}}$ anisotropic.
 * `QuadraticForm.wittDecomposition_unique`: $m$ and the isometry class of $Q_{\mathrm{an}}$ are
   unique: $\mathbb{H}^m \perp Q_{\mathrm{an}} \cong \mathbb{H}^{m'} \perp Q'_{\mathrm{an}}$ with both
@@ -33,7 +33,7 @@ radical is $0$), so it has a hyperbolic partner $v'$, and $V = \langle v, v' \ra
 $\dim V$. Uniqueness: cancel one $\mathbb{H}$ at a time (`QuadraticForm.equivalent_of_prod_equivalent_prod`);
 $\mathbb{H}^{k+1} \perp Q'$ is never anisotropic.
 
-Shimura's *core subspace* is the anisotropic part $Q_{\mathrm{an}}$.
+Shimura's *core subspace* is the anisotropic part $Q_{\mathrm{an}}$. See `docs/witt.md`.
 -/
 import QuadFormsKB.Witt.Cancellation
 
@@ -231,7 +231,7 @@ $\neq 2$: $Q$ nondegenerate). Then for some $m \in \mathbb{N}$ and some anisotro
 $Q_{\mathrm{an}}$ on a finite-dimensional space $U$,
 $$Q \cong \mathbb{H}^m \perp Q_{\mathrm{an}}$$
 (`Q.Equivalent ((hyperbolicSpace K m).prod Qa)`). Uniqueness: `wittDecomposition_unique`. -/
-@[kb "ekm2008" "Thm 8.5; cassels1978 Ch. 2, Example 6, p. 29"]
+@[kb "ekm2008" "Thm 8.5"]
 theorem exists_wittDecomposition {V : Type u} [AddCommGroup V] [Module K V]
     [FiniteDimensional K V] (Q : QuadraticForm K V) (hQ : Q.radical = ⊥) :
     ∃ (m : ℕ) (U : Type u) (_ : AddCommGroup U) (_ : Module K U) (_ : FiniteDimensional K U)

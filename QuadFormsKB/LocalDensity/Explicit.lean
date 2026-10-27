@@ -4,7 +4,7 @@
 **Layer:** $\mathbb{Q}$. **Defines** Hanke 2004, Def. 3.5 (locally represented, p. 362; `IsLocallyRepresentedAt`),
 Def. 3.6 ($p$-stable, p. 362; `IsPStable`); Def. 3.7 (anisotropic, p. 363) is `¬ Q.IsotropicIn ℚ_[p]`.
 **Proves** Table 1 for $n \le 4$ (p. 363; `table1_one` … `table1_four`), Remark 3.5.1 (`isLocallyRepresentedAt_of_good`),
-Lemma 3.8 *corrected* (p. 363; `anisotropic_iff_zeroType`), Cor. 3.8.2
+Lemma 3.8 *corrected* (p. 363; `anisotropic_iff_zeroType`, see `docs/updates-and-errata.md`), Cor. 3.8.2
 (p. 364; `card_rep_mul_pow_sq`), and (5.6), (5.7) (p. 369; `localDensity_le_mul_sq`, `localDensity_pow_sq`).
 **Depends on** `General.lean`.
 -/
@@ -606,7 +606,6 @@ theorem isotropicIn_of_primitive_pow_dvd (Q : QuadForm ℤ n) (p : ℕ) [Fact p.
 /-- **Bounded valuation of primitive vectors** (Hanke 2004, p. 363, O'Meara 91:1): if $Q$ is anisotropic
 over $\mathbb{Q}_p$, there is $C$ such that for $k \ge C$ every solution of $Q(\vec{x}) \equiv 0
 \pmod{p^k}$ is of Zero type. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
 theorem exists_isZeroType_of_anisotropic (Q : QuadForm ℤ n) (p : ℕ) [Fact p.Prime]
     (haniso : ¬ Q.IsotropicIn ℚ_[p]) :
     ∃ C : ℕ, ∀ k ≥ C, ∀ x : Fin n → ZMod (p ^ k),
@@ -651,8 +650,8 @@ theorem eventually_repCountOf_nonZero_eq_zero (Q : QuadForm ℤ n) (p : ℕ) [Fa
   push_cast
   exact Dvd.dvd.mul_right (pow_dvd_pow _ (by omega)) _
 
-/-- **Lemma 3.8, corrected** (Hanke 2004, p. 363; erratum confirmed by the author 2026-10-15):
-for $Q$ nondegenerate in local normal form and $m$ $p$-stable (Def. 3.6,
+/-- **Lemma 3.8, corrected** (Hanke 2004, p. 363; erratum confirmed by the author 2026-10-15, fix (b) in
+`docs/updates-and-errata.md`): for $Q$ nondegenerate in local normal form and $m$ $p$-stable (Def. 3.6,
 constancy for $\nu \ge 1$), $Q$ is anisotropic at $p$ iff for all large $k$ every solution of
 $Q(\vec{x}) \equiv p^2 m \pmod{p^k}$ is of Zero type.
 

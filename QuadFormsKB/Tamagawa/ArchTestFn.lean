@@ -3,8 +3,7 @@
 
 **Layer:** local analysis at the archimedean places, feeding `ZetaResidue.lean` and `SphericalResidue.lean`.
 
-`ZetaResidue.lean` and `SphericalResidue.lean` take the archimedean test functions $\Phi_w$ as
-data subject to `IsArchTestFn` ($\Phi_w$ and $|Q_w|\Phi_w$
+`ZetaResidue.lean` and `SphericalResidue.lean` take the archimedean test functions $\Phi_w$ as data subject to `IsArchTestFn` ($\Phi_w$ and $|Q_w|\Phi_w$
 Lebesgue integrable) and to the hypothesis that the null cones $\{Q_w = 0\}$ are Lebesgue-null. Before this file both were
 discharged only for a totally positive definite $Q$ and the Gaussian $e^{-aQ_w}$ (`isArchTestFn_gaussian`,
 `ae_realVal_ne_zero`). Here they are discharged for **every nondegenerate $Q$ (any signature at every real place)** and

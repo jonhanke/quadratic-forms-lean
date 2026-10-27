@@ -1,11 +1,12 @@
 /-
 # Hasse–Minkowski over a number field $F$: the blueprint
 
-Proved **conditionally on the inputs** in `NumberFieldInputs.lean`: Hilbert reciprocity,
+Proved **conditionally on the inputs** bundled in `NumberFieldInputs.lean`: Hilbert reciprocity,
 squares local–global, prescribed local symbols, the Hasse norm theorem for quadratic extensions,
 and multiplicativity of the Hilbert symbol at finite places. Each step takes the inputs as one
-explicit hypothesis `I : HMInputs F`, so the reduction is kernel-checked and shows as *proved*;
-only the final `hasseMinkowski_nf`, which plugs in the `sorry`'d inputs, stays *stated*.
+explicit hypothesis `I : HMInputs F`, so the reduction is kernel-checked. All the inputs are
+now proved (`NumberFieldMain.lean`), and `hasseMinkowski_nf` itself is proved by Lam's route
+(`HasseMinkowskiNFMain.lean`).
 
 The structure follows the $\mathbb{Q}$ proof (Serre IV §3), except for $n \ge 5$:
 - $n = 2$: $\langle a, b \rangle$ is isotropic iff $-ab$ is a square (squares local–global);
@@ -120,7 +121,7 @@ theorem binary_represents_nf_of_everywhere (I : NFInputs.HMInputs F) (a b x : F)
       ((map_ne_zero _).2 hx) hv
 
 /-- **Hasse–Minkowski over $F$ for $n = 2$** (conditional on squares local–global). -/
-@[kb "omeara1963" "§66, 66:1, p. 187 (case n = 2)"]
+@[kb "omeara1963" "§66:1 [unverified]"]
 theorem hasseMinkowski_two_nf (I : NFInputs.HMInputs F) (Q : QuadForm F 2) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn F ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsotropicIn K := by
   obtain ⟨a, ha, hiso⟩ := FieldGen.exists_isometric_diag Q hQ
@@ -146,7 +147,7 @@ theorem hasseMinkowski_two_nf (I : NFInputs.HMInputs F) (Q : QuadForm F 2) (hQ :
     | finite w => exact (key _).1 this
 
 /-- **Hasse–Minkowski over $F$ for $n = 3$** (conditional on the Hasse norm theorem). -/
-@[kb "omeara1963" "§66, 66:1, p. 187 (case n = 3)"]
+@[kb "omeara1963" "§66:1 [unverified]"]
 theorem hasseMinkowski_three_nf (I : NFInputs.HMInputs F) (Q : QuadForm F 3) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn F ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsotropicIn K := by
   obtain ⟨a, ha, hiso⟩ := FieldGen.exists_isometric_diag Q hQ
@@ -340,7 +341,7 @@ theorem hasseMinkowski_diag_four_nf (I : NFInputs.HMInputs F) (a₁ a₂ a₃ a�
       linear_combination hXY - hZW
 
 /-- **Hasse–Minkowski over $F$ for $n = 4$** (conditional, as for the diagonal case). -/
-@[kb "omeara1963" "§66, 66:1, p. 187 (case n = 4)"]
+@[kb "omeara1963" "§66:1 [unverified]"]
 theorem hasseMinkowski_four_nf (I : NFInputs.HMInputs F) (Q : QuadForm F 4) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn F ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsotropicIn K := by
   obtain ⟨a, ha, hiso⟩ := FieldGen.exists_isometric_diag Q hQ
@@ -440,7 +441,7 @@ end HMNF
 one hypothesis), a nondegenerate quadratic form over $F$ is isotropic over $F$ iff it is isotropic
 over every completion $F_v$. Assembled from `HMNF.hasseMinkowski_two_nf`, `…_three_nf`,
 `…_four_nf` and `…_five_le_nf` ($n \le 1$ is direct). -/
-@[kb "omeara1963" "§66, 66:1, p. 187"]
+@[kb "omeara1963" "§66:1 [unverified]"]
 theorem hasseMinkowski_nf_of_inputs (I : NFInputs.HMInputs F) (Q : QuadForm F n)
     (hQ : Q.Nondegenerate) :
     Q.IsotropicIn F ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsotropicIn K := by

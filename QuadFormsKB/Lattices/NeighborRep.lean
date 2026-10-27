@@ -1,5 +1,5 @@
 /-
-# Kneser neighbours over a Dedekind domain, part 3: The neighbour relation for representation numbers
+# Kneser neighbours over a Dedekind domain, part 3: the neighbour relation for representation numbers
 
 **Layer:** as in `Lattices/Neighbors.lean`: $R$ a domain with fraction field $K$, $Q$ a form over $R$ on $L = R^n$, $\pi$ a prime with
 finite residue field $k = R/\pi$ of size $q$, $\operatorname{char}k \ne 2$, $\pi \nmid \det H$, and $Q$ with finitely many representations of
@@ -239,7 +239,7 @@ theorem card_mem_eq_of_not_dvd (hk : ringChar (Res π) ≠ 2) (hdet : ¬ π ∣ 
 /-- **The neighbour relation at $\pi \nmid m$** ($n$ even, $n \ge 2$, $\operatorname{char}k \ne 2$, $\pi \nmid \det H$, `hconst` from
 Table 1, finitely many representations): with $q = |k|$,
 $$(q - 1)\sum_{L' \sim_\pi R^n} r_{L'}(m) = (q - 1)\,r_Q(\pi^2m) + (q^{n-2} - q)\,r_Q(m).$$ -/
-@[kb "eichler1952" "Eichler commutation relation, coefficient level, π ∤ m (over a Dedekind domain) [unverified]; cassels1978 App. B, §5, p. 388 (Eichler's description of Hecke operators)"]
+@[kb "eichler1952" "Eichler commutation relation, coefficient level, π ∤ m (over a Dedekind domain) [unverified]"]
 theorem sum_latRep_neighbors_of_not_dvd (hk : ringChar (Res π) ≠ 2) (hdet : ¬ π ∣ Q.hessian.det)
     (hn2 : 2 ≤ n)
     (hconst : ∀ c : Res π, c ≠ 0 → (Finset.univ.filter fun y => qv (Res π) Q y = c).card =

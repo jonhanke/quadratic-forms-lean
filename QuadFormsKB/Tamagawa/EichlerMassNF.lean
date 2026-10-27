@@ -1,17 +1,16 @@
 /-
 # Eichler's mass formula for every class number
+
 **Layer:** $F$ totally real (any class number $h_F$), $D = (a,b)_F$ totally definite, $\mathcal O \supseteq \mathcal O_F\langle1,i,j,k\rangle$ a maximal order,
 given by a presentation $\mathcal O = \{\sum_i\xi_if^{\mathcal O}_i : \xi_i \in \mathfrak a^{\mathcal O}_i\}$ (Steinitz; `exists_presentation_sub`; no basis of $\mathcal O$).
 
-**Eichler's mass formula** (`eichler_mass_formula_nf`): with $\Lambda_{\mathcal O} = \frac{\rho_F}2\,c_{\mathcal O}/K$
-(`massConstNF`; $c_{\mathcal O}$ the lattice constant of
+**Eichler's mass formula** (`eichler_mass_formula_nf`): with $\Lambda_{\mathcal O} = \frac{\rho_F}2\,c_{\mathcal O}/K$ (`massConstNF`; $c_{\mathcal O}$ the lattice constant of
 the presented lattice $(\mathcal O, \operatorname{nrd})$, $K$ = `epsteinConst F 4 0`),
 $$\Lambda_{\mathcal O}\sum_{[J]\ne0}\frac1{[\Gamma_J:\mathcal O_F^\times]} = h_F\,\rho_F\,\zeta_F(2)\prod_{\mathfrak p\in\operatorname{Ram}_f(D)}(1-N\mathfrak p^{-1}).$$
 For $h_F = 1$ this is `eichler_mass_formula`; the factor $h_F$ is Voight's (Thm. 26.1.5 / 26.5.4 in general form).
 
 *Proof (the class-group averaging).* The residue of a single class term $N(\operatorname{nrd}J)^{-s}E_J(s)$ is not available for $h_F > 1$
-(only the class-weighted Epstein sum `epsteinClsSum` is controlled). $\mathrm{Cl}(F)$ acts on the finite set of left
-ideal classes by
+(only the class-weighted Epstein sum `epsteinClsSum` is controlled). $\mathrm{Cl}(F)$ acts on the finite set of left ideal classes by
 $[J] \mapsto [\mathfrak a_cJ]$ ($\mathfrak a_c$ an integral ideal in the class $c$; `classScale`, injective), so for the class zeta functions
 $G([J]) = \sum_{J'\sim J}N(\operatorname{nrd}J')^{-s}$,
 $$h_F\sum_{x}G(x) = \sum_x\sum_{c}G(c\cdot x) = \sum_{[J]}[\Gamma_J:\mathcal O_F^\times]^{-1}N(\operatorname{nrd}J)^{-s}\sum_cN(\mathfrak c_c)^{-2s}E_{\mathfrak c_c^{-1}(\mathcal O:J)}(s),$$
@@ -642,10 +641,8 @@ section Mass
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {a b : 𝓞 F}
   {O : Subalgebra (𝓞 F) ℍ[F,algebraMap (𝓞 F) F a,algebraMap (𝓞 F) F b]}
 
-/-- **The mass constant of a presented maximal order**: $\Lambda_{\mathcal O} = \frac{\rho_F}2\,c_{\mathcal O}/K$,
-$c_{\mathcal O}$ the lattice constant of
-$\mathcal O =\bigoplus_i\mathfrak a_if_i$ with the Gram matrix of $\operatorname{nrd}$ in $f$, $K$ =
-`epsteinConst F 4 0`. -/
+/-- **The mass constant of a presented maximal order**: $\Lambda_{\mathcal O} = \frac{\rho_F}2\,c_{\mathcal O}/K$, $c_{\mathcal O}$ the lattice constant of
+$\mathcal O = \bigoplus_i\mathfrak a_if_i$ with the Gram matrix of $\operatorname{nrd}$ in $f$, $K$ = `epsteinConst F 4 0`. -/
 def massConstNF (f : Fin 4 → QuatF F a b) (𝔞 : Fin 4 → FracIdeal F) : ℝ :=
   dedekindZeta_residue F / 2 * latConst (gramMat f) 𝔞 / epsteinConst F 4 0
 

@@ -5,10 +5,10 @@
 lattices and the action $g \cdot M = gM$ of $\mathrm{GL}_n(F_\mathfrak p)$ (`Lattices/Genus.lean`, `Lattices/Local.lean`).
 
 **Proves** the elementary topological facts used in O'Meara's proof of the strong approximation theorem for rotations
-(O'Meara 1973, §104, pp. 311–319, and Example 101:4, pp. 288–289), stated with neighbourhoods so that no adelic topology is needed:
+(O'Meara 1973, §104 and Example 101:4 [unverified]), stated with neighbourhoods so that no adelic topology is needed:
 * `exists_ball_of_mem_nhds`, `ball_add_mem_nhds`: the balls $x + \mathfrak p^k\mathfrak o_\mathfrak p^n$ (`ball v k`) form a
   neighbourhood basis of $x \in F_\mathfrak p^n$;
-* `exists_mem_nhds_locAct_eq` (Example 101:4 (ii), (iii)): **lattice stabilizers are open** — every $\sigma \in \mathrm{GL}_n(F_\mathfrak p)$
+* `exists_mem_nhds_locAct_eq` (Example 101:4): **lattice stabilizers are open** — every $\sigma \in \mathrm{GL}_n(F_\mathfrak p)$
   close enough to $h$ has $\sigma M = hM$;
 * `exists_vec_approx`: **strong approximation for $F^n$** — given neighbourhoods $U_\mathfrak p$ at finitely many $\mathfrak p \in T$
   there is $y \in F^n$ in every $U_\mathfrak p$ and integral at every $\mathfrak p \notin T$
@@ -114,9 +114,8 @@ theorem continuousAt_matrix_inv' {A : Matrix (Fin n) (Fin n) Fv} (hA : A.det ≠
   rw [Ring.inverse_eq_inv']
   exact continuousAt_inv₀ hA
 
-/-- **Lattice stabilizers are open** (O'Meara 1973, Example 101:4 (ii) and (iii), p. 289, for $\sigma \in \mathrm{GL}_n$; part (i), p. 288, is `mem_stdStab_iff_matNorm_le_one`): for $h \in \mathrm{GL}_n(F_\mathfrak p)$ and a
+/-- **Lattice stabilizers are open** (O'Meara 1973, Example 101:4 [unverified]): for $h \in \mathrm{GL}_n(F_\mathfrak p)$ and a
 lattice $M \subseteq F_\mathfrak p^n$, every $\sigma \in \mathrm{GL}_n(F_\mathfrak p)$ in a neighbourhood of $h$ has $\sigma M = hM$. -/
-@[kb "omeara1963" "§101A, 101:4 (ii), p. 289 (the stabilizer of a lattice is open)"]
 theorem exists_mem_nhds_locAct_eq (h : GL (Fin n) Fv) {M : Submodule 𝔬 (Fin n → Fv)} (hM : M.IsLattice Fv) :
     ∃ U ∈ 𝓝 (h : Matrix (Fin n) (Fin n) Fv), ∀ σ : GL (Fin n) Fv,
       (σ : Matrix (Fin n) (Fin n) Fv) ∈ U → locAct v σ M = locAct v h M := by

@@ -40,7 +40,7 @@ namespace QuadFormsKB.Tamagawa
 $$\mathrm{mass}_H(X) = \sum_{\omega \in H\backslash X} \frac{1}{|\mathrm{Stab}_H(x_\omega)|},$$
 a `finsum` over the orbit space `orbitRel.Quotient H X`, with $x_\omega$ = `ω.out` (any point of $\omega$:
 `card_stabilizer_of_mem_orbit`). Infinite stabilizers contribute $0$ (`Nat.card` of an infinite type is $0$),
-and the sum (`finsum`) is $0$ if infinitely many orbits contribute; the theorems below assume finitely many orbits and
+and the `finsum` is $0$ if infinitely many orbits contribute; the theorems below assume finitely many orbits and
 finite stabilizers. For $X$ the genus of a lattice and $H = O(V)(F)$ this is the mass of the genus
 (`Tamagawa.mass_eq_orbitMass`). -/
 @[kb "weil1982" "§2.4, p. 23 (τ = volume of the quotient); Lemma 2.4.2, p. 26 (unfolding over a discrete group, discrete version)"]

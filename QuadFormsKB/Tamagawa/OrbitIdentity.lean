@@ -13,9 +13,8 @@ $\tau(G) = \tau(G')$; Weil's proof runs the other way: the orbit identity (from 
 additive calculation, whose comparison with the multiplicative one gives $\tau(G) = 2$.
 
 **Proved here: the split case** (`two_mul_tamagawaK_mul_repMass_split`). For $Q_0 = \langle m\rangle\perp Q_0'$ and $t = m$ the identity
-follows from the global reduction (`repMass_eq_mass_mul`: $\sum_Mr_M(m)/|O(M)| = \mathrm{Mass}(L')\cdot W$), the
-definition of the stabilizer's Tamagawa number
-($\tau(SO(Q_0')) = \mu(K'_{SO})\cdot2\,\mathrm{Mass}(L')$) and the local orbital identity
+follows from the global reduction (`repMass_eq_mass_mul`: $\sum_Mr_M(m)/|O(M)| = \mathrm{Mass}(L')\cdot W$), the definition of the
+stabilizer's Tamagawa number ($\tau(SO(Q_0')) = \mu(K'_{SO})\cdot2\,\mathrm{Mass}(L')$) and the local orbital identity
 ($W\mu(K_{SO}) = S(L,m)\,\mu(K'_{SO})$), with the local identity at $\mathfrak p \mid 2m$ as the named input
 `LocalOrbitalIdentityAt` and the mass formula in rank $n$ (the induction hypothesis) for the convergence of $\prod\alpha_\mathfrak p(L')$.
 The general case (any lattice $\mathfrak b^{-1}L$ and any $t = \rho b^2$) needs the same three steps for non-split lattices.

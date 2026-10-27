@@ -12,8 +12,8 @@ $\operatorname{rad} b = \{v : b(v, \cdot) = 0\}$ (`LinearMap.ker (polarBilin Q)`
 formulas, so no complements or gluing are needed):
 
 * `QuadraticForm.Witt.reflection` (for $Q(z) \neq 0$): $\tau_z(v) = v - \dfrac{b(z, v)}{Q(z)}\, z$.
-  In characteristic $2$ this is the "orthogonal transvection" (O'Meara, §42E, p. 96, calls $\tau_z$ a
-  symmetry; he works in characteristic $\ne 2$ throughout, §41A, p. 82).
+  In characteristic $2$ this is the "orthogonal transvection" (O'Meara 43:3 calls the maps
+  $\tau_z$ symmetries in every characteristic).
 * `QuadraticForm.Witt.eichler` (for $z$ isotropic and $b(z, u) = 0$): the Eichler (Siegel)
   transformation $E_{z,u}(v) = v + b(z, v)\, u - \big(b(u, v) + Q(u)\, b(z, v)\big)\, z$.
 * `QuadraticForm.Witt.hypScale` (for a hyperbolic pair $z, z'$, i.e. $Q(z) = Q(z') = 0$,
@@ -30,7 +30,7 @@ formulas, so no complements or gluing are needed):
   $u \perp U$ has $b(u, x) \neq 0$ (the bilinear "double orthogonal" statement
   $(U^\perp)^\perp = U + \operatorname{rad} b$, in the form it is used).
 
-Sources: O'Meara §§42–43, pp. 88–111; Elman–Karpenko–Merkurjev (EKM) §7–8; Lam Ch. I §4.
+Sources: O'Meara §42–43; Elman–Karpenko–Merkurjev (EKM) §7–8; Lam Ch. I §4.
 -/
 import Mathlib
 import QuadFormsKB.Citation
@@ -176,7 +176,6 @@ theorem hypScale_map_app {z z' : V} {c : K} (hc : c ≠ 0) (hz : Q z = 0) (hz' :
 /-- **Separation by the polar form.** If $V$ is finite-dimensional and
 $x \notin U + \operatorname{rad} b$, then there is $u \in V$ with $b(u, w) = 0$ for all $w \in U$
 and $b(u, x) \neq 0$. (Equivalently $(U^\perp)^\perp \subseteq U + \operatorname{rad} b$.) -/
-@[kb "cassels1978" "Ch. 2, Lemma 1.1, p. 11"]
 theorem exists_polar_ne_zero [FiniteDimensional K V] {U : Submodule K V} {x : V}
     (hx : x ∉ U ⊔ LinearMap.ker (polarBilin Q)) :
     ∃ u, (∀ w ∈ U, polar Q u w = 0) ∧ polar Q u x ≠ 0 := by
@@ -200,7 +199,6 @@ theorem exists_polar_ne_zero [FiniteDimensional K V] {U : Submodule K V} {x : V}
 
 /-- **Hyperbolic partner.** If $Q(z) = 0$ and $b(u, z) = 1$, then $z' = u - Q(u)\, z$ satisfies
 $Q(z') = 0$ and $b(z, z') = 1$: $(z, z')$ is a hyperbolic pair. -/
-@[kb "cassels1978" "Ch. 2, Lemma 2.1, p. 15"]
 theorem hyperbolic_partner {z u : V} (hz : Q z = 0) (hu : polar Q u z = 1) :
     Q (u - Q u • z) = 0 ∧ polar Q z (u - Q u • z) = 1 := by
   constructor

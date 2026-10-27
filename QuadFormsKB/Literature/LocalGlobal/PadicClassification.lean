@@ -37,9 +37,8 @@ rational coefficients (`Prescribed.exists_rat_sq_class`) and `RankFive`.
 * Classification "⇐": induction on $n$, splitting off $a_0$ from both forms (Serre's proof).
 
 Sources: Serre, *A Course in Arithmetic*, Ch. IV §2.1–2.3; Cassels, *Rational Quadratic Forms*,
-Ch. 4, Thm. 1.1, p. 55 (classification over $\mathbb{Q}_p$ by $n$, $d$, $c$), Thm. 1.2, p. 56 (over $\mathbb{R}$), Lemma 2.2,
-p. 57, and Cor. 1, p. 58 (invariance of $c = \prod_{i<j}(a_i,a_j)$, Serre's $\varepsilon$); Lam, *Introduction to Quadratic Forms
-over Fields*, Ch. V §3 (Lam locators [unverified]).
+Ch. 4; Lam, *Introduction to Quadratic Forms over Fields*, Ch. V §3 (Lam and Cassels locators
+[unverified]).
 -/
 import QuadFormsKB.Witt.Represents
 
@@ -225,7 +224,6 @@ include hK
 
 /-- **Thm. 6, rank 2** (Serre IV §2.2): for $a_0, a_1, x \in K^\times$,
 $\langle a_0, a_1 \rangle$ represents $x$ iff $(x, -a_0 a_1) = (a_0, a_1)$. -/
-@[kb "omeara1963" "§63C, 63:21, p. 170 (U a line); §63C, 63:15 (ii), p. 168; cassels1978 Ch. 4, Lemma 2.1 and Cor. 2 to Lemma 2.2, pp. 56–58"]
 theorem represents_two_iff {a₀ a₁ : K} (h₀ : a₀ ≠ 0) (h₁ : a₁ ≠ 0) {x : K} (hx : x ≠ 0) :
     (diag ![a₀, a₁]).RepresentsIn K x ↔
       hilbertSymbol K x (-(a₀ * a₁)) = hilbertSymbol K a₀ a₁ := by
@@ -272,7 +270,6 @@ variable {K : Type*} [Field K] [CharZero K] {n : ℕ}
 /-- A quaternary diagonal form $\langle g_0, g_1, g_2, g_3 \rangle$ is isotropic iff
 $\langle g_0, g_1 \rangle$ and $\langle -g_2, -g_3 \rangle$ represent a common $x \ne 0$
 (Serre IV §2.2, proof of Thm. 6). -/
-@[kb "cassels1978" "Ch. 4, Lemma 2.6, p. 59"]
 theorem isotropic_four_iff_common {g₀ g₁ g₂ g₃ : K} (h₀ : g₀ ≠ 0) (h₁ : g₁ ≠ 0) (h₂ : g₂ ≠ 0)
     (h₃ : g₃ ≠ 0) :
     (diag ![g₀, g₁, g₂, g₃]).IsotropicIn K ↔
@@ -331,7 +328,6 @@ theorem hs_neg_a2_neg_d {a₀ a₁ a₂ : K} (h₀ : a₀ ≠ 0) (h₁ : a₁ �
 /-- **Thm. 6, rank 3** (Serre IV §2.2): for $a_0, a_1, a_2, x \in K^\times$ with $d = a_0 a_1 a_2$ and
 $\varepsilon = (a_0,a_1)(a_0,a_2)(a_1,a_2)$, $\langle a_0, a_1, a_2 \rangle$ represents $x$ iff
 $x \not\equiv -d$ modulo squares, or $(-1,-d) = \varepsilon$. -/
-@[kb "omeara1963" "§63C, 63:21, p. 170 (U a line); cassels1978 Ch. 4, Lemma 2.5, p. 59"]
 theorem represents_three_iff {a₀ a₁ a₂ : K} (h₀ : a₀ ≠ 0) (h₁ : a₁ ≠ 0) (h₂ : a₂ ≠ 0) {x : K}
     (hx : x ≠ 0) :
     (diag ![a₀, a₁, a₂]).RepresentsIn K x ↔
@@ -386,7 +382,6 @@ theorem represents_three_iff {a₀ a₁ a₂ : K} (h₀ : a₀ ≠ 0) (h₁ : a�
 
 /-- **Thm. 6, rank $\ge 4$**: a nondegenerate diagonal form of rank $\ge 4$ represents every
 element. -/
-@[kb "omeara1963" "§63C, 63:18, p. 170 (regular quaternary spaces are universal)"]
 theorem represents_of_four_le {a : Fin n → K} (ha : ∀ i, a i ≠ 0) (hn : 4 ≤ n) (x : K) :
     (diag a).RepresentsIn K x := by
   rcases eq_or_ne x 0 with rfl | hx
@@ -522,7 +517,6 @@ theorem hs_prod_right {x : K} (hx : x ≠ 0) {v : Fin n → K} (hv : ∀ i, v i 
     rw [Fin.prod_univ_succ, Fin.prod_univ_succ, ih (fun i => hv i.succ),
       hK.mul_right hx (hv 0) (Finset.prod_ne_zero_iff.mpr fun i _ => hv i.succ)]
 
-@[kb "omeara1963" "§63B, p. 167 (S(U ⊥ W) = S(U) (dU, dW) S(W), U a line); cassels1978 Ch. 4, Lemma 2.3, p. 58 (one summand a line)"]
 theorem hasseVec_cons {x : K} (hx : x ≠ 0) {v : Fin n → K} (hv : ∀ i, v i ≠ 0) :
     hasseVec (Fin.cons x v : Fin (n + 1) → K) = hilbertSymbol K x (∏ j, v j) * hasseVec v := by
   rw [hasseVec_cons_prod, hs_prod_right hK hx hv]
@@ -563,14 +557,12 @@ theorem pm_eq_of_iff {c u v : ℤ} (hc : c = 1 ∨ c = -1) (hu : u = 1 ∨ u = -
 variable (hK : LocalHilbertField K)
 include hK
 
-@[kb "omeara1963" "§63C, 63:19, p. 170"]
 theorem isotropic_of_five_le {v : Fin n → K} (hv : ∀ i, v i ≠ 0) (hn : 5 ≤ n) :
     (diag v).IsotropicIn K :=
   FieldGen.isotropicIn_diag_of_prefix K 5 hn v (hK.isotropic_five _ fun _ => hv _)
 
 /-- Two nondegenerate diagonal forms of rank $\ge 3$ represent a common $c \ne 0$ (their orthogonal
 difference has rank $\ge 6$, hence is isotropic). -/
-@[kb "cassels1978" "Ch. 4, proof of Thm. 1.1, p. 61"]
 theorem exists_common_value {a b : Fin n → K} (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0)
     (hn : 3 ≤ n) :
     ∃ c : K, c ≠ 0 ∧ (diag a).RepresentsIn K c ∧ (diag b).RepresentsIn K c := by
@@ -603,7 +595,7 @@ theorem exists_common_value {a b : Fin n → K} (ha : ∀ i, a i ≠ 0) (hb : �
       exact ⟨b ⟨0, by omega⟩, hb _, representsIn_of_isotropic ha hiso _, represents_coeff b _⟩
   · exact ⟨_, ht, (representsIn_diag_iff _ _).mpr ⟨x, rfl⟩, (representsIn_diag_iff _ _).mpr ⟨y, hb'⟩⟩
 
-/-- **Invariance of the Hasse invariant** (Serre IV §2.1; Cassels Ch. 4, Lemma 2.2, p. 57, and Cor. 1, p. 58, there over $\mathbb{Q}_p$; Lam V.3 [unverified]):
+/-- **Invariance of the Hasse invariant** (Serre IV §2.1; Cassels Ch. 4; Lam V.3 [unverified]):
 isometric nondegenerate diagonal forms over $K$ have the same Hasse invariant.
 
 *Proof.* Rank $\le 1$: both are $1$. Rank $2$ and $3$: Thm. 6 expresses the set of represented
@@ -612,7 +604,6 @@ $f = \langle a_0 \rangle \perp f'$, $g = \langle b_0 \rangle \perp g'$, pick $c$
 and $g'$ (`exists_common_value`), split $f' \cong \langle c \rangle \perp \alpha$,
 $g' \cong \langle c \rangle \perp \beta$, and cancel $\langle c \rangle$ in
 $\langle c, a_0 \rangle \perp \alpha \cong \langle c, b_0 \rangle \perp \beta$; induct. -/
-@[kb "omeara1963" "§63B, p. 167 (independent of the splitting)"]
 theorem hasseVec_eq_of_isometric : ∀ (n : ℕ) (a b : Fin n → K), (∀ i, a i ≠ 0) → (∀ i, b i ≠ 0) →
     (diag a).IsometricIn K (diag b) → hasseVec a = hasseVec b
   | 0, a, b, _, _, _ => by simp [hasseVec]
@@ -710,7 +701,6 @@ theorem hasseVec_eq_of_isometric : ∀ (n : ℕ) (a b : Fin n → K), (∀ i, a 
 /-- **The represented values depend only on $(n, d, \varepsilon)$** (Serre IV §2.2, Thm. 6, for
 $n \ge 2$): if two nondegenerate diagonal forms of the same rank $n \ge 2$ have discriminants in the
 same square class and equal Hasse invariants, they represent the same nonzero elements. -/
-@[kb "omeara1963" "§63C, 63:21, p. 170 (U a line)"]
 theorem represents_of_invariants {a b : Fin n → K} (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0)
     (hn : 2 ≤ n) (hd : ∃ t : K, t ≠ 0 ∧ ∏ i, b i = t ^ 2 * ∏ i, a i)
     (hε : hasseVec a = hasseVec b) {x : K} (hx : x ≠ 0) (hr : (diag a).RepresentsIn K x) :
@@ -744,7 +734,6 @@ isometric over $K$.
 *Proof.* Induction on $n$. For $n \ge 2$, $g$ represents $a_0$ (`represents_of_invariants`), so
 $g \cong \langle a_0 \rangle \perp \beta$; the invariants of $\langle a_1, \dots, a_{n-1} \rangle$
 and $\beta$ agree (using `hasseVec_eq_of_isometric`), and induction applies. -/
-@[kb "omeara1963" "§63C, 63:20, p. 170; cassels1978 Ch. 4, proof of Thm. 1.1, p. 61"]
 theorem isometric_of_invariants : ∀ (n : ℕ) (a b : Fin n → K), (∀ i, a i ≠ 0) →
     (∀ i, b i ≠ 0) → (∃ t : K, t ≠ 0 ∧ ∏ i, b i = t ^ 2 * ∏ i, a i) →
     hasseVec a = hasseVec b → (diag a).IsometricIn K (diag b)
@@ -791,7 +780,6 @@ theorem isometric_of_invariants : ∀ (n : ℕ) (a b : Fin n → K), (∀ i, a i
 
 /-- **Classification of nondegenerate diagonal forms over $K$** (Serre IV §2.3, Thm. 7, over an
 abstract field satisfying `LocalHilbertField`). -/
-@[kb "omeara1963" "§63C, 63:20, p. 170; cassels1978 Ch. 4, Thm. 1.1, p. 55"]
 theorem isometric_iff_invariants {a b : Fin n → K} (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) :
     (diag a).IsometricIn K (diag b) ↔
       (∃ t : K, t ≠ 0 ∧ ∏ i, b i = t ^ 2 * ∏ i, a i) ∧ hasseVec a = hasseVec b :=
@@ -845,7 +833,6 @@ theorem exists_unit_toZMod (r : ZMod p) (hr : r ≠ 0) :
 /-- **Nondegeneracy of the Hilbert symbol over $\mathbb{Q}_p$** (Serre III §1.2, Thm. 2, from the
 explicit formulas): if $a \in \mathbb{Q}_p^\times$ is not a square, then $(a, x)_p = -1$ for some
 $x \in \mathbb{Q}_p^\times$. -/
-@[kb "omeara1963" "§63B, 63:13, p. 166"]
 theorem padic_exists_neg_one (a : ℚ_[p]) (ha : a ≠ 0) (hns : ¬ IsSquare a) :
     ∃ x : ℚ_[p], x ≠ 0 ∧ hilbertSymbol ℚ_[p] a x = -1 := by
   obtain ⟨c, r, u, hc, hr, rfl⟩ := padic_decomp p a ha
@@ -921,7 +908,6 @@ theorem padic_exists_neg_one (a : ℚ_[p]) (ha : a ≠ 0) (hns : ¬ IsSquare a) 
 
 /-- Every nondegenerate diagonal form of rank $5$ over $\mathbb{Q}_p$ is isotropic (reduced to
 rational coefficients by `Prescribed.exists_rat_sq_class`, then `RankFive`). -/
-@[kb "omeara1963" "§63C, 63:19, p. 170"]
 theorem padic_isotropic_five (a : Fin 5 → ℚ_[p]) (ha : ∀ i, a i ≠ 0) :
     (diag a).IsotropicIn ℚ_[p] := by
   choose q hq0 hsq using fun i => Prescribed.exists_rat_sq_class p (a i) (ha i)
@@ -991,7 +977,7 @@ variable {n : ℕ}
 
 /-- **Isometry invariance of the Hasse invariant over $\mathbb{Q}_p$** (Serre, *A Course in
 Arithmetic*, IV §2.1, "$\varepsilon$ is an invariant of $f$"; Cassels, *Rational Quadratic Forms*,
-Ch. 4, Lemma 2.2, p. 57, and Cor. 1, p. 58; Lam V.3 [unverified]): if the nondegenerate diagonal forms
+Ch. 4; Lam V.3 [unverified]): if the nondegenerate diagonal forms
 $\langle a_0, \dots, a_{n-1} \rangle$ and $\langle b_0, \dots, b_{n-1} \rangle$ ($a_i, b_i \in
 \mathbb{Q}^\times$) are isometric over $\mathbb{Q}_p$, then
 $$\prod_{0 \le i < j < n} (a_i, a_j)_p = \prod_{0 \le i < j < n} (b_i, b_j)_p.$$
@@ -1060,19 +1046,19 @@ theorem represents_padic_three_iff (p : ℕ) [Fact p.Prime] (a : Fin 3 → ℚ) 
 
 /-- **Thm. 6 over $\mathbb{Q}_p$, rank $\ge 4$** (Serre IV §2.2): a nondegenerate diagonal form of rank
 $n \ge 4$ over $\mathbb{Q}$ represents every element of $\mathbb{Q}$ over $\mathbb{Q}_p$. -/
-@[kb "serre1973" "Ch. IV, §2.2, Thm. 6; omeara1963 §63C, 63:18, p. 170 (regular quaternary spaces are universal)"]
+@[kb "serre1973" "Ch. IV, §2.2, Thm. 6"]
 theorem represents_padic_of_four_le (p : ℕ) [Fact p.Prime] (a : Fin n → ℚ) (ha : ∀ i, a i ≠ 0)
     (hn : 4 ≤ n) (x : ℚ) : (QuadForm.diag a).RepresentsIn ℚ_[p] x := by
   rw [representsIn_rat_iff]
   exact represents_of_four_le (localHilbertField_padic p) (cast_ne_zero p ha) hn _
 
 /-- **Classification of quadratic forms over $\mathbb{Q}_p$** (Serre IV §2.3, Thm. 7; Cassels Ch. 4,
-Thm. 1.1, p. 55; Lam V.3 [unverified]): nondegenerate diagonal forms $\langle a_0, \dots, a_{n-1} \rangle$ and
+Thm. 1.1 [unverified]; Lam V.3 [unverified]): nondegenerate diagonal forms $\langle a_0, \dots, a_{n-1} \rangle$ and
 $\langle b_0, \dots, b_{n-1} \rangle$ of the same rank, $a_i, b_i \in \mathbb{Q}^\times$, are
 isometric over $\mathbb{Q}_p$ iff $\prod_i a_i$ and $\prod_i b_i$ lie in the same square class of
 $\mathbb{Q}_p^\times$ and their Hasse invariants agree. (The same statement as
 `isometric_padic_iff`, proved here.) -/
-@[kb "serre1973" "Ch. IV, §2.3, Thm. 7; omeara1963 §63C, 63:20, p. 170; cassels1978 Ch. 4, Thm. 1.1, p. 55"]
+@[kb "serre1973" "Ch. IV, §2.3, Thm. 7"]
 theorem isometric_padic_iff_invariants (p : ℕ) [Fact p.Prime] (a b : Fin n → ℚ)
     (ha : ∀ i, a i ≠ 0) (hb : ∀ i, b i ≠ 0) :
     (QuadForm.diag a).IsometricIn ℚ_[p] (QuadForm.diag b) ↔

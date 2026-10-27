@@ -26,8 +26,8 @@ on p. 107: "$T(\rho)$ ... covers twice the subset ... $F(x) \in \rho k_v^{*2}$")
 * **`sphericalZeta Q Φ s`** $= Z(s) = \sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho)$ (**Weil's (2), p. 102**), the sum over the
   representatives `Quotient.out` of the classes of $F^\times$ modulo $F^{\times2}$ (Weil: "a full set of representatives").
 
-*Correction to the earlier docs (`ZetaResidue.lean`):* Weil's (2) is $Z(s) = \sum_\rho Z(s,\rho)$ **without** a factor
-$\frac12$ (checked in a 200 dpi scan, p. 102). With the factor $\frac12$ the residue would be $\frac12\rho_k\int\Phi$.
+*Remark:* Weil's (2) is $Z(s) = \sum_\rho Z(s,\rho)$ **without** a factor
+$\frac12$ (p. 102). With the factor $\frac12$ the residue would be $\frac12\rho_k\int\Phi$.
 
 The comparison theorem (Weil's (4)–(8), pp. 106–108) is in `SphericalResidue.lean`.
 -/

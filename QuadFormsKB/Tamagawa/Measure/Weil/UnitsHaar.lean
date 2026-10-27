@@ -2,6 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 
 /-!
 # The multiplicative Haar measure $|x|^{-1}dx$ on $R^\times$
+
 **Generic, Mathlib-only hypotheses (upstreamable).** Let $R$ be a locally compact topological ring (not necessarily commutative) whose
 unit group is open (`Units.val` an open embedding), $\nu$ a regular additive Haar measure on $R$, and
 $\Delta = $ `distribHaarChar R` the modulus of $R^\times$ acting on $R$ ($\nu(u\cdot E) = \Delta(u)\nu(E)$).

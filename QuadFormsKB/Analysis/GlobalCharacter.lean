@@ -17,8 +17,7 @@ $\psi_v = \psi_p \circ \operatorname{Tr}_{F_v/\mathbb{Q}_p}$ on $F_v$ (`psiV`), 
   $x \in \mathfrak d_v^{-1}$ (= `invDiffV v`, the conductor of $\psi_v$) for every $v$. This links the local
   $d_v$ (`diffExp`) to the global inverse different.
 
-Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2, pp. 308–310, and §4.1, Lemma 4.1.5, p. 331 (and the
-local differents in the proof of Thm. 4.1.3 (2), p. 331); Weil, *Basic Number
+Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2 and §4.1 (Lemma 4.1.5) [unverified]; Weil, *Basic Number
 Theory*, Ch. IV §2 and Ch. VIII §4 [unverified].
 -/
 
@@ -78,7 +77,7 @@ lemma phiQ_pFrac {p : ℕ} [hp : Fact p.Prime] {r : ℚ} (hr : IsPFrac p r) : ph
 
 /-- **The product formula for the standard character of $\mathbb{Q}$:** $e(r)\prod_p\psi_p(r) = 1$ for $r \in \mathbb{Q}$
 (only finitely many factors differ from $1$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, Lemma 4.1.5, p. 331 (the rational case in its proof)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, Lemma 4.1.5 [unverified]"]
 theorem fourierChar_mul_finprod_psiP (r : ℚ) :
     𝐞 (r : ℝ) * ∏ᶠ p : Nat.Primes, psiP (p := p) (r : ℚ_[p]) = 1 := by
   change phiQ r = 1
@@ -202,7 +201,7 @@ theorem finprod_psiV_eq (x : F) :
 $\psi_\infty(x)\prod_v\psi_v(x) = 1$, where $\psi_\infty(x) = e(\operatorname{Tr}_{F/\mathbb{Q}}x)$ and $v$ runs
 over the finite places (only finitely many factors differ from $1$). Equivalently
 $\prod_v \psi_v(x) = e(-\operatorname{Tr}_{F/\mathbb{Q}}x)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, Lemma 4.1.5, p. 331 (Λ(ξ) = 0 for ξ ∈ k)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, Lemma 4.1.5 [unverified]"]
 theorem fourierChar_trace_mul_finprod_psiV (x : F) :
     𝐞 ((Algebra.trace ℚ F x : ℚ) : ℝ) *
       ∏ᶠ v : HeightOneSpectrum (𝓞 F), psiV v (algebraMap F (v.adicCompletion F) x) = 1 := by
@@ -237,7 +236,7 @@ lemma exists_valued_le_exp {v : HeightOneSpectrum (𝓞 F)} (y : v.adicCompletio
 /-- **The inverse different, locally:** $x \in F$ lies in $\mathfrak d_{F/\mathbb{Q}}^{-1} =
 \{x : \operatorname{Tr}_{F/\mathbb{Q}}(x\mathcal O_F) \subseteq \mathbb{Z}\}$ iff $x \in \mathfrak d_v^{-1}$ = `invDiffV v` (i.e.
 $v(x) \le \exp(d_v)$, `mem_invDiffV_iff`) at every finite place $v$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, proof of Thm. 4.1.3 (2), p. 331 (the absolute different is the product of the local differents); Lemma 2.2.3, pp. 309–310"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 and §4.1 [unverified]"]
 theorem trace_int_iff_forall_mem_invDiffV (x : F) :
     (∀ a : 𝓞 F, ∃ m : ℤ, Algebra.trace ℚ F (x * a) = m) ↔
       ∀ v : HeightOneSpectrum (𝓞 F), algebraMap F (v.adicCompletion F) x ∈ invDiffV v := by

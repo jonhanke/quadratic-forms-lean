@@ -8,8 +8,8 @@ The complex analogue of `ConeRealOrbit.lean`. For $Q = \langle c\rangle\perp\lan
 
 * `ConeT Q`: the punctured cone $C^\circ = \{Q = 0\}\setminus 0 \subset \mathbb C^{k+2}$ with the action of $SO(Q)(\mathbb C)$;
 * `sigCone hc`: the Leray measure of the cone, the image of $|q|_{\mathbb C}^{k-1}d^2q \otimes \sigma'_{-c}$ under
-  $(q, y) \mapsto q(1, y)$ ($\sigma'_{-c}$ = the `sigC` for $\langle -c\rangle\perp Q'$);
-* `coneOrbitSection`: an explicit measurable section of $g \mapsto ge$ (the `OrbitSection`);
+  $(q, y) \mapsto q(1, y)$ ($\sigma'_{-c}$ = `sigC` for $\langle -c\rangle\perp Q'$);
+* `coneOrbitSection`: an explicit measurable section of $g \mapsto ge$ (`OrbitSection`);
 * `muP`: the Haar measure $d^2w\otimes\mu_{Q'}$ of $P = \mathrm{Stab}(e) = N \rtimes SO(Q')$ (`exists_pElem`),
   bi-invariant (`isMulLeftInvariant_muP`, `isMulRightInvariant_muP`: $P$ is unimodular);
 * **`lerayMeasureC_cone_orbital`**: $\mu_Q = |2c|_{\mathbb C}^{-2(k+1)}\cdot\Psi_*(\sigma_C \otimes \mu_P)$;
@@ -283,7 +283,7 @@ theorem measurable_smul_cone (g : ArchSOC (coneForm c Q')) :
     Measurable fun z : ConeT (coneForm c Q') => g • z :=
   ((continuous_smul_cone _).comp (continuous_const.prodMk continuous_id)).measurable
 
-/-- **An explicit measurable section** of $g \mapsto ge$, $SO(Q)(\mathbb R) \to C^\circ$, as the `OrbitSection`:
+/-- **An explicit measurable section** of $g \mapsto ge$, $SO(Q)(\mathbb R) \to C^\circ$, as `OrbitSection`:
 $s(z) = \iota(s'(z'/z_0))\,d(z_0)$ when $z_0 \ne 0$, else $g^{-1}s(gz)$ for the first $g \in \{d(2), n(\varepsilon_j)\}$
 with $(gz)_0 \ne 0$. (In particular $SO(Q)(\mathbb R)$ is transitive on $C^\circ$.) -/
 abbrev coneOrbitSection (s' : SphSectionC (-c) Q') : OrbitSection (ArchSOC (coneForm c Q')) (ConeT (coneForm c Q')) where

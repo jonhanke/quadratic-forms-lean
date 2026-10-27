@@ -2,7 +2,7 @@
 # $\tau(SO_1) = 1$: the bad-prime local densities in rank one
 
 **Layer:** DVR (a discrete valuation ring with finite residue field and $2 \ne 0$) and $\mathcal O_F$ at a finite prime
-$\mathfrak p$, dyadic included. Closes the one *Gap* recorded in `RankOneNF.lean`.
+$\mathfrak p$, dyadic included. Closes the one gap recorded in `RankOneNF.lean`.
 
 **Proves**
 * `DVR` level: for $Q = c\,x_0^2$ with $\pi^t \,\Vert\, 2$, $\pi^e \,\Vert\, c$,
@@ -349,7 +349,7 @@ theorem tamagawaK_rankOne_eq_one (Q₀ : QuadForm (𝓞 F) 1) (hQ : Q₀.Nondege
   field_simp
 
 /-- **$\tau(SO_1) = 1$** (`tauSO`, $Q_0 = \langle c\rangle$ over $\mathcal O_F$ totally positive, $L = \mathcal O_F$
-integral). Closes the rank-one gap. -/
+integral). -/
 @[kb "weil1982" "§3.7, τ(SO_1) = 1 [unverified]"]
 theorem tauSO_rankOne_eq_one (Q₀ : QuadForm (𝓞 F) 1) (hQ : Q₀.Nondegenerate)
     (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F)))

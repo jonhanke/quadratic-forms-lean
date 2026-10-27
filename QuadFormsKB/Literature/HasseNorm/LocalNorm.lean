@@ -235,7 +235,7 @@ $[E^\times : E^{\times 2}] = 4 N(w)^{\operatorname{ord}_w 2} \le 4 q^{2e}$ ($q^e
 $F_v^\times \cap E^{\times 2} = F_v^{\times 2} \cup a F_v^{\times 2}$, so
 $[N E^\times : F_v^{\times 2}] \le [E^\times : F_v^\times E^{\times 2}] \le 4q^{2e}/(2q^e) = 2q^e$, while
 $[F_v^\times : F_v^{\times 2}] = 4 q^e$ (`index_sq_completion`). -/
-@[kb "milne2020cft" "Ch. III §2 (local norm index, n = 2) [unverified]; omeara1963 §63B, 63:13a, p. 167"]
+@[kb "milne2020cft" "Ch. III §2 (local norm index, n = 2) [unverified]"]
 theorem two_le_index_norm (a : F) (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
     (w : HeightOneSpectrum (𝓞 L))

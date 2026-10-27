@@ -15,7 +15,7 @@ eventual number of solutions of $a x_0^2 \equiv m \bmod p^k$), and the Euler fac
 * `exists_eulerFactor_eq_zero`, `hasProd_eulerFactor_zero`: for $m \ne ak^2$ some $\beta_p(m) = 0$, so the product is $0$;
 * `siegel_rank_one_dichotomy`, `no_siegel_formula_rank_one` (the headline).
 
-*Update:* the statement "the product diverges when $am$ is a square" is true only when $m/a$ is the square
+*Note:* the claim "the product diverges when $am$ is a square" is true only when $m/a$ is the square
 of an **integer**. If $am$ is a square but $m/a \notin \mathbb Z^2$ (e.g. $a = 4$, $m = 1$), then $\beta_2(\langle 4\rangle, 1) = 0$
 and the product is $0$, matching $r(1) = 0$. The divergent case is exactly the represented case $r(m) = 2$.
 -/

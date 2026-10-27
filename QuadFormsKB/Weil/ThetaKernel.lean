@@ -22,7 +22,7 @@ $g_z = n(x)m(y^{1/2})$ at the infinite places ($x_w = \operatorname{Re}z_w$, $y_
 $$\theta(g_z, 1;\varphi) = \prod_{w}y_w^{n/4}\cdot\theta_Q(z),\qquad n = 2m,$$
 with $\theta_Q(z) = \sum_{x\in\mathcal O_F^n}e(\operatorname{Tr}(Q(x)z))$ the theta series of `HilbertModular/Theta.lean`.
 
-**Not done here**: $\mathrm{SL}_2(F)$-invariance of $\theta(\cdot, h)$ for $h_\infty \ne 1$
+**Not done here** (see `docs/weil-representation.md`): $\mathrm{SL}_2(F)$-invariance of $\theta(\cdot, h)$ for $h_\infty \ne 1$
 needs Poisson summation for non-factorizable archimedean components, and for $h_f \ne 1$ the linear extension of
 `thetaDist_omegaG` to sums of factorizable data; the multiplicativity $\omega_\infty(gg') = \omega_\infty(g)\omega_\infty(g')$
 needs the Weil identity for all Schwartz functions at the archimedean places.

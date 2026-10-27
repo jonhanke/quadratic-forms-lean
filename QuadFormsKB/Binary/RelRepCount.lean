@@ -13,8 +13,7 @@ $w_1 = \#\{u \in \mathcal O_E^\times : N(u) = 1\}$ ($= w_E$ in the CM case, `car
 **One lattice** (`repNumLat_ideal_eq`): for $\mathfrak A \ne 0$, $c \ne 0$, $\nu \ne 0$ (and $w_1 < \infty$),
 $$r_{(\mathfrak A, cN)}(\nu) = w_1\cdot\#\{\mathfrak B \subseteq \mathcal O_E : \mathfrak A\mathfrak B = (x)\ \text{for some } x \in \mathfrak A \text{ with } c\,N(x) = \nu\},$$
 since $x \mapsto \mathfrak B = x\mathfrak A^{-1}$ is $w_1$-to-$1$ (two generators of $(x)$ with the same norm differ by a unit of norm $1$).
-This is the analogue of `repNum_eq`
-($r_f(m) = w\cdot\#\{\mathfrak b : N\mathfrak b = m,\ [\mathfrak b] = [\mathfrak a_f]^{-1}\}$).
+This is the analogue of `repNum_eq` ($r_f(m) = w\cdot\#\{\mathfrak b : N\mathfrak b = m,\ [\mathfrak b] = [\mathfrak a_f]^{-1}\}$).
 
 **The class sum** (`sum_repNumLat_eq`, `sum_repNumLat_eq_sum_relChar`): fix a representative $\mathfrak A_C$ of every ideal class
 $C \in \mathrm{Cl}_E$ (`classRep`). For the classes with principal relative norm, $N_{E/F}\mathfrak A_C = (a_C)$, the normalized lattices on
@@ -22,8 +21,7 @@ $\mathfrak A_C$ are $(\mathfrak A_C, \tfrac{\eta}{a_C}N)$, $\eta \in \mathcal O_
 $\eta \in U_{E/F} := \mathcal O_F^\times/N_{E/F}(\mathcal O_E^\times)$ (`unitQuot`, finite: `finite_unitQuot`). For $\nu \in \mathcal O_F\setminus 0$:
 $$\sum_{C:\ N\mathfrak A_C\ \text{principal}}\ \sum_{\eta \in U_{E/F}} r_{(\mathfrak A_C,\ \frac{\eta}{a_C}N)}(\nu)
   = w_1\cdot\#\{\mathfrak B \subseteq \mathcal O_E : N_{E/F}\mathfrak B = (\nu)\} = w_1\sum_{\mathfrak d \mid (\nu)}\chi_{E/F}(\mathfrak d),$$
-the last equality by `relNormCount_eq_finprod`. Over $F = \mathbb Q$: $U_{E/\mathbb Q} = \{\pm 1\}$, and $\eta = -1$
-gives the negative
+the last equality by `relNormCount_eq_finprod`. Over $F = \mathbb Q$: $U_{E/\mathbb Q} = \{\pm 1\}$, and $\eta = -1$ gives the negative
 definite forms, which represent no $\nu > 0$; so this is `dirichlet_sum_repNum`, $\sum_{[f]^+}r_f(m) = w\sum_{d \mid m}\chi_D(d)$.
 
 The **unit factor** has two parts: $w_1 = w_E$ (roots of unity, the automorphisms) and the index $[\mathcal O_F^\times : N\mathcal O_E^\times]$
@@ -48,7 +46,7 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 /-- **The representation number of a lattice** $L \subseteq E$ with a quadratic form $Q$:
 $r_{(L, Q)}(\nu) = \#\{x \in L : Q(x) = \nu\}$ (`Nat.card`; $0$ if infinite). -/
-@[kb "omeara1963" "§82A, p. 220 (representations); Siegel (1935)"]
+@[kb "omeara1963" "§82 [unverified]; Siegel (1935)"]
 def repNumLat (Q : QuadraticForm F E) (L : Submodule (𝓞 F) E) (ν : F) : ℕ := Nat.card {x : L // Q x = ν}
 
 /-- The units of $\mathcal O_E$ of relative norm $1$. -/

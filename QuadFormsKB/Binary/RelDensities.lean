@@ -9,11 +9,10 @@ import QuadFormsKB.Siegel.NFGoodPrime
 Let $E/F$ be a quadratic extension of number fields, $\theta \in \mathcal O_E$ with $\sigma(\theta) = -\theta$ and $\delta = \theta^2 \in \mathcal O_F$.
 
 * **The splitting character by a residue symbol** (`relChar_eq_charNF`): at a prime $\mathfrak p \nmid 2\delta$ of $F$, $\mathfrak p$ is unramified
-  in $E$ and $\chi_{E/F}(\mathfrak p) = \left(\frac{\delta}{\mathfrak p}\right)$ (the `relChar`, defined by the splitting of $\mathfrak p$). Proof, from
-  the splitting law only: if $\mathfrak P \mid \mathfrak p$ has residue degree $1$ then
-  $\theta \equiv c \pmod{\mathfrak P}$ with $c \in \mathcal O_F$, so $\delta \equiv c^2$; conversely if
-  $\delta \equiv c^2$ and $\sigma(\mathfrak P) = \mathfrak P$ (inert or ramified), then $\theta \equiv \pm c$ and
-  applying $\sigma$ gives $2c \in \mathfrak P$, so $\delta \in \mathfrak p$.
+  in $E$ and $\chi_{E/F}(\mathfrak p) = \left(\frac{\delta}{\mathfrak p}\right)$ (`relChar`, defined by the splitting of $\mathfrak p$). Proof, from
+  The splitting law only: if $\mathfrak P \mid \mathfrak p$ has residue degree $1$ then $\theta \equiv c \pmod{\mathfrak P}$ with $c \in \mathcal O_F$, so
+  $\delta \equiv c^2$; conversely if $\delta \equiv c^2$ and $\sigma(\mathfrak P) = \mathfrak P$ (inert or ramified), then $\theta \equiv \pm c$ and applying $\sigma$
+  gives $2c \in \mathfrak P$, so $\delta \in \mathfrak p$.
 * **Binary densities at a non-dyadic unimodular prime** (`DVR.localDensity_binary_diag`): for a unit diagonal form $\langle a_0, a_1\rangle$ over a
   DVR with $\pi \nmid 2$ and $m = \pi^v u \ne 0$, $\beta_\pi(m) = (1 - \chi/q)\sum_{j=0}^{v}\chi^j$, $\chi = \left(\frac{-a_0a_1}{\pi}\right)$. Proof:
   Table 1 (`card_diag_mod_pi`) at $v \le 1$ and the Zero-type step of (5.7) (`localDensity_pow_sq_step`), which for $n = 2$ needs no
@@ -310,8 +309,7 @@ theorem sum_range_pow_of_sq_eq_one {χ : ℝ} (hχ : χ ^ 2 = 1) (e : ℕ) :
       push_cast; ring
 
 /-- **Binary densities at a non-dyadic unimodular prime:** for $\langle a_0, a_1\rangle$ with unit $a_i$, $\pi \nmid 2$, and
-$m = \pi^v u$ ($u$ a unit), $\beta_\pi(m) = (1 - \chi/q)\sum_{j=0}^{v}\chi^j$, $\chi = \left(\frac{-a_0a_1}{\pi}\right)$ (`binChi`). The DVR form of the
-`localDensity_good_binary`. -/
+$m = \pi^v u$ ($u$ a unit), $\beta_\pi(m) = (1 - \chi/q)\sum_{j=0}^{v}\chi^j$, $\chi = \left(\frac{-a_0a_1}{\pi}\right)$ (`binChi`). The DVR form of `localDensity_good_binary`. -/
 @[kb "hanke2004" "Table 1, p. 363; (5.7), p. 369 (n = 2)"]
 theorem localDensity_binary_diag {a : Fin 2 → R} {π : R} (hπ : Irreducible π) (h2 : ¬ π ∣ 2) (ha : ∀ i, ¬ π ∣ a i)
     (hQ : (QuadForm.diag a).Nondegenerate) (u : R) (hu : IsUnit u) (v : ℕ) :
@@ -416,8 +414,8 @@ theorem count_normalizedFactors_span_eq_ordNF (𝔭 : HeightOneSpectrum (𝓞 F)
 
 open Classical in
 /-- **The class sum by local densities, for $\nu$ prime to the bad primes** (Siegel's formula summed over all classes; the
-analogue over $F$ of `binaryEulerCorr_coprime` with the ramified factors summed out). For an $\mathcal O_F$-basis
-$b$ of $\mathcal O_E$ and $\nu \ne 0$ divisible only by good primes of $Q_b$ ($\mathfrak p \nmid 2\Delta_{E/F}(b)$):
+analogue over $F$ of `binaryEulerCorr_coprime` with the ramified factors summed out). For an $\mathcal O_F$-basis $b$ of $\mathcal O_E$ and
+$\nu \ne 0$ divisible only by good primes of $Q_b$ ($\mathfrak p \nmid 2\Delta_{E/F}(b)$):
 $$\sum_{C}\sum_{\eta \in U_{E/F}} r_{(\mathfrak A_C,\ c_{C,\eta}N)}(\nu) = w_1\prod_{\mathfrak p \mid \nu}\frac{\beta_\mathfrak p(Q_b, \nu)}{1 - \chi_{E/F}(\mathfrak p)N\mathfrak p^{-1}},$$
 $w_1 = \#\{u \in \mathcal O_E^\times : N(u) = 1\}$ ($= w_E$ in the CM case); the right side is the regularized-product convention
 (the finite product of $\beta_\mathfrak p/(1 - \chi(\mathfrak p)N\mathfrak p^{-1})$; the remaining factors are absorbed in $L(1,\chi_{E/F})^{-1}$). -/

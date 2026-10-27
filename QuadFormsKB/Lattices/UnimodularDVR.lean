@@ -2,11 +2,11 @@
 # Unimodular forms over a complete non-dyadic DVR: classification by the determinant
 
 **Layer:** $R$ a complete DVR (`IsAdicComplete (maximalIdeal R) R`) with uniformizer $\pi$, $\pi \nmid 2$, finite residue field
-$\mathbb F$. (In the application: $R = \mathfrak o_\mathfrak p$, the completion of $\mathcal O_F$ at a prime
-$\mathfrak p \nmid 2$, with the instance of `LocalDensity/NFBridge.lean`.)
+$\mathbb F$. (In the application: $R = \mathfrak o_\mathfrak p$, the completion of $\mathcal O_F$ at a prime $\mathfrak p \nmid 2$, with the instance of
+`LocalDensity/NFBridge.lean`.)
 
-**Proves** the classification of unimodular forms (O'Meara 1963, 92:1, p. 246, and 92:2, p. 247, there over a non-dyadic local field; Cassels, *Rational Quadratic Forms*, Ch. 8,
-Lemma 3.4, p. 115, and Thm. 3.1, Corollary, p. 116, there over $\mathbb{Z}_p$, $p \ne 2$): if $\pi \nmid \det H$ and $\det H' = u^2\det H$ for a unit $u$, then $Q \cong Q'$ over $R$
+**Proves** the classification of unimodular forms (O'Meara 1963, 92:2 [unverified]; Cassels, *Rational Quadratic Forms*, Ch. 8,
+Lemma 3.4 [unverified]): if $\pi \nmid \det H$ and $\det H' = u^2\det H$ for a unit $u$, then $Q \cong Q'$ over $R$
 (`isometricGL_of_unimodular_dvr`). This generalizes `Siegel.Kneser.isometricGL_of_unimodular` ($R = \mathbb Z_p$) with the
 same proof:
 * a unit whose residue is a nonzero square is a square (Hensel; `LocalDensity.DVR.isSquare_iff_quadraticChar_residue`);
@@ -183,10 +183,9 @@ theorem isometricGL_diag_normal_dvr {k : ℕ} (a : Fin (k + 1) → R) (ha : ∀ 
   rw [e] at hk
   exact hk
 
-/-- **Classification of unimodular forms over a complete non-dyadic DVR with finite residue field** (the ring of integers
-of a non-dyadic local field; O'Meara 1963, 92:1, p. 246, and 92:2, p. 247): if $\pi \nmid \det H$
+/-- **Classification of unimodular forms over a complete non-dyadic DVR** (O'Meara 1963, 92:2 [unverified]): if $\pi \nmid \det H$
 and $\det H' = u^2\det H$ for a unit $u$, then $Q \cong Q'$ over $R$ (`IsometricGL`). -/
-@[kb "omeara1963" "§92, 92:1, p. 246; cf. 92:2, p. 247; cassels1978 Ch. 8, Lemma 3.4 and Cor. to Thm. 3.1, pp. 115–116"]
+@[kb "omeara1963" "92:2 (unimodular lattices, non-dyadic, over a complete DVR) [unverified]"]
 theorem isometricGL_of_unimodular_dvr (Q Q' : QuadForm R n) (hQ : ¬ π ∣ Q.hessian.det) {u : R}
     (hu : IsUnit u) (hdet : Q'.hessian.det = u ^ 2 * Q.hessian.det) : IsometricGL Q Q' := by
   cases n with
@@ -224,11 +223,11 @@ theorem isometricGL_of_unimodular_dvr (Q Q' : QuadForm R n) (hQ : ¬ π ∣ Q.he
     rw [Function.update_idem, Function.update_self, ← hprod] at hsc
     exact e1.trans (n1.trans (hsc.trans (n2.symm.trans e2.symm)))
 
-/-- **Unimodular forms isometric over the fraction field are isometric over $R$** (complete non-dyadic DVR with finite residue field; O'Meara 1963, 92:2,
-p. 247): if $\pi \nmid \det H$, $\pi \nmid \det H'$ and $Q'(x) = Q(gx)$ on $K^n$ for some $g \in \mathrm{GL}_n(K)$, then $Q \cong Q'$ over $R$.
+/-- **Unimodular forms isometric over the fraction field are isometric over $R$** (complete non-dyadic DVR; O'Meara 1963, 92:2
+[unverified]): if $\pi \nmid \det H$, $\pi \nmid \det H'$ and $Q'(x) = Q(gx)$ on $K^n$ for some $g \in \mathrm{GL}_n(K)$, then $Q \cong Q'$ over $R$.
 *Proof:* $\det H' = (\det g)^2\det H$, so $(\det g)^2$ is a unit of $R$; $\det g$ is integral over $R$, hence in $R$ and a unit; apply
 `isometricGL_of_unimodular_dvr`. -/
-@[kb "omeara1963" "§92, 92:2, p. 247 (unimodular case)"]
+@[kb "omeara1963" "92:2 (unimodular lattices on the same space are isometric, non-dyadic) [unverified]"]
 theorem isometricGL_of_unimodular_of_isometricIn (K : Type*) [Field K] [Algebra R K] [IsFractionRing R K]
     (Q Q' : QuadForm R n) (hQ : ¬ π ∣ Q.hessian.det) (hQ' : ¬ π ∣ Q'.hessian.det) (g : GL (Fin n) K)
     (hg : ∀ x : Fin n → K, Q'.evalIn K x = Q.evalIn K (g.val *ᵥ x)) : IsometricGL Q Q' := by

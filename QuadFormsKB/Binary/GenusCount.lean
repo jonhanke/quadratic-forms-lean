@@ -21,8 +21,7 @@ the prime $q$, an integer $a$ in the residue class all of whose prime factors sp
 is itself a Dirichlet-type statement, so Dirichlet is the cleanest correct route here.
 
 Sources: Gauss, *Disq. Arith.* §§261, 287 (exactly half of the assignable characters occur); Cox, Theorem 3.15 and
-Theorem 6.1; Buell, Theorem 4.1; Cassels, *Rational Quadratic Forms*, Ch. 14, Lemma 3.4, p. 340 (the order of $\prod_p \mathcal G_p$), and Thm. 5.1,
-p. 343 (the image of the class group has index $2$; proved by counting ambiguous classes).
+Theorem 6.1; Buell, Theorem 4.1; Cassels, Ch. 14, Lemma 3.1-type counting.
 -/
 
 set_option linter.unusedSectionVars false
@@ -168,7 +167,7 @@ Choose $k$ with $\psi_p(k) = e_p$ for all $p \mid D$ (Chinese remainder theorem,
 $q > |D|$ with $q \equiv k$ (**Dirichlet**, `Nat.forall_exists_prime_gt_and_eq_mod`), and $b \equiv D \pmod 2$ with
 $b^2 \equiv D \pmod q$: possible as $\chi_D(q) = \prod_p \psi_p(q) = \prod_p e_p = 1$. Then
 $f = [q, b, (b^2 - D)/4q]$. -/
-@[kb "cox2013" "§6.A, Thm. 6.1 [unverified]; cassels1978 Ch. 14, Thm. 5.1, p. 343"]
+@[kb "cox2013" "§6.A, Thm. 6.1 [unverified]"]
 theorem exists_form_of_signs [IsQuadDisc D] (hD : D < 0) (e : ℕ → ℤ)
     (he : ∀ p ∈ D.natAbs.primeFactors, e p = 1 ∨ e p = -1)
     (hprod : ∏ p ∈ D.natAbs.primeFactors, e p = 1) :
@@ -313,7 +312,7 @@ noncomputable def generaVec [IsQuadDisc D] : Genera D → {e : D.natAbs.primeFac
 the genera of primitive positive definite forms of fundamental discriminant $D < 0$ onto
 $\{(e_p)_{p \mid D} \in \{\pm 1\}^t : \prod_p e_p = 1\}$. Injective by genus = local equivalence, onto by
 `exists_form_of_signs` (Dirichlet). -/
-@[kb "gauss1801" "§287 [unverified]; cassels1978 Ch. 14, Thm. 5.1, p. 343"]
+@[kb "gauss1801" "§287 [unverified]"]
 theorem generaVec_bijective [IsQuadDisc D] (hD : D < 0) : Function.Bijective (generaVec (D := D)) := by
   constructor
   · intro x y hxy

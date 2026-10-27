@@ -2,14 +2,13 @@
 # The Fourier coefficients of the weight-2 Eisenstein series of the genus
 
 **Setting.** $F$ totally real of degree $d \ge 2$, $\mathcal O = \mathcal O_F$, $\mathfrak N \ne 0$, $f$ with constant terms at every cusp
-(`HasCuspLimits f 2`) and the $\Gamma_0(\mathfrak N)$-law with a character $\chi$. The $E^{(2)}_f$ (`eisGen2`) is the finite combination
+(`HasCuspLimits f 2`) and the $\Gamma_0(\mathfrak N)$-law with a character $\chi$. The $E^{(2)}_f$ of `EisensteinGenus2.lean` (`eisGen2`) is the finite combination
 $\sum_C\sum_ra_r\,E_2(\cdot; \Phi_{C,\mathfrak d_r})$ of weight-2 series of the periodic weights $\Phi_{C,\mathfrak d}$ (`eisWt2`), with the
 Möbius coefficients $a_r = \sum_{S:\kappa(\mathfrak d_S) = r}(-1)^{|S|}N(\lambda_S)^{-2}$.
 
 **Main results.**
 * `eis2_eisWt2_sqf`: $E_2(\cdot; \Phi_{C,\mathfrak d_S}) = N(\lambda_S)^{-2}E_2(\cdot; \Phi_{C,\mathfrak d_{\kappa(\mathfrak d_S)}})$ (Hecke's limit $s \to 0^+$ of
-  the scaling, `heckeSeries_scaleWeight`), so $E^{(2)}_f = \sum_C\sum_S(-1)^{|S|}E_2(\cdot; \Phi_{C,\mathfrak d_S})$
-  coefficientwise.
+  the scaling `heckeSeries_scaleWeight`), so $E^{(2)}_f = \sum_C\sum_S(-1)^{|S|}E_2(\cdot; \Phi_{C,\mathfrak d_S})$ coefficientwise.
 * `summable_rowCo_moebius` (**absolute convergence**): for $\mu \in \mathfrak d^{-1}\setminus 0$ the row coefficients
   $(S, t) \mapsto \rho_{\Phi_{C,\mathfrak d_S}}(t, \mu)$ are absolutely summable: $|\rho| \le K\,|N(c)|^{-1}N(\mathfrak b\mathfrak d_S)^{-1}$, nonzero only
   if $(c) = \mathfrak b\mathfrak d_S\mathfrak e$ with $\mathfrak e \mid \mu\mathfrak N\mathfrak d$, so $|\rho| \le K'N(\mathfrak d_S)^{-2}N(\mathfrak e)^{-2}$.
@@ -640,7 +639,7 @@ theorem qCoeff_eisGen2' [Fintype (RayKeyT 𝔑)] (hd : 2 ≤ Fintype.card (Infin
   · rw [if_pos hS, if_pos hS, hscale S, hS]
   · rw [if_neg hS, if_neg hS, zero_mul]
 
-/-- **The Fourier coefficients of $E^{(2)}_f$** (the `eisGen2`): $a_\mu(E^{(2)}_f) = \sum_C\sum_tR_C(t, \mu)$ for
+/-- **The Fourier coefficients of $E^{(2)}_f$** (`eisGen2`): $a_\mu(E^{(2)}_f) = \sum_C\sum_tR_C(t, \mu)$ for
 $\mu = \mu_m \in \mathfrak d^{-1}\setminus 0$ ($d \ge 2$), each inner series absolutely convergent. -/
 @[kb "hecke1927" "Fourier coefficients of the weight-2 Eisenstein series with prescribed constant terms [unverified]"]
 theorem qCoeff_eisGen2 (hd : 2 ≤ Fintype.card (InfinitePlace F)) (h𝔑 : 𝔑 ≠ ⊥) (hf : HasCuspLimits f 2)
@@ -777,8 +776,7 @@ include hQ hn hlev h𝔑 hfree in
 /-- **The Fourier coefficients of the genus Eisenstein series in weight 2** ($n = 4$, $d \ge 2$, free genus): for
 $\mu = \mu_m \in \mathfrak d^{-1}\setminus 0$,
 $$a_\mu(E_Q) = C_Q\,c_{\mathcal O}\,\Lambda_2(\mu)\sum_{(C,t)}A_{C,t}(\mu),$$
-the **singular series grouped by rows** (`SingularNF.ssPart`), which converges absolutely when $\mu \gg 0$. This is the
-`eisQCoeff` formula with the singular series summed over denominators instead of over $F/\mathcal O$ (for $n = 4$ the latter does
+the **singular series grouped by rows** (`SingularNF.ssPart`), which converges absolutely when $\mu \gg 0$. This is `eisQCoeff` formula with the singular series summed over denominators instead of over $F/\mathcal O$ (for $n = 4$ the latter does
 not converge absolutely). -/
 @[kb "siegel1935" "Fourier coefficients of E_Q in weight 2 over F: grouped singular series (n = 4) [unverified]"]
 theorem qCoeff_eisQ2_eq (hd : 2 ≤ Fintype.card (InfinitePlace F)) {m : Fin (Module.finrank ℚ F) → ℤ}

@@ -1,5 +1,5 @@
 /-
-# Local densities over a DVR: The depth bounds of Lemma 3.4 and Remarks 3.4.1(c), 3.5.1, 3.6.1
+# Local densities over a DVR: the depth bounds of Lemma 3.4 and Remarks 3.4.1(c), 3.5.1, 3.6.1
 
 **Layer:** DVR ($R$ a discrete valuation ring with uniformizer $\pi$, finite residue field of size $q$, $2 \ne 0$,
 $e = \mathrm{ord}_\pi 2$; every prime of a number field, including ramified dyadic ones).
@@ -20,7 +20,7 @@ $e = \mathrm{ord}_\pi 2$; every prime of a number field, including ramified dyad
 * **Good-type depth**: Lemma 3.2 (`DVR.repCountGood_add`, level $2e + 1 \le k$; depth $k - (2e+1) \le k - 1$).
 
 and, as consequences, Remarks 3.4.1(c), 3.5.1 and 3.6.1 (p. 362) and the local constancy of $\beta_\pi$ used for the
-finiteness of $B_{\mathbb T}$ (p. 372). See the docstrings.
+finiteness of $B_{\mathbb T}$ (p. 372). See the docstrings and `docs/local-densities.md`.
 
 **Depends on** `DVRLevel.lean` (and through it `DVRDyadic.lean`, `DVRGeneral.lean`).
 -/
@@ -807,7 +807,7 @@ paper's $m \in \mathfrak s_\mathfrak p = \mathfrak p^{\mathrm{ord}_\mathfrak p N
 $\mathfrak p^{\mathrm{ord}_\mathfrak p(4N) - 1}$; the printed $\mathfrak s_\mathfrak p = \mathfrak p^{\mathrm{ord}_\mathfrak p N}$ is not proved here at dyadic
 $\mathfrak p$ (it would follow from uniform primitive stabilization from level $\mathrm{ord}_\mathfrak p N + 1$, which holds in all
 examples checked by brute force over $\mathbb{Z}_2$ but is not proved). For the stable ideal of p. 372 any ideal works; the
-global corollaries use $8\det H$. -/
+global corollaries use $8\det H$ (`docs/local-densities.md`). -/
 @[kb "hanke2004" "Remark 3.6.1, p. 362"]
 theorem isPStable_of_dvd (Q : QuadForm R n) (hQ : Q.Nondegenerate) (π : R) (hπ : Irreducible π)
     (h20 : (2 : R) ≠ 0) (e : ℕ) (he : π ^ e ∣ 2 ∧ ¬ π ^ (e + 1) ∣ 2) (S₀ : Finset (Fin n)) {m : R}

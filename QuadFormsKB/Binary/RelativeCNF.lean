@@ -27,14 +27,12 @@ $$\lim_{s \to 1^+}L(s,\chi_{K/K^+}) = \frac{(2\pi)^d\,h_K\,\sqrt{|d_{K^+}|}}{Q_K
 $L(1,\chi)$ over the odd characters is our $L(1,\chi_{K/K^+})$). Example: $K = \mathbb{Q}(i)$, $d = 1$, $Q = 1$, $w = 4$,
 $d_K = -4$ gives $L(1,\chi_{-4}) = 2\pi/(4\cdot 2) = \pi/4$.
 
-**The norm-one torus.** In the setting of Weil's Tamagawa numbers, the norm-one torus $T = R^1_{E/F}\mathbb{G}_m$
+**The norm-one torus.** In the W-track (Weil's Tamagawa numbers) the norm-one torus $T = R^1_{E/F}\mathbb{G}_m$
 (the special orthogonal group $\mathrm{SO}_2$ of the norm form of $E/F$) has Tamagawa number $\tau(T) = 2$ (Ono;
 Weil, *Adeles and Algebraic Groups*, §3.5 [unverified locator] for $\mathrm{SO}_2$). The value $L(1,\chi_{E/F}) = \rho_E/\rho_F$ proved here is
 exactly the convergence factor of the Tamagawa measure of $T$: $\operatorname{vol}(T(F)\backslash T(\mathbb A)^{(1)}) =
 \tau(T)$ is computed from $\rho_E/\rho_F$ and the class number $h_E/h_F$ of $T$, and the formula above is the statement
-$\tau(T) = 2$ after Ono's $\tau(T) = [H^1(F,\hat T)]/[\text{Ш}^1(F, T)]$ with $\hat T$ = the sign character. The
-lemmas `tendsto_relLR` and `relativeClassNumberFormula` are the inputs for this volume; only the link is documented
-here.
+$\tau(T) = 2$ after Ono's $\tau(T) = [H^1(F,\hat T)]/[\text{Ш}^1(F, T)]$ with $\hat T$ = the sign character. `tendsto_relLR` and `relativeClassNumberFormula` provide the analytic input; only the link is documented here.
 
 All results are unconditional (no cited inputs); the only hypotheses are the conditions "$F$ totally real", "$E$
 totally complex", "$[E:F] = 2$" (Mathlib classes / a `finrank` equation).

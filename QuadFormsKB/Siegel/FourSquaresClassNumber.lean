@@ -20,14 +20,8 @@ Consequences: `genusRepAvg_Q4'` and `siegelFormula_Q4'` (unconditional versions 
    = 2^n$ (`SameGenus.det_hessian_eq`) gives $\det A' = 1$, and $Q'$ is positive definite (`SameGenus.posDef`). By step 2,
    $g^{\mathsf T}A'g = I$, i.e. $Q'(g\vec{x}) = I_n(\vec{x})$.
 
-*Sources:* Hermite's bound: Cassels, *Rational Quadratic Forms*, Ch. 9, Lemma 3.2, p. 136 (with $s = 0$ its
-constant (3.10) is $\theta^n = (4/3)^{n(n-1)/2}$, the bound of step 1) and Cor. 1, p. 138; Ch. 5, (3.9), p. 73 (Hermite's
-constant). Step 2 is Cassels, Ch. 9, Lemma 3.2, Cor. 2, p. 138 (positive definite, $d(f) = 1$, $n \le 5$: $f \cong
-x_1^2 + \dots + x_n^2$), with the same proof (*correction:* the locator "Ch. 12, Lemma 1.1" cited earlier is the pair of
-inequalities satisfied by a Minkowski-reduced form, p. 255, not Hermite's bound); Conway–Sloane,
-*Sphere Packings, Lattices and Groups*, 3rd ed., Ch. 15 does **not** state Hermite's bound (checked 2026-10-21); the nearest is §10.1,
-pp. 396–397, the Minkowski reduction conditions (46)–(47) ($0 < a_{11} \le a_{22} \le \cdots$, $2|a_{st}| \le a_{ss}$ for $s < t$),
-which are the size-reduction inequalities of step 1. Unimodular lattices of small rank: Serre, *A Course in Arithmetic*, Ch. V, §2 [unverified];
+*Sources:* Hermite's bound: Cassels, *Rational Quadratic Forms*, Ch. 12, Lemma 1.1 [unverified]; Conway–Sloane, *SPLAG*,
+Ch. 15 [unverified]. Unimodular lattices of small rank: Serre, *A Course in Arithmetic*, Ch. V, §2 [unverified];
 Milnor–Husemoller, *Symmetric Bilinear Forms*, Ch. II [unverified]. (The true range of $I_n$ being alone in its genus
 is $n \le 7$; the constant here gives $n \le 5$.)
 -/
@@ -46,14 +40,13 @@ def tri : ℕ → ℕ
 /-- **Hermite's bound with the classical constant $4/3$.** Every positive definite integral symmetric
 $(m+1)\times(m+1)$ matrix $A$ (`IsPosDefInt`) is $\mathrm{GL}_{m+1}(\mathbb{Z})$-congruent to $B = g^{\mathsf T}Ag$ with
 $$3^{T_m}\,B_{00}^{\,m+1} \le 4^{T_m}\det A, \qquad T_m = \tfrac{m(m+1)}{2}\ (\texttt{tri}),$$
-i.e. $B_{00} \le (4/3)^{m/2}(\det A)^{1/(m+1)}$: Cassels, Ch. 9, Lemma 3.2 with $s = 0$, (3.10), p. 136 ($A$ is his
-$F = (f_{ij})$, $\det A = d(f)$). ($B_{00}$ is the minimum of $(g^{\mathsf T}Ag)_{00}$ over $\mathrm{GL}_{m+1}(\mathbb{Z})$.)
+i.e. $B_{00} \le (4/3)^{m/2}(\det A)^{1/(m+1)}$. ($B_{00}$ is the minimum of $(g^{\mathsf T}Ag)_{00}$ over $\mathrm{GL}_{m+1}(\mathbb{Z})$.)
 
 *Proof:* induction on $m$. Take $h = B_{00}$ minimal (`exists_min`), apply the induction hypothesis to the scaled Schur
 complement $S = S(B)$ of size $m$ (with $h^{m}\det A = h\det S$, `det_schur`), and size-reduce: after $B \mapsto
 g^{\mathsf T}Bg$, $g = \begin{pmatrix}1 & t^{\mathsf T}\\ 0 & u\end{pmatrix}$, one has $|2B_{01}| \le h \le B_{11}$ and
 $hB_{11} - B_{01}^2 = S'_{00}$, so $3h^2 \le 4S'_{00}$. -/
-@[kb "cassels1978" "Ch. 9, Lemma 3.2 (s = 0, (3.10)), p. 136, and Cor. 1, p. 138; Ch. 5, (3.9), p. 73; Ch. 12, §2, Thm. 2.1, proof (i), pp. 260–261 (integral matrices)"]
+@[kb "cassels1978" "Ch. 12, Lemma 1.1 (Hermite's bound) [unverified]"]
 theorem exists_hermite_bound : ∀ (m : ℕ) (A : Matrix (Fin (m + 1)) (Fin (m + 1)) ℤ), IsPosDefInt A →
     ∃ g : GL (Fin (m + 1)) ℤ, 3 ^ tri m * ((g.valᵀ * A * g.val) 0 0) ^ (m + 1) ≤ 4 ^ tri m * A.det
   | 0, A, _ => ⟨1, by simp [tri]⟩
@@ -159,7 +152,7 @@ inner product (classically true for $n \le 7$).
 $S$ is the Schur complement itself, $\det S = \det A = 1$ (`det_schur`) and $S$ is positive definite; by induction
 $u^{\mathsf T}Su = I$, and $g = \begin{pmatrix}1 & t^{\mathsf T}\\ 0 & u\end{pmatrix}$ with $t_j = -r^{\mathsf T}u_{\ast j}$ clears
 the first row and column. -/
-@[kb "serre1973" "Ch. V, §2 (unimodular lattices of small rank) [unverified]; omeara1963 §106D, 106:10, p. 330; cassels1978 Ch. 9, Lemma 3.2, Cor. 2, p. 138"]
+@[kb "serre1973" "Ch. V, §2 (unimodular lattices of small rank) [unverified]"]
 theorem unimodular_posDef_equiv_one : ∀ (n : ℕ), n ≤ 5 → ∀ (A : Matrix (Fin n) (Fin n) ℤ), IsPosDefInt A →
     A.det = 1 → ∃ g : GL (Fin n) ℤ, g.valᵀ * A * g.val = 1
   | 0, _, A, _, _ => ⟨1, Subsingleton.elim _ _⟩
@@ -268,7 +261,7 @@ theorem sameGenus_sumSq_intEquiv (hn : n ≤ 5) {Q' : QuadForm ℤ n} (h : SameG
 
 /-- **Class number one for $x_0^2 + \dots + x_{n-1}^2$, $n \le 5$:** the genus of $I_n$ contains exactly one
 $\mathrm{GL}_n(\mathbb{Z})$-class, `genusClasses (sumSq n)` $= \{[I_n]\}$. -/
-@[kb "serre1973" "Ch. V, §2 (unimodular lattices of small rank) [unverified]; cassels1978 Ch. 9, Lemma 3.2, Cor. 2, p. 138"]
+@[kb "serre1973" "Ch. V, §2 (unimodular lattices of small rank) [unverified]"]
 theorem genusClasses_sumSq (hn : n ≤ 5) : genusClasses (sumSq n) = {classOf (sumSq n)} := by
   ext c
   induction c using Quotient.inductionOn with

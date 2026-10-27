@@ -24,7 +24,7 @@ variable {n : ℕ}
 /-! ### Local results -/
 
 /-- A rational number is a square iff it is a square in `ℝ` and in every `ℚ_p`. -/
-@[kb "serre1973" "Ch. IV, §3.2; cassels1978 Ch. 6, Lemma 3.1, p. 78"]
+@[kb "serre1973" "Ch. IV, §3.2"]
 theorem isSquare_iff_everywhere (a : ℚ) :
     IsSquare a ↔ Everywhere fun K _ _ => IsSquare (algebraMap ℚ K a) := by
   constructor
@@ -82,7 +82,7 @@ theorem isSquare_iff_everywhere (a : ℚ) :
       exact ⟨r, by rw [hr]⟩
 
 /-- Over `ℚ_p`, every nondegenerate form in at least 5 variables is isotropic. -/
-@[kb "serre1973" "Ch. IV, §2.2, Thm. 6; omeara1963 §63C, 63:19, p. 170; cassels1978 Ch. 4, Lemma 2.7, p. 60"]
+@[kb "serre1973" "Ch. IV, §2.2, Thm. 6"]
 theorem isotropic_padic_of_five_le (p : ℕ) [Fact p.Prime] (Q : RatQF n) (hn : 5 ≤ n)
     (hQ : Q.Nondegenerate) : Q.IsotropicIn ℚ_[p] := by
   obtain ⟨a, ha, hiso⟩ := HM3.exists_isometric_diag Q hQ
@@ -111,7 +111,7 @@ theorem isometric_padic_iff (p : ℕ) [Fact p.Prime] (a b : Fin n → ℚ)
 
 /-- **Hasse–Minkowski**: a nondegenerate rational quadratic form is isotropic over ℚ iff it is
 isotropic over `ℝ` and over every `ℚ_p`. -/
-@[kb "serre1973" "Ch. IV, §3.2, Thm. 8; cassels1978 Ch. 6, Thm. 1.1, p. 75"]
+@[kb "serre1973" "Ch. IV, §3.2, Thm. 8"]
 theorem hasseMinkowski (Q : RatQF n) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn ℚ ↔ Everywhere fun K _ _ => Q.IsotropicIn K := by
   by_cases hn : 5 ≤ n
@@ -679,7 +679,7 @@ theorem hasseMinkowski (Q : RatQF n) (hQ : Q.Nondegenerate) :
           exact (key ℚ_[p]).mp hv
 
 /-- Hasse–Minkowski, `n = 2`: reduces to `-det` being a square, via `isSquare_iff_everywhere`. -/
-@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 2); cassels1978 Ch. 6, Lemma 3.1, p. 78"]
+@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 2)"]
 theorem hasseMinkowski_two (Q : RatQF 2) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn ℚ ↔ Everywhere fun K _ _ => Q.IsotropicIn K := by
   have gen : ∀ (K : Type) [Field K] [CharZero K], Q.IsotropicIn K ↔
@@ -798,7 +798,7 @@ theorem hasseMinkowski_two (Q : RatQF 2) (hQ : Q.Nondegenerate) :
     simpa using this
 
 /-- Hasse–Minkowski, `n = 3` (Legendre; uses Dirichlet's theorem on primes in progressions). -/
-@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 3); cassels1978 Ch. 6, Thm. 4.1, p. 80 (Legendre)"]
+@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 3)"]
 theorem hasseMinkowski_three (Q : RatQF 3) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn ℚ ↔ Everywhere fun K _ _ => Q.IsotropicIn K := by
   obtain ⟨a, ha, hiso⟩ := HM3.exists_isometric_diag Q hQ
@@ -850,7 +850,7 @@ theorem hasseMinkowski_three (Q : RatQF 3) (hQ : Q.Nondegenerate) :
     simpa using this
 
 /-- Hasse–Minkowski, `n = 4`. -/
-@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 4); cassels1978 Ch. 6, §5, p. 83"]
+@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n = 4)"]
 theorem hasseMinkowski_four (Q : RatQF 4) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn ℚ ↔ Everywhere fun K _ _ => Q.IsotropicIn K := by
   obtain ⟨a, ha, hiso⟩ := HM3.exists_isometric_diag Q hQ
@@ -879,7 +879,7 @@ theorem hasseMinkowski_four (Q : RatQF 4) (hQ : Q.Nondegenerate) :
       exact (key ℚ_[p]).mp hv
 
 /-- Hasse–Minkowski, `n ≥ 5` (by induction from `n = 4`). -/
-@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n ≥ 5); cassels1978 Ch. 6, §6, p. 84"]
+@[kb "serre1973" "Ch. IV, §3.2, Thm. 8 (n ≥ 5)"]
 theorem hasseMinkowski_five_le (Q : RatQF n) (hn : 5 ≤ n) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn ℚ ↔ Everywhere fun K _ _ => Q.IsotropicIn K := by
   have evdiag : ∀ (K : Type) [Field K] [CharZero K] {m : ℕ} (a : Fin m → ℚ) (x : Fin m → K), QuadForm.evalIn K (QuadForm.diag a) x = ∑ i, (a i : K) * x i ^ 2 := by
@@ -1281,7 +1281,7 @@ theorem RatPlace.Everywhere.mono {P P' : (K : Type) → [Field K] → [CharZero 
 *Proof* (Serre IV §3.2, Cor. 1). For $c \ne 0$, $Q$ represents $c$ over a field $K$ iff
 $Q \perp \langle -c \rangle$ is isotropic over $K$ (`QuadForm.representsIn_iff_isotropicIn_orthSum`);
 apply `hasseMinkowski` to $Q \perp \langle -c \rangle$. -/
-@[kb "serre1973" "Ch. IV, §3.2, Cor. 1; cassels1978 Ch. 6, Cor. 2 to Thm. 1.1, p. 76"]
+@[kb "serre1973" "Ch. IV, §3.2, Cor. 1"]
 theorem represents_iff_everywhere (Q : RatQF n) (hQ : Q.Nondegenerate) (c : ℚ) (hc : c ≠ 0) :
     Q.RepresentsIn ℚ c ↔ Everywhere fun K _ _ => Q.RepresentsIn K c := by
   have hc' : ∀ i, (![-c] : Fin 1 → ℚ) i ≠ 0 := fun i => by
@@ -1337,7 +1337,7 @@ over every completion.
 *Proof* (Serre IV §3.3, Thm. 9). Isometry over $\mathbb{Q}$ base-changes to every completion
 (`FieldGen.isometricIn_of_base`); the converse is `isometric_of_everywhere`, from
 `represents_iff_everywhere` and Witt cancellation over $\mathbb{R}$ and $\mathbb{Q}_p$. -/
-@[kb "serre1973" "Ch. IV, §3.3, Thm. 9; cassels1978 Ch. 6, Thm. 1.2, p. 76"]
+@[kb "serre1973" "Ch. IV, §3.3, Thm. 9"]
 theorem isometric_iff_everywhere (Q R : RatQF n) (hQ : Q.Nondegenerate) (hR : R.Nondegenerate) :
     Q.IsometricIn ℚ R ↔ Everywhere fun K _ _ => Q.IsometricIn K R := by
   refine ⟨fun h => ?_, isometric_of_everywhere Q R hQ hR⟩

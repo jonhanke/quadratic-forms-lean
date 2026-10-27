@@ -7,13 +7,12 @@ import QuadFormsKB.Tamagawa.SiegelLatRanks
 import QuadFormsKB.Tamagawa.SiegelRankOneGeneral
 
 /-!
-# G6: Siegel's formula in rank 1 for every genus
+# Siegel's formula in rank 1 for every genus
 
 **Layer:** $F$ totally real (any class number); $Q_0 = \langle c\rangle$ over $\mathcal O_F$ totally positive; $L = \mathfrak a e_0$ an
 **arbitrary** lattice in $F$ ($\mathfrak a$ any fractional ideal) with $c\,\mathfrak a^2 \subseteq \mathcal O_F$; $m \in \mathcal O_F$ totally positive.
 
-The product `siegelProduct` is degenerate in rank $1$; the correct statement carries Siegel's $\varepsilon = \tfrac12$ at
-every place
+`siegelProduct` is degenerate in rank $1$; the correct statement carries Siegel's $\varepsilon = \tfrac12$ at every place
 (`SiegelRankOne.siegelProductOne`). Its lattice version is
 $$\mathcal S_1(L, m) = \prod_\sigma\frac{\beta_\sigma(m)}2\prod_\mathfrak p\frac{\beta_\mathfrak p(L, m)}2$$
 (`siegelProductOneLat`, with the $\beta_\mathfrak p(L, m)$).

@@ -274,7 +274,7 @@ theorem hilbertSymbol_eq_one_iff_exists_nrd_eq_zero (h2 : (2 : K) ≠ 0) (ha : a
 $$(a,b)_K = -1 \iff \text{every nonzero } x \in (a,b)_K \text{ is a unit}.$$
 
 Source: Voight 2021, Thm. 5.4.4 [unverified]; Vignéras 1980, Ch. I, Cor. 1.? [unverified]. -/
-@[kb "voight2021" "§5.4 [unverified]; omeara1963 §63B, p. 166; §57, 57:9"]
+@[kb "voight2021" "§5.4 [unverified]"]
 theorem hilbertSymbol_eq_neg_one_iff_division (h2 : (2 : K) ≠ 0) (ha : a ≠ 0) (hb : b ≠ 0) :
     hilbertSymbol K a b = -1 ↔ ∀ x : ℍ[K,a,b], x ≠ 0 → IsUnit x := by
   have hpm : hilbertSymbol K a b = 1 ∨ hilbertSymbol K a b = -1 := by

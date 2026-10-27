@@ -27,9 +27,7 @@ Poisson summation over $\mathbb{Z}^n$ (vendored `poissonSummation_standard`) app
 $\langle T^{-1}y, m\rangle = \operatorname{Tr}_\infty\big(y\sum_j m_jb_j^\vee\big)$ for the trace-dual basis $b^\vee$
 (`inner_Tmap_symm`), whose $\mathbb{Z}$-span is $I^\vee$ (Mathlib's `traceDual_span_of_basis`).
 
-Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §4.1, Lemma 4.1.4, p. 330 (the volume $\sqrt{|d|}$, with the
-factor $2^{r_2}$ from the measure at complex places), and §4.2, Lemma 4.2.4, p. 333 (Tate's adelic Poisson formula,
-proved on $V$ mod $k$ rather than through lattices); Weil, *Basic Number Theory*, Ch. VII §2
+Sources: Tate's thesis, Cassels–Fröhlich Ch. XV §4.2 [unverified]; Weil, *Basic Number Theory*, Ch. VII §2
 [unverified]; Neukirch, *Algebraic Number Theory*, Ch. I §5 (Minkowski theory) [unverified].
 -/
 
@@ -104,20 +102,18 @@ lemma traceInf_neg (y : V) : traceInf (-y) = -traceInf y := by
   rwa [neg_one_smul, neg_one_mul] at this
 
 /-- **The standard character at infinity:** $\psi_\infty(y) = e(\operatorname{Tr}_\infty y)$, i.e. $e(y_w)$ at a real
-place and $e(2\operatorname{Re} y_w) = e(\operatorname{Tr}_{\mathbb{C}/\mathbb{R}} y_w)$ at a complex place. This is
-$e^{-2\pi i\lambda(y)}$ for Tate's $\lambda$ ($-x$ at a real place, $-2\operatorname{Re}\xi$ at a complex place;
-Cassels–Fröhlich Ch. XV, pp. 309 and 318), the complex conjugate of Tate's character; the Fourier transforms agree. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 309 (Case 1: λ(x) = −x) and §2.5, p. 318 (complex place: λ(ξ) = −2 Re ξ)"]
+place and $e(2\operatorname{Re} y_w) = e(\operatorname{Tr}_{\mathbb{C}/\mathbb{R}} y_w)$ at a complex place. -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (the character at real and complex places) [unverified]"]
 def psiInf (y : V) : Circle := 𝐞 (traceInf y)
 
 /-- **The self-dual measure on $F_\infty$:** Lebesgue measure on each real place and twice Lebesgue measure
 $2\,dx\,dy$ on each complex place ($\mathbb{C} = \mathbb{R}^2$), i.e. $2^{r_2}$ times Mathlib's `volume` on the mixed space. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (Lebesgue measure at a real place, twice Lebesgue measure at a complex place)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (self-dual measure at $\\mathbb{C}$: twice Lebesgue) [unverified]"]
 def selfDualInf : Measure V := ((2 : NNReal) ^ nrComplexPlaces F) • volume
 
 /-- **The Fourier transform on $F_\infty$:** $\hat f(z) = \int_{F_\infty} f(y)\,\psi_\infty(yz)\,dy$ for the self-dual
 measure (product in the ring $F_\infty = \mathbb{R}^{r_1}\times\mathbb{C}^{r_2}$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310, at each infinite place; products of places as in §3.3, Lemma 3.3.3, p. 327"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
 def fourierInf (f : V → ℂ) (z : V) : ℂ := ∫ y, f y * (psiInf (y * z) : ℂ) ∂selfDualInf
 
 lemma fourierChar_coe_eq_exp (t : ℝ) :
@@ -330,7 +326,7 @@ where $I^\vee$ = `dual ℤ ℚ I` is the trace dual, $\hat f$ = `fourierInf` (se
 $\operatorname{covol}(I) = 2^{r_2}\operatorname{covol}_{\mathrm{Mathlib}}(I)$ is the covolume for the self-dual measure.
 *Proof:* coordinates $t \mapsto \sum_j t_j b_j$ for a $\mathbb{Z}$-basis $b$ of $I$, Poisson summation over $\mathbb{Z}^n$
 (`poissonSummation_standard`), the trace-dual basis $b^\vee$ for the dual lattice. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, Lemma 4.1.4, p. 330 (the volume √|d| of the parallelotope of 𝒪); §4.2, Lemma 4.2.4, p. 333"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2 (Poisson summation, archimedean part) [unverified]"]
 theorem poisson_fractionalIdeal (f : SchwartzMap V ℂ) (ξ : F) :
     ∑' x : ((I : FractionalIdeal (𝓞 F)⁰ F) : Set F), f (mixedEmbedding F (ξ + x)) =
       (((2 : ℝ) ^ nrComplexPlaces F * ZLattice.covolume (idealLattice F I))⁻¹ : ℝ) *

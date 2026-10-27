@@ -9,8 +9,8 @@ authors:
   - family-names: Hanke
     given-names: Jonathan
 license: Apache-2.0
-version: "0.2.0"
-date-released: "2026-10-27"
+version: "0.1.0"
+date-released: "2026-10-20"
 doi: 10.5281/zenodo.23509792
 repository-code: "https://github.com/jonhanke/quadratic-forms-lean"
 keywords:

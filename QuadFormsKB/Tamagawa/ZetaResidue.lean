@@ -192,7 +192,7 @@ lemma selfDual_vol_latL (v : HeightOneSpectrum (𝓞 F)) :
   congr 1; ring
 
 /-- **$\prod_v\operatorname{vol}_{\mathrm{sd}}(L_v) = |d_F|^{-n/2}$** (Tate's thesis normalization; the self-dual measure on $\mathbb A_F$
-gives $\mathbb A_F/F$ volume $1$, Cassels–Fröhlich Ch. XV, Thm. 4.1.3 (2), pp. 330–331): the factors are $1$ outside the primes dividing the different, and
+gives $\mathbb A_F/F$ volume $1$): the factors are $1$ outside the primes dividing the different, and
 $\prod_v N(\mathfrak d_v) = |d_F|$ (`finprod_absNorm_pow_diffExp`). -/
 @[kb "weil1982" "§2.1.3, pp. 12–13 (μ_k = |Δ_k|^{1/2}) and §2.3, p. 21 (Tamagawa measure μ_k^{-dim V}∏ω_v)"]
 theorem prod_selfDual_vol :

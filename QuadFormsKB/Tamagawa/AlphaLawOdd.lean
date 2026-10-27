@@ -6,7 +6,7 @@
 **Proves** `alphaLaw_odd`: `AlphaLawAt v Q_o P` for **every** nondegenerate integral form $Q_o$ and every integral $P$ with
 $\det P \ne 0$, at every prime $\mathfrak p \nmid 2$, i.e.
 $$r\big(O(P\mathfrak o_\mathfrak p^N), O(\mathfrak o_\mathfrak p^N)\big)\,\beta_\mathfrak p(Q_o) = \beta_\mathfrak p(Q_o\circ P)\,\|\det P\|^{N+1}.$$
-*Proof* (induction on $N$ and on $\mathrm{ord}\det P$; purely by counting):
+*Proof* (induction on $N$ and on $\mathrm{ord}\det P$; Route B, purely by counting):
 * $P = U\,\mathrm{diag}(\varpi, 1, \dots, 1)\,P_2$ ($U \in \mathrm{GL}_N(\mathfrak o_\mathfrak p)$, a row of $P \bmod \varpi$ in the left kernel) and the cocycle
   (`alphaLaw_mul`) reduce to an **index-$q$ step** $\Lambda_1 = \{y : c\cdot y \equiv 0 \bmod \varpi\}$;
 * in a diagonal (Jordan) basis $Q_o = \langle a_0, \dots, a_{N-1}\rangle$ (Hanke 2004, Lemma 2.1, p. 355) a vector $z \in \Lambda_1$
@@ -636,7 +636,7 @@ theorem alphaLaw_unit {N : ℕ} (Qo : QuadForm 𝔬 N) (P : Matrix (Fin N) (Fin 
   rw [← alphaLaw_congr v Qo (Matrix.one_mul P) h1P hP, alphaLaw_mul_right v Qo 1 P h1 hu h1P]
   exact alphaLaw_one v Qo h1
 
-/-- **The $\alpha$ transformation law at every prime $\mathfrak p \nmid 2$** (purely by counting): for every nondegenerate
+/-- **The $\alpha$ transformation law at every prime $\mathfrak p \nmid 2$** (Route B, purely by counting): for every nondegenerate
 integral $Q_o$ in $N$ variables and every integral $P$ with $\det P \ne 0$,
 $$r\big(O(P\mathfrak o_\mathfrak p^N), O(\mathfrak o_\mathfrak p^N)\big)\,\beta_\mathfrak p(Q_o, Q_o) = \beta_\mathfrak p(Q_o\circ P, Q_o\circ P)\,\|\det P\|_\mathfrak p^{N+1}.$$
 *Proof:* induction on $N$, then on $\mathrm{ord}\det P$: `exists_factor_index_q`, the cocycle `alphaLaw_mul`, the index-$q$ step
@@ -644,7 +644,7 @@ $$r\big(O(P\mathfrak o_\mathfrak p^N), O(\mathfrak o_\mathfrak p^N)\big)\,\beta_
 
 *Update (generalization of Hanke 2004, §3, pp. 358–361):* Hanke's reduction maps $\pi_Z$, $\pi_{B'}$, $\pi_{B''}$ compare solution
 counts of $Q$ and of the rescaled forms $Q'$, $Q''$ inside one Jordan splitting; here the comparison is made for an arbitrary
-sublattice $P\mathfrak o^N$, with the stabilizer index ratio as the correction factor. -/
+sublattice $P\mathfrak o^N$, with the stabilizer index ratio as the correction factor (see `docs/updates-and-errata.md`). -/
 @[kb "weil1982" "§3.4 (Haar measures of lattice stabilizers at p ∤ 2, finite form) [unverified]"]
 theorem alphaLaw_odd (hodd : ¬ NF.π v ∣ 2) :
     ∀ (N : ℕ) (Qo : QuadForm 𝔬 N) (P : Matrix (Fin N) (Fin N) 𝔬) (hP : P.det ≠ 0),

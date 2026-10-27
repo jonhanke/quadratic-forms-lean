@@ -22,15 +22,14 @@ $L = \gamma(\mathcal O_F^{N-1}\oplus\mathfrak c)$ (`Steinitz.exists_eq_glImage_s
 $\mathrm{ord}_\mathfrak p a = \mathrm{ord}_\mathfrak p\mathfrak c$ give $A = \gamma\,\mathrm{diag}(1, \dots, 1, a)$. The Gram form $Q_A = Q_0\circ A$ of $A\mathcal O_F^N$
 is a form over $\mathcal O_F$ (`gramZ`), and its completion is the Gram matrix of $L_\mathfrak p$ in a basis.
 
-**Definition.** $\beta_\mathfrak p(L, m) = \|\det A\|_\mathfrak p\,\beta_\mathfrak p(Q_A, m)$ (`latBeta`):
-the local density of $m$ in $L_\mathfrak p$,
+**Definition.** $\beta_\mathfrak p(L, m) = \|\det A\|_\mathfrak p\,\beta_\mathfrak p(Q_A, m)$ (`latBeta`): the local density of $m$ in $L_\mathfrak p$,
 for the Haar measure of $F_\mathfrak p^N$ giving $\mathfrak o_\mathfrak p^N$ volume $1$ (the measure of the ambient coordinates in which the real
 densities $\beta_\sigma(m)$ of `siegelProduct` are computed). It does not depend on the model (`latBeta_eq`: two models differ by
-$\mathrm{GL}_N(\mathfrak o_\mathfrak p)$, `repCount_congr_isometricGL`), and for $L = \mathcal O_F^N$ it is the$\beta_\mathfrak p(L, m)$
+$\mathrm{GL}_N(\mathfrak o_\mathfrak p)$, `repCount_congr_isometricGL`), and for $L = \mathcal O_F^N$ it is the $\beta_\mathfrak p(L, m)$
 (`latBeta_std`). `siegelProductLat Q₀ L m` is `siegelProduct` with these local factors, and `SiegelFormulaAtLat Q₀ L m` is
 Siegel's formula for the genus of $L$.
 
-**The local orbital identity for $L$ (by lattice change).** For an adapted frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$ and a local model
+**The local orbital identity for $L$ .** For an adapted frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$ and a local model
 $A$ at $\mathfrak p$, $Q_A\circ(A^{-1}g) = \langle\rho\rangle\perp Q_0'$ is an adapted frame of the **global** form $Q_A$ whose frame lattice is
 $g^{-1}A\mathfrak o_\mathfrak p^N = g^{-1}L_\mathfrak p$; the unconditional `orbitalLocalIdentities` for $Q_A$ and the
 $\alpha$ law with non-integral local bases (`alpha_mul_normDet_eq`, from `LatticeLocalGenNF`) give
@@ -39,7 +38,7 @@ $$W_\mathfrak p(g^{-1}L_\mathfrak p, 1)\,\alpha_\mathfrak p(Q_0)\,r_\mathfrak p(
 (`latOrbitalIdentity`), $r_\mathfrak p(L) = r(K(L_\mathfrak p), K(\mathfrak o_\mathfrak p^N))$ the local index ratio of `tamagawaKLat`.
 
 Sources: Weil 1982, §3.4 and §4.5, p. 109 [unverified]; Kitaoka 1993, §5.6 (local densities of lattices)
-[unverified]; O'Meara 1963, 81:5, p. 212, §82, pp. 220–238.
+[unverified]; O'Meara 1963, 81:5, §82 [unverified].
 -/
 
 open Matrix
@@ -111,8 +110,8 @@ theorem exists_max_valuation {𝔠 : Submodule (𝓞 F) F} (hfg : 𝔠.FG) (hne 
       _ = _ := one_mul _
       _ ≤ _ := hx
 
-/-- **Every lattice has a local free model at every prime** (Steinitz's normal form, O'Meara 81:5, p. 212; locally every ideal is principal). -/
-@[kb "omeara1963" "§81B, 81:5, p. 212"]
+/-- **Every lattice has a local free model at every prime** (Steinitz's normal form, O'Meara 81:5 [unverified]). -/
+@[kb "omeara1963" "81:5 (Steinitz normal form; local freeness) [unverified]"]
 theorem exists_isLocModel {m : ℕ} (L : Lat F (m + 1)) : ∃ A, IsLocModel v L A := by
   classical
   obtain ⟨γ, 𝔠, hL⟩ := Steinitz.exists_eq_glImage_steinitzLat L.2
@@ -305,8 +304,7 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 /-- **The $\alpha$ law for a local basis $P \in \mathrm{GL}_n(F_\mathfrak p)$ with an integral Gram form** $T = Q_0\circ P$ (the local step of
-`tamagawaKLat_eq_local_gen`, stated for one prime):
-$\tfrac12\beta_\mathfrak p(T, T)\,\|\det P\|^{n+1} = \alpha_\mathfrak p(Q_0)\cdot
+`tamagawaKLat_eq_local_gen`, stated for one prime): $\tfrac12\beta_\mathfrak p(T, T)\,\|\det P\|^{n+1} = \alpha_\mathfrak p(Q_0)\cdot
 r(K(P\mathfrak o_\mathfrak p^n), K(\mathfrak o_\mathfrak p^n))$. *Proof:* $\varpi^kP$ is integral; `latLocalFactor_eq` (the $\alpha$ law at every prime),
 $\beta(\varpi^{2k}T) = q^{kn(n+1)}\beta(T)$ and the invariance of the stabilizer under scalars. -/
 @[kb "weil1982" "§2.4 and §3.4 (Haar measures of lattice stabilizers) [unverified]"]
@@ -446,8 +444,7 @@ theorem frameLat_modelFrame (Q₀ : QuadForm (𝓞 F) (n + 1)) {ρ : F} (fr : Ad
 /-- **The local orbital identity for the genus of an arbitrary lattice $L$** (Weil 1982, §3.4 and §4.5, p. 109 [unverified]): for an adapted
 frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$, $\rho = m \ne 0$,
 $$W_\mathfrak p(g^{-1}L_\mathfrak p, 1)\,\alpha_\mathfrak p(Q_0)\,r_\mathfrak p(L)\,|2\rho|_\mathfrak p^n\,|\det g|_\mathfrak p^{-(n+1)} = \alpha_\mathfrak p(Q_0')\,\beta_\mathfrak p(L, m).$$
-*Proof (by lattice change):* for a local free model $A$, the unconditional `orbitalLocalIdentities` of the global
-form $Q_A$ at its frame
+*Proof:* for a local free model $A$, the unconditional `orbitalLocalIdentities` of the global form $Q_A$ at its frame
 $A^{-1}g$ (frame lattice $g^{-1}L_\mathfrak p$, `frameLat_modelFrame`), and the $\alpha$ law $\alpha_\mathfrak p(Q_A)\|\det A\|^{n+2} = \alpha_\mathfrak p(Q_0)\,r_\mathfrak p(L)$
 (`alpha_mul_normDet_eq`). -/
 @[kb "weil1982" "§3.4 and §4.5, p. 109 (local fibration for the lattice L) [unverified]"]
@@ -553,8 +550,7 @@ theorem tamagawaKLat_eq_finprod [IsTotallyReal F] (Q₀ : QuadForm (𝓞 F) N) (
 
 /-- **Siegel's product for the genus of an arbitrary lattice $L$** (Siegel 1935, Hauptsatz; over $F$ [unverified]):
 $$S(L, m) = |d_F|^{-\frac{N-1}2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(L, m),$$
-`siegelProduct` with the local densities $\beta_\mathfrak p(L, m)$ of `latBeta` (the real densities
-$\beta_\sigma(m)$ are those of the ambient
+`siegelProduct` with the local densities $\beta_\mathfrak p(L, m)$ of `latBeta` (the real densities $\beta_\sigma(m)$ are those of the ambient
 coordinates of $V = F^N$, matching the normalization of $\beta_\mathfrak p(L, m)$). For $L = \mathcal O_F^N$ it is `siegelProduct`
 (`siegelProductLat_std`). Use only for $N \ge 4$ (rank $3$ needs the regularized product, rank $\le 2$ Siegel's $\varepsilon = \tfrac12$). -/
 @[kb "siegel1935" "Hauptsatz (local side, arbitrary lattice; over F [unverified])"]

@@ -1,5 +1,5 @@
 /-
-# Kneser neighbours at principal primes, any class number
+# Kneser neighbours at principal primes, any class number (without $h_F = 1$)
 
 **Setting.** $F$ a number field (any class number), $Q$ a form over $\mathcal O_F$, $\pi$ a **prime element** (so $\mathfrak p = (\pi)$ is a
 principal prime) with $\pi \nmid \det H$, $\vec v \in \mathcal O_F^n$ with $\pi^2 \mid Q(\vec v)$, $\bar{\vec v} \ne 0$, and the explicit neighbour
@@ -15,8 +15,8 @@ $L(\vec v) = L_{\vec v} + \mathcal O_F\frac1\pi\vec v$ (`Nbr.nbLat`).
 * **`sameGenus_glImage_nbLat'`**, **`nbrInGenus'`**: $\pi$-neighbours of lattices in the genus of $\mathcal O_F^n$ stay in the genus (Kneser 1957,
   Satz 1) for every prime element $\pi \nmid 2\det H$, with no class-number hypothesis (the PID versions are in `HeckeGenusLocal.lean`).
 
-Sources: Kneser, *Klassenzahlen definiter quadratischer Formen*, Arch. Math. 8 (1957), Satz 1 [unverified]; O'Meara (1963), 82:14b, p. 232
-($L$ unimodular iff $L^\# = L$, so an integral lattice containing $L$ equals $L$).
+Sources: Kneser, *Klassenzahlen definiter quadratischer Formen*, Arch. Math. 8 (1957), Satz 1 [unverified]; O'Meara (1963), 82:15
+(unimodular lattices are maximal) [unverified].
 -/
 import QuadFormsKB.HilbertModular.HeckeGenusLocal
 import QuadFormsKB.Lattices.Steinitz

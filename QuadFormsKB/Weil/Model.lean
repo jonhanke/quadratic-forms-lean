@@ -2,7 +2,7 @@
 # The Weil representation from one-dimensional harmonic analysis
 
 **Layer:** abstract harmonic analysis over a commutative ring $K$ (instantiated at the finite places in
-`Weil/NonArch.lean`).
+`Weil/NonArch.lean`; the archimedean component is discussed in `docs/weil-representation.md`).
 
 **Data** (`LocalData K`): an additive character $\psi : K \to \mathbb C^1$, a measure $\mu$ on $K$, a "modulus"
 $|\cdot| = $ `md` (used on units), a "Weil constant" $\gamma = $ `γ` (used on units), a "Hilbert symbol"

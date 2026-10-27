@@ -8,10 +8,9 @@ $\mathcal O_v^0$ (`LTZ.formT`), $\rho = \operatorname{re}E_0$.
 **Proves** (`LTZ.localFactor_eq`), at every finite place:
 $$\tfrac12\beta_v(T, T)\,\|\det P\|^4 = (1 - q^{-2})\,\varepsilon_v\,\|8\|^{-1}\,\|ab\|^{-3}\,\|\det(\text{coordinates of }E)\|,\qquad
 \varepsilon_v = \tfrac{2}{1 - q^{-1}}\ (v \in \mathrm{Ram}_f),\ 1\ \text{otherwise},$$
-by porting the frame computations to local adapted bases: split places
-(`exists_GL_split`: $T \cong \langle -1\rangle\perp(-x_1x_2)$ and $|2\rho| = 1$), odd ramified places
-(`exists_GL_oddRam`: $T \cong \langle u_0\rangle\perp\varpi\langle u_1, u_2\rangle$, $|\rho| = 1$), ramified dyadic
-places (`exists_GL_ramDyadic`: $T \cong \langle u\rangle\perp\varpi T'$, $|2\rho| = 1$), with the DVR densities.
+by porting the frame computations to local adapted bases: split places (`exists_GL_split`: $T \cong \langle -1\rangle\perp(-x_1x_2)$ and
+$|2\rho| = 1$), odd ramified places (`exists_GL_oddRam`: $T \cong \langle u_0\rangle\perp\varpi\langle u_1, u_2\rangle$, $|\rho| = 1$), ramified dyadic places
+(`exists_GL_ramDyadic`: $T \cong \langle u\rangle\perp\varpi T'$, $|2\rho| = 1$), with the DVR densities.
 
 Sources: Voight 2021, §§13.3, 22.1; Kitaoka 1993, §5.6 [unverified]. Indices are 0-based.
 -/

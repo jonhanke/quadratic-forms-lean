@@ -1,10 +1,9 @@
 /-
-# Non-square discriminant: components of $G^\natural(\mathbb A_k)\subset(D'\otimes\mathbb A_K)^\times$ at places of $k$
+# Non-square discriminant, adelically: components of $G^\natural(\mathbb A_k)\subset(D'\otimes\mathbb A_K)^\times$ at the places of $k$
 
 
 **Layer:** a number field $F$, $a, b, d\in\mathcal O_F$, a number field $K\supseteq F$ with an $F$-basis $(1,\delta)$, $\delta^2 = d$, and
-$A' = a$, $B' = b$ in $K$ (`gnatBC` for $D' = \mathbb H[K,A',B']$). Via the base change
-$\Theta : D_E\otimes_F\mathbb A_F\cong D'\otimes_K\mathbb A_K$
+$A' = a$, $B' = b$ in $K$ (`gnatBC` for $D' = \mathbb H[K,A',B']$). Via the base change $\Theta : D_E\otimes_F\mathbb A_F\cong D'\otimes_K\mathbb A_K$
 (`quatBaseChange`), a unit of $D'\otimes\mathbb A_K$ has components in $D_E\otimes F_v = $ `DE (ιa) (ιb) (ιd)` at every place $v$ of $F$ (finite,
 real, complex), and $G^\natural$ maps into the $G^\natural(F_v)$ there.
 

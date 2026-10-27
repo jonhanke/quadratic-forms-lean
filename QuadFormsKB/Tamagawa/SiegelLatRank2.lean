@@ -8,7 +8,7 @@ import QuadFormsKB.Tamagawa.SiegelBinaryNF
 import QuadFormsKB.Tamagawa.SiegelLatRankOne
 
 /-!
-# G5: Siegel's formula in rank 2 for every genus, every totally real field
+# Siegel's formula in rank 2 for every genus, every totally real field
 
 **Layer:** $F$ totally real (any class number); $Q$ a totally positive definite **binary** form over $\mathcal O_F$; $L$ an **arbitrary**
 lattice on $(F^2, Q)$ with $Q$ integral on $L$ (any Steinitz class); $m \in \mathcal O_F$ totally positive.
@@ -109,7 +109,7 @@ theorem tamagawaKRegLat_mul_mass (Q : QuadForm (𝓞 F) 2) (hQ : Q.Nondegenerate
 set_option maxHeartbeats 800000 in
 /-- **Weil's step $1 \to 2$ for an arbitrary lattice, regularized** (Weil 1982, §4.5, p. 100 and p. 109 [unverified], $N = 2$):
 $$2\,\mu^{\mathrm{reg}}(K_{SO}(L))\cdot\mathrm{repMass}(L, a) = \tau(SO(Q''))\cdot S^{\mathrm{reg}}_2(L, a).$$
-the proof with `latOrbitalIdentity` ($n = 1$) and the index ratios $r_\mathfrak p(L)$. -/
+The proof with `latOrbitalIdentity` ($n = 1$) and the index ratios $r_\mathfrak p(L)$. -/
 @[kb "weil1982" "§4.5, p. 100 and p. 109 (N = 2, regularized, arbitrary lattice) [unverified]"]
 theorem two_mul_tamagawaKRegLat_mul_repMass_frame2 (Q : QuadForm (𝓞 F) (1 + 1)) (hpd : IsTotallyPosDef (formF Q))
     (L : Lat F (1 + 1)) (hLi : Lattices.IsIntegral (formF Q) L.1)

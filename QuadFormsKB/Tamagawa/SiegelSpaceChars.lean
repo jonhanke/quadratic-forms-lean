@@ -6,7 +6,7 @@ Authors: Jonathan Hanke
 import QuadFormsKB.Tamagawa.SiegelClassical
 
 /-!
-# Basis-free Siegel characters $\chi_q$, $\chi_m$ of a quadratic space
+# Basis-free Siegel characters $\chi_q$, $\chi_m$ of a quadratic space (gx task 2)
 
 **Layer:** $F$ a number field; $(V, q)$ a quadratic space over $F$ (headlines: $F$ totally real, $q$ totally positive
 definite, $\dim V = 3$ or $2$).
@@ -37,6 +37,7 @@ not see the difference (`regProd_congr_eventually`, from `regProd_congr_finite`)
 
 Sources: Siegel 1935, Hauptsatz [unverified]; Hanke 2004, p. 357 ($\chi(-2\det H\cdot m)$); O'Meara 1963, §63 (discriminant
 $dV \in F^\times/F^{\times2}$) [unverified]; Neukirch 1999, Ch. I §8 [unverified].
+
 -/
 
 open NumberField IsDedekindDomain Module Matrix Filter
@@ -158,8 +159,8 @@ section Intrinsic
 variable {V : Type*} [AddCommGroup V] [Module F V] [FiniteDimensional F V]
 
 /-- **The discriminant of $(V, q)$** as an element of $F$: $\det H_{q_e}$ in the basis $e$ = `Module.finBasis F V`. Its square
-class $\mathrm{disc}(q)F^{\times2}$ does not depend on the basis (`hessDetV_eq_basis`; O'Meara 1963, §41B, p. 87, the discriminant $dV$; the Hessian determinant is $2^n dV$). -/
-@[kb "omeara1963" "§41B, p. 87 (discriminant dV of a quadratic space)"]
+class $\mathrm{disc}(q)F^{\times2}$ does not depend on the basis (`hessDetV_eq_basis`; O'Meara 1963, §63 [unverified]). -/
+@[kb "omeara1963" "§63 (discriminant dV ∈ F^×/F^×2) [unverified]"]
 def hessDetV (q : QuadraticForm F V) : F := (coordForm q (finBasis F V)).hessian.det
 
 /-- In any basis $e$, $\det H_{q_e} = g^2\,\mathrm{disc}(q)$ with $g = \det$ of the change of basis, $g \ne 0$. -/

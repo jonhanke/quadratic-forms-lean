@@ -2,7 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.SL2Measure
 import QuadFormsKB.Tamagawa.Measure.Weil.OrbitFibration
 
 /-!
-# The measure $\mu_T$ as an instance of the generic orbit fibration
+# the $\mu_T$ as an instance of the generic orbit fibration
 
 $F$ any number field. $\mathrm{SL}_2(\mathbb A_F)$ acts on the primitive vectors $P\subseteq\mathbb A_F^2$
 (`primSet`) by $g\cdot y = gy$, transitively, with base point $e_1$ and the measurable section $s$

@@ -99,7 +99,7 @@ theorem exists_sq_eq_of_residue (hv2 : Valued.v (2 : Kv) = 1) (c s : Ov) (hs : I
 
 /-- **Binary unit forms are universal on units at $v\nmid2$**: if $\alpha, u\in\mathcal O_v^\times$ then
 $u = x^2-\alpha y^2$ with $x, y\in\mathcal O_v$. -/
-@[kb "omeara1963" "§92, 92:1b, p. 247 (Q(L) ⊇ 𝔲 for unimodular L of dim ≥ 2)"]
+@[kb "omeara1963" "§92:1 (unimodular forms over a non-dyadic local ring represent all units) [unverified]"]
 theorem exists_sq_sub_mul_sq_eq (hv2 : Valued.v (2 : Kv) = 1) {α u : Kv} (hα : Valued.v α = 1)
     (hu : Valued.v u = 1) :
     ∃ x y : Kv, Valued.v x ≤ 1 ∧ Valued.v y ≤ 1 ∧ x ^ 2 - α * y ^ 2 = u := by

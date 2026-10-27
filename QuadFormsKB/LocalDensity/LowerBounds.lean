@@ -41,6 +41,7 @@ L10–L12 over all good primes into $L$-values ($L(n/2,\Phi_n)$, $L((n-1)/2,\Phi
 (Siegel's / effective $L(1,\psi_t)$ bounds; $E_n(X)$), and take the minimum over $T' \in B_{\mathbb T}$. Lemma 5.8 and the
 rest of Thm 5.9 concern $a_H$ (cusp forms, Schulze-Pillot): global. Remark 5.7.1 (class number one: square classes
 $t\mathbb{Z}^2$) is built into the $\mathbb{Q}$ layer. Remark 5.8.1 is a consequence of Lemma 5.8 (global).
+
 -/
 import QuadFormsKB.LocalDensity.Table2
 
@@ -786,7 +787,7 @@ noncomputable def phiN (a : Fin n → ℤ) (p : ℕ) [Fact p.Prime] (T : ℤ) : 
 and $\mathrm{ord}_p(T') \le 1$:
 $$C'_p(T') = 1 \iff n = 3 \ \text{ or } \ p \mid T' \ \text{ or } \ \Phi_n(p) = (-1)^n;$$
 equivalently, $C'_p(T') < 1 \iff n \ge 4,\ p \nmid T',\ \Phi_n(p) = (-1)^{n-1}$.
-*Erratum (confirmed by the author, Jon Hanke, 2026-10-15):* the paper prints
+*Erratum (confirmed by the author):* the paper prints
 "$C'_\mathfrak{p}(T') = 1 \iff n = 3$ or ($n \ge 4$, $\mathfrak{p} \nmid T'$, $\Phi_n(\mathfrak{p}) = (-1)^{n-1}$)", which gives the condition
 for $C'_\mathfrak{p}(T') < 1$ (when $n \ge 4$). Counterexample to the printed form: $n = 4$, $Q = x_0^2 + x_1^2 + x_2^2 + x_3^2$,
 $p = 3$, $T' = 1$: $\Phi_4(3) = \left(\frac{1}{3}\right) = 1 \ne (-1)^{3}$, yet $C_3(1) = 3/(3-1) = 3/2$ by Table 2, so

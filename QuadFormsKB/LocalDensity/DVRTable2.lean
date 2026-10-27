@@ -571,7 +571,7 @@ theorem residue_sign_prod_ne_zero (a : Fin n → R) {π : R} (hπ : Irreducible 
 $C_\pi(T') = \dfrac{q^{n-2} - q^{(n-3)/2}\Phi_n(\pi)}{q^{n-2} - 1}$, $\Phi_n(\pi) = \chi((-1)^{(n-1)/2} D T')$.
 *Proof:* (5.9) with the Good-type densities from `card_diag_mod_pi` and Lemma 3.2.
 *Clarification (candidate; pending author):* Table 2 is headed $\mathfrak{p} \nmid N$, but $\Phi_n(\mathfrak{p})$ is defined
-(p. 357) only for $\mathfrak{p} \nmid 2N$; this is the $\mathfrak{p} \nmid 2N$ case. -/
+(p. 357) only for $\mathfrak{p} \nmid 2N$; this is the $\mathfrak{p} \nmid 2N$ case (`docs/updates-and-errata.md`). -/
 @[kb "hanke2004" "Table 2, p. 370"]
 theorem table2_odd_unit [Fintype 𝔽] [DecidableEq 𝔽] (a : Fin n → R) (π : R) (hπ : Irreducible π)
     (h2 : ¬ π ∣ 2) (ha : ∀ i, ¬ π ∣ a i) (hn : 3 ≤ n) (hodd : Odd n) (T : R) (hT : ¬ π ∣ T) :

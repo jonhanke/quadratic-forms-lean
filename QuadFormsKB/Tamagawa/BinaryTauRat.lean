@@ -11,31 +11,27 @@ $\varepsilon = \frac12$, $D < 0$ fundamental, $f$ primitive positive definite of
 (`RatBridge.up`) and fed into part 1's backwards step $1 \to 2$ (`tauSOReg_eq_two_of_siegel`).
 
 **The bridge (§1–2).**
-* `kronChi D` $= \chi_D(p)$ on the primes $\mathfrak p = (p)$ of $\mathcal O_{\mathbb Q}$, and **`hasLOne_kronChi`**: the
-  $L_{\mathbb Q}(1,\chi) := \lim_{s\to1^+}\prod_p(1-\chi(p)p^{-s})^{-1}$ is $L(1,\chi_D)$ (Mathlib's Euler product of
+* `kronChi D` $= \chi_D(p)$ on the primes $\mathfrak p = (p)$ of $\mathcal O_{\mathbb Q}$, and **`hasLOne_kronChi`**: the $L_{\mathbb Q}(1,\chi) := \lim_{s\to1^+}\prod_p(1-\chi(p)p^{-s})^{-1}$ is the $L(1,\chi_D)$ (Mathlib's Euler product of
   $L(s,\chi_D)$ for $s > 1$ and the continuity of `DirichletCharacter.LFunction` at $1$).
 * **`regProd_up_eq_binaryEulerValue`**: the regularized product of part 1, $L(1,\chi_f)^{-1}\prod_p\beta_p(f,m)(1-\chi_f(p)/p)^{-1}$
-  with the character $\chi_f$ = `chiP · up f`, is `binaryEulerValue f D m`
-  $= L(1,\chi_D)^{-1}\prod_{p\mid mD}\beta_p(m)/(1-\chi_D(p)/p)$.
+  with the character $\chi_f$ = `chiP · up f`, is `binaryEulerValue f D m` $= L(1,\chi_D)^{-1}\prod_{p\mid mD}\beta_p(m)/(1-\chi_D(p)/p)$.
   The characters $\chi_f$ and $\chi_D$ are compared **without residue symbols**: both $1 - \chi_f(p)/p$ (part 1,
   `localDensity_eq_one_sub_chiP`) and $1 - \chi_D(p)/p$ (`localDensity_good_binary`) equal $\beta_p(f, m)$ at almost all $p$.
 * `siegelProduct2Reg_up`: $S^{\mathrm{reg}}_2(f\otimes\mathcal O_{\mathbb Q}, m) = \beta_\infty(m)\cdot$ `binaryEulerValue f D m` (`aEWith`).
 
 **Results (§3–4).**
 * **`tauSOReg_up_posForms`**: $\tau^{\mathrm{reg}}(SO(f\otimes\mathcal O_{\mathbb Q})) = 2$ for every $f \in$ `PosForms D`, $D < 0$
-  fundamental. *Proof:* at one $m$ with $r_{\mathcal G}(m) \ne 0$ (`exists_genusRepAvg_ne_zero`),
-  the binary Siegel formula
+  fundamental. *Proof:* at one $m$ with $r_{\mathcal G}(m) \ne 0$ (`exists_genusRepAvg_ne_zero`), the formula
   $r_{\mathcal G}(m) = \frac12\beta_\infty(m)P_f(m)$ reads $\mathrm{repMass}(m) = \frac12\mathrm{Mass}\cdot S^{\mathrm{reg}}_2(m)$ (`mass_rat`,
   `repMass_rat`), and part 1 gives $\tau^{\mathrm{reg}} = 2$.
 * **`binaryTamagawaTwoReg_rat : BinaryTamagawaTwoReg ℚ`** and `binaryTamagawaTwoRegDiag_rat` (**unconditional**): every
   totally definite binary $Q'$ over $\mathcal O_{\mathbb Q}$ has $\det H'$ in the square class of $-D$ for a fundamental
-  $D < 0$ (`exists_isQuadDisc_sq`), whose principal form (`princForm D`) is in `PosForms D`;
-  `binaryTamagawaTwoReg_of_family` finishes.
+  $D < 0$ (`exists_isQuadDisc_sq`), whose principal form (`princForm D`) is in `PosForms D`; `binaryTamagawaTwoReg_of_family` finishes.
 * **The ℚ rank-3 interface:** `siegelFormulaAt3_rat_of_tau` — `TamagawaNumberTwo Q₀` $\Rightarrow$
-  `SiegelFormulaAt3 Q₀ m` for every totally positive $m$; `siegelFormulaAt3_rat` — the same from
-  `TernaryTamagawaTwo ℚ`; and `siegelFormula3_rat` — Hanke's `SiegelFormula3 Q (eulerProductReg3 Q)` for every positive
+  `SiegelFormulaAt3 Q₀ m` for every totally positive $m$; `siegelFormulaAt3_rat` — the same from `TernaryTamagawaTwo ℚ`; and `siegelFormula3_rat` — Hanke's `SiegelFormula3 Q (eulerProductReg3 Q)` for every positive
   definite ternary $Q$ over $\mathbb Z$, from `TernaryTamagawaTwo ℚ`. The rank-3 Siegel formula over $\mathbb Q$ is now
   conditional only on $\tau(SO_3) = 2$.
+
 -/
 
 open NumberField IsDedekindDomain Matrix Filter Topology
@@ -86,7 +82,7 @@ theorem LFunctionNF_kronChi {s : ℝ} (hs : 1 < s) :
   rw [cpow_neg_eq]
   simp [kronR]
 
-/-- **$L_{\mathbb Q}(1, \chi_D)$ is `Binary.LOne D`** $= L(1,\chi_D)$ (`hasLOne_kronChi`): $L(s,\chi_D)$ is continuous
+/-- **The $L_{\mathbb Q}(1, \chi_D)$ is `Binary.LOne D`** $= L(1,\chi_D)$ (`hasLOne_kronChi`): $L(s,\chi_D)$ is continuous
 at $s = 1$ ($\chi_D \ne 1$, `kroneckerChar_ne_one`) and equals the Euler product for $s > 1$. -/
 theorem hasLOne_kronChi : HasLOne (kronChi D) (Binary.LOne D) := by
   have hcont := (DirichletCharacter.differentiable_LFunction (kroneckerChar_ne_one (D := D))).continuous
@@ -134,13 +130,12 @@ theorem localDensity_up_good {f : BinQF} (hD : f.disc = D) {m : ℤ} (hm : m ≠
     Nat.factorization_eq_zero_of_not_dvd hpm, goodFactor_zero, normP_rat]
   rfl
 
-/-- **The regularized binary product over $\mathbb Q$ is the value `binaryEulerValue`**: for $f$ of
+/-- **The regularized binary product over $\mathbb Q$ is the value**: for $f$ of
 fundamental discriminant $D$ with $f\otimes\mathcal O_{\mathbb Q}$ positive definite, and an integer $m \ge 1$ represented by $f$
 over $\mathbb Q$,
 $$L(1,\chi_f)^{-1}\prod_p\beta_p(f,m)\Bigl(1-\frac{\chi_f(p)}p\Bigr)^{-1} = L(1,\chi_D)^{-1}\prod_{p\mid mD}\frac{\beta_p(m)}{1-\chi_D(p)/p}
 \quad(=\texttt{binaryEulerValue}\ f\ D\ m),$$
-$\chi_f$ = `chiP · up f`. *Proof:* $\chi_f = \chi_D$ off a finite set
-(both $1-\chi(p)/p$ equal $\beta_p$ at almost all $p$:
+$\chi_f$ = `chiP · up f`. *Proof:* $\chi_f = \chi_D$ off a finite set (both $1-\chi(p)/p$ equal $\beta_p$ at almost all $p$:
 `localDensity_eq_one_sub_chiP`, `localDensity_up_good`), so `regProd_congr_finite` switches to $\chi_D$, whose $L(1,\cdot)$ is
 `Binary.LOne D` (`hasLOne_kronChi`); the corrected product is the finite product over $p \mid mD$, reindexed by
 `primesEquiv`. -/
@@ -194,7 +189,7 @@ theorem regProd_up_eq_binaryEulerValue {f : BinQF} (hD : f.disc = D) (hpd : IsTo
     rw [NF.localDensity_rat, normP_rat, _root_.zpow_neg_one, ← div_eq_mul_inv]
     rfl
 
-/-- **The rank-2 regularized Siegel product over $\mathbb Q$ is the binary Siegel value $\beta_\infty(m)P_f(m)$:**
+/-- **The rank-2 regularized Siegel product over $\mathbb Q$ is the $\beta_\infty(m)P_f(m)$:**
 $S^{\mathrm{reg}}_2(f\otimes\mathcal O_{\mathbb Q}, m) = $ `aEWith f m (binaryEulerValue f D m)` ($|d_{\mathbb Q}| = 1$, one real place,
 `siegelProductWith_eq_discr_mul_aEWithNF`, `aEWithNF_rat`). -/
 theorem siegelProduct2Reg_up {f : BinQF} (hD : f.disc = D) (hf : IntQF.PosDef f) {m : ℤ} (hm : 1 ≤ m)
@@ -215,7 +210,7 @@ variable {D : ℤ} [IsQuadDisc D]
 
 /-- **$\tau^{\mathrm{reg}}(SO(f\otimes\mathcal O_{\mathbb Q})) = 2$ for every primitive positive definite $f$ of fundamental
 discriminant $D < 0$** (`PosForms D`). The backwards Weil step $1 \to 2$ (`tauSOReg_eq_two_of_siegel`, with $\tau(SO_1) = 1$)
-applied to The binary Siegel formula (`siegelFormula_binary`, $\varepsilon = \frac12$) at one $m$ with
+applied to the binary Siegel formula (`siegelFormula_binary`, $\varepsilon = \frac12$) at one $m$ with
 $r_{\mathcal G}(m) \ne 0$ (`exists_genusRepAvg_ne_zero`). Unconditional. -/
 @[kb "weil1982" "Thm. 3.7.1 (τ = 2), rank 2 with convergence factors, over ℚ [unverified]"]
 theorem tauSOReg_up_posForms [Fact (D < 0)] (f : PosForms D) : tauSOReg (up f.1) = 2 := by
@@ -311,21 +306,19 @@ theorem binaryTamagawaTwoReg_rat : BinaryTamagawaTwoReg ℚ := by
     push_cast at this
     exact this
 
-/-- **The diagonal form of the input over $\mathbb Q$:** $\tau^{\mathrm{reg}}\langle1, D\rangle = 2$ for every
-totally definite
+/-- **The diagonal form of the input over $\mathbb Q$:** $\tau^{\mathrm{reg}}\langle1, D\rangle = 2$ for every totally definite
 $\langle1, D\rangle$ over $\mathcal O_{\mathbb Q}$. -/
 theorem binaryTamagawaTwoRegDiag_rat : BinaryTamagawaTwoRegDiag ℚ :=
   binaryTamagawaTwoReg_rat.toDiag
 
 end Cover
 
-/-! ### 5. The rank-3 Siegel formula over $\mathbb Q$: conditional only on $\tau(SO_3) = 2$ -/
+/-! ### 5. The rank-3 Siegel formula over $\mathbb Q$: conditional only on $\tau(SO_3) = 2$ (interface) -/
 
 section Rank3
 
 /-- **Siegel's formula in rank 3 over $\mathbb Q$ from $\tau(SO(Q_0)) = 2$ alone:** for $Q_0$ totally positive definite ternary over
-$\mathcal O_{\mathbb Q}$ with `TamagawaNumberTwo Q₀`, `SiegelFormulaAt3 Q₀ m` holds for every totally positive $m$ (via
-`siegelFormulaAt3_of_tau` with `binaryTamagawaTwoReg_rat`). -/
+$\mathcal O_{\mathbb Q}$ with `TamagawaNumberTwo Q₀`, `SiegelFormulaAt3 Q₀ m` holds for every totally positive $m$ (`siegelFormulaAt3_of_tau` with `binaryTamagawaTwoReg_rat`). -/
 @[kb "siegel1935" "Hauptsatz, n = 3, over ℚ (regularized; from τ(SO_3) = 2) [unverified]"]
 theorem siegelFormulaAt3_rat_of_tau (Q₀ : QuadForm (𝓞 ℚ) 3) (hpd : IsTotallyPosDef (formF Q₀))
     (hτ : TamagawaNumberTwo Q₀) {m : 𝓞 ℚ} (hm : ∀ v : InfinitePlace ℚ, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m)) :
@@ -343,7 +336,8 @@ theorem siegelFormulaAt3_rat (hT : TernaryTamagawaTwo ℚ) (Q₀ : QuadForm (�
 
 /-- **Hanke's rank-3 input over $\mathbb Z$ with the regularized product, conditional only on `TernaryTamagawaTwo ℚ`:**
 `Siegel.SiegelFormula3 Q (eulerProductReg3 Q)` ($r_{\mathrm{Gen}(Q)}(m) = \beta_\infty(m)P_{\mathrm{reg}}(m)$ for all $m \ge 1$) for every
-positive definite ternary $Q$ over $\mathbb Z$ (via the bridge `siegelFormula3_iff_siegelFormulaAt3`). -/
+positive definite ternary $Q$ over $\mathbb Z$ (the bridge `siegelFormula3_iff_siegelFormulaAt3`). The next step identifies
+$P_{\mathrm{reg}}$ with the natural-order product and discharges Hanke's rank-3 corollaries. -/
 @[kb "siegel1935" "Hauptsatz, n = 3, over ℤ (Hanke's form, regularized; conditional on τ(SO_3) = 2) [unverified]"]
 theorem siegelFormula3_rat (hT : TernaryTamagawaTwo ℚ) (Q : QuadForm ℤ 3) (hQ : IntQF.PosDef Q) :
     Siegel.SiegelFormula3 Q (Siegel.eulerProductReg3 Q) :=

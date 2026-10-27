@@ -9,7 +9,7 @@ For a fundamental discriminant $D < 0$:
 * **Proper classes** (`slSetoid`): $\{\mathrm{SL}_2(\mathbb{Z})\text{-classes of primitive positive definite forms of
   discriminant } D\} \simeq \mathrm{Cl}(\mathcal O_{K_D})$, $f \mapsto [\mathfrak a_f]$ (`slClassEquiv`,
   `card_slClasses`: their number is $h(D)$).
-* **$\mathrm{GL}_2(\mathbb{Z})$-classes** (the library's convention, the repo's `Siegel.IntEquiv`): they correspond to the classes
+* **$\mathrm{GL}_2(\mathbb{Z})$-classes** (the convention of this repository, the repo's `Siegel.IntEquiv`): they correspond to the classes
   of $\mathrm{Cl}$ modulo inversion $[\mathfrak a] \sim [\mathfrak a]^{-1} = [\bar{\mathfrak a}]$ (`glClassEquiv`), and
   $2\,\#\{\mathrm{GL}\text{-classes}\} = h + \#\mathrm{Cl}[2]$ (`two_mul_card_glClasses`).
 
@@ -79,8 +79,7 @@ noncomputable def glOf (p q r s : ℤ) (h : (p * s - q * r) ^ 2 = 1) : GL (Fin 2
 
 /-- **Proper equivalence** ($\mathrm{SL}_2(\mathbb{Z})$-equivalence) of binary forms: $f(\gamma\vec x) = g(\vec x)$ for all
 $\vec x \in \mathbb{Z}^2$, for some $\gamma \in \mathrm{GL}_2(\mathbb{Z})$ with $\det\gamma = 1$. The $\mathrm{GL}_2(\mathbb{Z})$
-version is the repo's `Siegel.IntEquiv` (the library's convention for classes). Source: Cox, §2.A [unverified
-locator]. -/
+version is the repo's `Siegel.IntEquiv` (the convention of this repository for classes). Source: Cox, §2.A [unverified locator]. -/
 @[kb "cox2013" "§2.A [unverified locator]"]
 def SLEquiv (f g : BinQF) : Prop :=
   ∃ γ : GL (Fin 2) ℤ, γ.val.det = 1 ∧ ∀ x, QuadForm.eval f (γ.val *ᵥ x) = QuadForm.eval g x
@@ -228,7 +227,7 @@ def slSetoid (D : ℤ) : Setoid (PrimPosForm D) where
   iseqv := ⟨fun f => SLEquiv.refl f.1, SLEquiv.symm, SLEquiv.trans⟩
 
 /-- **$\mathrm{GL}_2(\mathbb{Z})$-equivalence of primitive positive definite forms** (the repo's `Siegel.IntEquiv`) as a
-setoid; its quotient is the set of classes in the library's convention. -/
+setoid; its quotient is the set of classes in the convention of this repository. -/
 def glSetoid (D : ℤ) : Setoid (PrimPosForm D) where
   r f g := Siegel.IntEquiv f.1 g.1
   iseqv := ⟨fun f => Siegel.IsometricGL.refl f.1, Siegel.IsometricGL.symm, Siegel.IsometricGL.trans⟩
@@ -356,8 +355,8 @@ theorem orbitRel_inv_iff {G : Type*} [CommGroup G] (x y : G) :
     · refine ⟨-1, ?_⟩
       rw [Units.smul_def]; simp
 
-/-- **$\mathrm{GL}_2(\mathbb{Z})$-classes ↔ ideal classes modulo inversion** ($D < 0$ fundamental), in the library's
-convention (classes are $\mathrm{GL}_2(\mathbb{Z})$-classes, `Siegel.IntEquiv`): $[f]_{\mathrm{GL}} \mapsto \{[\mathfrak a_f],
+/-- **$\mathrm{GL}_2(\mathbb{Z})$-classes ↔ ideal classes modulo inversion** ($D < 0$ fundamental), in the
+convention of this repository (classes are $\mathrm{GL}_2(\mathbb{Z})$-classes, `Siegel.IntEquiv`): $[f]_{\mathrm{GL}} \mapsto \{[\mathfrak a_f],
 [\mathfrak a_f]^{-1}\}$. A $\mathrm{GL}$-class is a proper class together with its opposite (`intEquiv_iff_sLEquiv_or`), and
 the opposite form has the inverse ideal class (`idealClass_conj`). Source: Cox, §2.A [unverified locator] and Thm. 7.7. -/
 @[kb "cox2013" "§2.A; §7.B, Thm. 7.7 [unverified locator]"]
@@ -453,8 +452,8 @@ def ModInv.congr {G H : Type*} [CommGroup G] [CommGroup H] (e : G ≃* H) : ModI
       MulAction.orbitRel _ _ (Additive.ofMul (e x)) (Additive.ofMul (e y))
     rw [orbitRel_inv_iff, orbitRel_inv_iff, ← map_inv e, e.injective.eq_iff, e.injective.eq_iff]
 
-/-- **$\mathrm{GL}_2(\mathbb{Z})$-classes ↔ $\mathrm{Cl}(\mathcal O_{K_D})$ modulo inversion** ($D < 0$ fundamental; the library's
-convention). See `glClassEquivOrder`. -/
+/-- **$\mathrm{GL}_2(\mathbb{Z})$-classes ↔ $\mathrm{Cl}(\mathcal O_{K_D})$ modulo inversion** ($D < 0$ fundamental; the convention
+of this repository). See `glClassEquivOrder`. -/
 @[kb "cox2013" "§2.A; §7.B, Thm. 7.7 [unverified locator]"]
 noncomputable def glClassEquiv (hD : D < 0) : Quotient (glSetoid D) ≃ ModInv (ClassGroup (𝓞 (QField D))) :=
   (glClassEquivOrder hD).trans (ModInv.congr (classGroupEquiv D))

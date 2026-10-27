@@ -32,7 +32,7 @@ diagonal at $p$, with
 
 (Lemma 2.1 also gives $\mathrm{ord}_p(a) = \mathrm{ord}_p(c)$ in 2-dimensional blocks; not needed here.)
 
-*Correction:* first stated without "only when $p = 2$", which is false for Lemma 3.2:
+*Correction:* an earlier version was stated without "only when $p = 2$", which is false for Lemma 3.2:
 $p = 3$, $Q = (x+y)^2$ as a "block" $x^2 + 2xy + y^2$ ($b = 2$ a unit, but the block is degenerate mod 3)
 has 18 Good solutions mod 9 vs. the predicted $3 \cdot 2 = 6$ (checked in Lean by `decide`). -/
 def IsJordanForm (Q : QuadForm ℤ n) (p : ℕ) (P : Finset (Fin n × Fin n)) (ν : Fin n → ℕ) : Prop :=
@@ -891,18 +891,17 @@ nondegenerate integral form $Q$ and a prime $p$ there is an integral form $Q'$ i
 $p$ (with 2-dimensional blocks only if $p = 2$) such that $r_{p^k}(Q, m) = r_{p^k}(Q', m)$ for all $k, m$.
 
 *Proof.* For odd $p$: `exists_diag_same_counts` and `isJordanForm_diag`. For $p = 2$: the same
-reduction over $\mathbb{Z}_{(2)}$ (Lemma 2.1, following Conway–Sloane, *Sphere Packings, Lattices and Groups*, 3rd ed., Ch. 15, §4.4, Thm. 2, pp. 369–370, cited as [CS] in the paper), splitting off a 2-dimensional
+reduction over $\mathbb{Z}_{(2)}$ (Lemma 2.1, following Conway–Sloane, *SPLAG* 3rd ed., pp. 369–370, cited as [CS] in the paper), splitting off a 2-dimensional
 block $\begin{pmatrix} 2^\nu\alpha & 2^\nu\beta \\ 2^\nu\beta & 2^\nu\gamma\end{pmatrix}$ when the least valuation is off the
 diagonal, then clear denominators by an odd $d$ and apply `repCount_eq_of_unimodular`. (The remarks
 below about $\mathbb{Z}_p$-approximation are an alternative route.) The counts mod
 $p^k$ are invariant under $\vec{x} \mapsto U\vec{x}$ for $U \in \mathrm{GL}_n(\mathbb{Z}_p)$. Finally replace the
 $\mathbb{Z}_p$-coefficients of the normal form by integers agreeing with them modulo a high power $p^K$
 (keeping the block shape, units and valuations): a nondegenerate form and a form sufficiently close to
-it $p$-adically are $\mathbb{Z}_p$-equivalent (Cassels, *Rational Quadratic Forms*, Ch. 8, Lemma 5.1, p. 123: congruence modulo $p^{\delta + 2\lambda + 1}$,
-$\delta = \mathrm{ord}_p d(f)$, $\lambda = \mathrm{ord}_p 2$, for classically integral $f$ with $d(f) = \det(f_{ij})$;
+it $p$-adically are $\mathbb{Z}_p$-equivalent (Cassels, *Rational Quadratic Forms*, Ch. 8 [unverified locator];
 precision $K > \mathrm{ord}_p(\det) + 2\,\mathrm{ord}_p(2) + 1$ suffices), so the integral form has
 the same counts for **all** $k$. -/
-@[kb "hanke2004" "Lemma 2.1, p. 355; cassels1978 Ch. 8, Thm. 3.1, pp. 115–116 (existence)"]
+@[kb "hanke2004" "Lemma 2.1, p. 355"]
 theorem exists_jordanForm (Q : QuadForm ℤ n) (hQ : Q.Nondegenerate) (p : ℕ) [Fact p.Prime] :
     ∃ (Q' : QuadForm ℤ n) (P : Finset (Fin n × Fin n)) (ν : Fin n → ℕ),
       IsJordanForm Q' p P ν ∧ Q'.Nondegenerate ∧ (p ≠ 2 → P = ∅) ∧

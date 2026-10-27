@@ -10,7 +10,7 @@ $\mathfrak a$ an ideal of $\mathcal O_F$. The left ideal $\mathfrak aJ$ (`scaleI
 * `rStab_scaleIdeal`: the right-order units of $\mathfrak aJ$ are those of $J$ (when $\mathfrak a$ is invertible up to a principal ideal).
 
 Hence $[J] \mapsto [\mathfrak aJ]$ is a well-defined injective map on the (finite) set of left ideal classes (`classScale`, `classScale_injective`): the
-action of $\mathrm{Cl}(F)$ used in the averaging argument (`EichlerMassNF`). No basis of $\mathcal O$, $J$ or $\mathfrak a$, no generator of $\mathfrak a$.
+action of $\mathrm{Cl}(F)$ used in the averaging argument of `EichlerMassNF`. No basis of $\mathcal O$, $J$ or $\mathfrak a$, no generator of $\mathfrak a$.
 
 Source: Voight, *Quaternion Algebras* (2021), §16.6 and (26.5.8)–(26.5.10) (there the class-group action is implicit in the adelic
 double coset count); the "squares generate $\mathfrak a^2$" lemma is standard.

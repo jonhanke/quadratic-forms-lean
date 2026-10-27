@@ -24,11 +24,8 @@ first columns of unimodular matrices, which is well founded since the values are
 *Related work (consulted, not imported):* lean-categories (D. Zack Garza),
 `LeanCategories/Lattices/Valued/ReducedBasis.lean` (`exists_reduced_basis`, `genus_finite`), proved there for abstract
 lattices via Minkowski's bound; Tau Ceti `IntegralLattice/PosDef` (Minkowski-reduced bases). Classical sources:
-Cassels, *Rational Quadratic Forms*, Ch. 9, Thm. 1.1, p. 128, proved in §3, pp. 135–138, by Hermite's argument
-(Lemma 3.2: a minimal value, completing the square, induction; Ch. 5, (3.9), p. 73 attributes it to Hermite), which is
-the route here; Conway–Sloane, *Sphere Packings, Lattices and Groups*,
-3rd ed., Ch. 15, §10.1, pp. 396–397 (Minkowski reduction, conditions (45)–(49); finitely many classes of any given
-determinant, p. 397). The book uses Minkowski reduction, not Hermite's; the finiteness statement is the same.
+Cassels, *Rational Quadratic Forms*, Ch. 9, Thm. 1.1 and its reduction-theory proof [unverified]; Conway–Sloane, *SPLAG*,
+Ch. 15 [unverified].
 -/
 import QuadFormsKB.Siegel.Genus
 
@@ -265,7 +262,7 @@ $\mathrm{GL}_n(\mathbb{Z})$-congruent to a matrix $B = g^{\mathsf T}Ag$ with
 - every entry $|B_{ij}| \le E_n(\det A)$ (`entryBound`), a bound depending only on $n$ and $\det A$.
 
 See the module docstring for the proof. -/
-@[kb "cassels1978" "Ch. 9, §3, Lemmas 3.1–3.2 and the proof of Thm. 1.1, pp. 135–138; Ch. 12, §1, p. 259 (Hermite's reduction, integral bounded-entries version)"]
+@[kb "cassels1978" "Ch. 9, Thm. 1.1, proof by reduction (Hermite) [unverified]"]
 theorem exists_reduced : ∀ (n : ℕ) (A : Matrix (Fin n) (Fin n) ℤ), IsPosDefInt A →
     ∃ g : GL (Fin n) ℤ,
       (∀ i : Fin n, (i : ℕ) = 0 → ((g.valᵀ * A * g.val) i i) ^ n ≤ hermC n * A.det) ∧

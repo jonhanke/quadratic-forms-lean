@@ -4,7 +4,7 @@
 **Layer:** as `GnatNSGlobal`.
 
 **Defines/proves**
-* `nsF : Gnat a b d →* soSub QF F` (over $F$), `nsF_surjective`;
+* `nsF : Gnat a b d →* soSub QF F`, `nsF_surjective`;
 * `bcRing_quatDiagRing`: $\Theta^{-1}$ of a global point of $D'$ is a global point of $D_E$ (`quatBaseChange_quatQuadDiag`);
 * **`nsAdele_diag`**, **`map_gam_nsAdele`**, **`map_gamP_nsPEquiv`**: $\Phi(\pi(\Gamma)) = $ `GammaSOAdele (qNS a b d)`.
 
@@ -59,7 +59,7 @@ theorem nsGLF_det (ξ : Gnat (a : F) (b : F) (d : F)) : (nsGLF ha0 hd0 ξ).val.d
   rw [nsGLF_apply]
   exact (phiSO two_ne_zero ha0 hd0 ξ).2.1
 
-/-- **$G^\natural(F)\to SO(V)(F)$** (over $F$). -/
+/-- **$G^\natural(F)\to SO(V)(F)$**. -/
 def nsF : Gnat (a : F) (b : F) (d : F) →* soSub QF F :=
   ((nsGLF ha0 hd0).codRestrict (orthGroup QF F) (nsGLF_mem ha0 hd0)).codRestrict (soSub QF F) (nsGLF_det ha0 hd0)
 

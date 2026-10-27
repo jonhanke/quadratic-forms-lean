@@ -4,14 +4,13 @@
 **Layer:** a number field $F$ (any class number), $Q_0$ a nondegenerate form over $\mathcal O_F$ of **odd** rank $n$, $L$ an arbitrary
 lattice on $V = (F^n, Q_0)$ (`Lat F n`, any Steinitz class).
 
-`mass_SO_eq_two_mul_mass` (the $SO$-mass is twice the $O$-mass) is stated for $L = \mathcal O_F^n$; its only
-lattice-specific input is
+`mass_SO_eq_two_mul_mass` (the $SO$-mass is twice the $O$-mass) is stated for $L = \mathcal O_F^n$; its only lattice-specific input is
 that $O(V)(\mathbb A_f) = SO(V)(\mathbb A_f)\cdot O(\hat L)$, proved there with local reflections of $\mathfrak o_\mathfrak p^n$. In odd rank $-1 \in O(\hat L)$
 has determinant $-1$, so the decomposition holds for every lattice (`exists_so_mul_locStab_odd`), and
 
 * **`mass_SO_eq_two_mul_mass_lat`**: $\mathrm{dcMass}(SO(V)(F), SO(\hat L)) = 2\,\mathrm{Mass}(L)$ for every integral $L$ ($n$ odd);
 * **`tauSOLat_eq_dcMass`**: $\tau$ computed with $L$ (`LatChange.tauSOLat`) is $\mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{dcMass}(SO(V)(F), SO(\hat L))$,
-  closing the corresponding gap in odd rank (the case $n = 3$ is used for $L = \mathcal O^0$).
+  closing the last gap in odd rank (the case $n = 3$ is needed for $L = \mathcal O^0$).
 
 Source: Conway–Sloane 1988, §2 (proper vs improper classes) [unverified]; Weil 1982, §3.5 [unverified locator].
 -/

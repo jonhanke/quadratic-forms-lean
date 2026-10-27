@@ -8,8 +8,7 @@ as in `GnatSqImage.lean` with moreover $s_v < m_v$.
   $\operatorname{nrd}x\in$ `Bset` iff $x_\infty\in$ `Sh` (`nrd_mem_Bset_iff`), so $X_H = \{x\in H_S : \operatorname{nrd}x\in\mathrm{Bset}\}$ and
   $X_E$ are boxes for `tamQuat` (`tamQuat_XS`).
 * **`nrd_image_ES`**: $\operatorname{nrd}(E_S)\cap\mathrm{Bset} = \{t : t_\infty\in\mathrm{BInf},\ t_f\in N_E\}$,
-  $N_E = \{t_f : t_v\in\mathfrak o_v^\times\ (v\notin S),\ t_v\in1+\pi^{m_v+s_v}\mathfrak o_v\ (v\in S)\}$ (good places:
-  `exists_sq_sub_mul_sq_eq`; bad places: `exists_sq_eq_near_one`; archimedean: $\sqrt t_w$).
+  $N_E = \{t_f : t_v\in\mathfrak o_v^\times\ (v\notin S),\ t_v\in1+\pi^{m_v+s_v}\mathfrak o_v\ (v\in S)\}$ (good places: `exists_sq_sub_mul_sq_eq`; bad places: `exists_sq_eq_near_one`; archimedean: $\sqrt t_w$).
 * **`tamQuat_XE_eq`** (the reduced-norm fibration, `fibMeas_nrdPos`): $\mathrm{tamQuat}(X_E) = \mu_{\mathrm{SL}_1}(E_S\cap\mathrm{SL}_1)\cdot
   \omega_\infty(\mathrm{BInf})\cdot\mu_f(N_E)$.
 

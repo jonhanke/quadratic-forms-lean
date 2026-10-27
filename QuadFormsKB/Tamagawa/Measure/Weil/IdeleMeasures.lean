@@ -27,7 +27,7 @@ $F$ is any number field. With $\Delta$ the modulus (`distribHaarChar`) and the l
 
 *Remark (not proved here; the job).* Weil's Theorem 3.1.1 (iii) for $A = F$ (Tate) gives
 $\operatorname{vol}(F^\times\backslash\mathbb A_F^1) = \rho_F = \operatorname{Res}_{s=1}\zeta_F(s)$ for the measure
-$\mu^1$ (no $\rho_F^{-1}$), i.e. $c_F = \rho_F$ (the class number formula, KB's `dedekindZeta_residue`).
+$\mu^1$ (no $\rho_F^{-1}$), i.e. $c_F = \rho_F$ (the class number formula, the library's `dedekindZeta_residue`).
 -/
 
 open IsDedekindDomain NumberField MeasureTheory Filter Topology NumberField.mixedEmbedding Set

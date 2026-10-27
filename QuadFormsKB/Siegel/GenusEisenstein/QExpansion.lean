@@ -1,5 +1,6 @@
 /-
 # The $q$-expansion of $E_W$ for $T$-invariant even weights
+
 For $W : (\mathbb{Z}/N)^2 \to \mathbb{C}$ with $W(x, y + x) = W(x, y)$ (`IsTInv`) and $W(-x,-y) = W(x,y)$ (`IsEvenW`):
 $$E_W(\tau) = \sum_{n \ge 0} e_W(n)q^n, \quad e_W(n) = [n = 0]\sum_d\frac{W(0,d)}{d^2}
   - 8\pi^2 n\sum_{c \ge 1}\frac{\hat W(c, n)}{c^2}, \quad \hat W(c, n) = \sum_{r < c}W(c, r)\,e\Big(\frac{nr}{c}\Big)$$

@@ -18,15 +18,14 @@ norm form is anisotropic over $F$). There is no restriction on the signature at 
   $S = d^{-1}(K_2K_1)$. With $v = d(\eta)^{-1}x$: $v^{-1}\in K_1$ and $v = d((\xi\eta)^{-1})\,(d(\xi)x)\in\bigcup_{\zeta\in S}
   d(\zeta^{-1})K_2 =: K_3$. So $v$ lies in $\{v : v\in K_3,\ v^{-1}\in K_1\}\cap H$, which is compact in the units topology
   (`Units.isClosedEmbedding_embedProduct`).
-* **Quaternions.** $K_1$ is given by `exists_isCompact_forall_quat_mul_mem`
-  (left Minkowski, $\|\operatorname{nrd}x\|\le1$);
+* **Quaternions.** $K_1$ is `exists_isCompact_forall_quat_mul_mem` (left Minkowski, $\|\operatorname{nrd}x\|\le1$);
   $K_2 = \overline{K_1}$ is obtained from it through the anti-involution $x\mapsto\bar x$ (`quatStarUnit`,
   `nrdUnit_quatStarUnit`). Finiteness of $d^{-1}(K)$ is discreteness of $\mathbb H$ in $\mathbb A_F^4$
   (`finite_quatDiagRing_preimage`). An anisotropic norm form gives `hdiv` (`isUnit_of_nrd_ne_zero`).
   **`exists_isCompact_quatOne_mul_mem`**: $\mathbb H_{\mathbb A}^1 = \mathbb H^\times\cdot C$ with $C$ compact;
   **`compactSpace_quatClassOne`**: $\mathbb H^\times\backslash\mathbb H_{\mathbb A}^1$ is compact.
-* **Consequences for the quotient measure.** For every Haar measure $\mu$ on $(\mathbb H\otimes\mathbb A)^\times$
-  the quotient measure `muQuatClass μ` is finite and nonzero (`muQuatClass_univ_lt_top`, `muQuatClass_univ_ne_zero`,
+* **Consequences.** For every Haar measure $\mu$ on $(\mathbb H\otimes\mathbb A)^\times$ the quotient measure
+  `muQuatClass μ` is finite and nonzero (`muQuatClass_univ_lt_top`, `muQuatClass_univ_ne_zero`,
   `isFiniteMeasure_muQuatClass`); in particular for the canonical Tamagawa measure (`muQuatClassTam_univ_lt_top`,
   `muQuatClassTam_univ_ne_zero`).
 * **The commutative analogue** ($A = F$): **`exists_isCompact_ideleOne_mul_mem`**, **`compactSpace_ideleClassOne`**
@@ -35,8 +34,8 @@ norm form is anisotropic over $F$). There is no restriction on the signature at 
 
 **Prior formalization (cited, not imported).** Fujisaki's lemma for an arbitrary finite-dimensional division algebra
 over a number field is formalized in the FLT project (K. Buzzard et al., `FLT/DivisionAlgebra/Finiteness.lean`,
-theorem `compact_quotient` with `D_discrete` and `units_cocompact`; commit a9efe58, Apache-2.0).
-This file is a lean rewrite on the library's own measures and Minkowski
+theorem `compact_quotient` with `D_discrete` and `units_cocompact`;
+commit a9efe58, Apache-2.0). This file is a lean rewrite on the library's own measures and Minkowski
 theorem; no FLT code is used or copied. The structure of the argument (two-sided Minkowski, finiteness of
 $D\cap K_2K_1$, closed embedding of the units) is the classical one of Fujisaki and Weil and is shared with FLT.
 The Mathlib lemmas doing the heavy lifting are `Units.isClosedEmbedding_embedProduct`,
@@ -297,7 +296,7 @@ section Idele
 variable (F)
 
 /-- **$F^\times\backslash\mathbb A_F^1$ is compact, explicit form**: $\mathbb A_F^1 = F^\times\cdot C$ with $C$ compact
-(the abstract Fujisaki lemma with $D = F$; Minkowski for ideles). -/
+(the abstract Fujisaki lemma with $D = F$). -/
 @[kb "weil1982" "compactness of 𝔸^1/F^× [unverified locator]"]
 theorem exists_isCompact_ideleOne_mul_mem :
     ∃ C : Set (ideleOne F), IsCompact C ∧ ∀ x : ideleOne F, ∃ γ ∈ diagUnitsOne F, γ⁻¹ * x ∈ C := by

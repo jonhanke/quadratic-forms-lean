@@ -50,7 +50,6 @@ def Everywhere (P : (K : Type) → [Field K] → [Algebra F K] → Prop) : Prop 
 /-- **The local Hilbert symbol $(a,b)_v$** of $a, b \in F$ at the place $v$: the Hilbert symbol
 over the completion $F_v$, with $a, b$ viewed in $F_v$. Solutions are sought **in $F_v$**, not
 in $F$. -/
-@[kb "omeara1963" "§63B, p. 164 (Hilbert symbol)"]
 noncomputable def hilbert : NFPlace F → F → F → ℤ
   | infinite w, a, b => hilbertSymbol w.Completion (algebraMap F _ a) (algebraMap F _ b)
   | finite v, a, b => hilbertSymbol (v.adicCompletion F) (algebraMap F _ a) (algebraMap F _ b)

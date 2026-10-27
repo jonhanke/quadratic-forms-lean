@@ -5,7 +5,7 @@
 $G = O(V)(F_\mathfrak p)$ for $V = (F^n, Q_0 \otimes F)$, $Q_0$ an integral form over $\mathcal O_F$, with reference subgroup
 $O(L_\mathfrak p) = O(V)(\mathfrak o_\mathfrak p)$ (`Lattices.stdStab`, $L = \mathcal O_F^n$).
 
-## The combinatorial Haar measure (design decision)
+## The combinatorial Haar measure
 Mathlib's `MeasureTheory.Measure.haar` would need the topology of $O(V)(F_\mathfrak p)$ as a locally compact group and
 the identification of the gauge-form measure with a Haar measure; neither is cheap. Every compact open subset of a
 totally disconnected group is a finite union of left cosets of a compact open subgroup, and compact open subgroups are
@@ -298,7 +298,7 @@ open NumberField IsDedekindDomain Lattices Matrix
 variable {F : Type*} [Field F] [NumberField F] {n : ℕ}
 
 /-- **$SO(V)(R) = \{g \in O(V)(R) : \det g = 1\}$** for an $F$-algebra $R$. -/
-@[kb "omeara1963" "§43A, p. 100 (rotations O⁺(V))"]
+@[kb "omeara1963" "§43 (O⁺(V)) [unverified]"]
 def soSub (Q : QuadForm F n) (R : Type*) [CommRing R] [Algebra F R] : Subgroup (orthGroup Q R) where
   carrier := {g | (g : GL (Fin n) R).val.det = 1}
   mul_mem' {a b} ha hb := by
@@ -400,7 +400,7 @@ theorem volO_eq : volLoc v Q₀ (stdStab QF v : Set (orthGroup QF Fv)) = NF.loca
 
 /-- **$[O(L_\mathfrak p) : SO(L_\mathfrak p)] = 2$** at every finite prime (a reflection of $L_\mathfrak p$,
 `exists_stdStab_det_neg_one`). -/
-@[kb "omeara1963" "§91B, 91:4a, p. 241 ((O(L):O⁺(L)) = 2 over a local field); §82C, 82:3, p. 223"]
+@[kb "omeara1963" "§92 [unverified]"]
 theorem relIndex_soStab (hQ : Q₀.Nondegenerate) (hn : 0 < n) :
     (soStab v Q₀).relIndex (stdStab QF v) = 2 := by
   have hQF : (QF).Nondegenerate := by

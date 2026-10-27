@@ -1,5 +1,6 @@
 /-
 # The reduced norm: local surjectivity and Eichler's norm theorem
+
 For a quaternion algebra $D = (a,b)_F$ over a number field $F$ (`Tamagawa/Quaternion.lean`):
 
 * **Split places.** If $(a,b)_K = 1$ then $\operatorname{nrd} \colon D_K^\times \to K^\times$ is surjective, over every
@@ -113,7 +114,7 @@ is a standard result about local fields (O'Meara 63:19; Serre 1973, Ch. IV, §2.
 2005, Ch. VI, Thm. 2.12), assumed here, not proved, for general $F$. For $F = \mathbb{Q}$ it is proved in this repo
 for diagonal forms with rational coefficients (`RankFive.isotropic_padic_diag_odd`,
 `RankFive.isotropic_two_adic_diag`). It does not mention quaternion algebras, norms or Eichler's theorem. -/
-@[kb "omeara1963" "§63C, 63:19, p. 170"]
+@[kb "omeara1963" "63:19 [unverified]"]
 structure LocalRankFiveIsotropic (F : Type) [Field F] [NumberField F] : Prop where
   isotropic : ∀ (v : HeightOneSpectrum (𝓞 F)) (Q : QuadForm (v.adicCompletion F) 5),
     Q.Nondegenerate → Q.IsotropicIn (v.adicCompletion F)

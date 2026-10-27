@@ -139,7 +139,7 @@ theorem measurePreserving_baseMap (g₀ : SL2A F) : MeasurePreserving (baseMap g
 
 /-- **$\mu_T$ is left invariant.** In coordinates, $g_0\Psi(y, x) = \Psi(g_0y,\ x + \beta(g_0, y))$, a skew product over
 the measure-preserving map $y\mapsto g_0y$ with translations in the fibre. -/
-@[kb "weil1982" "§2.4, Thm 2.4.3 [unverified page]; continuous unfolding SL₂ ⊃ N"]
+@[kb "weil1982" "§2.4, Thm 2.4.3 [unverified page]"]
 theorem map_mul_left_muT (g₀ : SL2A F) : Measure.map (g₀ * ·) (muT F) = muT F := by
   have hgm : Measurable (Function.uncurry fun (y : primSet F) (x : Adeles F) =>
       (toCoord F (g₀ * sec (y : AdeleSpace F (Fin 2)))).2 + x) := by

@@ -12,7 +12,7 @@ For $L = F(\sqrt a)$ and a place $v$ of $F$ non-split in $L$ (i.e. $a$ not a squ
 * `hilbertSymbol_mul_left_finite_nf`: $(ab, c)_v = (a,c)_v (b,c)_v$ for all $a, b, c \in F_v^\times$, i.e. the input
   `NFInputs.hilbertSymbol_mul_left_finite_nf`, proved with the same statement;
 * `hmInputs_of`: the Serre-route bundle `NFInputs.HMInputs F` now needs only reciprocity and prescribed symbols
-  (the `NFInputs` file itself cannot import this one, so its `sorry`'d copy of the input stays, with a pointer).
+  (the input statement itself is restated in `NumberFieldMain.lean`, downstream of this proof).
 
 **Route** (an elementary count, no Herbrand quotient). With $K = F_v$, $E = K \otimes_F L \cong L_w$
 (a field, quadratic over $K$), consider the norm on square classes, $E^\times/E^{\times 2} \to K^\times/K^{\times 2}$:
@@ -223,7 +223,7 @@ residue characteristic, dyadic included): $[F_v^\times : N((F_v \otimes_F L)^\ti
 $F_v^\times E^{\times 2}$ (quadratic Hilbert 90 in the explicit form $y\,N(y + k) = k\,(y + k)^2$ when $N(y) = k^2$),
 and $[E^\times : E^{\times 2}] = 4q^2$ exactly (`absNorm_pow_ordTwo_eq`). Then
 $[E^\times : F_v^\times E^{\times 2}] = 4q^2 / 2q = 2q = [N E^\times : F_v^{\times 2}]$ and the index is $4q / 2q = 2$. -/
-@[kb "milne2020cft" "Ch. III §2 (local norm index, n = 2) [unverified]; omeara1963 §63B, 63:13a, p. 167"]
+@[kb "milne2020cft" "Ch. III §2 (local norm index, n = 2) [unverified]"]
 theorem index_norm_eq_two (a : F) (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
     (w : HeightOneSpectrum (𝓞 L))
@@ -462,7 +462,6 @@ end D2
 
 /-- **Hilbert symbol and norms from $K(\sqrt\alpha)$:** in a field with $2 \ne 0$, for $\alpha \ne 0$ and any $x$,
 $(\alpha, x)_K = 1$ iff $x = x_0^2 - \alpha x_1^2$ for some $x_0, x_1 \in K$. -/
-@[kb "omeara1963" "§63B, 63:10, p. 164"]
 lemma hilbertSymbol_eq_one_iff_norm (K : Type*) [Field K] (h2 : (2 : K) ≠ 0) {α x : K}
     (hα : α ≠ 0) :
     hilbertSymbol K α x = 1 ↔ ∃ x₀ x₁ : K, x = x₀ ^ 2 - α * x₁ ^ 2 := by
@@ -506,7 +505,7 @@ open scoped TensorProduct
 
 /-- **The local norm group is the kernel of $(a, \cdot)_v$:** for $x \in F_v^\times$, $x$ is a norm from
 $F_v \otimes_F F(\sqrt a)$ iff $(a, x)_v = 1$. -/
-@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]; omeara1963 §65A, p. 176 (local norm if and only if the Hilbert symbol is 1)"]
+@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]"]
 lemma mem_range_norm_iff (a : F) (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
     (w : HeightOneSpectrum (𝓞 L))
@@ -546,7 +545,7 @@ lemma mem_range_norm_iff (a : F) (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = alge
 
 /-- **$(a, \cdot)_v$ is multiplicative** at a finite place $v$ non-split in $F(\sqrt a)$, $a \in F$ (from
 `index_norm_eq_two` and `mem_range_norm_iff`). -/
-@[kb "omeara1963" "§63B, 63:13a, p. 167 ((F^× : N E^×) = 2); p. 166 (bimultiplicativity)"]
+@[kb "omeara1963" "§63 [unverified]"]
 lemma hilbertSymbol_mul_right_of_global (a : F) (hd : ¬ IsSquare a) (s : L)
     (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
@@ -568,7 +567,7 @@ lemma hilbertSymbol_mul_right_of_global (a : F) (hd : ¬ IsSquare a) (s : L)
 /-- **The local norm index at a non-split real place is exactly $2$:** if $a$ is not a square in $F_v$
 ($v \mid \infty$), the norms from $F_v \otimes_F F(\sqrt a)$ have index $2$ in $F_v^\times$. (They contain the
 squares, of index $\le 2$ (`index_sq_infinite`), and have index $\ge 2$ (`two_le_index_norm_inf`).) -/
-@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]; omeara1963 §63B, 63:13a, p. 167 (complete archimedean case)"]
+@[kb "serre1973" "Ch. III §1.2, Thm. 1 [unverified]"]
 theorem index_norm_eq_two_inf (a : F) (hd : ¬ IsSquare a) (s : L) (hs : s ^ 2 = algebraMap F L a)
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
     (v : InfinitePlace F) (hv : ¬ IsSquare (algebraMap F v.Completion a)) :
@@ -645,7 +644,7 @@ squares are open), and $(c, x) = (a_0, x)$. With $L = F(\sqrt{a_0})$ and $w \mid
 $x \mapsto (a_0, x)_{\mathfrak p}$ is the norm group of $F_{\mathfrak p} \otimes_F L \cong L_w$
 (`mem_range_norm_iff`), which has index exactly $2$ (`index_norm_eq_two`); a $\pm 1$-valued function whose
 fibre over $1$ is a subgroup of index $2$ is a homomorphism. -/
-@[kb "omeara1963" "§63B, p. 166 (bimultiplicativity, 'the fourth' formula)"]
+@[kb "omeara1963" "§63 [unverified]"]
 theorem hilbertSymbol_mul_left_finite_nf (v : HeightOneSpectrum (𝓞 F))
     (a b c : v.adicCompletion F) (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) :
     hilbertSymbol (v.adicCompletion F) (a * b) c =

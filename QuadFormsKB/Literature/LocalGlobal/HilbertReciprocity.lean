@@ -16,7 +16,7 @@ open RatPlace
 
 /-- Hilbert's product formula: `(a, b)_v = -1` at only finitely many places, and at an
 even number of them (equivalently `∏_v (a, b)_v = 1`). -/
-@[kb "serre1973" "Ch. III, §2.1, Thm. 3; cassels1978 Ch. 3, Lemma 3.4, p. 46"]
+@[kb "serre1973" "Ch. III, §2.1, Thm. 3"]
 theorem hilbert_product_formula (a b : ℚ) (ha : a ≠ 0) (hb : b ≠ 0) :
     {v : RatPlace | v.hilbert a b = -1}.Finite ∧
       Even {v : RatPlace | v.hilbert a b = -1}.ncard := by

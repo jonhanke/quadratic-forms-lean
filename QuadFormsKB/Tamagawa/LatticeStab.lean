@@ -178,9 +178,9 @@ theorem relIndex_locStab_ne_zero (L M : Lat F n) : (locStab Q M).relIndex (locSt
   exact ((Set.ncard_pos hfin).mpr ⟨M, mem_orbit_self M⟩).ne'
 
 /-- **Lattice stabilizers are commensurable:** $O(\hat M)$ and $O(\hat L)$ are commensurable subgroups of
-$O(V)(\mathbb A_f)$ for any lattices $L, M \subseteq F^n$ (cf. O'Meara §81E, p. 218: $L_\mathfrak p = M_\mathfrak p$ for almost all $\mathfrak p$; Weil 1982, §2.1
+$O(V)(\mathbb A_f)$ for any lattices $L, M \subseteq F^n$ (O'Meara §81 [unverified]; Weil 1982, §2.1
 [unverified]). -/
-@[kb "weil1982" "§2.1 (compact open subgroups) [unverified]; omeara1963 §81E, p. 218 (L_{𝔭} = M_{𝔭} for almost all 𝔭)"]
+@[kb "weil1982" "§2.1 (compact open subgroups) [unverified]"]
 theorem commensurable_locStab (L M : Lat F n) : (locStab Q M).Commensurable (locStab Q L) :=
   ⟨⟨relIndex_locStab_ne_zero Q L M⟩, ⟨relIndex_locStab_ne_zero Q M L⟩⟩
 

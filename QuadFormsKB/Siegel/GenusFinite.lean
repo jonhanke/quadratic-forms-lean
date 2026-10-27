@@ -63,7 +63,7 @@ theorem exists_hessian_eq (N : Matrix (Fin n) (Fin n) ℤ) (hN : N.IsSymm) (hev 
 
 /-- **Reduction of a positive definite form:** $Q$ is $\mathbb{Z}$-equivalent to a form $Q'$ whose Hessian has all entries
 bounded by $E_n(\det H)$ (`Hermite.entryBound`), $H$ the Hessian of $Q$. -/
-@[kb "cassels1978" "Ch. 9, §3, proof of Thm. 1.1, pp. 135–136; Ch. 9, Thm. 1.1, p. 128"]
+@[kb "cassels1978" "Ch. 9, Thm. 1.1, proof by reduction (Hermite) [unverified]"]
 theorem exists_intEquiv_hessian_bounded {Q : IntQF n} (hQ : Q.PosDef) :
     ∃ Q' : QuadForm ℤ n, IntEquiv Q Q' ∧
       ∀ i j, |Q'.hessian i j| ≤ Hermite.entryBound n Q.hessian.det := by
@@ -84,11 +84,10 @@ theorem finite_setOf_hessian_bounded (B : ℤ) :
   intro i j
   exact abs_le.mp (hQ' i j)
 
-/-- **Finiteness of the class number** (Hermite; Cassels 1978, Ch. 9, Thm. 1.1, p. 128, and Lemma 4.1, Cor. 1, p. 139, there for every regular
-classically integral form): for every positive definite
+/-- **Finiteness of the class number** (Hermite; Cassels 1978, Ch. 9, Thm. 1.1 [unverified]): for every positive definite
 integral form $Q$, the genus of $Q$ contains only finitely many $\mathrm{GL}_n(\mathbb{Z})$-classes, i.e. `GenusFinite Q`.
 This discharges the input `GenusFinite` wherever it is assumed (e.g. `thm_6_3_quaternary'`). -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.1, Cor. 1, p. 139 (with Thm. 1.1, p. 128)"]
+@[kb "cassels1978" "Ch. 9, Thm. 1.1, finiteness of the class number [unverified]"]
 theorem genusFinite {Q : IntQF n} (hQ : Q.PosDef) : GenusFinite Q := by
   refine ⟨((finite_setOf_hessian_bounded (Hermite.entryBound n Q.hessian.det)).image classOf).subset ?_⟩
   rintro c ⟨Q'', rfl, hg⟩

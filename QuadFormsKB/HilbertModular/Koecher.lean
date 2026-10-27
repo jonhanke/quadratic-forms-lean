@@ -22,7 +22,7 @@ $u_0$ with $|u_0|_v < 1$ for all $v \ne w$; then $|u_0|_w > 1$ because $\prod_v|
 $u = u_0^m$, invariance under $\mathrm{diag}(u, u^{-1})$ gives $|f(u^2z)| = |f(z)|$ (`norm_slash_diagU`), and
 `koecher_coeff_eq_zero` applies with $\varepsilon = (u_v^2)_v$.
 
-*Not done here* (only planned): Fourier inversion ($f = \sum_\nu a_\nu e(\operatorname{Tr}\nu z)$,
+*Not done here* (stated as plan in `docs/hilbert-modular.md`): Fourier inversion ($f = \sum_\nu a_\nu e(\operatorname{Tr}\nu z)$,
 absolutely and locally uniformly), hence the boundedness form of Koecher's principle (boundedness of $f\,|_k\,\gamma$ at
 $i\infty$ for every $\gamma$); this needs convergence of $\sum_{\nu \gg 0}|a_\nu|e^{-2\pi\operatorname{Tr}(\nu y)}$.
 -/

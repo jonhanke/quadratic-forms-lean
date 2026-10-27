@@ -132,7 +132,7 @@ theorem exists_conj_ne : ∃ x : E, conj F E x ≠ x := by
 
 /-- **The automorphism group of $(L, cN)$**, $c \ne 0$: $O(L) \simeq \{u : N(u) = 1,\ uL = L\} \sqcup
 \{u : N(u) = 1,\ u\,\sigma(L) = L\}$ (proper $x \mapsto ux$, improper $x \mapsto u\,\sigma(x)$). -/
-@[kb "omeara1963" "§82C, p. 223 (O(L)); §43C, p. 104"]
+@[kb "omeara1963" "§82, O(L); §57 [unverified]"]
 def autEquiv {c : F} (hc : c ≠ 0) (L : Submodule (𝓞 F) E) :
     Lattices.autLatV (c • normForm F E) L ≃
       ({u : E // Algebra.norm F u = 1 ∧ smulLat u L = L} ⊕
@@ -241,7 +241,7 @@ theorem smulLat_idealLat_eq_self_iff {𝔄 : Ideal (𝓞 E)} (h𝔄 : 𝔄 ≠ �
 
 /-- **Proper automorphisms of an ideal lattice are the norm-one units:**
 $\{u : N(u) = 1,\ u\mathfrak A = \mathfrak A\} \simeq \{u \in \mathcal O_E^\times : N(u) = 1\}$ ($\mathfrak A \ne 0$). -/
-@[kb "omeara1963" "§82C, p. 223 (O⁺(L)); cf. autSLEquivUnits"]
+@[kb "omeara1963" "§82 [unverified]; cf. autSLEquivUnits"]
 def properAutEquiv {𝔄 : Ideal (𝓞 E)} (h𝔄 : 𝔄 ≠ ⊥) :
     {u : E // Algebra.norm F u = 1 ∧ smulLat u (idealLat F 𝔄) = idealLat F 𝔄} ≃
       {v : (𝓞 E)ˣ // Algebra.norm F ((v : 𝓞 E) : E) = 1} where
@@ -284,7 +284,7 @@ def improperEquiv {L : Submodule (𝓞 F) E} {u₀ : E} (hu₀ : Algebra.norm F 
 
 /-- **The order of $O(\mathfrak A, cN)$:** $|O| = w_1 \cdot (2$ if $\mathfrak A$ has an improper automorphism, $1$ otherwise$)$,
 $w_1 = \#\{u \in \mathcal O_E^\times : N_{E/F}(u) = 1\}$, assumed finite (true in the CM case, `card_autLat_ideal_cm`). -/
-@[kb "omeara1963" "§82C, p. 223 (O(L)); cf. card_aut"]
+@[kb "omeara1963" "§82 [unverified]; cf. card_aut"]
 theorem card_autLat_ideal {c : F} (hc : c ≠ 0) {𝔄 : Ideal (𝓞 E)} (h𝔄 : 𝔄 ≠ ⊥)
     (hfin : Finite {v : (𝓞 E)ˣ // Algebra.norm F ((v : 𝓞 E) : E) = 1}) :
     Nat.card (Lattices.autLatV (c • normForm F E) (idealLat F 𝔄)) =
@@ -315,7 +315,7 @@ theorem finite_normOneUnits [IsTotallyReal F] [IsTotallyComplex E] :
   Finite.of_equiv _ (Equiv.subtypeEquivRight fun u => normOneUnits_eq_torsion (F := F) u).symm
 
 /-- **$|O(\mathfrak A, cN)| \in \{w_E, 2w_E\}$ in a CM extension** ($F$ totally real, $E$ totally complex), $w_E = |\mu_E|$. -/
-@[kb "omeara1963" "§82C, p. 223 (O(L)); cf. card_aut"]
+@[kb "omeara1963" "§82 [unverified]; cf. card_aut"]
 theorem card_autLat_ideal_cm [IsTotallyReal F] [IsTotallyComplex E] {c : F} (hc : c ≠ 0) {𝔄 : Ideal (𝓞 E)}
     (h𝔄 : 𝔄 ≠ ⊥) :
     Nat.card (Lattices.autLatV (c • normForm F E) (idealLat F 𝔄)) =
@@ -327,7 +327,7 @@ theorem card_autLat_ideal_cm [IsTotallyReal F] [IsTotallyComplex E] {c : F} (hc 
 
 /-- **An ideal lattice with an improper automorphism is ambiguous:** $\sigma_*[\mathfrak A] = [\mathfrak A]$, so
 $[\mathfrak A]^2 = 1$ in $\mathrm{Cl}_E/\iota(\mathrm{Cl}_F)$ (`conjClass_eq_inv_mod`). -/
-@[kb "omeara1963" "§82C, p. 223; cf. exists_improper_iff"]
+@[kb "omeara1963" "§82 [unverified]; cf. exists_improper_iff"]
 theorem conjClass_eq_of_improper (𝔄 : (Ideal (𝓞 E))⁰)
     (h : ∃ u : E, Algebra.norm F u = 1 ∧
       smulLat u (idealLat F (conjIdeal F (𝔄 : Ideal (𝓞 E)))) = idealLat F (𝔄 : Ideal (𝓞 E))) :

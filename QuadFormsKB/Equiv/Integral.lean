@@ -78,7 +78,7 @@ theorem RatQF.isIntegral_iff_integerValued (Q : RatQF n) :
 
 /-- **Classically integral $\iff$ even cross coefficients:** an integral form is classically
 integral iff $2 \mid c_{ij}$ for all $i < j$. -/
-@[kb "cassels1978" "Ch. 1, §2, (2.17), p. 7 (integer-valued vs classically integral); Ch. 9, §1, p. 128"]
+@[kb "cassels1978" "Ch. 9, §1"]
 theorem isClassicallyIntegral_iff (Q : IntQF n) :
     IsClassicallyIntegral Q ↔ ∀ i j, i < j → Even (Q.coeff i j) := by
   have hE : ∀ x, Q.eval x = x ⬝ᵥ Q.coeff *ᵥ x := by
@@ -148,7 +148,7 @@ theorem isClassicallyIntegral_iff (Q : IntQF n) :
 
 /-- **$2Q$ is classically integral** for every integral form $Q$: its Gram matrix is the
 Hessian $H = C + C^{\mathsf T}$, i.e. $2Q(\vec{x}) = \vec{x}^{\mathsf T} H\, \vec{x}$. -/
-@[kb "cassels1978" "Ch. 1, §2, p. 7; Ch. 9, §1, p. 128"]
+@[kb "cassels1978" "Ch. 9, §1"]
 theorem two_smul_isClassicallyIntegral (Q : IntQF n) :
     IsClassicallyIntegral ((2 : ℤ) • Q) := by
   refine ⟨Q.coeff + Q.coeffᵀ, ?_, ?_⟩

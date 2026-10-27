@@ -3,9 +3,10 @@ import Mathlib.RingTheory.Complex
 
 /-!
 # Scaling of the self-dual measure on $\mathbb A_F$ by ideles
+
 For $g\in\mathbb A_F^\times$ acting on $\mathbb A_F$ by multiplication,
 $$g_*\mu = \|g\|_{\mathbb A}^{-1}\,\mu,\qquad \|g\|_{\mathbb A} = |\det(g_\infty\cdot)|\cdot\prod_v\Delta_v(g_v),$$
-with $\Delta_v$ the Haar character (modulus) of $F_v^\times$ (`distribHaarChar`; $\Delta_v(\varpi_v) = N(v)^{-1}$ is
+with $\Delta_v$ the Haar character (modulus) of $F_v^\times$ (`distribHaarChar`; $\Delta_v(\varpi_v) = N(v)^{-1}$ is the library's
 `modV_eq`) and $|\det(g_\infty\cdot)| = \prod_{w\text{ real}}|g_w|\prod_{w\text{ complex}}|g_w|^2$ (`det_mulLeft_mixedSpace`).
 
 * `map_smul_eq_distribHaarChar_inv` (generic): $g_*\mu = \Delta_A(g)^{-1}\mu$ for any regular Haar measure on a locally
@@ -266,7 +267,7 @@ theorem distribHaarChar_adeles (g : (Adeles F)ˣ) : (distribHaarChar (Adeles F) 
 theorem ideleNorm_pos (g : (Adeles F)ˣ) : 0 < ideleNorm F g := by
   rw [← distribHaarChar_adeles]; exact_mod_cast distribHaarChar_pos
 
-/-- **Scaling (item 4, $A = F$)**: for $g\in\mathbb A_F^\times$, $g_*\mu_{\mathbb A} = \|g\|_{\mathbb A}^{-1}\mu_{\mathbb A}$. -/
+/-- **Scaling ($A = F$)**: for $g\in\mathbb A_F^\times$, $g_*\mu_{\mathbb A} = \|g\|_{\mathbb A}^{-1}\mu_{\mathbb A}$. -/
 @[kb "weil1982" "§2.1 [unverified page]"]
 theorem map_smul_muAdd (g : (Adeles F)ˣ) :
     Measure.map (g • ·) (muAdd F) = ENNReal.ofReal (ideleNorm F g)⁻¹ • muAdd F := by
@@ -318,7 +319,7 @@ theorem distribHaarChar_adeleSpace (g : (AdeleSpace F ι)ˣ) :
 theorem ideleNormVec_pos (g : (AdeleSpace F ι)ˣ) : 0 < ideleNormVec g := by
   rw [← distribHaarChar_adeleSpace]; exact_mod_cast distribHaarChar_pos
 
-/-- **Scaling (item 4, $A = F^\iota$)**: $g_*\mu = \|N_{A/F}(g)\|_{\mathbb A}^{-1}\mu$. -/
+/-- **Scaling ($A = F^\iota$)**: $g_*\mu = \|N_{A/F}(g)\|_{\mathbb A}^{-1}\mu$. -/
 theorem map_smul_muAddVec (g : (AdeleSpace F ι)ˣ) :
     Measure.map (g • ·) (muAddVec F ι) = ENNReal.ofReal (ideleNormVec g)⁻¹ • muAddVec F ι := by
   rw [map_smul_eq_distribHaarChar_inv, ← distribHaarChar_adeleSpace]

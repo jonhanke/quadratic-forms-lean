@@ -116,8 +116,7 @@ theorem relLR_pos (hdeg : Module.finrank F E = 2) {σ : ℝ} (hσ : 1 < σ) : 0 
 
 /-- **$L(\sigma, \chi_{E/F}) \to \rho_E/\rho_F$ as $\sigma \to 1^+$**, $\rho_K$ = `dedekindZeta_residue K`
 $= 2^{r_1(K)}(2\pi)^{r_2(K)}h_KR_K/(w_K\sqrt{|d_K|})$ (Mathlib's class number formula). In particular the Euler product
-$L(\sigma,\chi_{E/F})$ has a finite nonzero limit at $1$: $\chi_{E/F}$ is "nontrivial"
-(`QTwist.tendsto_mul_LFunction_zero` is the weaker statement $(\sigma - 1)L(\sigma,\chi) \to 0$). -/
+$L(\sigma,\chi_{E/F})$ has a finite nonzero limit at $1$: $\chi_{E/F}$ is "nontrivial" (`QTwist.tendsto_mul_LFunction_zero` is the weaker statement $(\sigma - 1)L(\sigma,\chi) \to 0$). -/
 @[kb "neukirch1999" "Ch. VII §5, Cor. 5.11 [unverified]"]
 theorem tendsto_relLR (hdeg : Module.finrank F E = 2) :
     Tendsto (relLR F E) (𝓝[>] 1) (𝓝 (dedekindZeta_residue E / dedekindZeta_residue F)) := by

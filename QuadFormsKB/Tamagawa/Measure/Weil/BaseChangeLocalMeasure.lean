@@ -3,16 +3,16 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeTraceLocal
 
 /-!
 # Local measure compatibility for the base change
+
 For a basis $b$ of $K/k$ and a finite place $v$ of $k$:
 
 * `localPiCLE b v : k_v^ι ≃L[k_v] ∏_{w∣v} K_w`: the linear bijection `localPiEquiv` is a homeomorphism (a linear map out of
   a finite-dimensional space over the complete nontrivially normed field $k_v$ is continuous, in both directions).
-* `placeMeasure v = ⊗_{w∣v} selfDualV w`: the product of the $\psi_{K,w}$-self-dual measures.
+* `placeMeasure v = ⊗_{w∣v} selfDualV w`: the product of the library's $\psi_{K,w}$-self-dual measures.
 * **`map_volVN_localPi`**: $(\Phi_b)_*(dx_v^{\otimes\iota}) = c_v\cdot\text{placeMeasure}$ with a constant
   $c_v=$ `localConst b v` $>0$ (Haar uniqueness; `Measure.addHaarScalarFactor`).
 
-Sources: Haar uniqueness (Mathlib `isAddLeftInvariant_eq_smul`); Cassels–Fröhlich Ch. XV (Tate), §1.3, p. 307 (uniqueness of Haar measure) and §2.2, p. 310 (self-dual measures);
-Ch. II (Cassels), §10, (10.2), p. 57;
+Sources: Haar uniqueness (Mathlib `isAddLeftInvariant_eq_smul`); Cassels–Fröhlich Ch. XV §2.2 [unverified];
 Weil, *Basic Number Theory*, Ch. II–VII [unverified].
 -/
 
@@ -63,13 +63,13 @@ theorem localConst_pos : 0 < localConst b v :=
 /-- **Local measure compatibility (Haar form).** The coordinate measure $dx_v^{\otimes\iota}$ on $K\otimes_kk_v=k_v^\iota$,
 transported to $\prod_{w\mid v}K_w$ by the base change, is the constant $c_v>0$ times the product of the
 $\psi_{K,w}$-self-dual measures. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §1.3, p. 307 (uniqueness of Haar measure); self-dual measures §2.2, p. 310; Weil BNT [unverified]; Mathlib `isAddLeftInvariant_eq_smul`"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (self-dual measures) [unverified]; Weil BNT [unverified]; Mathlib `isAddLeftInvariant_eq_smul`"]
 theorem map_volVN_localPi :
     (volVN (ι := ι) v).map (localPiCLE b v) = (localConst b v : ℝ≥0∞) • placeMeasure (K := K) v :=
   Measure.isAddLeftInvariant_eq_smul _ _
 
 /-- **Local degree formula:** $\sum_{w\mid v}[K_w:k_v]=[K:k]$ (from the $k_v$-linear isomorphism `localPiCLE`). -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., (10.2), p. 57 (compare k_v-dimensions); Neukirch II.8.3 (Σ_{w|v} [K_w : k_v] = [K : k]) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II §14 / Neukirch II.8.3 (Σ_{w|v} [K_w : k_v] = [K : k]) [unverified]"]
 theorem sum_finrank_places :
     ∑ w : PlaceSet (K := K) v, Module.finrank (v.adicCompletion k) (w.1.adicCompletion K) = Module.finrank k K := by
   have h1 := (localPiEquiv (Module.finBasis k K) v).finrank_eq
@@ -84,7 +84,7 @@ theorem card_places_le : Fintype.card (PlaceSet (K := K) v) ≤ Module.finrank k
 
 /-- **At most two places in the quadratic case** (three pairwise orthogonal idempotents cannot live in a
 2-dimensional algebra; here via $\sum_{w\mid v}[K_w:k_v]=2$ and $[K_w:k_v]\ge1$). -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., p. 57 (at most N = [K : k] extensions); Neukirch II.8.3 (a quadratic extension has at most two places over v) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II §14 / Neukirch II.8.3 (a quadratic extension has at most two places over v) [unverified]"]
 theorem card_places_le_two (hK : Module.finrank k K = 2) : Fintype.card (PlaceSet (K := K) v) ≤ 2 := by
   have := card_places_le (K := K) v
   omega

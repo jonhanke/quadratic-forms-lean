@@ -18,11 +18,11 @@ import QuadFormsKB.Tamagawa.Measure.Weil.PDArchMass
   $PD^\times(F_\infty)$, `muPDInf_univ`), `map_muPDInf`, `muArchTamSO_univ` ($c_F\prod_w\pi^2/(8\sigma_w(a)^4\sigma_w(b)^4)$),
   **`rI_mul_rF`** (Weil's product formula $r_\infty r_f = 1$, via `finprod_norm_eq`) and
   **`tauPD_eq_two_of_definite`**: $\mathrm{covol}(PD^\times(F)\backslash PD^\times(\mathbb A), \mu_\infty\times\mu_f) = 2$
-  unconditionally (by `covolume_pd_eq_two_of_definite` with all hypotheses discharged; no Fujisaki).
+  unconditionally (`covolume_pd_eq_two_of_definite` with all hypotheses discharged; no Fujisaki).
 
 *Scope note.* $c_I$ is computed from Weil's local archimedean gauge measures $\operatorname{nrd}_w^{-2}dx_w$ and
 $|t|^{-1}dt$ in the coordinates $1,i,j,k$ (Lebesgue), which are the place-by-place factors of `omegaQuatInf`
-and of the archimedean idele measure; the identification of `omegaQuatInf` on product sets with $\prod_w$ of these
+and the archimedean idele measure; the identification of `omegaQuatInf` on product sets with $\prod_w$ of these
 local measures is bookkeeping not formalized here.
 -/
 
@@ -197,7 +197,7 @@ theorem muArchTamSO_univ (ha : a ≠ 0) (hb : b ≠ 0) (hpd : IsTotallyPosDef (Q
   have hsfC : ∀ i : {w : InfinitePlace F // w.IsComplex},
       SigmaFinite (LerayComplex.lerayMeasureC (QCx Q₀ i) (gramDetC_QCx_ne_zero Q₀ hQ i)) :=
     fun i => isEmptyElim i
-  rw [muArchTamSO_of_isTotallyReal, Measure.smul_apply, smul_eq_mul, muArchNF, muArchLeray, ← Set.univ_prod_univ,
+  rw [muArchTamSO, Measure.smul_apply, smul_eq_mul, muArchNF, muArchLeray, ← Set.univ_prod_univ,
     Measure.prod_prod, Measure.pi_univ, Measure.pi_univ,
     Finset.univ_eq_empty (α := {w : InfinitePlace F // w.IsComplex}), Finset.prod_empty, mul_one]
   congr 1
@@ -341,7 +341,7 @@ theorem rI_mul_rF (ha : a ≠ 0) (hb : b ≠ 0) (hpd : IsTotallyPosDef (QuadForm
 
 /-- **$\tau(PD^\times) = 2$ for Weil's quotient Tamagawa measure, unconditionally** ($D = (a,b)_F$ totally definite over a
 totally real field $F$): the covolume of $PD^\times(F)$ in $PD^\times(\mathbb A) = PD^\times(F_\infty)\times PD^\times(\mathbb A_f)$
-for `muPDInf` $\times$ `muPDFin` is $2$: this is `covolume_pd_eq_two_of_definite` with the hypotheses discharged by
+for `muPDInf` $\times$ `muPDFin` is $2$. `covolume_pd_eq_two_of_definite` with the hypotheses discharged by
 `map_muPDInf`, `map_muPDFin` and the product formula `rI_mul_rF`. No Fujisaki, no zeta function of $D$. -/
 @[kb "weil1982" "Thm 3.2.1, p. 43; §3.7(a), p. 63; Thm 2.3.1 [unverified]"]
 theorem tauPD_eq_two_of_definite (ha : a ≠ 0) (hb : b ≠ 0)

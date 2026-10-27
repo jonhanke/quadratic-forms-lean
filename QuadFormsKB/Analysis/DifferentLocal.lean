@@ -23,8 +23,7 @@ For a number field $F$:
 * `mem_dual_idealOfExps_iff`: the trace dual of $\prod_v\mathfrak p_v^{k_v}$ is $\prod_v\mathfrak p_v^{-k_v-d_v}$.
 
 Sources: Neukirch, *Algebraic Number Theory*, Ch. I §3 and Ch. III §2 [unverified]; Tate's thesis,
-Cassels–Fröhlich Ch. XV, §2.2, Lemma 2.2.3, pp. 309–310, and §4.1, proof of Thm. 4.1.3 (2), p. 331 (the absolute
-different is the product of the local differents).
+Cassels–Fröhlich Ch. XV §2.2 [unverified].
 -/
 
 open IsDedekindDomain NumberField WithZero
@@ -231,7 +230,7 @@ lemma count_mul_coe (I : FI) (hI : I ≠ 0) (v w : HeightOneSpectrum (𝓞 F)) (
   split_ifs <;> simp
 
 /-- **$d_v$ is the exponent of $v$ in the different:** $\operatorname{ord}_v(\mathfrak d^{-1}) = -d_v$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.1, proof of Thm. 4.1.3 (2), p. 331 (𝔡 = ∏ 𝔡_p); Lemma 2.2.3, pp. 309–310"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (the local different and the conductor of $\\psi_v$) [unverified]"]
 theorem count_dual_one (v : HeightOneSpectrum (𝓞 F)) :
     FractionalIdeal.count F v (FractionalIdeal.dual ℤ ℚ (1 : FI)) = -(diffExp v : ℤ) := by
   classical

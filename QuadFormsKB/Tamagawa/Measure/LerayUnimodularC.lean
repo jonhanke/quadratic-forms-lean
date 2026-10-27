@@ -4,7 +4,7 @@ import QuadFormsKB.Tamagawa.Measure.LerayUnimodular
 /-!
 # Unimodularity of the complex Leray measure
 
-The complex analogue of `LerayUnimodular.lean` (the two gaps left open there):
+The complex analogue of `LerayUnimodular.lean` (the two gaps left open in `LerayComplex.lean`):
 
 * **The Jacobian of the action on complex coefficient space** (`det_act`): $\det_{\mathbb C}(c \mapsto c\cdot M) =
   (\det M)^{n+1}$ for every $M \in M_n(\mathbb C)$, and hence the real Jacobian (the action as a real-linear map of

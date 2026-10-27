@@ -259,7 +259,7 @@ $$[M : M \cap M'] = q,\quad [M' : M \cap M'] = q,\quad \pi M' \subseteq M,\quad 
 $q = N(\pi)$. Symmetric (`IsNbrL.symm`) and invariant under $O(V)(F)$ (`IsNbrL.glImage`). For $M = \gamma\mathcal O_F^n$ these are the
 $\gamma L'$, $L'$ a $\pi$-neighbour of $\mathcal O_F^n$ for the Gram form $Q_\gamma$ (`isNbrL_latOf_iff`). Fields: `index_left`,
 `index_right` (Mathlib's `relIndex H K` is $[K : H \cap K]$), `smul_left`, `smul_right`, `int_left`, `int_right`. -/
-@[kb "kneser1957" "§1, neighbouring lattices [unverified]; omeara1963 §106B, p. 325 (adjacent lattices; the library allows any prime)"]
+@[kb "kneser1957" "§1, neighbouring lattices [unverified]"]
 structure IsNbrL (π : 𝓞 F) (M M' : Submodule (𝓞 F) (Fin n → F)) : Prop where
   index_left : M'.toAddSubgroup.relIndex M.toAddSubgroup = nm π
   index_right : M.toAddSubgroup.relIndex M'.toAddSubgroup = nm π

@@ -7,7 +7,7 @@ import QuadFormsKB.Tamagawa.SiegelQuadSpace
 import QuadFormsKB.Lattices.FreeBridge
 
 /-!
-# The genus of a lattice intrinsically in a quadratic space, and Siegel's formula
+# The genus of a lattice intrinsically in a quadratic space, and Siegel's formula (gi)
 
 **Layer:** $F$ a number field; $(V, q)$ a finite-dimensional quadratic space over $F$ (Mathlib's
 `q : QuadraticForm F V`); $\mathcal O_F$-lattices $L, M \subseteq V$ (Mathlib's `Submodule.IsLattice F`).
@@ -19,19 +19,18 @@ import QuadFormsKB.Lattices.FreeBridge
   (Mathlib's `QuadraticForm.baseChange`), and $L_\mathfrak p$ = `locLatV v L`, the $\mathfrak o_\mathfrak p$-span of
   $\{1 \otimes x : x \in L\}$ (the same construction as `Lattices.loc` on $F^n$).
 * Genus (`SameGenusV`): for every finite prime $\mathfrak p$ some $\sigma_\mathfrak p \in O(V_\mathfrak p, q_\mathfrak p)$ has
-  $\sigma_\mathfrak p L_\mathfrak p = M_\mathfrak p$ (O'Meara §102A, p. 297).
+  $\sigma_\mathfrak p L_\mathfrak p = M_\mathfrak p$ (O'Meara §102 [unverified]).
 * $O(M)$ = `autLatV q M` (reused), $r_M(t) = \#\{x \in M : q(x) = t\}$ = `repCountV`, the classes in the genus
   `genusClassesV q L`, and
   $$\mathtt{massGenV}\ q\ L = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac1{|O(M)|},\qquad
   \mathtt{repMassGenV}\ q\ L\ t = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{r_M(t)}{|O(M)|}.$$
-  As everywhere in the library (`Lattices.mass`), classes and weights use the **full** orthogonal group: improper
-  isometries
+  As everywhere in the library (`Lattices.mass`), classes and weights use the **full** orthogonal group: improper isometries
   are included both in the class relation and in $O(M)$.
 
 **Proves.** For every basis $e$ of $V$, $M \mapsto$ `coordLat e M` induces a bijection (`genusClassesV_bijOn`) from the
 intrinsic classes in the genus of $L$ onto `genusClasses (coordForm q e) (coordLat e L)`, preserving $|O(M)|$
 (`autCard_classCoord`) and $r_M(t)$ (`repCount_classCoord`); finiteness transfers (`genusClassesV_finite`). Hence
-`massGenV_eq_massV`, `repMassGenV_eq_repMassV` (no hypotheses), and the Siegel headlines restated with the
+`massGenV_eq_massV`, `repMassGenV_eq_repMassV` (no hypotheses), and the Siegel headlines for `massV`/`repMassV` restated with the
 intrinsic quantities: `siegelFormula_quadraticSpace_intrinsic` ($\dim V \ge 4$),
 `siegelFormula{3,2,1}_quadraticSpace_intrinsic`, `siegelFormula{3,2}_quadraticSpace_natural_intrinsic`.
 
@@ -39,7 +38,8 @@ The coordinate dictionary: an isometry $\sigma$ of $(W, q_W)$ and a $K$-linear i
 $q_W = Q \circ \varphi$ give the matrix $\varphi\sigma\varphi^{-1} \in O(Q)(K)$ and back (`coordOrth`, `orthIso`), used for
 $K = F$ (global classes, $O(M)$) and $K = F_\mathfrak p$ (genus; $\varphi$ = the base change of $e$).
 
-Source: O'Meara 1963, §82C, pp. 222–223 (cls, O(L)), §102A, p. 297 (gen); Siegel 1935 [unverified].
+Source: O'Meara 1963, §82 (cls, O(L)), §102 (gen) [unverified]; Siegel 1935 [unverified].
+
 -/
 
 open NumberField IsDedekindDomain Module Matrix TensorProduct
@@ -134,21 +134,21 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 /-- **The completed quadratic space** $(V_\mathfrak p, q_\mathfrak p) = (F_\mathfrak p \otimes_F V,\ q \otimes F_\mathfrak p)$ at a
-finite prime $\mathfrak p$ (Mathlib's `QuadraticForm.baseChange`; O'Meara §66, p. 186). -/
-@[kb "omeara1963" "§66, p. 186 (localization V_𝔭)"]
+finite prime $\mathfrak p$ (Mathlib's `QuadraticForm.baseChange`; O'Meara §66 [unverified]). -/
+@[kb "omeara1963" "§66 (completion V_𝔭) [unverified]"]
 def locFormV (q : QuadraticForm F V) : QuadraticForm Fv (Fv ⊗[F] V) := q.baseChange Fv
 
 /-- **The localization** $L_\mathfrak p = \mathfrak o_\mathfrak p L \subseteq V_\mathfrak p$: the $\mathfrak o_\mathfrak p$-span of
-$\{1 \otimes x : x \in L\}$ (the intrinsic version of `Lattices.loc`; O'Meara §81E, p. 217). -/
-@[kb "omeara1963" "§81E, p. 217 (localization L_𝔭)"]
+$\{1 \otimes x : x \in L\}$ (the intrinsic version of `Lattices.loc`; O'Meara §81 [unverified]). -/
+@[kb "omeara1963" "§81 (localization L_𝔭) [unverified]"]
 def locLatV (L : Submodule (𝓞 F) V) : Submodule 𝔬 (Fv ⊗[F] V) :=
   Submodule.span 𝔬 ((fun x : V => (1 : Fv) ⊗ₜ[F] x) '' L)
 
 variable {v} in
 /-- **Same genus, intrinsically in $V$:** for every finite prime $\mathfrak p$ of the number field $F$ some isometry
 $\sigma_\mathfrak p \in O(V_\mathfrak p, q_\mathfrak p)$ (proper or improper) carries $L_\mathfrak p$ onto $M_\mathfrak p$
-(O'Meara §102A, p. 297). At the infinite places $L$ and $M$ span the same space, so nothing is required there. -/
-@[kb "omeara1963" "§102A, p. 297 (gen L)"]
+(O'Meara §102 [unverified]). At the infinite places $L$ and $M$ span the same space, so nothing is required there. -/
+@[kb "omeara1963" "§102, gen L [unverified]"]
 def SameGenusV (q : QuadraticForm F V) (L M : Submodule (𝓞 F) V) : Prop :=
   ∀ v : HeightOneSpectrum (𝓞 F), ∃ σ : (locFormV v q).IsometryEquiv (locFormV v q),
     (locLatV v L).map (σ.toLinearEquiv.toLinearMap.restrictScalars (v.adicCompletionIntegers F)) = locLatV v M
@@ -301,15 +301,15 @@ def latSetoidV (q : QuadraticForm F V) : Setoid (LatV F V) where
 /-- **Classes of lattices** of $(V, q)$: lattices up to isometry by $O(V, q)$ (improper isometries included). -/
 abbrev LatClassV (q : QuadraticForm F V) : Type _ := Quotient (latSetoidV q)
 
-/-- **The classes in the genus of $L$** in $(V, q)$: $\{\mathrm{cls}(M) : M \in \mathrm{gen}(L)\}$ (O'Meara §102A,
-p. 297). -/
-@[kb "omeara1963" "§102A, p. 298"]
+/-- **The classes in the genus of $L$** in $(V, q)$: $\{\mathrm{cls}(M) : M \in \mathrm{gen}(L)\}$ (O'Meara §102
+[unverified]). -/
+@[kb "omeara1963" "§102 (classes in a genus) [unverified]"]
 def genusClassesV (q : QuadraticForm F V) (L : Submodule (𝓞 F) V) : Set (LatClassV q) :=
   {c | ∃ M : LatV F V, Quotient.mk _ M = c ∧ SameGenusV q L M.1}
 
 /-- **The representation number** $r_M(t) = \#\{x \in M : q(x) = t\}$ (a `Nat.card`; finite for totally positive definite
 $q$ and integral $M$). -/
-@[kb "omeara1963" "§82A, p. 220 (representations)"]
+@[kb "omeara1963" "§102 (representations) [unverified]"]
 def repCountV (q : QuadraticForm F V) (M : Submodule (𝓞 F) V) (t : F) : ℕ :=
   Nat.card {x : V // x ∈ M ∧ q x = t}
 
@@ -351,9 +351,8 @@ variable (q) in
 /-- **The mass of the genus of $L$, intrinsically in $(V, q)$:**
 $$\mathtt{massGenV}\ q\ L = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac1{|O(M)|},$$
 a `finsum` over the intrinsic classes in the intrinsic genus (`genusClassesV`), with $O(M)$ the full automorphism group
-(improper isometries included, as in `Lattices.mass`). Equal to the coordinate `massV` (`massGenV_eq_massV`). O'Meara
-(§102A, p. 298) counts the classes, $h(L)$, but does not treat the mass. -/
-@[kb "omeara1963" "§102A, p. 298"]
+(improper isometries included, as in `Lattices.mass`). Equal to the coordinate `massV` (`massGenV_eq_massV`). -/
+@[kb "omeara1963" "§102 (mass of a genus) [unverified]"]
 def massGenV (L : Submodule (𝓞 F) V) : ℝ :=
   ∑ᶠ c ∈ genusClassesV q L, ((LatClassV.autCard q c : ℝ))⁻¹
 
@@ -409,9 +408,9 @@ theorem genusClassesV_bijOn (e : Basis (Fin n) F V) (L : Submodule (𝓞 F) V) [
   rw [← image_genusClassesV e L]
   exact (classCoord_injective e).injOn.bijOn_image
 
-/-- **Finiteness of the intrinsic class number** (O'Meara 103:4, p. 309) for a totally positive definite space and
+/-- **Finiteness of the intrinsic class number** (O'Meara 103:4 [unverified]) for a totally positive definite space and
 an integral lattice, transported from `genusClasses_finite`. -/
-@[kb "omeara1963" "§103, 103:4, p. 309"]
+@[kb "omeara1963" "103:4 [unverified]"]
 theorem genusClassesV_finite (hq : IsTotallyPosDefV q) {L : Submodule (𝓞 F) V} [L.IsLattice F]
     (hLi : IsIntegralLattice q L) : (genusClassesV q L).Finite := by
   refine Set.Finite.of_finite_image ?_ (classCoord_injective (q := q) (finBasis F V)).injOn
@@ -430,11 +429,11 @@ theorem repMassGenV_eq_repMass (e : Basis (Fin n) F V) (L : Submodule (𝓞 F) V
   rw [repMass, ← image_genusClassesV e L, finsum_mem_image (classCoord_injective e).injOn, repMassGenV]
   exact finsum_mem_congr rfl fun c _ => by rw [autCard_classCoord, repCount_classCoord]
 
-/-- **`massGenV = massV`:** the mass of the intrinsic genus of $L$ in $(V, q)$ is the `massV`. -/
+/-- **`massGenV = massV`:** the mass of the intrinsic genus of $L$ in $(V, q)$ is `massV`. -/
 theorem massGenV_eq_massV (L : Submodule (𝓞 F) V) [L.IsLattice F] : massGenV q L = massV q L :=
   massGenV_eq_mass (finBasis F V) L
 
-/-- **`repMassGenV = repMassV`:** the intrinsic weighted representation number is the `repMassV`. -/
+/-- **`repMassGenV = repMassV`:** the intrinsic weighted representation number is `repMassV`. -/
 theorem repMassGenV_eq_repMassV (L : Submodule (𝓞 F) V) [L.IsLattice F] (t : F) :
     repMassGenV q L t = repMassV q L t :=
   repMassGenV_eq_repMass (finBasis F V) L t

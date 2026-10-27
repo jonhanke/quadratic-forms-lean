@@ -2,7 +2,7 @@ import QuadFormsKB.HilbertModular.ThetaReciprocity
 import QuadFormsKB.HilbertModular.GaussSumO
 
 /-!
-# Theta series over a totally real field VII: The character $\chi_Q$ and $\theta_Q \in M_k(\Gamma_0(\mathfrak N), \chi_Q)$
+# Theta series over a totally real field VII: the character $\chi_Q$ and $\theta_Q \in M_k(\Gamma_0(\mathfrak N), \chi_Q)$
 
 Notation of `ThetaGamma0.lean`, `ThetaReciprocity.lean`, `GaussSumO.lean`. Let $Q$ be a totally positive definite form over
 $\mathcal{O}_F$ of even rank $n = 2k$, $H$ its Hessian, $\mathfrak N \ne 0$ a level, and $D = (-1)^k\det H$.

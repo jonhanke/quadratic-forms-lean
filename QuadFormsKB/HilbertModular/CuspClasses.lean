@@ -31,7 +31,7 @@ $$(\theta_Q\,|_k\,A)(z) \longrightarrow K_Q\prod_v\Big(\frac{-i}{2\sigma_v(c)\si
 $K_Q = (\prod_v\sqrt{\det\sigma_v(A_Q)})^{-1}\Delta(\mathcal{O}_F)^{-n}$ (the constant of `thetaLat_one_cuspPt`); for $\gamma = 0$ the limit is
 $N(\alpha)^k$ (`tendsto_thetaQ_slash_of_c_eq_zero`). *Proof:* $Az = \frac ac - \frac{1}{c^2u}$ with $u = (z + \delta/\gamma)/D^2$, the
 cusp expansion `thetaLat_one_cuspPt`, and dominated convergence for the dual theta series along
-$\min_v\operatorname{Im}u_v \to \infty$ (`tendsto_tsum_thetaTerm_filter`). This is the input needed at cusps not equivalent to
+$\min_v\operatorname{Im}u_v \to \infty$ (`tendsto_tsum_thetaTerm_filter`). This is the input needed for the Hecke argument at cusps not equivalent to
 $\infty$ under $\mathrm{SL}_2(\mathcal{O}_F)$.
 
 Sources: Shimura (Duke 1978), §2 (cusps) [unverified]; Freitag (1990), Ch. I §2 (cusps and ideal classes) [unverified];

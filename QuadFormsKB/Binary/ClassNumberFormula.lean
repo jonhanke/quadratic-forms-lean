@@ -112,7 +112,7 @@ theorem LFunction_kronecker_one :
 $$L(1, \chi_D) = \frac{2\pi\,h(D)}{w(D)\sqrt{|D|}},$$
 $h(D)$ = `classNumber (QField D)`, $w(D)$ = `torsionOrder (QField D)` the number of roots of unity in $K_D$.
 (Mathlib's residue $2^{r_1}(2\pi)^{r_2}hR/(w\sqrt{|d_K|})$ with $r_1 = 0$, $r_2 = 1$, $R = 1$, $d_K = D$.) -/
-@[kb "davenport2000" "Ch. 6, (15) [unverified locator]; cassels1978 App. B, Thm. 2.1, p. 371"]
+@[kb "davenport2000" "Ch. 6, (15) [unverified locator]"]
 theorem classNumberFormula_neg (hD : D < 0) :
     (kroneckerChar D).LFunction 1 =
       ((2 * π * classNumber (QField D) / (torsionOrder (QField D) * Real.sqrt |(D : ℝ)|) : ℝ) : ℂ) := by
@@ -125,7 +125,7 @@ theorem classNumberFormula_neg (hD : D < 0) :
 $$L(1, \chi_D) = \frac{2\,h(D)\,R(D)}{\sqrt D},$$
 $h(D)$ = `classNumber (QField D)`, $R(D)$ = `regulator (QField D)` $= \log\varepsilon_D$ ($\varepsilon_D > 1$ the
 fundamental unit). (Mathlib's residue with $r_1 = 2$, $r_2 = 0$, $w = 2$, $d_K = D$.) -/
-@[kb "davenport2000" "Ch. 6, (17) [unverified locator]; cassels1978 App. B, Thm. 2.1, p. 371"]
+@[kb "davenport2000" "Ch. 6, (17) [unverified locator]"]
 theorem classNumberFormula_pos (hD : 0 < D) :
     (kroneckerChar D).LFunction 1 =
       ((2 * classNumber (QField D) * regulator (QField D) / Real.sqrt (D : ℝ) : ℝ) : ℂ) := by

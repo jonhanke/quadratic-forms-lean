@@ -94,7 +94,7 @@ theorem muArchTamSO_qNS_univ (hQ : (qNS a b d).Nondegenerate)
   have hsfC : ∀ i : {w : InfinitePlace F // w.IsComplex},
       SigmaFinite (LerayComplex.lerayMeasureC (QCx (qNS a b d) i) (gramDetC_QCx_ne_zero (qNS a b d) hQ i)) :=
     fun i => isEmptyElim i
-  rw [muArchTamSO_of_isTotallyReal, Measure.smul_apply, smul_eq_mul, muArchNF, muArchLeray, ← Set.univ_prod_univ,
+  rw [muArchTamSO, Measure.smul_apply, smul_eq_mul, muArchNF, muArchLeray, ← Set.univ_prod_univ,
     Measure.prod_prod, Measure.pi_univ, Measure.pi_univ,
     Finset.univ_eq_empty (α := {w : InfinitePlace F // w.IsComplex}), Finset.prod_empty, mul_one]
   congr 1
