@@ -13,7 +13,7 @@ $m \ne 0$, the repo's local density $\beta_p(m) = \lim_k r_{p^k}(m)/p^{k}$ (`Loc
 * **$p \nmid D$** (`localDensity_good_binary`, $p = 2$ included): with $\chi = \chi_D(p) = \pm 1$ (`kronZ D p`),
   $$\beta_p(m) = \Big(1 - \frac{\chi}{p}\Big)\sum_{j=0}^{v_p(m)}\chi^j \quad (\texttt{goodFactor}).$$
 * **$p \mid D$, $p \nmid m$** (`localDensity_ram_unit`, $p = 2$ included): with Gauss's genus characters
-  $\chi_p(f)$ = `formChar f p` and $\psi_p$ = `genusChar D p`,
+  $\chi_p(f)$ = `formChar f p` and $\psi_p$ = `genusChar D p` (D3),
   $$\beta_p(m) = 1 + \chi_p(f)\,\psi_p(m) \in \{0, 2\}.$$
 
 **Method (local counting).** Two Hensel counts, valid for every integral form (`QuadForm ℤ n`), proved from the

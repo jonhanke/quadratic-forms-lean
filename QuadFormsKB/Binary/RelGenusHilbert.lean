@@ -33,7 +33,8 @@ $y \in \mathcal O_E \setminus \mathcal O_F$) and put $\delta = \theta^2 \in F^\t
   $\psi_v(c) = \psi_v(c')$. The global step is the **Hasse norm theorem** (`NFInputs.hilbert_eq_one_of_everywhere_nf`, proved
   in the repository); everything else is local.
 
-*Comparison with `RelGenus`* (`RelGenus.quadraticChar_eq`): at an odd ramified $\mathfrak p$ the character is the residue symbol of a
+*Comparison with `RelGenus.quadraticChar_eq`*: at an odd ramified $\mathfrak p$ the character there is the residue
+symbol of a
 represented value prime to $\mathfrak p$; here the character is defined at every place, by Hilbert symbols, and well-definedness
 is the one-line identity $c\,N(x)\cdot c = N(cx)$. The identification of the two at odd ramified $\mathfrak p$ (via
 $(\delta, s)_\mathfrak p = (s/\mathfrak p)$ for $v_\mathfrak p(\delta)$ odd, $s$ a unit) is not formalized.
@@ -61,7 +62,7 @@ variable {F : Type} [Field F] [NumberField F]
 
 /-- **The local Hilbert symbol is multiplicative in its second argument**, at every place $v$ of $F$:
 $(a, bc)_v = (a, b)_v\,(a, c)_v$ for $a, b, c \in F^\times$. -/
-@[kb "omeara1963" "§63:11 [unverified]; serre1973 Ch. III §1.2"]
+@[kb "omeara1963" "§63B, p. 166 (bimultiplicativity, 'the fourth' formula); serre1973 Ch. III §1.2"]
 theorem hilbert_mul_right (v : NFPlace F) {a b c : F} (ha : a ≠ 0) (hb : b ≠ 0) (hc : c ≠ 0) :
     v.hilbert a (b * c) = v.hilbert a b * v.hilbert a c := by
   cases v with
@@ -89,6 +90,7 @@ theorem hilbert_eq_one_of_norm (v : NFPlace F) {a b : F} (x₀ x₁ : F) (h : b 
       (by rw [h, map_sub, map_mul, map_pow, map_pow])
 
 /-- $(a, b)_v = 1 \iff b = x_0^2 - a x_1^2$ in $F_v$: the kernel of $(a, \cdot)_v$ is the local norm group of $F_v(\sqrt a)/F_v$. -/
+@[kb "omeara1963" "§63B, 63:10, p. 164"]
 theorem hilbert_eq_one_iff (v : NFPlace F) {a : F} (ha : a ≠ 0) (b : F) :
     v.hilbert a b = 1 ↔ v.atPlace fun K _ _ =>
       ∃ x₀ x₁ : K, algebraMap F K b = x₀ ^ 2 - algebraMap F K a * x₁ ^ 2 := by
@@ -205,11 +207,11 @@ theorem hilbertSymbol_relD_eq_one_iff (x : F) :
 variable (E) in
 /-- **The genus character at the place $v$ of $F$:** $\psi_v(x) = (\delta, x)_v$, the Hilbert symbol over the completion $F_v$
 ($v$ finite — dyadic or not — or infinite), $\delta$ = `relD F E`. -/
-@[kb "omeara1963" "§63 [unverified]; Shimura (2010) §4 [unverified]"]
+@[kb "omeara1963" "§63B, p. 164 (Hilbert symbol); Shimura (2010) §4 [unverified]"]
 def genusSym (v : NFPlace F) (x : F) : ℤ := v.hilbert (relD F E) x
 
 /-- $\psi_v$ is multiplicative. -/
-@[kb "omeara1963" "§63:11 [unverified]"]
+@[kb "omeara1963" "§63B, p. 166 (bimultiplicativity)"]
 theorem genusSym_mul (v : NFPlace F) {x y : F} (hx : x ≠ 0) (hy : y ≠ 0) :
     genusSym E v (x * y) = genusSym E v x * genusSym E v y :=
   NFPlace.hilbert_mul_right v relD_ne_zero hx hy
@@ -224,7 +226,7 @@ theorem genusSym_norm (v : NFPlace F) (z : E) : genusSym E v (Algebra.norm F z) 
 
 /-- **The kernel of $\psi_v$ is the local norm group:** $\psi_v(x) = 1$ iff $x = u^2 - \delta w^2$ with $u, w \in F_v$, i.e. iff $x$ is a
 norm from $F_v(\sqrt\delta)$ (from $F_v \otimes_F E$; for finite $v$ see `HN.mem_range_norm_iff`). -/
-@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]; omeara1963 §63 [unverified]"]
+@[kb "serre1973" "Ch. III §1.1, Prop. 1 [unverified]; omeara1963 §63B, 63:10, p. 164"]
 theorem genusSym_eq_one_iff (v : NFPlace F) (x : F) :
     genusSym E v x = 1 ↔ v.atPlace fun K _ _ =>
       ∃ u w : K, algebraMap F K x = u ^ 2 - algebraMap F K (relD F E) * w ^ 2 :=
@@ -233,14 +235,14 @@ theorem genusSym_eq_one_iff (v : NFPlace F) (x : F) :
 /-- **$\psi_v$ is constant on the nonzero values of $(E, cN)$:** $\psi_v(c\,N(x)) = \psi_v(c)$ for $c \in F^\times$, $x \in E^\times$, at every
 place $v$. Hence the genus character of any lattice $L$ on the space $(E, cN)$ — its value on any nonzero represented
 value — is well defined and equals $\psi_v(c)$. -/
-@[kb "omeara1963" "§82 [unverified]; Shimura (2010) §4 [unverified]; cf. genusChar_eval_eq_formChar"]
+@[kb "omeara1963" "§63B, 63:10, p. 164 ((α,β)_𝔭 = 1 iff α is a norm from F_𝔭(√β)); Shimura (2010) §4 [unverified]; cf. D3 genusChar_eval_eq_formChar"]
 theorem genusSym_mul_norm (v : NFPlace F) {c : F} (hc : c ≠ 0) {x : E} (hx : x ≠ 0) :
     genusSym E v (c * Algebra.norm F x) = genusSym E v c := by
   rw [genusSym_mul v hc (Algebra.norm_ne_zero_iff.mpr hx), genusSym_norm, mul_one]
 
 /-- **Two represented values have the same character:** $\psi_v(c\,N(x)) = \psi_v(c\,N(y))$ for $x, y \in E^\times$ (every place,
 including dyadic and infinite ones). -/
-@[kb "omeara1963" "§82 [unverified]; Shimura (2010) §4 [unverified]; cf. genusChar_eval_eq_formChar"]
+@[kb "omeara1963" "§63B, 63:10, p. 164; Shimura (2010) §4 [unverified]; cf. D3 genusChar_eval_eq_formChar"]
 theorem genusSym_lattice_eq (v : NFPlace F) {c : F} (hc : c ≠ 0) {x y : E} (hx : x ≠ 0) (hy : y ≠ 0) :
     genusSym E v (c * Algebra.norm F x) = genusSym E v (c * Algebra.norm F y) := by
   rw [genusSym_mul_norm v hc hx, genusSym_mul_norm v hc hy]
@@ -248,7 +250,7 @@ theorem genusSym_lattice_eq (v : NFPlace F) {c : F} (hc : c ≠ 0) {x y : E} (hx
 /-- **The genus character of a normalized lattice.** Let $\mathfrak A \ne 0$ with $N_{E/F}\mathfrak A = (a)$, $\eta \in F^\times$, and
 $x \in \mathfrak A \setminus 0$ with $N(x) = as$ (so $\eta s$ is the value at $x$ of the normalized form $\frac\eta a N$). Then
 $\psi_v(\eta s) = \psi_v(\eta a)$ at every place $v$: the character does not depend on $x$, and needs no "prime to $\mathfrak p$". -/
-@[kb "omeara1963" "§82 [unverified]; Shimura (2010) §4 [unverified]; cf. genusChar_eval_eq_formChar"]
+@[kb "omeara1963" "§63B, 63:10, p. 164; Shimura (2010) §4 [unverified]; cf. D3 genusChar_eval_eq_formChar"]
 theorem genusSym_normalized (v : NFPlace F) {a s : 𝓞 F} (ha : a ≠ 0) {η : F} (hη : η ≠ 0) {x : 𝓞 E}
     (hx : x ≠ 0) (hs : Algebra.intNorm (𝓞 F) (𝓞 E) x = a * s) :
     genusSym E v (η * (s : F)) = genusSym E v (η * (a : F)) := by
@@ -266,7 +268,7 @@ theorem genusSym_normalized (v : NFPlace F) {a s : 𝓞 F} (ha : a ≠ 0) {η : 
 
 /-- **The product formula for the genus characters:** for $x \in F^\times$, $\psi_v(x) = -1$ at only finitely many places $v$
 and at an even number of them, i.e. $\prod_v \psi_v(x) = 1$ (Hilbert reciprocity over $F$, `hilbert_reciprocity_nf`). -/
-@[kb "omeara1963" "§71:18 [unverified]; cf. prod_formChar_eq_one"]
+@[kb "omeara1963" "§71D, 71:18, p. 201; cf. D3 prod_formChar_eq_one"]
 theorem genusSym_reciprocity {x : F} (hx : x ≠ 0) :
     {v : NFPlace F | genusSym E v x = -1}.Finite ∧ Even {v : NFPlace F | genusSym E v x = -1}.ncard :=
   hilbert_reciprocity_nf _ _ relD_ne_zero hx
@@ -275,7 +277,7 @@ theorem genusSym_reciprocity {x : F} (hx : x ≠ 0) :
 
 /-- **Equal genus characters iff the ratio is a norm** (the Hasse norm theorem): for $c, c' \in F^\times$,
 $\psi_v(c) = \psi_v(c')$ at every place $v$ iff $c = c'\,N(\lambda)$ for some $\lambda \in E^\times$. -/
-@[kb "omeara1963" "§65 (Hasse norm theorem) [unverified]; Shimura (2010) §4 [unverified]"]
+@[kb "omeara1963" "§65D, 65:23, p. 186 (Hasse Norm Theorem); Shimura (2010) §4 [unverified]"]
 theorem genusSym_eq_iff_exists_norm {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) :
     (∀ v : NFPlace F, genusSym E v c = genusSym E v c') ↔
       ∃ l : E, l ≠ 0 ∧ c' * Algebra.norm F l = c := by
@@ -299,7 +301,7 @@ theorem genusSym_eq_iff_exists_norm {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) :
     exact genusSym_mul_norm v hc' hl
 
 /-- **Genus characters classify the spaces:** $(E, cN) \cong (E, c'N)$ over $F$ iff $\psi_v(c) = \psi_v(c')$ at every place. -/
-@[kb "omeara1963" "§§63, 65 [unverified]; Shimura (2010) §4 [unverified]"]
+@[kb "omeara1963" "§66, 66:4, p. 189; §65D, 65:23, p. 186; Shimura (2010) §4 [unverified]"]
 theorem isometryEquiv_iff_genusSym {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) :
     Nonempty ((c • normForm F E).IsometryEquiv (c' • normForm F E)) ↔
       ∀ v : NFPlace F, genusSym E v c = genusSym E v c' := by
@@ -318,7 +320,7 @@ theorem isometryEquiv_iff_genusSym {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) :
     exact ⟨simIso l hl h false⟩
 
 /-- **Isometric lattices have equal genus characters** (necessity of the characters). -/
-@[kb "omeara1963" "§82 [unverified]"]
+@[kb "omeara1963" "§82A, p. 220 (isometry of lattices); §63B, 63:10, p. 164"]
 theorem genusSym_eq_of_isometricLattices {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) {L L' : Submodule (𝓞 F) E}
     (h : Lattices.IsometricLattices (c • normForm F E) (c' • normForm F E) L L') (v : NFPlace F) :
     genusSym E v c = genusSym E v c' := by
@@ -334,7 +336,7 @@ theorem evalIn_diag_two (K : Type*) [Field K] [Algebra F K] (a b : F) (x : Fin 2
   ring
 
 /-- **$(E, cN)$ in the basis $1, \theta$ is $\langle c, -c\delta\rangle$:** $c\,N(u + w\theta) = cu^2 - c\delta w^2$. -/
-@[kb "omeara1963" "§57 [unverified]"]
+@[kb "omeara1963" "§63B, 63:10, p. 164 (E = F(√β))"]
 theorem normForm_basis (c u w : F) :
     c * Algebra.norm F (algebraMap F E u + algebraMap F E w * (relGen F E : E)) =
       (QuadForm.diag ![c, -(c * relD F E)]).eval ![u, w] := by
@@ -362,7 +364,7 @@ theorem diag_representsIn_iff (K : Type) [Field K] [Algebra F K] {c : F} (hc : c
 
 /-- **Local equivalence at one place:** $\langle c, -c\delta\rangle$ ($= (E, cN)$ in the basis $1, \theta$, `normForm_basis`) represents
 $c'$ over $F_v$ iff $\psi_v(c) = \psi_v(c')$; as both spaces have discriminant $-\delta$, this is "$(E, cN) \cong (E, c'N)$ over $F_v$". -/
-@[kb "omeara1963" "§63 [unverified]; serre1973 Ch. IV §2.2 [unverified]"]
+@[kb "omeara1963" "§63B, 63:10, p. 164; serre1973 Ch. IV §2.2 [unverified]"]
 theorem representsIn_iff_genusSym (v : NFPlace F) {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) :
     v.atPlace (fun K _ _ => (QuadForm.diag ![c, -(c * relD F E)]).RepresentsIn K c') ↔
       genusSym E v c = genusSym E v c' := by
@@ -433,7 +435,7 @@ theorem mul_inv_conjClass (c : ClassGroup (𝓞 E)) :
   group
 
 /-- **Gauss's principal genus theorem over $F$.** Let $\mathfrak A \ne 0$ be an ideal of $\mathcal O_E$ with $N_{E/F}\mathfrak A = (a)$ principal
-(so that the normalized lattices $(\mathfrak A, \frac\eta aN)$, $\eta \in \mathcal O_F^\times$, of `RelGenus` exist). Then
+(so that the normalized lattices $(\mathfrak A, \frac\eta aN)$, $\eta \in \mathcal O_F^\times$, exist). Then
 $$[\mathfrak A] \in \mathrm{Cl}_E^{1-\sigma} = \{c\,\sigma_*(c)^{-1}\} \iff \exists\,\eta \in \mathcal O_F^\times:\ \psi_v(\eta a) = 1 \text{ at every place } v,$$
 i.e. iff some normalized lattice on $\mathfrak A$ lies in the principal genus. (By `genusSym_eq_iff_exists_norm`, the right
 side says $\eta a \in N_{E/F}(E^\times)$; by `mul_inv_conjClass`, $\mathrm{Cl}_E^{1-\sigma} \subseteq \mathrm{Cl}_E^2\,\iota(\mathrm{Cl}_F)$.) Over $\mathbb Q$

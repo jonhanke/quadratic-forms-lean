@@ -14,7 +14,6 @@ import QuadFormsKB.Tamagawa.BinaryCMLocalOrder
   stabilizers, so the index is that of the proper parts, `relIndex_eq_relIndex_inf_so`);
 * **`localDensity_eq_normOne`**: $\beta_\mathfrak p(\langle1,D\rangle, 1) = q^{-k}\#\{z \in (\mathfrak o + \varpi^c\Gamma)_k : N(z) = 1\}$ for large
   $k$ (the order $\mathfrak o[\sqrt{-d}] \cong \mathfrak o[\varpi^c\omega]$ by Mathlib's `changeGeneratorEquiv`).
-
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero
@@ -419,7 +418,8 @@ theorem relIndex_eq_relIndex_inf_so (hD : D ≠ 0) {A B : Subgroup (orthGroup QD
   · ext g; simp only [Subgroup.mem_inf]; tauto
   · rw [inf_comm]
 
-/-- **The local ratio for $\Lambda = (\mathcal O_E)_\mathfrak p$ is the norm-one index** $\rho = [\Gamma^1 : (\mathfrak o + \varpi^c\Gamma)^1]$:
+/-- **The local ratio for $\Lambda = (\mathcal O_E)_\mathfrak p$ is the norm-one index**
+$\rho = [\Gamma^1 : (\mathfrak o + \varpi^c\Gamma)^1]$:
 $r(O(\Lambda), O(\mathfrak o^2)) = [O(\Lambda) : O(\mathfrak o^2)] = [O(\Lambda)\cap SO : O(\mathfrak o^2) \cap SO] = \rho$. -/
 theorem relRatio_eq_ρc :
     relRatio (stabLat v (orthGroup QD (v.adicCompletion F)).subtype (loc v (latE S))) (stdStab QD v) =
@@ -534,7 +534,7 @@ theorem localDensity_eq_normOne {e : ℕ}
 
 /-- **The local factor at $\mathfrak p$** (every prime, dyadic included):
 $$r_\mathfrak p\cdot\beta_\mathfrak p(\langle1,D\rangle, 1) = q^c\,\frac{|\Gamma_1^\times|\,j(\Gamma)}{q(q-1)},\qquad \Gamma = (\mathcal O_E)_\mathfrak p = \mathfrak o[\omega],$$
-$r_\mathfrak p = r(O(\Lambda), O(\mathfrak o^2))$ (the ratio), $q^c = [\Lambda : \mathfrak o^2]$. -/
+$r_\mathfrak p = r(O(\Lambda), O(\mathfrak o^2))$, $q^c = [\Lambda : \mathfrak o^2]$. -/
 theorem relRatio_mul_localDensity :
     relRatio (stabLat v (orthGroup QD (v.adicCompletion F)).subtype (loc v (latE S))) (stdStab QD v) *
         NF.localDensity v (diagForm1 D) 1 =

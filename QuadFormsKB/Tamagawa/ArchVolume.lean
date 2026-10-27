@@ -35,8 +35,9 @@ $SO$ version counts only $\det X > 0$ (`siegelRatioSO`, `archVolSOLim`).
 * `tendsto_siegelRatioSO`, **`archVolSO_eq_volume`** ($n \ge 1$): `archVolSO n d` $= \mathrm{vol}(SO(Q), dX/dS)$, the $\det > 0$
   half (`two_mul_volume_det_pos`: a reflection in $O(Q)$ swaps the two halves, and $\{\det X = 0\}$ is null,
   `volume_det_eq_zero`).
-* `archVolSO_detGram_eq`: the factor `archVolSO n (detGram Q₀ σ)` at a real embedding $\sigma$ is $\mathrm{vol}(SO(Q_\sigma), dX/dS)$.
-* Cross-checks: `archVolSOLim_one` ($\mathrm{vol}(SO_1) = 1/(2d)$, matching `archVolSO_one`), `archVolO_two`
+* `archVolSO_detGram_eq`: the factor `archVolSO n (detGram Q₀ σ)` at a real embedding $\sigma$
+  is $\mathrm{vol}(SO(Q_\sigma), dX/dS)$.
+* Cross-checks: `archVolSOLim_one` ($\mathrm{vol}(SO_1) = 1/(2d)$, matching `RankOne.archVolSO_one`), `archVolO_two`
   ($\mathrm{vol}(O_2(Q)) = \frac{\pi}{2}d^{-3/2}$ in coefficient coordinates, i.e. $\pi\,d^{-3/2}$ in Gram coordinates:
   $\mathrm{vol}(O_2(\mathbb R), dX/dS) = \pi$ at $S = I$). `archVolSO_succ` is now an identity between these limits.
 
@@ -49,8 +50,7 @@ $\mathrm{archVolSO}(n, d) = \tfrac12\cdot 2^{-n(n-1)/2}\cdot d^{-(n+1)/2}\cdot c
 * $d^{-(n+1)/2}$: $d^{-n/2}$ from $X \mapsto PX$ and $d^{-1/2}$ from $\det(t)^{-1/2}$ at $t = A$.
 * $2^{-n(n-1)/2}$: the $n(n-1)/2$ off-diagonal coefficient coordinates are $c_{ij} = 2a_{ij}$ (`wt`, `prod_wt`).
 * $\tfrac12$: $SO$ is half of $O$ (`two_mul_volume_det_pos`). For $n = 0$ this fails ($SO_0 = O_0$), so the $SO$
-  statements assume $n \ge 1$; `archVolSO 0` $= \tfrac12$ is then $\mathrm{vol}(O_0)/2$, not $\mathrm{vol}(SO_0) = 1$ (only
-  $n \ge 3$ is used downstream).
+  statements assume $n \ge 1$; `archVolSO 0` $= \tfrac12$ is then $\mathrm{vol}(O_0)/2$, not $\mathrm{vol}(SO_0) = 1$.
 
 ## The proof (induction on $n$, `lintegral_gram`)
 Split off the first column $x$ of $X$ (`lintegral_cons_hh`): the Householder reflection $H_x$ (`hh`) with
@@ -1201,11 +1201,11 @@ theorem tendsto_siegelRatioSO {Q : QuadForm ℝ n} (hQ : IsPosDefR Q) (hn : 1 �
   rw [mul_div_cancel_left₀ _ two_ne_zero] at this
   exact this.congr fun ε => (siegelRatioSO_eq hQ hn ε).symm
 
-/-- **`archVolSO` is the gauge-form volume of $SO(Q)$** (headline): for positive definite $Q$ in $n \ge 1$
+/-- **`archVolSO` is the gauge-form volume of $SO(Q)$**: for positive definite $Q$ in $n \ge 1$
 variables with $d = \det(H/2)$,
 $$\texttt{archVolSO}\ n\ d = \mathrm{vol}(SO(Q), dX/dS) = \lim_{\varepsilon \to 0^+}
 \frac{\mathrm{Leb}\{X : \det X > 0,\ \|\Phi_Q(X) - c_Q\|_\infty \le \varepsilon\}}{\mathrm{Leb}\{c : \|c - c_Q\|_\infty \le \varepsilon\}}.$$
-This replaces the citation behind the definition by a proof. -/
+This replaces the citation behind the definition of `archVolSO` by a proof. -/
 @[kb "siegel1935" "vol(SO_n(R), dX/dS) [unverified]"]
 theorem archVolSO_eq_volume {Q : QuadForm ℝ n} (hQ : IsPosDefR Q) (hn : 1 ≤ n) :
     Tamagawa.archVolSO n (gramDetR Q) = archVolSOLim Q :=
@@ -1215,7 +1215,7 @@ theorem archVolSO_eq_volume {Q : QuadForm ℝ n} (hQ : IsPosDefR Q) (hn : 1 ≤ 
 open QuadFormsKB.Siegel (gramDetR_pos hessian_map_NF)
 open NumberField
 
-/-- **Cross-check, $n = 1$:** $\mathrm{vol}(SO_1(Q)) = 1/(2d)$, `archVolSO_one`. Directly: $\{x : |dx^2 - d| \le \varepsilon,\ x > 0\}$ has
+/-- **Cross-check, $n = 1$:** $\mathrm{vol}(SO_1(Q)) = 1/(2d)$, `RankOne.archVolSO_one`. Directly: $\{x : |dx^2 - d| \le \varepsilon,\ x > 0\}$ has
 length $\approx \varepsilon/d$, over $2\varepsilon$. -/
 @[kb "siegel1935" "vol(SO_1) [unverified]"]
 theorem archVolSOLim_one {Q : QuadForm ℝ 1} (hQ : IsPosDefR Q) :
@@ -1299,7 +1299,7 @@ theorem coeffU_pullForm (Q : QuadForm ℝ n) (X : Fin n → Fin n → ℝ) :
 
 /-- **Faithfulness of `pullCoeff`:** the form with coefficients $\Phi_Q(X)$ is $\vec y \mapsto Q(\sum_j y_jX_j)$, so
 $\Phi_Q(X) = c_Q$ iff $X$ is an isometry of $Q$ (`coeffU_pullForm`). -/
-@[kb "omeara1963" "§41 (coefficients of a transformed form)"]
+@[kb "omeara1963" "§41B, p. 85 (matrices and isometries)"]
 theorem eval_pullForm (Q : QuadForm ℝ n) (X : Fin n → Fin n → ℝ) (y : Fin n → ℝ) :
     (pullForm Q X).eval y = Q.eval (∑ j, y j • X j) := by
   set A := gramMatrixR Q

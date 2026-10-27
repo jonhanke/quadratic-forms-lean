@@ -1,12 +1,12 @@
 /-
 # The adelic isomorphism $(D\otimes\mathbb A)^\times/\mathbb A^\times \cong SO(D^0)(\mathbb A)$ and the global points
 
-
 **Layer:** $F$ a number field, $a, b \in \mathcal O_F\setminus0$, $D = (a,b)_F$, $Q_0$ = `QuatZeta.pureFormO a b`
 ($= \operatorname{nrd}|_{D^0} = \langle -a,-b,ab\rangle$), any signature (definite or not, any number field).
 
 **Defines/proves**
-* `conjAdele a b : (D\otimes\mathbb A)^\times \to SO(V)(\mathbb A)$ = `SOAdele Q₀` (= `conjInf` $\times$ `conjFin` after `quatUnitsEquiv`); **`continuous_conjAdele`**, **`conjAdele_surjective`**, **`conjAdele_eq_one_iff`**
+* `conjAdele a b : (D\otimes\mathbb A)^\times \to SO(V)(\mathbb A)$ = `SOAdele Q₀` (= `conjInf` $\times$ `conjFin` after
+  `quatUnitsEquiv`); **`continuous_conjAdele`**, **`conjAdele_surjective`**, **`conjAdele_eq_one_iff`**
   (kernel = $\mathbb A^\times$ = `(quatScalar a b).range`), **`isOpenMap_conjAdele`** (open mapping theorem for
   $\sigma$-compact locally compact groups, Mathlib's `MonoidHom.isOpenMap_of_sigmaCompact`);
 * `PDAdele a b` $:= (D\otimes\mathbb A)^\times/\mathbb A^\times$ (quotient group, quotient topology) and
@@ -145,7 +145,8 @@ theorem isOpenMap_pdAdeleMulEquiv (ha : a ≠ 0) (hb : b ≠ 0) : IsOpenMap (pdA
   exact isOpenMap_conjAdele a b ha hb _ hpre
 
 /-- **The adelic isomorphism $PD^\times(\mathbb A) = (D\otimes\mathbb A)^\times/\mathbb A^\times \cong SO(D^0)(\mathbb A)$**
-as topological groups ($a, b \in \mathcal O_F\setminus0$, any number field, any signature). Placewise it is the $D_v^\times/F_v^\times \cong SO(D^0)(F_v)$.
+as topological groups ($a, b \in \mathcal O_F\setminus0$, any number field, any signature). Placewise it is
+$D_v^\times/F_v^\times \cong SO(D^0)(F_v)$.
 
 Source: Weil 1982, §3.7(a), p. 63. -/
 @[kb "weil1982" "§3.7(a), p. 63"]

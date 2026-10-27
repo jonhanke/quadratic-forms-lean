@@ -9,8 +9,9 @@ $T\le Y^{(M)}$ the scalars ($t\in E^\times$, a unit at every $w\mid v$, $t^2\in 
   (`NvSub`, square roots glue), image of $T_0$ equal to $\mathcal O_v^{\times2}$ (`sqSub`) and kernel $\mu_2(E)$.
 * **`relIndex_TY`**: $[T : T\cap Z_N]\cdot2 = [N_v : \mathcal O_v^{\times2}]\cdot2^g$.
 
-The naive count $[T:\mathcal O_v^\times] = [N_v:\mathcal O_v^{\times2}]$ misses the factor $2^{g-1}$ at the split places
-($t = (1,-1)$); it cancels against $\prod_{w\mid v}[\mathcal O_w^\times:\mathcal O_w^{\times2}]$ in the final identity.
+A naive count $[T:\mathcal O_v^\times] = [N_v:\mathcal O_v^{\times2}]$ misses the factor $2^{g-1}$ at the
+split places ($t = (1,-1)$); it cancels against $\prod_{w\mid v}[\mathcal O_w^\times:\mathcal O_w^{\times2}]$
+in the final identity.
 
 Source: Weil 1982, §2.2-2.3 [unverified page].
 -/

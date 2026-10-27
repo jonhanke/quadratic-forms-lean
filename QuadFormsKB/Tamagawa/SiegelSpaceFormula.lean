@@ -34,7 +34,6 @@ genus, class and mass objects for lattices in $V$, which the repository defines 
 are what makes the transfer along any $V \cong F^N$ automatic.
 
 Source: Siegel 1935, Hauptsatz; Siegel 1937 (over number fields); Weil 1982, §4.5 [unverified locators].
-
 -/
 
 open NumberField IsDedekindDomain Filter

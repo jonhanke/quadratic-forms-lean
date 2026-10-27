@@ -29,7 +29,7 @@ isotropic over $F$ iff it is isotropic over every completion $F_v$. This is
 `hasseMinkowski_nf_of_lamInputs` applied to `lamInputs` (Lam's route): **fully proved**. It uses our
 squares local–global theorem and our Hasse norm theorem for quadratic extensions; it no
 longer depends on N. Yamaguchi's formalization. -/
-@[kb "omeara1963" "§66:1 [unverified]"]
+@[kb "omeara1963" "§66, 66:1, p. 187; cassels1978 Ch. 6, Thm. 1.1, p. 75"]
 theorem hasseMinkowski_nf (Q : QuadForm F n) (hQ : Q.Nondegenerate) :
     Q.IsotropicIn F ↔ NFPlace.Everywhere (F := F) fun K _ _ => Q.IsotropicIn K :=
   hasseMinkowski_nf_of_lamInputs lamInputs Q hQ

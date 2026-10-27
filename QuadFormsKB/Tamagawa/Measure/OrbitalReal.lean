@@ -12,7 +12,7 @@ $SO(Q')(\mathbb R)$, embedded by $h \mapsto \mathrm{diag}(1, h)$ (`iota`). For a
 $s : S_c \to SO(Q)(\mathbb R)$ of $g \mapsto ge_0$ (`SphSection`; one is built from reflections for $m \ge 1$, `sphSection`), the **archimedean
 orbital identity** (`lerayMeasure_orbital`) is
 $$\mu_Q = |2c|^{-m}\cdot(\mathrm{orb}_s)_*(\sigma_c \otimes \mu_{Q'}),\qquad \mathrm{orb}_s(x, h) = s(x)\,\mathrm{diag}(1, h),$$
-with $\mu_Q$, $\mu_{Q'}$ the Leray measures of `LerayReal.lean` (`LerayReal.lerayMeasure`, Weil's $|dX/dc|$ in the coefficient
+with $\mu_Q$, $\mu_{Q'}$ the Leray measures (`LerayReal.lerayMeasure`, Weil's $|dX/dc|$ in the coefficient
 coordinates) and $\sigma_c$ the Leray measure $dx/dQ$ on $S_c$ (`SphereLeray.sig`). The constant $|2c|^{-m}$ is the
 Jacobian of the coefficient coordinates: $c_{0,j} = 2B(x_0, x_j)$, $j = 1, \dots, m$, has derivative $2c$ in each of the
 $m$ new directions. It is a power of an element of the ground field, so the product of the local constants over all
@@ -25,7 +25,7 @@ $SO(Q) \times B \to M_{m+1}(\mathbb R)$, $B$ the slice group, for **slice data a
 (`bk`, `bk_surjective`). Then
 1. (`lintegral_kappa0_split`) $\kappa_0 = |2c|^{m+1}\,e^{(m+1)t}\,dt \otimes dr \otimes \kappa_0'$: a change of variables in
    coefficient space, $\Phi_Q(b) = (ce^{2t},\ 2ce^tr,\ \Phi_{Q'}(b') + c\,rr^{\mathsf T})$ (`beta_bk`), with the explicit
-   density $\theta(b) = |\det b|^{-1}$ of $\kappa_0$ (`det_act`);
+   density $\theta(b) = |\det b|^{-1}$ of $\kappa_0$;
 2. (`lintegral_chart_split`) $dX = e^{(m+1)t}dt \otimes \nu_c \otimes dr \otimes (\mu_{Q'} \otimes \kappa_0')$, by
    splitting off the first column $x_0 = e^tx$ (polar coordinates, `SphereLeray.comap_pol`), rotating the other columns
    by $s(x)$ ($\det = 1$), splitting each into its top entry $r_j$ and the rest, and the fibration for $Q'$;
@@ -1199,7 +1199,8 @@ section NF
 
 open NumberField NumberField.InfinitePlace
 
-/-- **The archimedean orbital identity at a real place of a number field** $F$ (the form used downstream): for
+/-- **The archimedean orbital identity at a real place of a number field** $F$ (the form used in the adelic
+induction): for
 $Q_0 = \langle c_0\rangle \perp Q_0'$ over $F$ ($c_0 \ne 0$) and a real place $w$ with embedding $\sigma_w$, the local form
 $Q_0^{\sigma_w} = \langle\sigma_w(c_0)\rangle \perp Q_0'^{\sigma_w}$ (`map_splitForm`) satisfies
 $$\mu_{Q_0^{\sigma_w}} = |2c_0|_w^{-m}\cdot(\mathrm{orb}_s)_*(\sigma_{\sigma_w(c_0)} \otimes \mu_{Q_0'^{\sigma_w}}).$$

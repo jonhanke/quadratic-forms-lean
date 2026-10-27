@@ -2,7 +2,6 @@ import QuadFormsKB.Analysis.AdelicPoisson
 
 /-!
 # The additive adele space of a number field and of $F^\iota$
-
 Weil, *Adeles and Algebraic Groups* (1982), §2.1. $F$ is any number field (no total reality, no class-number
 hypothesis).
 
@@ -173,7 +172,7 @@ theorem exists_sub_mem_OHat (x : AF) : ∃ ξ : F, x - algebraMap F AF ξ ∈ OH
 
 variable (F) in
 /-- The adele space $\mathbb A_F = F_\infty \times \mathbb A_f$ as an additive group, with $F_\infty = F\otimes\mathbb R$
-Mathlib's mixed space $\mathbb R^{r_1}\times\mathbb C^{r_2}$ (the setting of the library's `adelicPoisson`). -/
+Mathlib's mixed space $\mathbb R^{r_1}\times\mathbb C^{r_2}$ (the setting of `adelicPoisson`). -/
 abbrev Adeles : Type := mixedSpace F × FiniteAdeleRing (𝓞 F) F
 
 example : LocallyCompactSpace (Adeles F) := inferInstance

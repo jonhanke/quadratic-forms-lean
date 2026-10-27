@@ -1,7 +1,7 @@
 /-
 # $\mu_P(\pi(S_0)) = \mu_{\mathrm{SL}_1}(E^1)\cdot\mu_{PD}(\bar H)$ for the square model
 
-**Layer:** a number field $F$, $D = (a,b)_F$ a division algebra ($a, b\in\mathcal O_F\setminus0$), the square model
+**Layer:** a number field $F$, $D = (a,b)_F$ any quaternion algebra, division or split ($a, b\in\mathcal O_F\setminus0$), the square model
 $G^\natural = \{(\alpha,\beta,u) : \operatorname{nrd}\alpha = \operatorname{nrd}\beta = u\}$ (`gnatSqO`), $P = G^\natural/Z$.
 
 Data: open subgroups $H, E\le(D\otimes\mathbb A)^\times$ with $H$ normalizing $E$, a measurable set $B\subseteq\mathbb A^\times$ and
@@ -214,9 +214,6 @@ end S0
 
 section Pair
 
-variable (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ)
-
-include hdiv in
 /-- `muSL1N` is right invariant (conjugation invariance + left invariance). -/
 theorem muSL1N_preimage_mul_right (w : (nrdHom (a : F) (b : F)).ker) {A : Set (nrdHom (a : F) (b : F)).ker} (hA : MeasurableSet A) :
     muSL1N ha0 hb0 ((fun z : (nrdHom (a : F) (b : F)).ker => z * w) ⁻¹' A) = muSL1N ha0 hb0 A := by
@@ -224,10 +221,9 @@ theorem muSL1N_preimage_mul_right (w : (nrdHom (a : F) (b : F)).ker) {A : Set (n
       ((w : (QuatAdele (a : F) (b : F))ˣ)⁻¹) := by
     funext z; apply Subtype.ext; simp only [comp_apply, Subgroup.coe_mul, NormalFib.coe_adK, inv_inv]; group
   rw [hrw, preimage_comp, ← Measure.map_apply (NormalFib.measurable_adK _ _)
-    (hA.preimage (measurable_const_mul w)), map_adK_muSL1N ha0 hb0 hdiv, measure_preimage_mul]
+    (hA.preimage (measurable_const_mul w)), map_adK_muSL1N ha0 hb0, measure_preimage_mul]
 
 set_option maxHeartbeats 1600000 in
-include hdiv in
 /-- **The fibre of the $p$-fibration**: for $\operatorname{nrd}\alpha = \operatorname{nrd}\beta$ and a subgroup $E$,
 $(\mu\times\mu)\{(x,y) : \beta y\in H,\ \alpha x(\beta y)^{-1}\in E\} = \mu(E\cap\mathrm{SL}_1)\cdot\mu\{y : \beta y\in H\}$. -/
 theorem muSL1N_prod_pair (α β : (QuatAdele (a : F) (b : F))ˣ) (hαβ : nrdUnit α = nrdUnit β)
@@ -276,7 +272,7 @@ theorem muSL1N_prod_pair (α β : (QuatAdele (a : F) (b : F))ˣ) (hαβ : nrdUni
         rw [mem_preimage, mem_preimage, mem_setOf_eq, e]
         exact and_iff_right hy
       rw [hset, ← Measure.map_apply (NormalFib.measurable_adK _ _) (hEk.preimage (measurable_mul_const w)),
-        map_adK_muSL1N ha0 hb0 hdiv, muSL1N_preimage_mul_right ha0 hb0 hdiv w hEk]
+        map_adK_muSL1N ha0 hb0, muSL1N_preimage_mul_right ha0 hb0 w hEk]
     · rw [indicator_of_notMem (show y ∉ {y : (nrdHom (a : F) (b : F)).ker | β * (y : (QuatAdele (a : F) (b : F))ˣ) ∈ H} from hy)]
       convert measure_empty (μ := muSL1N ha0 hb0)
       ext x; simp [hy]
@@ -291,7 +287,6 @@ end Pair
 section Result
 
 variable (H E : Subgroup (QuatAdele (a : F) (b : F))ˣ) (hHE : ∀ h ∈ H, ∀ e ∈ E, h * e * h⁻¹ ∈ E)
-  (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ)
 
 /-- $X = \{\beta\in H : \operatorname{nrd}\beta\in B\}$. -/
 def sqX (B : Set (Adeles F)ˣ) : Set (QuatAdele (a : F) (b : F))ˣ := {β | β ∈ H ∧ nrdUnit β ∈ B}
@@ -318,7 +313,7 @@ theorem muSL1P_eq_muSL1 (s : Set (QuatAdele (a : F) (b : F))ˣ) (hs : Measurable
     (hs.preimage measurable_subtype_coe)).trans rfl
 
 set_option maxHeartbeats 1600000 in
-include hHE hdiv in
+include hHE in
 /-- **Along $p$**: $\mu_{G^\natural}(S) = \mu_{\mathrm{SL}_1}(E\cap\mathrm{SL}_1)\cdot\mathrm{tamQuat}(X)$. -/
 theorem muG_sqS_eq_tamQuat (hHo : IsOpen (H : Set (QuatAdele (a : F) (b : F))ˣ))
     (hEo : IsOpen (E : Set (QuatAdele (a : F) (b : F))ˣ)) {B : Set (Adeles F)ˣ} (hB : MeasurableSet B) :
@@ -363,7 +358,7 @@ theorem muG_sqS_eq_tamQuat (hHo : IsOpen (H : Set (QuatAdele (a : F) (b : F))ˣ)
         change (_ ∧ _) ∧ gu ha0 hb0 g * 1 ∈ B ↔ _
         rw [mul_one]
         exact and_iff_left hu
-      rw [hset, muSL1N_prod_pair ha0 hb0 hdiv _ _ ((nrd_gα ha0 hb0 g).trans (nrd_gβ ha0 hb0 g).symm) _ E
+      rw [hset, muSL1N_prod_pair ha0 hb0 _ _ ((nrd_gα ha0 hb0 g).trans (nrd_gβ ha0 hb0 g).symm) _ E
         hHo.measurableSet hEo.measurableSet]
       congr 1
       refine (muSL1N_eq_muSL1 ha0 hb0 ((fun x => gβ ha0 hb0 g * x) ⁻¹' (H : Set (QuatAdele (a : F) (b : F))ˣ))
@@ -424,7 +419,7 @@ theorem tamQuat_sqX (hHo : IsOpen (H : Set (QuatAdele (a : F) (b : F))ˣ)) {B : 
     refine ⟨_, h1, ?_⟩
     rw [map_mul, (mem_ker_pdMk _ _).2 ⟨u, rfl⟩ |> MonoidHom.mem_ker.1, mul_one]
 
-include hHE hdiv in
+include hHE in
 /-- **$\mu_P(\pi(S_0)) = \mu_{\mathrm{SL}_1}(E\cap\mathrm{SL}_1)\cdot\mu_{PD}(\operatorname{pd}(H))$** (the measure form of
 $P\cong\mathrm{SL}_1(\mathbb A)\rtimes PD^\times(\mathbb A)$). -/
 @[kb "weil1982" "§2.4, Thm 2.4.4; §3.7, p. 65 [unverified page]"]
@@ -437,7 +432,7 @@ theorem muP_sqS0 (hHo : IsOpen (H : Set (QuatAdele (a : F) (b : F))ˣ))
         muPD (valued_coe_le_one a) (valued_coe_le_one b) (by simpa using ha0) (by simpa using hb0)
           (pdMk (a : F) (b : F) '' H) := by
   have h1 := muG_sqS_eq_muP ha0 hb0 H E hHE (muSq ha0 hb0) hHo hEo hB c hc
-  rw [muG_sqS_eq_tamQuat ha0 hb0 H E hHE hdiv hHo hEo hB, tamQuat_sqX ha0 hb0 H hHo hB c hc] at h1
+  rw [muG_sqS_eq_tamQuat ha0 hb0 H E hHE hHo hEo hB, tamQuat_sqX ha0 hb0 H hHo hB c hc] at h1
   refine (ENNReal.mul_right_inj hc0 hct).1 ?_
   rw [← h1]; ring
 

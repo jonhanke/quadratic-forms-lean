@@ -2,7 +2,7 @@
 # The $q$-coefficients of $\theta_Q$ and $\theta_{\mathrm{Gen}}$ over $F$
 
 **Setting.** $F$ totally real, $a_\nu(f)$ = `qCoeff f (koecherBasis 1) (realVec ν)` for $\nu \in \mathfrak d^{-1}$ (`dualElt 1 m`), the
-$q$-coefficients of `Forms.lean` for the period lattice $\mathcal O_F$.
+$q$-coefficients for the period lattice $\mathcal O_F$.
 
 **Proves**
 - **linearity** of $q$-coefficients over finite combinations of holomorphic periodic functions (`qCoeff_sum_smul`, `qCoeff_sub`),

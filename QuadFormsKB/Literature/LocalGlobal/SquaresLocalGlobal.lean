@@ -121,9 +121,9 @@ $\mathfrak{Q} \supseteq \mathfrak{p}\mathcal{O}_L + (\sigma + r)$; both lie over
 proper ideal containing the maximal ideal $\mathfrak{p}$). If $\mathfrak{P} = \mathfrak{Q}$ then
 $2r \in \mathfrak{P} \cap \mathcal{O}_F = \mathfrak{p}$, impossible.
 
-*Correction.* An earlier version was stated without `hd` and `hspan`, which is false: $F = L = \mathbb{Q}$,
+*Correction (llmprove).* First stated without `hd` and `hspan`, which is false: $F = L = \mathbb{Q}$,
 $a = s = r = 1$, $\mathfrak{p} = (3)$ has only one prime above $\mathfrak{p}$. -/
-@[kb "neukirch1999" "Ch. I, Prop. 8.3 [unverified]"]
+@[kb "neukirch1999" "Ch. I, Prop. 8.3 [unverified]; omeara1963 §65A, p. 175 (local degree n_{𝔭})"]
 theorem exists_two_primes_over {L : Type} [Field L] [NumberField L] [Algebra F L]
     (a : 𝓞 F) (hd : ¬ IsSquare (a : F)) (s : L) (hs : s ^ 2 = algebraMap F L (a : F))
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
@@ -301,7 +301,7 @@ a unit, $\bar a = \bar r^2$ is a nonzero square, and $\bar r \ne -\bar r$ as $2 
 distinct linear factors, so two primes, each with residue degree $1$. Alternatively use
 $\sum_{\mathfrak{P} \mid \mathfrak{p}} e f = 2$ (`Ideal.sum_ramification_inertia`) and exhibit two distinct
 primes $\mathfrak{p} + (s - r)$, $\mathfrak{p} + (s + r)$ for a lift $r \in \mathcal{O}_F$. -/
-@[kb "neukirch1999" "Ch. I, Prop. 8.3 [unverified]"]
+@[kb "neukirch1999" "Ch. I, Prop. 8.3 [unverified]; omeara1963 §65A, p. 175 (local degree n_{𝔭})"]
 theorem exists_two_primes_of_isSquare {L : Type} [Field L] [NumberField L] [Algebra F L]
     (a : 𝓞 F) (hd : ¬ IsSquare (a : F)) (s : L) (hs : s ^ 2 = algebraMap F L (a : F))
     (hspan : ∀ y : L, ∃ b₀ b₁ : F, y = algebraMap F L b₀ + algebraMap F L b₁ * s)
@@ -860,7 +860,7 @@ $L = F(\sqrt a)$ (`Lam.exists_quadExt`) and $S$ = the primes containing $2a$ (fi
 `NFLocal.finite_bad_places_nf`); every $\mathfrak{p} \notin S$ splits by
 `exists_two_primes_of_isSquare`, contradicting `not_almost_all_split`. Only the finite places are
 needed. -/
-@[kb "omeara1963" "§65:15 [unverified]"]
+@[kb "omeara1963" "§65C, 65:15, p. 182 (Global Square Theorem)"]
 theorem isSquare_iff_everywhere (a : F) :
     IsSquare a ↔ NFPlace.Everywhere (F := F) fun K _ _ => IsSquare (algebraMap F K a) := by
   constructor

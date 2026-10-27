@@ -313,7 +313,7 @@ theorem sum_smul_dualM (M : Matrix (Fin 2) (Fin 2) V) (m : Fin (Nidx (F := F)) �
   rw [this, sum_sigma_single, dualEquiv2_apply, ← sum_smul_traceDual]
 
 /-- **Poisson summation on $F_\infty^2$ for $M\mathcal O_F^2$, $\det M = 1$.** -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2 (Poisson summation) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2, Lemma 4.2.4 (Poisson formula), p. 333"]
 theorem poisson_SL2Inf (M : Matrix (Fin 2) (Fin 2) V) (hM : M.det = 1) (f : SchwartzMap (Fin 2 → V) ℂ) :
     ∑' ξ : Fin 2 → (((I₁ (F := F) : FI)) : Set F), f (M.mulVec fun i => mixedEmbedding F (ξ i)) =
       ((|(discr F : ℝ)|)⁻¹ : ℝ) * ∑' η : Fin 2 → ((FractionalIdeal.dual ℤ ℚ ((I₁ (F := F) : FI)) : FI) : Set F),

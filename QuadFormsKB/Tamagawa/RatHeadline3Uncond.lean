@@ -21,7 +21,7 @@ open QuadFormsKB.Siegel (SiegelFormula3 eulerProductReg3 IsEulerProductValue gen
 theorem ternaryTamagawaTwo_rat : TernaryTamagawaTwo ℚ := QuatOrder.ternaryTamagawaTwo_pid
 
 /-- **Siegel's formula for every positive definite ternary form over ℤ**, unconditionally
-(`siegelFormula3_rat` with `TernaryTamagawaTwo ℚ`). -/
+(`siegelFormula3_rat` with the `TernaryTamagawaTwo ℚ`). -/
 @[kb "siegel1935" "Hauptsatz, n = 3 (regularized Euler product), unconditional [unverified]"]
 theorem siegelFormula3_rat_uncond (Q : QuadForm ℤ 3) (hQ : IntQF.PosDef Q) :
     SiegelFormula3 Q (eulerProductReg3 Q) :=

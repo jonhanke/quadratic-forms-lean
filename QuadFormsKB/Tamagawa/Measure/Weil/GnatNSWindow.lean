@@ -13,7 +13,7 @@ $D_E = (a,b)_E$ over $F_v$ (`DEr Fv a b d`), $|2|_v = q^{-s}$.
 * **`ballOne_of_win`** / **`mem_win_of_ballOne`**: for $y = r(1+\operatorname{pureE}\eta)\in G^\natural(F_v)$ with small $\eta$:
   $\varphi_y\in K_N$ iff $\eta\in$ `Lwin v N` and $\rho\equiv1\bmod\mathfrak p^N$.
 
-Source: Weil 1982, §2.2-2.3, §3.7 [unverified page] (the window: linearization of $\varphi$ at $1$).
+Source: Weil 1982, §2.2-2.3, §3.7 [unverified page].
 -/
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatNSWinVal
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatNSWinAlg

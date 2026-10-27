@@ -64,7 +64,7 @@ def ofQuadraticForm (Q' : QuadraticForm R (Fin n → R)) : QuadForm R n :=
 
 /-- **The conversion ours $\to$ Mathlib preserves values:**
 $(\texttt{toQuadraticForm}\ Q)(\vec{x}) = Q(\vec{x})$ for all $\vec{x} \in R^n$. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88 (quadratic forms and quadratic maps)"]
 theorem toQuadraticForm_apply (Q : QuadForm R n) (x : Fin n → R) :
     Q.toQuadraticForm x = Q.eval x := by
   rw [eval, evalIn_eq_dotProduct]
@@ -73,7 +73,7 @@ theorem toQuadraticForm_apply (Q : QuadForm R n) (x : Fin n → R) :
 
 /-- **The conversion Mathlib $\to$ ours preserves values:**
 $(\texttt{ofQuadraticForm}\ Q')(\vec{x}) = Q'(\vec{x})$ for all $\vec{x} \in R^n$. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88"]
 theorem eval_ofQuadraticForm (Q' : QuadraticForm R (Fin n → R)) (x : Fin n → R) :
     (ofQuadraticForm Q').eval x = Q' x := by
   conv_rhs => rw [← QuadraticMap.toQuadraticMap_toBilin Q' (Pi.basisFun R (Fin n))]
@@ -93,7 +93,7 @@ theorem eval_ofQuadraticForm (Q' : QuadraticForm R (Fin n → R)) (x : Fin n →
 /-- Round trip ours → Mathlib → ours is the identity: `ofQuadraticForm (toQuadraticForm Q) = Q`.
 (Together with `toQuadraticForm_ofQuadraticForm`: the two definitions correspond
 one-to-one.) -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88"]
 theorem ofQuadraticForm_toQuadraticForm (Q : QuadForm R n) :
     ofQuadraticForm Q.toQuadraticForm = Q := by
   obtain ⟨c, hc⟩ := Q
@@ -112,7 +112,7 @@ theorem ofQuadraticForm_toQuadraticForm (Q : QuadForm R n) :
 
 /-- Round trip Mathlib → ours → Mathlib is the identity:
 `toQuadraticForm (ofQuadraticForm Q') = Q'`. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88"]
 theorem toQuadraticForm_ofQuadraticForm (Q' : QuadraticForm R (Fin n → R)) :
     (ofQuadraticForm Q').toQuadraticForm = Q' := by
   conv_rhs => rw [← QuadraticMap.toQuadraticMap_toBilin Q' (Pi.basisFun R (Fin n))]

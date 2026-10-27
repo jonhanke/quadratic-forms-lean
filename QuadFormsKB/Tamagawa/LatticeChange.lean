@@ -4,7 +4,8 @@
 **Layer:** a complete discrete valuation ring $R$ with finite residue field (uniformizer $\pi$, $q = |R/\pi|$, any residue
 characteristic, dyadic included), e.g. $\mathfrak o_\mathfrak p$.
 
-The Haar measure on $O(V)(F_\mathfrak p)$ is normalized by $\mathrm{vol}(O(L_\mathfrak p)) = \beta_\mathfrak p(L, L)$ for the standard
+The Tamagawa number computation normalizes the Haar measure on $O(V)(F_\mathfrak p)$
+by$\mathrm{vol}(O(L_\mathfrak p)) = \beta_\mathfrak p(L, L)$ for the standard
 lattice. That this is the gauge-form measure, i.e. does not depend on the lattice used, is the content of this file: for
 $Q_1 = c\,(Q\circ D)$ with $D = \mathrm{diag}(c_0, \dots, c_{n-1})$ (the form of the lattice $DL$, rescaled by $c$),
 $$\beta(Q_1)\;q^{\,j\,n(n-1)/2} = [A_1 : A_1(j)]\cdot[\mathrm{Sym} : \Phi\,\mathrm{Sym}]\cdot[\mathrm{Sym} : L_Q(M_n(R))]\qquad(j \gg 0),$$
@@ -19,7 +20,7 @@ $2j \ge k$ the condition is linear in $Z$ and the count is a lattice index (`car
 (`index_comap`, `index_map_of_injective`, diagonal lattices).
 
 Indices are 0-based. Sources: Weil 1982, §2.2.1, p. 14 (the local measure of a gauge form is independent of the
-coordinates); Kitaoka 1993, §5.6 [unverified].
+coordinates; checked against the printed book); Kitaoka 1993, §5.6 [unverified].
 -/
 import QuadFormsKB.Tamagawa.OrbitHensel
 import QuadFormsKB.LocalDensity.FormDensitySelf

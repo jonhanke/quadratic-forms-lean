@@ -3,7 +3,8 @@ import QuadFormsKB.Tamagawa.Measure.Weil.AdditiveScaling
 /-!
 # Adelic Minkowski
 
-Weil, *Adeles and Algebraic Groups* (1982), §2.1 (the measure of $\mathbb A_k/k$); adelic Minkowski drives the finiteness for $\mathrm{SL}_2$ and Fujisaki's lemma.
+Weil, *Adeles and Algebraic Groups* (1982), §2.1 (the measure of $\mathbb A_k/k$)
+(adelic Minkowski drives the finiteness for $\mathrm{SL}_2$ and Fujisaki's lemma).
 
 **Generic part** (namespace `MeasureTheory`, imports only Mathlib material; upstreamable):
 * `exists_ne_zero_mem_of_sub_mem` (Blichfeldt, difference form): if $\mu(S) > \mu(D)$ for a fundamental domain $D$ of a

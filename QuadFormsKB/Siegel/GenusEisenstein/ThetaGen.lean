@@ -1,6 +1,5 @@
 /-
 # The genus theta series as a modular form, and its constant terms
-
 For $Q$ positive definite quaternary with Hessian $H$ and $N = |\det H|$ (a level of every form in the genus,
 `isThetaLevel_natAbs_det_genus`):
 

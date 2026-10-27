@@ -7,7 +7,8 @@ import QuadFormsKB.Binary.RelativeLFactor
 # The $\chi$-regularized Euler product and the natural order
 
 **Layer:** functions on the nonzero primes of $\mathcal O_F$, $F$ a number field (`HeightOneSpectrum (𝓞 F)`), with
-$N\mathfrak p$ = `normP`. This file fixes the product convention for Siegel's formula in rank $3$: the rank-3 local densities $\beta_\mathfrak p = 1 + \chi(\mathfrak p)/N\mathfrak p$
+$N\mathfrak p$ = `normP`. This file fixes the product convention for Siegel's formula in rank $3$: the
+rank-3 local densities $\beta_\mathfrak p = 1 + \chi(\mathfrak p)/N\mathfrak p$
 (at good $\mathfrak p$) are **not** unconditionally multipliable, so Mathlib's `tprod` of them is junk.
 
 **Definitions.**
@@ -21,7 +22,9 @@ $N\mathfrak p$ = `normP`. This file fixes the product convention for Siegel's fo
   $f$ with $\prod f\,(1-\chi/N)^e$ absolutely convergent).
 
 **Results (all proved).**
-* `hasLOne_relChar`: for a quadratic extension $E/F$, $L_F(1,\chi_{E/F}) = \rho_E/\rho_F > 0$ exists ($\zeta_E = \zeta_F\,L(\cdot,\chi_{E/F})$, `Binary.Rel.tendsto_relLR`); `HasLOne.congr_finite` and `exists_hasLOne_of_almost_relChar`:
+* `hasLOne_relChar`: for a quadratic extension $E/F$, $L_F(1,\chi_{E/F}) = \rho_E/\rho_F > 0$ exists
+  ($\zeta_E = \zeta_F\,L(\cdot,\chi_{E/F})$, `Binary.Rel.tendsto_relLR`); `HasLOne.congr_finite` and
+  `exists_hasLOne_of_almost_relChar`:
   the same for every $\chi$ that agrees with $\chi_{E/F}$ outside a finite set (with an explicit finite correction factor).
 * `regProd_zero` ($e = 0$: the plain `tprod`), `regProd_zero_char` ($\chi = 0$: the plain `tprod`),
   `regProd_eq_of_hasProd` (**agreement**: if $\prod(1-\chi/N)^{-1}$ converges unconditionally to $L(1,\chi) \ne 0$ and
@@ -30,7 +33,6 @@ $N\mathfrak p$ = `normP`. This file fixes the product convention for Siegel's fo
   $\prod_{N\mathfrak p \le X}(1-\chi(\mathfrak p)/N\mathfrak p)^{-1} \to L_F(1,\chi)$) and `hasProd_normOrder_regProd`: under it, the
   natural-order product of $f$ is `regProd χ 1 f` whenever $\prod f\,(1-\chi/N)$ converges absolutely (the rank-3
   natural-order reading of Siegel/Hanke). Over $\mathbb Q$ the input is a theorem (`EulerOne.tendsto_prod_primesBelow`).
-
 -/
 
 open NumberField IsDedekindDomain Filter Topology
@@ -152,7 +154,7 @@ theorem hasLOne_relChar {E : Type} [Field E] [NumberField E] [Algebra F E] (hdeg
   tendsto_relLR hdeg
 
 /-- **$\chi$ is $\chi_{E/F}$ up to finitely many primes** (a condition; for the ternary character $\chi_m$ the field
-is $E = F(\sqrt{-m\,d_Q})$, and the identification is left to a later step). -/
+is $E = F(\sqrt{-m\,d_Q})$, and the identification is not made here). -/
 def IsAlmostRelChar (χ : HeightOneSpectrum (𝓞 F) → ℝ) (E : Type) [Field E] [NumberField E] [Algebra F E] : Prop :=
   ∃ S : Finset (HeightOneSpectrum (𝓞 F)), ∀ v ∉ S, χ v = (Binary.Rel.relChar E v : ℝ)
 
@@ -177,7 +179,7 @@ theorem exists_hasLOne_of_almost_relChar {E : Type} [Field E] [NumberField E] [A
 
 /-! ### The regularized product -/
 
-/-- **The $\chi$-regularized product** (the rank-3 convention):
+/-- **The $\chi$-regularized product** (the convention for rank $3$):
 $$\mathrm{regProd}(\chi, e, f) = L_F(1,\chi)^e\cdot\prod_\mathfrak p f(\mathfrak p)\,\bigl(1-\chi(\mathfrak p)N\mathfrak p^{-1}\bigr)^e,$$
 the product being Mathlib's `tprod`. *Use* when $\prod_\mathfrak p f\,(1-\chi/N)^e$ converges absolutely (rank-3
 $\beta_\mathfrak p$ with $e = 1$, rank-2 $\alpha_\mathfrak p$ with $e = -1$); it is then the natural-order product of $f$ given

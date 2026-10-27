@@ -52,7 +52,7 @@ $$SO(Q)(K) = \{ g \in GL_n(K) : \det g = 1 \text{ and } Q(g\vec x) = Q(\vec x) \
 (With $2 \ne 0$ in $K$ the value condition is equivalent to $g^{\mathsf T} H g = H$ for the Hessian $H$,
 `mem_SO_iff_hessian`, the condition of `Lattices.orthGroup`.)
 
-Source: O'Meara 1963, §43 [unverified]; Weil 1982, §3.7(a) ("special" = determinant 1). -/
+Source: O'Meara 1963, §43A, p. 100 (rotations); Weil 1982, §3.7(a) ("special" = determinant 1). -/
 @[kb "weil1982" "§3.7(a), p. 63"]
 def SO (Q : QuadForm K n) : Subgroup (GL (Fin n) K) where
   carrier := {g | (g : Matrix (Fin n) (Fin n) K).det = 1 ∧
@@ -81,7 +81,7 @@ theorem mem_SO {Q : QuadForm K n} {g : GL (Fin n) K} :
 /-- **The Hessian description of $SO(Q)$** (for $2 \ne 0$): $g \in SO(Q)(K)$ iff $\det g = 1$ and
 $g^{\mathsf T} H g = H$, $H$ = `Q.hessian` (the matrix of the bilinear form $B(x,y) = Q(x+y) - Q(x) - Q(y)$). This is
 the membership condition of `Lattices.orthGroup` (over a number field and its completions) plus $\det = 1$. -/
-@[kb "omeara1963" "§42 [unverified]"]
+@[kb "omeara1963" "§41A, p. 84; §43A, p. 100 (rotations)"]
 theorem mem_SO_iff_hessian (h2 : (2 : K) ≠ 0) {Q : QuadForm K n} {g : GL (Fin n) K} :
     g ∈ SO Q ↔ (g : Matrix (Fin n) (Fin n) K).det = 1 ∧
       (g : Matrix (Fin n) (Fin n) K)ᵀ * Q.hessian * g = Q.hessian := by
@@ -126,7 +126,7 @@ theorem SO_smul {Q : QuadForm K n} {d : K} (hd : d ≠ 0) : SO (d • Q) = SO Q 
 
 /-- **$SO$ is transported by isometries:** if $Q(P\vec x) = Q'(\vec x)$ for all $\vec x$ ($P \in GL_n(K)$), then
 $g \mapsto P^{-1} g P$ is an isomorphism $SO(Q)(K) \cong SO(Q')(K)$. -/
-@[kb "omeara1963" "§42 [unverified]"]
+@[kb "omeara1963" "§41A, p. 84"]
 def SOMulEquivOfIsometric {Q Q' : QuadForm K n} (P : GL (Fin n) K)
     (hP : ∀ x, Q.eval ((P : Matrix (Fin n) (Fin n) K) *ᵥ x) = Q'.eval x) : SO Q ≃* SO Q' where
   toFun g := ⟨P⁻¹ * g * P, by
@@ -690,7 +690,7 @@ for nondegenerate $Q$ in 3 variables over $F$ there are $a, b, d \in F^\times$ w
 $$d\,Q \;\cong\; \langle -a, -b, ab \rangle = (D^0, \operatorname{nrd}), \qquad D = (a,b)_F.$$
 Explicitly, if $Q \cong \langle c_0, c_1, c_2 \rangle$ then $d = c_0 c_1 c_2$, $a = -c_1 c_2$, $b = -c_0 c_2$
 (0-based). This is the direction of the classical correspondence (ternary forms up to similarity
-$\leftrightarrow$ quaternion algebras) that `TernaryReduction` needs.
+$\leftrightarrow$ quaternion algebras) that is needed for the base case.
 
 Source: Voight 2021, Thm. 5.1.? / §5.2 [unverified]; Weil 1982, §3.7(a). -/
 @[kb "voight2021" "§5.2 [unverified]"]

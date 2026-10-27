@@ -28,7 +28,7 @@ $\{\|\operatorname{nrd}\|\le1\}$ (`setLIntegral_leOne_dualRem_ne_top`), the addi
 **Outside results used**: Mathlib's class number formula
 (`NumberField.tendsto_sub_one_mul_dedekindZeta_nhdsGT`), `integral_exp_mul_Iic`,
 `SchwartzMap.integrable_pow_mul`, `squeeze_zero_norm'`, `tendsto_nhds_unique`; the library's `hasseMinkowski_nf`
-(Hasse–Minkowski over $F$, for the division criterion) and Fujisaki's lemma (FLT `compact_quotient` cited there).
+(Hasse–Minkowski over $F$, for the division criterion) and Fujisaki's lemma (FLT `compact_quotient` is cited there).
 -/
 
 open IsDedekindDomain NumberField MeasureTheory Filter Topology Set NumberField.mixedEmbedding Matrix
@@ -679,7 +679,7 @@ theorem hdiv_of_not_isotropicIn (K : Type*) [Field K] [Algebra F K] (h : ¬ (Qua
 
 /-- **Division $\Leftrightarrow$ ramified at some place** (Hasse–Minkowski over $F$, `hasseMinkowski_nf`): for $a, b\ne0$,
 $\mathbb H[F,a,b]$ is a division algebra iff its norm form is anisotropic at some completion of $F$. -/
-@[kb "omeara1963" "§66:1 [unverified]; Weil 1982 §3.1 (division algebras) [unverified page]"]
+@[kb "omeara1963" "§66, 66:1, p. 187 (for the norm form of a quaternion algebra; cf. 57:9, p. 146); Weil 1982 §3.1 (division algebras) [unverified page]"]
 theorem hdiv_iff_not_everywhere (ha0 : a ≠ 0) (hb0 : b ≠ 0) :
     (∀ ξ : ℍ[F,a,b], ξ ≠ 0 → IsUnit ξ) ↔
       ¬ NFPlace.Everywhere (F := F) fun K _ _ => (Quat.nrdForm a b).IsotropicIn K := by

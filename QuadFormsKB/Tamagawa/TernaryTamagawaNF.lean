@@ -4,7 +4,9 @@
 **Layer:** $F$ totally real (any class number), $D = (a,b)_F$ totally definite, $\mathcal O \supseteq \mathcal O_F\langle1,i,j,k\rangle$ a maximal order,
 $L = \mathcal O^0$ (`pureLat`, not free in general), $Q_0 = \langle -a,-b,ab\rangle$.
 
-**Assembly.** By `tauSOLat_eq_dcMass`, $\tau = \mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{dcMass}(SO(F), SO(\hat L))$. By the local computations and Eichler's mass formula for
+**Assembly.** By `tauSOLat_eq_dcMass` $\tau = \mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{dcMass}(SO(F), SO(\hat L))$.
+By the local computations (completion of the trace-zero lattice, local conjugation maps, the index $[K_0 : K']$)
+and Eichler's mass formula for
 every class number (`dcMass_K0NF_eq`, $h_F$ cancels) the mass is $2^{-\#\mathrm{Ram}_f}\cdot2\zeta_F(2)\prod_{\mathrm{Ram}_f}(1-N\mathfrak p^{-1})/(c_{\mathcal O}d_F^{1/2}\pi^{2d})$.
 By `tamagawaKLat_eq_local_gen` with local adapted bases and the local factors (`LTZ.localFactor_eq`),
 $\mu(K_{SO}(L)) = d_F^{-3/2}\prod_\sigma\mathrm{vol}(SO(V_\sigma))\prod_v(1-q_v^{-2})\varepsilon_v|8|_v^{-1}|ab|_v^{-3}\|\det E_v\|$, and

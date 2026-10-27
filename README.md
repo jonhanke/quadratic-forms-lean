@@ -25,9 +25,12 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 - **[Hilbert reciprocity over number fields](docs/results/hilbert-reciprocity.md):** $`\prod_v (a,b)_v = 1`$ for all $`a, b \in F^\times`$ and every number field $`F`$, by a purely local proof via the Weil index, independent of class field theory. (Tau Ceti proves it through class field theory and the Brauer group.)
 - **[Hasse–Minkowski over number fields](docs/results/hasse-minkowski-number-fields.md):** a quadratic form over a number field is isotropic, represents $`c`$, or is isometric to another form if and only if this holds over every completion $`F_v`$. (Tau Ceti has the rank-4 and rank-≥5 induction steps, conditional on the lower ranks.)
 - **[Hasse–Minkowski over ℚ](docs/results/hasse-minkowski-rationals.md)**, for forms in any number of variables.
+- **[Tamagawa numbers of SO(V) over every number field](docs/results/tamagawa-table.md)** (new in 0.2.0): $`\tau(\mathrm{SO}(V)) = 2`$ for every nondegenerate quadratic space of dimension $`n \ge 3`$ over every number field (any signature, isotropic or not, complex places allowed); $`\tau = 2`$ for anisotropic and $`\tau = 1`$ for isotropic binary spaces, with Weil's convergence factors; $`\tau = 1`$ in dimension $`1`$.
+- **[Siegel's formula for indefinite forms over every number field](docs/results/siegel-indefinite.md)** (new in 0.2.0): the measure form of Siegel's formula for numbers and for forms represented by forms of any signature, for every rank of the stabilizer, including Siegel's excluded case of an isotropic binary stabilizer (regularized by the residue of $`\zeta_F`$); and Siegel's formula for definite forms representing forms over totally real fields.
+- **[Classical cases over ℚ](docs/results/classical-cases.md)** (new in 0.2.0): Gauss's three-squares theorem, Jacobi's two-squares theorem and Dirichlet's theorem for $`x^2 - 2y^2`$, from Siegel's formula with explicit constants.
 
 
-**Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products) that make its sums and infinite products meaningful, so no term relies on a Lean default value. [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
+**Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value; the few such facts of the 0.2.0 headlines that are not yet library lemmas are named in their docstrings. [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
 
 ## Further results
 
@@ -83,7 +86,7 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 ## Layout
 
 ```
-Challenge.lean          the headline statements, human-reviewed (proofs: deliberate sorry)
+Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, 0.2.0's not yet
 Solution.lean           the same statements, proved from the library
 comparator.json         configuration for `lake comparator` (Solution against Challenge)
 formalization.yaml      scope, sources, divergences, provenance, review (formalization.yaml v0.4)
@@ -133,19 +136,31 @@ lake env lean scripts/check_axioms.lean   # axioms of the headline theorems
 ## Provenance
 
 QuadFormsKB was written by AI, with Claude Code (Anthropic): almost entirely by Claude Opus 5.5,
-with a small share by Claude Sonnet 5.5, in October 2026. Development took about a week; at list
-prices the model usage would have cost roughly $1,200–1,800 (it ran on a flat-rate subscription).
+with a small share by Claude Sonnet 5.5, in October 2026. Release 0.1.0 took about a week of development; at list
+prices its model usage would have cost roughly $1,200–1,800 (it ran on a flat-rate subscription).
+Up to release 0.2.0 the source repository (created on 2026-10-14) has about 3,260 commits on its main branch; at list
+prices its model usage, about 35,720 requests, mostly to Claude Opus 5.5 with Claude Sonnet 5.5 subagents, would have
+cost roughly $3,090 (it ran on a flat-rate subscription, the $200/month Max plan). These figures cover the whole
+source repository up to 2026-10-27, including release 0.1.0 and overhead, not only the proofs.
 Jonathan Hanke designed and directed it: he chose the results, the conventions and the proof routes.
 The proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
-standard axioms. The headline statements in `Challenge.lean`, and the definitions they use, were
-reviewed by Jonathan Hanke, and `lake comparator` checks that `Solution.lean` proves exactly those
-statements. The rest of the library (its other definitions and intermediate results) has not been
+standard axioms. The 13 headline statements of release 0.1.0 in `Challenge.lean`, and the definitions they use, were
+reviewed by Jonathan Hanke. The 21 headline statements added in release 0.2.0, and the definitions they use, have
+**not yet been reviewed** by a human; that review is planned for release 0.2.1. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
 reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
 against the literature. Corrections and reports of mis-formalizations are very welcome.
 
 ## Releases
 
-Releases are tagged with semantic versions; `main` continues to develop. The first release is [v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0) (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23509793](https://doi.org/10.5281/zenodo.23509793). The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
+Releases are tagged with semantic versions; `main` continues to develop. The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
+
+- **[v0.2.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.2.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:ZENODO-DOI-v0.2.0](https://doi.org/ZENODO-DOI-v0.2.0) *(to be filled in after Zenodo issues the DOI)*. Adds the Tamagawa numbers of $`\mathrm{SO}(V)`$ over every number field, Siegel's formula for indefinite forms and for forms by forms, and classical cases over ℚ (21 new headline statements in `Challenge.lean`, 34 in total). It also records an [erratum](docs/results/errata.md): an input assumed by three earlier theorems is false; those theorems are vacuous, are not headlines, and are replaced by unconditional ones.
+- **[v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23509793](https://doi.org/10.5281/zenodo.23509793).
+
+**Not in this release** (planned for 0.2.1 or later; none changes a headline):
+
+- for the isotropic binary form $`xy`$ over ℚ: the identification of $`\prod_p (v_p(m) + 1)`$ with the number of divisors of $`m`$, and the unit volume $`v^1(\mathbb{Z}^2) = 1`$ (one class in the genus, then the volume of the norm-one shell);
+- Tamagawa numbers of the other groups of type $`D_n`$ (for example spin groups and similitude groups); only $`\mathrm{SO}(V)`$ is treated.
 
 ## License
 

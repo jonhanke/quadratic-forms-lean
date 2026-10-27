@@ -11,7 +11,7 @@ $c \ne 0$. For a measurable section $s$ of $g \mapsto ge_0$, $SO(Q)(\mathbb C) \
 **complex archimedean orbital identity** (`lerayMeasureC_orbital`) is
 $$\mu_Q = |2c|_{\mathbb C}^{-m}\cdot(\mathrm{orb}_s)_*(\sigma_c \otimes \mu_{Q'}),\qquad
 \mathrm{orb}_s(x, h) = s(x)\,\mathrm{diag}(1, h),\quad |z|_{\mathbb C} = |z|^2,$$
-with $\mu_Q$, $\mu_{Q'}$ the complex Leray measures of `LerayComplex.lean` (`LerayComplex.lerayMeasureC`) and $\sigma_c$ the complex
+with $\mu_Q$, $\mu_{Q'}$ the complex Leray measures (`LerayComplex.lerayMeasureC`) and $\sigma_c$ the complex
 sphere Leray measure (`SphereLerayC.sigC`).
 
 **Proof.** As at the real places (`OrbitalReal.lean`), but every fibre count is avoided by working on small sets.

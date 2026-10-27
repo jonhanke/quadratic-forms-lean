@@ -9,7 +9,8 @@ $SO(Q_\sigma)(\mathbb R)$ (any signature), at a complex place $\tau$ the measure
 $SO(Q_\tau)(\mathbb C)$. This file packages the product
 $$\mu_\infty^{\mathrm{Leray}} = \prod_{\sigma\ \text{real}}\mu_{Q_\sigma} \times \prod_{\tau\ \text{complex}}\mu_{Q_\tau}$$
 on $G_\infty = \prod_\sigma SO(Q_\sigma)(\mathbb R) \times \prod_\tau SO(Q_\tau)(\mathbb C)$ (`muArchLeray`, a Haar
-measure), its number-field form indexed by the infinite places (`muArchNF`), and the specialization to `ArchSO.lean`: when every
+measure), its number-field form indexed by the infinite places (`muArchNF`), and the specialization to the definite
+case: when every
 real form is positive definite, the real factor is `muInf` (`pi_lerayMeasure_eq_muInf`), and when moreover there
 are no complex places (totally real $F$, totally definite $Q$) the whole measure is `muInf` (`map_fst_muArchLeray`).
 -/
@@ -62,9 +63,9 @@ instance isHaarMeasure_pi_lerayMeasureC : (Measure.pi fun j => lerayMeasureC (QC
 theorem isHaarMeasure_muArchLeray : (muArchLeray QR QC hR hC).IsHaarMeasure := by
   unfold muArchLeray; infer_instance
 
-/-- **The definite real factor is `muInf`**: if every real form is positive definite ($n \ge 1$), then
+/-- **The definite real factor is the `muInf`**: if every real form is positive definite ($n \ge 1$), then
 $\prod_i \mu_{Q_i}$ = `muInf QR`. -/
-@[kb "weil1982" "§2.2 (gauge forms); cf. muInf [unverified]"]
+@[kb "weil1982" "§2.2 (gauge forms); muInf [unverified]"]
 theorem pi_lerayMeasure_eq_muInf [∀ i, Fact (IsPosDefR (QR i))] (hn : 1 ≤ n) :
     (Measure.pi fun i => lerayMeasure (QR i) (hR i)) = muInf QR := by
   unfold muInf
@@ -73,8 +74,8 @@ theorem pi_lerayMeasure_eq_muInf [∀ i, Fact (IsPosDefR (QR i))] (hn : 1 ≤ n)
   exact lerayMeasure_eq_mu (hR i) hn
 
 /-- **Totally real, totally definite case** (no complex places, every real form positive definite, $n \ge 1$): the
-archimedean Leray measure is `muInf` (the $\mathbb C$-factor is a point of mass $1$). -/
-@[kb "weil1982" "§2.2 (gauge forms); cf. muInf [unverified]"]
+archimedean Leray measure is the `muInf` (the $\mathbb C$-factor is a point of mass $1$). -/
+@[kb "weil1982" "§2.2 (gauge forms); muInf [unverified]"]
 theorem map_fst_muArchLeray [IsEmpty ιC] [∀ i, Fact (IsPosDefR (QR i))] (hn : 1 ≤ n) :
     (muArchLeray QR QC hR hC).map Prod.fst = muInf QR := by
   rw [muArchLeray, Measure.map_fst_prod, Measure.pi_of_empty, dirac_apply_of_mem (mem_univ _), one_smul,

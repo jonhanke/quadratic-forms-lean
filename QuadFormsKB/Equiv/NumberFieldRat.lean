@@ -20,7 +20,7 @@ variable {n : ℕ}
 /-- **Bridge: local isotropy everywhere, two ways.** For a rational form $Q$, "isotropic over
 every completion of $\mathbb{Q}$" means the same thing whether the places are taken as number-field
 places (`NFPlace ℚ`) or as `RatPlace` ($\mathbb{R}$ and the $\mathbb{Q}_p$). -/
-@[kb "omeara1963" "§§11, 21 [unverified]"]
+@[kb "omeara1963" "§31, 31:1, p. 56 (the spots of ℚ)"]
 theorem everywhere_isotropic_rat_iff (Q : RatQF n) :
     NFPlace.Everywhere (F := ℚ) (fun K _ _ => Q.IsotropicIn K) ↔
       RatPlace.Everywhere (fun K _ _ => Q.IsotropicIn K) := by
@@ -60,7 +60,7 @@ theorem everywhere_isotropic_rat_iff (Q : RatQF n) :
       exact key _ _ (Rat.HeightOneSpectrum.adicCompletion.padicEquiv v).toAlgEquiv.toRingEquiv.symm.toRingHom this
 
 /-- **Bridge: local representation everywhere, two ways** (as for isotropy). -/
-@[kb "omeara1963" "§§11, 21 [unverified]"]
+@[kb "omeara1963" "§31, 31:1, p. 56"]
 theorem everywhere_represents_rat_iff (Q : RatQF n) (c : ℚ) :
     NFPlace.Everywhere (F := ℚ) (fun K _ _ => Q.RepresentsIn K c) ↔
       RatPlace.Everywhere (fun K _ _ => Q.RepresentsIn K c) := by
@@ -90,59 +90,71 @@ theorem everywhere_represents_rat_iff (Q : RatQF n) (c : ℚ) :
     | finite v =>
       exact tr _ _ (Rat.HeightOneSpectrum.adicCompletion.padicEquiv v).toRingEquiv.symm.toRingHom (h (.finite (Rat.HeightOneSpectrum.primesEquiv v)))
 
+/-- **Hilbert symbols are preserved by field isomorphisms:** $(e x, e y)_L = (x, y)_K$. -/
+theorem hilbertSymbol_ringEquiv {K L : Type} [Field K] [Field L] (e : K ≃+* L) (x y : K) :
+    QuadFormsKB.hilbertSymbol L (e x) (e y) = QuadFormsKB.hilbertSymbol K x y := by
+  unfold QuadFormsKB.hilbertSymbol
+  congr 1
+  apply propext
+  constructor
+  · rintro ⟨a, b, c, h0, h⟩
+    refine ⟨e.symm a, e.symm b, e.symm c, ?_, ?_⟩
+    · intro hz
+      apply h0
+      simp only [Prod.ext_iff, Prod.fst_zero, Prod.snd_zero] at hz ⊢
+      obtain ⟨h1, h2, h3⟩ := hz
+      refine ⟨?_, ?_, ?_⟩
+      · simpa using congrArg e h1
+      · simpa using congrArg e h2
+      · simpa using congrArg e h3
+    · apply e.injective
+      simp [map_add, map_mul, map_pow, h]
+  · rintro ⟨a, b, c, h0, h⟩
+    refine ⟨e a, e b, e c, ?_, ?_⟩
+    · intro hz
+      apply h0
+      simp only [Prod.ext_iff, Prod.fst_zero, Prod.snd_zero, map_eq_zero_iff _ e.injective] at hz ⊢
+      exact hz
+    · rw [← map_pow, h]; simp
+
+/-- **The place of $\mathbb{Q}$ underlying a number-field place of $\mathbb{Q}$:** the infinite place goes
+to $\infty$ and the prime $(p)$ of $\mathcal{O}_{\mathbb{Q}}$ to $p$ (Mathlib's `Rat.HeightOneSpectrum.primesEquiv`). -/
+noncomputable def NFPlace.toRatPlace : NFPlace ℚ → RatPlace
+  | .infinite _ => .infinite
+  | .finite v => .finite (Rat.HeightOneSpectrum.primesEquiv v)
+
+/-- `NFPlace.toRatPlace` is a bijection. -/
+theorem NFPlace.toRatPlace_bijective : Function.Bijective NFPlace.toRatPlace := by
+  constructor
+  · rintro (w|v) (w'|v') h <;> simp [NFPlace.toRatPlace] at h ⊢
+    · exact Subsingleton.elim _ _
+    · exact h
+  · rintro (_|p)
+    · exact ⟨.infinite Rat.infinitePlace, rfl⟩
+    · exact ⟨.finite (Rat.HeightOneSpectrum.primesEquiv.symm p), by simp [NFPlace.toRatPlace]⟩
+
+/-- **Local Hilbert symbols agree under `NFPlace.toRatPlace`:** $(a,b)_{v} = (a,b)_{\bar v}$ for
+$a, b \in \mathbb{Q}$, where $\bar v$ is the `RatPlace` of $v$ ($\mathbb{R} \cong \mathbb{Q}_\infty$, $\mathbb{Q}_{(p)} \cong \mathbb{Q}_p$). -/
+theorem NFPlace.toRatPlace_hilbert (v : NFPlace ℚ) (a b : ℚ) :
+    v.toRatPlace.hilbert a b = v.hilbert a b := by
+  rcases v with w | v
+  · have hw : w.IsReal := Subsingleton.elim Rat.infinitePlace w ▸ Rat.isReal_infinitePlace
+    have := hilbertSymbol_ringEquiv (InfinitePlace.Completion.ringEquivRealOfIsReal hw) (algebraMap ℚ _ a) (algebraMap ℚ _ b)
+    simp only [NFPlace.toRatPlace, QuadFormsKB.RatPlace.hilbert, QuadFormsKB.NFPlace.hilbert, ← this]
+    simp
+  · have := hilbertSymbol_ringEquiv (Rat.HeightOneSpectrum.adicCompletion.padicEquiv v).toRingEquiv (algebraMap ℚ _ a) (algebraMap ℚ _ b)
+    simp only [NFPlace.toRatPlace, QuadFormsKB.RatPlace.hilbert, QuadFormsKB.NFPlace.hilbert, ← this]
+    simp
+
 /-- **Bridge: local Hilbert symbols, two ways.** For $a, b \in \mathbb{Q}^\times$, the sets of places
 where $(a,b)_v = -1$ correspond: one is finite iff the other is, and they have the same size. -/
-@[kb "omeara1963" "§71 [unverified]"]
+@[kb "omeara1963" "§31, 31:1, p. 56"]
 theorem hilbert_minus_one_rat_iff (a b : ℚ) :
     ({v : NFPlace ℚ | v.hilbert a b = -1}.Finite ↔ {v : RatPlace | v.hilbert a b = -1}.Finite) ∧
       {v : NFPlace ℚ | v.hilbert a b = -1}.ncard = {v : RatPlace | v.hilbert a b = -1}.ncard := by
-  have X : ∀ {K L : Type} [Field K] [Field L] (e : K ≃+* L) (x y : K),
-      QuadFormsKB.hilbertSymbol L (e x) (e y) = QuadFormsKB.hilbertSymbol K x y := by
-    intro K L _ _ e x y
-    unfold QuadFormsKB.hilbertSymbol
-    congr 1
-    apply propext
-    constructor
-    · rintro ⟨a, b, c, h0, h⟩
-      refine ⟨e.symm a, e.symm b, e.symm c, ?_, ?_⟩
-      · intro hz
-        apply h0
-        simp only [Prod.ext_iff, Prod.fst_zero, Prod.snd_zero] at hz ⊢
-        obtain ⟨h1, h2, h3⟩ := hz
-        refine ⟨?_, ?_, ?_⟩
-        · simpa using congrArg e h1
-        · simpa using congrArg e h2
-        · simpa using congrArg e h3
-      · apply e.injective
-        simp [map_add, map_mul, map_pow, h]
-    · rintro ⟨a, b, c, h0, h⟩
-      refine ⟨e a, e b, e c, ?_, ?_⟩
-      · intro hz
-        apply h0
-        simp only [Prod.ext_iff, Prod.fst_zero, Prod.snd_zero, map_eq_zero_iff _ e.injective] at hz ⊢
-        exact hz
-      · rw [← map_pow, h]; simp
-  let f : QuadFormsKB.NFPlace ℚ → QuadFormsKB.RatPlace := fun v => match v with
-    | .infinite _ => .infinite
-    | .finite v => .finite (Rat.HeightOneSpectrum.primesEquiv v)
-  have hf : Function.Bijective f := by
-    constructor
-    · rintro (w|v) (w'|v') h <;> simp [f] at h ⊢
-      · exact Subsingleton.elim _ _
-      · exact h
-    · rintro (_|p)
-      · exact ⟨.infinite Rat.infinitePlace, rfl⟩
-      · exact ⟨.finite (Rat.HeightOneSpectrum.primesEquiv.symm p), by simp [f]⟩
-  have hh : ∀ v, (f v).hilbert a b = v.hilbert a b := by
-    rintro (w|v)
-    · have hw : w.IsReal := Subsingleton.elim Rat.infinitePlace w ▸ Rat.isReal_infinitePlace
-      have := X (InfinitePlace.Completion.ringEquivRealOfIsReal hw) (algebraMap ℚ _ a) (algebraMap ℚ _ b)
-      simp only [f, QuadFormsKB.RatPlace.hilbert, QuadFormsKB.NFPlace.hilbert, ← this]
-      simp
-    · have := X (Rat.HeightOneSpectrum.adicCompletion.padicEquiv v).toRingEquiv (algebraMap ℚ _ a) (algebraMap ℚ _ b)
-      simp only [f, QuadFormsKB.RatPlace.hilbert, QuadFormsKB.NFPlace.hilbert, ← this]
-      simp
-  have hS : {v : QuadFormsKB.RatPlace | v.hilbert a b = -1} = f '' {v : QuadFormsKB.NFPlace ℚ | v.hilbert a b = -1} := by
+  have hf := NFPlace.toRatPlace_bijective
+  have hh : ∀ v, (NFPlace.toRatPlace v).hilbert a b = v.hilbert a b := fun v => NFPlace.toRatPlace_hilbert v a b
+  have hS : {v : QuadFormsKB.RatPlace | v.hilbert a b = -1} = NFPlace.toRatPlace '' {v : QuadFormsKB.NFPlace ℚ | v.hilbert a b = -1} := by
     ext r
     obtain ⟨v, rfl⟩ := hf.2 r
     simp [hf.1.eq_iff, hh]

@@ -1,5 +1,5 @@
 /-
-# Kneser neighbours over a Dedekind domain, part 1: the quadratic and polar forms, and counts over a finite field
+# Kneser neighbours over a Dedekind domain, part 1: The quadratic and polar forms, and counts over a finite field
 
 **Layer:** a form $Q$ (`QuadForm R n`) over any commutative ring $R$, evaluated in an $R$-algebra $S$: $\bar Q(\vec x) = Q(\vec x)$
 (`qv S Q`) and the polar form $\bar B(\vec x, \vec y) = \vec x^{\mathsf T}\bar H\vec y$ (`bv S Q`, $H = C + C^{\mathsf T}$ the Hessian), so

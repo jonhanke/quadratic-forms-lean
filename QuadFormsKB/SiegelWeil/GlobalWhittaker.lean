@@ -1,5 +1,5 @@
 /-
-# The Euler product of the local Whittaker integrals (the local–global constant)
+# The Euler product of the local Whittaker integrals
 
 **Layer:** global bookkeeping of local constants (product formulas only; no adelic integration).
 
@@ -21,7 +21,8 @@ So the Euler product of all local Whittaker integrals is $|d_F|^{-(n-1)/2}$ time
 (`SiegelWeil/Eisenstein.lean` assembles it with the archimedean factor).
 
 Sources: Weil, Acta Math. 113 (1965), Ch. II–IV [unverified]; Weil, Acta Math. 111 (1964), §30, Prop. 5 [unverified];
-Tate's thesis (Cassels–Fröhlich Ch. XV), §4 (the self-dual measure and $|d_F|^{1/2}$) [unverified].
+Tate's thesis (Cassels–Fröhlich Ch. XV), §4.1, Lemma 4.1.4 and Thm. 4.1.3, pp. 330–331 (the self-dual measure
+and $|d_F|^{1/2}$).
 -/
 import Mathlib
 import QuadFormsKB.Citation

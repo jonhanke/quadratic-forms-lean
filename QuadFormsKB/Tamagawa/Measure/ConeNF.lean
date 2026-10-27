@@ -10,7 +10,7 @@ place $w$ with embedding $\sigma_w$ the local form is $Q_0^{\sigma_w} = $ `coneF
 $$\mu_{Q_0^{\sigma_w}} = |2c_0|_w^{-2(k+1)}\cdot\Psi_*(\sigma_C \otimes \mu_P)$$
 with the normalized absolute value $|x|_w = w(x)$ (real) or $w(x)^2$ (complex). The local constant is the $w$-component
 of the idele $(2c_0)^{-2(k+1)}$, so the archimedean constants are $\prod_{w\mid\infty}|2c_0|_w^{-2(k+1)}$; the product over
-all places of $|2c_0|_v^{-2(k+1)}$ is $1$ (product formula). See `docs/handoff/m6j-cone.md` for the finite-place side.
+all places of $|2c_0|_v^{-2(k+1)}$ is $1$ (product formula).
 -/
 
 open MeasureTheory Measure Matrix

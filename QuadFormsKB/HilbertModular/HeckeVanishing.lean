@@ -19,7 +19,7 @@ count of primes is what wins; for $n \ge 6$ with room to spare). It fails for $n
 *Proof.* Suppose $a_{\nu_0} \ne 0$, $\nu_0 = $ `dualElt 1 m₀`. ($m_0 = 0$ is impossible: $c\,p^e|a_0| \le |a_0|$ for all large $p$.)
 For $Y$ large the primes $p \in (Y/4, Y]$ (`Siegel.HeckeVanishing.primesQuarter`) exceed $P(\nu_0)$; the $\nu = p^2\nu_0$ are
 distinct, with $\operatorname{Tr}\nu = p^2\operatorname{Tr}\nu_0 \le Y^2M$ ($M = \max(\operatorname{Tr}\nu_0, 1)$) and
-$|a_\nu|^2 \ge c^2(Y/4)^{2e}|a_{\nu_0}|^2$. The trace-ordered mean-square bound of `MeanSquare.lean`
+$|a_\nu|^2 \ge c^2(Y/4)^{2e}|a_{\nu_0}|^2$. The trace-ordered mean-square bound
 (`sum_sq_qCoeff_le_trace_of_cuspFormChar`: $\sum_{\operatorname{Tr}\nu \le X}|a_\nu|^2 \le C'X^{dk}$) gives
 $$\#\{Y/4 < p \le Y\}\cdot c^2 4^{-2e}Y^{2e}|a_{\nu_0}|^2 \le C'M^{dk}Y^{2dk} \le C'M^{dk}Y^{2e},$$
 so $\#\{Y/4 < p \le Y\}$ is bounded, against Chebyshev (`Siegel.HeckeVanishing.eventually_card_primesQuarter_ge`).
@@ -27,8 +27,8 @@ The abstract form is `coeff_eq_zero_of_growth`; then $f = 0$ by Fourier inversio
 
 Over $\mathbb Q$ ($d = 1$, $n = 4$): `Siegel.HeckeVanishing.coeff_eq_zero_of_sq_growth`, the template.
 
-Sources: Hecke's mean-square bound (Garrett 1990, Ch. 1 [unverified]); the vanishing argument is the one over $\mathbb Q$, an
-elementary substitute for the Ramanujan–Petersson bound (no published antecedent found).
+Sources: Hecke's mean-square bound (Garrett 1990, Ch. 1 [unverified]); the vanishing argument is the one used over
+$\mathbb Q$, an elementary substitute for the Ramanujan–Petersson bound (no published antecedent found).
 -/
 import QuadFormsKB.HilbertModular.CuspBound
 import QuadFormsKB.Siegel.HeckeVanishing
@@ -53,7 +53,7 @@ Let $a : \mathbb Z^J \to \mathbb C$ and $T : \mathbb Z^J \to \mathbb R$ with $T(
 * (mean square) $\sum_{m\in S}|a(m)|^2 \le C X^s$ for every $X > 0$ and finite $S$ with $T \le X$ on $S$;
 * (growth) for every $m$ there is $P$ with $c\,p^e|a(m)| \le |a(p^2m)|$ for all primes $p > P$;
 with $c > 0$, $0 \le s \le e$ and $e \ge 1$. Then $a = 0$. (Here $T$ is the trace, $s = dk$.) -/
-@[kb "iwaniec1997" "mean-square vs. prime count; over F"]
+@[kb "iwaniec1997" "mean-square vs. prime count; vanishing argument as over Q, here over F"]
 theorem coeff_eq_zero_of_growth (a : (J → ℤ) → ℂ) (T : (J → ℤ) → ℝ)
     (hT : ∀ (p : ℕ) (m : J → ℤ), T (((p : ℤ) ^ 2) • m) = (p : ℝ) ^ 2 * T m)
     {s C : ℝ} (hs : 0 ≤ s)

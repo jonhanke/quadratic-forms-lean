@@ -11,7 +11,7 @@ Then every integer $n$ represented by $Q$ over $\mathbb{Q}$ is represented by $Q
 (Davenport–Cassels), p. 46, proof pp. 46–47; the earlier "Lemma 5.1" locator for Cassels was wrong:
 Cassels' *Rational Quadratic Forms* does not state this lemma; its Ch. 6 Example 6, p. 100, proves
 "integral = sum of $n$ rational squares" for $n = 2,3,4$ by a different, isotropy-based argument,
-Aubry's method of Ch. 6 §8, Lemma 8.1, p. 86, and credits Aubry (1912) and Serre (1970)). Write a rational solution as $\vec{v}/d$ with
+Aubry's method of Ch. 6 §8, p. 86, Lemma 8.1, p. 87, and credits Aubry (1912) and Serre (1970)). Write a rational solution as $\vec{v}/d$ with
 $\vec{v} \in \mathbb{Z}^m$, $d \ge 1$, $Q(\vec{v}) = d^2 n$, and descend on $d$. Pick
 $\vec{y} \in \mathbb{Z}^m$ with $Q(\vec{v} - d\vec{y}) < d^2$. If $\vec{v} = d\vec{y}$, then
 $Q(\vec{y}) = n$. Otherwise, with $B(\vec{u}, \vec{w}) = Q(\vec{u} + \vec{w}) - Q(\vec{u}) - Q(\vec{w})$,

@@ -452,7 +452,8 @@ theorem isOpenMap_sqPMulEquiv : IsOpenMap (sqPMulEquiv ha0 hb0) := by
   exact isOpenMap_sqAdele ha0 hb0 _ hpre
 
 /-- **The adelic isomorphism $\Phi : P = G^\natural(\mathbb A)/\mathbb A^\times\cong SO(\langle1,-a,-b,ab\rangle)(\mathbb A)$** as topological
-groups ($a, b\in\mathcal O_F\setminus0$, any number field, any signature). Placewise it is the $G^\natural(F_v)/F_v^\times\cong SO(V)(F_v)$ for $d = 1$, i.e. $(\alpha,\beta)\mapsto(x\mapsto\alpha x\beta^{-1})$. -/
+groups ($a, b\in\mathcal O_F\setminus0$, any number field, any signature). Placewise it is
+$G^\natural(F_v)/F_v^\times\cong SO(V)(F_v)$ for $d = 1$, i.e. $(\alpha,\beta)\mapsto(x\mapsto\alpha x\beta^{-1})$. -/
 @[kb "weil1982" "§3.7, p. 65 [unverified page]"]
 def sqPEquiv : (gnatSqO ha0 hb0).P ≃ₜ* SOAdele Q₀ :=
   { sqPMulEquiv ha0 hb0 with

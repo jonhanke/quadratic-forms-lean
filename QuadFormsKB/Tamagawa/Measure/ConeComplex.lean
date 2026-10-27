@@ -6,7 +6,7 @@ import QuadFormsKB.Tamagawa.Measure.ConeRealOrbit
 
 The complex analogue of `ConeReal.lean`, for $Q = \langle c\rangle\perp\langle -c\rangle\perp Q'$ over $\mathbb C$
 (`ConeAlgebra.coneForm c Q'`, $c \ne 0$, $Q'$ nondegenerate in $k$ variables), with $|z|_{\mathbb C} = |z|^2$ and the
-complex Leray measures of `LerayComplex.lean` and `SphereLerayC.lean`:
+complex Leray measures:
 
 1. (`lintegral_sigC_graph`) **the hyperbolic-split chart of the complex sphere** $S_c$:
    $\sigma_c = d^2q\,d^2x'/|2cq|_{\mathbb C}$ on $\{q \ne 0\}$ in the graph coordinates $(q, x')$, and $\{q = 0\}$ is
@@ -790,7 +790,7 @@ theorem measurable_secCC : Measurable (secCC hc hQ') := by
     (continuous_nG hc hQ').comp (continuous_tlC.comp (continuous_subtype_val.comp continuous_subtype_val))
   exact (hc1.mul hc2).measurable
 
-/-- **The parabolic sphere section** as `SphSectionC`. -/
+/-- **The parabolic sphere section** as the `SphSectionC`. -/
 def coneSphSectionC : SphSectionC c (QmC c Q') := ⟨secCC hc hQ', measurable_secCC hc hQ', secCC_spec hc hQ'⟩
 
 /-! ### Unimodularity and the parametric cone identity -/

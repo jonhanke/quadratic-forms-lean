@@ -33,7 +33,7 @@ $g_0\Psi(x, h) = \Psi\big(g_0x,\ c(g_0, x)\,h\big)$ with the cocycle $c(g_0, x) 
   fibration sense.
 
 No topology is needed for the measure-theoretic statements; σ-finiteness replaces local compactness. The existence of
-a measurable section is a hypothesis (data): in the applications it is explicit (e.g. The section of
+a measurable section is a hypothesis (data): in the applications it is explicit (e.g. the section of
 $g\mapsto g e_1$ on $\mathrm{SL}_2(\mathbb A_F)$, `SL2Section.lean`).
 
 Reference: Weil, *Adeles and algebraic groups* (1982), §2.4, Lemma 2.4.1, Thms 2.4.3–2.4.4 [unverified pages].

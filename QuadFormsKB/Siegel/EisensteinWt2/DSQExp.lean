@@ -1,6 +1,5 @@
 /-
-# The $q$-expansion of $E_2^{\psi,\varphi,t}$ (deliverable 2)
-
+# The $q$-expansion of $E_2^{\psi,\varphi,t}$
 For $\varphi$ primitive modulo $v$ and $\psi(-1)\varphi(-1) = 1$ (`dsEisMF_eq_qExpansion`):
 $$E_2^{\psi,\varphi,t}(z) = \psi(0)\sum_{d \in \mathbb{Z}}\frac{\bar\varphi(d)}{d^2}
   + 2\,\frac{(-2\pi i)^2\,g(\bar\varphi)}{v^2}\sum_{n \ge 1}\sigma_1^{\psi,\varphi}(n)\,q^{tn}, \qquad

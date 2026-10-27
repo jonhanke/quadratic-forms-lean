@@ -6,7 +6,7 @@ import QuadFormsKB.Siegel.FourSquaresClassNumber
 # The rank-3 headline over $\mathbb Q$
 
 **Layer:** positive definite ternary forms over $\mathbb Z$; the number field $\mathbb Q$ (primes of $\mathcal O_{\mathbb Q}$ $\leftrightarrow$
-rational primes by `primesEquiv`). This completes the ℚ part of the rank-3 treatment.
+rational primes by `primesEquiv`).
 
 **Results (all proved; none adds a hypothesis).**
 * `prod_primesNormLe_rat`, `eulerPartialProdNF_rat`: partial products over $\{N\mathfrak p \le X\}$ are products over $p \le X$.
@@ -22,7 +22,6 @@ rational primes by `primesEquiv`). This completes the ℚ part of the rank-3 tre
 `genusRepAvg_eq_aEWith_of_isEulerProductValue`, `siegelFormula3_and_natural_rat`, and Hanke's rank-3 corollaries
 `thm_5_4_genus3_rat`, `thm_5_7_a_genus_rat`, `thm_5_7_a_genus_nat_rat`, `thm_6_1_rat`, `thm_6_2_rat` (no `SiegelFormula3 Q P` and no
 `IsEulerProductValue` hypotheses), and Gauss's $r_3$: `repNum_sumSq_three_rat` (class number one, `genusClasses_sumSq`).
-
 -/
 
 open NumberField IsDedekindDomain Matrix Filter Topology
@@ -235,7 +234,7 @@ theorem nondegenerate_up {Q : QuadForm ℤ 3} (hQ : IntQF.PosDef Q) : (up Q).Non
   rw [QuadForm.Nondegenerate, hessian_map, ← RingHom.mapMatrix_apply, ← RingHom.map_det] at this
   exact fun h => this (by rw [h, map_zero])
 
-/-- **The natural-order Euler product exists and is the regularized value** (the regularized value versus Siegel/Hanke's reading
+/-- **The natural-order Euler product exists and is the regularized value** (the regularized product versus Siegel/Hanke's reading
 of $\prod_p\beta_p(m)$, over $\mathbb Q$; **unconditional**): for $Q$ positive definite ternary over $\mathbb Z$ and $m \ge 1$,
 $$\prod_{p \le X}\beta_p(m) \longrightarrow P_{\mathrm{reg}}(m) = L(1,\chi_m)\prod_p\beta_p(m)\Bigl(1-\frac{\chi_m(p)}{p}\Bigr)
 \qquad(X \to \infty).$$

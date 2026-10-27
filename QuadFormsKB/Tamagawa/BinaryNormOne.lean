@@ -4,7 +4,8 @@ import QuadFormsKB.Tamagawa.BinaryFrameStep
 # The norm-one vectors of $x^2 + Dy^2$ and the reduction of $\tau^{\mathrm{reg}}(SO_2) = 2$ to a mass formula
 
 **Layer:** $F$ totally real (any class number), $D \in \mathcal O_F$ with $\langle1,D\rangle = x^2 + Dy^2$ totally positive definite
-(`diagForm1 D`, the representative of each square class), $V = (F^2, \langle1,D\rangle)$, $L = \mathcal O_F^2$ (the lattice of the order
+(`diagForm1 D`, the representative of each square class), $V = (F^2, \langle1,D\rangle)$, $L = \mathcal O_F^2$
+(the lattice of the order
 $\mathcal O_F[\sqrt{-D}]$ in the coordinates $1, \sqrt{-D}$).
 
 **The algebra.** Over any field $K \supseteq F$ with $2 \ne 0$, every $g \in O(V)(K)$ is determined by its first column $(a, b)$ and its
@@ -25,7 +26,6 @@ multiplication by $a + b\sqrt{-D}$, composed with conjugation when $s = -1$.)
 
 Source: Weil 1982, §4.5, p. 100 (the fibration over the sphere $Q(x) = \rho$) [unverified locator]; Shimura 2010, §4 (orders of
 CM fields and norm forms) [unverified].
-
 -/
 
 open NumberField IsDedekindDomain Matrix

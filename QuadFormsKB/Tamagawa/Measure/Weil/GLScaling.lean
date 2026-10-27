@@ -757,9 +757,10 @@ theorem adelicMinkowski_quat_smul (x : (QuatAdele a b)ˣ) {C : Set (Fin 4 → mi
       ((QuaternionAlgebra.linearEquivTuple (R := F) a 0 b).symm η)) ∈ _
   rwa [LinearEquiv.apply_symm_apply]
 
-/-- **Twisted adelic Minkowski for $(\mathbb H\otimes\mathbb A)^\times$, compact form** (the input to Fujisaki's lemma). For every $B$ there is a compact $\mathcal C\subseteq\mathbb A_F^4$ such that every $x\in(\mathbb H\otimes\mathbb A)^\times$
-with $\|\operatorname{nrd}x\|_{\mathbb A}\le B$ has $x\xi\in\mathcal C$ (coordinates) for some
-$0\ne\xi\in\mathbb H[F,a,b]$. -/
+/-- **Twisted adelic Minkowski for $(\mathbb H\otimes\mathbb A)^\times$, compact form** (the input to Fujisaki's lemma).
+For every $B$ there is a compact $\mathcal C\subseteq\mathbb A_F^4$ such that every
+$x\in(\mathbb H\otimes\mathbb A)^\times$ with $\|\operatorname{nrd}x\|_{\mathbb A}\le B$ has
+$x\xi\in\mathcal C$ (coordinates) for some $0\ne\xi\in\mathbb H[F,a,b]$. -/
 @[kb "weil1982" "§2.1 [unverified page]"]
 theorem exists_isCompact_forall_quat_mul_mem (B : ℝ) :
     ∃ K : Set (AdeleSpace F (Fin 4)), IsCompact K ∧

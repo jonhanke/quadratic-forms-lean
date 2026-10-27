@@ -1,6 +1,5 @@
 /-
-# Local densities over a DVR: 1-dimensional and binary unimodular blocks at dyadic primes (Plan A1–A2)
-
+# Local densities over a DVR: 1-dimensional and binary unimodular blocks at dyadic primes
 **Layer:** DVR ($R$ a discrete valuation ring with uniformizer $\pi$, finite residue field of size $q$, $2 \ne 0$,
 $e = \mathrm{ord}_\pi 2$, so $2 = \pi^e v$ with $v$ a unit). At a **dyadic** prime ($e \ge 1$, $q = 2^f$) these are the
 blocks that force $\pi \mid N$: a 1-dimensional block $u x^2$ has level $\pi^{2e}$, and a binary block
@@ -362,9 +361,11 @@ end Unary
 
 /-! ### The complete case: square mod $\pi^{2e+1}$ = square -/
 
-/-- **Local square theorem over a complete dyadic DVR** (O'Meara 63:1 [unverified]): if $\pi \mid 2 \ne 0$,
+/-- **Local square theorem over a complete dyadic DVR** (O'Meara 63:1, p. 159, $1 + 4\pi\alpha = (1 + 2\pi\beta)^2$, there over a dyadic local field; the proof uses only
+completeness): if $\pi \mid 2 \ne 0$,
 $2 = \pi^e v$ and $x \equiv 1 \pmod{\pi^{2e+1}}$, then $x$ is a square. *Proof:* $x = 1 - 4t$ with $\pi \mid t$
 ($4 = \pi^{2e}v^2$), and `isSquare_one_sub_four_mul_iff` with $\bar t = 0 = 0^2 + 0$. -/
+@[kb "omeara1963" "§63A, 63:1 and 63:1a, p. 159 (1 + 4πα is a square)"]
 theorem isSquare_of_pow_dvd_sub_one [IsAdicComplete (IsLocalRing.maximalIdeal R) R] {π : R}
     (hπ : Irreducible π) (h2 : π ∣ 2) (h20 : (2 : R) ≠ 0) {e : ℕ} {v : R} (hv : IsUnit v)
     (h2e : 2 = π ^ e * v) {x : R} (hx : π ^ (2 * e + 1) ∣ x - 1) : IsSquare x := by

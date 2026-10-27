@@ -4,7 +4,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.QuatFinite
 
 /-!
 # The $\psi_v\circ\operatorname{trd}$ self-dual measure on $\mathbb H_v$
-
 $F$ a number field, $v$ a finite place, $\psi_v$ the standard character of $F_v$ (`Analysis.psiV`), $dx_v$ the
 self-dual measure on $F_v$ (`selfDualV`), $\Delta_v = |\cdot|_v$ (`distribHaarChar`).
 
@@ -144,7 +143,7 @@ theorem diagFactor_sq_mul (g : Fin 4 → Kv) (hg : ∀ i, g i ≠ 0) :
 
 /-- **Self-duality for a diagonal pairing**: $r\,dx_v^{\otimes4}$ ($r\ge0$) satisfies Fourier inversion on all box
 indicators iff $r = \prod_i|g_i|_v^{1/2}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified] (self-dual measures)"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (the self-dual measure) and Thm. 2.2.2, p. 310"]
 theorem selfDual_diag_iff (g : Fin 4 → Kv) (hg : ∀ i, g i ≠ 0) (r : ℝ) (hr : 0 ≤ r) :
     (∀ c k, fourierDiagInv v (ENNReal.ofReal r • volV4 v) g
         (fourierDiag v (ENNReal.ofReal r • volV4 v) g (boxInd v c k)) = boxInd v c k) ↔
@@ -331,7 +330,7 @@ theorem mulSupport_trdFactor_finite {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
 /-- **Global identification of the trace-self-dual measure**: $\prod_v|\det G|_v^{1/2}\cdot|\det G|_\infty^{1/2} = 1$
 ($\det G = -16a^2b^2$, product formula). Hence $\bigotimes_v|\det G|_v^{1/2}dx_v\otimes|\det G|_\infty^{1/2}dx_\infty$ (the
 $\psi\circ\operatorname{trd}$ self-dual measure on $\mathbb H_{\mathbb A}$) equals the coordinate self-dual measure. -/
-@[kb "weil1982" "§2.3 [unverified page]"]
+@[kb "weil1982" "§2.3 [unverified page] (trd normalization: ∏_v |det G|_v^{1/2} = 1)"]
 theorem finprod_trdFactor_mul_inf {a b : F} (ha : a ≠ 0) (hb : b ≠ 0) :
     (∏ᶠ v, trdFactor v ha hb) *
       Real.sqrt |LinearMap.det (LinearMap.mulLeft ℝ (mixedEmbedding F (-(16 * a ^ 2 * b ^ 2))))| = 1 := by

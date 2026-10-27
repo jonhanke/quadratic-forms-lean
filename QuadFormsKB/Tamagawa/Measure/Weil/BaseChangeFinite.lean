@@ -1,8 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Approx
 
 /-!
-# Base change of finite adeles by density (finite part)
-
+# Base change of finite adeles by density
 For a finite extension $K/k$ of number fields and a $k$-basis $b = (b_i)_{i\in\iota}$ of $K$, the additive
 isomorphism $k^\iota\cong K$, $x\mapsto\sum_ix_ib_i$, extends to an **additive homeomorphism**
 $$\Psi_f : \mathbb A_{k,f}^\iota\;\xrightarrow{\ \sim\ }\;\mathbb A_{K,f},$$
@@ -299,7 +298,7 @@ theorem denseRange_diagFinVec : DenseRange (diagFinVec (k := k) (ι := ι)) := b
 
 /-- **Base change of finite adeles** (existence): an additive homeomorphism $\mathbb A_{k,f}^\iota\cong\mathbb A_{K,f}$
 extending $x\mapsto\sum_ix_ib_i$ on $k^\iota$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (adeles of an extension) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, Lemma, (14.2), pp. 63–64, and Cor., p. 64 (V_K⁺ ≅ V_k⁺ ⊕ … ⊕ V_k⁺, with K⁺ ↦ k⁺ ⊕ … ⊕ k⁺); FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem exists_finBaseChange :
     ∃ Ψ : (ι → Ak) ≃ₜ+ AK, ∀ x : ι → k, Ψ (diagFinVec x) = algebraMap K AK (b.equivFun.symm x) := by
   have h1 : Tendsto (fun x => (algebraMap K AK).toAddMonoidHom (b.equivFun.symm.toAddEquiv x))

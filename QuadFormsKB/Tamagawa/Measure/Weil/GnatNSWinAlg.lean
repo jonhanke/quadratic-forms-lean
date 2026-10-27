@@ -1,7 +1,7 @@
 /-
 # The algebra of the window, $y = r(1+\eta)$ in $D_E$
 
-**Layer:** any field $K$, $E = K[\delta]$ = `QE d`, $D_E = (a,b)_E$ = `DE a b d` (as in `GnatSO4`).
+**Layer:** any field $K$, $E = K[\delta]$ = `QE d`, $D_E = (a,b)_E$ = `DE a b d` (as in the `GnatSO4`).
 
 * `pureE η` $= \eta_0i + \eta_1j + \eta_2k$ for $\eta\in E^3$, `imvE x` the pure coordinates of $x\in D_E$, `starV η` $=\sigma\circ\eta$.
 * **`coe_mul_one_add`**: $x = x_0(1 + \operatorname{pureE}(x_0^{-1}\operatorname{imvE}x))$ when $x_0 = \operatorname{re}x$ is a unit.

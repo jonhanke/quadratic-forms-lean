@@ -157,6 +157,7 @@ theorem rotApproxAt_ternary {Q : QuadForm F 3} (hQ : Q.Nondegenerate) {a b d : F
 end Ternary
 
 /-- **Ternary rotations away from $\mathfrak p$** (O'Meara 104:4 step 2): unconditional for $Q$ isotropic at $\mathfrak p$. -/
+@[kb "omeara1963" "§104, proof of 104:4, step 2, pp. 317–319"]
 theorem rotApproxAt_ternary_of {Q : QuadForm F 3} (hQ : Q.Nondegenerate) {p : HeightOneSpectrum (𝓞 F)}
     (hp : Q.IsotropicIn (p.adicCompletion F)) : RotApproxAt Q p := by
   obtain ⟨a, b, d, P, ha, hb, hd, hsim⟩ := exists_simAt Q hQ
@@ -165,7 +166,7 @@ theorem rotApproxAt_ternary_of {Q : QuadForm F 3} (hQ : Q.Nondegenerate) {p : He
 
 /-- **Strong approximation for rotations away from $\mathfrak p$** (O'Meara 104:4 with $S$ = all finite primes except
 $\mathfrak p$): `RotApproxAt Q p` for every nondegenerate $Q$ in $n \ge 3$ variables isotropic at $\mathfrak p$. -/
-@[kb "omeara1963" "104:4 (S = finite primes except p), PDF pp. 323-327"]
+@[kb "omeara1963" "§104, 104:4, pp. 315–319 (S = finite primes except 𝔭); cassels1978 Ch. 11, Thm. 8.2, p. 232"]
 theorem rotApproxAt_of_isotropicAt {n : ℕ} (Q : QuadForm F n) (hn : 3 ≤ n) (hQ : Q.Nondegenerate)
     (p : HeightOneSpectrum (𝓞 F)) (hp : Q.IsotropicIn (p.adicCompletion F)) : RotApproxAt Q p := by
   rcases Nat.lt_or_ge n 4 with h3 | h4
@@ -178,7 +179,7 @@ theorem rotApproxAt_of_isotropicAt {n : ℕ} (Q : QuadForm F n) (hn : 3 ≤ n) (
 $S = \{\infty, \mathfrak p\}$): for $n \ge 3$, nondegenerate $Q$ isotropic at the finite prime $\mathfrak p$, every lattice $L$ and
 every $h \in O'(V_{\mathbb A_f})$ there is $\gamma \in O'(V)$ with $(\gamma^{-1}h)_\mathfrak q L_\mathfrak q = L_\mathfrak q$ for all $\mathfrak q \ne \mathfrak p$.
 Applies to definite forms (Kneser's neighbour method). -/
-@[kb "omeara1963" "104:3-104:5 (S = {∞, p})"]
+@[kb "omeara1963" "§104, 104:3–104:5, pp. 311–319 (S = finite primes except 𝔭); cassels1978 Ch. 11, Thm. 8.2, p. 232"]
 theorem strongApproximationSpinAt : StrongApproximationSpinAt F :=
   ⟨fun Q hn hQ v hiso L h hh => approx_of_rotApproxAt Q (rotApproxAt_of_isotropicAt Q hn hQ v hiso) L h hh⟩
 

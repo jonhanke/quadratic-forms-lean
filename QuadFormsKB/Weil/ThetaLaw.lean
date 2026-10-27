@@ -7,7 +7,7 @@
 * **local** equivariance at every finite place (`weilRepV_K0`, `Weil/LocalK0.lean`, dyadic places included);
 * **local** equivariance at the infinite places (`omegaG_inf_gOrb`, `Weil/ArchTheta.lean`);
 * the bridge to the classical theta series (`thetaKernel_gz_eq_thetaQ`).
-No Gauss sum is evaluated and no reciprocity law for Jacobi symbols is used ("Route 2"; compare the Hecke route,
+No Gauss sum is evaluated and no reciprocity law for Jacobi symbols is used (compare the Hecke route,
 `HilbertModular/ThetaCharF.lean`).
 
 **Setting.** $Q = \langle b_0, \dots, b_{2m-1}\rangle$ with $b_i \in \mathcal O_F$ totally positive (`QuadForm.diag b`),
@@ -15,18 +15,20 @@ $m \ge 1$, $\mathfrak N$ a theta level of $Q$ (`IsThetaLevelF`). Locally $\mathf
 (`levelV_of_isThetaLevelF`), so $\gamma \in \Gamma_0(\mathfrak N)$ lies in $K_0(\mathfrak N_v)$ for the local level of `LocalK0`.
 
 **Main results.**
-* **`thetaQ_slash_route2`** (the Route 2 theorem): for $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in \Gamma_0(\mathfrak N)$,
+* **`thetaQ_slash_route2`** (the theorem by local computations): for $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in \Gamma_0(\mathfrak N)$,
   $$\theta_Q\,|_m\,\gamma = \Big(\prod_{v<\infty}\chi_v(d)\Big)\,\theta_Q,\qquad
     \chi_v(d) = (d, (-1)^m\det Q)_v\ (d \in \mathcal O_v^\times),\quad \chi_v(d) = 1\ (\text{otherwise})\quad(\texttt{chiLoc}),$$
   $\det Q = \prod_ib_i$. *Proof:* with $\Psi_\tau = G_\tau\otimes\bigotimes_v\mathbf 1_{\mathcal O_v^{2m}}$ we have
   $\Theta(\Psi_z) = \theta_Q(z)$ (the bridge); $\Theta(\omega(\gamma)\Psi_z) = \Theta(\Psi_z)$; and
   $\omega(\gamma)\Psi_z = \prod_w(c_wz_w + d_w)^{-m}\prod_v\chi_v(d)\cdot\Psi_{\gamma z}$ by the local results.
-* **`thetaCharF_eq_finprod_chiLoc`** (identification with the local characters): for $d \in \mathcal O_F$ prime to $\mathfrak N$,
-  $\chi_Q(d \bmod \mathfrak N) = \prod_v\chi_v(d)$, where $\chi_Q$ = `thetaCharF` is the character (both laws hold and
+* **`thetaCharF_eq_finprod_chiLoc`** (identification with `thetaCharF`): for $d \in \mathcal O_F$ prime
+  to $\mathfrak N$,
+  $\chi_Q(d \bmod \mathfrak N) = \prod_v\chi_v(d)$, where $\chi_Q$ = `thetaCharF` is the character of the Hecke
+  route (both laws hold and
   $\theta_Q \ne 0$).
 * **`thetaCharF_eq_hilbert`** (the Hilbert-symbol formula): $\chi_Q(d \bmod \mathfrak N) = \prod_{v \mid \mathfrak N}(d, (-1)^m\det Q)_v$;
   every dyadic $v$ divides $\mathfrak N$ (`dvd_of_not_good`), and at $v \nmid \mathfrak N$ the factor is $1$. Equivalently
-  $(-1)^m\det Q$ may be replaced by the $D = (-1)^m\det H = 4^m(-1)^m\det Q$ (same square class).
+  $(-1)^m\det Q$ may be replaced by $D = (-1)^m\det H = 4^m(-1)^m\det Q$ (same square class).
 
 Sources: Weil, Acta Math. 111 (1964), §§14, 29–30 [unverified]; Kudla, *Notes on the local theta correspondence*
 (1996), §I.4 [unverified]; Bump, *Automorphic Forms and Representations* (1997), §4.8 [unverified]; Rallis (1984)
@@ -325,7 +327,8 @@ lemma thetaDist_psiD (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0)
 
 /-! ### The global character $\prod_v\chi_v$ -/
 
-/-- **The Route 2 character** $\prod_{v<\infty}\chi_v(d)$, $\chi_v$ = `chiLoc` for $V = \langle b_0, \dots, b_{2m-1}\rangle$. -/
+/-- **The character as a product of local characters** $\prod_{v<\infty}\chi_v(d)$, $\chi_v$ = `chiLoc`
+for $V = \langle b_0, \dots, b_{2m-1}\rangle$. -/
 @[kb "kudla1996" "§I.4 (the character of $\\theta_Q$ as a product of local characters) [unverified]"]
 def chiFin (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (d : 𝓞 F) : ℂ :=
   ∏ᶠ v : HeightOneSpectrum (𝓞 F),
@@ -354,7 +357,7 @@ lemma chiFin_mul_self (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (d : 
   rw [chiFin, ← finprod_mul_distrib (hasFiniteMulSupport_chiLoc b hb d) (hasFiniteMulSupport_chiLoc b hb d)]
   exact finprod_eq_one_of_forall_eq_one fun v => chiLoc_sq v _ _
 
-/-! ### The Route 2 theorem -/
+/-! ### The theorem by local computations -/
 
 lemma valued_algebraMap_int_le_one (v : HeightOneSpectrum (𝓞 F)) (x : 𝓞 F) :
     Valued.v (algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F x)) ≤ 1 := by
@@ -381,7 +384,7 @@ lemma omegaG_psiD_fin (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hm :
   rw [h1, hK]
   rfl
 
-/-- **The theta transformation law by local computations (Route 2).** Let $F$ be totally real,
+/-- **The theta transformation law by local computations.** Let $F$ be totally real,
 $Q = \langle b_0, \dots, b_{2m-1}\rangle$ with $b_i \in \mathcal O_F$ totally positive (`QuadForm.diag b`), $m \ge 1$, and
 $\mathfrak N$ a theta level of $Q$ (`IsThetaLevelF`). For every $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in \Gamma_0(\mathfrak N)$
 ($d = \gamma_{11}$, 0-based),
@@ -445,9 +448,9 @@ theorem thetaQ_slash_route2 (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0)
   linear_combination (-(HilbertModular.thetaQ (QuadForm.diag b) gz *
     ∏ w : RP, ((ew w ((g : Matrix (Fin 2) (Fin 2) F) 1 0) : ℂ) * τ w + ew w (g 1 1)) ^ (-(m : ℤ)))) * hsq
 
-/-! ### Identification with the local characters and the Hilbert-symbol formula -/
+/-! ### Identification with C3 and the Hilbert-symbol formula -/
 
-/-- **Identification of the Route 2 character with the $\chi_Q$**: for $d \in \mathcal O_F$ prime to $\mathfrak N$,
+/-- **Identification of the local-product character with $\chi_Q$**: for $d \in \mathcal O_F$ prime to $\mathfrak N$,
 $$\chi_Q(d \bmod \mathfrak N) = \prod_{v<\infty}\chi_v(d),$$
 $\chi_Q$ = `HilbertModular.thetaCharF` (Hecke's global route) and $\chi_v$ = `chiLoc`. *Proof:* complete $d$ to
 $\gamma = \begin{pmatrix}u&-1\\c&d\end{pmatrix} \in \Gamma_0(\mathfrak N)$; both transformation laws hold for $\gamma$
@@ -486,7 +489,7 @@ lemma isGoodV_of_not_le (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hm
     (levelV_of_isThetaLevelF b hb hlev hν v)
   rw [aV_val, bF_val]; exact valued_algebraMap_int_le_one v (b i)
 
-/-- **The Hilbert-symbol formula for the Route 2 character**: for $d$ prime to $\mathfrak N$,
+/-- **The Hilbert-symbol formula for the local-product character**: for $d$ prime to $\mathfrak N$,
 $$\prod_{v<\infty}\chi_v(d) = \prod_{v \mid \mathfrak N}\big(d, (-1)^m\det Q\big)_v,\qquad \det Q = \prod_ib_i.$$ -/
 @[kb "kudla1996" "§I.4 [unverified]"]
 theorem chiFin_eq_hilbert (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hm : 0 < m) {𝔑 : Ideal (𝓞 F)}
@@ -505,7 +508,7 @@ theorem chiFin_eq_hilbert (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (
     simp [discV, bF]
   · exact chiLoc_of_good v _ (isGoodV_of_not_le b hb hm hlev hv) _
 
-/-- **The Hilbert-symbol formula for the character** (Route 2 corollary): for $d \in \mathcal O_F$ prime to $\mathfrak N$,
+/-- **The Hilbert-symbol formula for the character $\chi_Q$** (corollary): for $d \in \mathcal O_F$ prime to $\mathfrak N$,
 $$\chi_Q(d \bmod \mathfrak N) = \prod_{v \mid \mathfrak N}\big(d, (-1)^m\det Q\big)_v.$$
 Every dyadic place divides $\mathfrak N$ (`isGoodV_of_not_le`), so the dyadic symbols are among the factors; no separate
 Weil-index correction appears. -/

@@ -1,9 +1,10 @@
 /-
-# Square discriminant, locally: $\{(\alpha,\beta) : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}/K^\times \cong SO(D,\operatorname{nrd})(K)$
+# Square discriminant, locally:
+$\{(\alpha,\beta) : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}/K^\times \cong SO(D,\operatorname{nrd})(K)$
 
 
 **Layer:** a field $K$ with $2\ne0$, $D = (A,B)_K$; then a number field $F$ and its completions. This is the local half of
-the square-discriminant adelic isomorphism: the $G^\natural\to SO(V_0)$ (`Quat.Gnat.phiSO`) for $d = 1$, $t = 1$, read
+the square-discriminant adelic isomorphism: the map $G^\natural\to SO(V_0)$ (`Quat.Gnat.phiSO`) for $d = 1$, $t = 1$, read
 through `pairEquiv` as $(\alpha,\beta)\mapsto(x\mapsto\alpha x\beta^{-1})$ on $D$ with the norm form
 $\langle1,-A,-B,AB\rangle$ = `V0Form A B 1`.
 
@@ -17,7 +18,7 @@ $\langle1,-A,-B,AB\rangle$ = `V0Form A B 1`.
   (`sqSO_hessian`, `exists_sqSO_eq`) used by `orthGroup`/`soReal`/`soC`;
 * at a finite place $v$ with $|2|_v = |a|_v = |b|_v = 1$: **`exists_smul_mem_lamLocUnits_sq`** (if $x\mapsto\alpha x\beta^{-1}$
   stabilizes $\Lambda_v$ then $(c\alpha, c\beta)\in(\Lambda_v^\times)^2$ for some $c\in F_v^\times$; via $\alpha\beta^{-1}\in\Lambda_v^\times$ and
-  The trace-identity lemma `exists_smul_mem_lamLocUnits` for conjugation by $\alpha$), and the converse
+  the trace-identity lemma `exists_smul_mem_lamLocUnits` for conjugation by $\alpha$), and the converse
   `sqMat_mulVec_mem_std`.
 
 Source: Weil 1982, §3.7, p. 65 [unverified page] ($SO_4\cong(D^\times\times D^\times)'/G_m$ for square discriminant);

@@ -13,8 +13,8 @@ unramified at $\mathfrak p$, so this is the Frobenius: $\varepsilon = +1 \iff \m
 for $n \ge 4$ even (`localConstC'NF_level_even`), and Thm 5.7(b), (c) for even $n$ in ratio form with **bad set
 $\{\mathfrak p \mid N\}$** (`thm_5_7_c_even_level_NF`, `thm_5_7_b_level_NF`). For odd $n$ every dyadic $\mathfrak p$ divides $N$
 (`not_notDvdLevel_of_odd`), so the bad set $\{\mathfrak p \mid 2\det H\}$ of `thm_5_7_c_odd_NF` already equals $\{\mathfrak p \mid N\}$. The
-hypothesis `hshape` is kept; composing with the hypothesis-free theorem of `Siegel/NFGoodPrime.lean` is
-left for later.
+hypothesis `hshape` is kept; composing with the hypothesis-free `goodPrimeShape_of_isGoodPrimeNF`
+(`Siegel/NFGoodPrime.lean`) is left for later.
 
 **Over $\mathbb{Q}$:** $2 \nmid N$ makes $Q \otimes \mathbb{Z}_2$ even unimodular (`isLocalLevel_two_of_odd_level`), and then the Arf sign
 is $\chi_8(\Delta) = \left(\frac{\Delta}{2}\right)$ (`arfSignQ_two_eq_chi8`), the theta character at $2$
@@ -84,7 +84,7 @@ theorem det_not_mem_of_notDvdLevel {Q : QuadForm (𝓞 F) n} (hN : NF.NotDvdLeve
 $\Delta = (-1)^{n/2}\det H$): $\varepsilon(Q \bmod \mathfrak p) = \left(\frac{\Delta}{\mathfrak p}\right)$, i.e. $\varepsilon = +1 \iff \Delta$ is a square
 in $F_\mathfrak p$ $\iff \mathfrak p$ splits. ($F(\sqrt\Delta)/F$ is unramified at $\mathfrak p$:
 `DVR.exists_disc_eq_sq_mul_one_sub_four_of_level_zero`.) From `DVR.arfSignQ_eq_one_iff_isSquare_frac`. -/
-@[kb "omeara1963" "93:16, 93:18 (Arf invariant = discriminant class, over F) [unverified]"]
+@[kb "omeara1963" "§93D, 93:16, p. 259; 93:18, p. 260 (dyadic unimodular lattices)"]
 theorem arfSignQ_eq_quadSymbolNF {Q : QuadForm (𝓞 F) n} (h2 : (2 : 𝓞 F) ∈ v.asIdeal)
     (hN : NF.NotDvdLevel v Q) (hn : 1 ≤ n) :
     DVR.arfSignQ (NF.Qp v Q) (NF.π v) = quadSymbolNF v ((-1) ^ (n / 2) * Q.hessian.det) := by

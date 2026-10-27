@@ -49,7 +49,7 @@ Equivalently, every cross coefficient is even: $2 \mid c_{ij}$ for $i < j$
 is integral but not classically integral (`eisensteinForm_not_isClassicallyIntegral`), while
 $2Q$ is always classically integral (`two_smul_isClassicallyIntegral`). "Integral" in this
 library means `RatQF.IsIntegral` / `IntQF`, not this. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88 (symmetric matrix of a form); §81C, p. 214 (integral matrix)"]
 def IsClassicallyIntegral (Q : IntQF n) : Prop :=
   ∃ A : Matrix (Fin n) (Fin n) ℤ, A.IsSymm ∧ ∀ x, Q.eval x = gramForm A x
 

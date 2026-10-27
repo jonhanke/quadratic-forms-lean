@@ -52,7 +52,7 @@ local notation "ιO" => algebraMap (𝓞 F) F
 finitely generated $\mathcal O_F$-submodule $\mathfrak a \subseteq F$ (a fractional ideal) has a scaling $b \ne 0$ with
 $b\mathfrak a \subseteq \mathcal O_F$ and some $a \in \mathfrak a$ with $ba = m$ a positive integer $\le C_F$ (take $b$ in
 $\mathfrak a^{-1}$ of small norm, so that $N(b\mathfrak a) \le C_F$, and $m = N(b\mathfrak a) \in b\mathfrak a$). -/
-@[kb "omeara1963" "103:3, proof step 2 (ideal class representatives), PDF p. 315"]
+@[kb "omeara1963" "§103, proof of 103:3, step 2, p. 307 (ideal class representatives)"]
 theorem exists_scale_ideal :
     ∃ C : ℕ, ∀ A : Submodule (𝓞 F) F, A.FG → A ≠ ⊥ →
       ∃ b : F, b ≠ 0 ∧ (∀ a ∈ A, b * a ∈ (algebraMap (𝓞 F) F).range) ∧
@@ -196,7 +196,7 @@ theorem mulVec_injective_of_det_ne_zero {R : Type*} [CommRing R] [IsDomain R]
 $T^{n[F:\mathbb Q]} > |N(\det B)|$ then some $0 \ne \xi \in \mathcal O_F^n$ has $(B\xi)_i = \sum_k q_{ik}\omega_k$ with
 $|q_{ik}| < T$. Two of the $T^{n[F:\mathbb Q]}$ vectors with $\omega$-coordinates in $[0, T)$ are congruent modulo
 $B\mathcal O_F^n$. -/
-@[kb "omeara1963" "103:1, 103:2, PDF pp. 313-315"]
+@[kb "omeara1963" "§103, 103:1, 103:2, p. 305"]
 theorem exists_pigeon (B : Matrix (Fin n) (Fin n) (𝓞 F)) (hB : B.det ≠ 0) (T : ℕ)
     (hT : (Algebra.norm ℤ B.det).natAbs < T ^ (n * Fintype.card (OIdx F))) :
     ∃ ξ : Fin n → 𝓞 F, ξ ≠ 0 ∧ ∀ i, ∃ q : OIdx F → ℤ, (∀ k, |q k| < T) ∧
@@ -256,8 +256,8 @@ $|N(\det P)| \le D$ there is $0 \ne \xi \in \mathcal O_F^n$ with $|\varphi((P\xi
 coordinate $i$ and every embedding $\varphi$. *Proof:* choose $0 \ne \lambda \in \mathbb Z$ with $B = \lambda P$ integral and apply
 `exists_pigeon` with $T = |\lambda|(\lfloor D\rfloor + 1)$ *Update (simplification):* O'Meara counts field elements bounded by an idèle
 (Theorem 33:5) and takes $\lambda \in \mathfrak o$; with $\lambda \in \mathbb Z$ all conjugates of $\lambda$ have the same size and a
-$\mathbb Z$-box count suffices (`docs/updates-and-errata.md`). -/
-@[kb "omeara1963" "103:2, PDF pp. 313-315"]
+$\mathbb Z$-box count suffices. -/
+@[kb "omeara1963" "§103, 103:2, p. 305"]
 theorem exists_short (hn : 0 < n) (P : Matrix (Fin n) (Fin n) F) (hP : P.det ≠ 0) (D : ℝ)
     (hD : |(Algebra.norm ℚ P.det : ℝ)| ≤ D) :
     ∃ ξ : Fin n → 𝓞 F, ξ ≠ 0 ∧ ∀ i (φ : F →+* ℂ),

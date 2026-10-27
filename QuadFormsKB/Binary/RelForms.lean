@@ -160,7 +160,7 @@ theorem norm_add (x y : E) :
 
 /-- **The norm form** $N = N_{E/F}$ of a quadratic extension, as a quadratic form on the $2$-dimensional $F$-space $E$:
 $N(x) = x\,\sigma(x)$, with polar form $B(x, y) = \mathrm{Tr}_{E/F}(x\,\sigma(y))$ (`polar_normForm`). -/
-@[kb "omeara1963" "§57 (norm form of a quadratic extension) [unverified]"]
+@[kb "omeara1963" "§63B, 63:10, p. 164 (norms from E = F(√β))"]
 def normForm : QuadraticForm F E where
   toFun x := Algebra.norm F x
   toFun_smul a x := by
@@ -188,7 +188,7 @@ variable {F E : Type*} [Field F] [Field E] [Algebra F E] [CharZero F] [Algebra.I
 
 /-- **Similitudes of the norm form.** An $F$-linear map $\varphi : E \to E$ with $N(\varphi x) = a\,N(x)$ for all $x$, where
 $a \ne 0$, is $x \mapsto \lambda x$ or $x \mapsto \lambda\,\sigma(x)$ with $\lambda = \varphi(1)$; then $N(\lambda) = a$. -/
-@[kb "omeara1963" "§57 (norm form of a quadratic extension) [unverified]"]
+@[kb "omeara1963" "§43C, p. 104 (binary orthogonal groups)"]
 theorem linear_similitude (φ : E →ₗ[F] E) {a : F} (ha : a ≠ 0)
     (h : ∀ x, Algebra.norm F (φ x) = a * Algebra.norm F x) :
     (∀ x, φ x = φ 1 * x) ∨ (∀ x, φ x = φ 1 * conj F E x) := by
@@ -233,7 +233,7 @@ theorem linear_similitude (φ : E →ₗ[F] E) {a : F} (ha : a ≠ 0)
 
 /-- **The orthogonal group of the norm form:** an $F$-linear $\varphi$ preserving $N$ is $x \mapsto ux$ or
 $x \mapsto u\,\sigma(x)$, with $u = \varphi(1)$, $N(u) = 1$. -/
-@[kb "omeara1963" "§57 [unverified]"]
+@[kb "omeara1963" "§43C, p. 104 (binary orthogonal groups)"]
 theorem linear_isometry (φ : E →ₗ[F] E) (h : ∀ x, Algebra.norm F (φ x) = Algebra.norm F x) :
     Algebra.norm F (φ 1) = 1 ∧ ((∀ x, φ x = φ 1 * x) ∨ (∀ x, φ x = φ 1 * conj F E x)) :=
   ⟨by rw [h, map_one], linear_similitude φ one_ne_zero fun x => by rw [h, one_mul]⟩
@@ -308,7 +308,7 @@ theorem map_simIso {c c' : F} (l : E) (hl : l ≠ 0) (hc : c' * Algebra.norm F l
 /-- **Isometry of lattices in $(E, cN)$.** For $c, c' \in F^\times$ and $\mathcal O_F$-submodules $L, L' \subseteq E$:
 $(L, c\,N) \cong (L', c'\,N)$ iff $L' = \lambda L$ or $L' = \lambda\,\sigma(L)$ for some $\lambda \in E^\times$ with
 $c'\,N(\lambda) = c$. -/
-@[kb "omeara1963" "§82, cls L; §57 [unverified]"]
+@[kb "omeara1963" "§82C, p. 222 (cls L); §43C, p. 104"]
 theorem isometricLattices_iff {c c' : F} (hc : c ≠ 0) (hc' : c' ≠ 0) (L L' : Submodule (𝓞 F) E) :
     Lattices.IsometricLattices (c • normForm F E) (c' • normForm F E) L L' ↔
       ∃ l : E, l ≠ 0 ∧ c' * Algebra.norm F l = c ∧ (L' = smulLat l L ∨ L' = smulLat l (conjLat L)) := by

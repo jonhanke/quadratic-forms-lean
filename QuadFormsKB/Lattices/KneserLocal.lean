@@ -508,8 +508,8 @@ theorem mem_loc_of_locDual {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLatt
   rw [e]
   exact (loc v L).sub_mem h hδ
 
-/-- **Unimodularity at $v$ is a genus invariant** (O'Meara §82, §102 [unverified]). -/
-@[kb "omeara1963" "§82, §102 (unimodular lattices in a genus) [unverified]"]
+/-- **Unimodularity at $v$ is a genus invariant** (O'Meara §82G, p. 231, and §102A, pp. 297–299: modular lattices in a genus, p. 299). -/
+@[kb "omeara1963" "§82G, p. 231; §102A, p. 299"]
 theorem isUnimodularAt_of_sameGenus {L M : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLattice F)
     (hLi : IsIntegral Q L) {v : HeightOneSpectrum (𝓞 F)} (hLu : IsUnimodularAt Q L v) (hgen : SameGenus Q L M) :
     IsUnimodularAt Q M v := by
@@ -670,10 +670,10 @@ theorem kneser_reach_genus_uncond {n : ℕ} (Q : QuadForm F n) (hn : 3 ≤ n) (h
     ∃ M' : Lat F n, IsIsometric Q M'.1 M.1 ∧ Relation.ReflTransGen (Nbr.IsNbrL Q π) L.1 M'.1 :=
   kneser_reach_uncond Q hn hQ hπ h2 hiso hLi hLu (hgs M hM)
 
-/-- **Forms of rank $\ge 5$ are isotropic at every finite place** (O'Meara 63:19 [unverified]): for $n \ge 5$ and $Q$
+/-- **Forms of rank $\ge 5$ are isotropic at every finite place** (O'Meara 63:19, p. 170): for $n \ge 5$ and $Q$
 nondegenerate over $F$, $Q$ is isotropic over $F_v$ for every finite place $v$. So the isotropy hypothesis of Kneser's
 theorem (`kneser_reach_uncond`) is automatic in rank $\ge 5$ (`kneser_reach_uncond_of_five_le`). -/
-@[kb "omeara1963" "63:19 [unverified]"]
+@[kb "omeara1963" "§63C, 63:19, p. 170"]
 theorem isotropicIn_adicCompletion_of_five_le {n : ℕ} (Q : QuadForm F n) (hn : 5 ≤ n) (hQ : Q.Nondegenerate)
     (v : HeightOneSpectrum (𝓞 F)) : Q.IsotropicIn (v.adicCompletion F) := by
   obtain ⟨m, rfl⟩ := Nat.exists_eq_add_of_le hn
@@ -704,10 +704,10 @@ theorem kneser_reach_uncond_of_five_le {n : ℕ} (Q : QuadForm F n) (hn : 5 ≤ 
   kneser_reach_uncond Q (by omega) hQ hπ h2 (isotropicIn_adicCompletion_of_five_le Q hn hQ _) hLi hLu hM
 
 /-- **Unimodular forms of rank $\ge 3$ at a non-dyadic place are isotropic** (Hanke 2004, Remark 3.8.1 [unverified];
-O'Meara 92:1 [unverified]): for $Q_0$ over $\mathcal O_F$ with $v \nmid 2\det H$ and $n \ge 3$, $Q_0 \otimes F$ is isotropic over $F_v$
+a consequence of O'Meara 92:1b, p. 247): for $Q_0$ over $\mathcal O_F$ with $v \nmid 2\det H$ and $n \ge 3$, $Q_0 \otimes F$ is isotropic over $F_v$
 (from `LocalDensity.NF.isotropicIn_of_notDvdLevel`: Chevalley–Warning mod $v$ and Hensel). So in the setting of Kneser's
 theorem with $L = \mathcal O_F^n$ the isotropy hypothesis is automatic in every rank $n \ge 3$. -/
-@[kb "hanke2004" "Remark 3.8.1, p. 364 [unverified]"]
+@[kb "hanke2004" "Remark 3.8.1, p. 364 [unverified]; omeara1963 §92, 92:1b, p. 247"]
 theorem isotropicIn_formF_of_unimodular {n : ℕ} (Q₀ : QuadForm (𝓞 F) n) (hn : 3 ≤ n) {v : HeightOneSpectrum (𝓞 F)}
     (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hdet : Q₀.hessian.det ∉ v.asIdeal) :
     (HilbertModular.formF Q₀).IsotropicIn (v.adicCompletion F) := by

@@ -31,7 +31,9 @@ $F_v$ = `v.adicCompletion F` and residue characteristic $p$:
 Not done: identifying $\mathfrak p_v^{d_v}$ with Mathlib's `differentIdeal` (or with the global different);
 complex places.
 
-Sources: Tate's thesis, Cassels–Fröhlich Ch. XV §2.2 [unverified]; Weil, *Basic Number Theory*, Ch. VIII §4
+Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2, pp. 308–311 ($\lambda = \Lambda\circ S_{k/R}$ and Thm. 2.2.1,
+p. 309; the conductor of the character, Lemma 2.2.3, pp. 309–310; the self-dual measure and Thm. 2.2.2, p. 310), §3.3,
+p. 327 ($\operatorname{vol}(H)\operatorname{vol}(H^*) = 1$); Weil, *Basic Number Theory*, Ch. VIII §4
 (the different and the standard character) [unverified].
 -/
 
@@ -120,25 +122,27 @@ instance finiteDimensional_padic : FiniteDimensional ℚ_[resChar v] Fv := by
   exact ⟨htop ▸ Submodule.fg_span (Set.finite_range w)⟩
 
 /-- **The local trace** $\operatorname{Tr}_{F_v/\mathbb{Q}_p} : F_v \to \mathbb{Q}_p$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 309 (λ(ξ) = Λ(S_{k/R} ξ), S_{k/R} the trace to the p-adic field R)"]
 def traceV : Fv →ₗ[ℚ_[resChar v]] ℚ_[resChar v] := Algebra.trace ℚ_[resChar v] Fv
 
 lemma continuous_traceV : Continuous (traceV v) := LinearMap.continuous_of_finiteDimensional _
 
 /-- **The standard character of $F_v$:** $\psi_v(x) = \psi_p(\operatorname{Tr}_{F_v/\mathbb{Q}_p} x)
-= e\big(-\{\operatorname{Tr}_{F_v/\mathbb{Q}_p} x\}_p\big)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, $\\psi_v = \\psi_p \\circ \\mathrm{Tr}$ [unverified]"]
+= e\big(-\{\operatorname{Tr}_{F_v/\mathbb{Q}_p} x\}_p\big)$. This is $e^{-2\pi i\lambda(x)}$ for Tate's
+$\lambda = \Lambda\circ S_{k/R}$ (Cassels–Fröhlich Ch. XV, p. 309), the complex conjugate of Tate's character; the Fourier
+transforms agree (see `Analysis/LocalFourier.lean`). -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.1, p. 309 (the character e^{2πiλ(ξ)}, λ = Λ ∘ S_{k/R})"]
 def psiV : AddChar Fv Circle := (psiP (p := resChar v)).compAddMonoidHom (traceV v).toAddMonoidHom
 
 lemma psiV_apply (x : Fv) : psiV v x = psiP (traceV v x) := rfl
 
 /-- **$\psi_v$ is continuous.** -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.2 and the paragraph before Thm. 2.2.1, p. 309"]
 theorem continuous_psiV : Continuous (psiV v) := continuous_psiP.comp (continuous_traceV v)
 
 /-- **$\psi_v$ is nontrivial:** with $n = [F_v : \mathbb{Q}_p]$, $\operatorname{Tr}\big((np)^{-1}\big) = p^{-1}$, so
 $\psi_v\big((np)^{-1}\big) = \psi_p(p^{-1}) = e(-1/p) \ne 1$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.2 and the paragraph before Thm. 2.2.1, p. 309"]
 theorem psiV_nontrivial :
     psiV v (algebraMap ℚ_[resChar v] Fv
       (((Module.finrank ℚ_[resChar v] Fv : ℚ_[resChar v]) * (resChar v : ℚ_[resChar v]))⁻¹)) ≠ 1 := by
@@ -224,7 +228,7 @@ lemma exists_traceV_small : ∃ N : ℕ, ∀ x : Fv, Valued.v x ≤ exp (-(N : �
 /-- **$\operatorname{Tr}_{F_v/\mathbb{Q}_p}(\mathcal O_v) \subseteq \mathbb{Z}_p$.** Proof: approximate $x \in \mathcal O_v$ by $a \in \mathcal O_F$
 (`exists_int_approx_pow`); $\operatorname{Tr}(a) \in \mathbb{Z}_p$ by integrality, and $\operatorname{Tr}(x - a) \in \mathbb{Z}_p$ by continuity
 (`exists_traceV_small`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, proof of Lemma 2.2.3, p. 310 (S_{k/R}(o) ⊆ o_R)"]
 theorem norm_traceV_le_one {x : Fv} (hx : Valued.v x ≤ 1) : ‖traceV v x‖ ≤ 1 := by
   obtain ⟨N, hN⟩ := exists_traceV_small v
   obtain ⟨a, ha⟩ := exists_int_approx_pow v N x hx
@@ -235,7 +239,7 @@ theorem norm_traceV_le_one {x : Fv} (hx : Valued.v x ≤ 1) : ‖traceV v x‖ �
     (max_le (norm_traceV_algebraMap_int_le_one v a) (hN _ ha))
 
 /-- **$\psi_v$ is trivial on $\mathcal O_v$** (the conductor of $\psi_v$, the inverse different, contains $\mathcal O_v$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310 (η = 1 ∈ 𝔡^{−1})"]
 theorem psiV_eq_one_of_le_one {x : Fv} (hx : Valued.v x ≤ 1) : psiV v x = 1 := by
   rw [psiV_apply, psiP_eq_one_iff]
   exact norm_traceV_le_one v hx
@@ -251,8 +255,10 @@ lemma valued_ϖ_zpow (k : ℤ) : Valued.v (HN.ϖ v ^ k) = exp (-k) := by
 /-- **The local inverse different**, defined by duality as the annihilator of $\mathcal O_v$ under $\psi_v$:
 $$\mathfrak d_v^{-1} = \{y \in F_v : \psi_v(xy) = 1 \text{ for all } x \in \mathcal O_v\}.$$
 `exists_diffExp` shows it is $\mathfrak p_v^{-d_v}$ for a unique $d_v \ge 0$ (`diffExp`), the exponent of the different
-$\mathfrak d_{F_v/\mathbb{Q}_p}$. (Identifying $\mathfrak d_v$ with Mathlib's `differentIdeal` is not done here.) -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.1 (conductor of $\\psi_v$ = inverse different) [unverified]"]
+$\mathfrak d_{F_v/\mathbb{Q}_p}$. (Identifying $\mathfrak d_v$ with Mathlib's `differentIdeal` is not done here.)
+Tate goes the other way: he starts from the absolute different $\mathfrak d$ and proves that the annihilator of
+$\mathfrak o$ is $\mathfrak d^{-1}$ (Cassels–Fröhlich Ch. XV, Lemma 2.2.3, pp. 309–310). -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310 (the character of η is trivial on o iff η ∈ 𝔡^{−1})"]
 def invDiffV : Set Fv := {y | ∀ x : Fv, Valued.v x ≤ 1 → psiV v (x * y) = 1}
 
 lemma one_mem_invDiffV : (1 : Fv) ∈ invDiffV v := fun x hx => by
@@ -298,7 +304,7 @@ lemma valued_lt_of_mem_invDiffV {y : Fv} (hy : y ∈ invDiffV v) : Valued.v y < 
 
 /-- **The conductor of $\psi_v$ is $\mathfrak p_v^{-d}$:** there is $d \in \mathbb{N}$ with
 $\mathfrak d_v^{-1} = \{y : v(y) \le \exp(d)\}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.1 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310; 𝔡 = 𝔭^d, §2.5, p. 320"]
 theorem exists_diffExp : ∃ d : ℕ, ∀ y : Fv, y ∈ invDiffV v ↔ Valued.v y ≤ exp (d : ℤ) := by
   let P : ℕ → Prop := fun m => ∀ y : Fv, Valued.v y ≤ exp (m : ℤ) → y ∈ invDiffV v
   have hex : ∃ m, ¬ P (m + 1) := by
@@ -326,7 +332,7 @@ theorem exists_diffExp : ∃ d : ℕ, ∀ y : Fv, y ∈ invDiffV v ↔ Valued.v 
 
 /-- **The different exponent** $d_v$: $\mathfrak d_v^{-1} = \mathfrak p_v^{-d_v}$ (`mem_invDiffV_iff`), so
 $N(\mathfrak d_v) = N(v)^{d_v}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310; 𝔡 = 𝔭^d, §2.5, p. 320"]
 def diffExp : ℕ := (exists_diffExp v).choose
 
 theorem mem_invDiffV_iff (y : Fv) : y ∈ invDiffV v ↔ Valued.v y ≤ exp (diffExp v : ℤ) :=
@@ -350,7 +356,7 @@ lemma mem_latticeV {k : ℤ} {x : Fv} : x ∈ latticeV v k ↔ Valued.v x ≤ ex
 def annihV (S : Set Fv) : Set Fv := {y | ∀ x ∈ S, psiV v (x * y) = 1}
 
 /-- **The dual of $\mathfrak p_v^k$** under $\psi_v(xy)$ is $\mathfrak d_v^{-1}\mathfrak p_v^{-k} = \mathfrak p_v^{-k-d_v}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310 (the lattice o), scaled by 𝔭_v^k"]
 theorem annihV_latticeV (k : ℤ) :
     annihV v (latticeV v k) = latticeV v (-k - diffExp v) := by
   ext y
@@ -484,7 +490,7 @@ open MeasureTheory
 /-- **The self-dual Haar measure on $F_v$:** $dx_v = \Delta_v^{d_v/2}\cdot$ `haarV`, so that
 $\operatorname{vol}(\mathcal O_v) = \Delta_v^{d_v/2}$ $\big(= N(\mathfrak d_v)^{-1/2}$ once $\Delta_v = N(v)^{-1}\big)$ and
 $\operatorname{vol}(L)\operatorname{vol}(L^\perp) = 1$ for every lattice $L = \mathfrak p_v^k$ (`selfDualV_real_mul`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, self-dual measure, $\\mathrm{vol}(\\mathcal O_v) = N(\\mathfrak d_v)^{-1/2}$ [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (o gets measure (N𝔡)^{−1/2})"]
 def selfDualV : Measure Fv := ((modV v) ^ ((diffExp v : ℝ) / 2) : NNReal) • haarV v
 
 instance : (selfDualV v).IsAddHaarMeasure := by
@@ -500,7 +506,7 @@ theorem selfDualV_real_latticeV (k : ℤ) :
 
 /-- **Self-duality:** $\operatorname{vol}(\mathfrak p_v^k)\cdot\operatorname{vol}\big((\mathfrak p_v^k)^\perp\big) = 1$, where
 $(\mathfrak p_v^k)^\perp = \mathfrak p_v^{-k-d_v}$ (`annihV_latticeV`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §3.3, p. 327 ((∫_{H} da)(∫_{H*} dc) = 1 for dual measures); self-dual measure §2.2, p. 310"]
 theorem selfDualV_real_mul (k : ℤ) :
     (selfDualV v).real (latticeV v k) * (selfDualV v).real (latticeV v (-k - diffExp v)) = 1 := by
   have hpos : (0 : ℝ) < modV v := by exact_mod_cast modV_pos v
@@ -517,7 +523,7 @@ theorem selfDualV_real_mul (k : ℤ) :
         show (diffExp v : ℤ) + (k + (-k - diffExp v)) = 0 by ring, zpow_zero]
 
 /-- **The Fourier transform on $F_v$:** $\hat f(y) = \int_{F_v} f(x)\,\psi_v(xy)\,dx_v$ (self-dual measure). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310 (f̂(η) = ∫ f(ξ) e^{−2πiλ(ηξ)} dξ)"]
 def fourierV (f : Fv → ℂ) (y : Fv) : ℂ := ∫ x, f x * (psiV v (x * y) : ℂ) ∂selfDualV v
 
 /-- The inverse transform $\check g(x) = \int_{F_v} g(y)\,\psi_v(-xy)\,dy_v$. -/
@@ -540,7 +546,7 @@ lemma ballIndV_eq (c : Fv) (k : ℤ) :
 open scoped Classical in
 /-- **Fourier transform of a lattice coset in $F_v$:**
 $\widehat{\mathbf 1_{c + \mathfrak p_v^k}}(y) = \operatorname{vol}(\mathfrak p_v^k)\,\psi_v(cy)\,\mathbf 1_{\mathfrak p_v^{-k-d_v}}(y)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §3.3, p. 327 (the transform of the characteristic function of H is vol(H) times that of H*); §2.5, p. 320"]
 theorem fourierV_ballIndV (c : Fv) (k : ℤ) (y : Fv) :
     fourierV v (ballIndV v c k) y =
       if y ∈ latticeV v (-k - diffExp v) then
@@ -573,7 +579,7 @@ theorem fourierV_ballIndV (c : Fv) (k : ℤ) (y : Fv) :
 
 /-- **Fourier inversion for lattice cosets in $F_v$** (self-dual measure): $\check{\hat f} = f$ for
 $f = \mathbf 1_{c + \mathfrak p_v^k}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 2.2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310, and its proof, p. 311"]
 theorem fourierInvV_fourierV_ballIndV (c : Fv) (k : ℤ) :
     fourierInvV v (fourierV v (ballIndV v c k)) = ballIndV v c k := by
   ext x
@@ -670,7 +676,7 @@ lemma haarV_latticeV_zero_eq :
     hcard]
 
 /-- **The modulus of a uniformizer:** $\Delta_v = \operatorname{mod}_{F_v}(\varpi) = N(v)^{-1}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.1, p. 308 (|α| = (N𝔭)^{−ν}), and Lemma 2.2.5, p. 310; Ch. II (Cassels), §7, Def. and Thm., p. 51"]
 theorem modV_eq : (modV v : ℝ) = (Ideal.absNorm v.asIdeal : ℝ)⁻¹ := by
   have h1 := haarV_real_latticeV v 1
   have h0 := haarV_latticeV_zero_eq v
@@ -686,7 +692,7 @@ theorem modV_eq : (modV v : ℝ) = (Ideal.absNorm v.asIdeal : ℝ)⁻¹ := by
 
 /-- **$\operatorname{vol}(\mathcal O_v) = N(\mathfrak d_v)^{-1/2}$** for the self-dual measure, where
 $N(\mathfrak d_v) = N(v)^{d_v}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310"]
 theorem selfDualV_real_Ov :
     (selfDualV v).real (latticeV v 0) =
       ((Ideal.absNorm v.asIdeal : ℝ) ^ diffExp v) ^ (-(1 : ℝ) / 2) := by
@@ -732,7 +738,7 @@ lemma fourierV_ballIndV_eq (c : Fv) (k : ℤ) :
 
 /-- **Schwartz–Bruhat functions on $F_v$:** finite linear combinations
 $\sum_{i<n} a_i \mathbf 1_{c_i + \mathfrak p_v^{k_i}}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §1.3, pp. 307–308 (Tate's class 𝔅₁: f continuous and integrable with f̂ integrable)"]
 def IsSchwartzBruhatV (f : Fv → ℂ) : Prop :=
   ∃ (n : ℕ) (a : Fin n → ℂ) (c : Fin n → Fv) (k : Fin n → ℤ),
     f = fun x => ∑ i, a i * ballIndV v (c i) (k i) x
@@ -751,7 +757,7 @@ lemma fourierV_sum {n : ℕ} (a : Fin n → ℂ) (c : Fin n → Fv) (k : Fin n �
 
 /-- **Fourier inversion for Schwartz–Bruhat functions on $F_v$** (self-dual measure):
 $f(x) = \int_{F_v}\hat f(y)\,\psi_v(-xy)\,dy_v$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 2.2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310"]
 theorem fourierInvV_fourierV_of_isSchwartzBruhat {f : Fv → ℂ} (hf : IsSchwartzBruhatV v f) :
     fourierInvV v (fourierV v f) = f := by
   obtain ⟨n, a, c, k, rfl⟩ := hf

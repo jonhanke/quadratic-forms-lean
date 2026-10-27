@@ -17,7 +17,7 @@ $a_\nu$ = `qCoeff`, $\nu$ in the dual lattice $\{\nu_n\}$). $N(y) = \prod_vy_v$.
 * **Hecke's bound** (`norm_qCoeff_le_hecke`): for $\nu \gg 0$, $|a_\nu| \le C\,e^{2\pi d}\,N(\nu)^{k/2}$ (take $y_v = 1/\nu_v$).
 
 The hypothesis $|f(z)| \le C\,N(\operatorname{Im}z)^{-k/2}$ (`hbound`) holds for Hilbert cusp forms of parallel weight $k$
-($f(z)N(\operatorname{Im}z)^{k/2}$ is $\Gamma$-invariant and bounded). This is proved in `CuspBound.lean` (reduction theory and
+($f(z)N(\operatorname{Im}z)^{k/2}$ is $\Gamma$-invariant and bounded). This is proved in `CuspBound.lean` (C5b, reduction theory and
 Siegel sets at finitely many cusps: `exists_norm_le_of_mem_cuspFormSpace`, `exists_norm_le_of_mem_cuspFormChar`), which also
 states the corollaries of this file for $f \in S_k(\Gamma_0(\mathfrak N), \chi)$ without growth hypothesis
 (`sum_sq_qCoeff_le_trace_of_cuspFormChar`, `norm_qCoeff_le_hecke_norm_of_cuspFormChar`).

@@ -115,7 +115,7 @@ variable {F : Type} [Field F] [NumberField F] [IsPrincipalIdealRing (𝓞 F)] {a
   {O : Subalgebra (𝓞 F) ℍ[F,algebraMap (𝓞 F) F a,algebraMap (𝓞 F) F b]}
 
 /-- **$\zeta_{\mathcal O}(s)$ as a sum over left ideals** ($\mathcal O$ maximal, $s > 2$):
-$\sum_J N(\operatorname{nrd}J)^{-s} = \sum_{\mathfrak n}c(\mathfrak n)N\mathfrak n^{-s}$ (the Dirichlet series). -/
+$\sum_J N(\operatorname{nrd}J)^{-s} = \sum_{\mathfrak n}c(\mathfrak n)N\mathfrak n^{-s}$ (a Dirichlet series). -/
 theorem tsum_nrdTerm_eq (ha : a ≠ 0) (hb : b ≠ 0) (hO : IsMaximalOrder (𝓞 F) F O) {s : ℝ} (hs : 2 < s) :
     ∑' J : Ideal O, nrdTerm J s =
       ENNReal.ofReal (∑' 𝔫 : Ideal (𝓞 F), (idealCountO O 𝔫 : ℝ) * (Ideal.absNorm 𝔫 : ℝ) ^ (-s)) := by

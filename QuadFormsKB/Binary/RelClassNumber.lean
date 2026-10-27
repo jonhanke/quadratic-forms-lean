@@ -15,7 +15,7 @@ $(\mathfrak A\,\sigma\mathfrak A', N\gamma)$ is normalized ($N(\mathfrak A\sigma
   repository — and the ideal Hilbert 90 `principal_identity`).
 * **`jHom_eq_one_iff`**: its kernel is the group of strongly ambiguous classes (Hilbert 90).
 * **`card_principalGenus_mul_card_strAmb`** (CM): $\#P_0\cdot\#\mathrm{Cl}_E^{\mathrm{str}} = h_E$.
-* **`posClassNumberRelation`** ($K$ CM): **The input `PosClassNumberRelation K` is a theorem**:
+* **`posClassNumberRelation`** ($K$ CM): **`PosClassNumberRelation K` is a theorem**:
   $\#G^+\cdot Q_K\,h_{K^+}\,2^t = 2\cdot2^{t-1}\,h_K$, from $\#G^+ = 2^{t-1}\#P_0$ (Gauss), $\#P_0\,\#\mathrm{Cl}^{\mathrm{str}} = h_K$,
   $\#\mathrm{Cl}^{\mathrm{str}}\,[\mu_K : \{u/\bar u\}] = 2^t h_{K^+}$ (`card_strAmb_mul_index`) and $Q_K\,[\mu_K : \{u/\bar u\}] = 2$ (Mathlib's
   `IsCMField.indexRealUnits_mul_eq`). No class field theory.
@@ -397,7 +397,7 @@ theorem indexRealUnits_mul_index_conjQuotGroup :
   rw [conjQuotGroup, unitsMulConjInv_eq]
   exact IsCMField.indexRealUnits_mul_eq K
 
-/-- **The input `PosClassNumberRelation` is a theorem** ($K$ CM, $F = K^+$, $t$ ramified primes):
+/-- **`PosClassNumberRelation` is a theorem** ($K$ CM, $F = K^+$, $t$ ramified primes):
 $\#G^+\cdot Q_K\,h_{K^+}\,2^t = 2\cdot 2^{t-1}\,h_K$. Proof without class field theory: $\#G^+ = 2^{t-1}\#P_0$ (genus theory),
 $\#P_0\cdot\#\mathrm{Cl}^{\mathrm{str}}_K = h_K$ ($j$), $\#\mathrm{Cl}^{\mathrm{str}}_K\cdot[\mu_K : \{u/\bar u\}] = 2^t h_{K^+}$ (ambiguous ideals,
 Hilbert 90), $Q_K\,[\mu_K : \{u/\bar u\}] = 2$ (Hasse's unit index, Mathlib). -/

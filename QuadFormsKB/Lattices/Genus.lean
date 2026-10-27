@@ -22,7 +22,7 @@ almost all $\mathfrak p$ (`eventually_locAct_std`). That integrality is a genus 
 `SameGenus.isIntegral` (`Lattices/Finite.lean`).
 
 *Conventions:* $O(V)$ includes improper isometries ($\det = -1$), as `Siegel.Aut` does for $F = \mathbb Q$.
-O'Meara 1963, §82 (classes, $O(L)$), §102 (genus) [unverified]; for $F = \mathbb Q$ the AWS notes §4.5
+O'Meara 1963, §82C (classes, $O(L)$), pp. 222–223, §102A (genus), p. 297; for $F = \mathbb Q$ the AWS notes §4.5
 (`AWS.latGenus`, `AWS.autLat`).
 -/
 import QuadFormsKB.Lattices.Local
@@ -46,7 +46,7 @@ variable (Q : QuadForm F n)
 /-- **The orthogonal group** $O(V)(R) = \{g \in \mathrm{GL}_n(R) : g^{\mathsf T} H g = H\}$ of $(F^n, Q)$ over an
 $F$-algebra $R$, with $H$ = `Q.hessian` the Hessian of $Q$ (so $Q(x) = \tfrac12 x^{\mathsf T} H x$). For $R = F$ or
 $F_\mathfrak p$ this is the group of $g$ with $Q(gx) = Q(x)$ (`mem_orthGroup_iff_eval`). -/
-@[kb "omeara1963" "§42, O(V) [unverified]"]
+@[kb "omeara1963" "§41A, p. 84 (orthogonal group O(V))"]
 def orthGroup (R : Type*) [CommRing R] [Algebra F R] : Subgroup (GL (Fin n) R) where
   carrier := {g | g.valᵀ * Q.hessian.map (algebraMap F R) * g.val = Q.hessian.map (algebraMap F R)}
   mul_mem' {a b} ha hb := by
@@ -91,6 +91,7 @@ theorem evalIn_mulVec_of_mem {R : Type*} [CommRing R] [Algebra F R] [IsDomain R]
     vecMul_transpose]
 
 /-- **Base change of isometries** $O(V)(F) \to O(V)(R)$ (entrywise `algebraMap F R`). -/
+@[kb "omeara1963" "§101B, p. 289 (localization of an isometry; (τ_u)_{𝔭} = τ_{u_{𝔭}})"]
 def orthMap (R : Type*) [CommRing R] [Algebra F R] : orthGroup Q F →* orthGroup Q R where
   toFun γ := ⟨GeneralLinearGroup.map (algebraMap F R) (γ : GL (Fin n) F), by
     have hγ := (mem_orthGroup Q).mp γ.2
@@ -250,22 +251,22 @@ section Genus
 variable (Q : QuadForm F n)
 
 /-- **Isometric lattices (same class)** in $(V, Q) = (F^n, Q)$: $M = \gamma L$ for some isometry
-$\gamma \in O(V)(F)$ (O'Meara §82 [unverified]; AWS notes p. 62 for $F = \mathbb Q$). -/
-@[kb "omeara1963" "§82, cls L [unverified]"]
+$\gamma \in O(V)(F)$ (O'Meara §82C, p. 222; AWS notes p. 62 for $F = \mathbb Q$). -/
+@[kb "omeara1963" "§82C, p. 222 (cls L)"]
 def IsIsometric (L M : Submodule (𝓞 F) (Fin n → F)) : Prop :=
   ∃ γ ∈ orthGroup Q F, glImage γ L = M
 
 /-- **Same genus** in $(V, Q)$: for every finite prime $\mathfrak p$ of $F$ there is a local isometry
-$g_\mathfrak p \in O(V)(F_\mathfrak p)$ with $g_\mathfrak p L_\mathfrak p = M_\mathfrak p$ (O'Meara §102 [unverified];
+$g_\mathfrak p \in O(V)(F_\mathfrak p)$ with $g_\mathfrak p L_\mathfrak p = M_\mathfrak p$ (O'Meara §102A, p. 297;
 for $F = \mathbb Q$, `AWS.latGenus`). At an infinite place $w$, both $L$ and $M$ span the same space $V \otimes F_w$, so
 "$L_w \cong M_w$" holds automatically and is not part of the definition. -/
-@[kb "omeara1963" "§102, gen L [unverified]"]
+@[kb "omeara1963" "§102A, p. 297 (gen L)"]
 def SameGenus (L M : Submodule (𝓞 F) (Fin n → F)) : Prop :=
   ∀ v : HeightOneSpectrum (𝓞 F), ∃ g ∈ orthGroup Q (v.adicCompletion F), locAct v g (loc v L) = loc v M
 
-/-- **The automorphism group** $O(L) = \mathrm{Aut}(L) = \{\gamma \in O(V)(F) : \gamma L = L\}$ (O'Meara §82
-[unverified]; `AWS.autLat` for $F = \mathbb Q$). -/
-@[kb "omeara1963" "§82, O(L) [unverified]"]
+/-- **The automorphism group** $O(L) = \mathrm{Aut}(L) = \{\gamma \in O(V)(F) : \gamma L = L\}$ (O'Meara §82C,
+p. 223; `AWS.autLat` for $F = \mathbb Q$). -/
+@[kb "omeara1963" "§82C, p. 223 (O(L))"]
 def autLat (L : Submodule (𝓞 F) (Fin n → F)) : Subgroup (orthGroup Q F) where
   carrier := {γ | glImage (γ : GL (Fin n) F) L = L}
   mul_mem' {a b} ha hb := by
@@ -281,8 +282,9 @@ def autLat (L : Submodule (𝓞 F) (Fin n → F)) : Subgroup (orthGroup Q F) whe
 theorem mem_autLat {L : Submodule (𝓞 F) (Fin n → F)} {γ : orthGroup Q F} :
     γ ∈ autLat Q L ↔ glImage (γ : GL (Fin n) F) L = L := Iff.rfl
 
-/-- **Integral lattice:** $Q(x) \in \mathcal O_F$ for every $x \in L$. -/
-@[kb "omeara1963" "§82 (integral lattice) [unverified]"]
+/-- **Integral lattice:** $Q(x) \in \mathcal O_F$ for every $x \in L$. In O'Meara's terms this is $\mathfrak nL \subseteq \mathfrak o$
+(§82E, p. 227), weaker than his "integral scale" $\mathfrak sL \subseteq \mathfrak o$ (used in 103:4). -/
+@[kb "omeara1963" "§82E, p. 227 (norm nL ⊆ 𝓞)"]
 def IsIntegral (L : Submodule (𝓞 F) (Fin n → F)) : Prop :=
   ∀ x ∈ L, Q.evalIn F x ∈ (algebraMap (𝓞 F) F).range
 
@@ -300,15 +302,18 @@ theorem IsIsometric.trans {L M N : Submodule (𝓞 F) (Fin n → F)} (h : IsIsom
   obtain ⟨δ, hδ, rfl⟩ := h'
   exact ⟨δ * γ, (orthGroup Q F).mul_mem hδ hγ, glImage_mul _ _ _⟩
 
+@[kb "omeara1963" "§102A, p. 297 (the lattices are partitioned into genera)"]
 theorem SameGenus.refl (L : Submodule (𝓞 F) (Fin n → F)) : SameGenus Q L L :=
   fun _ => ⟨1, Subgroup.one_mem _, locAct_one _⟩
 
+@[kb "omeara1963" "§102A, p. 297 (the lattices are partitioned into genera)"]
 theorem SameGenus.symm {L M : Submodule (𝓞 F) (Fin n → F)} (h : SameGenus Q L M) :
     SameGenus Q M L := by
   intro v
   obtain ⟨g, hg, he⟩ := h v
   exact ⟨g⁻¹, Subgroup.inv_mem _ hg, (locAct_eq_iff.mp he).symm⟩
 
+@[kb "omeara1963" "§102A, p. 297 (the lattices are partitioned into genera)"]
 theorem SameGenus.trans {L M N : Submodule (𝓞 F) (Fin n → F)} (h : SameGenus Q L M)
     (h' : SameGenus Q M N) : SameGenus Q L N := by
   intro v
@@ -317,7 +322,7 @@ theorem SameGenus.trans {L M N : Submodule (𝓞 F) (Fin n → F)} (h : SameGenu
   exact ⟨g' * g, Subgroup.mul_mem _ hg' hg, by rw [locAct_mul, he, he']⟩
 
 /-- **A class lies in a genus:** isometric lattices are in the same genus (localize the global isometry). -/
-@[kb "omeara1963" "§102 [unverified]"]
+@[kb "omeara1963" "§102A, p. 298 (cls L ⊆ spn L ⊆ gen L)"]
 theorem IsIsometric.sameGenus {L M : Submodule (𝓞 F) (Fin n → F)} (h : IsIsometric Q L M) :
     SameGenus Q L M := by
   obtain ⟨γ, hγ, rfl⟩ := h

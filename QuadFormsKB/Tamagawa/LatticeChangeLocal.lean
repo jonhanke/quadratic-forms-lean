@@ -2,7 +2,7 @@
 # Change of lattice at a finite prime of a number field
 
 **Layer:** a number field $F$, a finite prime $\mathfrak p$, the completion $\mathfrak o_\mathfrak p \subset F_\mathfrak p$; the groups
-$O(V)(F_\mathfrak p)$ of `Lattices/` and the integral representation `intRep` of the local orbital identity.
+$O(V)(F_\mathfrak p)$ of `Lattices/` and the integral representation `intRep`.
 
 For $Q_0$ over $\mathcal O_F$, $c \in \mathcal O_F\setminus0$ and $D = \mathrm{diag}(c_0, \dots, c_{n-1})$ over $\mathcal O_F$ with $\det D \ne 0$, the
 form $Q_1 = c\,(Q_0\circ D)$ is the form of the lattice $D\mathcal O_F^n$ (rescaled). Conjugation by $D$ identifies
@@ -11,7 +11,8 @@ $B_\mathfrak p$ of $D\mathfrak o_\mathfrak p^n$. The DVR formula (`LatChange.sel
 same $j$) gives **the local change-of-lattice identity** (`localDensity_mul_relRatio`):
 $$\beta_\mathfrak p(Q_1, Q_1)\cdot\frac{[A : A\cap B]}{[B : A\cap B]} = \prod_{a \le b}q^{\mathrm{ord}_\mathfrak p(c\,c_ac_b)}\cdot\beta_\mathfrak p(Q_0, Q_0),
 \qquad A = O(\mathfrak o_\mathfrak p^n),\ B = \mathrm{Stab}(D\mathfrak o_\mathfrak p^n),$$
-i.e. The normalization $\mathrm{vol}(O(L_\mathfrak p)) = \beta_\mathfrak p(L, L)$ is the same Haar measure for every lattice (the gauge-form
+i.e. The normalization $\mathrm{vol}(O(L_\mathfrak p)) = \beta_\mathfrak p(L, L)$ is the same Haar measure for every
+lattice (the gauge-form
 measure), up to the Jacobian $\prod_{a\le b}|c\,c_ac_b|_\mathfrak p^{-1}$ of $S \mapsto c\,(S\circ D)$ on coefficients.
 -/
 import QuadFormsKB.Tamagawa.LatticeChange
@@ -312,7 +313,8 @@ theorem map_box_eq {j : ℕ} (hj : ∀ a, ord (NF.irreducible_π v) (NF.ι v (cv
 $\mathcal O_F$, $c \ne 0$, $D = \mathrm{diag}(c_a)$ with $c_a \ne 0$ and $Q_1 = c\,(Q_0\circ D)$,
 $$\beta_\mathfrak p(Q_1, Q_1)\cdot r(A, B) = \prod_{a \le b}q^{\mathrm{ord}_\mathfrak p(c\,c_ac_b)}\cdot\beta_\mathfrak p(Q_0, Q_0),$$
 $A = O(\mathfrak o_\mathfrak p^n)$, $B$ = the stabilizer of $D\mathfrak o_\mathfrak p^n$ in $O(Q_0)(F_\mathfrak p)$, $r(A,B) = [A : A\cap B]/[B : A\cap B]$
-(`relRatio`). Weil 1982, §2.2.1, p. 14 (the local measure $\omega_v$ of a gauge form does not depend on the local coordinates). -/
+(`relRatio`). Weil 1982, §2.2.1, p. 14 (the local measure $\omega_v$ of a gauge form does not depend on the local coordinates;
+checked against the printed book). -/
 @[kb "weil1982" "§2.2.1, p. 14 (the local measure does not depend on the coordinates)"]
 theorem localDensity_mul_relRatio (hQ₀ : Q₀.Nondegenerate) :
     NF.localDensityForm v (c • Q₀.compMat (diagonal cv)) (c • Q₀.compMat (diagonal cv)) *

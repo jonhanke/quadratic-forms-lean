@@ -205,7 +205,11 @@ theorem fourSquaresInputs_siegel_iff :
 Field:
 - `genus_eq`: `genusClasses Q4` $= \{[Q_4]\}$.
 
-Classical (the AWS notes, `hanke2011aws`, p. 36, state it; Conway–Sloane, *SPLAG*, Table 15.4 [unverified]).
+Classical (the AWS notes, `hanke2011aws`, p. 36, state it). *Citation fix (2026-10-21):* this was cited to Conway–Sloane,
+*Sphere Packings, Lattices and Groups*, 3rd ed., Table 15.4, but that table (Ch. 15, §8.1, Thm. 12, p. 387) lists all *genera* with
+$|\det| \le 11$ — row 1 is the genus $I_{r,s}$, here $I_{4,0}$ — not class numbers; Ch. 15 does not count the classes of a definite
+genus of determinant 1 (p. 396 refers one-class definite genera to Watson's papers). The class number of $I_4$ follows from the enumeration of unimodular lattices in Ch. 16,
+to which Ch. 15, §10.2, p. 399 refers: Ch. 16, §4, Theorem 5 and the Remark after it, p. 413, with Table 16.7, pp. 416–417. Every unimodular lattice of dimension at most 23 is $\mathbb{Z}^k \oplus L$ with $L$ in Table 16.7, and that table has no entries of dimension $1$–$7$, so every positive definite unimodular lattice of dimension $4$ is $\mathbb{Z}^4$: the genus of $I_4$ has one class.
 **Proved** in `Siegel/FourSquaresClassNumber.lean` (`fourSquaresClassNumberOne`); kept as a named structure so the
 conditional theorems below stay as stated. -/
 @[kb "hanke2011aws" "§2.7.2, p. 36"]

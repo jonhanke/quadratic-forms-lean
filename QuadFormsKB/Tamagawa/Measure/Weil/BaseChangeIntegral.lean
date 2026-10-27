@@ -2,7 +2,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeLocalMeasure
 
 /-!
 # The integral statement $\mathcal O_K\otimes\mathcal O_v\cong\prod_{w\mid v}\mathcal O_{K,w}$
-
 Let $b$ be a $k$-basis of $K$ consisting of algebraic integers and $v$ a place of $k$ at which the basis discriminant is a
 unit ($v(\operatorname{disc}b)=1$). Then `localPi b v` carries $\mathcal O_v^\iota$ **onto** $\prod_{w\mid v}\mathcal O_w$
 (`localPi_image_integers`). For such $v$ the order $\bigoplus\mathcal O_kb_i$ is maximal at $v$.
@@ -202,7 +201,7 @@ variable [DecidableEq ι] in
 if $b$ is a $k$-basis of $K$ of algebraic integers and $v(\operatorname{disc}b)=1$, the isomorphism
 $K\otimes_kk_v\cong\prod_{w\mid v}K_w$ maps $\bigoplus_i\mathcal O_vb_i$ onto $\prod_{w\mid v}\mathcal O_w$. This holds for
 all but finitely many $v$ (the primes dividing $\operatorname{disc}b\ne0$). -/
-@[kb "casselsfrohlich1967" "Ch. II §14 / Neukirch III.2.12, II.8.3 (O_K ⊗ O_v ≅ ∏ O_w away from the discriminant) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §12, Lemma, (12.1), p. 61 (proof pp. 61–62); Neukirch III.2.12, II.8.3 (O_K ⊗ O_v ≅ ∏ O_w away from the discriminant) [unverified]"]
 theorem localPi_image_integers (hb : ∀ i, IsIntegral ℤ (b i)) (hd : v.valuation k (Algebra.discr k b) = 1) :
     localPi b v '' intLat v = intPlace (K := K) v := by
   refine Set.Subset.antisymm ?_ ?_

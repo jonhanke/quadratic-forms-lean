@@ -12,13 +12,13 @@ there.
 **Main results** ($k \ge 3$):
 * `eisQ_mem_modularFormChar`: $E_Q \in M_k(\Gamma_0(\mathfrak N), \chi_Q)$;
 * `tendsto_eisQ_slash`: at every cusp $A\infty$, $E_Q\,|_k\,A \to$ `thetaCuspVal Q₀ k A`, the constant term of $\theta_{Q_0}$ (and of
-  every $\theta_M$, $M$ in the genus, and of $\theta_{\mathrm{Gen}}$): the local (Gauss-sum) constant of `tendsto_thetaQ_slash`;
+  every $\theta_M$, $M$ in the genus, and of $\theta_{\mathrm{Gen}}$): The local (Gauss-sum) constant of `tendsto_thetaQ_slash`;
 * **`thetaGen_sub_eisQ_mem_cuspFormChar`**: $\theta_{\mathrm{Gen}} - E_Q \in S_k(\Gamma_0(\mathfrak N), \chi_Q)$;
 * `thetaLatt_sub_eisQ_mem_cuspFormChar`: $\theta_M - E_Q \in S_k(\Gamma_0(\mathfrak N), \chi_Q)$ for every $M$ in the genus.
 
-A cusp form here is `cuspFormChar`: $f\,|_k\,A \to 0$ at $\infty$ for every $A \in \mathrm{SL}_2(F)$, i.e. the constant term
-(the $\nu = 0$ coefficient of the $q$-expansion at the cusp $A\infty$) vanishes at every cusp; it is checked directly from the
-limits, with no $q$-expansion needed.
+A cusp form here is the `cuspFormChar`: $f\,|_k\,A \to 0$ at $\infty$ for every $A \in \mathrm{SL}_2(F)$, i.e. the
+constant term (the $\nu = 0$ coefficient of the $q$-expansion at the cusp $A\infty$) vanishes at every cusp; it is
+checked directly from the limits, with no $q$-expansion needed.
 
 **Weight 2** ($n = 4$, $d \ge 2$) is in `Cuspidal2.lean` (periodic weights via Möbius over ideals and ray classes).
 

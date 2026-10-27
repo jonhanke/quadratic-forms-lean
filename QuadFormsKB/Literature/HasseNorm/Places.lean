@@ -37,7 +37,7 @@ lemma valued_algebraMap (v : HeightOneSpectrum (𝓞 F)) (y : F) :
 
 /-- **A local square splits:** if $a = s^2$ ($s \in L$, $\sigma s = -s$, $a \ne 0$) is a square in $F_v$, then
 there are two distinct primes of $L$ above $v$. -/
-@[kb "neukirch1999" "Ch. II, Prop. 8.2 (decomposition of primes) [unverified]"]
+@[kb "neukirch1999" "Ch. II, Prop. 8.2 (decomposition of primes) [unverified]; omeara1963 §65A, p. 175 (local degree n_{𝔭})"]
 theorem two_primes_of_isSquare (s : L) (a : F) (hs : s ^ 2 = algebraMap F L a)
     (hσs : σ s = -s) (ha : ¬ IsSquare a) (v : HeightOneSpectrum (𝓞 F))
     (hsq : IsSquare (algebraMap F (v.adicCompletion F) a)) :
@@ -224,7 +224,7 @@ $\mathfrak p \nmid 2$ and $v_{\mathfrak p}(a) = 0$ is unramified: $e(w \mid \mat
 *Proof.* Otherwise $e = 2$, $f = 1$, $w$ is the only prime over $\mathfrak p$, so $\sigma w = w$. As $f = 1$ and
 $w(s) = 1$, some $c \in F$ has $w(s - c) < 1$; applying $\sigma$, $w(-s - c) < 1$, so $w(2s) < 1$, while
 $w(2s) = \mathfrak p(2)^e \cdot w(s) = 1$. -/
-@[kb "neukirch1999" "Ch. I, Prop. 8.3 / Ch. III, Cor. 2.12 [unverified]"]
+@[kb "neukirch1999" "Ch. I, Prop. 8.3 / Ch. III, Cor. 2.12 [unverified]; omeara1963 §65A, 65:1, p. 177 (unramified part)"]
 theorem ramificationIdx_eq_one (s : L) (a : F) (hs : s ^ 2 = algebraMap F L a)
     (hσs : σ s = -s) (w : HeightOneSpectrum (𝓞 L))
     (h2 : (under (F := F) w).valuation F 2 = 1) (ha : (under (F := F) w).valuation F a = 1) :
@@ -437,7 +437,7 @@ open scoped Classical in
 /-- **The global norm index of `S`-units, $= 2^{s'-1}$** (Milne VII §3 + Lemma 4.5 in $S$-unit form): if $S$
 contains the ramified primes and $\mathrm{Cl}_S(F) = 1$ (`hS`), then
 $$2\,[F_S^\times : N L_{S_L}^\times] = 2^{s'},\qquad s' = \#\{v \mid \infty \text{ not split}\} + \#\{\mathfrak p \in S \text{ not split}\}.$$ -/
-@[kb "milne2020cft" "Ch. VII §3–4 (first inequality, S-unit form) [unverified]"]
+@[kb "milne2020cft" "Ch. VII §3–4 (first inequality, S-unit form) [unverified]; omeara1963 §65B, 65:10, p. 179"]
 theorem index_normsF_eq (hσ : σ ≠ 1) (S : Finset (HeightOneSpectrum (𝓞 F)))
     (hS : ∀ p : HeightOneSpectrum (𝓞 F), p ∉ S → ∃ c : 𝓞 F, c ∈ p.asIdeal ∧ c ∉ p.asIdeal ^ 2 ∧
         ∀ q : HeightOneSpectrum (𝓞 F), q ∉ S → q ≠ p → c ∉ q.asIdeal)

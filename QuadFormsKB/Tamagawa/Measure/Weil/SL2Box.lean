@@ -312,7 +312,7 @@ theorem primHat_eq_image : primHat F = jj F '' Set.univ.pi primV := by
     exact ⟨fun i v => (w v i).2, fun v => hw v (Set.mem_univ v)⟩
 
 /-- **$\mu_f^{\otimes2}(\mathrm{primHat}) = \operatorname{vol}(\hat{\mathcal O})^2\prod_v(1 - N(v)^{-2})$.** -/
-@[kb "weil1982" "§2.3, p. 21 (product of local volumes, λ_v = 1) [page checked in the design table]"]
+@[kb "weil1982" "§2.3, p. 21 (product of local volumes, λ_v = 1) [page checked]"]
 theorem muFinVec_primHat :
     muFinVec F (Fin 2) (primHat F) =
       ENNReal.ofReal (ohatVol F) ^ 2 * ∏' v : HeightOneSpectrum (𝓞 F),
@@ -598,7 +598,7 @@ theorem measure_boxCoord {U : Set (Matrix (Fin 2) (Fin 2) (mixedSpace F))} (hU :
     rfl
   · rw [lintegral_indicator_const measurableSet_primHat, mul_comm]
 
-/-- **The box computation for $\mu_T$** (the gap 1, finite places): for every measurable set $U$ of archimedean
+/-- **The box computation for $\mu_T$** (finite places): for every measurable set $U$ of archimedean
 matrices,
 $$\mu_T\{g : g_f\in\mathrm{SL}_2(\hat{\mathcal O}),\ g_\infty\in U\} = \mu_{T,\infty}(U)\cdot
 \operatorname{vol}(\hat{\mathcal O})^3\cdot\prod_v\big(1 - N(v)^{-2}\big),$$
@@ -606,7 +606,7 @@ $\operatorname{vol}(\hat{\mathcal O}) = |d_F|^{-1/2} = \prod_v\operatorname{vol}
 `selfDualV_primV` this is $\mu_T = \mu_{T,\infty}\otimes\prod_v|\omega|_v$ on $\mathrm{SL}_2(F_\infty)\times
 \prod_v\mathrm{SL}_2(\mathcal O_v)$, $|\omega|_v(\mathrm{SL}_2(\mathcal O_v)) = (1 - N(v)^{-2})\operatorname{vol}(\mathcal O_v)^3$
 (Weil's normalization, convergence factors $\lambda_v = 1$). -/
-@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure as a product of local measures, λ_v = 1) [page checked in the design table]; §2.2, Thm 2.2.5 [unverified page]"]
+@[kb "weil1982" "§2.3, p. 21 (Tamagawa measure as a product of local measures, λ_v = 1) [page checked]; §2.2, Thm 2.2.5 [unverified page]"]
 theorem muT_box {U : Set (Matrix (Fin 2) (Fin 2) (mixedSpace F))} (hU : MeasurableSet U) :
     muT F (intFin F ∩ archPart ⁻¹' U) =
       muTInf F U * (ENNReal.ofReal (ohatVol F) ^ 3 *
@@ -766,7 +766,7 @@ def finFactorSL2 (F : Type) [Field F] [NumberField F] : ℝ≥0∞ :=
 /-- **$\mu_T$ is Weil's product measure** on the charts $U\times\mathrm{SL}_2(\hat{\mathcal O})$:
 $\mu_T(\{g_f\in\mathrm{SL}_2(\hat{\mathcal O}),\ g_\infty\in U\}) = |\omega|_\infty(U)\cdot\prod_v|\omega|_v(\mathrm{SL}_2(\mathcal O_v))$
 for the gauge form $\omega = da\wedge db\wedge dc/a$ (`muT_box` + `muTInf_eq_muGaugeInf`). -/
-@[kb "weil1982" "§2.3, p. 21 (λ_v = 1) [page checked in the design table]; §2.2 [unverified page]"]
+@[kb "weil1982" "§2.3, p. 21 (λ_v = 1) [page checked]; §2.2 [unverified page]"]
 theorem muT_box_gauge {U : Set (Matrix (Fin 2) (Fin 2) (mixedSpace F))} (hU : MeasurableSet U) :
     muT F (intFin F ∩ archPart ⁻¹' U) = muGaugeInf F U * finFactorSL2 F := by
   rw [muT_box hU, muTInf_eq_muGaugeInf, finFactorSL2]

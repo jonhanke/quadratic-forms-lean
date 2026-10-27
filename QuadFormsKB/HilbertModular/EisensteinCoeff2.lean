@@ -3,7 +3,8 @@
 
 **Setting.** $F$ totally real of degree $d$, $\mathcal O = \mathcal O_F$, $\mathfrak d^{-1}$ the inverse different, $e(x) = e^{2\pi ix}$,
 $\operatorname{Tr} = \operatorname{Tr}_{F/\mathbb Q}$, $N$ the absolute norm. $W$ is an integral weight of parallel weight $2$ and level
-$\mathfrak M$ (`IntWeight`: unit equivariant, bounded, supported on $\mathcal O^2$, periodic modulo $\mathfrak M^2$), and in addition
+$\mathfrak M$ (`IntWeight`: unit equivariant, bounded, supported on $\mathcal O^2$, periodic
+modulo $\mathfrak M^2$), and in addition
 **translation invariant**: $W(c, d + cb) = W(c, d)$ for $b \in \mathcal O$ (the weight is invariant under $\begin{pmatrix}1&b\\0&1\end{pmatrix}$;
 true for every weight with a $\Gamma_0(\mathfrak N)$-law). $E_{W,2}$ = `eis2 W 𝔐` is the weight-2 Eisenstein series (Hecke's limit; for
 $d \ge 2$ holomorphic with no correction term).
@@ -295,7 +296,8 @@ lemma qTerm_dualVec_zero (z : InfinitePlace F → ℍ) : qTerm (dualVec (oBasis 
 /-- **The Fourier coefficients of $E_{W,2}$, row by row**: for a translation-invariant integral weight $W$ of weight $2$ with
 $E_{W,2}$ periodic for $\sigma(\mathcal O)$, and $\mu = \mu_m \in \mathfrak d^{-1}$, $m \ne 0$,
 $$a_\mu(E_{W,2}) = \sum_{t\in U\backslash F}\rho_W(t, \mu)\qquad(\text{absolutely convergent}).$$
-Proof: regroup the absolutely convergent expansion $E_{W,2} = \mathrm c_\infty(W) + \sum_{t,n}a_{t,n}e(\langle\mu_{t,n}, z\rangle)$
+Proof: regroup the absolutely convergent expansion
+$E_{W,2} = \mathrm c_\infty(W) + \sum_{t,n}a_{t,n}e(\langle\mu_{t,n}, z\rangle)$
 (`eis2_eq_qSeries`) by frequency (all frequencies lie in $\mathfrak d^{-1}$, `exists_oDual_of_oscA_ne_zero`), and use uniqueness of
 $q$-expansions (`qCoeff_unique`). -/
 @[kb "shimura1978" "§3: Fourier coefficients of E₂ as a sum of row coefficients [unverified]"]

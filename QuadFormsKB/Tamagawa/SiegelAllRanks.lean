@@ -15,13 +15,14 @@ convergence over the ideals, so it holds from $N = 4$ on. With $\tau(SO(Q_0)) = 
 $\beta_\mathfrak p(L, m) = 0$).
 
 **The induction** ($\mathcal O_F$ a PID, $[F:\mathbb Q] \ge 2$), on two named inputs:
-* `TernaryTamagawaTwo F` (rank 3; reduced from rank 4 in `TauFour`, `TernaryReduction`);
-* `OddRankOrbitalLocalIdentities F`: `OrbitalLocalIdentities Q₀` for the totally positive definite $Q_0$ of **odd** rank $\ge 5$ (the subject of `OrbitalNonStd`).
+* `TernaryTamagawaTwo F` (rank 3);
+* `OddRankOrbitalLocalIdentities F`: the `OrbitalLocalIdentities Q₀` for the totally positive definite $Q_0$ of **odd** rank $\ge 5$.
 Even ranks $2k \ge 4$ need no local input: Siegel's formula for numbers is a theorem there (Hilbert modular forms of
-integral weight $k$) and the step `tamagawaNumberTwo_succ'` gives $\tau_{2k} = 2$ from $\tau_{2k-1} = 2$ for split lattices; the change of lattice (`LatChange.tauSO_smul_compMat`) extends it to every genus. Odd ranks $2k+1 \ge 5$ use the step
-`tamagawaNumberTwo_of_complement`. Headlines: `tamagawaNumberTwo_all_ranks`, `massFormula_all_ranks`, `siegelFormulaAt_all_ranks`,
-`siegelFormula_genusAvg_all_ranks`; for odd rank, `siegelFormulaAt_odd` and `siegelFormula_odd_aENF` (the formula, no
-half-integral weight).
+integral weight $k$) and the step `tamagawaNumberTwo_succ'` gives $\tau_{2k} = 2$ from $\tau_{2k-1} = 2$ for split
+lattices; the change of lattice (`LatChange.tauSO_smul_compMat`) extends it to every genus. Odd ranks $2k+1 \ge 5$ use
+the step `tamagawaNumberTwo_of_complement`. Headlines: `tamagawaNumberTwo_all_ranks`, `massFormula_all_ranks`,
+`siegelFormulaAt_all_ranks`, `siegelFormula_genusAvg_all_ranks`; for odd rank, `siegelFormulaAt_odd` and
+`siegelFormula_odd_aENF` (that formula, no half-integral weight).
 -/
 import QuadFormsKB.Tamagawa.OrbitalEuler
 import QuadFormsKB.Tamagawa.TernaryReduction
@@ -41,7 +42,8 @@ section Beta
 
 variable {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
 
-/-- `betaZ` at an element of $\mathcal O_F$ is the local density $\beta_\mathfrak p(L, m)$ of `siegelProduct`. -/
+/-- The `betaZ` at an element of $\mathcal O_F$ is the local density $\beta_\mathfrak p(L, m)$ of the `siegelProduct`.
+-/
 theorem betaZ_algebraMap {N : ℕ} (Q₀ : QuadForm (𝓞 F) N) (m : 𝓞 F) :
     betaZ v Q₀ (algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F m)) = NF.localDensity v Q₀ m := by
   have e : algebraMap F (v.adicCompletion F) (algebraMap (𝓞 F) F m) =
@@ -267,11 +269,14 @@ theorem two_mul_tamagawaK_mul_repMass_frame_aux (Q₀ : QuadForm (𝓞 F) (n + 1
     _ = _ := by rw [key]; ring
 
 /-- **Siegel's theorem for one number, with the stabilizer's Tamagawa number** (Weil 1982, §4.5, p. 109; §3.4–3.5 [unverified locator]; the
-$\mathfrak b = 1$ term of the orbital Euler product). For $Q_0$ totally positive definite over $\mathcal O_F$ in $N = n + 1 \ge 4$
-variables ($F$ totally real, any class number), $m \in \mathcal O_F$ totally positive, an adapted frame $Q_0\circ g = \langle m\rangle\perp Q_0'$ and
-the local orbital identity of the frame at every prime (`OrbitalLocalIdentityAt`),
+$\mathfrak b = 1$ term of the orbital Euler product). For $Q_0$ totally positive definite over $\mathcal O_F$ in
+$N = n + 1 \ge 4$ variables ($F$ totally real, any class number), $m \in \mathcal O_F$ totally positive, an adapted
+frame $Q_0\circ g = \langle m\rangle\perp Q_0'$ and the local orbital identity of the frame at every prime
+(`OrbitalLocalIdentityAt`),
 $$2\,\mu_{\mathrm{Tam}}(K_{SO}(Q_0))\cdot\mathrm{repMass}(\mathcal O_F^N, m) = \tau(SO(Q_0'))\cdot S(L, m),$$
-$S$ = `siegelProduct` $= |d_F|^{-(N-1)/2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(L, m)$ (the $|d_F|$ power is the proved erratum).
+$S$ = the `siegelProduct`
+$= |d_F|^{-(N-1)/2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(L, m)$ (the $|d_F|$ power is the
+proved erratum).
 *Proof.* `repMass_eq_mass_mul_finprod` ($\beta = 1$): $\mathrm{repMass} = \mathrm{Mass}(Q_0')\prod_\mathfrak pW_\mathfrak p(0)$; the local identity at $j = 0$ gives
 $W_\mathfrak p(0) = \alpha_\mathfrak p(Q_0')\,|\det g|_\mathfrak p^{n+1}|2m|_\mathfrak p^{-n}\,\beta_\mathfrak p(L, m)/\alpha_\mathfrak p(Q_0)$; the product formula and
 `archVolSO_succ` at each real place turn the Jacobians into the archimedean densities. -/
@@ -293,7 +298,7 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 
 open QuadFormsKB.SphericalFibration QuadFormsKB.SphericalZeta in
 /-- If $Q$ does not represent $\rho$ over $F_\mathfrak p$, then $\beta_\mathfrak p(L, \rho) = 0$ (the spherical factor $Z_\mathfrak p(0, \rho)$ is the integral over an
-empty set, and it is a series of the nonnegative numbers $|\varpi^{2j}|\beta_\mathfrak p(\rho\varpi^{2j})$, `hasSum_betaZ_series`). -/
+empty set, and it is a series of the nonnegative numbers $|\varpi^{2j}|\beta_\mathfrak p(\rho\varpi^{2j})$, by `hasSum_betaZ_series`). -/
 theorem betaZ_eq_zero_of_not_rep {N : ℕ} (Q₀ : QuadForm (𝓞 F) N) (hQ : Q₀.Nondegenerate) (hN : 1 ≤ N)
     (v : HeightOneSpectrum (𝓞 F)) {ρ : F} (hρ : ρ ≠ 0) (hp : ¬ (formF Q₀).RepresentsIn (v.adicCompletion F) ρ) :
     betaZ v Q₀ (algebraMap F (v.adicCompletion F) ρ) = 0 := by
@@ -374,7 +379,8 @@ $Q_0$ totally positive definite over $\mathcal O_F$ in $N = n + 1 \ge 4$ variabl
 $\tau(SO(Q')) = 2$ for every totally positive definite $Q'$ in $n$ variables over $\mathcal O_F$, and the local orbital identities of $Q_0$ hold
 at the non-standard primes of its frames (`OrbitalLocalIdentities`), then for every totally positive $m \in \mathcal O_F$
 $$\sum_{\mathrm{cls}M\subseteq\mathrm{gen}\,\mathcal O_F^N}\frac{r_M(m)}{|O(M)|} = \mathrm{Mass}(\mathcal O_F^N)\cdot|d_F|^{-\frac{N-1}2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(L, m)$$
-(`SiegelFormulaAt Q₀ m`). No split shape and no condition on the lattice: the frame $Q_0\circ g = \langle m\rangle\perp Q'$ is over $F$. -/
+(`SiegelFormulaAt Q₀ m`). No split shape and no condition on the lattice: the frame
+$Q_0\circ g = \langle m\rangle\perp Q'$ is over $F$. -/
 @[kb "weil1982" "§4.5, p. 100 (Siegel's theorem from τ = 2), for every form [unverified]"]
 theorem siegelFormulaAt_of_local (Q₀ : QuadForm (𝓞 F) (n + 1)) (hpd : IsTotallyPosDef (formF Q₀)) (hn : 3 ≤ n)
     (hloc : OrbitalLocalIdentities Q₀) (hτ : TamagawaNumberTwo Q₀)
@@ -415,23 +421,25 @@ section Induction
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
 /-- **Input: the local orbital identities in odd rank $\ge 5$** (Weil 1982, §3.4 and §4.5, p. 109 [unverified]; Kitaoka 1993, §5.6
-[unverified]): `OrbitalLocalIdentities Q₀` for every totally positive definite $Q_0$ over $\mathcal O_F$ in $n + 1$ variables,
-$n \ge 4$ even (so $N = n + 1 = 5, 7, 9, \dots$).
+[unverified]): the `OrbitalLocalIdentities Q₀` for every totally positive definite $Q_0$ over $\mathcal O_F$ in
+$n + 1$ variables, $n \ge 4$ even (so $N = n + 1 = 5, 7, 9, \dots$).
 
 Field:
 - `odd`: the statement above.
 
 *Why only odd rank.* In even rank $2k \ge 4$ Siegel's formula for numbers is a theorem (Hilbert modular forms of integral
-weight $k$), and the step then gives $\tau_{2k} = 2$ from $\tau_{2k-1} = 2$ with no local input; the local identities are needed only
-for the step into odd rank, and for Siegel's formula in odd rank. *Hygiene.* A family of purely local statements (one prime at a time,
-local densities and index ratios of compact open subgroups); it mentions no class, mass or $\tau$, and it is not equivalent to any
-conclusion it is used for. When `OrbitalLocalIdentities` is proved for all forms, `OddRankOrbitalLocalIdentities.of_all` discharges it. -/
+weight $k$), and the step then gives $\tau_{2k} = 2$ from $\tau_{2k-1} = 2$ with no local input; the local identities
+are needed only for the step into odd rank, and for Siegel's formula in odd rank. *Hygiene.* A family of purely local
+statements (one prime at a time, local densities and index ratios of compact open subgroups); it mentions no class,
+mass or $\tau$, and it is not equivalent to any conclusion it is used for. If one proves `OrbitalLocalIdentities` for
+all forms, `OddRankOrbitalLocalIdentities.of_all` discharges it. -/
 @[kb "weil1982" "§3.4 and §4.5, p. 109 (local fibration at the non-standard primes), odd rank ≥ 5 [unverified]"]
 structure OddRankOrbitalLocalIdentities (F : Type) [Field F] [NumberField F] [IsTotallyReal F] : Prop where
   odd : ∀ n : ℕ, 4 ≤ n → Even n → ∀ Q₀ : QuadForm (𝓞 F) (n + 1), IsTotallyPosDef (formF Q₀) →
     OrbitalLocalIdentities Q₀
 
-/-- The odd-rank input from the local identities for all forms (the one-line discharge once they are proved). -/
+/-- The odd-rank input from the local identities for all forms (the one-line discharge once the local identities are
+proved for all forms). -/
 theorem OddRankOrbitalLocalIdentities.of_all
     (h : ∀ (n : ℕ) (Q₀ : QuadForm (𝓞 F) (n + 1)), IsTotallyPosDef (formF Q₀) → OrbitalLocalIdentities Q₀) :
     OddRankOrbitalLocalIdentities F :=
@@ -443,10 +451,11 @@ Thm. 3.7.1 ($m = 4$), p. 65).
 Field:
 - `tau_eq_two`: the statement above.
 
-*Status.* For $[F:\mathbb Q] \ge 2$ and $\mathcal O_F$ a PID it is equivalent to `TernaryTamagawaTwo F` (`LatChange.ternaryTamagawaTwo_iff_four_all`) and follows from it (`quaternaryTamagawaTwo_of_ternary`). It is a separate name only so that the
-induction can be stated over $\mathbb Q$; there it is equivalent to `TernaryTamagawaTwo ℚ` too (`RatBridge.ternaryTamagawaTwo_iff_quaternary_rat`, rank-4
-Siegel through the bridge). Not equivalent to
-any conclusion it is used for (ranks $\ge 5$). -/
+*Status.* For $[F:\mathbb Q] \ge 2$ and $\mathcal O_F$ a PID it is equivalent to `TernaryTamagawaTwo F`
+(`LatChange.ternaryTamagawaTwo_iff_four_all`) and follows from it (`quaternaryTamagawaTwo_of_ternary`). It is a
+separate name only so that the induction can be stated over $\mathbb Q$; there it is equivalent to
+`TernaryTamagawaTwo ℚ` too (`RatBridge.ternaryTamagawaTwo_iff_quaternary_rat`, rank-4 Siegel through the bridge). Not
+equivalent to any conclusion it is used for (ranks $\ge 5$). -/
 @[kb "weil1982" "§3.7, Thm. 3.7.1 (m = 4), p. 65"]
 structure QuaternaryTamagawaTwo (F : Type) [Field F] [NumberField F] : Prop where
   tau_eq_two : ∀ Q₀ : QuadForm (𝓞 F) 4, IsTotallyPosDef (formF Q₀) → TamagawaNumberTwo Q₀
@@ -529,10 +538,12 @@ theorem tamagawaNumberTwo_of_four (h4 : QuaternaryTamagawaTwo F) (hloc : OddRank
     · exact tamagawaNumberTwo_of_complement Q₀ hpd hn (hloc.odd n hn he Q₀ hpd) ih
     · exact tamagawaNumberTwo_even_step (by omega) ho (fun h => absurd h (by omega)) ih Q₀ hpd
 
-/-- **$\tau(SO) = 2$ in every rank $N \ge 3$** (Weil 1982, Thm. 4.5.1, p. 109, with the bases of Thm. 3.7.1, p. 65): for $F$ totally real
-of degree $\ge 2$ with $\mathcal O_F$ a PID and every totally positive definite $Q_0$ over $\mathcal O_F$ in $N \ge 3$ variables,
-$\tau(SO(Q_0)) = 2$ (`tauSO`), conditional on exactly two named inputs: `TernaryTamagawaTwo F` (rank 3) and
-`OddRankOrbitalLocalIdentities F` (the local orbital identities in odd rank $\ge 5$). Rank 4: `TernaryReduction`; even rank $\ge 6$: the Siegel formula and the step; odd rank $\ge 5$: the step. -/
+/-- **$\tau(SO) = 2$ in every rank $N \ge 3$** (Weil 1982, Thm. 4.5.1, p. 109, with the bases of Thm. 3.7.1, p. 65):
+for $F$ totally real of degree $\ge 2$ with $\mathcal O_F$ a PID and every totally positive definite $Q_0$ over
+$\mathcal O_F$ in $N \ge 3$ variables, $\tau(SO(Q_0)) = 2$ (`tauSO`), conditional on exactly two named inputs:
+`TernaryTamagawaTwo F` (rank 3) and `OddRankOrbitalLocalIdentities F` (the local orbital identities in odd rank
+$\ge 5$). Rank 4: reduction to the ternary case; even rank $\ge 6$: the Siegel formula from Hilbert modular forms
+and the step; odd rank $\ge 5$: the step. -/
 @[kb "weil1982" "Thm. 4.5.1, p. 109 and Thm. 3.7.1, p. 65 (τ(SO) = 2, m ≥ 3)"]
 theorem tamagawaNumberTwo_all_ranks (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : TernaryTamagawaTwo F)
     (hloc : OddRankOrbitalLocalIdentities F) {N : ℕ} (hN : 3 ≤ N) (Q₀ : QuadForm (𝓞 F) N)
@@ -569,8 +580,8 @@ theorem siegelFormulaAt_odd (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : Te
 /-- **Siegel's formula for numbers in every rank $N \ge 4$** ($F$ totally real of degree $\ge 2$, $\mathcal O_F$ a PID, $Q_0$ totally positive
 definite over $\mathcal O_F$, $m \in \mathcal O_F$ totally positive):
 $$\sum_{\mathrm{cls}M\subseteq\mathrm{gen}\,\mathcal O_F^N}\frac{r_M(m)}{|O(M)|} = \mathrm{Mass}(\mathcal O_F^N)\cdot|d_F|^{-\frac{N-1}2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(L, m)$$
-(`SiegelFormulaAt`). Even $N$: unconditional; odd $N$: conditional on `TernaryTamagawaTwo F` and
-`OddRankOrbitalLocalIdentities F` (`siegelFormulaAt_odd`). -/
+(`SiegelFormulaAt`). Even $N$: unconditional (Hilbert modular forms); odd $N$: conditional on
+`TernaryTamagawaTwo F` and `OddRankOrbitalLocalIdentities F` (`siegelFormulaAt_odd`). -/
 @[kb "siegel1935" "Hauptsatz (numbers), every rank ≥ 4, over totally real F [unverified]"]
 theorem siegelFormulaAt_all_ranks (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : TernaryTamagawaTwo F)
     (hloc : OddRankOrbitalLocalIdentities F) {N : ℕ} (hN : 4 ≤ N) (Q₀ : QuadForm (𝓞 F) N)
@@ -596,12 +607,14 @@ theorem siegelFormula_genusAvg_all_ranks (hd : 2 ≤ Fintype.card (InfinitePlace
   rw [show repMass (formF Q₀) (stdLat F N) (algebraMap (𝓞 F) F m) = _ from hS, ← mul_assoc,
     inv_mul_cancel₀ hpos.ne', one_mul]
 
-/-- **Consistency with the Hilbert modular form argument: odd rank in the form** (`HilbertModular.siegelFormula_nf_repMass` is the even-rank statement): for odd
-$N = n + 1 \ge 5$, under the two named inputs,
-$\mathrm{repMass}(\mathcal O_F^N, m) = \mathrm{Mass}(\mathcal O_F^N)\cdot|d_F|^{-(N-1)/2}\,\mathtt{aENF}(Q_0, m)$, with the same Eisenstein-type local
-product `Siegel.aENF` (Hanke's (5.3) over $F$) and the same discriminant factor (the erratum) as there — so in every rank $N \ge 4$
+/-- **Consistency with the Hilbert modular forms formula: odd rank in the same form**
+(`HilbertModular.siegelFormula_nf_repMass` is the even-rank statement): for odd $N = n + 1 \ge 5$, under the two named
+inputs,
+$\mathrm{repMass}(\mathcal O_F^N, m) = \mathrm{Mass}(\mathcal O_F^N)\cdot|d_F|^{-(N-1)/2}\,\mathtt{aENF}(Q_0, m)$,
+with the same Eisenstein-type local product `Siegel.aENF` (Hanke's (5.3) over $F$) and the same discriminant factor
+(the erratum) as in the even-rank statement — so in every rank $N \ge 4$
 the genus average is $|d_F|^{-(N-1)/2}\,\mathtt{aENF}$, by Hilbert modular forms of weight $N/2$ for even $N$ and by $\tau = 2$ for odd $N$. -/
-@[kb "siegel1935" "Hauptsatz over F in the aENF form, odd rank ≥ 5 [unverified]"]
+@[kb "siegel1935" "Hauptsatz over F in the Hilbert modular forms form (aENF), odd rank ≥ 5 [unverified]"]
 theorem siegelFormula_odd_aENF (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT : TernaryTamagawaTwo F)
     (hloc : OddRankOrbitalLocalIdentities F) {n : ℕ} (hn : 4 ≤ n) (he : Even n) (Q₀ : QuadForm (𝓞 F) (n + 1))
     (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 F} (hm : ∀ v, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
@@ -612,14 +625,14 @@ theorem siegelFormula_odd_aENF (hd : 2 ≤ Fintype.card (InfinitePlace F)) (hT :
 
 end Induction
 
-/-! ### Consistency with the even-rank statement, and $F = \mathbb Q$ -/
+/-! ### Consistency with the Hilbert modular forms formula, and $F = \mathbb Q$ -/
 
 section Consistency
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] [IsPrincipalIdealRing (𝓞 F)]
 
 /-- **Siegel's formula in every rank $N \ge 5$ without $[F:\mathbb Q] \ge 2$** (so for $F = \mathbb Q$ too, see `siegelFormulaAt_rat`), given
-$\tau(SO_4) = 2$ (`QuaternaryTamagawaTwo F`) and the odd-rank local identities. Even $N \ge 6$: Hilbert modular forms (unconditional); odd $N$:
+$\tau(SO_4) = 2$ (`QuaternaryTamagawaTwo F`) and the odd-rank local identities. Even $N \ge 6$: unconditional (Hilbert modular forms); odd $N$:
 `siegelFormulaAt_of_local` with `tamagawaNumberTwo_of_four`. -/
 @[kb "siegel1935" "Hauptsatz (numbers), every rank ≥ 5, any totally real F with h_F = 1 [unverified]"]
 theorem siegelFormulaAt_of_four (h4 : QuaternaryTamagawaTwo F) (hloc : OddRankOrbitalLocalIdentities F) {N : ℕ}
@@ -632,13 +645,13 @@ theorem siegelFormulaAt_of_four (h4 : QuaternaryTamagawaTwo F) (hloc : OddRankOr
       (tamagawaNumberTwo_of_four h4 hloc (by omega) Q₀ hpd)
       (fun Q' hQ' => tamagawaNumberTwo_of_four h4 hloc (by omega) Q' hQ') hm
 
-/-- **Consistency of the two routes in even rank** (the Siegel formula vs Weil's local identities): for $Q_0$ totally positive definite in
+/-- **Consistency of the two routes in even rank** (the Siegel formula from Hilbert modular forms vs Weil's local identities): for $Q_0$ totally positive definite in
 even rank $N = n + 1 \ge 6$ (or $N = 4$ with $[F:\mathbb Q] \ge 2$), a totally positive $m$ with $S(L, m) \ne 0$ and an adapted frame
-$Q_0\circ g = \langle m\rangle\perp Q_0'$ with the local orbital identity at every prime, Hilbert modular forms (`siegelFormulaAt_of_pid`) and
+$Q_0\circ g = \langle m\rangle\perp Q_0'$ with the local orbital identity at every prime, the Siegel formula from Hilbert modular forms (`siegelFormulaAt_of_pid`) and
 the per-number identity of Weil's route (`two_mul_tamagawaK_mul_repMass_frame`) together give $\tau(SO(Q_0)) = \tau(SO(Q_0'))$ — with **no**
-$\tau = 2$ input. So where both apply they agree: the genus average forces exactly the equality of Tamagawa numbers that Weil's
+$\tau = 2$ input. So where both apply they agree: the genus average from Hilbert modular forms forces exactly the equality of Tamagawa numbers that Weil's
 induction step propagates. -/
-@[kb "weil1982" "§4.5, p. 100 (τ(G) = τ(G') ⟺ Siegel's theorem), even rank"]
+@[kb "weil1982" "§4.5, p. 100 (τ(G) = τ(G') ⟺ Siegel's theorem), even rank, via Hilbert modular forms"]
 theorem tauSO_eq_tauSO_frame_of_even {n : ℕ} (hn : 3 ≤ n) (heven : Even (n + 1))
     (hd : n + 1 = 4 → 2 ≤ Fintype.card (InfinitePlace F)) (Q₀ : QuadForm (𝓞 F) (n + 1))
     (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 F} (hm : ∀ v, 0 < realEmb F v (algebraMap (𝓞 F) F m))

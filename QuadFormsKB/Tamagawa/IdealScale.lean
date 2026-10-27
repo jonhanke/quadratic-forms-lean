@@ -10,7 +10,8 @@ import QuadFormsKB.Tamagawa.LocalSmith
 
 For an exponent vector $e = (e_\mathfrak p)$ with finite support (e.g. $e_\mathfrak p = \mathrm{ord}_\mathfrak p\mathfrak b$ for a fractional ideal
 $\mathfrak b$) and a lattice $L \subseteq F^n$, **`scaleLat e L`** is the lattice glued from the local lattices $\varpi_\mathfrak p^{e_\mathfrak p}L_\mathfrak p$
-(`LocFamily.glue`); for $e = \mathrm{ord}\,\mathfrak b$ it is $\mathfrak bL$, in general a **non-free** lattice. No class-number hypothesis.
+(`LocFamily.glue`); for $e = \mathrm{ord}\,\mathfrak b$ it is $\mathfrak bL$, in general a **non-free** lattice.
+No class-number hypothesis.
 
 **Proves**
 * `loc_scaleLat`, `scaleLat_image` ($\gamma(\mathfrak bL) = \mathfrak b(\gamma L)$), `scaleLat_scaleLat`, `scaleLat_zero`, `scaleLat_le`;
@@ -120,9 +121,9 @@ def scaleFamily (e : HeightOneSpectrum (𝓞 F) → ℤ) (he : ∀ᶠ v in Filte
     filter_upwards [he, loc_eventually_std L.2] with v hv hL
     rw [hv, hL, scalGL_zero, locAct_one]
 
-/-- **The lattice $\varpi^eL$** with localizations $\varpi_\mathfrak p^{e_\mathfrak p}L_\mathfrak p$ ($= \mathfrak bL$ for $e = \mathrm{ord}\,\mathfrak b$; O'Meara §81
-[unverified]). In general not free. -/
-@[kb "omeara1963" "§81 (lattices from local data; aL for a fractional ideal a) [unverified]"]
+/-- **The lattice $\varpi^eL$** with localizations $\varpi_\mathfrak p^{e_\mathfrak p}L_\mathfrak p$ ($= \mathfrak bL$ for $e = \mathrm{ord}\,\mathfrak b$; O'Meara §81E,
+p. 217). In general not free. -/
+@[kb "omeara1963" "§81E, p. 217 (𝔞L, with (𝔞L)_𝔭 = 𝔞_𝔭L_𝔭)"]
 def scaleLat (e : HeightOneSpectrum (𝓞 F) → ℤ) (he : ∀ᶠ v in Filter.cofinite, e v = 0) (L : Lat F n) : Lat F n :=
   ⟨(scaleFamily e he L).glue, (scaleFamily e he L).glue_isLattice⟩
 
@@ -270,9 +271,9 @@ theorem repCount_classScale (c : LatClass Q) (t : F) :
   conv_lhs => rw [← Quotient.out_eq c]
   rfl
 
-/-- **The genus sum of the non-free lattice $\varpi^eL$** (O'Meara §102 [unverified]):
+/-- **The genus sum of the non-free lattice $\varpi^eL$** (O'Meara §102A, p. 297; scaling, p. 299):
 $$\mathrm{repMass}(\varpi^eL, t) = \sum_{\mathrm{cls}M\subseteq\mathrm{gen}L}\frac{r(\varpi^eM, t)}{|O(M)|}.$$ -/
-@[kb "omeara1963" "§102 (genus of aL) [unverified]"]
+@[kb "omeara1963" "§102A, p. 297"]
 theorem repMass_scaleLat (L : Lat F n) (t : F) :
     repMass Q (scaleLat e he L) t =
       ∑ᶠ c ∈ genusClasses Q L, (repCount Q (scaleLat e he c.out) t : ℝ) / LatClass.autCard Q c := by

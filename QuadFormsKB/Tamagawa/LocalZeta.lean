@@ -746,7 +746,7 @@ theorem zetaInt_eq_mul_haar (ν : Measure (v.adicCompletion F)) [SigmaFinite ν]
 
 /-- **The self-dual local zeta function** (measure `selfDualV`, self-dual for the standard character $\psi_v$):
 $Z_v^{\mathrm{sd}}(s) = N(\mathfrak d_v)^{-n/2}\,Z_v^{\mathrm{std}}(s)$, $\mathfrak d_v = \mathfrak p_v^{d_v}$ the local different. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, vol(O_v) = N(d_v)^{-1/2} [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (vol(o) = (N𝔡)^{−1/2})"]
 theorem zetaInt_selfDual (Q : QuadForm 𝔬 n) (hQ : Q.Nondegenerate) (hn : 1 ≤ n) {s : ℝ} (hs : 0 ≤ s) :
     zetaInt v (selfDualV v) Q s =
       (((Ideal.absNorm v.asIdeal : ℝ) ^ diffExp v) ^ (-(1 : ℝ) / 2)) ^ n * zetaInt v (haarV v) Q s := by

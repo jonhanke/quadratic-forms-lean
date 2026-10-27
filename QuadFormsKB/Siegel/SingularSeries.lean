@@ -1,6 +1,5 @@
 /-
 # The singular series and the Euler product of local densities
-
 For an integral form $Q$ in $n$ variables, $A = H/2$ its Gram matrix, $m \in \mathbb{Z}$ and $c \ge 1$ put
 $$A_c(m) = c^{-n}\sum_{\substack{0 \le a < c\\ \gcd(a, c) = 1}} G_A(a, c)\,e\Big(\!-\frac{am}{c}\Big), \qquad
   G_A(a, c) = \sum_{\vec{r} \bmod c} e\Big(\frac{a\,Q(\vec{r})}{c}\Big)$$

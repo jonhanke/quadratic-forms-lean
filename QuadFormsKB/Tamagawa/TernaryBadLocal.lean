@@ -12,8 +12,8 @@ import QuadFormsKB.Tamagawa.TernaryBadDVR
 **Layer:** $F$ a number field with $\mathcal O_F$ a PID, a finite place $v$, the completion $\mathfrak o_v \subset F_v$; a maximal order
 $\mathcal O$ of $D = (a,b)_F$ with a trace-zero frame (`TZFrame`), $Q_0$ over $\mathcal O_F$ with $Q_0\otimes F = Q_{\mathcal O^0}$.
 
-`TernaryTamagawaTwo F` is reduced to `TraceZeroBadLocalFactors F`: the value of $\alpha_v(Q_0, Q_0)$ (`tzFactor`) at every place
-$v \mid 2$ and every $v \in \mathrm{Ram}_f(D)$. This file proves it at
+`TernaryTamagawaTwo F` was reduced to `TraceZeroBadLocalFactors F`: the value of $\alpha_v(Q_0, Q_0)$ (`tzFactor`)
+at every place $v \mid 2$ and every $v \in \mathrm{Ram}_f(D)$. This file proves it at
 
 * **split dyadic places** ($v \mid 2$, $v \notin \mathrm{Ram}_f$): $\mathcal O_v^0 \cong \mathfrak{sl}_2(\mathfrak o_v)$ with $\det$ *integrally*
   (`TZFrame.exists_GL_split`: $Q_0 \cong \langle -1\rangle\perp(-x_1x_2)$ over $\mathfrak o_v$), so the frame lemma gives

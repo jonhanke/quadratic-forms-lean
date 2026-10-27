@@ -1,6 +1,5 @@
 /-
 # Local densities over a number field: the headline local results at every $\mathfrak p$
-
 **Layer:** number field (statements for $Q$ = `QuadForm (𝓞 F) n` at a finite prime $\mathfrak p$ = `v`).
 **Defines** the local density $\beta_\mathfrak p(Q, m) = \lim_k r_{\mathfrak p^k}(m)/(N\mathfrak p)^{k(n-1)}$ directly over
 $\mathcal O_F$ (`NF.localDensity`), the primitive density, the local constant $C_\mathfrak p$, and the notions
@@ -141,8 +140,8 @@ theorem tendsto_localDensity (Q : QuadForm (𝓞 F) n) (hQ : Q.Nondegenerate) (m
   tendsto_const_nhds.congr' (by
     filter_upwards [localDensity_eventually_eq v Q hQ m hm] with k hk using hk.symm)
 
-/-- **Local normal form over $\mathfrak o_\mathfrak p$, corrected** (Hanke 2004, Lemma 2.1, p. 355, corrected; see
-`docs/updates-and-errata.md`): every nondegenerate $Q$ over $\mathcal O_F$ has the counts mod $\mathfrak p^k$ of a form
+/-- **Local normal form over $\mathfrak o_\mathfrak p$, corrected** (Hanke 2004, Lemma 2.1, p. 355, corrected):
+every nondegenerate $Q$ over $\mathcal O_F$ has the counts mod $\mathfrak p^k$ of a form
 $Q'$ over $\mathfrak o_\mathfrak p$ in the general normal form `IsJordanFormW`, with no 2-dimensional blocks when
 $\mathfrak p \nmid 2$. From `DVR.exists_jordanFormW`. -/
 @[kb "hanke2004" "Lemma 2.1, p. 355 (corrected)"]

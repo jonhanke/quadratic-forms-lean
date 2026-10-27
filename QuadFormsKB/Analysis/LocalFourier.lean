@@ -12,6 +12,11 @@ $r \in \mathbb{Z}[1/p]$ (`exists_pFrac`), unique modulo $\mathbb{Z}$ (`pFrac_sub
 $p$-adic fractional part $\{x\}_p$, and $\psi_p(x) = e(-\{x\}_p)$ (`psiP`) is a continuous additive character
 $\mathbb{Q}_p \to \mathbb{C}^1$ (`continuous_psiP`) with kernel exactly $\mathbb{Z}_p$ (`psiP_eq_one_iff`); `psiP_inv_p`:
 $\psi_p(1/p) = e(-1/p) \ne 1$. The sign is Tate's: for $r \in \mathbb{Q}$, $e(r)\prod_p \psi_p(r) = 1$.
+*Convention (Tate's sign):* Tate (Cassels–Fröhlich, Ch. XV, §2.2, p. 309) identifies $\eta$ with the character $\xi
+\mapsto e^{2\pi i\lambda(\eta\xi)}$, where $\lambda(x) = -x$ on $\mathbb{R}$ and $\lambda(x) \equiv \{x\}_p$ on
+$\mathbb{Q}_p$; our character is $e^{-2\pi i\lambda}$, its complex conjugate. Tate's Fourier transform $\hat f(\eta) =
+\int f(\xi)e^{-2\pi i\lambda(\eta\xi)}\,d\xi$ (Thm. 2.2.2, p. 310) is therefore exactly ours, $\int f(x)\psi(xy)\,dx$,
+and his inversion formula reads $\hat{\hat f}(\xi) = f(-\xi)$.
 
 **Haar measure.** `haarP`: $\operatorname{vol}(\mathbb{Z}_p) = 1$; `haarP_closedBall`: $\operatorname{vol}(p^k\mathbb{Z}_p) = p^{-k}$,
 $k \in \mathbb{Z}$. `annihP_latticeP`: $(p^k\mathbb{Z}_p)^\perp = p^{-k}\mathbb{Z}_p$ for the pairing $\psi_p(xy)$, and
@@ -30,7 +35,9 @@ functions (finite combinations of coset indicators, `IsSchwartzBruhatP`).
 
 The general completion $F_v$ of a number field is in `LocalFourierNF.lean`.
 
-Sources: Tate's thesis, in Cassels–Fröhlich, *Algebraic Number Theory*, Ch. XV, §2.2 [unverified];
+Sources: Tate's thesis, in Cassels–Fröhlich, *Algebraic Number Theory*, Ch. XV, §2.2, pp. 308–311 ($\lambda$ and
+Lemmas 2.2.2–2.2.3, p. 309; the self-dual measure and Thm. 2.2.2, p. 310), §2.5, p. 316 (the Gaussian), §3.3, p. 327
+($\operatorname{vol}(H)\operatorname{vol}(H^*) = 1$); Cassels, *Global fields*, Ch. II, §7, pp. 50–51 (Haar measure on $k^+$);
 Weil, *Basic Number Theory*, Ch. II §5 [unverified].
 -/
 
@@ -156,8 +163,9 @@ lemma fourierChar_pFrac_eq {x : ℚ_[p]} {r s : ℚ} (hr : IsPFrac p r) (hs : Is
 
 /-- **The standard additive character of $\mathbb{Q}_p$:** $\psi_p(x) = e(-\{x\}_p)$, where $\{x\}_p \in \mathbb{Z}[1/p]$ is
 the $p$-adic fractional part (`padicFract`, any $r \in \mathbb{Z}[1/p]$ with $x - r \in \mathbb{Z}_p$, see `psiP_eq`).
-Tate's normalization: for $r \in \mathbb{Q}$, $e(r) \prod_p \psi_p(r) = 1$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, the character $x \\mapsto e^{-2\\pi i\\lambda(x)}$ [unverified]"]
+Tate's normalization: for $r \in \mathbb{Q}$, $e(r) \prod_p \psi_p(r) = 1$. Tate's own character (Ch. XV, p. 309) is
+$e^{2\pi i\lambda(x)} = e(\{x\}_p)$, the complex conjugate of $\psi_p$; the Fourier transforms agree (module docstring). -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 309 (Case 2: λ(x) ∈ ℤ[1/p] with λ(x) − x ∈ ℤ_p) and Thm. 2.2.1, p. 309"]
 def psiP : AddChar ℚ_[p] Circle where
   toFun x := 𝐞 (-(padicFract x : ℝ))
   map_zero_eq_one' := by
@@ -185,7 +193,7 @@ theorem psiP_pFrac {r : ℚ} (hr : IsPFrac p r) : psiP (r : ℚ_[p]) = 𝐞 (-(r
   psiP_eq hr (by simp)
 
 /-- **The kernel of $\psi_p$ is exactly $\mathbb{Z}_p$:** $\psi_p(x) = 1 \iff \|x\|_p \le 1$ (conductor $\mathbb{Z}_p$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Lemma 2.2.1 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, proof of Lemma 2.2.2, p. 309 (λ(x) = 0 iff x is a p-adic integer); Lemma 2.2.3, pp. 309–310, with 𝔡 = 1"]
 theorem psiP_eq_one_iff (x : ℚ_[p]) : psiP x = 1 ↔ ‖x‖ ≤ 1 := by
   constructor
   · intro h
@@ -207,7 +215,7 @@ lemma psiP_add_of_norm_le_one (x : ℚ_[p]) {z : ℚ_[p]} (hz : ‖z‖ ≤ 1) :
   rw [AddChar.map_add_eq_mul, (psiP_eq_one_iff z).mpr hz, mul_one]
 
 /-- **$\psi_p$ is continuous** (indeed locally constant). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.2, p. 309"]
 theorem continuous_psiP : Continuous (psiP (p := p)) := by
   refine continuous_iff_continuousAt.mpr fun x => (continuousAt_const (y := psiP x)).congr ?_
   filter_upwards [ball_mem_nhds x one_pos] with y hy
@@ -250,7 +258,7 @@ def zpCompacts : TopologicalSpace.PositiveCompacts ℚ_[p] where
 /-- **The Haar measure $dx$ on $\mathbb{Q}_p$ normalized by $\operatorname{vol}(\mathbb{Z}_p) = 1$.** Since the
 conductor of $\psi_p$ is $\mathbb{Z}_p$ (the different of $\mathbb{Q}_p/\mathbb{Q}_p$ is trivial), this is the measure that
 is self-dual for $\psi_p$ (`haarP_selfDual`, `fourierInvP_fourierP_of_isSchwartzBruhat`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, self-dual measure [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (the self-dual measure); Ch. II (Cassels), §7, (7.2), p. 50"]
 def haarP : Measure ℚ_[p] := Measure.addHaarMeasure (zpCompacts p)
 
 instance : (haarP p).IsAddHaarMeasure := by unfold haarP; infer_instance
@@ -355,7 +363,7 @@ lemma haarP_closedBall_succ (k : ℤ) :
   rw [tsum_fintype, Finset.sum_const, Finset.card_univ, Fintype.card_fin, nsmul_eq_mul]
 
 /-- **Volumes of the lattices:** $\operatorname{vol}(p^k\mathbb{Z}_p) = p^{-k}$ for all $k \in \mathbb{Z}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §7, p. 50 (μ(a + πⁿo) = P^{−n} under (7.2)) and Thm., p. 51"]
 theorem haarP_closedBall (k : ℤ) :
     haarP p (closedBall 0 ((p : ℝ) ^ (-k))) = ENNReal.ofReal ((p : ℝ) ^ (-k)) := by
   have hpE : (p : ENNReal) = ENNReal.ofReal p := by simp
@@ -397,7 +405,7 @@ open scoped Classical in
 a measurable subgroup $H$ and a character $\chi : G \to \mathbb{C}^1$,
 $$\int_H \chi(x)\, d\mu(x) = \begin{cases} \mu(H) & \chi|_H = 1,\\ 0 & \text{otherwise.}\end{cases}$$
 (If $\mu(H) = \infty$, both sides are $0$ by Lean's conventions.) -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.5, p. 320 (the integral of an additive character over a compact subgroup is its measure or 0)"]
 theorem setIntegral_addChar_addSubgroup (μ : Measure G) [μ.IsAddLeftInvariant] (H : AddSubgroup G)
     (hH : MeasurableSet (H : Set G)) (χ : AddChar G Circle) :
     ∫ x in (H : Set G), (χ x : ℂ) ∂μ = if ∀ x ∈ H, χ x = 1 then (μ.real H : ℂ) else 0 := by
@@ -455,7 +463,7 @@ def annihP (S : Set ℚ_[p]) : Set ℚ_[p] := {y | ∀ x ∈ S, psiP (x * y) = 1
 
 /-- **The dual lattice:** $(p^k\mathbb{Z}_p)^\perp = p^{-k}\mathbb{Z}_p$ for the pairing $\psi_p(xy)$ (the conductor of
 $\psi_p$ is $\mathbb{Z}_p$, so the dual of $\mathbb{Z}_p$ is $\mathbb{Z}_p$). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Lemma 2.2.1 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Lemma 2.2.3, pp. 309–310 (𝔡 = 1 for ℚ_p), scaled by p^k"]
 theorem annihP_latticeP (k : ℤ) : annihP p (latticeP p k) = latticeP p (-k) := by
   ext y
   simp only [annihP, SetLike.mem_coe, mem_latticeP, Set.mem_ofPred_eq, psiP_eq_one_iff, neg_neg]
@@ -470,7 +478,7 @@ theorem annihP_latticeP (k : ℤ) : annihP p (latticeP p k) = latticeP p (-k) :=
       _ = 1 := by rw [← zpow_add₀ p_pos.ne', neg_add_cancel, zpow_zero]
 
 /-- **Self-duality of $dx$:** $\operatorname{vol}(L)\cdot\operatorname{vol}(L^\perp) = 1$ for every lattice $L = p^k\mathbb{Z}_p$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §3.3, p. 327 ((∫_{H} da)(∫_{H*} dc) = 1 for dual measures); self-dual measure §2.2, p. 310"]
 theorem haarP_selfDual (k : ℤ) :
     (haarP p).real (latticeP p k) * (haarP p).real (annihP p (latticeP p k)) = 1 := by
   rw [annihP_latticeP, coe_latticeP, coe_latticeP, haarP_real_closedBall, haarP_real_closedBall,
@@ -479,7 +487,7 @@ theorem haarP_selfDual (k : ℤ) :
 variable (p) in
 /-- **The Fourier transform on $\mathbb{Q}_p$** with respect to $\psi_p$ and the self-dual measure $dx$ (`haarP`):
 $$\hat f(y) = \int_{\mathbb{Q}_p} f(x)\,\psi_p(xy)\,dx.$$ -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310"]
 def fourierP (f : ℚ_[p] → ℂ) (y : ℚ_[p]) : ℂ := ∫ x, f x * (psiP (x * y) : ℂ) ∂haarP p
 
 variable (p) in
@@ -500,7 +508,7 @@ def ballInd (c : ℚ_[p]) (k : ℤ) : ℚ_[p] → ℂ :=
 /-- **Fourier transform of a lattice coset:**
 $$\widehat{\mathbf 1_{c + p^k\mathbb{Z}_p}}(y) = \operatorname{vol}(p^k\mathbb{Z}_p)\,\psi_p(cy)\,\mathbf 1_{p^{-k}\mathbb{Z}_p}(y)
   = p^{-k}\,\psi_p(cy)\,\mathbf 1_{(p^k\mathbb{Z}_p)^\perp}(y).$$ -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §3.3, p. 327 (the transform of the characteristic function of H is vol(H) times that of H*); §2.5, p. 320"]
 theorem fourierP_ballInd (c : ℚ_[p]) (k : ℤ) (y : ℚ_[p]) :
     fourierP p (ballInd p c k) y =
       if ‖y‖ ≤ (p : ℝ) ^ k then ((p : ℝ) ^ (-k) : ℂ) * (psiP (c * y) : ℂ) else 0 := by
@@ -536,7 +544,7 @@ theorem fourierP_ballInd (c : ℚ_[p]) (k : ℤ) (y : ℚ_[p]) :
   · simp
 
 /-- **Fourier inversion for lattice cosets:** $\check{\hat f} = f$ for $f = \mathbf 1_{c + p^k\mathbb{Z}_p}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 2.2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310, and its proof, p. 311 (one function suffices: the characteristic function of o)"]
 theorem fourierInvP_fourierP_ballInd (c : ℚ_[p]) (k : ℤ) :
     fourierInvP p (fourierP p (ballInd p c k)) = ballInd p c k := by
   ext x
@@ -615,8 +623,9 @@ variable (p) in
 /-- **Schwartz–Bruhat functions on $\mathbb{Q}_p$:** the finite linear combinations
 $f = \sum_{i<n} a_i\,\mathbf 1_{c_i + p^{k_i}\mathbb{Z}_p}$ of indicators of lattice cosets ($a_i \in \mathbb{C}$, $c_i \in \mathbb{Q}_p$,
 $k_i \in \mathbb{Z}$). These are exactly the locally constant compactly supported functions (that converse is not
-proved here). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (the class of functions for local Fourier analysis) [unverified]"]
+proved here). Tate does not use this class: his Fourier inversion (Ch. XV, Thm. 2.2.2, p. 310) is for the class
+$\mathfrak B_1$ of continuous integrable $f$ with $\hat f$ integrable (§1.3, pp. 307–308), which contains these functions. -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §1.3, pp. 307–308 (Tate's class 𝔅₁: f continuous and integrable with f̂ integrable)"]
 def IsSchwartzBruhatP (f : ℚ_[p] → ℂ) : Prop :=
   ∃ (n : ℕ) (a : Fin n → ℂ) (c : Fin n → ℚ_[p]) (k : Fin n → ℤ),
     f = fun x => ∑ i, a i * ballInd p (c i) (k i) x
@@ -636,7 +645,7 @@ lemma fourierP_sum {n : ℕ} (a : Fin n → ℂ) (c : Fin n → ℚ_[p]) (k : Fi
 
 /-- **Fourier inversion for Schwartz–Bruhat functions on $\mathbb{Q}_p$:** with the self-dual measure,
 $$f(x) = \int_{\mathbb{Q}_p} \hat f(y)\,\psi_p(-xy)\,dy, \qquad \hat f(y) = \int_{\mathbb{Q}_p} f(x)\,\psi_p(xy)\,dx.$$ -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 2.2.2 (Fourier inversion, self-dual measure) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310"]
 theorem fourierInvP_fourierP_of_isSchwartzBruhat {f : ℚ_[p] → ℂ} (hf : IsSchwartzBruhatP p f) :
     fourierInvP p (fourierP p f) = f := by
   obtain ⟨n, a, c, k, rfl⟩ := hf
@@ -668,9 +677,10 @@ section RealPlace
 
 open Complex in
 /-- **The standard character at a real place:** $\psi_\infty(x) = e(x) = e^{2\pi i x}$ on $\mathbb{R}$ (Mathlib's
-`Real.fourierChar`). With Tate's sign convention $\psi_p(x) = e(-\{x\}_p)$ at the finite places, the product
-$\psi_\infty(r)\prod_p\psi_p(r)$ is $1$ for $r \in \mathbb{Q}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, the character at $\\mathbb{R}$ [unverified]"]
+`Real.fourierChar`). With the sign $\psi_p(x) = e(-\{x\}_p)$ at the finite places (the kernel of Tate's Fourier transform), the product
+$\psi_\infty(r)\prod_p\psi_p(r)$ is $1$ for $r \in \mathbb{Q}$. Tate's character at $\mathbb{R}$ is
+$e^{2\pi i\lambda(x)} = e(-x)$ ($\lambda(x) = -x$, Ch. XV, p. 309), the complex conjugate of $\psi_\infty$. -/
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 309 (Case 1: λ(x) = −x, with Tate's note on the minus sign)"]
 def psiR : AddChar ℝ Circle := Real.fourierChar
 
 lemma psiR_apply (x : ℝ) : psiR x = 𝐞 x := rfl
@@ -680,7 +690,7 @@ theorem continuous_psiR : Continuous psiR := Real.continuous_fourierChar
 /-- **The Fourier transform at a real place:** $\hat f(y) = \int_{\mathbb{R}} f(x)\,\psi_\infty(xy)\,dx$, with Lebesgue
 measure (which is self-dual for $\psi_\infty$, `fourierInvR_fourierR`). It is Mathlib's inverse transform
 `𝓕⁻ f` (kernel $e(+xy)$), see `fourierR_eq`. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310 (k = ℝ)"]
 def fourierR (f : ℝ → ℂ) (y : ℝ) : ℂ := ∫ x, f x * (psiR (x * y) : ℂ)
 
 /-- The inverse transform $\check g(x) = \int_{\mathbb{R}} g(y)\,\psi_\infty(-xy)\,dy$ (Mathlib's `𝓕 g`). -/
@@ -703,7 +713,7 @@ lemma fourierInvR_eq (g : ℝ → ℂ) : fourierInvR g = 𝓕 g := by
 
 /-- **Fourier inversion at a real place** (Lebesgue measure is self-dual for $\psi_\infty$): for $f$ continuous and
 integrable with $\hat f$ integrable, $\int \hat f(y)\psi_\infty(-xy)\,dy = f(x)$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Thm. 2.2.2, p. 310 (k = ℝ; the hypotheses are the class 𝔅₁, pp. 307–308)"]
 theorem fourierInvR_fourierR {f : ℝ → ℂ} (h : Continuous f) (hf : Integrable f)
     (hf' : Integrable (fourierR f)) : fourierInvR (fourierR f) = f := by
   rw [fourierR_eq, fourierInvR_eq]
@@ -721,7 +731,7 @@ theorem fourierInvR_fourierR {f : ℝ → ℂ} (h : Continuous f) (hf : Integrab
 `fourier_gaussian_innerProductSpace`): for $\operatorname{Re} b > 0$,
 $$\int_{\mathbb{R}} e^{-b x^2}\,e(xy)\,dx = (\pi/b)^{1/2}\,e^{-\pi^2 y^2/b}$$
 (principal branch of the power). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, Gaussian at $\\mathbb{R}$ [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.5, pp. 316–317 (the classical integral, by completing the square)"]
 theorem fourierR_gaussianSchwartz (b : ℂ) (hb : 0 < b.re) (y : ℝ) :
     fourierR (gaussianSchwartz (E := ℝ) b hb) y =
       (π / b) ^ (1 / 2 : ℂ) * Complex.exp (-π ^ 2 * (y : ℂ) ^ 2 / b) := by
@@ -736,7 +746,7 @@ theorem fourierR_gaussianSchwartz (b : ℂ) (hb : 0 < b.re) (y : ℝ) :
   rw [this]
 
 /-- **The Gaussian $e^{-\pi x^2}$ is self-dual at a real place:** $\int_{\mathbb{R}} e^{-\pi x^2} e(xy)\,dx = e^{-\pi y^2}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.5, p. 316 (e^{−πξ²} is its own transform); proof of Thm. 2.2.2, p. 311"]
 theorem fourierR_gaussian_pi (y : ℝ) :
     fourierR (gaussianSchwartz (E := ℝ) (π : ℂ) (by simp [Real.pi_pos])) y =
       Complex.exp (-π * (y : ℂ) ^ 2) := by

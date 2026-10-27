@@ -2,7 +2,7 @@
 # Kneser neighbours, part 5: the mass completeness criterion
 
 **Layer:** integral forms (`QuadForm ℤ n`), their $\mathrm{GL}_n(\mathbb{Z})$-classes (`QClass`) and the mass
-$\mathrm{Mass}(Q) = \sum_{[Q'] \in \mathrm{Gen}(Q)} 1/|\mathrm{Aut}(Q')|$ (`Siegel/Mass.lean`; the convention of this repository: $\mathrm{GL}$-classes,
+$\mathrm{Mass}(Q) = \sum_{[Q'] \in \mathrm{Gen}(Q)} 1/|\mathrm{Aut}(Q')|$ (`Siegel/Mass.lean`; the library's convention: $\mathrm{GL}$-classes,
 $\mathrm{Aut} \subseteq \mathrm{GL}_n(\mathbb{Z})$ including improper automorphisms).
 
 **Proves** the stopping rule of the neighbour method (Schulze-Pillot 1991, §2; Scharlau–Hemkemeier 1998, §2; Conway–Sloane 1988,

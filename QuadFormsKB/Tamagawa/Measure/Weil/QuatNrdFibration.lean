@@ -6,7 +6,7 @@
 * `nrdPos : (D⊗𝔸)^× →* A_+` (the reduced norm onto $A_+ = $ `posA a b`, the ideles positive at the ramified real places),
   surjective (`exists_nrdUnit_eq`); `kerPosEquiv : ker nrdPos ≃ₜ* SL1A`; `muSL1P` = `muSL1` on `ker nrdPos`;
   `muPosA` = `tamIdeles` restricted to $A_+$.
-* **`fibMeas_nrdPos`**: $\int_{A_+}(g_a\cdot)_*\mu_{\mathrm{SL}_1}\,d\mu_{A_+}(a) = $ `tamQuat`, i.e. The Tamagawa measure of
+* **`fibMeas_nrdPos`**: $\int_{A_+}(g_a\cdot)_*\mu_{\mathrm{SL}_1}\,d\mu_{A_+}(a) = $ `tamQuat`, i.e. the Tamagawa measure of
   $(D\otimes\mathbb A)^\times$ is the fibred measure of `tamIdeles` and $\mu_{\mathrm{SL}_1}$ along $\operatorname{nrd}$ (Weil 1982,
   §2.4, Thm 2.4.4: the gauge form $\omega_{D^\times} = \omega_{\mathrm{SL}_1}\wedge\operatorname{nrd}^*(dx/x)$). `fibMeas_muSL1`
   is the norm-one version; the full version follows by splitting off $\|\operatorname{nrd}x\|$ on both sides, exactly as
@@ -104,7 +104,7 @@ variable (ha : ∀ v : IsDedekindDomain.HeightOneSpectrum (𝓞 F), Valued.v (al
   (ha0 : a ≠ 0) (hb0 : b ≠ 0)
 
 include ha hb ha0 hb0 in
-/-- The Tamagawa measure of $\mathrm{SL}_1$ on $\ker(\operatorname{nrd}\to A_+)$. -/
+/-- The Tamagawa measure `muSL1` of $\mathrm{SL}_1$ transported to $\ker(\operatorname{nrd}\to A_+)$. -/
 def muSL1P : Measure (nrdPos a b).ker := (muSL1 ha hb ha0 hb0).map (kerPosEquiv a b).symm
 
 include ha hb ha0 hb0 in
@@ -207,7 +207,7 @@ theorem fibK_nrdPos_shell (μ : Measure (SL1A a b)) (x : (QuatAdele a b)ˣ) {E :
 set_option maxHeartbeats 1600000 in
 include ha hb ha0 hb0 in
 /-- **The reduced-norm fibration of `tamQuat`**: `tamQuat` is the fibred measure of $\mu_{A_+}$ (= `tamIdeles` on $A_+$)
-and the $\mu_{\mathrm{SL}_1}$ along $\operatorname{nrd} : (D\otimes\mathbb A)^\times\to A_+$. -/
+and $\mu_{\mathrm{SL}_1}$ along $\operatorname{nrd} : (D\otimes\mathbb A)^\times\to A_+$. -/
 @[kb "weil1982" "§2.4, Thm 2.4.4 (Tamagawa measures in an exact sequence) [unverified page]"]
 theorem fibMeas_nrdPos :
     NormalFib.fibMeas (nrdPos a b) (nrdPos_surjective ha0 hb0) (muPosA a b) (muSL1P ha hb ha0 hb0) =

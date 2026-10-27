@@ -134,6 +134,7 @@ theorem nondegenerate_orthSum {Q₁ : QuadForm F m} {Q₂ : QuadForm F n} (h₁ 
 
 /-- **A diagonal form with nonzero entries is nondegenerate** (characteristic $0$): its Hessian is
 $\operatorname{diag}(2a_0, \dots, 2a_{n-1})$. -/
+@[kb "cassels1978" "Ch. 2, Lemma 1.5, p. 14"]
 theorem nondegenerate_diag [CharZero F] {a : Fin n → F} (ha : ∀ i, a i ≠ 0) :
     (diag a).Nondegenerate := by
   unfold Nondegenerate hessian diag
@@ -153,6 +154,7 @@ $Q \perp \langle -c \rangle$ is isotropic over $K$.
 $Q(\vec{x}) = c t^2$. If $t \ne 0$, $Q(t^{-1}\vec{x}) = c$. If $t = 0$, then $\vec{x} \ne 0$ is isotropic;
 by nondegeneracy some $\vec{w}$ has $b_Q(\vec{x}, \vec{w}) \ne 0$, and
 $Q(s\vec{x} + \vec{w}) = s\, b_Q(\vec{x}, \vec{w}) + Q(\vec{w})$ takes the value $c$. -/
+@[kb "cassels1978" "Ch. 2, Lemma 2.3, p. 16"]
 theorem representsIn_iff_isotropicIn_orthSum {Q : QuadForm F n} (hQ : Q.Nondegenerate) (c : F) :
     Q.RepresentsIn K c ↔ (orthSum Q (diag ![-c])).IsotropicIn K := by
   have hev : ∀ x : Fin (n + 1) → K, (orthSum Q (diag ![-c])).evalIn K x =

@@ -1,7 +1,7 @@
 import QuadFormsKB.Binary.GenusAverage
 
 /-!
-# Gauss's duplication theorem: the principal genus is $\mathrm{Cl}^2$
+# Gauss's duplication theorem: The principal genus is $\mathrm{Cl}^2$
 
 For a fundamental discriminant $D < 0$ with $t$ prime factors:
 
@@ -83,7 +83,7 @@ $g$ with $g_a > 0$ and $g_a \mid g_b$. *Proof:* the improper automorphism $\gamm
 $(v, u)$; $\gamma u + u = k v$ (a fixed vector with $\det(v, \gamma u + u) = -1 + 1 = 0$); for $g = f \circ (v\ u)$,
 $f(\gamma(v + u)) = f(v + u)$ and $f(\gamma u) = f(u)$ give $g(1 + k, -1) - g(k, -1) = g(1, 1) - g(0, 1)$, i.e.
 $g_b = k g_a$. -/
-@[kb "cox2013" "§3.B, Exercise 3.8 [unverified locator]"]
+@[kb "cox2013" "§3.B, Exercise 3.8 [unverified locator]; cassels1978 Ch. 14, Lemma 4.1, p. 341"]
 theorem exists_sLEquiv_a_dvd_b {f : BinQF} (hpos : f.PosDef) (hc : SLEquiv (conjForm f) f) :
     ∃ g : BinQF, SLEquiv f g ∧ 0 < g.a ∧ g.a ∣ g.b := by
   obtain ⟨p, q, r, s, hd, h⟩ := (sLEquiv_iff _ _).mp hc
@@ -481,7 +481,7 @@ theorem card_twoTorsion_congr :
 $$|\mathrm{Cl}(\mathcal O_{K_D})[2]| = \#\{c : c^2 = 1\} = 2^{t-1}.$$
 $\le$: `card_twoTorsion_order_le` (ambiguous forms and ramified primes); $\ge$: genus theory
 (`IsFormClassGroup.card_twoTorsion_ge`). -/
-@[kb "gauss1801" "§§257–260 [unverified]"]
+@[kb "gauss1801" "§§257–260 [unverified]; cassels1978 Ch. 14, Lemma 4.3, Cor., p. 343"]
 theorem card_twoTorsion (hD : D < 0) :
     Nat.card {c : ClassGroup (𝓞 (QField D)) // c ^ 2 = 1} = 2 ^ (D.natAbs.primeFactors.card - 1) :=
   le_antisymm (card_twoTorsion_congr.trans_le (card_twoTorsion_order_le hD))
@@ -492,7 +492,7 @@ theorem card_twoTorsion (hD : D < 0) :
 $\gamma : \mathrm{Cl}(\mathcal O_{K_D}) \to \{\pm 1\}^t$, $[\mathfrak a_f] \mapsto (\chi_p(f))_{p \mid D}$, is the subgroup of squares:
 $$\ker\gamma = \mathrm{Cl}(\mathcal O_{K_D})^2 .$$
 So a form lies in the principal genus iff its class is a square, and each genus is a coset of $\mathrm{Cl}^2$. -/
-@[kb "gauss1801" "§286 [unverified]"]
+@[kb "gauss1801" "§286 [unverified]; cassels1978 Ch. 14, Thm. 3.1, p. 339"]
 theorem principalGenus_eq_sq (hD : D < 0) :
     (isFormClassGroup hD).genusHom.ker = (powMonoidHom 2 : ClassGroup (𝓞 (QField D)) →* _).range :=
   (isFormClassGroup hD).ker_genusHom_eq_range_sq hD ((card_twoTorsion hD).le)
