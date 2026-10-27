@@ -27,7 +27,7 @@ namespace QuadFormsKB.Siegel
 /-- **The $E_8$ form** $Q_{E_8}(\vec{x}) = \sum_{i=0}^{7} x_i^2 - \sum_{\{i,j\} \text{ an edge}} x_i x_j$, i.e. the form with
 upper-triangular coefficients $c_{ii} = 1$ and $c_{ij} = C_{ij}$ ($i < j$) for $C$ = `CartanMatrix.E 8`; its Hessian is
 $C$ (`e8_hessian`) and its values are given by `e8_eval`. -/
-@[kb "serre1973" "Ch. V §1.4.3, the lattice E₈ [unverified]"]
+@[kb "serre1973" "Ch. V §1.4.3, the lattice E₈ [unverified]; omeara1963 §106E, p. 331 (the lattice E_8)"]
 def e8 : QuadForm ℤ 8 := QuadForm.ofUpper fun i j => if i = j then 1 else CartanMatrix.E 8 i j
 
 /-- The Hessian of $Q_{E_8}$ is the $E_8$ Cartan matrix. -/
@@ -97,7 +97,7 @@ noncomputable def thetaE8 : ModularForm 𝒮ℒ 4 :=
 /-- **$\Theta_{E_8} = E_4$** as modular forms, $E_4$ Mathlib's normalized weight-4 Eisenstein series (constant term
 1). *Proof:* $\dim_{\mathbb{C}} M_4(\mathrm{SL}_2(\mathbb{Z})) = 1$ and $E_4 \ne 0$, so $\Theta_{E_8} = c\,E_4$; comparing
 constant terms ($r_{E_8}(0) = 1$) gives $c = 1$. -/
-@[kb "serre1973" "Ch. VII §6.6, Example 1 [unverified]"]
+@[kb "serre1973" "Ch. VII §6.6, Example 1 [unverified]; cassels1978 App. B, §5, p. 386 (no cusp forms: E_8)"]
 theorem thetaE8_eq_E₄ : thetaE8 = E₄ := by
   have hE : E₄ ≠ 0 := E_ne_zero (by norm_num) ⟨2, rfl⟩
   have hr : Module.finrank ℂ (ModularForm 𝒮ℒ 4) = 1 :=
@@ -113,7 +113,7 @@ theorem thetaE8_eq_E₄ : thetaE8 = E₄ := by
 $$r_{E_8}(m) = \#\{\vec{x} \in \mathbb{Z}^8 : Q_{E_8}(\vec{x}) = m\} = 240\,\sigma_3(m), \qquad \sigma_3(m) = \sum_{d \mid m} d^3.$$
 *Proof:* compare $q$-expansion coefficients in `thetaE8_eq_E₄` (`qExpansion_thetaMF_coeff`, Mathlib's
 `EisensteinSeries.E_qExpansion_coeff`); the factor $-2k/B_k = 240$ is read off from `E₄_qExpansion_coeff_one`. -/
-@[kb "serre1973" "Ch. VII §6.6, Example 1 [unverified]"]
+@[kb "serre1973" "Ch. VII §6.6, Example 1 [unverified]; cassels1978 App. B, §5, p. 386 (no cusp forms: E_8)"]
 theorem repNum_e8 {m : ℕ} (hm : 1 ≤ m) : repNum e8 m = 240 * σ 3 m := by
   have h := qExpansion_thetaMF_coeff e8_posDef e8_det (k := 4) rfl (dvd_refl 4) m
   have h1 := E₄_qExpansion_coeff_one

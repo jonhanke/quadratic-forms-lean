@@ -18,11 +18,12 @@ $B(x, y) = Q(x + y) - Q(x) - Q(y) = x^{\mathsf T} H y$ with $H$ = `Q.hessian`, s
 $\sigma\tau_x\sigma^{-1} = \tau_{\sigma x}$ (`symm_conj`); that `spinorKernel` is a subgroup **normal** in $O(V)(K)$;
 that $O'(V)(F)$ maps into $O'(V_\mathfrak p)$ (`orthMap_mem_spinorKernel`), so $O'(V) \subseteq O'(V_{\mathbb A_f})$.
 
-*Definition choice.* O'Meara (§55) defines $O'(V)$ as the kernel of the spinor norm $\theta$ on the rotation group
+*Definition choice.* O'Meara (§55, p. 137) defines $O'(V)$ as the kernel of the spinor norm $\theta$ on the rotation group
 $O^+(V)$. Here $O'(V)$ is defined directly from symmetry factorizations, which needs no well-definedness of
 $\theta$; `Lattices/SpinorNorm.lean` proves that it is the kernel of $\theta$ on $O^+(V)$ (the two definitions
-agree). Sources: O'Meara 1963, §§42–43 (symmetries), §55 (spinor norm, $O'(V)$), §101 ($O'_{\mathbb A}$)
-[unverified]; Cassels 1978, Ch. 10 §3 [unverified].
+agree). Sources: O'Meara 1963, §42E, pp. 96–97, and §43B, p. 102 (symmetries), §55, p. 137 (spinor norm, $O'(V)$),
+§101D, p. 296 ($J'_V$, the adelic $O'$); Cassels 1978, Ch. 10, §3, Corollary 3 to Thm. 3.1, p. 178 (spinor norm $\theta$; Cassels writes $\Theta$ for its kernel, O'Meara's
+$O'$, to avoid confusion with the commutator subgroup).
 -/
 import QuadFormsKB.Lattices.ClassSet
 import QuadFormsKB.Tamagawa.Reflection
@@ -99,8 +100,9 @@ theorem symmGL_mem (x : Fin n → K) : symmGL Q K x ∈ orthGroup Q K := by
   · rw [symmGL_of_eq_zero Q K (not_not.mp hx)]; exact (orthGroup Q K).one_mem
 
 /-- **The symmetry** $\tau_x \in O(V)(K)$ in $x \in K^n$ with $Q(x) \ne 0$:
-$\tau_x(y) = y - \frac{B(x,y)}{Q(x)}\,x$ (O'Meara 1963, §42 [unverified]). For $Q(x) = 0$ it is $1$ by convention. -/
-@[kb "omeara1963" "§42 (symmetries) [unverified]"]
+$\tau_x(y) = y - \frac{B(x,y)}{Q(x)}\,x$ (O'Meara 1963, §42E, pp. 96–97, who writes $\tau_y x = x - \frac{2B(x,y)}{Q(y)}\,y$ with $B(x,x) = Q(x)$; the same
+map). For $Q(x) = 0$ it is $1$ by convention. -/
+@[kb "omeara1963" "§42E, pp. 96–97 (symmetry τ_y)"]
 def symm (x : Fin n → K) : orthGroup Q K := ⟨symmGL Q K x, symmGL_mem Q K x⟩
 
 theorem symm_val {x : Fin n → K} (hx : Q.evalIn K x ≠ 0) :
@@ -137,7 +139,8 @@ theorem bilin_orth (σ : orthGroup Q K) (x y : Fin n → K) :
   rw [← mulVec_mulVec, ← mulVec_mulVec, dotProduct_mulVec x, vecMul_transpose]
 
 /-- **Conjugating a symmetry:** $\sigma\tau_x\sigma^{-1} = \tau_{\sigma x}$ for $\sigma \in O(V)(K)$
-(O'Meara 1963, 43:? [unverified]). -/
+(O'Meara 1963, §42E, p. 97). -/
+@[kb "omeara1963" "§42E, p. 97 (στ_xσ⁻¹ = τ_{σ x})"]
 theorem symm_conj (σ : orthGroup Q K) (x : Fin n → K) :
     σ * symm Q K x * σ⁻¹ = symm Q K ((σ : GL (Fin n) K).val *ᵥ x) := by
   have hQσ : Q.evalIn K ((σ : GL (Fin n) K).val *ᵥ x) = Q.evalIn K x :=
@@ -196,8 +199,8 @@ def IsSpinorWord (xs : List (Fin n → K)) : Prop :=
 
 /-- **The spinor kernel** $O'(V)(K)$: the products $\tau_{x_1}\cdots\tau_{x_r}$ of an even number $r$ of symmetries in
 anisotropic vectors with $Q(x_1)\cdots Q(x_r) \in K^{\times 2}$. Equivalently (`Lattices/SpinorNorm.lean`) the kernel
-of the spinor norm $\theta : O^+(V)(K) \to K^\times/K^{\times 2}$ (O'Meara 1963, §55 [unverified]). -/
-@[kb "omeara1963" "§55, O'(V) [unverified]"]
+of the spinor norm $\theta : O^+(V)(K) \to K^\times/K^{\times 2}$ (O'Meara 1963, §55, p. 137). -/
+@[kb "omeara1963" "§55, p. 137 (O'(V))"]
 def spinorKernel : Subgroup (orthGroup Q K) where
   carrier := {g | ∃ xs, IsSpinorWord Q K xs ∧ symmProd Q K xs = g}
   mul_mem' := by
@@ -234,7 +237,7 @@ theorem valProd_map_orth (σ : orthGroup Q K) (xs : List (Fin n → K)) :
   exact List.map_congr_left fun x _ => evalIn_mulVec_of_mem Q σ.2 x
 
 /-- **$O'(V)(K)$ is normal in $O(V)(K)$** ($\sigma\tau_x\sigma^{-1} = \tau_{\sigma x}$ and $Q(\sigma x) = Q(x)$). -/
-@[kb "omeara1963" "§55 [unverified]"]
+@[kb "omeara1963" "§55, p. 138 (normal subgroups of O_n)"]
 theorem spinorKernel_normal : (spinorKernel Q K).Normal where
   conj_mem := by
     rintro _ ⟨xs, ⟨hxa, hxe, hxs⟩, rfl⟩ σ
@@ -258,6 +261,7 @@ theorem evalIn_map_tower (x : Fin n → K) :
 end BaseChange
 
 /-- The image of a rational symmetry: $\tau_x \mapsto \tau_x$ in $O(V)(F_\mathfrak p)$. -/
+@[kb "omeara1963" "§101B, p. 289 (localization of an isometry; (τ_u)_{𝔭} = τ_{u_{𝔭}})"]
 theorem orthMap_symm (v : HeightOneSpectrum (𝓞 F)) (x : Fin n → F) :
     orthMap Q (v.adicCompletion F) (symm Q F x) = symm Q (v.adicCompletion F) (fun i => algebraMap F _ (x i)) := by
   set K := v.adicCompletion F
@@ -302,8 +306,9 @@ theorem orthMap_mem_spinorKernel (v : HeightOneSpectrum (𝓞 F)) {γ : orthGrou
 /-! ### The adelic spinor kernel -/
 
 /-- **The adelic spinor kernel** $O'(V_{\mathbb A_f}) = \{h \in O(V)(\mathbb A_f) : h_\mathfrak p \in O'(V_\mathfrak p)$ for
-every finite prime $\mathfrak p\}$ (O'Meara 1963, §101 [unverified]). -/
-@[kb "omeara1963" "§101, O'_A(V) [unverified]"]
+every finite prime $\mathfrak p\}$ (cf. O'Meara 1963, §101D, p. 296, whose $J'_V$ also has components at the infinite
+spots and requires $\|\Sigma_\mathfrak p\|_\mathfrak p = 1$ for almost all $\mathfrak p$). -/
+@[kb "omeara1963" "§101D, p. 296 (J'_V)"]
 def spinorKernelAf : Subgroup (OAf Q) where
   carrier := {h | ∀ v, h v ∈ spinorKernel Q (v.adicCompletion F)}
   mul_mem' ha hb v := (spinorKernel Q _).mul_mem (ha v) (hb v)
@@ -324,9 +329,9 @@ theorem spinorKernelAf_normal : (spinorKernelAf Q).Normal where
 /-! ### Indefinite forms -/
 
 /-- **$Q$ is indefinite:** $V \otimes_F F_w$ is isotropic for some infinite place $w$ of $F$ (for $F = \mathbb Q$:
-$Q$ is indefinite over $\mathbb R$). This is the hypothesis of strong approximation (O'Meara 1963, 104:3
-[unverified]); for $n \ge 3$ it holds automatically when $F$ has a complex place. -/
-@[kb "omeara1963" "§104 (indefinite) [unverified]"]
+$Q$ is indefinite over $\mathbb R$). This is the hypothesis of strong approximation (O'Meara 1963, 104:2–104:3,
+p. 311); for $n \ge 3$ it holds automatically when $F$ has a complex place. -/
+@[kb "omeara1963" "§104, 104:2, p. 311 (indefinite set of spots)"]
 def IsIndefinite : Prop := ∃ w : InfinitePlace F, Q.IsotropicIn w.Completion
 
 end QuadFormsKB.Lattices

@@ -425,7 +425,7 @@ lemma log_valued_sq {K : Type*} [Field K] [Valued K ℤᵐ⁰] {t : K} (ht : t �
 if $v \nmid 2$, $v(a) = 1$, $\operatorname{ord}_v\pi$ is odd and $a$ is not a square in $F_v$, then $(a,\pi)_v = -1$. *Proof:* in
 $z^2 = ax^2 + \pi y^2$ the term $\pi y^2$ has odd order, so it is strictly smaller than $z^2$ and $ax^2$; then
 $a(x/z)^2 \equiv 1$ to positive order, a square by the local square theorem. -/
-@[kb "serre1973" "Ch. III §1.2, Thm. 1 (tame symbol, p odd) [unverified]"]
+@[kb "serre1973" "Ch. III §1.2, Thm. 1 (tame symbol, p odd) [unverified]; omeara1963 §63B, 63:12, p. 166"]
 theorem hilbert_unit_unif_eq_neg_one (v : HeightOneSpectrum (𝓞 F)) (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (a c : Fˣ)
     (ha : ordL v a = 0) (hc : Odd (ordL v c))
     (hsq : ¬ IsSquare (algebraMap F (v.adicCompletion F) (a : F))) :

@@ -15,7 +15,7 @@ $$r_{\mathrm{gen}}(f, m) = \tfrac12\,\beta_\infty(f, m)\cdot L(1,\chi_{D_0})^{-1
 (`Siegel.genusRepAvg f m = (1/2) * Siegel.aEWith f m (binaryEulerValueNP f D₀ k m)`), the finite product being exactly the
 product over all primes of $\beta_p(f,m)(1-\chi_{D_0}(p)/p)^{-1}$ (all other factors are $1$, `localDensity_good_gen`).
 
-**Conventions (those of `siegelFormula_binary`, unchanged).**
+**Conventions.**
 * $r_{\mathrm{gen}}(f, m)$ = `Siegel.genusRepAvg f m` $= \bigl(\sum_{[g]} r_g(m)/|\mathrm{Aut}(g)|\bigr)/\bigl(\sum_{[g]} 1/|\mathrm{Aut}(g)|\bigr)$,
   $[g]$ ranging over the $\mathrm{GL}_2(\mathbb Z)$-classes of integral forms $g$ in the genus of $f$ (`Siegel.genusClasses`:
   $g$ equivalent to $f$ over $\mathbb Z_p$ for every $p$ and over $\mathbb R$; this forces $\mathrm{disc}\,g = D$ and the same content),
@@ -35,13 +35,15 @@ product over all primes of $\beta_p(f,m)(1-\chi_{D_0}(p)/p)^{-1}$ (all other fac
 * the regularized product is then the finite product above (`regProd_up_eq_binaryEulerValueNP`, the $D = k^2D_0$ extension of
   `regProd_up_eq_binaryEulerValue`); for $m$ not represented over $\mathbb Q$ both sides vanish.
 
-**Consistency with `siegelFormula_binary`.** `siegelFormula_binary_all_posForms` (primitive, $D$ fundamental, $k = 1$) is `siegelFormula_binary`; for $f = c\,g$ with $g$ primitive of fundamental discriminant ($k = c$) the right side is literally that of
-`siegelFormula_binary_posDef` (`siegelFormula_binary_all_smul`). New: every form whose primitive part has non-fundamental discriminant (the case
-not covered by `BinarySiegelNonFundamental`), e.g. `siegelFormula_x2_add_4y2` ($D = -16$) and `siegelFormula_x2_add_3y2`
+**Consistency with the earlier binary results.** `siegelFormula_binary_all_posForms` (primitive, $D$
+fundamental, $k = 1$) is
+`siegelFormula_binary`; for $f = c\,g$ with $g$ primitive of fundamental discriminant ($k = c$) the right side is literally that of
+`siegelFormula_binary_posDef` (`siegelFormula_binary_all_smul`). New: every form whose primitive part has
+non-fundamental discriminant (the gap
+`BinarySiegelNonFundamental`), e.g. `siegelFormula_x2_add_4y2` ($D = -16$) and `siegelFormula_x2_add_3y2`
 ($D = -12$). $\chi_Q = \chi_{D_0}$ off a finite set: `chiP_up_eq_kronChi`.
 
 Source: Siegel 1935, Hauptsatz ($n = 2$, $\varepsilon = \tfrac12$) [unverified locator]; Hanke 2004, (4.5), (5.3)–(5.5).
-
 -/
 
 open NumberField IsDedekindDomain Matrix Filter Topology
@@ -242,7 +244,7 @@ section Bridge
 variable {D₀ : ℤ} [IsQuadDisc D₀]
 
 /-- **$\chi_Q = \chi_{D_0}$ off a finite set** (for $Q = f\otimes\mathcal O_\mathbb Q$, $f$ positive definite of discriminant
-$k^2D_0$): `chiP · up f` agrees with the Kronecker character `kronChi D₀` outside a finite set of primes (both
+$k^2D_0$): the `chiP · up f` agrees with the Kronecker character `kronChi D₀` outside a finite set of primes (both
 $1-\chi(p)/p$ equal $\beta_p(f,m)$ at almost all $p$, for any $m$ represented by $f$ over $\mathbb Q$). -/
 theorem chiP_up_eq_kronChi_of_rep {f : BinQF} {k : ℤ} (hD : f.disc = k ^ 2 * D₀) (hk : k ≠ 0)
     (hpd : IsTotallyPosDef (formF (up f))) {m : ℤ} (hm : 1 ≤ m)
@@ -266,7 +268,8 @@ theorem chiP_up_eq_kronChi_of_rep {f : BinQF} {k : ℤ} (hD : f.disc = k ^ 2 * D
   have h2 : chiP v (up f) / (normP v : ℝ) = kronChi D₀ v / (normP v : ℝ) := by linarith
   rwa [div_left_inj' (hNpos v)] at h2
 
-/-- **$\chi_Q = \chi_{D_0}$ off a finite set, unconditionally** (for every positive definite $f$ of discriminant $k^2D_0$): the character `chiP · up f` of $\mathbb Q(\sqrt{-\det(H_f/2)}) = \mathbb Q(\sqrt{D_0})$ agrees with the Kronecker character `kronChi D₀`
+/-- **$\chi_Q = \chi_{D_0}$ off a finite set, unconditionally** (for every positive definite $f$ of discriminant $k^2D_0$): the
+character `chiP · up f` of $\mathbb Q(\sqrt{-\det(H_f/2)}) = \mathbb Q(\sqrt{D_0})$ agrees with the Kronecker character `kronChi D₀`
 outside a finite set of primes (`chiP_up_eq_kronChi_of_rep` at $m = a = f(1, 0)$). -/
 theorem chiP_up_eq_kronChi {f : BinQF} (hf : f.PosDef') {k : ℤ} (hD : f.disc = k ^ 2 * D₀) (hk : k ≠ 0) :
     ∃ S : Finset (HeightOneSpectrum (𝓞 ℚ)), ∀ v ∉ S, chiP v (up f) = kronChi D₀ v := by
@@ -274,7 +277,8 @@ theorem chiP_up_eq_kronChi {f : BinQF} (hf : f.PosDef') {k : ℤ} (hD : f.disc =
   refine chiP_up_eq_kronChi_of_rep hD hk ((isTotallyPosDef_up_iff f).mpr hf') (m := f.a) hf.1 ⟨![1, 0], ?_⟩
   simp [QuadForm.eval, QuadForm.evalIn, QuadForm.map, Fin.sum_univ_two, BinQF.a]
 
-/-- **The regularized binary product over $\mathbb Q$ for every discriminant** (extension of `regProd_up_eq_binaryEulerValue` from fundamental $D$ to $D = k^2D_0$): for $f\otimes\mathcal O_\mathbb Q$ positive definite and an
+/-- **The regularized binary product over $\mathbb Q$ for every discriminant** (extension of the
+`regProd_up_eq_binaryEulerValue` from fundamental $D$ to $D = k^2D_0$): for $f\otimes\mathcal O_\mathbb Q$ positive definite and an
 integer $m \ge 1$ represented by $f$ over $\mathbb Q$,
 $$L(1,\chi_f)^{-1}\prod_p\beta_p(f,m)\Bigl(1-\frac{\chi_f(p)}p\Bigr)^{-1} = L(1,\chi_{D_0})^{-1}\prod_{p\mid kmD_0}\frac{\beta_p(f, m)}{1-\chi_{D_0}(p)/p}
 \quad(=\texttt{binaryEulerValueNP}\ f\ D_0\ k\ m).$$ -/
@@ -404,7 +408,8 @@ theorem siegelFormula_binary_all' (f : BinQF) (hf : f.PosDef') :
   obtain ⟨D₀, hQ, hneg, k, hk, hD⟩ := exists_fundamental_decomp_of_posDef hf
   exact ⟨D₀, hQ, k, hneg, hk, hD, fun hm => siegelFormula_binary_all f hf hk hD hm⟩
 
-/-- **Consistency with `siegelFormula_binary` (fundamental, primitive):** for $f$ primitive positive definite of fundamental discriminant $D$
+/-- **Consistency with the earlier binary results (fundamental, primitive):** for $f$ primitive positive definite of
+fundamental discriminant $D$
 (`PosForms D`), `siegelFormula_binary_all` with $k = 1$ is `siegelFormula_binary` (same right-hand side,
 `binaryEulerValueNP_one`). -/
 theorem siegelFormula_binary_all_posForms {D : ℤ} [IsQuadDisc D] (f : PosForms D) {m : ℕ} (hm : m ≠ 0) :
@@ -412,7 +417,8 @@ theorem siegelFormula_binary_all_posForms {D : ℤ} [IsQuadDisc D] (f : PosForms
   have h := siegelFormula_binary_all f.1 f.2.2.2 (D₀ := D) one_ne_zero (by rw [f.2.2.1]; ring) hm
   rwa [Nat.cast_one, binaryEulerValueNP_one] at h
 
-/-- **Consistency with `siegelFormula_binary` (scaled forms):** for $f = c\,g$ with $g$ primitive positive definite of fundamental discriminant $D$,
+/-- **Consistency with the earlier binary results (scaled forms):** for $f = c\,g$ with $g$ primitive positive
+definite of fundamental discriminant $D$,
 `siegelFormula_binary_all` with $k = c$, $D_0 = D$ gives exactly `siegelFormula_binary_nonprim` /
 `siegelFormula_binary_posDef` right-hand side `aEWith f m (binaryEulerValueNP f D c m)`. -/
 theorem siegelFormula_binary_all_smul {D : ℤ} [IsQuadDisc D] (g : PosForms D) {c : ℕ} (hc : c ≠ 0) {m : ℕ}

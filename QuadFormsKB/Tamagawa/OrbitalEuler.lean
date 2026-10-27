@@ -1,9 +1,10 @@
 /-
 # Weil's orbital Euler product
 
-**Setting** (`OrbitalEulerProduct`). $F$ totally real, $Q_0$ over $\mathcal O_F$ in $N = n + 1$ variables, totally positive definite,
-$L = \mathcal O_F^N$, $\rho = \rho_k$ the representative of a totally positive square class, $\mu = \mu_{\mathrm{Tam}}(K_{SO})$. `SphericalFibration` reduced
-$\tau(SO(V)) = 2$ (given $\tau = 2$ for the stabilizers) to the identity
+**Setting** (`OrbitalEulerProduct`). $F$ totally real, $Q_0$ over $\mathcal O_F$ in $N = n + 1$ variables, totally
+positive definite, $L = \mathcal O_F^N$, $\rho = \rho_k$ the representative of a totally positive square class,
+$\mu = \mu_{\mathrm{Tam}}(K_{SO})$. The orbit identity reduces $\tau(SO(V)) = 2$ (given $\tau = 2$ for the
+stabilizers) to the identity
 $$2\mu\sum_{\mathfrak b}N\mathfrak b^{-N-2s}\sum_{\mathrm{cls}M}\frac{\#\{\eta\in\mathfrak b^{-1}M : Q(\eta) = \rho\}}{|O(M)|}
   = \tau'_\rho\,|d_F|^{-\frac{N-1}2}\prod_w\frac{2\pi^{N/2}\sigma_w(\rho)^{\frac N2+s}}{\Gamma(\frac N2)\sqrt{\det A_w}}\prod_vZ_\mathfrak p(s,\rho).$$
 This file proves it.
@@ -11,12 +12,14 @@ This file proves it.
 **The argument** (Weil 1982, §4.5, p. 109, made combinatorial).
 1. *Bridge* (`sphereCount_eq_repCount`): for $\mathfrak b = (\beta)$, $\#\{\eta\in\mathfrak b^{-1}M : Q(\eta) = \rho\} = r_M(\beta^2\rho)$.
 2. *Coordinates* (`AdaptedFrame`): $Q\circ g = \langle\rho\rangle\perp Q_0'$; with $g_\beta = g\,\mathrm{diag}(\beta, 1, \dots, 1)$, $Q\circ g_\beta = \langle\beta^2\rho\rangle\perp Q_0'$,
-   and the global reduction (`repMass_eq_mass_mul`) gives $\sum_Mr_M(\beta^2\rho)/|O(M)| = \mathrm{Mass}(Q_0')\cdot W_\mathfrak b$.
+   and the global reduction (`repMass_eq_mass_mul`) gives
+   $\sum_Mr_M(\beta^2\rho)/|O(M)| = \mathrm{Mass}(Q_0')\cdot W_\mathfrak b$.
 3. *Factorization* (`typeSum_eq_prodG`, `locTypeSumG_transport`, `locTypeSumG_unit`): $W_\mathfrak b = \prod_\mathfrak pW_\mathfrak p(\mathrm{ord}_\mathfrak p\mathfrak b)$ with
    $W_\mathfrak p(j) = W_\mathfrak p(g^{-1}L_\mathfrak p, \varpi^j)$, the local type sum of the vector $\varpi^je_0$ in the lattice $g^{-1}L_\mathfrak p$.
 4. *Local identity* (`OrbitalLocalIdentityAt`):
    $W_\mathfrak p(j)\,\alpha_\mathfrak p(Q_0)\,|2\rho|_\mathfrak p^{N-1}|\det g|_\mathfrak p^{-N} = \alpha_\mathfrak p(Q_0')\,q^{j(N-2)}\,\beta_\mathfrak p(Q_0, \rho\varpi^{2j})$; **proved** at every
-   prime where $g^{-1}L_\mathfrak p$ is the standard lattice and $\mathrm{ord}_\mathfrak p\rho \le 1$ (`orbitalLocalIdentityAt_std`, from the imprimitive identity, dyadic primes included), a named input at the finitely many other primes.
+   prime where $g^{-1}L_\mathfrak p$ is the standard lattice and $\mathrm{ord}_\mathfrak p\rho \le 1$ (`orbitalLocalIdentityAt_std`, from the
+   imprimitive identity, dyadic primes included), a named input at the finitely many other primes.
 5. *Euler product* (`hasSum_fracIdeal`), the local spherical factors (`hasSum_levelTerm`), the product formula and the archimedean
    bookkeeping.
 -/
@@ -466,8 +469,8 @@ theorem map_diagGl (v : HeightOneSpectrum (𝓞 F)) {β : F} (hβ : β ≠ 0)
 $Q_0$ totally positive definite, an adapted frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$ and $\beta \in F^\times$,
 $$\sum_{\mathrm{cls}M\subseteq\mathrm{gen}\,\mathcal O_F^{n+1}}\frac{r_M(\beta^2\rho)}{|O(M)|} = \mathrm{Mass}(Q_0')\prod_\mathfrak pW_\mathfrak p(g^{-1}L_\mathfrak p, \beta).$$
 *Proof:* change coordinates by $g\,D_\beta$ (`repMass_compMat`), so that $Q = \langle\beta^2\rho\rangle\perp Q_0'$; `repMass_eq_mass_mul`;
-The factorization `typeSum_eq_prodG`; transport each local factor back along $D_\beta$ (`locTypeSumG_transport`); the factors off the
-exceptional set are $1$ (`locTypeSumG_std_eq_one`). -/
+the factorization `typeSum_eq_prodG`; transport each local factor back along $D_\beta$ (`locTypeSumG_transport`); the
+factors off the exceptional set are $1$ (`locTypeSumG_std_eq_one`). -/
 @[kb "weil1982" "§4.5, p. 109 (orbit counting in coordinates adapted to ξ_ρ); §3.4-3.5 [unverified locator]"]
 theorem repMass_eq_mass_mul_finprod (Q₀ : QuadForm (𝓞 F) (n + 1)) (hpd : IsTotallyPosDef (formF Q₀))
     {ρ : F} (hρ : ρ ≠ 0) (fr : AdaptedFrame (formF Q₀) ρ) {β : F} (hβ : β ≠ 0) :
@@ -1423,10 +1426,11 @@ theorem complementTauTwo_of_IH (Q₀ : QuadForm (𝓞 F) (n + 1)) (hpd : IsTotal
     exact hIH fr.Q' (isTotallyPosDef_of_splitForm h1)
   · rfl
 
-/-- **Weil's Theorem 4.5.1, $\tau(SO(V)) = 2$, from the induction hypothesis** (Weil 1982, §4.5, Thm 4.5.1, p. 109): for $F$ totally real
-with $\mathcal O_F$ a PID and $Q_0$ totally positive definite in $n + 1 \ge 5$ variables over $\mathcal O_F$, if $\tau(SO) = 2$ in rank $n$
-(`hIH`, the induction hypothesis: every totally positive definite form in $n$ variables) and the local orbital identities hold at the
-non-standard primes of the frames (`OrbitalLocalIdentities`, a per-prime local input), then $\tau(SO(V)) = 2$. -/
+/-- **Weil's Theorem 4.5.1, $\tau(SO(V)) = 2$, from the induction hypothesis** (Weil 1982, §4.5, Thm 4.5.1, p. 109):
+for $F$ totally real with $\mathcal O_F$ a PID and $Q_0$ totally positive definite in $n + 1 \ge 5$ variables over
+$\mathcal O_F$, if $\tau(SO) = 2$ in rank $n$ (`hIH`, the induction hypothesis: every totally positive definite form
+in $n$ variables) and the local orbital identities hold at the non-standard primes of the frames
+(`OrbitalLocalIdentities`, a per-prime local input), then $\tau(SO(V)) = 2$. -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109 (induction step n → n+1)"]
 theorem tamagawaNumberTwo_of_complement [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadForm (𝓞 F) (n + 1))
     (hpd : IsTotallyPosDef (formF Q₀)) (hn : 4 ≤ n) (hloc : OrbitalLocalIdentities Q₀)
@@ -1440,7 +1444,7 @@ theorem tamagawaNumberTwo_of_complement [IsPrincipalIdealRing (𝓞 F)] (Q₀ : 
   exact SphericalFibration.tamagawaNumberTwo_of_orbitalEulerProduct' Q₀ hQ₀ (by omega) hpd
     (orbitalEulerProduct Q₀ hpd hn hloc) (complementTauTwo_of_IH Q₀ hpd hIH)
 
-/-- **The mass formula in rank $n + 1 \ge 5$ from the induction hypothesis** (`massFormula` with the $\tau = 2$):
+/-- **The mass formula in rank $n + 1 \ge 5$ from the induction hypothesis** (`massFormula` with $\tau = 2$):
 $\mathrm{Mass}(\mathcal O_F^{n+1}) = \mu_{\mathrm{Tam}}(K_{SO})^{-1}$. -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109; cf. Kitaoka 1993, Thm 6.8.1 [unverified]"]
 theorem massFormula_of_complement [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadForm (𝓞 F) (n + 1))
@@ -1455,7 +1459,9 @@ theorem massFormula_of_complement [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadFo
   exact massFormula Q₀ hQ₀ (by omega) hpd (HilbertModular.isIntegral_stdLat Q₀)
     (tamagawaNumberTwo_of_complement Q₀ hpd hn hloc hIH)
 
-/-- **Siegel's formula for the number $m$ in rank $n + 1 \ge 5$** for split forms $\langle m\rangle\perp Q_0'$ (`siegelFormulaAt_of_tamagawa'` with the $\tau = 2$ in rank $n + 1$; $\tau(SO(Q_0')) = 2$ is part of the induction hypothesis). -/
+/-- **Siegel's formula for the number $m$ in rank $n + 1 \ge 5$** for split forms $\langle m\rangle\perp Q_0'$
+(`siegelFormulaAt_of_tamagawa'` with $\tau = 2$ in rank $n + 1$; $\tau(SO(Q_0')) = 2$ is part of the induction
+hypothesis). -/
 @[kb "weil1982" "§4.5, p. 100 (Siegel's theorem as a consequence of τ = 2), Thm 4.5.1, p. 109"]
 theorem siegelFormulaAt_of_complement [IsPrincipalIdealRing (𝓞 F)] (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F) n)
     (hn : 4 ≤ n) (hpd : IsTotallyPosDef (formF (splitForm m₀ Q₀')))

@@ -294,7 +294,8 @@ theorem finprod_modAt_eq (z : AFˣ) :
   refine finprod_congr fun v => ?_
   rw [modAt_eq_zpow, ← zpow_add₀ (hN v), neg_add_cancel, zpow_zero]
 
-/-- **The idele norm in the ideal model**: $\|z\|_{\mathbb A} = N(z_\infty)/N(\mathfrak a(z_f))$, i.e. `IdeleClass.ideleNorm` of $(z_\infty,\mathfrak a(z_f))$. -/
+/-- **The idele norm in the ideal model**: $\|z\|_{\mathbb A} = N(z_\infty)/N(\mathfrak a(z_f))$, i.e. the
+`IdeleClass.ideleNorm` of $(z_\infty,\mathfrak a(z_f))$. -/
 theorem ideleNorm_eq_ideleClass (g : (Adeles F)ˣ) :
     ideleNorm F g = IdeleClass.ideleNorm F (infPart g : mixedSpace F) (ideleIdeal F (finPart g)) := by
   rw [ideleNorm, IdeleClass.ideleNorm, finprod_modAt_eq, IdeleClass.abs_det_mulLeft_mixedSpace, div_eq_mul_inv]

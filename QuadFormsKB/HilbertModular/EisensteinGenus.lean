@@ -23,9 +23,10 @@ $\Gamma(\mathfrak N)$-invariant function takes finitely many values on the vecto
 there are finitely many classes; it has level $\mathfrak N$ (`hasLevel_eisGenWeight`) and satisfies $(W_f)_\gamma = \chi(\gamma_{11})W_f$ on
 $\Gamma_0(\mathfrak N)$ (`slashWeight_eisGenWeight`).
 
-**Weight 2.** the weight-2 series $E_2(\cdot; W)$ is defined only for weights periodic modulo a lattice (`IntWeight`), and $W_f$ is not
-periodic (it lives on primitive-type vectors). Writing $W_f$ through periodic weights needs a Möbius inversion over the ideals of
-$\mathcal{O}_F$ (with ray classes); this is done in `EisensteinGenus2.lean` ($d \ge 2$); the construction here is for $k \ge 3$.
+**Weight 2.** the weight-2 series $E_2(\cdot; W)$ is defined only for weights periodic modulo a lattice (`IntWeight`),
+and $W_f$ is not periodic (it lives on primitive-type vectors). Writing $W_f$ through periodic weights needs a Möbius
+inversion over the ideals of $\mathcal{O}_F$ (with ray classes); this is done in `EisensteinGenus2.lean` ($d \ge 2$);
+the construction here is for $k \ge 3$.
 
 Sources: Hecke, *Analytische Funktionen und algebraische Zahlen II* (1924) and *Theorie der Eisensteinschen Reihen höherer Stufe*
 (1927) [unverified]; Shimura (Duke 1978), §3 [unverified]; Freitag (1990), Ch. I §5 (Eisenstein series and constant terms)

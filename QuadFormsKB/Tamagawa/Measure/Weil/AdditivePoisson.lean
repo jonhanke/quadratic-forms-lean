@@ -2,15 +2,14 @@ import QuadFormsKB.Tamagawa.Measure.Weil.AdditiveScaling
 
 /-!
 # Poisson summation on $\mathbb A_F$ twisted by an idele
-
 For a factorizable Schwartz–Bruhat function $\Phi = f_\infty\otimes\bigotimes_v f_v$ on $\mathbb A_F$ ($f_\infty$ Schwartz on
 $F_\infty$, $f_v$ finite combinations of coset indicators, $f_v = \mathbf 1_{\mathcal O_v}$ for $v\notin S$) and
 $g\in\mathbb A_F^\times$,
 $$\sum_{\xi\in F}\Phi(g\xi) = \|g\|_{\mathbb A}^{-1}\sum_{\xi\in F}\hat\Phi(g^{-1}\xi)$$
-(`adelicPoisson_smul`). For $A = F$ the trace pairing is $\psi(xy)$, so the inverse adjoint $g^*$ is
+(`adelicPoisson_smul`). For $A = F$ the trace pairing is $\psi(xy)$, so the inverse adjoint $g^*$ of the design is
 $g^{-1}$. Proof: $x\mapsto\Phi(gx)$ is again factorizable Schwartz–Bruhat (`isSchwartzBruhatV_comp_mul`,
 `ballIndV_comp_mul`); its local transforms are $\Delta_w(g_w)^{-1}\hat f_w(g_w^{-1}\,\cdot)$ (`integral_comp_mul_left`, from
-the scaling of Haar measure); then the library's `adelicPoisson_factorizable`.
+the scaling of Haar measure); then `adelicPoisson_factorizable`.
 -/
 
 open IsDedekindDomain NumberField MeasureTheory Filter Topology NumberField.mixedEmbedding WithZero
@@ -249,11 +248,11 @@ theorem fourier_twist_eq (f : SchwartzMap V ℂ) (g : (Adeles F)ˣ) (γ : F) :
   ring
 
 include hS hout in
-/-- **Poisson summation on $\mathbb A_F$, twisted by an idele ($A = F$).** For $f_\infty$ Schwartz on $F_\infty$,
+/-- **Poisson summation on $\mathbb A_F$, twisted by an idele (item 5, $A = F$).** For $f_\infty$ Schwartz on $F_\infty$,
 Schwartz–Bruhat $f_v$ with $f_v = \mathbf 1_{\mathcal O_v}$ off a finite set $S$, and $g = (g_\infty, g_f)\in\mathbb A_F^\times$:
 $$\sum_{\gamma\in F}f_\infty(g_\infty\gamma)\prod_v f_v(g_v\gamma) =
 \|g\|_{\mathbb A}^{-1}\sum_{\gamma\in F}\hat f_\infty(g_\infty^{-1}\gamma)\prod_v\hat f_v(g_v^{-1}\gamma).$$ -/
-@[kb "weil1982" "§2.1 [unverified page]; Poisson as in casselsfrohlich1967 Ch. XV (Tate), Thm. 4.2.1 [unverified]"]
+@[kb "weil1982" "§2.1 [unverified page]; Poisson as in casselsfrohlich1967 Ch. XV (Tate), §4.2, Lemma 4.2.4, p. 333"]
 theorem adelicPoisson_smul (f : SchwartzMap V ℂ) (g : (Adeles F)ˣ) :
     ∑' γ : F, f ((infPart g : V) * mixedEmbedding F γ) *
         ∏ᶠ v, fv v ((unitAt (finPart g) v : v.adicCompletion F) * algebraMap F _ γ) =

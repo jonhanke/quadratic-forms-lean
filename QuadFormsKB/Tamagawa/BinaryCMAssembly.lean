@@ -16,7 +16,6 @@ $\chi = \chi_{E/F}$ (`relChar`), $T$ the set of ramified primes, $\rho_K$ the re
 
 Source: Siegel 1935 (the local side) [unverified]; Shimura 2010, §4 (mass of a CM order) [unverified]; the comparison of two lattices in one genus
 space is `mass_eq_mass_mul_relRatio`.
-
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero Filter Topology

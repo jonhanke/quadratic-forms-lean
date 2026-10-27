@@ -1,5 +1,5 @@
 /-
-# Level, discriminant and quadratic character of an integral quadratic form (stage A)
+# Level, discriminant and quadratic character of an integral quadratic form
 
 For an integral form $Q$ in $n$ variables with Hessian $H$ (even symmetric, $Q(\vec{x}) = \tfrac12\vec{x}^{\mathsf T}H\vec{x}$):
 
@@ -14,8 +14,8 @@ For an integral form $Q$ in $n$ variables with Hessian $H$ (even symmetric, $Q(\
 * `disc Q` $= (-1)^{\lfloor n/2\rfloor}\det H$ and `disc_mod_four` (even $n$).
 * `chi Q b` $= \left(\frac{\Delta}{b}\right)$ (Jacobi symbol, $b$ odd), periodic modulo $4N$ (`chi_eq_of_modEq`), and the
   Dirichlet character `chiChar Q` modulo $4N$. For positive definite $Q$ of even rank the **canonical** character is
-  `chiCharLevel` (modulo $N$ itself) in `ThetaCharacter.lean`, which reconciles all of these (stage B).
-* Sanity checks (stage E): levels and characters of $E_8$, $I_2$, $I_3$, $I_4$, $A_2 \oplus A_2$ and
+  `chiCharLevel` (modulo $N$ itself) in `ThetaCharacter.lean`, which reconciles all of these.
+* Sanity checks levels and characters of $E_8$, $I_2$, $I_3$, $I_4$, $A_2 \oplus A_2$ and
   $x_0^2 + x_1^2 + x_2^2 + 2x_3^2$.
 
 Sources: Hanke 2004, p. 355 (level), p. 357 (character, even $n$), Lemma 2.2 (primes dividing $N$).
@@ -384,7 +384,7 @@ theorem prime_dvd_level_iff {Q : QuadForm ℤ n} (hQ : Q.Nondegenerate) {p : ℕ
 
 /-! ### Odd $n$: $4 \mid N$ -/
 
-/-- **For odd $n$, every level is divisible by 4.** *Proof:* $\det H$ is even
+/-- **For odd $n$, every level is divisible by 4**. *Proof:* $\det H$ is even
 (`hessian_det_even`) and $\det H \det W = N^n$, so $N$ is even. If $N = 2u$ with $u$ odd, the even symmetric matrix
 $K = \begin{pmatrix} H & uI \\ uI & W \end{pmatrix}$ of size $2n$ has $\det K = (N - u^2)^n$ (from
 $K\begin{pmatrix} W & 0 \\ -uI & I\end{pmatrix} = \begin{pmatrix} (N - u^2)I & uI \\ 0 & W\end{pmatrix}$), so
@@ -642,7 +642,7 @@ The canonical character (positive definite, even $n$) is `chiCharLevel`; `chiCha
 @[kb "hanke2004" "p. 357 (the character for even n)"]
 def chi (Q : QuadForm ℤ n) (b : ℕ) : ℤ := jacobiSym (disc Q) b
 
-/-- **$\chi_Q$ is periodic modulo $4N$** on odd $b$ (item 3; proved). Every prime dividing $\Delta = \pm\det H$
+/-- **$\chi_Q$ is periodic modulo $4N$** on odd $b$ (proved). Every prime dividing $\Delta = \pm\det H$
 divides $N$ (`prime_dvd_level_iff`), so `jacobiSym_eq_of_modEq` applies. Periodicity modulo $N$ itself (the
 classical statement: $\chi_Q$ is a character mod $N$) is not proved here for nondegenerate $Q$ (it needs 2-adic
 information) [unverified]; for **positive definite** $Q$ of even rank it is `chi_eq_of_modEq_level` (`ThetaCharacter.lean`,
@@ -711,7 +711,7 @@ theorem chiChar_apply {Q : QuadForm ℤ n} (hQ : Q.Nondegenerate) {x : ZMod (4 *
     chiChar hQ x = chi Q x.val :=
   jacobiChar_apply hx
 
-/-! ### Sanity checks (stage E) -/
+/-! ### Sanity checks -/
 
 /-- **A level computed from all levels:** if the levels of $Q$ are exactly the multiples of $L$, then $N_Q = L$. -/
 theorem level_eq_of_forall {Q : QuadForm ℤ n} (hQ : Q.Nondegenerate) {L : ℕ}

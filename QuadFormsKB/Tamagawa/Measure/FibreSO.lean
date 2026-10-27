@@ -127,7 +127,8 @@ theorem fibre_SO (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F) n)
 finite-place analogue of `lerayMeasure_orbital`/`lerayMeasure_orbital_realPlace`): for `Q = ⟨m₀⟩ ⊥ Q₀'` over `𝓞 F`
 (`m₀ ≠ 0`, `Q₀'` nondegenerate, `n ≥ 1`), at every finite place `v` (dyadic included),
 `μ_{SO(V_v)} = |2m₀|_v^{-n} · orb_*(σ_{m₀} × μ_{SO(ξ^⊥)})`, `orb(x, h) = s(x)·diag(1, h)`, `s` the reflection section,
-with `muLocSO` on both groups and `σ_{m₀}` the Leray measure on `{Q = m₀}` (`nuS`). The local constant `|2m₀|_v^{-n}`
+with the `muLocSO` on both groups and `σ_{m₀}` the Leray measure on `{Q = m₀}` (`nuS`). The local constant
+`|2m₀|_v^{-n}`
 is the `v`-component of an idele of norm `1` (`prod_orbital_constants_eq_one`). -/
 @[kb "weil1982" "§2.4 Theorem 2.4.3, p. 25; §3.4; §4.5 (local factors at the finite places) [unverified]"]
 theorem lerayMeasure_orbital_finitePlace (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F) n)
@@ -157,7 +158,7 @@ theorem lintegral_orbital_finitePlace (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' :
     lintegral_prod (fun a => f (orbSO v m₀ hm Q₀' hQ' hn a))
       (hf.comp (measurable_orbSO v m₀ hm Q₀' hQ' hn)).aemeasurable, smul_eq_mul]
 
-/-- **The Leray measure on the sphere is the Leray measure of the sphere** (`σ_m` is carried by the sphere): the push-forward
+/-- **The Leray measure on the sphere is the Leray measure of the cone factor** (`σ_m` is carried by the sphere): the push-forward
 of the sphere measure `nuS` to `V_v = F_v^{n+1}` is `σ_m = lerayMeasure … (ι m₀)`. -/
 theorem map_val_nuS (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F) n) (hQ' : Q₀'.Nondegenerate) :
     (nuS v m₀ hm Q₀' hQ').map Subtype.val =
@@ -174,7 +175,7 @@ theorem map_val_nuS (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F)
   simp [FibreLeray.sphereSet_eq]
 
 /-- **The product formula for the local constants**: the constants `|2m₀|_w^{-n}` of the orbital identity (finite places
-here, the infinite places in `SphereLeray.lean` and `SphereLerayC.lean`) multiply to `1` over all places of `F`
+here, the infinite places) multiply to `1` over all places of `F`
 (the finite product runs over the places dividing `2m₀`, at all others `|2m₀|_v = 1`). -/
 @[kb "weil1982" "§2.1 (product formula) [unverified]"]
 theorem prod_orbital_constants_eq_one (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (n : ℕ) :

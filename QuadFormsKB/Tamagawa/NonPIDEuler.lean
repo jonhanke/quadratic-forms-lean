@@ -7,16 +7,17 @@ import QuadFormsKB.Tamagawa.IdealScale
 import QuadFormsKB.HilbertModular.SteinitzGenus
 
 /-!
-# the orbital Euler product over every number field: the sum over all ideals
+# The orbital Euler product over every number field: the sum over all ideals
 
-`OrbitalEuler` proved the orbital Euler product (`orbitalEulerProduct`) for $\mathcal O_F$ a PID: its per-ideal step wrote each fractional ideal as
-$\mathfrak b = (\beta)$. Here the per-ideal step is proved for **every** fractional ideal $\mathfrak b$, so the Euler product, $\tau(SO) = 2$
-by Weil's induction (`tamagawaNumberTwo_of_complement_nf`) and the mass formula hold for every totally real $F$ (any class number).
+The orbital Euler product (`orbitalEulerProduct`) is proved for $\mathcal O_F$ a PID: its per-ideal step writes each
+fractional ideal as $\mathfrak b = (\beta)$. Here the per-ideal step is proved for **every** fractional ideal
+$\mathfrak b$, so the Euler product, $\tau(SO) = 2$ by Weil's induction (`tamagawaNumberTwo_of_complement_nf`) and the
+mass formula hold for every totally real $F$ (any class number).
 
 *Per-ideal step* (`finsum_sphereCount_eq_nf`): choose $\beta \in \mathfrak b\setminus0$ and $e = \mathrm{ord}(\beta) - \mathrm{ord}(\mathfrak b) \ge 0$. Then
 $\eta \mapsto \beta\gamma\eta$ identifies the vectors of $\mathfrak b^{-1}M$ of norm $\rho$ with the vectors of the **non-free** integral lattice
 $\varpi^eM \subseteq M$ of norm $\beta^2\rho$ (`sphereCount_eq_repCount_scale`); the genus of $\varpi^e\mathcal O_F^{n+1}$ is the image of the
-genus of $\mathcal O_F^{n+1}$ (`repMass_scaleLat`); the factorization of the Siegel formula applies to the lattice $\varpi^e\mathcal O_F^{n+1}$
+genus of $\mathcal O_F^{n+1}$ (`repMass_scaleLat`); the global reduction and the factorization apply to the lattice $\varpi^e\mathcal O_F^{n+1}$
 (`repMass_eq_mass_mul_finprod_lat`); and locally $W(\varpi^k\Lambda, \varpi^kc) = W(\Lambda, c)$ (`locTypeSumG_scale`) returns the local factor
 $W_\mathfrak p(\mathrm{ord}_\mathfrak p\mathfrak b)$. `GenusFree` comes from Steinitz (`genusFree_formF`).
 -/
@@ -81,9 +82,10 @@ section PerIdealLat
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 
-/-- **The per-ideal factorization for any integral lattice $L$** (not only $\mathcal O_F^{n+1}$; Weil 1982, §4.5, p. 109; §3.4–3.5 [unverified locator]):
+/-- **The per-ideal factorization for any integral lattice $L$** (not only $\mathcal O_F^{n+1}$;
+Weil 1982, §4.5, p. 109; §3.4–3.5 [unverified locator]):
 $$\mathrm{repMass}(L, \beta^2\rho) = \mathrm{Mass}(Q_0')\prod_\mathfrak pW_\mathfrak p(g^{-1}L_\mathfrak p, \beta).$$
-The proof is `repMass_eq_mass_mul_finprod` with $L$ in place of $\mathcal O_F^{n+1}$. -/
+The proof is that of `repMass_eq_mass_mul_finprod` with $L$ in place of $\mathcal O_F^{n+1}$. -/
 @[kb "weil1982" "§4.5, p. 109 (orbit counting in coordinates adapted to ξ_ρ); §3.4-3.5 [unverified locator]"]
 theorem repMass_eq_mass_mul_finprod_lat (Q₀ : QuadForm (𝓞 F) (n + 1)) (hpd : IsTotallyPosDef (formF Q₀))
     {ρ : F} (hρ : ρ ≠ 0) (fr : AdaptedFrame (formF Q₀) ρ) {β : F} (hβ : β ≠ 0) (L : Lat F (n + 1))
@@ -611,10 +613,11 @@ theorem orbitalEulerProduct_nf (Q₀ : QuadForm (𝓞 F) (n + 1))
       tprod_sphLocal_eq_zero Q₀ hpd (rep_ne_zero k) hpos h s]
     simp
 
-/-- **Weil's Theorem 4.5.1, $\tau(SO(V)) = 2$, from the induction hypothesis** (Weil 1982, §4.5, Thm 4.5.1, p. 109): for $F$ totally real
-(**any class number**) and $Q_0$ totally positive definite in $n + 1 \ge 5$ variables over $\mathcal O_F$, if $\tau(SO) = 2$ in rank $n$
-(`hIH`, the induction hypothesis: every totally positive definite form in $n$ variables) and the local orbital identities hold at the
-non-standard primes of the frames (`OrbitalLocalIdentities`, a per-prime local input), then $\tau(SO(V)) = 2$. -/
+/-- **Weil's Theorem 4.5.1, $\tau(SO(V)) = 2$, from the induction hypothesis** (Weil 1982, §4.5, Thm 4.5.1, p. 109):
+for $F$ totally real (**any class number**) and $Q_0$ totally positive definite in $n + 1 \ge 5$ variables over
+$\mathcal O_F$, if $\tau(SO) = 2$ in rank $n$ (`hIH`, the induction hypothesis: every totally positive definite form
+in $n$ variables) and the local orbital identities hold at the non-standard primes of the frames
+(`OrbitalLocalIdentities`, a per-prime local input), then $\tau(SO(V)) = 2$. -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109 (induction step n → n+1)"]
 theorem tamagawaNumberTwo_of_complement_nf (Q₀ : QuadForm (𝓞 F) (n + 1))
     (hpd : IsTotallyPosDef (formF Q₀)) (hn : 4 ≤ n) (hloc : OrbitalLocalIdentities Q₀)
@@ -628,7 +631,7 @@ theorem tamagawaNumberTwo_of_complement_nf (Q₀ : QuadForm (𝓞 F) (n + 1))
   exact SphericalFibration.tamagawaNumberTwo_of_orbitalEulerProduct' Q₀ hQ₀ (by omega) hpd
     (orbitalEulerProduct_nf Q₀ hpd hn hloc) (complementTauTwo_of_IH Q₀ hpd hIH)
 
-/-- **The mass formula in rank $n + 1 \ge 5$ from the induction hypothesis** (`massFormula` with the $\tau = 2$):
+/-- **The mass formula in rank $n + 1 \ge 5$ from the induction hypothesis** (`massFormula` with $\tau = 2$):
 $\mathrm{Mass}(\mathcal O_F^{n+1}) = \mu_{\mathrm{Tam}}(K_{SO})^{-1}$. -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109; cf. Kitaoka 1993, Thm 6.8.1 [unverified]"]
 theorem massFormula_of_complement_nf (Q₀ : QuadForm (𝓞 F) (n + 1))
@@ -643,7 +646,9 @@ theorem massFormula_of_complement_nf (Q₀ : QuadForm (𝓞 F) (n + 1))
   exact massFormula Q₀ hQ₀ (by omega) hpd (HilbertModular.isIntegral_stdLat Q₀)
     (tamagawaNumberTwo_of_complement_nf Q₀ hpd hn hloc hIH)
 
-/-- **Siegel's formula for the number $m$ in rank $n + 1 \ge 5$** for split forms $\langle m\rangle\perp Q_0'$ (`siegelFormulaAt_of_tamagawa'` with the $\tau = 2$ in rank $n + 1$; $\tau(SO(Q_0')) = 2$ is part of the induction hypothesis). -/
+/-- **Siegel's formula for the number $m$ in rank $n + 1 \ge 5$** for split forms $\langle m\rangle\perp Q_0'$
+(`siegelFormulaAt_of_tamagawa'` with $\tau = 2$ in rank $n + 1$; $\tau(SO(Q_0')) = 2$ is part of the induction
+hypothesis). -/
 @[kb "weil1982" "§4.5, p. 100 (Siegel's theorem as a consequence of τ = 2), Thm 4.5.1, p. 109"]
 theorem siegelFormulaAt_of_complement_nf (m₀ : 𝓞 F) (hm : m₀ ≠ 0) (Q₀' : QuadForm (𝓞 F) n)
     (hn : 4 ≤ n) (hpd : IsTotallyPosDef (formF (splitForm m₀ Q₀')))
@@ -673,8 +678,9 @@ theorem orbitalEulerProduct_nf' {n : ℕ} (Q₀ : QuadForm (𝓞 F) (n + 1)) (hp
   orbitalEulerProduct_nf Q₀ hpd hn (orbitalLocalIdentities Q₀ (nondegenerate_of_totallyPosDef' hpd))
 
 /-- **$\tau(SO) = 2$ in every rank $N \ge 4$ from rank 4, over every totally real field** (any class number). Weil's induction
-$n \to n + 1$ by the orbital Euler product in **every** rank $n + 1 \ge 5$, even ranks included (no Hilbert modular forms, no Smith normal form over
-$\mathcal O_F$, no `PrincipalPrimeSupply`); the local orbital identities are proved (`orbitalLocalIdentities`). -/
+$n \to n + 1$ by the orbital Euler product in **every** rank $n + 1 \ge 5$, even ranks included (no Hilbert modular
+forms, no Smith normal form over $\mathcal O_F$, no `PrincipalPrimeSupply`); the local orbital identities are proved
+(`orbitalLocalIdentities`). -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109 (induction n → n+1, every rank)"]
 theorem tamagawaNumberTwo_of_quaternary_nf (h4 : QuaternaryTamagawaTwo F) {N : ℕ} (hN : 4 ≤ N)
     (Q₀ : QuadForm (𝓞 F) N) (hpd : IsTotallyPosDef (formF Q₀)) : TamagawaNumberTwo Q₀ := by

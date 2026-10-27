@@ -279,7 +279,7 @@ def IsGoodV : Prop := diffExp v = 0 ∧ Valued.v (2 : Fv) = 1 ∧ ∀ i, Valued.
 /-- **The Hilbert symbol of two units is $1$ at a good place** ($d_v = 0$, $v \nmid 2$). *Proof* (local, via the Weil
 index): $\gamma_v = 1$ on units (`weilV_eq_one`) and $\gamma_v(st)\gamma_v(1) = (s,t)_v\gamma_v(s)\gamma_v(t)$
 (`HN.weilV_mul_identity`). -/
-@[kb "serre1973" "Ch. III, Thm. 1 (the Hilbert symbol on units, $p \\ne 2$, over $\\mathbb{Q}_p$; here over $F_v$) [unverified]"]
+@[kb "serre1973" "Ch. III, Thm. 1 (the Hilbert symbol on units, $p \\ne 2$, over $\\mathbb{Q}_p$; here over $F_v$) [unverified]; omeara1963 §63B, 63:12, p. 166"]
 theorem hilbertSymbol_units_of_good (hd : diffExp v = 0) (h2 : Valued.v (2 : Fv) = 1) {s t : Fv}
     (hs : Valued.v s = 1) (ht : Valued.v t = 1) : hilbertSymbol Fv s t = 1 := by
   have hs0 : s ≠ 0 := by rintro rfl; simp at hs

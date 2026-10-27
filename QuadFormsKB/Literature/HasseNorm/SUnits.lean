@@ -58,6 +58,7 @@ theorem exists_mem_only (v : HeightOneSpectrum (𝓞 F)) :
 
 /-- The group $F_S^\times$ of `S`-units ($S$ a finite set of finite primes; the infinite places are
 always allowed): Mathlib's `Set.unit`. -/
+@[kb "omeara1963" "§65A, p. 174 (the group of S-units)"]
 abbrev SUnit (S : Finset (HeightOneSpectrum (𝓞 F))) : Subgroup Fˣ :=
   (↑S : Set (HeightOneSpectrum (𝓞 F))).unit F
 
@@ -274,7 +275,7 @@ theorem card_ker_two_sUnit (S : Finset (HeightOneSpectrum (𝓞 F))) :
 /-- **Squares in the `S`-units:** $[F_S^\times : F_S^{\times 2}] = 2^{r_\infty + |S|}$ ($= 2^{\#\text{all places in } S}$
 when $S$ is completed by the $r_\infty$ infinite places). From `index_range_two`, `finrank_sUnit`
 and `card_ker_two_sUnit` ($\mathrm{rk} = r_\infty - 1 + |S|$, and the torsion contains $-1$). -/
-@[kb "milne2020cft" "Ch. VII §6, proof of Lemma 6.7 [unverified]"]
+@[kb "milne2020cft" "Ch. VII §6, proof of Lemma 6.7 [unverified]; omeara1963 §65B, 65:6, p. 178"]
 theorem index_sq_sUnit (S : Finset (HeightOneSpectrum (𝓞 F))) :
     (nsmulAddMonoidHom (α := Additive (SUnit (F := F) S)) 2).range.index =
       2 ^ (Units.rank F + S.card + 1) := by

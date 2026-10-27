@@ -36,7 +36,7 @@ Cor. 2 over $\mathbb Q_p$): for $Q$ nondegenerate over $\mathcal O_F$ in $n \ge 
 included), $Q$ is isotropic over $F_\mathfrak p$. *Proof:* diagonalize $Q \otimes F_\mathfrak p \cong \langle a_0, \dots, a_{n-1}\rangle$
 (`FieldGen.exists_isometric_diag`); $\langle a_0, \dots, a_4\rangle$ is isotropic (`isotropic_diag_five`), and so is the whole form
 (`FieldGen.isotropicIn_diag_of_prefix`). -/
-@[kb "omeara1963" "63:19 (n ≥ 5: isotropic over every non-archimedean completion) [unverified]"]
+@[kb "omeara1963" "§63C, 63:19, p. 170"]
 theorem isotropicIn_completion_of_five_le (Q : QuadForm (𝓞 F) n) (hQ : Q.Nondegenerate) (hn : 5 ≤ n) :
     Q.IsotropicIn Kv := by
   classical

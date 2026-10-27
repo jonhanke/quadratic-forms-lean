@@ -2,7 +2,7 @@
 # The $T(\mathfrak p^2)$ identity for the genus representation numbers over $F$
 
 **Setting.** $F$ totally real with $\mathcal O_F$ a PID, $Q_0$ a totally positive definite form over $\mathcal O_F$ of even rank $n = 2k \ge 2$,
-$Q = Q_0 \otimes F$ on $F^n$, $L = \mathcal O_F^n$, and the classes $\mathrm{cls}(M) \subseteq \mathrm{gen}(L)$ (`Lattices.genusClasses`) with weights $1/|O(M)|$ (full
+$Q = Q_0 \otimes F$ on $F^n$, $L = \mathcal O_F^n$, and the classes $\mathrm{cls}(M) \subseteq \mathrm{gen}(L)$ of the genus with weights $1/|O(M)|$ (full
 orthogonal group, GL-classes). $\pi$ is a prime of $\mathcal O_F$ with $\pi \nmid 2\det H(Q_0)$, $q = N(\pi)$, $\chi_\pi$ = `Nbr.chiPi Q₀ π`.
 
 **Main theorem** (`genus_sum_latRepF_sq`, the Eichler commutation relation averaged over the genus): for $\nu \in \mathcal O_F$, $\pi \nmid \nu$,
@@ -193,7 +193,7 @@ include hQ hπ h2 hdet hnb
 $\pi \nmid 2\det H(Q_0)$ whose neighbours stay in the genus (`NbrInGenus`), and $\nu \in \mathcal O_F$ with $\pi \nmid \nu$,
 $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^n)}\frac{r_M(\pi^2\nu)}{|O(M)|} = \lambda_\pi\sum_{\mathrm{cls}(M)}\frac{r_M(\nu)}{|O(M)|},
   \qquad\lambda_\pi = q^{n-2} + \chi_\pi q^{n/2-1} + 1$$
-(`heckeEigen`), the sums over the classes of `Lattices.genusClasses` (`genusClasses`, representatives `c.out`, $|O(M)|$ = `LatClass.autCard`). -/
+(`heckeEigen`), the sums over the classes of the genus (`genusClasses`, representatives `c.out`, $|O(M)|$ = `LatClass.autCard`). -/
 @[kb "eichler1952" "T(𝔭²) relation for the genus average, over F [unverified]"]
 theorem genus_sum_latRepF_sq (hn : Even n) (hn2 : 2 ≤ n) {ν : 𝓞 F} (hν : ¬ π ∣ ν) :
     ∑ c ∈ (genusClasses_finite hQ stdLat (isIntegral_stdLat Q₀)).toFinset,

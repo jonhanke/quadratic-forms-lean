@@ -6,7 +6,7 @@ Authors: Jonathan Hanke
 import QuadFormsKB.Tamagawa.SiegelGenusV
 
 /-!
-# Siegel's formula with the classical, basis-free local densities (gd)
+# Siegel's formula with the classical, basis-free local densities
 
 **Layer:** $F$ a number field; $(F^N, Q)$ a quadratic space over $F$ and $L$ an $\mathcal O_F$-lattice (`Lat F N`, any Steinitz
 class) with $Q$ integral on $L$; then (headlines) an abstract quadratic space $(V, q)$ over a totally real number field.
@@ -16,7 +16,8 @@ For a finite place $\mathfrak p$, choose any $\mathfrak o_\mathfrak p$-basis of 
 basis ($T(x) = Q(\sum_i x_ie_i)$, a form over $\mathfrak o_\mathfrak p$),
 $$\beta_\mathfrak p(L, m) = \lim_{k\to\infty}\frac{\#\{x \in (\mathfrak o_\mathfrak p/\mathfrak p^k)^N : T(x) \equiv m \bmod \mathfrak p^k\}}
   {N\mathfrak p^{k(N-1)}} = \lim_k\frac{\#\{x \in L_\mathfrak p/\mathfrak p^kL_\mathfrak p : Q(x) \equiv m \bmod \mathfrak p^k\}}{N\mathfrak p^{k(N-1)}}$$
-(`intrinsicBeta`; the library's `DVR.localDensity T`, the second count being the first one read through the basis). It does
+(`intrinsicBeta`; the library's `DVR.localDensity T`, the second count being the first one read through the basis).
+It does
 **not depend on the basis** (`intrinsicBeta_eq_of_localBasis`: any $P \in \mathrm{GL}_N(F_\mathfrak p)$ with $P\mathfrak o_\mathfrak p^N = L_\mathfrak p$;
 two such differ by $\mathrm{GL}_N(\mathfrak o_\mathfrak p)$, an isometry of the Gram forms), nor on the coordinates of $V$
 (`intrinsicBeta_compMat`). This is the density for the Haar measure of $F_\mathfrak p\otimes V$ giving $L_\mathfrak p$ volume $1$.
@@ -44,7 +45,6 @@ $\prod_\sigma\det_\sigma(Q)^{-1/2}\cdot\mathrm{latIndex}(L) = N\mathfrak d(L)^{-
 
 Sources: Siegel 1935, Hauptsatz [unverified]; Kitaoka 1993, §5.6 (local densities of lattices) [unverified]; O'Meara 1963,
 §82 (discriminant of a lattice) [unverified]; Hanke 2004, (5.1)–(5.5), pp. 368–369 (density conventions).
-
 -/
 
 open NumberField IsDedekindDomain Module Matrix
@@ -184,7 +184,8 @@ theorem spaceBeta_eq_locIndex_mul (Q : QuadForm F N) (L : Lat F N) (m : 𝓞 F) 
   · rw [spaceBeta, intrinsicBeta, dif_pos h, dif_pos h, locIndex_eq v h.choose_spec.1.2]
   · rw [spaceBeta, intrinsicBeta, dif_neg h, dif_neg h, mul_zero]
 
-/-- **`latBeta` in terms of the classical density**: `latBeta v Q₀ L m = ‖det A‖_𝔭 · β_𝔭(L_𝔭, m)` for any local model $A$. -/
+/-- **`latBeta` in terms of the classical density**: `latBeta v Q₀ L m = ‖det A‖_𝔭 · β_𝔭(L_𝔭, m)` for any local
+model $A$. -/
 theorem latBeta_eq_normDet_mul_intrinsicBeta (Q₀ : QuadForm (𝓞 F) N) (L : Lat F N) {A : GL (Fin N) F}
     (hA : IsLocModel v L A) (m : 𝓞 F) :
     latBeta v Q₀ L m = ‖algebraMap F Fv A.val.det‖ * intrinsicBeta v (formF Q₀) L m := by
@@ -259,8 +260,8 @@ theorem locIndex_hasFiniteMulSupport (L : Lat F N) :
 
 /-- **The index of $L$ relative to $\mathcal O_F^N$**: $\mathrm{latIndex}(L) = \prod_\mathfrak p\|\det A_\mathfrak p\|_\mathfrak p = N(\mathfrak a_L)^{-1}$,
 $\mathfrak a_L = \prod_\mathfrak p\mathfrak p^{\mathrm{ord}_\mathfrak p\det A_\mathfrak p}$ ($A_\mathfrak p$ a local basis of $L_\mathfrak p$; a finite product,
-`locIndex_hasFiniteMulSupport`). For $L \subseteq \mathcal O_F^N$ it is $[\mathcal O_F^N : L]^{-1}$ (O'Meara 1963, §81 [unverified]). -/
-@[kb "omeara1963" "§81 (index ideal of a lattice) [unverified]"]
+`locIndex_hasFiniteMulSupport`). For $L \subseteq \mathcal O_F^N$ it is $[\mathcal O_F^N : L]^{-1}$ (cf. O'Meara 1963, §81D, 81:11–81:12, pp. 214–216: invariant factors and the index $(L : K)$). -/
+@[kb "omeara1963" "§81D, p. 216 (the index (L:K) = ∏(𝔬:𝔯_i) via invariant factors, 81:11–81:12)"]
 def latIndex (L : Lat F N) : ℝ := ∏ᶠ v, locIndex v L
 
 theorem latIndex_eq_prod (L : Lat F N) :
@@ -304,11 +305,11 @@ theorem locDisc_eq_of_locBasis (v : HeightOneSpectrum (𝓞 F)) (Q : QuadForm F 
     locDisc v Q L = ‖algebraMap F (v.adicCompletion F) ((Q.compMat A.val).hessian.det / 2 ^ N)‖ := by
   rw [locDisc_eq, locIndex_eq v hA, norm_det_compMat]
 
-/-- **The absolute norm of the discriminant ideal of $L$** (O'Meara 1963, §82 [unverified]):
+/-- **The absolute norm of the discriminant ideal of $L$** (O'Meara 1963, §82E, p. 228, where it is called the volume $\mathfrak vL$):
 $N\mathfrak d(L) = \prod_\mathfrak p\|\det B_\mathfrak p\|_\mathfrak p^{-1}$, $\mathfrak d(L) = \prod_\mathfrak p\mathfrak p^{\mathrm{ord}_\mathfrak p\det B_\mathfrak p}$ with $B_\mathfrak p$ the
 Gram matrix ($\tfrac12$Hessian) of $Q$ in a local basis of $L_\mathfrak p$. Basis-free (`locDisc_eq_of_locBasis`, `discNorm_compMat`);
 `discNorm_eq` evaluates it by the product formula. -/
-@[kb "omeara1963" "§82 (discriminant of a lattice) [unverified]"]
+@[kb "omeara1963" "§82E, p. 229 (volume 𝔳L); §82B, p. 222 (discriminant of a free lattice)"]
 def discNorm (Q : QuadForm F N) (L : Lat F N) : ℝ := ∏ᶠ v, (locDisc v Q L)⁻¹
 
 variable [IsTotallyReal F] in
@@ -448,7 +449,7 @@ theorem multipliable_spaceBeta_corr {n : ℕ} (Q : QuadForm F (n + 1)) (L : Lat 
   rw [spaceBeta_eq v Q L hLi γ Q₀ hγ, div_zpow]
   field_simp
 
-/-- **$S(Q, L, m) = S^{\mathrm{cl}}(Q, L, m)$, rank $N \ge 4$**: the coordinate Siegel product equals the classical one. -/
+/-- **$S(Q, L, m) = S^{\mathrm{cl}}(Q, L, m)$, rank $N \ge 4$**: gcf's coordinate Siegel product equals the classical one. -/
 theorem siegelProductSpace_eq_classical {N : ℕ} (hN : 4 ≤ N) (Q : QuadForm F N) (hpd : IsTotallyPosDef Q) (L : Lat F N)
     (hLi : Lattices.IsIntegral Q L.1) {m : 𝓞 F} (hm : ∀ v : InfinitePlace F, 0 < realEmb F v (algebraMap (𝓞 F) F m)) :
     siegelProductSpace Q L m = siegelProductClassical Q L m := by
@@ -569,10 +570,10 @@ def intrinsicBetaV (v : HeightOneSpectrum (𝓞 F)) (q : QuadraticForm F V) (L :
     (m : 𝓞 F) : ℝ :=
   intrinsicBeta v (coordForm q (finBasis F V)) (coordLat (finBasis F V) L) m
 
-/-- **The norm $N\mathfrak d(L)$ of the discriminant ideal of $L$ in $(V, q)$** (O'Meara 1963, §82 [unverified]),
+/-- **The norm $N\mathfrak d(L)$ of the discriminant ideal of $L$ in $(V, q)$** (O'Meara 1963, §82E, p. 228, the volume $\mathfrak vL$),
 $\mathfrak d(L) = \prod_\mathfrak p\mathfrak p^{\mathrm{ord}_\mathfrak p\det(B_q(e_i, e_j))}$ for local bases $(e_i)$ of $L_\mathfrak p$, $B_q(x, x) = q(x)$;
 equal in every basis (`discNormV_eq_basis`). -/
-@[kb "omeara1963" "§82 (discriminant of a lattice in a quadratic space) [unverified]"]
+@[kb "omeara1963" "§82E, p. 229 (volume 𝔳L); §82B, p. 222"]
 def discNormV (q : QuadraticForm F V) (L : Submodule (𝓞 F) V) [L.IsLattice F] : ℝ :=
   discNorm (coordForm q (finBasis F V)) (coordLat (finBasis F V) L)
 

@@ -392,7 +392,7 @@ theorem locRep_std : locRep v m Q' (Quotient.mk'' (locStdPt v m Q')) = locStdPt 
 
 /-- **The local weight** of $M \in Y_\mathfrak p$: with $K_M = \mathrm{Stab}_{O(Q')(F_\mathfrak p)}(M)$ and $K_0' = O(\mathfrak o_\mathfrak p^n)$,
 $$w_\mathfrak p(M) = \frac{\mu(K_0')}{\mu(K_M)} = \frac{[K_0' : K_M\cap K_0']}{[K_M : K_M \cap K_0']},$$
-the local factor of `typeWeight` (an index ratio; any Haar measure). -/
+the local factor of the `typeWeight` (an index ratio; any Haar measure). -/
 @[kb "weil1982" "§3.5 (local weights) [unverified locator]"]
 def locWeight (M : LocCompSet v m Q') : ℝ :=
   ((stabilizer (orthGroup Q' Fv) M).relIndex (stdStab Q' v) : ℝ) /
@@ -447,8 +447,8 @@ on $Y_\mathfrak p$, so there is exactly one local type, that of $\mathfrak o_\ma
 $x = g^{-1}e_0 \in \mathfrak o_\mathfrak p^{n+1}$ has $Q(x) = m$; one of $Q(x \mp e_0)$ is a unit (their sum is $4m$), and the reflection in
 that vector, composed with $-1$ if needed, is $k \in O(\mathfrak o_\mathfrak p^{n+1})$ with $ke_0 = x$ (`exists_refl_e₀`). Then $gk$ fixes
 $e_0$, so $gk = \mathrm{diag}(1, h)$ (`exists_orthEmb_eq`) and $M = gk\,\mathfrak o_\mathfrak p^{n+1} = h\cdot\mathfrak o_\mathfrak p^{n+1}$
-(O'Meara 1963, §92 [unverified], for the transitivity of $O(L_\mathfrak p)$ on vectors of unit norm). -/
-@[kb "omeara1963" "§92 (transitivity on unit vectors) [unverified]"]
+(cf. O'Meara 1963, §92, pp. 246–250, for the transitivity of $O(L_\mathfrak p)$ on vectors of unit norm). -/
+@[kb "omeara1963" "§92, pp. 246–249 (non-dyadic lattices)"]
 theorem exists_smul_locStdPt (m₀ : 𝓞 F) (Q₀' : QuadForm (𝓞 F) n) (h2m : 2 * m₀ ∉ v.asIdeal)
     (M : LocCompSet v (algebraMap (𝓞 F) F m₀) (Q₀'.map (algebraMap (𝓞 F) F))) :
     ∃ h : orthGroup (Q₀'.map (algebraMap (𝓞 F) F)) Fv,
@@ -578,7 +578,8 @@ Field:
 *Meaning.* Weil's fibration $O(V_\mathfrak p) \to \{v : Q(v) = m\}$, $g \mapsto ge_0$, fibre $O(e_0^\perp)$: the $O(L_\mathfrak p)$-orbits
 on $\{v \in L_\mathfrak p : Q(v) = m\}$ are the local types (Witt), the orbit of $ge_0$ has measure
 $\mathrm{vol}(O(L_\mathfrak p))/\mathrm{vol}(\mathrm{Stab})$ for the gauge forms up to the Jacobian $|2m|_\mathfrak p^{-n}$, and the total measure
-of the level set is $\beta_\mathfrak p(L, m)$ (`volume_ballQ_eq_localDensity`). The product over $\mathfrak p$ is `LocalOrbitalIdentity` (`localOrbitalIdentity_of_local`). **Proved** at every $\mathfrak p \nmid 2m$
+of the level set is $\beta_\mathfrak p(L, m)$ (`volume_ballQ_eq_localDensity`). The product over $\mathfrak p$ is the
+`LocalOrbitalIdentity` (`localOrbitalIdentity_of_local`). **Proved** at every $\mathfrak p \nmid 2m$
 (`localOrbitalIdentityAt_of_not_mem`); at the finitely many $\mathfrak p \mid 2m$ (dyadic primes and primes dividing $m$) it is
 an input. *Independence:* a statement about one prime; no global object occurs. -/
 @[kb "weil1982" "§3.4 (local fibration, one prime) [unverified]"]

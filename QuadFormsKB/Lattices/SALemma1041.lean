@@ -9,7 +9,7 @@ set $T_1$ of primes at which $O(K_\mathfrak p)$ contains a symmetry, there is $\
 $\mathfrak p \in T_1$, such that every $c \in F^\times$ represented by $V$ with $c/\mu^2$ represented by every $K_\mathfrak p$
 is represented by $K$.
 
-*Departures from O'Meara (recorded in `docs/updates-and-errata.md`).* O'Meara asks $\mu$ to be a unit on a set $T$
+*Departures from O'Meara.* O'Meara asks $\mu$ to be a unit on a set $T$
 chosen in advance and the class representatives $L_i$ to agree with $L$ on $T$ (Example 102:4). Here $\mu$ is a unit only
 on $T_1$, and the representatives are moved into agreement with $K$ on $T_1$ by a global isometry obtained from weak
 approximation for products of symmetries (`exists_symmProd_approx`); the parity of the word length is fixed with the
@@ -34,6 +34,7 @@ theorem symmProd_append_replicate {K : Type*} [Field K] [Algebra F K] [CharZero 
 
 /-- **Moving a lattice of the genus into agreement with $K$ on $T_1$** by a global isometry (O'Meara 102:4 on $T_1$),
 given a symmetry of $K_\mathfrak p$ at each $\mathfrak p \in T_1$. -/
+@[kb "omeara1963" "§102A, 102:4, pp. 299–300; cassels1978 Ch. 9, Lemma 4.2, p. 140"]
 theorem exists_isometric_agree (hQ : Q.Nondegenerate) (K : Lat F n) (T₁ : Finset (HeightOneSpectrum (𝓞 F)))
     (himp : ∀ v ∈ T₁, ∃ e : Fin n → v.adicCompletion F, Q.evalIn _ e ≠ 0 ∧
       locAct v ((symm Q (v.adicCompletion F) e : orthGroup Q _) : GL (Fin n) _) (loc v K.1) = loc v K.1)
@@ -111,7 +112,7 @@ theorem smul_mem_of_valued_le {v : HeightOneSpectrum (𝓞 F)} {M : Submodule (v
   M.smul_mem (⟨a, (HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).mpr ha⟩ : v.adicCompletionIntegers F) hy
 
 /-- **O'Meara 1973, Lemma 104:1** (p. 311), in the form used for 104:3; see the module docstring. -/
-@[kb "omeara1963" "104:1, PDF p. 319"]
+@[kb "omeara1963" "§104, 104:1, p. 311"]
 theorem exists_scale_represents_away (hQ : Q.Nondegenerate) (K : Lat F n)
     (T₁ : Finset (HeightOneSpectrum (𝓞 F)))
     (himp : ∀ v ∈ T₁, ∃ e : Fin n → v.adicCompletion F, Q.evalIn _ e ≠ 0 ∧
@@ -263,7 +264,7 @@ theorem exists_scale_represents_away (hQ : Q.Nondegenerate) (K : Lat F n)
   · rw [locVec_smul']; exact hμK M hMs v _ (hγx v hvE)
 
 /-- **O'Meara 1973, Lemma 104:1** (p. 311), in the form used for 104:3; see the module docstring. -/
-@[kb "omeara1963" "104:1, PDF p. 319"]
+@[kb "omeara1963" "§104, 104:1, p. 311"]
 theorem exists_scale_represents (hQ : Q.Nondegenerate) (K : Lat F n) (T₁ : Finset (HeightOneSpectrum (𝓞 F)))
     (himp : ∀ v ∈ T₁, ∃ e : Fin n → v.adicCompletion F, Q.evalIn _ e ≠ 0 ∧
       locAct v ((symm Q (v.adicCompletion F) e : orthGroup Q _) : GL (Fin n) _) (loc v K.1) = loc v K.1) :

@@ -1,19 +1,20 @@
 /-
 # Orbit masses as adelic integrals
 
-**Layer:** abstract measure theory on $G_\infty\times G_f$ (as in `Neat.lean` and `NeatCovolume.lean`), then the KB's representation masses.
+**Layer:** abstract measure theory on $G_\infty\times G_f$ (as in `AdelicSO.lean`), then the library's
+representation masses.
 
 **Proves** (all unconditional, standard axioms only)
 * `setLIntegral_neatDomain`: the integral of a right-$K'$-invariant function of $g_f$ over the neat fundamental domain
   $G_\infty\times\bigcup_i\beta_iK'$ is $\mu_\infty(G_\infty)\,\mu_f(K')\sum_i\theta(\beta_i)$;
 * `sum_card_fiber_eq_relIndex_mul_orbitMass` (combinatorics): for a $\Gamma$-set $P$ over $G_f/K$ with finite fibres and
   a neat $K' \le K$ of finite index, $\sum_{\Gamma\beta K'}\#\pi^{-1}(\beta K) = [K:K']\cdot\mathrm{mass}_\Gamma(P)$;
-* **`setLIntegral_card_fiber`** (**orbit masses are adelic integrals**): for $\Gamma \le G_\infty\times G_f$ as in `covolume_eq_measure_mul_dcMass_of_sep`, a $\Gamma_f$-set $P$ with an equivariant $\pi : P \to G_f/K$ with finite fibres,
+* **`setLIntegral_card_fiber`** (**orbit masses are adelic integrals**): for $\Gamma \le G_\infty\times G_f$ as in
+  `covolume_eq_measure_mul_dcMass_of_sep`, a $\Gamma_f$-set $P$ with an equivariant $\pi : P \to G_f/K$ with finite fibres,
   and **any** fundamental domain $D$ of $\Gamma$,
   $$\int_D\#\pi^{-1}(g_fK)\,d(\mu_\infty\times\mu_f)(g) = \mu_\infty(G_\infty)\cdot\mu_f(K)\cdot\mathrm{mass}_{\Gamma_f}(P).$$
   With $P = G_f/K$ this is the covolume formula; with $P$ = pairs (lattice, vector of value $m$) it is the adelic
   integral of the theta-type sum $\#\{\xi \in V(F) : Q(\xi) = m,\ \xi\in g_f\hat L\}$ (below).
-
 -/
 import QuadFormsKB.Tamagawa.Measure.Unfolding
 import QuadFormsKB.Tamagawa.Measure.AdelicSO
@@ -416,7 +417,7 @@ theorem orbitMass_pairActSO (hpd : IsTotallyPosDef QF) (hLi : IsIntegral QF (std
     repMass_eq_orbitMass_pairs hpd (stdLat F n) hLi m]
   norm_num
 
-/-- **A fundamental domain for $SO(V)(F)$ in $SO(V)(\mathbb A)$ exists** (the neat domain of `Neat.lean`). -/
+/-- **A fundamental domain for $SO(V)(F)$ in $SO(V)(\mathbb A)$ exists** (the neat domain of `AdelicSO.lean`). -/
 theorem exists_isFundamentalDomain_of_sep {A B : Type*} [Group A] [Group B] [MeasurableSpace A]
     [MeasurableSpace B] [MeasurableMul A] [MeasurableMul B] (Γ : Subgroup (A × B)) (K : Subgroup B)
     (hK : MeasurableSet (K : Set B))

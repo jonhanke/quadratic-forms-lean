@@ -317,7 +317,8 @@ $m \ge M_0$ that is locally represented by $Q$ at every prime $p$ is represented
 
 No inputs: `tartakowsky_even` with `LocalDensityGap` discharged at every prime (`localDensityGap_of_five_le`). The proof uses Hecke's
 bound for the cusp form $\theta_Q - E_Q$ (no Deligne, no eigenform decomposition), the Fourier coefficients of the Eisenstein series
-$E_Q$ (over $F = \mathbb Q$; no Siegel formula for the genus is needed), and the local lower bounds of §5. $M_0$ exists but is
+$E_Q$ (over $F = \mathbb Q$; no Siegel formula for the genus is needed), and the local lower bounds of §5.
+$M_0$ exists but is
 not explicit; compare `thm_6_4_even` (explicit threshold, conditional on Siegel's formula, (4.7) and Deligne's bound (4.8)). -/
 @[kb "hanke2004" "Thm 6.4, p. 382 (n even ≥ 6): unconditional, non-explicit constant (Tartakowsky), via Hecke's bound"]
 theorem thm_6_4_even_uncond (Q : IntQF n) (hQ : Q.PosDef) (hn : 6 ≤ n) (heven : Even n) :

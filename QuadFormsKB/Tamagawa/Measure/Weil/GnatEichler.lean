@@ -1,9 +1,9 @@
 /-
 # Eichler's norm theorem for every quaternion algebra, and the reduced-norm images of $G^\natural$
-
 Over a number field $F$ (any degree, any signature):
 * `representsIn_diag4`: Hasse–Minkowski for $\langle 1, e_0, e_1, e_2\rangle$ — it represents $c \ne 0$ over $F$ as soon as
-  $c > 0$ at the real places where the form is positive definite (finite places: rank-5 isotropy, `localRankFiveIsotropic`; real places: an indefinite form is universal; complex places: squares).
+  $c > 0$ at the real places where the form is positive definite (finite places: rank-5 isotropy,
+  `localRankFiveIsotropic`; real places: an indefinite form is universal; complex places: squares).
 * **`eichler_norm_theorem_general`**: $\operatorname{nrd}((a,b)_F^\times) = \{c \in F^\times : c > 0$ at the real places
   ramified in $D\}$ — `eichler_norm_theorem'` without the totally definite hypothesis.
 * **`Gnat.exists_Gnat_nrdK_eq_iff`**: $\operatorname{nrd}(G^\natural(F)) = \{c \in F^\times : c > 0$ at the real $w$ with
@@ -126,7 +126,7 @@ theorem representsIn_diag4_finite (e : Fin 3 → F) (he : ∀ i, e i ≠ 0) {c :
 
 /-- **Hasse–Minkowski for `⟨1, e₀, e₁, e₂⟩`:** it represents `c ≠ 0` over `F` iff (only "if" is stated) `c` is
 positive at the real places where the form is positive definite. -/
-@[kb "omeara1963" "§66:3 [unverified]"]
+@[kb "omeara1963" "§66, 66:3, p. 189"]
 theorem representsIn_diag4 (e : Fin 3 → F) (he : ∀ i, e i ≠ 0) {c : F} (hc : c ≠ 0)
     (hpos : PosWhereDefinite e c) : (diag4 e).RepresentsIn F c := by
   have hQ : (diag4 e).Nondegenerate := by
@@ -292,7 +292,7 @@ $$\operatorname{nrd}(G^\natural(F)) = \{c \in F^\times : \sigma_w(c) > 0 \text{ 
 These `w` are exactly the real places of `F` below the real places of `E` at which `D_E` is ramified. `⊇`: the
 values of the quaternary form `nrd|_{V_0} = ⟨1, −ad, −bd, abd⟩` are reduced norms of elements of `V_0 ∩ G^♮`, and
 Hasse–Minkowski (`representsIn_diag4`) gives every such `c`. `⊆`: at such a place `D_E ⊗ ℝ ≅ ℍ × ℍ`. This is
-Eichler's norm theorem for `D_E`, without passing to the field `k′ = F(√d)`. -/
+"Eichler for `D_E`" without passing to the field `k′ = F(√d)`. -/
 @[kb "weil1982" "§3.3, Lemma 3.3.2 [unverified]"]
 theorem exists_Gnat_nrdK_eq_iff {a b d : F} (ha : a ≠ 0) (hb : b ≠ 0) (hd : d ≠ 0) (c : F) :
     (∃ α ∈ Gnat a b d, nrdK (α : DE a b d) = c) ↔

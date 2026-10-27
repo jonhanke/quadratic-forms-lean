@@ -4,11 +4,15 @@
 **Layer:** forms $Q_0 = \langle c\rangle$ over $\mathcal O_F$, $F$ a number field (totally real in the intended use), the
 standard lattice $L = \mathcal O_F$, and the represented number $m = c$.
 
-**Warning (rank one).** `SiegelFormulaAt` / `siegelProduct` are **not** meaningful at $N = 1$. The good local densities
-are $\beta_\mathfrak p(\langle c\rangle, m) = 1 + \bigl(\tfrac{cm}{\mathfrak p}\bigr)$, which is $2$ (not $1 + O(N\mathfrak p^{-2})$) at
-almost every prime when $m = cs^2$; so $\prod_\mathfrak p\beta_\mathfrak p(m)$ diverges to $+\infty$ exactly when $m$ is
+**Warning (rank one).** `SiegelFormulaAt` and `siegelProduct` are **not** meaningful at
+$N = 1$. The good local densities are
+$\beta_\mathfrak p(\langle c\rangle, m) = 1 + \bigl(\tfrac{cm}{\mathfrak p}\bigr)$,
+which is $2$ (not $1 + O(N\mathfrak p^{-2})$) at almost every prime when $m = cs^2$; so
+$\prod_\mathfrak p\beta_\mathfrak p(m)$ diverges to $+\infty$ exactly when $m$ is
 represented, and Mathlib's `tprod` returns its junk value $1$. Over $\mathbb Z$ this is proved
-(`Siegel.RankOne.no_siegel_formula_rank_one`: the genus average is $2$ while $\prod_p\beta_p$ has no value). Over $\mathbb Q$ with the objects this is `not_siegelFormulaAt_rankOne_int` ($\neg$`SiegelFormulaAt` for $\langle a\rangle$ at $m = a$). Over $\mathcal O_F$ the same
+(`Siegel.RankOne.no_siegel_formula_rank_one`: the genus average is $2$ while $\prod_p\beta_p$ has no value). Over
+$\mathbb Q$ with the objects this is `not_siegelFormulaAt_rankOne_int` ($\neg$`SiegelFormulaAt` for $\langle a\rangle$
+at $m = a$). Over $\mathcal O_F$ the same
 argument applies (the factors are $2$ at all good primes, `siegelDensity_rankOne_good`) but needs infinitely many primes of $\mathcal O_F$; not formalized. The
 cause is Weil's: $SO_1$ is trivial, $\tau(SO_1) = 1$ (not $2$), and $O_1 = \{\pm1\}$ has the extra component.
 
@@ -29,7 +33,6 @@ Over $\mathbb Q$ the statement for $\langle a\rangle$ over $\mathbb Z$ is `siege
 $\#\{x \bmod \pi^k : x^2 \equiv s^2\}$, $\beta_\mathfrak p(\langle c\rangle, cs^2) = 2N\mathfrak p^{v_\mathfrak p(2cs)}$, and the product formula for $2cs$) is in
 `SiegelRankOneGeneral.lean` (`siegelFormulaOne_sq`, `siegelProductOne_sq`, and over $\mathbb Z$ `siegelFormulaOne_int` for every $m \ge 1$,
 with the value $0$ when $m \notin c\,\mathbb Z^2$); the divergence dichotomy over $\mathbb Z$ is `Siegel.RankOne.siegel_rank_one_dichotomy`.
-
 -/
 import QuadFormsKB.Tamagawa.TauSOOne
 import QuadFormsKB.Tamagawa.MassInduction
@@ -54,7 +57,8 @@ local notation "QFof" Q₀ => QuadForm.map (algebraMap (𝓞 F) F) Q₀
 
 /-- **The normalized rank-one Siegel product at the number $m$** (every place carries Siegel's $\varepsilon = \frac12$):
 $$\mathcal S_1(m) = \prod_{\sigma}\frac{\beta_\sigma(m)}{2}\cdot\prod_\mathfrak p\frac{\beta_\mathfrak p(m)}{2}.$$
-The finite factors are $1$ off the bad primes when $m = c$ (so the `tprod` is a finite product); it replaces `siegelProduct`, which is degenerate at $N = 1$. -/
+The finite factors are $1$ off the bad primes when $m = c$ (so `tprod` is a finite product); it replaces the
+`siegelProduct`, which is degenerate at $N = 1$. -/
 @[kb "siegel1935" "Hauptsatz, n = 1 (ε = 1/2 at every place) [unverified]"]
 def siegelProductOne (Q₀ : QuadForm (𝓞 F) 1) (m : 𝓞 F) : ℝ :=
   (∏ σ : F →ₐ[ℚ] ℂ, archRepDensity 1 ‖σ (algebraMap (𝓞 F) F m)‖ (detGram Q₀ σ) / 2) *
@@ -162,7 +166,7 @@ theorem repMass_rankOne_self (Q₀ : QuadForm (𝓞 F) 1) (hc : Q₀.coeff 0 0 �
   rw [repCount_rankOne_self Q₀ hc, RankOne.card_autLat_rankOne hc']
   norm_num
 
-/-- **Siegel's formula in rank one, at the number $c$ (the conventions of this library, correct form).** For $Q_0 = \langle c\rangle$ over $\mathcal O_F$
+/-- **Siegel's formula in rank one, at the number $c$ (KB conventions, correct form).** For $Q_0 = \langle c\rangle$ over $\mathcal O_F$
 (nondegenerate, i.e. $c \ne 0$; no positivity needed, $F$ any number field):
 $$\mathrm{repMass}(\mathcal O_F, c) = \mathrm{Mass}(\mathcal O_F)\cdot\bigl(2\,\mathcal S_1(c)\bigr),$$
 i.e. the genus average $r_{\mathrm{gen}}(c) = 2 = |O_1(F)|\cdot\mathcal S_1(c)$ with $\mathcal S_1(c) = 1$ the normalized product
@@ -239,9 +243,10 @@ theorem betaInf_unary_self {a : ℤ} (ha : 0 < a) :
   calc _ = (a : ℝ) ^ (-(1 / 2 : ℝ)) * (a : ℝ) ^ ((((1 : ℕ) : ℝ) - 2) / 2) := by push_cast; ring
     _ = 1 / a := by rw [h2]; simp
 
-/-- **`SiegelFormulaAt` is false at $N = 1$** (over $\mathbb Q$, $Q_0 = \langle a\rangle$, $m = a \ge 1$): the Euler factors are
-$\beta_p(a) = 2p^{v_p(2a)}\ge 2$ so the product is not multipliable, `tprod` is $1$, `siegelProduct` $= \beta_\infty(a) = 1/a$, and the
-formula would read $1 = \frac12\cdot\frac1a$. Use `siegelFormulaOne_self` instead. -/
+/-- **`SiegelFormulaAt` is false at $N = 1$** (over $\mathbb Q$, $Q_0 = \langle a\rangle$, $m = a \ge 1$): the Euler
+factors are $\beta_p(a) = 2p^{v_p(2a)}\ge 2$ so the product is not multipliable, `tprod` is $1$,
+`siegelProduct` $= \beta_\infty(a) = 1/a$, and the formula would read
+$1 = \frac12\cdot\frac1a$. Use `siegelFormulaOne_self` instead. -/
 theorem not_siegelFormulaAt_rankOne_int {a : ℤ} (ha : 0 < a) :
     ¬ SiegelFormulaAt (RatBridge.up (QuadFormsKB.Siegel.RankOne.unary a)) (a : 𝓞 ℚ) := by
   intro h

@@ -62,8 +62,8 @@ theorem hessian_rankOne (Q : QuadForm F 1) : Q.hessian 0 0 = 2 * Q.coeff 0 0 := 
   simp [QuadForm.hessian]; ring
 
 /-- **$O(V)(R) = \{\pm 1\}$ in rank one** ($Q(x_0) = a x_0^2$, $a \ne 0$), over any $F$-algebra $R$ that is a domain:
-$g^{\mathsf T}(2a)g = 2a$ forces $g_{00}^2 = 1$ (O'Meara §42 [unverified]). -/
-@[kb "omeara1963" "§42, O(V) in dimension 1 [unverified]"]
+$g^{\mathsf T}(2a)g = 2a$ forces $g_{00}^2 = 1$ (cf. O'Meara §42E, p. 96, where $\pm 1_V \in O(V)$; the rank-one case is not discussed there). -/
+@[kb "omeara1963" "§41A, p. 84 (orthogonal group), rank one"]
 theorem mem_orthGroup_rankOne (ha : Q.coeff 0 0 ≠ 0) (R : Type*) [CommRing R] [IsDomain R] [Algebra F R]
     (g : GL (Fin 1) R) : g ∈ orthGroup Q R ↔ g = 1 ∨ g = -1 := by
   rw [mem_orthGroup]
@@ -108,10 +108,10 @@ theorem glImage_neg_one {n : ℕ} (L : Submodule (𝓞 F) (Fin n → F)) : glIma
 
 /-! ### The genus is a single lattice -/
 
-/-- **Same genus in rank one means equal** (O'Meara §102 [unverified]): for lattices $L, M$ in $(F, a x_0^2)$, $a \ne 0$,
+/-- **Same genus in rank one means equal** (cf. O'Meara §102A, p. 297, for the definition of the genus): for lattices $L, M$ in $(F, a x_0^2)$, $a \ne 0$,
 $M \in \mathrm{gen}(L)$ iff $M = L$. *Proof:* the local isometries are $\pm 1$ (`mem_orthGroup_rankOne`), which fix
 $L_\mathfrak p$; so $L_\mathfrak p = M_\mathfrak p$ for all $\mathfrak p$, and $L = M$ (`loc_injective`). -/
-@[kb "omeara1963" "§102, gen L in rank one [unverified]"]
+@[kb "omeara1963" "§102A, p. 297"]
 theorem sameGenus_rankOne_iff (ha : Q.coeff 0 0 ≠ 0) (L M : Lat F 1) : SameGenus Q L.1 M.1 ↔ L = M := by
   constructor
   · intro h
@@ -132,10 +132,10 @@ theorem isIsometric_rankOne_iff (ha : Q.coeff 0 0 ≠ 0) (L M : Lat F 1) : IsIso
     · rwa [glImage_neg_one (F := F)] at he
   · rintro rfl; exact IsIsometric.refl Q L.1
 
-/-- **The genus of a rank-one lattice is one class** (O'Meara §102 [unverified]): for every number field $F$, every
+/-- **The genus of a rank-one lattice is one class** (cf. O'Meara §102A, p. 297, for the definition of the genus): for every number field $F$, every
 $a \ne 0$ and every lattice $L \subseteq F$ (a fractional ideal, principal or not), the set of classes in
 $\mathrm{gen}(L)$ is $\{\mathrm{cls}(L)\}$; in fact $\mathrm{gen}(L) = \mathrm{cls}(L) = \{L\}$. -/
-@[kb "omeara1963" "§102 (class number of a genus), rank one [unverified]"]
+@[kb "omeara1963" "§102A, p. 298 (h(L))"]
 theorem genusClasses_rankOne (ha : Q.coeff 0 0 ≠ 0) (L : Lat F 1) :
     genusClasses Q L = {Quotient.mk (latSetoid Q) L} := by
   ext c
@@ -159,7 +159,7 @@ theorem card_orthGroup_rankOne (ha : Q.coeff 0 0 ≠ 0) : Nat.card (orthGroup Q 
   rw [← SetLike.coe_sort_coe, hset, Nat.card_coe_set_eq, Set.ncard_pair hne]
 
 /-- **$O(L) = O(V)(F) = \{\pm 1\}$ has order $2$** for every lattice $L$ in rank one. -/
-@[kb "omeara1963" "§82, O(L) in rank one [unverified]"]
+@[kb "omeara1963" "§82C, p. 223 (O(L))"]
 theorem card_autLat_rankOne (ha : Q.coeff 0 0 ≠ 0) (L : Submodule (𝓞 F) (Fin 1 → F)) :
     Nat.card (autLat Q L) = 2 := by
   have htop : autLat Q L = ⊤ := by
@@ -221,7 +221,8 @@ theorem archVolSO_one (d : ℝ) : archVolSO 1 d = 1 / (2 * d) := by
   have : Real.sqrt Real.pi ≠ 0 := Real.sqrt_ne_zero'.mpr Real.pi_pos
   field_simp
 
-/-- **$\alpha_\mathfrak p(L, L) = 1$ at good primes in rank one** ($\mathfrak p \nmid 2\det H$): `siegelDensity_good_odd` with $n = 2\cdot 0 + 1$ (the generic factor is the empty product). Equivalently
+/-- **$\alpha_\mathfrak p(L, L) = 1$ at good primes in rank one** ($\mathfrak p \nmid 2\det H$): the
+`siegelDensity_good_odd` with $n = 2\cdot 0 + 1$ (the generic factor is the empty product). Equivalently
 $\beta_\mathfrak p(\langle a\rangle, \langle a\rangle) = \#\{\pm 1\} = 2$ and Siegel's $\tfrac12$. -/
 theorem siegelDensity_rankOne_good (hQ : Q₀.Nondegenerate) (v : HeightOneSpectrum (𝓞 F))
     (hv : v ∉ badPrimes Q₀) : LocalDensity.NF.siegelDensity v Q₀ Q₀ = 1 := by
@@ -235,7 +236,7 @@ theorem multipliable_siegelDensity_rankOne (hQ : Q₀.Nondegenerate) :
   multipliable_of_ne_finset_one (s := (finite_badPrimes Q₀ hQ).toFinset) fun v hv =>
     siegelDensity_rankOne_good Q₀ hQ v (by simpa using hv)
 
-/-- **The Tamagawa measure of $K_{SO_1}$, explicitly** (`tamagawaK` at $n = 1$):
+/-- **The Tamagawa measure of $K_{SO_1}$, explicitly** (the `tamagawaK` at $n = 1$):
 $$\mu_{\mathrm{Tam}}(K_{SO}) = \prod_{\sigma : F \to \mathbb C}\frac{1}{2 d_\sigma}\cdot\prod_{\mathfrak p \mid 2\det H}\alpha_\mathfrak p(L, L),
 \qquad d_\sigma = |\sigma(\det H/2)| = |\sigma(a)|,$$
 a finite product ($|d_F|^{-n(n-1)/4} = 1$ for $n = 1$). By `tauSO_rankOne` this is $\tau(SO_1)$. -/

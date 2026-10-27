@@ -453,7 +453,7 @@ theorem map_quatUnitsSub_quatUnitsBaseChange_symm :
     rw [hΦ]
     exact ContinuousMulEquiv.apply_symm_apply _ _
 
-/-- **Transport of covolumes for $R_{K/k}D'^\times$** (the Weil-restriction viewpoint): for a left-invariant
+/-- **Transport of covolumes for $R_{K/k}D'^\times$** (the Weil-restriction viewpoint of (F3)): for a left-invariant
 measure $\mu$ on $(D'\otimes_K\mathbb A_K)^\times$ and a fundamental domain of $D'^\times$, the covolume of
 $D_E^\times = (R_{K/k}D'^\times)(k)$ in $(D_E\otimes_k\mathbb A_k)^\times = (R_{K/k}D'^\times)(\mathbb A_k)$ for the transported
 measure $(\Theta_{\mathbb H}^{-1})_*\mu$ equals the covolume of $D'^\times$ for $\mu$. -/

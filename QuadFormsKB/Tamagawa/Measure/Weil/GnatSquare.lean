@@ -1,24 +1,29 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatQuat
+import QuadFormsKB.Tamagawa.Measure.Weil.SplitSL1Final
 
 /-!
-# Square discriminant: $G^\natural = \{(\alpha,\beta)\in D^\times\times D^\times : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}$
+# Square discriminant:
+$G^\natural = \{(\alpha,\beta)\in D^\times\times D^\times : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}$
 
 
-**Layer:** $F$ any number field, $D = \mathbb H[F,a,b]$ a quaternion **division** algebra ($a, b\in\mathcal O_F\setminus0$, the library's
+**Layer:** $F$ any number field, $D = \mathbb H[F,a,b]$ any quaternion algebra, division or split ($a, b\in\mathcal O_F\setminus0$, the library's
 standard order). For $V$ quaternary with square discriminant, $V\cong c\,(D,\operatorname{nrd})$, $E = F\times F$, $D_E = D\times D$ and
-(`pairEquiv`, `mem_Gnat_iff_nrd_eq`, `evQ_phiLin`) $G^\natural = \{(\alpha,\beta) : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}$ acting on
+(`pairEquiv`, `mem_Gnat_iff_nrd_eq`, `evQ_phiLin`)
+$G^\natural = \{(\alpha,\beta) : \operatorname{nrd}\alpha = \operatorname{nrd}\beta\}$ acting on
 $V = D$ by $x\mapsto\alpha x\beta^{-1}$, with $SO(V)\cong G^\natural/\mathbb G_m$. Here adelically:
 
 * **`gnatSq a b`**: the `GnatData` with $M = (D\otimes\mathbb A)^\times\times(D\otimes\mathbb A)^\times$, $\nu = \operatorname{nrd}\times\operatorname{nrd}$,
   $\iota(u) = (u,u)$, $s(u) = (u,u)$ (scalars), $A_+$ = `posA a b`, $\Gamma_M = D^\times\times D^\times$;
+* `covolume_muSL1N`: $\tau(\mathrm{SL}_1(D)) = 1$ on $\ker\operatorname{nrd}$, and `map_adK_muSL1N`: `muSL1N` is invariant under
+  conjugation by every unit of $D\otimes\mathbb A$ (every quaternion algebra);
 * `muSq`: the Tamagawa measure $\mu_{\mathrm{SL}_1}\times\mu_{\mathrm{SL}_1}$ on $\ker\nu = \mathrm{SL}_1(D)(\mathbb A)^2$, and
   `covolume_muSq`: $\tau(\mathrm{SL}_1(D)^2) = 1$;
 * **`covolume_gnatSq`**: for Weil's quotient measure $\mu_P$ on $P = G^\natural(\mathbb A)/\mathbb A^\times$ (= $SO(D,\operatorname{nrd})(\mathbb A)$),
   $$\operatorname{vol}(P(F)\backslash P(\mathbb A),\ \mu_P) = 2,$$
-  **unconditionally**, for every quaternion division algebra over every number field (in particular for every totally definite $D$
-  over a totally real field, `covolume_gnatSq_of_totallyNeg`).
+  **unconditionally**, for every quaternion algebra over every number field (division or split; the split case uses
+  `tauSL1EqOne`, and the conjugation invariance comes from the unimodularity of $\mathrm{SL}_1(\mathbb A)$, not from compactness).
 
-This is the construction for $E = F\times F$; it is not Weil's $(R^{(1)}\times R^{(1)})/\pm1$ (p. 65), which sits inside as the
+This is the case $E = F\times F$; it is not Weil's $(R^{(1)}\times R^{(1)})/\pm1$ (p. 65), which sits inside as the
 derived group. The identification of $\mu_P$ with `muTam` of the norm form is the remaining step (see
 `GnatTamagawa.lean`).
 -/
@@ -121,6 +126,64 @@ theorem gnatSq_hsign (x : (Adeles F)ˣ) : ∃ f : Fˣ, diagUnits F f * x ∈ (gn
 
 end Data
 
+/-! ### $\mathrm{SL}_1(D)$ on $\ker\operatorname{nrd}$, every quaternion algebra -/
+
+section Kernel
+
+variable {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
+
+/-- **$\tau(\mathrm{SL}_1(D)) = 1$ on $\ker\operatorname{nrd}$** for every quaternion algebra $D = \mathbb H[F,a,b]$ (division or
+split), every number field (`tauSL1EqOne`). -/
+theorem covolume_muSL1N :
+    covolume ((quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      (nrdHom (a : F) (b : F)).ker (muSL1N ha0 hb0) = 1 := by
+  have hH := isHaarMeasure_muSL1 (valued_coe_le_one a) (valued_coe_le_one b) (F := F)
+    (by simpa using ha0) (by simpa using hb0)
+  obtain ⟨DK, hDK⟩ := exists_exactFD_SL1F (a := (a : F)) (b := (b : F))
+  have hFD : IsExactFD (Γ := (quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      ((kerNrdEquiv (a : F) (b : F)).symm '' DK) :=
+    isExactFD_image_mulEquiv' (kerNrdEquiv (a : F) (b : F)).symm.toMulEquiv
+      (kerNrdEquiv (a : F) (b : F)).continuous.measurable _ _
+      (fun y => by
+        rw [← kerNrdEquiv_mem_iff]
+        change (kerNrdEquiv _ _) ((kerNrdEquiv _ _).symm y) ∈ _ ↔ _
+        rw [ContinuousMulEquiv.apply_symm_apply]) hDK
+  have : SMulInvariantMeasure ((quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker)
+      (nrdHom (a : F) (b : F)).ker (muSL1N ha0 hb0) := ⟨fun γ s _ => measure_preimage_mul _ _ _⟩
+  have hm : Measurable (kerNrdEquiv (a : F) (b : F)).symm := (kerNrdEquiv _ _).symm.continuous.measurable
+  have ha0' : (a : F) ≠ 0 := by simpa using ha0
+  have hb0' : (b : F) ≠ 0 := by simpa using hb0
+  have h1 := covolume_SL1_eq (valued_coe_le_one a) (valued_coe_le_one b) ha0' hb0' hDK
+  rw [(tauSL1EqOne a b).covolume_eq_one ha0 hb0] at h1
+  rw [(hFD.isFundamentalDomain _).covolume_eq_volume, muSL1N, Measure.map_apply hm hFD.1,
+    (kerNrdEquiv (a : F) (b : F)).symm.injective.preimage_image]
+  exact h1.symm
+
+/-- **Conjugation by any unit of $D\otimes\mathbb A$ preserves `muSL1N`**, for every quaternion algebra $D$ (division or
+split): $\mathrm{SL}_1(\mathbb A)$ is unimodular because $\tau(\mathrm{SL}_1) = 1 < \infty$ (`isMulRightInvariant_muSL1_of_lt_top`),
+hence `map_adK_muSL1_of_isMulRightInvariant`. -/
+theorem map_adK_muSL1N (m : (QuatAdele (a : F) (b : F))ˣ) :
+    (muSL1N ha0 hb0).map (NormalFib.adK (nrdHom (a : F) (b : F)) m) = muSL1N ha0 hb0 := by
+  have ha0' : (a : F) ≠ 0 := by simpa using ha0
+  have hb0' : (b : F) ≠ 0 := by simpa using hb0
+  have hfin : covolume (SL1F (a : F) (b : F)) (SL1A (a : F) (b : F))
+      (muSL1 (valued_coe_le_one a) (valued_coe_le_one b) ha0' hb0') ≠ ∞ := by
+    rw [(tauSL1EqOne a b).covolume_eq_one ha0 hb0]; exact ENNReal.one_ne_top
+  have := isMulRightInvariant_muSL1_of_lt_top (valued_coe_le_one a) (valued_coe_le_one b) ha0' hb0' hfin
+  rw [adK_nrdHom_eq, muSL1N]
+  have h1 : Measurable (kerNrdEquiv (a : F) (b : F)) := (kerNrdEquiv _ _).continuous.measurable
+  have h2 : Measurable (kerNrdEquiv (a : F) (b : F)).symm := (kerNrdEquiv _ _).symm.continuous.measurable
+  have h3 := NormalFib.measurable_adK (nrdOne (a : F) (b : F)) (quatSplit (a : F) (b : F) m).1
+  rw [Measure.map_map (h2.comp (h3.comp h1)) h2]
+  have : ((kerNrdEquiv (a : F) (b : F)).symm ∘ NormalFib.adK (nrdOne (a : F) (b : F)) (quatSplit _ _ m).1 ∘
+      kerNrdEquiv (a : F) (b : F)) ∘ (kerNrdEquiv (a : F) (b : F)).symm =
+      (kerNrdEquiv (a : F) (b : F)).symm ∘ NormalFib.adK (nrdOne (a : F) (b : F)) (quatSplit _ _ m).1 := by
+    funext y; simp
+  rw [this, ← Measure.map_map h2 h3,
+    map_adK_muSL1_of_isMulRightInvariant (valued_coe_le_one a) (valued_coe_le_one b) ha0' hb0']
+
+end Kernel
+
 /-! ### The Tamagawa measure of $\ker\nu = \mathrm{SL}_1(D)(\mathbb A)^2$ -/
 
 omit [NumberField F] in
@@ -196,8 +259,7 @@ theorem adK_sq_eq (m : (QuatAdele (a : F) (b : F))ˣ × (QuatAdele (a : F) (b : 
         kerSqEquiv ha0 hb0 := by
   funext x; rfl
 
-theorem map_adK_muSq (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ)
-    (m : (QuatAdele (a : F) (b : F))ˣ × (QuatAdele (a : F) (b : F))ˣ) :
+theorem map_adK_muSq (m : (QuatAdele (a : F) (b : F))ˣ × (QuatAdele (a : F) (b : F))ˣ) :
     (muSq ha0 hb0).map (NormalFib.adK (nuSq ha0 hb0) m) = muSq ha0 hb0 := by
   have hk : Measurable (kerSqEquiv ha0 hb0) := (kerSqEquiv ha0 hb0).continuous.measurable
   have hks : Measurable (kerSqEquiv ha0 hb0).symm := (kerSqEquiv ha0 hb0).symm.continuous.measurable
@@ -210,18 +272,18 @@ theorem map_adK_muSq (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUni
         (NormalFib.adK (nrdHom (a : F) (b : F)) m.2) := by
     funext y; simp
   rw [this, ← Measure.map_map hks (h1.prodMap h2), ← Measure.map_prod_map _ _ h1 h2,
-    map_adK_muSL1N ha0 hb0 hdiv, map_adK_muSL1N ha0 hb0 hdiv]
+    map_adK_muSL1N ha0 hb0, map_adK_muSL1N ha0 hb0]
 
 set_option maxHeartbeats 1600000 in
-/-- **$\tau(\mathrm{SL}_1(D)\times\mathrm{SL}_1(D)) = 1$** (division $D$). -/
-theorem covolume_muSq (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) :
+/-- **$\tau(\mathrm{SL}_1(D)\times\mathrm{SL}_1(D)) = 1$** (every quaternion algebra $D$). -/
+theorem covolume_muSq :
     covolume ((dSq).ΓM.subgroupOf (nuSq ha0 hb0).ker) (nuSq ha0 hb0).ker (muSq ha0 hb0) = 1 := by
   set Γ1 := (quatUnitsSub (a : F) (b : F)).subgroupOf (nrdHom (a : F) (b : F)).ker
   obtain ⟨D1, hD1m, hD1⟩ := exists_measurableSet_forall_existsUnique_smul_mem Γ1
   have hμ1 : muSL1N ha0 hb0 D1 = 1 := by
     have : SMulInvariantMeasure Γ1 (nrdHom (a : F) (b : F)).ker (muSL1N ha0 hb0) :=
       ⟨fun γ s _ => measure_preimage_mul _ _ _⟩
-    rw [← covolume_muSL1N ha0 hb0 hdiv, ((IsExactFD.isFundamentalDomain ⟨hD1m, hD1⟩) _).covolume_eq_volume]
+    rw [← covolume_muSL1N ha0 hb0, ((IsExactFD.isFundamentalDomain ⟨hD1m, hD1⟩) _).covolume_eq_volume]
   -- the product is an exact fundamental domain of `Γ1 × Γ1`, transported to `ker ν`
   set e := (kerSqEquiv ha0 hb0).symm
   have hmem : ∀ y, e y ∈ (dSq).ΓM.subgroupOf (nuSq ha0 hb0).ker ↔ y ∈ Γ1.prod Γ1 := by
@@ -249,22 +311,17 @@ variable {a b : 𝓞 F} (ha0 : a ≠ 0) (hb0 : b ≠ 0)
 
 local notation "dSq" => gnatSqO ha0 hb0
 
-/-- **Square discriminant: $\operatorname{vol}(SO(D,\operatorname{nrd})(F)\backslash SO(D,\operatorname{nrd})(\mathbb A)) = 2$** for Weil's
+/-- **Square discriminant:
+$\operatorname{vol}(SO(D,\operatorname{nrd})(F)\backslash SO(D,\operatorname{nrd})(\mathbb A)) = 2$** for Weil's
 quotient measure $\mu_P = \mu_{G^\natural}/\mu_{\mathbb A^\times}$, $\mu_{G^\natural}$ fibred over `tamIdeles` with fibre
-$\mu_{\mathrm{SL}_1}\times\mu_{\mathrm{SL}_1}$, for every quaternion division algebra $D$ over every number field. Unconditional. -/
+$\mu_{\mathrm{SL}_1}\times\mu_{\mathrm{SL}_1}$, for every quaternion algebra $D$ (division or split) over every number field.
+Unconditional. -/
 @[kb "weil1982" "§3.7, pp. 64-65 (m = 4, square discriminant) [unverified page]; §3.2, p. 43 (centre)"]
-theorem covolume_gnatSq (hdiv : ∀ ξ : ℍ[F,(a : F),(b : F)], ξ ≠ 0 → IsUnit ξ) :
+theorem covolume_gnatSq :
     covolume (dSq).gamP (dSq).P ((dSq).muP (muSq ha0 hb0)) = 2 := by
   have h := (dSq).covolume_muP (muSq ha0 hb0) (gnatSq_hsΓ _ _) (gnatSq_heich _ _) (gnatSq_hsign _ _)
-    (map_adK_muSq ha0 hb0 hdiv) (covolume_muSq ha0 hb0 hdiv)
+    (map_adK_muSq ha0 hb0) (covolume_muSq ha0 hb0)
   rw [h, mul_one]
-
-/-- `covolume_gnatSq` for a totally definite $D$ over a totally real field ($a, b$ negative at every real place). -/
-theorem covolume_gnatSq_of_totallyNeg [IsTotallyReal F]
-    (ha : ∀ w : InfinitePlace F, ∀ hw : w.IsReal, embedding_of_isReal hw (a : F) < 0)
-    (hb : ∀ w : InfinitePlace F, ∀ hw : w.IsReal, embedding_of_isReal hw (b : F) < 0) :
-    covolume (dSq).gamP (dSq).P ((dSq).muP (muSq ha0 hb0)) = 2 :=
-  covolume_gnatSq ha0 hb0 (hdiv_of_totallyNeg ha hb)
 
 end
 

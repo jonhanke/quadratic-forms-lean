@@ -2,7 +2,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.AdditivePoisson
 
 /-!
 # Poisson summation on $\mathbb A_F^\iota$ twisted by $(F^\iota\otimes\mathbb A)^\times$
-
 For $A = F^\iota$ (coordinatewise structure, trace form $\sum_i x_iy_i$, self-dual measure `muAddVec`) and a pure tensor
 $\Phi = \bigotimes_i\Phi_i$ of factorizable Schwartz–Bruhat functions $\Phi_i = f_{i,\infty}\otimes\bigotimes_v f_{i,v}$,
 $$\sum_{\xi\in F^\iota}\prod_i\Phi_i(g_i\xi_i) = \|N_{A/F}(g)\|_{\mathbb A}^{-1}\sum_{\xi\in F^\iota}\prod_i\hat\Phi_i(g_i^{-1}\xi_i)$$
@@ -104,11 +103,12 @@ variable {ι : Type} [Fintype ι]
 /-- The $i$-th component $g_i\in\mathbb A_F^\times$ of $g\in(\mathbb A_F^\iota)^\times$. -/
 abbrev unitComp (g : (AdeleSpace F ι)ˣ) (i : ι) : (Adeles F)ˣ := Units.map (Pi.evalMonoidHom _ i) g
 
-/-- **Poisson summation on $\mathbb A_F^\iota$, twisted by $g\in(F^\iota\otimes\mathbb A)^\times$.** For each coordinate $i$ let $f_i$ be Schwartz on $F_\infty$ and $f_{i,v}$ Schwartz–Bruhat with
+/-- **Poisson summation on $\mathbb A_F^\iota$, twisted by $g\in(F^\iota\otimes\mathbb A)^\times$ (the
+case $A = F^\iota$).** For each coordinate $i$ let $f_i$ be Schwartz on $F_\infty$ and $f_{i,v}$ Schwartz–Bruhat with
 $f_{i,v} = \mathbf 1_{\mathcal O_v}$ off a finite set $S_i$. Then, with $\Phi = \bigotimes_i(f_i\otimes\bigotimes_vf_{i,v})$,
 $$\sum_{\xi\in F^\iota}\prod_i\Phi_i(g_i\xi_i) = \|N_{A/F}(g)\|^{-1}_{\mathbb A}\sum_{\xi\in F^\iota}\prod_i\hat\Phi_i(g_i^{-1}\xi_i),$$
 both sides absolutely convergent. -/
-@[kb "weil1982" "§2.1 [unverified page]; Poisson as in casselsfrohlich1967 Ch. XV (Tate), Thm. 4.2.1 [unverified]"]
+@[kb "weil1982" "§2.1 [unverified page]; Poisson as in casselsfrohlich1967 Ch. XV (Tate), §4.2, Lemma 4.2.4, p. 333"]
 theorem adelicPoissonVec_smul (fv : ι → ∀ v : HeightOneSpectrum (𝓞 F), v.adicCompletion F → ℂ)
     (S : ι → Finset (HeightOneSpectrum (𝓞 F)))
     (hS : ∀ i, ∀ v ∈ S i, Analysis.IsSchwartzBruhatV v (fv i v))

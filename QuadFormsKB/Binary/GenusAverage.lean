@@ -5,8 +5,9 @@ import QuadFormsKB.Binary.GenusMass
 
 For a fundamental discriminant $D < 0$ with $t$ prime factors, class number $h$, $w = |\mathcal O_{K_D}^\times|$,
 $\chi_D$ the Kronecker character, a primitive positive definite form $f$ of discriminant $D$ and $m \ge 1$, the
-repo's genus average (`Siegel.genusRepAvg`: $\mathrm{GL}_2(\mathbb{Z})$-classes, weights $1/|\mathrm{Aut}|$, the convention
-of this repository)
+repo's genus average (`Siegel.genusRepAvg`: $\mathrm{GL}_2(\mathbb{Z})$-classes, weights $1/|\mathrm{Aut}|$, the
+library's
+convention)
 $$r_{\mathcal G}(m) = \mathrm{Mass}(\mathcal G)^{-1}\sum_{[g] \in \mathcal G}\frac{r_g(m)}{|\mathrm{Aut}(g)|}$$
 is (`genusRepAvg_binary`)
 $$r_{\mathcal G}(m) = \begin{cases} \dfrac{w\,2^{t-1}}{h}\displaystyle\sum_{d \mid m}\chi_D(d) &
@@ -14,8 +15,8 @@ $$r_{\mathcal G}(m) = \begin{cases} \dfrac{w\,2^{t-1}}{h}\displaystyle\sum_{d \m
 and for $m$ prime to $D$ the condition is local, on the genus characters of $m$ (`genusRepAvg_binary_coprime`):
 $\psi_p(m) = \chi_p(f)$ for all $p \mid D$.
 
-**Proof.** By `repNum_eq`, $r_g(m) = w\,\#\{\mathfrak b : N\mathfrak b = m,\ [\mathfrak b] = [\mathfrak a_g]^{-1}\}$; with the
-GL/SL fibre identity (`sum_div_aut_genus`),
+**Proof.** By `repNum_eq`, $r_g(m) = w\,\#\{\mathfrak b : N\mathfrak b = m,\ [\mathfrak b] = [\mathfrak a_g]^{-1}\}$;
+with the GL/SL fibre identity (`sum_div_aut_genus`),
 $\sum_{[g] \in \mathcal G} r_g(m)/|\mathrm{Aut}(g)| = \tfrac12\#\{\mathfrak b : N\mathfrak b = m,\ [\mathfrak b] \in \mathcal G\}$,
 and $\mathrm{Mass}(\mathcal G) = h/(2^{t-1}\cdot 2w)$ (`mass_genus`). The key fact is that **all ideals of norm $m$ lie in
 one genus** (`genusHom_eq_of_absNorm_eq`): for $m$ prime to $D$ the genus characters of $[\mathfrak b]$ are $\psi_p(m)$
@@ -107,7 +108,8 @@ theorem exists_split_at (N : ℕ) : ∀ m : ℕ, m ≠ 0 → ∃ m₀ m' : ℕ, 
       · rwa [(Nat.prime_dvd_prime_iff_eq hr hq).mp h]
       · exact hq' r hr h
 
-/-- **The number of ideals of norm $n$ of $\mathbb{Z}[\omega]$** is $\sum_{d \mid n}\chi_D(d)$ (`card_ideals_absNorm_eq_int`, transported by `card_ideals_order_eq`). -/
+/-- **The number of ideals of norm $n$ of $\mathbb{Z}[\omega]$** is $\sum_{d \mid n}\chi_D(d)$ (the
+`card_ideals_absNorm_eq_int`, transported by `card_ideals_order_eq`). -/
 theorem card_ideals_order_absNorm_eq {n : ℕ} (hn : n ≠ 0) :
     (Nat.card {I : Ideal (QOrder D) // Ideal.absNorm I = n} : ℤ) =
       ∑ d ∈ n.divisors, kronZ D (d : ZMod D.natAbs) := by
@@ -343,14 +345,15 @@ theorem genusRepSum_eq_half_sum [Fact (D < 0)] [Fintype (ClassGroup (QOrder D))]
 
 open Classical in
 /-- **The genus average of representation numbers of binary forms** ($D < 0$ fundamental, $m \ge 1$): with the repo's
-`Siegel.genusRepAvg` (the convention of this repository: $\mathrm{GL}_2(\mathbb{Z})$-classes in the genus $\mathcal G$ of $f$, weights
+`Siegel.genusRepAvg` (the library's convention: $\mathrm{GL}_2(\mathbb{Z})$-classes in the genus $\mathcal G$
+of $f$, weights
 $1/|\mathrm{Aut}|$, $\mathrm{Aut} \le \mathrm{GL}_2(\mathbb{Z})$), $t$ = the number of prime factors of $D$,
 $h$ = `classNumber (QField D)`, $w$ = `torsionOrder (QField D)` and $\chi_D$ = `kronZ D`,
 $$r_{\mathcal G}(m) = \frac{1}{\mathrm{Mass}(\mathcal G)}\sum_{[g] \in \mathcal G}\frac{r_g(m)}{|\mathrm{Aut}(g)|} =
 \begin{cases}\dfrac{w\,2^{t-1}}{h}\displaystyle\sum_{d \mid m}\chi_D(d) & \text{if some form in } \mathcal G
 \text{ represents } m,\\ 0 & \text{otherwise.}\end{cases}$$
-This is the input to the comparison with Siegel's $\varepsilon\,\beta_\infty(m)\prod_p\beta_p(m)$. All ideals of norm $m$
-lie in one genus (`genusHom_eq_of_absNorm_eq`), so the classes of $\mathcal G$ see all or none of them; there are
+This is the input to the comparison with Siegel's $\varepsilon\,\beta_\infty(m)\prod_p\beta_p(m)$. All ideals of norm
+$m$ lie in one genus (`genusHom_eq_of_absNorm_eq`), so the classes of $\mathcal G$ see all or none of them; there are
 $\sum_{d \mid m}\chi_D(d)$ in all, and $\mathrm{Mass}(\mathcal G) = h/(2^{t-1}\cdot 2w)$ (`mass_genus`).
 Source: Siegel (1935) for $n = 2$; Zagier, §§8, 11 [unverified locator]; Cox, Thm. 3.15 and §7 [unverified locator]. -/
 @[kb "zagier1981" "§§8, 11 [unverified locator]"]

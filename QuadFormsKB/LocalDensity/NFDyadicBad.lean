@@ -1,6 +1,5 @@
 /-
-# Local densities over a number field at dyadic $\mathfrak p \mid N$: explicit formulas (Plan A)
-
+# Local densities over a number field at dyadic $\mathfrak p \mid N$: explicit formulas
 **Layer:** number field ($Q$ = `QuadForm (𝓞 F) n` at a finite prime $\mathfrak p$ = `v`, uniformizer $\varpi$ = `unif v`,
 $e = \mathrm{ord}_\mathfrak p 2$ = `NF.ordTwo v`, $K_0 = \mathrm{ord}_\mathfrak p(4N) + 1$ = `NF.depthLevel v Q`). Instantiates
 `DyadicClosed.lean` and `DyadicBad.lean` at $\mathfrak o_\mathfrak p$ through `NFBridge.lean`, at **every** prime, in particular at

@@ -11,7 +11,7 @@ For a fundamental discriminant $D < 0$, a primitive positive definite form $f$ o
   map $z \mapsto \mathfrak b$ is $w$-to-one ($w = \#\mathcal O_K^\times$).
 * **Dirichlet's formula** (`sum_repNum_slClasses`): summing over the proper classes,
   $$\sum_{[f] \in \mathrm{SL}_2(\mathbb{Z})\backslash\{\text{forms}\}} r_f(m) = w \sum_{d \mid m}\chi_D(d).$$
-* **The $\mathrm{GL}_2(\mathbb{Z})$-class version** (the convention of this repository, used by the genus averages,
+* **The $\mathrm{GL}_2(\mathbb{Z})$-class version** (the library's convention, used by the genus averages,
   `sum_repNum_div_card_aut_glClasses`):
   $$\sum_{[f] \in \mathrm{GL}_2(\mathbb{Z})\backslash\{\text{forms}\}} \frac{r_f(m)}{|\mathrm{Aut}(f)|} = \frac12\sum_{d \mid m}\chi_D(d).$$
 
@@ -161,7 +161,7 @@ $\mathrm{SL}_2(\mathbb{Z})$-invariant, `Siegel.repNum_eq_of_intEquiv`). -/
 noncomputable def slClassRepNum (m : ℕ) : Quotient (slSetoid D) → ℕ :=
   Quotient.lift (fun f => Siegel.repNum f.1 m) fun _ _ h => Siegel.repNum_eq_of_intEquiv (SLEquiv.intEquiv h) _
 
-/-- **$r_f(m)$ as a function of the $\mathrm{GL}_2(\mathbb{Z})$-class** of $f$ (the convention of this repository). -/
+/-- **$r_f(m)$ as a function of the $\mathrm{GL}_2(\mathbb{Z})$-class** of $f$ (the library's convention). -/
 noncomputable def glClassRepNum (m : ℕ) : Quotient (glSetoid D) → ℕ :=
   Quotient.lift (fun f => Siegel.repNum f.1 m) fun _ _ h => Siegel.repNum_eq_of_intEquiv h _
 
@@ -257,7 +257,7 @@ theorem dirichlet_sum_repNum_int [Fact (D < 0)] {m : ℕ} (hm : m ≠ 0) :
       NumberField.Units.torsionOrder (QField D) * ∑ d ∈ m.divisors, kronZ D (d : ZMod D.natAbs) := by
   rw [sum_slClassRepNum_eq hm, Nat.cast_mul, card_ideals_absNorm_eq_int hm]
 
-/-! ### The $\mathrm{GL}_2(\mathbb{Z})$-class version (the convention of this repository) -/
+/-! ### The $\mathrm{GL}_2(\mathbb{Z})$-class version (the library's convention) -/
 
 /-- The map from proper classes to $\mathrm{GL}_2(\mathbb{Z})$-classes. -/
 def slToGl : Quotient (slSetoid D) → Quotient (glSetoid D) :=
@@ -307,7 +307,8 @@ theorem card_fiber_mul_aut [Fact (D < 0)] (G : Quotient (glSetoid D)) :
       rw [Finset.card_pair this]; ring
 
 /-- **Dirichlet's formula for $\mathrm{GL}_2(\mathbb{Z})$-classes weighted by $1/|\mathrm{Aut}|$** ($D < 0$ fundamental,
-$m \ge 1$; the convention of this repository: classes are $\mathrm{GL}_2(\mathbb{Z})$-classes, $\mathrm{Aut} \subseteq \mathrm{GL}_2(\mathbb{Z})$):
+$m \ge 1$; the library's convention: classes
+are $\mathrm{GL}_2(\mathbb{Z})$-classes, $\mathrm{Aut} \subseteq \mathrm{GL}_2(\mathbb{Z})$):
 $$\sum_{[f] \in \mathrm{GL}_2(\mathbb{Z})\text{-classes}} \frac{r_f(m)}{|\mathrm{Aut}(f)|} = \frac12 \sum_{d \mid m} \chi_D(d).$$
 The factor $\frac12$ is $\#\{\pm 1\}^{-1}$: the $\mathrm{GL}$-mass is half the $\mathrm{SL}$-mass. This is the form in which the
 genus averages (Siegel's $\varepsilon = \frac12$) use it. -/

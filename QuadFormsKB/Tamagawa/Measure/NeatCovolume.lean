@@ -5,7 +5,7 @@
 
 **Setting.** $G = G_\infty \times G_f$ (types `A × B`), groups with measurable multiplication and left-invariant
 s-finite measures $\mu_\infty$ on $G_\infty$ and $\mu_f$ on $G_f$; the measure on $G$ is $\mu_\infty \times \mu_f$.
-A countable subgroup $\Gamma \le G_\infty \times G_f$ acts on the **left** (Mathlib's `covolume`, the KB's
+A countable subgroup $\Gamma \le G_\infty \times G_f$ acts on the **left** (as in Mathlib's `covolume` and the library's
 $\Gamma\backslash G/K$) and is injective under the projection to $G_f$ (`hinj`; true for the diagonal embedding of
 $SO(V)(F)$). $\Gamma_f$ = `Γ.map (MonoidHom.snd A B)` is its image in $G_f$. $K \le G_f$ is a measurable subgroup (in the
 application the compact open $SO(\hat L)$). Compactness of $G_\infty$ is **not** needed: $\mu_\infty(G_\infty)$ simply
@@ -25,9 +25,10 @@ appears as a factor (it is finite in the definite case).
 * **`covolume_eq_measure_mul_dcMass`** (the headline): with a separating filtration of $K$ (`SepFiltration`),
   finitely many double cosets and finite stabilizers,
   $$\mathrm{covol}(\Gamma\backslash (G_\infty \times G_f)) = \mu_\infty(G_\infty)\cdot\mu_f(K)\cdot\mathrm{dcMass}(\Gamma_f, K),$$
-  where `dcMass` $= \sum_{\Gamma_f\alpha K}1/|\Gamma_f \cap \alpha K\alpha^{-1}|$ is the KB's double-coset mass (`OrbitMass.lean`).
-  This is the unfolding $\tau = \mu(K)\cdot\mathrm{mass}$ that `tauSO` (`MassFormula.lean`) takes as its definition; `AdelicSO.lean`
-  instantiates it with $SO(V)(\mathbb A)$.
+  where `dcMass` $= \sum_{\Gamma_f\alpha K}1/|\Gamma_f \cap \alpha K\alpha^{-1}|$ is the double-coset mass (`OrbitMass.lean`).
+  This is the unfolding $\tau = \mu(K)\cdot\mathrm{mass}$ that `tauSO` (`MassFormula.lean`) takes as its
+  definition; it is instantiated with $SO(V)(\mathbb A)$ by `covolume_eq_measure_mul_dcMass_of_sep`
+  (`AdelicSO.lean`).
 
 *Proof.* `exists_isNeat` gives a neat $K' = K_k$. Then the $\Gamma$-translates of $G_\infty \times \bigcup_\beta\beta K'$ tile
 $G$, so covol $= \mu_\infty(G_\infty)\,\mu_f(K')\,h'$ with $h' = \#(\Gamma_f\backslash G_f/K') = \mathrm{dcMass}(\Gamma_f, K')$
@@ -220,7 +221,7 @@ section Mass
 variable {A B : Type*} [Group A] [Group B] [MeasurableSpace A] [MeasurableSpace B]
   [MeasurableMul A] [MeasurableMul B]
 
-/-- **Covolume = $\mu_\infty(G_\infty)\cdot\mu_f(K)\cdot\mathrm{dcMass}$ (the unfolding).** Let $\Gamma \le G_\infty \times G_f$
+/-- **Covolume = $\mu_\infty(G_\infty)\cdot\mu_f(K)\cdot\mathrm{dcMass}$ (the L4 unfolding).** Let $\Gamma \le G_\infty \times G_f$
 be countable with injective projection $\Gamma \to \Gamma_f \le G_f$ (`hinj`), let $K \le G_f$ be a subgroup with finitely
 many double cosets $\Gamma_f\backslash G_f/K$ and finite stabilizers $\Gamma_f \cap \alpha K\alpha^{-1}$ (`hstab`), and let
 `Kf` be a separating filtration of $K$ by normal finite-index subgroups, all measurable (`hmeas`). Then for

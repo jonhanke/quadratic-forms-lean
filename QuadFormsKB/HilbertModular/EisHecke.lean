@@ -1,21 +1,21 @@
 /-
 # The $T(\pi^2)$ relations for the Eisenstein coefficients over $F$
 
-**Setting.** $F$ totally real, $Q_0$ a totally positive definite form over $\mathcal O_F$ in $n = 2k$ variables, $k \ge 3$, $E_Q$ = `eisQ Q₀ k`
-, $a_\mu(E_Q)$ = `qCoeff (eisQ Q₀ k) (oBasis F) (realVec μ)` its $\mu$-th Fourier coefficient ($\mu \in \mathfrak d^{-1}$), $\pi$ a prime
-element of $\mathcal O_F$ with $\pi \nmid 2\det H$ ($H$ the Hessian of $Q_0$), $q = N(\pi)$, $\chi_\pi$ = `Nbr.chiPi` and
-$\lambda_\pi = q^{n-2} + \chi_\pi q^{k-1} + 1$ (`heckeEigen`).
+**Setting.** $F$ totally real, $Q_0$ a totally positive definite form over $\mathcal O_F$ in $n = 2k$ variables, $k \ge 3$, $E_Q$ = `eisQ Q₀ k`,
+$a_\mu(E_Q)$ = `qCoeff (eisQ Q₀ k) (oBasis F) (realVec μ)` its $\mu$-th Fourier coefficient
+($\mu \in \mathfrak d^{-1}$), $\pi$ a prime element of $\mathcal O_F$ with $\pi \nmid 2\det H$ ($H$ the Hessian of
+$Q_0$), $q = N(\pi)$, $\chi_\pi$ = `Nbr.chiPi` and $\lambda_\pi = q^{n-2} + \chi_\pi q^{k-1} + 1$ (`heckeEigen`).
 
 **Main theorem** (`eisHeckeRel_eisQ`, and `eisHeckeRel_eisQ_of_pid` for $\mathcal O_F$ a PID): `EisHeckeRel Q₀ (eisQ Q₀ k)`, i.e.
 $$a_{\pi^2\mu}(E_Q) = \lambda_\pi\,a_\mu(E_Q)\qquad(\mu \in \mathfrak d^{-1}\ \text{a } \pi\text{-unit}),$$
-with $m_E = 1$. This was the named input; it is now a theorem. The proof is prime by prime:
+with $m_E = 1$. This was a named input of the Hecke–Kneser argument; it is now a theorem. The proof is prime by prime:
 
 * $\mu \in \mathfrak d^{-1}\setminus\mathcal O_F$: **the singular series vanishes** (`SingularNF.singSeries_eq_zero_of_not_int`): every
   truncation $S_c(\mu)$ with $c \in \mathfrak d$ is $0$, since $(Q(r) - \mu)/c \in \mathfrak d^{-1}$ would force $Q(r) - \mu \in c\,\mathfrak d^{-1} \subseteq \mathcal O_F$.
   So $a_\mu = a_{\pi^2\mu} = 0$ ($\pi^2\mu \notin \mathcal O_F$ too, `mem_int_of_sq_mul`).
 * $\mu = \nu \in \mathcal O_F$ not totally positive: $a_\nu = a_{\pi^2\nu} = 0$ (the archimedean factor `lipCoeff` vanishes; $\pi^2$ is
   totally positive).
-* $\nu \in \mathcal O_F$ totally positive: by the explicit coefficient formula, $a_\nu = |d_F|^{-(n-1)/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu)$
+* $\nu \in \mathcal O_F$ totally positive: by the coefficient formula for $E_Q$, $a_\nu = |d_F|^{-(n-1)/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu)$
   (`eisQ_coeff_eq_discr_mul_aENF`). Along the square class (`Siegel.aENF_mul_sq_uncond`, Hanke 2004 pp. 369–370):
   - $\beta_\infty(\pi^2\nu) = N(\pi)^{2(k-1)}\beta_\infty(\nu)$ ($\beta_w(t) \propto t^{k-1}$ at each real place);
   - $\beta_\mathfrak q(\pi^2\nu) = \beta_\mathfrak q(\nu)$ for $\mathfrak q \ne (\pi)$ ($\pi$ is a $\mathfrak q$-unit; `Siegel.localDensityNF_mul_sq_of_not_mem`);
@@ -333,8 +333,9 @@ include hQ hn hlev h𝔑 hfree in
 level $\mathfrak N$, free genus): `EisHeckeRel Q₀ (eisQ Q₀ k)` with $m_E = 1$, i.e. for every prime $\pi \nmid 2\det H$ and every
 $\pi$-unit $\mu \in \mathfrak d^{-1}$,
 $$a_{\pi^2\mu}(E_Q) = (q^{n-2} + \chi_\pi q^{k-1} + 1)\,a_\mu(E_Q).$$
-Proof prime by prime (the coefficient formula, `aENF_mul_pi_sq`; $a_\mu = 0$ for $\mu \notin \mathcal O_F$ or $\mu \not\gg 0$). -/
-@[kb "siegel1935" "T(𝔭²) relations for the Eisenstein coefficients over F [unverified]"]
+Proof prime by prime (the coefficient formula for $E_Q$, `aENF_mul_pi_sq`; $a_\mu = 0$ for $\mu \notin \mathcal O_F$
+or $\mu \not\gg 0$). -/
+@[kb "siegel1935" "T(𝔭²) relations for the Eisenstein coefficients over F [unverified]; cassels1978 App. B, §5, p. 388 (Eichler's description of Hecke operators)"]
 theorem eisHeckeRel_eisQ (hk : 3 ≤ k) : EisHeckeRel Q₀ (eisQ Q₀ k) := by
   classical
   refine ⟨1, one_pos, fun π hπ _ h2 hdet m hu => ?_⟩

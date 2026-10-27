@@ -2,7 +2,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChange
 
 /-!
 # Base change of adeles: compatibility of self-dual measures
-
 $K/k$ a finite extension of number fields, $b$ a $k$-basis of $K$, $\Psi$ = `adeleBaseChange b` :
 $K\otimes_k\mathbb A_k = \mathbb A_k^\iota\cong\mathbb A_K$.
 
@@ -123,7 +122,7 @@ def traceFactor [DecidableEq ι] (v : HeightOneSpectrum (𝓞 k)) : ℝ :=
 /-- **Global trace normalization**: $\prod_v|\det G|_v^{1/2}\cdot|\det G|_\infty^{1/2} = 1$ (product formula,
 `ideleNorm_diagUnits`). So the product of the local $\psi\circ\operatorname{Tr}_{K/k}$-self-dual measures on
 $K\otimes_k\mathbb A_k$ is the coordinate self-dual measure `muAddVec k ι`. -/
-@[kb "weil1982" "§2.1 [unverified page]"]
+@[kb "weil1982" "§2.1 [unverified page] (‖det G‖ = 1 by the product formula)"]
 theorem finprod_traceFactor_mul_inf [DecidableEq ι] :
     (∏ᶠ v, traceFactor b v) *
       Real.sqrt |LinearMap.det (LinearMap.mulLeft ℝ (mixedEmbedding k (Algebra.discr k b)))| = 1 := by

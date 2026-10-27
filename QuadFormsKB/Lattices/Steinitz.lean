@@ -22,11 +22,12 @@ hypothesis: $\mathcal O_F$ is only a Dedekind domain.
 **Route.** No structure theory of modules over Dedekind domains is used (Mathlib has none). Free directions are split off one
 at a time with functionals $\ell$, $\ell(M) = \mathcal O_F$ (coprime scaling of two fractional ideals); the last coordinate is a
 fractional ideal $\mathfrak c$. Freeness is then local: $\mathfrak c = (\det\gamma_0)^{-1}\mathcal O_F$ by two local estimates (the
-adjugate of $\gamma_0^{-1}g_\mathfrak p$, and determinants of vectors of $M$), and the local–global principle for lattices
-(`mem_iff_forall_loc`). The Steinitz class is not defined as an element of the class group; only its triviality is used.
+adjugate of $\gamma_0^{-1}g_\mathfrak p$, and determinants of vectors of $M$), and the local–global principle for
+lattices (`mem_iff_forall_loc`). The Steinitz class is not defined as an element of the class group; only its
+triviality is used.
 
 Sources: Steinitz, *Rechteckige Systeme und Moduln in algebraischen Zahlkörpern I*, Math. Ann. 71 (1911) 328–354
-[unverified]; O'Meara (1963), §81 (81:5, lattices over Dedekind domains), §82 [unverified].
+[unverified]; O'Meara (1963), §81 (81:5, p. 212, lattices over Dedekind domains), §82.
 -/
 import QuadFormsKB.Lattices.FreeBridge
 
@@ -47,7 +48,7 @@ local notation "ιO" => algebraMap (𝓞 F) F
 $\alpha, \beta \in F$ with $\alpha\mathfrak a + \beta\mathfrak b = \mathcal O_F$. *Proof:* $\alpha\mathfrak a = A$ and $d\mathfrak b^{-1} = B$ are
 integral; `IsDedekindDomain.exists_sup_span_eq` gives $g$ with $AB + (g) = B$; then $\beta = g/d$ works since
 $(A + gB^{-1})B = B$. -/
-@[kb "omeara1963" "§22, §81 (ideal classes contain ideals prime to a given one) [unverified]"]
+@[kb "omeara1963" "§22C, 22:5 and 22:9, pp. 48, 50 (coprime scaling of fractional ideals); 22:5c, p. 48 is a consequence"]
 theorem exists_spanSingleton_mul_add_eq_one {I J : FractionalIdeal (𝓞 F)⁰ F} (hI : I ≠ 0) (hJ : J ≠ 0) :
     ∃ α β : F, spanSingleton (𝓞 F)⁰ α * I + spanSingleton (𝓞 F)⁰ β * J = 1 := by
   obtain ⟨a, A, ha, hIA⟩ := FractionalIdeal.exists_eq_spanSingleton_mul I
@@ -316,7 +317,7 @@ theorem sub_sum_mem {k : ℕ} {M : Submodule (𝓞 F) V} {s : Fin k → V} {ℓ 
 with $\gamma e_i \in M$ and $(\gamma^{-1}x)_i \in \mathcal O_F$ for all $x \in M$ and $i < m$; hence
 $M = \gamma(\mathcal O_F^m \oplus \mathfrak c)$ with $\mathfrak c = \{(\gamma^{-1}x)_m : x \in M\}$ a fractional ideal (`eq_glImage_steinitzLat`).
 The columns are $s_0, \dots, s_{m-1}$ of `exists_free_part` and a nonzero $w \in M \cap \bigcap_i\ker\ell_i$. -/
-@[kb "omeara1963" "81:5 (splitting off free summands) [unverified]"]
+@[kb "omeara1963" "§81B, 81:5, p. 212; cassels1978 Ch. 7, Notes, p. 109"]
 theorem exists_gl_free_part {m : ℕ} {M : Submodule (𝓞 F) (Fin (m + 1) → F)} (hM : M.IsLattice F) :
     ∃ γ : GL (Fin (m + 1)) F, (∀ i : Fin m, γ.val *ᵥ Pi.single i.castSucc 1 ∈ M) ∧
       ∀ x ∈ M, ∀ i : Fin m, (γ⁻¹.val *ᵥ x) i.castSucc ∈ (algebraMap (𝓞 F) F).range := by
@@ -443,7 +444,7 @@ $c = (\det\gamma_0)^{-1}$. (a) $\gamma_0(ce_m) \in M$: locally $g^{-1}\gamma_0ce
 $A^{-1}ce_m = (\det g)^{-1}\operatorname{adj}(A)e_m$, whose entries are minors of the first $m$ rows of $A$, which are integral.
 (b) $\det\gamma_0\cdot(\gamma_0^{-1}x)_m = \det(\gamma_0e_0, \dots, \gamma_0e_{m-1}, x) \in \mathcal O_F$ for $x \in M$
 (`valued_det_le_one_of_cols`). So $\mathfrak c = c\,\mathcal O_F$ and $M = \gamma_0\operatorname{diag}(1, \dots, 1, c)\,\mathcal O_F^{m+1}$. -/
-@[kb "omeara1963" "81:5, 81:14 (trivial Steinitz class ⇒ free) [unverified]"]
+@[kb "omeara1963" "§81B, 81:5, p. 212"]
 theorem exists_latOf_of_loc {m : ℕ} {M : Submodule (𝓞 F) (Fin (m + 1) → F)} (hM : M.IsLattice F)
     (hloc : ∀ v : IsDedekindDomain.HeightOneSpectrum (𝓞 F), ∃ g : GL (Fin (m + 1)) (v.adicCompletion F),
       locAct v g (std v) = loc v M ∧ Valued.v g.val.det = 1) :
@@ -595,8 +596,8 @@ theorem exists_latOf_of_loc {m : ℕ} {M : Submodule (𝓞 F) (Fin (m + 1) → F
 /-- **Every lattice in the genus of $\mathcal O_F^n$ is free** for a nondegenerate form $Q$ ($\det H \ne 0$), over every number field:
 $M = \gamma\mathcal O_F^n$. Locally $M_\mathfrak p = g_\mathfrak p\mathfrak o_\mathfrak p^n$ with $g_\mathfrak p \in O(V)(F_\mathfrak p)$, and
 $g^{\mathsf T}Hg = H$ forces $\det g_\mathfrak p = \pm1$; apply `exists_latOf_of_loc`. (The Steinitz class of $M$ is
-$\prod_\mathfrak p\mathfrak p^{v_\mathfrak p(\det g_\mathfrak p)} = 1$; O'Meara 81:5, 82:10 [unverified].) -/
-@[kb "omeara1963" "§82 (the genus of a free lattice consists of free lattices) [unverified]"]
+$\prod_\mathfrak p\mathfrak p^{v_\mathfrak p(\det g_\mathfrak p)} = 1$; O'Meara 81:5, p. 212; lattices in one genus have equal volumes, §102A, p. 299.) -/
+@[kb "omeara1963" "§102A, p. 297; §81B, 81:5, p. 212"]
 theorem exists_latOf_of_sameGenus (Q : QuadForm F n) (hQ : Q.Nondegenerate) {M : Submodule (𝓞 F) V}
     (hM : M.IsLattice F) (hg : SameGenus Q intVec M) : ∃ γ : GL (Fin n) F, M = latOf γ := by
   classical
@@ -643,8 +644,8 @@ def steinitzLat {m : ℕ} (𝔠 : Submodule (𝓞 F) F) : Submodule (𝓞 F) (Fi
 
 /-- **Steinitz's theorem (existence of the normal form)**: every $\mathcal O_F$-lattice $M \subseteq F^{m+1}$ is
 $M = \gamma(\mathcal O_F^m \oplus \mathfrak c)$ for some $\gamma \in \mathrm{GL}_{m+1}(F)$ and an $\mathcal O_F$-submodule $\mathfrak c \subseteq F$
-(a fractional ideal), i.e. $M \cong \mathcal O_F^m \oplus \mathfrak c$ (Steinitz 1911; O'Meara 81:5 [unverified]). -/
-@[kb "omeara1963" "81:5 (Steinitz: M ≅ 𝓞^{n-1} ⊕ 𝔞) [unverified]"]
+(a fractional ideal), i.e. $M \cong \mathcal O_F^m \oplus \mathfrak c$ (Steinitz 1911; O'Meara 81:5, p. 212). -/
+@[kb "omeara1963" "§81B, 81:5, p. 212"]
 theorem exists_eq_glImage_steinitzLat {m : ℕ} {M : Submodule (𝓞 F) (Fin (m + 1) → F)} (hM : M.IsLattice F) :
     ∃ (γ : GL (Fin (m + 1)) F) (𝔠 : Submodule (𝓞 F) F), M = glImage γ (steinitzLat 𝔠) := by
   classical

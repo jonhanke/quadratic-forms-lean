@@ -30,12 +30,12 @@ Field:
 *Scope:* Siegel's theorem asserts this for $Q$ positive definite with $n \ge 3$ (for $n \ge 3$ Siegel's factor
 $\varepsilon$ is $1$); the genus then has finitely many classes (`GenusFinite Q`), so `genusRepAvg` is a genuine finite
 average. Use this structure for $n \ge 4$ only (for $n = 3$ see `SiegelFormula3`). With $\mathrm{GL}_n(\mathbb{Z})$-classes and
-weights $1/|\mathrm{Aut}(Q')|$, $\mathrm{Aut} \le \mathrm{GL}_n(\mathbb{Z})$ (the convention of this repository): the genus average is the same
+weights $1/|\mathrm{Aut}(Q')|$, $\mathrm{Aut} \le \mathrm{GL}_n(\mathbb{Z})$ (the convention used here): the genus average is the same
 for $\mathrm{GL}$- and $\mathrm{SL}$-classes, since passing to $\mathrm{SL}$-classes and proper automorphism groups doubles the
 weight of every $\mathrm{GL}$-class. `aE` uses Mathlib's unconditional product (`tprod`), which is the intended value
 only for $n \ge 4$ (`multipliable_eulerFactor`). Not proved here. For the sum of four squares this is the AWS input
 `FourSquaresInputs.siegel` (`fourSquaresInputs_siegel_iff`). -/
-@[kb "siegel1935" "Hauptsatz [unverified]"]
+@[kb "siegel1935" "Hauptsatz [unverified]; cassels1978 App. B, (3.13), p. 378"]
 structure SiegelFormula (Q : QuadForm ℤ n) : Prop where
   genusRepAvg_eq : ∀ m : ℤ, 1 ≤ m → genusRepAvg Q m = aE Q m
 

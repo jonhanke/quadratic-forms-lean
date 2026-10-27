@@ -28,8 +28,8 @@ Conversely (`formChar_eq_of_isometricGL`), a $\mathbb{Z}_p$-equivalence carries 
 $p$-adic value of $g$; approximating mod $p$ (mod $8$ if $p = 2$) gives an integer value of $g$ congruent to $m$,
 so $\chi_p(g) = \psi_p(m) = \chi_p(f)$.
 
-Sources: Gauss, *Disq. Arith.* §§229–233 and §§257–260; Cassels, *Rational Quadratic Forms*, Ch. 8 (forms over
-$\mathbb{Z}_p$) and Ch. 14, §§2–3 (genera of binary forms); Cox, §3.B and Theorem 6.1-type comparisons
+Sources: Gauss, *Disq. Arith.* §§229–233 and §§257–260; Cassels, *Rational Quadratic Forms*, Ch. 8, §3 (forms over
+$\mathbb{Z}_p$) and Ch. 14, §3, pp. 339–340 (genera of binary forms; Lemmas 3.1–3.3 list the $\mathbb{Z}_p$-classes); Cox, §3.B and Theorem 6.1-type comparisons
 (*genus via local equivalence*); Buell, Ch. 4.
 -/
 
@@ -82,11 +82,11 @@ theorem two_dvd_b_sub_of_disc_eq {f g : BinQF} (h : f.disc = g.disc) : (2 : ℤ)
   have := key _ _ h2
   exact_mod_cast (ZMod.intCast_eq_intCast_iff_dvd_sub _ _ 2).mp this.symm
 
-/-- **The local normal-form lemma** (Cassels, Ch. 8, §3, the binary case; Gauss §§157–158 for the substitution):
+/-- **The local normal-form lemma** (Cassels, Ch. 8, §3, proof of Thm. 3.1, p. 116, completing the square, there for $p \ne 2$; Gauss §§157–158 for the substitution):
 over an integral domain $K$ with $2 \ne 0$, let $f, g$ be integral binary forms of the same discriminant with
 $\varphi(a_f)$ a unit and $\varphi(a_g) = \varphi(a_f)\, s^2$ for a unit $s$. Then $\varphi_* f \cong \varphi_* g$
 over $K$, by $\begin{pmatrix} s & r \\ 0 & s^{-1}\end{pmatrix}$ with $r = \tfrac{(b_g - b_f)/2}{a_f s}$. -/
-@[kb "cassels1978" "Ch. 8, §3 [unverified]"]
+@[kb "cassels1978" "Ch. 8, §3, proof of Thm. 3.1, p. 116 (completing the square)"]
 theorem isometricGL_map_of_sq [IsDomain K] (h2 : (2 : K) ≠ 0) (φ : ℤ →+* K) {f g : BinQF}
     (hdisc : f.disc = g.disc) (hu : IsUnit (φ f.a)) (s : Kˣ) (hv : φ g.a = φ f.a * (s : K) ^ 2) :
     IsometricGL (f.map φ) (g.map φ) := by
@@ -246,6 +246,7 @@ theorem isometricGL_padic_of_sq {f g : BinQF} (hdisc : f.disc = g.disc) (hfa : �
 
 /-- **Unimodular case ($p$ odd, $p \nmid D$):** forms of the same discriminant $D$ with $p \nmid D$ are equivalent
 over $\mathbb{Z}_p$ (O'Meara 92:2 via `Siegel.Kneser.isometricGL_of_unimodular`; here $\det H = -D$). -/
+@[kb "omeara1963" "§92, 92:2, pp. 246–247 (via `Siegel.Kneser.isometricGL_of_unimodular`)"]
 theorem isometricGL_padic_of_not_dvd (hp2 : p ≠ 2) {f g : BinQF} (hdisc : f.disc = g.disc)
     (hpD : ¬ (p : ℤ) ∣ f.disc) :
     IsometricGL (f.map (Int.castRingHom ℤ_[p])) (g.map (Int.castRingHom ℤ_[p])) := by
@@ -408,13 +409,13 @@ theorem exists_intEquiv_a_not_dvd {f : BinQF} (hf : Primitive f) (hp' : p.Prime)
   obtain ⟨f', h1, h2, h3⟩ := exists_intEquiv_a_eq f hxy
   exact ⟨x, y, f', h1, h2, h3, hv p hp' (dvd_refl p)⟩
 
-/-- **Equal characters at $p$ give equivalence over $\mathbb{Z}_p$** (Cassels, Ch. 14, §3; Gauss §§257–260): for
+/-- **Equal characters at $p$ give equivalence over $\mathbb{Z}_p$** (Cassels, Ch. 14, §3, Lemmas 3.1–3.3, pp. 339–340; Gauss §§257–260): for
 primitive $f, g$ of fundamental discriminant $D$ and any prime $p$, if $\chi_p(f) = \chi_p(g)$ whenever $p \mid D$,
 then $f \cong g$ over $\mathbb{Z}_p$. Move values $m$ of $f$ and $m'$ of $g$ prime to $p$ to the first coefficients;
 then $m m'$ is a $p$-adic square (by the character for odd $p \mid D$; after replacing $m$ by a value
 $\equiv m' \pmod 8$ for $p = 2$, `exists_value_two_odd`/`exists_value_two_even`), and `isometricGL_padic_of_sq`
 applies. For odd $p \nmid D$ the forms are unimodular (`isometricGL_padic_of_not_dvd`). -/
-@[kb "cassels1978" "Ch. 14, §3 [unverified]"]
+@[kb "cassels1978" "Ch. 14, §3, Lemmas 3.1–3.3, pp. 339–340"]
 theorem isometricGL_padic_of_formChar [IsQuadDisc D] {f g : BinQF} (hf : Primitive f) (hg : Primitive g)
     (hfD : f.disc = D) (hgD : g.disc = D) (hchar : (p : ℤ) ∣ D → formChar f p = formChar g p) :
     IsometricGL (f.map (Int.castRingHom ℤ_[p])) (g.map (Int.castRingHom ℤ_[p])) := by
@@ -469,7 +470,7 @@ invariants; here as $p$-adic invariants): if $f \cong g$ over $\mathbb{Z}_p$, $p
 $\chi_p(f) = \chi_p(g)$. A value $m = f(x, y)$ prime to $p$ is a $p$-adic value of $g$; reducing that $p$-adic vector
 mod $p$ (mod $8$ if $p = 2$) gives integers $X, Y$ with $g(X, Y) \equiv m$, hence
 $\chi_p(g) = \psi_p(g(X, Y)) = \psi_p(m) = \chi_p(f)$. -/
-@[kb "cassels1978" "Ch. 14, §2 [unverified]"]
+@[kb "cassels1978" "Ch. 14, §3, Lemmas 3.1–3.3, pp. 339–340"]
 theorem formChar_eq_of_isometricGL [IsQuadDisc D] {f g : BinQF} (hf : Primitive f) (hg : Primitive g)
     (hfD : f.disc = D) (hgD : g.disc = D) (hpD : (p : ℤ) ∣ D)
     (h : IsometricGL (f.map (Int.castRingHom ℤ_[p])) (g.map (Int.castRingHom ℤ_[p]))) :
@@ -531,13 +532,14 @@ theorem isometricGL_real {f g : BinQF} (hdisc : f.disc = g.disc) (hf : f.PosDef'
 /-! ### The theorem -/
 
 /-- **Genus = local equivalence** (Gauss's genus theory and the local–global description of the genus; Cassels,
-*Rational Quadratic Forms*, Ch. 14, §3; Cox, §3.B and Theorem 6.1's setting; Buell, Ch. 4): for primitive positive
+*Rational Quadratic Forms*, Ch. 14, §3, p. 339 (genus: equivalence over every $\mathbb{Z}_p$ and $\mathbb{R}$) and Lemmas 3.1–3.3,
+pp. 339–340; Cox, §3.B and Theorem 6.1's setting; Buell, Ch. 4): for primitive positive
 definite forms $f, g$ of fundamental discriminant $D$,
 $$\texttt{SameGenus}\ f\ g \iff \chi_p(f) = \chi_p(g) \text{ for every prime } p \mid D,$$
 where `Siegel.SameGenus` is equivalence over $\mathbb{Z}_p$ for every prime $p$ and over $\mathbb{R}$, and
 $\chi_p = $ `formChar` are Gauss's genus characters (well defined by `genusChar_eval_eq_formChar`). Purely local:
 `formChar_eq_of_isometricGL` ($\Rightarrow$) and `isometricGL_padic_of_formChar`, `isometricGL_real` ($\Leftarrow$). -/
-@[kb "cassels1978" "Ch. 14, §3 [unverified]"]
+@[kb "cassels1978" "Ch. 14, §3, p. 339 (genus), Lemmas 3.1–3.3, pp. 339–340"]
 theorem sameGenus_iff_formChar_eq [IsQuadDisc D] {f g : BinQF} (hf : Primitive f) (hg : Primitive g)
     (hfD : f.disc = D) (hgD : g.disc = D) (hfpos : f.PosDef') (hgpos : g.PosDef') :
     SameGenus f g ↔ ∀ p ∈ D.natAbs.primeFactors, formChar f p = formChar g p := by

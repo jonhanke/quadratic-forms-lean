@@ -14,7 +14,7 @@ place $w\mid v$ of $K$.
   **`nsAdele_image_nsS0`**: $\Phi(\pi(S_0)) = G_\infty\times\prod_{v\in S}U_v\times\prod_{v\notin S}SO(L_v)$ for
   $S_0 = \{g : g_1\in H_S\}$, $S_K$ = the places over $S$.
 
-Source: Weil 1982, §3.7, pp. 64-65 [unverified page]; Cassels–Fröhlich Ch. II §14 [unverified].
+Source: Weil 1982, §3.7, pp. 64-65 [unverified page]; Cassels–Fröhlich Ch. II (Cassels), §10, (10.2), p. 57, and §12, Lemma, (12.1), p. 61 (integers at the good places).
 -/
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatNSFib
 

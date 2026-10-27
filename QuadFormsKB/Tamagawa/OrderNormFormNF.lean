@@ -171,7 +171,7 @@ variable [IsTotallyReal F]
 
 /-- **`TernaryTamagawaTwo F` for every class number, from $\tau = 2$ on the trace-zero lattice $\mathcal O^0$ of one order per
 quaternion algebra** (e.g. a maximal order): the basis-free `ternaryTamagawaTwo_of_orders`, through
-`ternaryTamagawaTwo_of_pureForm_nf` and `tauSOLat_pureLat`. This is the target of batches D-E. -/
+`ternaryTamagawaTwo_of_pureForm_nf` and `tauSOLat_pureLat`. -/
 @[kb "weil1982" "§3.7(a), p. 62; Thm. 3.7.1 (m = 3), p. 65; §2.2.1, p. 14"]
 theorem ternaryTamagawaTwo_of_orders_nf
     (h : ∀ a b : 𝓞 F, a ≠ 0 → b ≠ 0 → IsTotallyPosDef ((pureFormO a b).map (algebraMap (𝓞 F) F)) →

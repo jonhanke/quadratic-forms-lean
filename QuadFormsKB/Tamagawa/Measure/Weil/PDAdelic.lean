@@ -3,7 +3,7 @@
 
 **Layer:** $F$ a number field, $a, b \in \mathcal O_F\setminus 0$, $D = (a,b)_F$, $D^0$ the pure quaternions with
 $\operatorname{nrd}|_{D^0} = \langle -a,-b,ab\rangle$ = `QuatZeta.pureFormO a b` $=: Q_0$ (a form over $\mathcal O_F$, so
-The $SO(V)(\mathbb A_f)$ = `SOAf Q₀` and $SO(V)(\mathbb A)$ = `SOAdele Q₀` apply).
+the $SO(V)(\mathbb A_f)$ = `SOAf Q₀` and $SO(V)(\mathbb A)$ = `SOAdele Q₀` apply).
 
 **Defines/proves** (finite part)
 * `conjFin a b : (D\otimes\mathbb A_f)^\times \to SO(V)(\mathbb A_f)`, $\alpha\mapsto(c_v(\alpha_v))_v$ (the conjugation at

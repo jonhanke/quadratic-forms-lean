@@ -27,10 +27,12 @@ without differential forms:
 $$\int_{SO(Q)} f\,d\mu_Q = \lim_{\varepsilon\to0^+}\frac{1}{\mathrm{Leb}(B_\varepsilon(c_Q))}
 \int_{\{\det X>0,\ \Phi_Q(X) \in B_\varepsilon(c_Q)\}} f(X)\,dX$$
 for every compactly supported continuous $f$ on $M_n(\mathbb R)$, which characterizes $\mu_Q$ (`leray_unique`), so the
-construction does not depend on $P$; `leray_eq_mu` (agreement with `ArchSO.mu`): for positive definite $Q$, $\mu_Q$ is `ArchSO.mu Q`, of total mass `archVolSO n (gramDetR Q)`.
+construction does not depend on $P$; `leray_eq_mu` (agreement with `ArchSO.mu`): for positive definite $Q$, $\mu_Q$ is
+`ArchSO.mu Q`, of total mass `archVolSO n (gramDetR Q)`.
 
 Coordinates: matrices $M$ act on columns; the Lebesgue measure on $M_n(\mathbb R)$ is `volume` on
-`Fin n → Fin n → ℝ` in the column convention (`cols M j i = M i j`), and on coefficient space `UIdx n → ℝ` (the coefficient coordinates $c_{ij}$, $i \le j$).
+`Fin n → Fin n → ℝ` in the column convention (`cols M j i = M i j`), and on coefficient space `UIdx n → ℝ` (the
+coefficient coordinates $c_{ij}$, $i \le j$).
 -/
 
 open MeasureTheory Measure Matrix Set Filter Topology TopologicalSpace
@@ -1326,8 +1328,8 @@ theorem lerayD_univ [hQ : Fact (IsPosDefR Q)] (hn : 1 ≤ n) :
   have := tendsto_nhds_unique h2 hlim
   rw [← this, ENNReal.ofReal_toReal (lerayD_univ_lt_top D).ne]
 
-/-- **Agreement with `ArchSO.mu`** (the measure, not only its mass): for positive definite $Q$ ($n \ge 1$) the Leray measure
-is `ArchSO.mu Q`. -/
+/-- **Agreement with `ArchSO.mu`** (the measure, not only its mass): for positive definite $Q$ ($n \ge 1$) the Leray
+measure is `ArchSO.mu Q`. -/
 theorem lerayD_eq_mu [hQ : Fact (IsPosDefR Q)] (hn : 1 ≤ n) : lerayD D = ArchSO.mu Q := by
   have h := isMulLeftInvariant_eq_smul (lerayD D) (ArchSO.mu Q)
   have hu := congrArg (fun μ : Measure (ArchSO Q) => μ univ) h
@@ -1632,7 +1634,8 @@ theorem lerayD_eq (D D' : Diag Q) : lerayD D = lerayD D' :=
 /-- **The Leray (gauge-form) measure** $\mu_Q$ on $SO(Q)(\mathbb R)$ for a nondegenerate real quadratic form of any
 signature: the measure with $dX = \mu_Q \otimes dc$ along the fibre $\Phi_Q^{-1}(c_Q) \cap \{\det > 0\}$
 (`lerayMeasure_fibration`), characterized by the Leray limit (`tendsto_lerayMeasure`, `lerayMeasure_unique`).
-Normalization: Lebesgue measure $dX$ on $M_n(\mathbb R)$ and $dc$ on coefficient space ($c_{ij}$, $i \le j$), as in `archVolSOLim`. -/
+Normalization: Lebesgue measure $dX$ on $M_n(\mathbb R)$ and $dc$ on coefficient space ($c_{ij}$, $i \le j$), as in
+`archVolSOLim`. -/
 @[kb "weil1982" "§2.2 (gauge forms), §2.4 Theorem 2.4.3, p. 25 (matching measures on G, H, G/H) [unverified]"]
 def lerayMeasure (Q : QuadForm ℝ n) (hQ : gramDetR Q ≠ 0) : Measure (ArchSO Q) :=
   lerayD (Diag.ofSpectral Q hQ)
@@ -1672,7 +1675,7 @@ theorem lerayMeasure_univ [Fact (IsPosDefR Q)] (hn : 1 ≤ n) :
   lerayD_univ _ hn
 
 /-- **Agreement with `ArchSO.mu`**: for positive definite $Q$ ($n \ge 1$) the Leray measure is `ArchSO.mu Q`. -/
-@[kb "weil1982" "§2.2 (gauge forms); cf. archVolSO_eq_volume [unverified]"]
+@[kb "weil1982" "§2.2 (gauge forms); archVolSO_eq_volume [unverified]"]
 theorem lerayMeasure_eq_mu [Fact (IsPosDefR Q)] (hn : 1 ≤ n) : lerayMeasure Q hQ = ArchSO.mu Q :=
   lerayD_eq_mu _ hn
 

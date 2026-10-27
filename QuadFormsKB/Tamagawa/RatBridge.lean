@@ -1,17 +1,17 @@
 /-
-# The lattice route over $\mathbb Q$: the bridge from forms over $\mathbb Z$ to lattices over $\mathcal O_{\mathbb Q}$
+# The bridge from forms over $\mathbb Z$ to lattices over $\mathcal O_{\mathbb Q}$
 
 **Layer.** The rank-4 Siegel formula over $\mathbb Q$ (`Siegel.GenusEis.siegelFormula_quaternary`) is stated for integral
 quadratic forms `Q : QuadForm ℤ N` with Hanke's objects: $\mathrm{GL}_N(\mathbb Z)$-classes in the genus (`Siegel.genusClasses`,
 `Siegel.SameGenus`: equivalence over every $\mathbb Z_p$ and over $\mathbb R$), $\mathrm{Mass}(Q) = \sum 1/|\mathrm{Aut}(Q')|$
 (`Siegel.mass`), $\sum r_{Q'}(m)/|\mathrm{Aut}(Q')|$ (`Siegel.genusRepSum`) and $a_E(m) = \beta_\infty(m)\prod_p\beta_p(m)$
-(`Siegel.aE`, $\beta_p$ by counting modulo $p^k$). The lattice route works with lattices in $(F^N, Q_0)$ for
+(`Siegel.aE`, $\beta_p$ by counting modulo $p^k$). The Weil-style development works with lattices in $(F^N, Q_0)$ for
 `Q₀ : QuadForm (𝓞 F) N`: the classes of lattices in the genus of $\mathcal O_F^N$ (`Lattices.genusClasses`), `Lattices.mass`,
-`Tamagawa.repMass`, and `siegelProduct` with $\beta_\mathfrak p$ = `NF.localDensity` and the archimedean factors
+`Tamagawa.repMass`, and the `siegelProduct` with $\beta_\mathfrak p$ = `NF.localDensity` and the archimedean factors
 `archRepDensity`. This file proves that **at $F = \mathbb Q$ the two dictionaries agree term by term** (with
 $\mathcal O_{\mathbb Q} \cong \mathbb Z$, Mathlib's `Rat.ringOfIntegersEquiv`):
 
-| ℤ-side | 𝓞_ℚ-side (lattices) | Lean |
+| ℤ-side | 𝓞_ℚ-side | Lean |
 |---|---|---|
 | $\mathrm{GL}_N(\mathbb Z)$-classes in $\mathrm{gen}(Q)$ | classes of lattices in $\mathrm{gen}(\mathbb Z^N)$ in $(\mathbb Q^N, Q)$ | `bijOn_latClass_rat` |
 | $|\mathrm{Aut}(Q')|$ | $|O(M)|$ | `card_autLat_latOf`, `autCard_eq_zForm` |
@@ -25,13 +25,13 @@ The genus comparison is the only global input: a form $Q'$ in the genus of $Q$ i
 `isometric_of_everywhere`, proved in the repository), so $Q'$ is the Gram form of a lattice $\gamma\mathbb Z^N$ in the space of $Q$.
 Everything else is local (prime by prime: $\mathfrak o_{(p)} \cong \mathbb Z_p$, $\mathcal O_{\mathbb Q}/\mathfrak p^k \cong \mathbb Z/p^k$) or a
 change of basis.
-**Consequences** (`Consequences` section). Rank-4 `SiegelFormulaAt` over $\mathbb Q$ is a theorem (`siegelFormulaAt_rat_four`, from
-`siegelFormula_quaternary`), which is what the Weil route lacked at $F = \mathbb Q$ (the rank-4 formula needs $[F:\mathbb Q] \ge 2$). Hence:
-* `ternaryTamagawaTwo_iff_quaternary_rat`: `TernaryTamagawaTwo ℚ ↔ QuaternaryTamagawaTwo ℚ` (the step both ways; `TauFour`'s `_of_siegel` forms);
+**Consequences** (`Consequences` section). Rank-4 `SiegelFormulaAt` over $\mathbb Q$ is a theorem (`siegelFormulaAt_rat_four`, from the
+`siegelFormula_quaternary`), which is what the Weil-style development lacked at $F = \mathbb Q$ (the rank-4 formula from Hilbert modular forms needs $[F:\mathbb Q] \ge 2$). Hence:
+* `ternaryTamagawaTwo_iff_quaternary_rat`: `TernaryTamagawaTwo ℚ ↔ QuaternaryTamagawaTwo ℚ` (the Siegel-formula step both ways; `TauFour`'s `_of_siegel` forms);
 * `tamagawaNumberTwo_rat_all_ranks`: $\tau(SO) = 2$ over $\mathbb Q$ in every rank $N \ge 3$, given `TernaryTamagawaTwo ℚ` and
   `OddRankOrbitalLocalIdentities ℚ`;
 * `siegelFormulaAt_rat_even` (unconditional) and `siegelFormulaAt_rat_all_ranks` (odd $N$ on the same two inputs): Siegel's formula over
-  $\mathbb Q$ in every rank $N \ge 4$, the form; `siegelFormula_int_even`, `siegelFormula_int_all_ranks`: the same in Hanke's form
+  $\mathbb Q$ in every rank $N \ge 4$, as `SiegelFormulaAt`; `siegelFormula_int_even`, `siegelFormula_int_all_ranks`: the same in Hanke's form
   `Siegel.SiegelFormula` for positive definite forms over $\mathbb Z$.
 -/
 import QuadFormsKB.Siegel.Tartakowsky
@@ -127,12 +127,12 @@ theorem realEmb_intCast_pos {m : ℤ} (hm : 1 ≤ m) :
     ∀ v : InfinitePlace ℚ, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ (m : 𝓞 ℚ)) := fun v => by
   rw [map_intCast, map_intCast]; exact_mod_cast hm
 
-/-- **The Siegel product over $\mathbb Q$ is Hanke's (5.3)** (`Siegel.aE`): for $Q$ positive definite over $\mathbb Z$ in $n \ge 1$ variables and an
-integer $m \ge 1$,
+/-- **The Siegel product over $\mathbb Q$ is Hanke's (5.3)** (`Siegel.aE`): for $Q$ positive definite over $\mathbb Z$
+in $n \ge 1$ variables and an integer $m \ge 1$,
 $$S(\mathbb Z^n, m) = |d_{\mathbb Q}|^{-(n-1)/2}\prod_\sigma\beta_\sigma(m)\prod_\mathfrak p\beta_\mathfrak p(m) = \beta_\infty(m)\prod_p\beta_p(m) = a_E(m).$$
 Factor by factor: $|d_{\mathbb Q}| = 1$ (`discrFactor_rat`), the one real place (`siegelProduct_eq_discr_mul_aENF`, `betaInfNF_rat`), and the
 Euler products (`eulerProductNF_up`). -/
-@[kb "hanke2004" "(5.3), p. 368 (F = ℚ: siegelProduct = a_E(m))"]
+@[kb "hanke2004" "(5.3), p. 368 (F = ℚ: the siegelProduct = a_E(m))"]
 theorem siegelProduct_up (Q : QuadForm ℤ n) (hQ : IntQF.PosDef Q) (hn : 1 ≤ n) {m : ℤ} (hm : 1 ≤ m) :
     siegelProduct (up Q) (m : 𝓞 ℚ) = Siegel.aE Q m := by
   have hpd := (isTotallyPosDef_up_iff Q).mpr hQ
@@ -398,7 +398,7 @@ theorem repCountClass_eq (c : LatClass (formF (up Q))) (m : ℚ) :
 
 /-- **The class map** $\mathrm{cls}(M) \mapsto [\text{Gram form of } M]$ is a bijection from the classes of lattices in the genus of $\mathbb Z^n$ in
 $(\mathbb Q^n, Q)$ onto Siegel's $\mathrm{GL}_n(\mathbb Z)$-classes in the genus of $Q$. -/
-@[kb "omeara1963" "§§82, 102 (classes of lattices = classes of forms, F = ℚ) [unverified]"]
+@[kb "omeara1963" "§82B, 82:1, p. 222; §102A, p. 297"]
 theorem bijOn_latClass_rat (hQ : IntQF.PosDef Q) :
     Set.BijOn (fun c : LatClass (formF (up Q)) => Siegel.classOf (zForm Q c.out))
       (genusClasses (formF (up Q)) (stdLat ℚ n)) (Siegel.genusClasses Q) := by
@@ -472,7 +472,7 @@ theorem mass_rat (hQ : IntQF.PosDef Q) :
   refine finsum_mem_eq_of_bijOn _ (bijOn_latClass_rat Q hQ) fun c hc => ?_
   rw [autCard_eq_zForm Q hc]
 
-/-- **$\sum_{[Q']} r_{Q'}(m)/|\mathrm{Aut}(Q')| = \mathrm{repMass}(\mathbb Z^n, m)$** (Hanke's `genusRepSum` is `repMass` at $F = \mathbb Q$). -/
+/-- **$\sum_{[Q']} r_{Q'}(m)/|\mathrm{Aut}(Q')| = \mathrm{repMass}(\mathbb Z^n, m)$** (Hanke's `genusRepSum` is the `repMass` at $F = \mathbb Q$). -/
 @[kb "hanke2004" "(4.5), p. 366 (numerator as a lattice sum over 𝓞_ℚ)"]
 theorem repMass_rat (hQ : IntQF.PosDef Q) (m : ℤ) :
     Siegel.genusRepSum Q m = repMass (formF (up Q)) (stdLat ℚ n) (m : ℚ) := by
@@ -480,10 +480,10 @@ theorem repMass_rat (hQ : IntQF.PosDef Q) (m : ℤ) :
   refine finsum_mem_eq_of_bijOn _ (bijOn_latClass_rat Q hQ) fun c hc => ?_
   rw [autCard_eq_zForm Q hc, repCount_eq_zForm Q hc]
 
-/-- **Hanke's Siegel formula is the `SiegelFormulaAt` one, number by number** ($F = \mathbb Q$): for $Q$ positive definite over $\mathbb Z$ in $n \ge 1$ variables,
-`Siegel.SiegelFormula Q` ($r_{\mathrm{Gen}(Q)}(m) = a_E(m)$ for all $m \ge 1$) holds iff `SiegelFormulaAt` holds for $Q \otimes \mathcal O_{\mathbb Q}$ at
+/-- **Hanke's Siegel formula is the lattice-theoretic one, number by number** ($F = \mathbb Q$): for $Q$ positive definite over $\mathbb Z$ in $n \ge 1$ variables,
+`Siegel.SiegelFormula Q` ($r_{\mathrm{Gen}(Q)}(m) = a_E(m)$ for all $m \ge 1$) holds iff the `SiegelFormulaAt` holds for $Q \otimes \mathcal O_{\mathbb Q}$ at
 every integer $m \ge 1$ (`mass_rat`, `repMass_rat`, `siegelProduct_up`). -/
-@[kb "siegel1935" "Hauptsatz over ℚ: Hanke's (5.3) form ⟺ SiegelFormulaAt [unverified]"]
+@[kb "siegel1935" "Hauptsatz over ℚ: Hanke's (5.3) form ⟺ the SiegelFormulaAt [unverified]"]
 theorem siegelFormula_iff_siegelFormulaAt (hQ : IntQF.PosDef Q) (hn : 1 ≤ n) :
     Siegel.SiegelFormula Q ↔ ∀ m : ℤ, 1 ≤ m → SiegelFormulaAt (up Q) (m : 𝓞 ℚ) := by
   have hpd := (isTotallyPosDef_up_iff Q).mpr hQ
@@ -496,8 +496,9 @@ theorem siegelFormula_iff_siegelFormulaAt (hQ : IntQF.PosDef Q) (hn : 1 ≤ n) :
     · intro h; have := h.repMass_eq; rw [map_intCast] at this; rw [mul_comm]; exact this
   exact ⟨fun h m hm => (key m hm).mp (h.genusRepAvg_eq m hm), fun h => ⟨fun m hm => (key m hm).mpr (h m hm)⟩⟩
 
-/-- **The Siegel formula over $\mathbb Q$ from Hanke's**: for $Q_0$ totally positive definite over $\mathcal O_{\mathbb Q}$ in $n \ge 1$ variables with
-`Siegel.SiegelFormula` for $Q_0$ read over $\mathbb Z$, `SiegelFormulaAt Q₀ m` holds for every totally positive $m$. -/
+/-- **The Siegel formula over $\mathbb Q$ from Hanke's**: for $Q_0$ totally positive definite over
+$\mathcal O_{\mathbb Q}$ in $n \ge 1$ variables with `Siegel.SiegelFormula` for $Q_0$ read over $\mathbb Z$, the
+`SiegelFormulaAt Q₀ m` holds for every totally positive $m$. -/
 theorem siegelFormulaAt_of_siegelFormula {Q₀ : QuadForm (𝓞 ℚ) n} (hpd : IsTotallyPosDef (formF Q₀)) (hn : 1 ≤ n)
     (hS : Siegel.SiegelFormula (down Q₀)) {m : 𝓞 ℚ}
     (hm : ∀ v : InfinitePlace ℚ, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m)) : SiegelFormulaAt Q₀ m := by
@@ -505,11 +506,11 @@ theorem siegelFormulaAt_of_siegelFormula {Q₀ : QuadForm (𝓞 ℚ) n} (hpd : I
   have h := (siegelFormula_iff_siegelFormulaAt (down Q₀) (posDef_down hpd) hn).mp hS k hk
   rwa [up_down] at h
 
-/-- **The input `SiegelFormulaAt` in rank 4 over $\mathbb Q$ is a theorem** (`siegelFormula_quaternary` through the bridge): for every
-totally positive definite quaternary $Q_0$ over $\mathcal O_{\mathbb Q}$ and every totally positive $m$,
-$\mathrm{repMass}(\mathbb Z^4, m) = \mathrm{Mass}(\mathbb Z^4)\cdot S(\mathbb Z^4, m)$. This is the case $F = \mathbb Q$ that
-`HilbertModular.siegelFormulaAt_of_pid_four` ($[F:\mathbb Q] \ge 2$) leaves out. -/
-@[kb "siegel1935" "Hauptsatz, n = 4, over ℚ in the SiegelFormulaAt form [unverified]"]
+/-- **The input `SiegelFormulaAt` in rank 4 over $\mathbb Q$ is a theorem** (`siegelFormula_quaternary` through
+the bridge): for every totally positive definite quaternary $Q_0$ over $\mathcal O_{\mathbb Q}$ and every totally
+positive $m$, $\mathrm{repMass}(\mathbb Z^4, m) = \mathrm{Mass}(\mathbb Z^4)\cdot S(\mathbb Z^4, m)$. This is the case
+$F = \mathbb Q$ that `HilbertModular.siegelFormulaAt_of_pid_four` ($[F:\mathbb Q] \ge 2$) leaves out. -/
+@[kb "siegel1935" "Hauptsatz, n = 4, over ℚ as SiegelFormulaAt [unverified]"]
 theorem siegelFormulaAt_rat_four {Q₀ : QuadForm (𝓞 ℚ) 4} (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 ℚ}
     (hm : ∀ v : InfinitePlace ℚ, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m)) : SiegelFormulaAt Q₀ m :=
   siegelFormulaAt_of_siegelFormula hpd (by norm_num)
@@ -523,9 +524,9 @@ section Consequences
 
 open LatChange
 
-/-- **$\tau(SO_4) = 2$ from $\tau(SO_3) = 2$ over $\mathbb Q$ for split lattices** $\langle m_0\rangle\perp Q_0'$ (the step with rank-4 Siegel
+/-- **$\tau(SO_4) = 2$ from $\tau(SO_3) = 2$ over $\mathbb Q$ for split lattices** $\langle m_0\rangle\perp Q_0'$ (`tamagawaNumberTwo_four_of_three_of_siegel` with rank-4 Siegel
 from `siegelFormulaAt_rat_four`). -/
-@[kb "weil1982" "Thm. 3.7.1 (m = 4), p. 65, over ℚ via siegelFormulaAt_rat_four"]
+@[kb "weil1982" "Thm. 3.7.1 (m = 4), p. 65, over ℚ via the rank-4 Siegel formula and the step"]
 theorem tamagawaNumberTwo_four_of_three_rat {m₀ : 𝓞 ℚ} (hm : ∀ v, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m₀))
     (Q₀' : QuadForm (𝓞 ℚ) 3) (hpd : IsTotallyPosDef ((splitForm m₀ Q₀').map (algebraMap (𝓞 ℚ) ℚ)))
     (hLi : IsIntegral ((splitForm m₀ Q₀').map (algebraMap (𝓞 ℚ) ℚ)) (stdLat ℚ 4).1) (hτ : TamagawaNumberTwo Q₀') :
@@ -544,7 +545,7 @@ theorem quaternaryTamagawaTwo_rat (hT : TernaryTamagawaTwo ℚ) : QuaternaryTama
     (hT.tau_eq_two Q₀' (nondegenerate_of_map hpd'.nondegenerate) hpd' (isIntegral_std Q₀'))
 
 /-- **$\tau(SO_3) = 2$ over $\mathbb Q$ from $\tau(SO_4) = 2$ over $\mathbb Q$** (`tamagawaNumberTwo_three_of_four_of_siegel` with $m_0 = 1$ and
-rank-4 Siegel from `siegelFormulaAt_rat_four`). -/
+rank-4 Siegel over $\mathbb Q$). -/
 @[kb "weil1982" "Thm. 3.7.1 (m = 3 from m = 4), p. 65, over ℚ"]
 theorem ternaryTamagawaTwo_rat (h4 : QuaternaryTamagawaTwo ℚ) : TernaryTamagawaTwo ℚ := by
   refine ⟨fun Q₀' _ hpd' _ => ?_⟩
@@ -555,7 +556,7 @@ theorem ternaryTamagawaTwo_rat (h4 : QuaternaryTamagawaTwo ℚ) : TernaryTamagaw
     (h4.tau_eq_two _ hpd)
 
 /-- **The base cases of Weil's Theorem 3.7.1 are equivalent over $\mathbb Q$**: `TernaryTamagawaTwo ℚ ↔ QuaternaryTamagawaTwo ℚ`. (Over $F$ of
-degree $\ge 2$ this is `LatChange.ternaryTamagawaTwo_iff_four_all`; over $\mathbb Q$ the rank-4 Siegel formula is `siegelFormula_quaternary`.) -/
+degree $\ge 2$ this is `LatChange.ternaryTamagawaTwo_iff_four_all`; over $\mathbb Q$ the rank-4 Siegel formula is `Siegel.GenusEis.siegelFormula_quaternary`.) -/
 @[kb "weil1982" "Thm. 3.7.1, p. 65 (m = 3 ⟺ m = 4), over ℚ"]
 theorem ternaryTamagawaTwo_iff_quaternary_rat : TernaryTamagawaTwo ℚ ↔ QuaternaryTamagawaTwo ℚ :=
   ⟨quaternaryTamagawaTwo_rat, ternaryTamagawaTwo_rat⟩
@@ -570,9 +571,10 @@ theorem tamagawaNumberTwo_rat_all_ranks (hT : TernaryTamagawaTwo ℚ) (hloc : Od
     exact hT.tau_eq_two Q₀ (nondegenerate_of_map hpd.nondegenerate) hpd (isIntegral_std Q₀)
   · exact tamagawaNumberTwo_of_four (quaternaryTamagawaTwo_rat hT) hloc h Q₀ hpd
 
-/-- **Siegel's formula over $\mathbb Q$ in even rank $N \ge 4$, unconditionally** (the form): $N = 4$ by `siegelFormula_quaternary` through the bridge
-(`siegelFormulaAt_rat_four`), $N \ge 6$ by Hilbert modular forms over $\mathbb Q$ (`HilbertModular.siegelFormulaAt_of_pid`). -/
-@[kb "siegel1935" "Hauptsatz (numbers) over ℚ, every even rank ≥ 4 [unverified]"]
+/-- **Siegel's formula over $\mathbb Q$ in even rank $N \ge 4$, unconditionally** (as `SiegelFormulaAt`): $N = 4$ through the bridge
+(`siegelFormulaAt_rat_four`), $N \ge 6$ by Hilbert modular forms over $\mathbb Q$
+(`HilbertModular.siegelFormulaAt_of_pid`). -/
+@[kb "siegel1935" "Hauptsatz (numbers) over ℚ, every even rank ≥ 4, as SiegelFormulaAt [unverified]"]
 theorem siegelFormulaAt_rat_even {N : ℕ} (hN : 4 ≤ N) (he : Even N) (Q₀ : QuadForm (𝓞 ℚ) N)
     (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 ℚ} (hm : ∀ v, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m)) :
     SiegelFormulaAt Q₀ m := by
@@ -581,10 +583,10 @@ theorem siegelFormulaAt_rat_even {N : ℕ} (hN : 4 ≤ N) (he : Even N) (Q₀ : 
   · subst h4; exact siegelFormulaAt_rat_four hpd hm
   · exact HilbertModular.siegelFormulaAt_of_pid hpd (k := k) (by omega) (by omega) hm
 
-/-- **Siegel's formula over $\mathbb Q$ in every rank $N \ge 4$** (the form, `SiegelFormulaAt`): even $N$ unconditional
+/-- **Siegel's formula over $\mathbb Q$ in every rank $N \ge 4$** (as `SiegelFormulaAt`): even $N$ unconditional
 (`siegelFormulaAt_rat_even`); odd $N \ge 5$ given `TernaryTamagawaTwo ℚ` and `OddRankOrbitalLocalIdentities ℚ` (`siegelFormulaAt_rat` with
 `quaternaryTamagawaTwo_rat`). -/
-@[kb "siegel1935" "Hauptsatz (numbers) over ℚ, every rank ≥ 4 [unverified]"]
+@[kb "siegel1935" "Hauptsatz (numbers) over ℚ, every rank ≥ 4, as SiegelFormulaAt [unverified]"]
 theorem siegelFormulaAt_rat_all_ranks (hT : TernaryTamagawaTwo ℚ) (hloc : OddRankOrbitalLocalIdentities ℚ) {N : ℕ}
     (hN : 4 ≤ N) (Q₀ : QuadForm (𝓞 ℚ) N) (hpd : IsTotallyPosDef (formF Q₀)) {m : 𝓞 ℚ}
     (hm : ∀ v, 0 < realEmb ℚ v (algebraMap (𝓞 ℚ) ℚ m)) : SiegelFormulaAt Q₀ m := by

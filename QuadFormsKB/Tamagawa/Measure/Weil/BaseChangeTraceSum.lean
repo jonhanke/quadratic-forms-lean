@@ -3,7 +3,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeTrace
 /-!
 # $K\otimes_kk_v\cong\prod_{w\mid v}K_w$ as $k_v$-modules, and the trace formula
 
-With `PlaceSet v` the finite type of places of $K$ over $v$ and $A_v=\prod_{w\mid v}K_w$ (a $k_v$-algebra through the library's
+With `PlaceSet v` the finite type of places of $K$ over $v$ and $A_v=\prod_{w\mid v}K_w$ (a $k_v$-algebra through
 `localRingHom`):
 
 * `localPi b v : k_v^ι →ₗ[k_v] A_v`, $c\mapsto(\Psi_f(c e_v)_w)_{w\mid v}$, is bijective
@@ -14,8 +14,8 @@ With `PlaceSet v` the finite type of places of $K$ over $v$ and $A_v=\prod_{w\mi
 * **`trace_eq_sum_localTrace`**: for $x\in K$, $\operatorname{Tr}_{K/k}(x)=\sum_{w\mid v}\operatorname{Tr}_{K_w/k_v}(x)$ in $k_v$,
   and the matrix $\operatorname{Tr}(b_ib_j)$ is the sum over $w\mid v$ of the local trace forms (`traceMatrix_eq_sum_localTrace`).
 
-Sources: Neukirch, *Algebraic Number Theory*, Ch. II Prop. 8.3 [unverified]; Cassels–Fröhlich Ch. II §14 [unverified];
-Mathlib `Algebra.trace_eq_matrix_trace`, `LinearMap.trace_conj'`, and the library's `Algebra.trace_pi'`.
+Sources: Neukirch, *Algebraic Number Theory*, Ch. II Prop. 8.3 [unverified]; Cassels–Fröhlich Ch. II (Cassels), §9, second Cor., p. 55, and §10, (10.2), p. 57 (not §14);
+Mathlib `Algebra.trace_eq_matrix_trace`, `LinearMap.trace_conj'`, and `Algebra.trace_pi'`.
 -/
 
 open IsDedekindDomain NumberField Topology Filter
@@ -122,7 +122,7 @@ theorem localPi_surjective : Function.Surjective (localPi b v) := by
 
 
 /-- **$K\otimes_kk_v\cong\prod_{w\mid v}K_w$ as $k_v$-modules.** -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; Neukirch II.8.3 [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., (10.2), p. 57; Neukirch II.8.3 [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 def localPiEquiv : (ι → v.adicCompletion k) ≃ₗ[v.adicCompletion k] PlaceProd (K := K) v :=
   LinearEquiv.ofBijective (localPi b v) ⟨localPi_injective b v, localPi_surjective b v⟩
 
@@ -135,7 +135,7 @@ theorem localTrace_eq (w : PlaceSet (K := K) v) (y : w.1.adicCompletion K) :
 
 /-- **The trace on $K\otimes_kk_v$ is the sum of the local traces:** for $y\in\prod_{w\mid v}K_w$, the trace of
 multiplication by $y$ on $k_v^\iota$ (transported through `localPiEquiv`) is $\sum_{w\mid v}\operatorname{Tr}_{K_w/k_v}(y_w)$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 / Neukirch II.8.3 (Tr_{K/k} = Σ_w Tr_{K_w/k_v}) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §9, proofs of the two Cors., p. 55 (a basis of A ⊗ B = ⊕ K_j made of bases of the K_j); Neukirch II.8.3 (Tr_{K/k} = Σ_w Tr_{K_w/k_v}) [unverified]"]
 theorem trace_localPi_conj (y : PlaceProd (K := K) v) :
     LinearMap.trace (v.adicCompletion k) (ι → v.adicCompletion k)
         ((localPiEquiv b v).symm.conj (LinearMap.mulLeft (v.adicCompletion k) y)) =
@@ -175,7 +175,7 @@ theorem localPi_mulVec (x : K) (c : ι → v.adicCompletion k) :
 
 /-- **$\operatorname{Tr}_{K/k}=\sum_{w\mid v}\operatorname{Tr}_{K_w/k_v}$ on $K$** (in $k_v$): the trace of the
 $k_v$-algebra $K\otimes_kk_v\cong\prod_{w\mid v}K_w$ restricted to $K$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 / Neukirch II.8.3 (Tr_{K/k} x = Σ_{w|v} Tr_{K_w/k_v} x) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §9, second Cor., p. 55 (Trace_{B/k} a = Σ_j Trace_{K_j/A} a), with A = k_v, B = K and (10.2), p. 57; Neukirch II.8.3 (Tr_{K/k} x = Σ_{w|v} Tr_{K_w/k_v} x) [unverified]"]
 theorem trace_eq_sum_localTrace (x : K) :
     algebraMap k (v.adicCompletion k) (Algebra.trace k K x) =
       ∑ w : PlaceSet (K := K) v, localTrace v w.1 w.2 ((x : K) : w.1.adicCompletion K) := by

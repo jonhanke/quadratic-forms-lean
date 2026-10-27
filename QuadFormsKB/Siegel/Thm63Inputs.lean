@@ -7,7 +7,7 @@ for $a_E(T')$ (`hglob`). This file discharges the last two:
 - `CuspBound c (1/2) C` with $C = \sum_i|\gamma_i|$ from the cited input `EigenformDecompDeligne N χ`
   (`cuspBound_of_eigenformDecomp`, `Siegel/EigenformBound.lean`), once the cusp part $c$ of `ThetaSplit` is known to be
   the coefficient sequence of some $g \in S_2(\Gamma_0(N), \chi)$ (`hcusp`; $\theta_Q - \theta_{\mathrm{Gen}(Q)}$
-  is a cusp form, which supplies it);
+  is a cusp form, supplies it);
 - `hglob` with $\Lambda = \hat\Lambda_4(S, T')$ (`lambdaHat4`) from Siegel's formula (`hglob_four`,
   `Siegel/GlobalLowerBound.lean`), positive under local conditions (`lambdaHat4_pos`).
 

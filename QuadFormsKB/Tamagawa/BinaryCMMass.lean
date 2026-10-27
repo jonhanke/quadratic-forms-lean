@@ -8,7 +8,7 @@ import QuadFormsKB.Tamagawa.BinaryCMClasses
 **Proves**
 * (general) `mass_eq_orbitMass`: the mass of a genus is the orbit mass of $O(V)(F)$ acting on the genus (as a set of lattices);
   `orbitMass_so_eq_two_mul`: for $SO(V)(F)$ (index $2$) the orbit mass doubles (`orbitMass_subgroup`).
-* `orbitRel_latJ_iff`: two lattices $(\sigma\delta)^{-1}\mathfrak B\sigma\mathfrak B'$ are properly isometric iff the $j$ takes the same value on
+* `orbitRel_latJ_iff`: two lattices $(\sigma\delta)^{-1}\mathfrak B\sigma\mathfrak B'$ are properly isometric iff $j$ takes the same value on
   $[\mathfrak B]$ (via `exists_normOne_smul_iff`); every lattice of the genus is properly isometric to one of them
   (`exists_orbitRel_latJ`, via `mem_range_jHom_iff`: the Hasse norm theorem and an ideal Hilbert 90).
 * `orbitsEquivRange`: proper classes in the genus of $\mathcal O_E$ $\simeq$ the image of $j : \mathrm{Cl}_E \to$ `PairClass`;
@@ -17,7 +17,6 @@ import QuadFormsKB.Tamagawa.BinaryCMClasses
   $t$ = number of ramified primes (`card_principalGenus_mul_card_strAmb`-type count, `card_strAmb_mul_index`).
 
 Source: Shimura 2010, §4 [unverified]; Conway–Sloane 1988, §2 (proper vs improper classes) [unverified].
-
 -/
 
 open NumberField IsDedekindDomain Matrix MulAction
@@ -170,7 +169,7 @@ theorem exists_so_glImage_iff (A A' : Submodule (𝓞 F) E) :
 
 variable [IsTotallyReal F]
 
-/-- A triple $(\mathfrak B, \mathfrak B', \delta)$ with $\mathfrak B\mathfrak B' = (\delta)$ (input of the $j$). -/
+/-- A triple $(\mathfrak B, \mathfrak B', \delta)$ with $\mathfrak B\mathfrak B' = (\delta)$ (input of $j$). -/
 structure JTriple (E : Type) [Field E] [NumberField E] where
   B : (Ideal (𝓞 E))⁰
   B' : (Ideal (𝓞 E))⁰
@@ -292,7 +291,7 @@ theorem jPair_tripleOf (g : Set.range (jHom F E)) :
 def orbitsMap (g : Set.range (jHom F E)) : orbitRel.Quotient (soSub QD F) (GenusSet QD (latEL S)) :=
   Quotient.mk'' (latJ S (tripleOf g))
 
-/-- **Proper classes in the genus of $\mathcal O_E$ $\simeq$ the image of $j$** (the $j : \mathrm{Cl}_E \to$ `PairClass`). -/
+/-- **Proper classes in the genus of $\mathcal O_E$ $\simeq$ the image of $j$** ($j : \mathrm{Cl}_E \to$ `PairClass`). -/
 theorem orbitsMap_bijective : Function.Bijective (orbitsMap S (F := F) (E := E)) := by
   constructor
   · intro g₁ g₂ h
@@ -383,7 +382,7 @@ theorem orbitMass_so_latE :
   rw [Finset.sum_const, Finset.card_univ, nsmul_eq_mul, ← Nat.card_eq_fintype_card, ← Nat.card_congr e,
     div_eq_mul_inv]
 
-/-- $\#\mathrm{im}(j)\cdot\#\mathrm{Cl}^{\mathrm{str}}_E = h_E$ (the $j$, kernel = strongly ambiguous classes). -/
+/-- $\#\mathrm{im}(j)\cdot\#\mathrm{Cl}^{\mathrm{str}}_E = h_E$ ($j$, kernel = strongly ambiguous classes). -/
 theorem card_range_jHom_mul_card_strAmb :
     Nat.card (Set.range (jHom F E)) * Nat.card (StrAmb F E) = classNumber E := by
   rw [classNumber, ← Nat.card_eq_fintype_card, ← card_range_mul_card_ker (jHom F E)]

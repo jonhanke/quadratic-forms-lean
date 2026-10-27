@@ -1,6 +1,5 @@
 /-
-# The example $x^2 + y^2 + z^2 + 2w^2$: level 8, character $\chi_8$ (deliverable 4)
-
+# The example $x^2 + y^2 + z^2 + 2w^2$: level 8, character $\chi_8$
 $Q = x_0^2 + x_1^2 + x_2^2 + 2x_3^2$ (`q1112`, level 8, $\chi_Q = \chi_8$). The Eisenstein space of $M_2(\Gamma_0(8), \chi_8)$ is
 spanned by $E^{1,\chi_8}$ and $E^{\chi_8,1}$ (`dsEisMF` with $(u, v, t) = (1, 8, 1)$ and $(8, 1, 1)$), and
 $$E_Q := \frac{4\sqrt2}{\pi^2}E^{1,\chi_8} - \frac1{\pi^2}E^{\chi_8,1}

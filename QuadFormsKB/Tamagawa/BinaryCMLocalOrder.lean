@@ -14,7 +14,6 @@ $\mathfrak o = \mathfrak o_\mathfrak p$, $\varpi$ = `NF.π`, $\tau = \varpi^{-1}
   i.e. $\Lambda = \mathfrak o[\omega]$ with $\omega = (s + \sqrt{-d})/\varpi^c$, $\omega^2 = a + b\omega$, and $\mathfrak o^2 = \mathfrak o[\sqrt{-d}] = \mathfrak o + \varpi^c\Lambda$.
 
 Source: Neukirch 1999, Ch. I §2 / Ch. II §2 (orders of rank $2$ over a DVR) [unverified].
-
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero

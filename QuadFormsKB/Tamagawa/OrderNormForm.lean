@@ -6,13 +6,14 @@
 An $\mathcal O_F$-order $\mathcal O \supseteq \mathcal O_F\langle 1,i,j,k\rangle$ of $D$ is a free $\mathcal O_F$-module of rank 4 (`IsLattice`, Mathlib);
 in a basis $e_0, \dots, e_3$ the reduced norm is an integral quaternary form `Q` (`exists_orderForm`): its coefficients are
 $\operatorname{nrd}(e_i)$ and $\operatorname{nrd}(e_i + e_j) - \operatorname{nrd}(e_i) - \operatorname{nrd}(e_j)$, integral by `isInteger_trd_nrd`. The standard
-basis $1, i, j, k$ lies in $\mathcal O$, so $\langle 1,-a,-b,ab\rangle = Q\circ G$ for an integral $G$ with $\det G \ne 0$, and the change-of-lattice theorem `LatChange.tauSO_smul_compMat` gives
+basis $1, i, j, k$ lies in $\mathcal O$, so $\langle 1,-a,-b,ab\rangle = Q\circ G$ for an integral $G$ with $\det G \ne 0$, and the
+change-of-lattice theorem `LatChange.tauSO_smul_compMat` gives
 $$\tau(SO(\mathcal O, \operatorname{nrd})) = \tau(SO(\mathcal O_F\langle1,i,j,k\rangle, \operatorname{nrd}))\qquad(\texttt{tauSO\_orderForm}).$$
 Consequently `TernaryTamagawaTwo F` follows from $\tau(SO(\mathcal O_D, \operatorname{nrd})) = 2$ for **one** order $\mathcal O_D \supseteq$ the
 standard order of each totally definite $D$, e.g. a maximal order (`ternaryTamagawaTwo_of_orders`).
 
 Sources: Voight, *Quaternion Algebras* (2021), §15.2 (the norm form of a lattice) ; Weil 1982, §2.2.1, p. 14 (independence of
-the lattice), via `TernaryReduction`.
+the lattice), via `LatChange.tauSO_smul_compMat`.
 -/
 import QuadFormsKB.Tamagawa.QuatOrder
 import QuadFormsKB.Tamagawa.TernaryReduction

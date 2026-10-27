@@ -13,7 +13,6 @@ import QuadFormsKB.Tamagawa.BinaryCMConstants
   ($\mathfrak f\,\mathfrak D_{E/F} = (f'(\theta)) = (2\theta)$), $N(2\theta) = N_{F/\mathbb Q}(4D)$.
 
 Source: Neukirch 1999, Ch. III §2, Prop. 2.4 and Thm. 2.9 (different and conductor) [unverified locator].
-
 -/
 
 open NumberField Polynomial IsDedekindDomain

@@ -8,7 +8,7 @@ $\sigma : F \to \mathbb C$ and every $x \ne 0$; this forces $F$ to be totally re
 lattices (`LatClass`), the classes in the genus of $L$ (`genusClasses`), and the trace form
 $x \mapsto \mathrm{Tr}_{F/\mathbb Q} B(x, x)$ on a lattice viewed as a $\mathbb Z$-lattice of rank $n[F:\mathbb Q]$.
 
-**Proves** (O'Meara 1963, 103:4 [unverified]; for $F = \mathbb Q$, `Siegel.genusFinite`):
+**Proves** (O'Meara 1963, 103:4, p. 309, which counts proper classes; for $F = \mathbb Q$, `Siegel.genusFinite`):
 * `genusClasses_finite`: **the genus of an integral lattice in a totally positive definite space contains only
   finitely many classes.**
 * `finite_autLat`: $O(L)$ is finite (for every lattice $L$).
@@ -154,7 +154,7 @@ def IsTotallyPos (a : F) : Prop := ∀ σ : F →ₐ[ℚ] ℂ, 0 < σ a
 
 /-- **Totally positive definite form** on $F^n$: $Q(x)$ is totally positive for every $x \ne 0$. For $n \ge 1$ this
 forces $F$ to be totally real, and it says that $\sigma(Q)$ is positive definite at every real place. -/
-@[kb "omeara1963" "§101 (totally positive definite) [unverified]"]
+@[kb "omeara1963" "§61A, p. 154 (positive definite), at every real spot"]
 def IsTotallyPosDef (Q : QuadForm F n) : Prop := ∀ x : Fin n → F, x ≠ 0 → IsTotallyPos (Q.eval x)
 
 theorem trace_complex (a : F) : ((Algebra.trace ℚ F a : ℚ) : ℂ) = ∑ σ : F →ₐ[ℚ] ℂ, σ a := by
@@ -713,7 +713,7 @@ theorem valued_evalIn_loc_le_one (v : HeightOneSpectrum (𝓞 F)) {L : Submodule
       ((HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).mp c.2)) hm
 
 /-- **Integrality is a genus invariant:** a lattice in the genus of an integral lattice is integral. -/
-@[kb "omeara1963" "§102 [unverified]"]
+@[kb "omeara1963" "§102A, p. 297 (genus); §82E, p. 227 (norm)"]
 theorem SameGenus.isIntegral {L M : Submodule (𝓞 F) (Fin n → F)} (hLi : IsIntegral Q L)
     (h : SameGenus Q L M) : IsIntegral Q M := by
   intro x hx
@@ -729,6 +729,7 @@ theorem SameGenus.isIntegral {L M : Submodule (𝓞 F) (Fin n → F)} (hLi : IsI
   exact this
 
 /-- **A totally positive definite form is nondegenerate.** -/
+@[kb "omeara1963" "§61A, p. 155 (a positive definite space is regular)"]
 theorem IsTotallyPosDef.nondegenerate {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) : Q.Nondegenerate := by
   intro h0
   obtain ⟨x, hx, hHx⟩ := Matrix.exists_mulVec_eq_zero_iff.mpr h0
@@ -1031,15 +1032,15 @@ def latSetoid : Setoid (Lat F n) where
 abbrev LatClass : Type _ := Quotient (latSetoid Q)
 
 /-- **The classes in the genus** of $L$: $\{\mathrm{cls}(M) : M \in \mathrm{gen}(L)\}$. -/
-@[kb "omeara1963" "§102 (classes in a genus) [unverified]"]
+@[kb "omeara1963" "§102A, p. 297 (genus, classes in gen L)"]
 def genusClasses (L : Lat F n) : Set (LatClass Q) :=
   {c | ∃ M : Lat F n, Quotient.mk _ M = c ∧ SameGenus Q L.1 M.1}
 
-/-- **Finiteness of the class number** (O'Meara 1963, 103:4 [unverified]; for $F = \mathbb Q$, `Siegel.genusFinite`):
+/-- **Finiteness of the class number** (O'Meara 1963, 103:4, p. 309; for $F = \mathbb Q$, `Siegel.genusFinite`):
 for a totally positive definite $Q$ over the number field $F$ (so $F$ is totally real) and an integral lattice
 $L \subseteq F^n$, the genus of $L$ contains only finitely many classes. Proof by Hermite reduction of the trace form
 of the underlying $\mathbb Z$-lattices of rank $n[F:\mathbb Q]$ (module docstring). -/
-@[kb "omeara1963" "103:4 [unverified]"]
+@[kb "omeara1963" "§103, 103:4, p. 309"]
 theorem genusClasses_finite {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) (L : Lat F n)
     (hLi : IsIntegral Q L.1) : (genusClasses Q L).Finite := by
   classical
@@ -1125,10 +1126,10 @@ theorem bil_isometry {γ : GL (Fin n) F} (hγ : γ ∈ orthGroup Q F) (x y : Fin
   simp only [bilR, e] at this
   exact this
 
-/-- **$O(L)$ is finite** for an integral lattice $L$ in a totally positive definite space (O'Meara 1963, 104:5
-[unverified]): an automorphism is determined by the images of a $\mathbb Z$-frame, which lie among the finitely many
+/-- **$O(L)$ is finite** for an integral lattice $L$ in a totally positive definite space (O'Meara 1963, §82C, p. 223,
+defines $O(L)$; the finiteness is not stated there): an automorphism is determined by the images of a $\mathbb Z$-frame, which lie among the finitely many
 vectors $y$ with $y^{\mathsf T} G y = G_{jj}$. -/
-@[kb "omeara1963" "104:5 [unverified]"]
+@[kb "omeara1963" "§82C, p. 223 (O(L)); §61A, p. 154"]
 theorem finite_autLat {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) {M : Submodule (𝓞 F) (Fin n → F)}
     (hM : M.IsLattice F) (hMi : IsIntegral Q M) : Finite (autLat Q M) := by
   classical
@@ -1204,8 +1205,9 @@ def LatClass.autCard (c : LatClass Q) : ℕ :=
 /-- **The mass of the genus of $L$** over $F$:
 $$\mathrm{Mass}(L) = \sum_{\mathrm{cls}(M) \subseteq \mathrm{gen}(L)} \frac{1}{|O(M)|},$$
 a `finsum` over the classes in the genus (finite for totally positive definite $Q$, `genusClasses_finite`), with
-$O(M)$ including improper isometries (for $F = \mathbb Q$: `Siegel.mass`). -/
-@[kb "omeara1963" "§102 (mass of a genus) [unverified]"]
+$O(M)$ including improper isometries (for $F = \mathbb Q$: `Siegel.mass`). O'Meara (§102A, p. 298) counts the classes,
+$h(L)$, but does not treat the mass. -/
+@[kb "omeara1963" "§102A, p. 298 (h(L), number of classes in gen L); cassels1978 Ch. 9, §6, (6.9), p. 146 (weight of a genus; differs by the factor 2)"]
 def mass (L : Lat F n) : ℝ := ∑ᶠ c ∈ genusClasses Q L, ((LatClass.autCard Q c : ℝ))⁻¹
 
 theorem mass_eq_sum {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) (L : Lat F n) (hLi : IsIntegral Q L.1) :
@@ -1214,7 +1216,7 @@ theorem mass_eq_sum {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) (L : Lat F n) (h
 
 /-- **The mass is positive** for an integral lattice in a totally positive definite space: the class of $L$
 contributes $1/|O(L)| > 0$ ($O(L)$ finite, `finite_autLat`) and all terms are $\ge 0$. -/
-@[kb "omeara1963" "§102 [unverified]"]
+@[kb "omeara1963" "§102A, p. 298"]
 theorem mass_pos {Q : QuadForm F n} (hQ : IsTotallyPosDef Q) (L : Lat F n) (hLi : IsIntegral Q L.1) :
     0 < mass Q L := by
   rw [mass_eq_sum hQ L hLi]

@@ -6,8 +6,9 @@ $Q(\xi) = \xi^{\mathsf T}A\xi$; $U = \mathcal O_F^\times$ acting on $L\setminus0
 
 $$Z^+_L(s) = |d_F|^{-1/2}\,\pi^{-d(\frac n2+s)}\,\Gamma\big(\tfrac n2+s\big)^d\;E_L\big(\tfrac n2+s\big),\qquad
   E_L(t) = \sum_{\xi\in U\backslash(L\setminus0)}|N_{F/\mathbb Q}(Q(\xi))|^{-t}\qquad(\texttt{additiveZeta\_eq\_epstein}),$$
-for $n + 2s > 1$, an equality in $[0,\infty]$. *Proof.* the unfolding `additiveZeta_eq_tsum_sqClasses` writes $Z^+_L(s)$ as a sum over the
-square classes $\rho$ and the fractional ideals $\mathfrak b$ of $N\mathfrak b^{-n-2s}\#\{\eta \in \mathfrak b^{-1}L : Q(\eta) = \rho\}$, with the evaluation of the archimedean factor (`archMellin_eq`). With $h_F = 1$, $\mathfrak b = (\lambda)$, and the pairs $(\lambda,\eta)$ cover each
+for $n + 2s > 1$, an equality in $[0,\infty]$. *Proof.* The unfolding `additiveZeta_eq_tsum_sqClasses` writes $Z^+_L(s)$ as a sum over the
+square classes $\rho$ and the fractional ideals $\mathfrak b$ of $N\mathfrak b^{-n-2s}\#\{\eta \in \mathfrak b^{-1}L : Q(\eta) = \rho\}$, with the
+evaluation of the archimedean factor (`archMellin_eq`). With $h_F = 1$, $\mathfrak b = (\lambda)$, and the pairs $(\lambda,\eta)$ cover each
 $U$-orbit in the shell $Q(\xi)\in\rho F^{\times2}$ exactly twice (`tsum_shell_eq`, and one representative per orbit, `tsum_fiber_rep`).
 
 Source: Weil 1982, §4.5, p. 109 (unfolding over $T(\rho)$) and §3.1, pp. 39–40; Voight 2021, §26.5, (26.5.9) (the Epstein zeta functions of

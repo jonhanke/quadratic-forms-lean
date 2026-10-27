@@ -2,7 +2,7 @@
 # Quotient integrals in `[0,∞]` and the Siegel finiteness criterion
 
 **Layer:** abstract measure theory for a countable group `Γ` acting measurably on a measure space `(α, μ)`
-(`SMulInvariantMeasure`). Nothing is topological or arithmetic. Written so that the later batches (SL₂ finiteness,
+(`SMulInvariantMeasure`). Nothing is topological or arithmetic. Written so that the later developments (SL₂ finiteness,
 Fujisaki, the indefinite Tamagawa number) can use it for `Γ = G(k)`, `α = G(𝔸)`.
 
 **Proves**

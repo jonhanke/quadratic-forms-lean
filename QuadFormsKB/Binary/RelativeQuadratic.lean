@@ -12,10 +12,11 @@ ramification index $e(\mathfrak P \mid \mathfrak p)$ and inertia degree $f(\math
 
 **The splitting character** (`relChar`) is defined intrinsically, by the splitting of $\mathfrak p$:
 $$\chi_{E/F}(\mathfrak p) = \#\{\mathfrak P \mid \mathfrak p : f(\mathfrak P \mid \mathfrak p) = 1\} - 1 \in \{1, -1, 0\}$$
-(the analogue of the "number of roots of $f_D \bmod p$, minus one"). **The splitting law** (`splitting`) follows from the
-fundamental identity $\sum_{\mathfrak P \mid \mathfrak p} e(\mathfrak P\mid\mathfrak p)f(\mathfrak P\mid\mathfrak p) = [E:F] = 2$ (Mathlib's
-`Ideal.sum_ramification_inertia_eq_finrank`) and nothing else, so it holds at **every** prime, dyadic and ramified
-primes included, with no Dedekind–Kummer hypothesis ($\mathcal O_E$ need not be monogenic over $\mathcal O_F$):
+(the analogue of the "number of roots of $f_D \bmod p$, minus one"). **The splitting law** (`splitting`) follows from
+the fundamental identity
+$\sum_{\mathfrak P \mid \mathfrak p} e(\mathfrak P\mid\mathfrak p)f(\mathfrak P\mid\mathfrak p) = [E:F] = 2$
+(Mathlib's `Ideal.sum_ramification_inertia_eq_finrank`) and nothing else, so it holds at **every** prime, dyadic and
+ramified primes included, with no Dedekind–Kummer hypothesis ($\mathcal O_E$ need not be monogenic over $\mathcal O_F$):
 
 * $\chi(\mathfrak p) = 1$: $\mathfrak p$ **splits**, $\mathfrak p\mathcal O_E = \mathfrak P_0\mathfrak P_1$ with $\mathfrak P_0 \ne \mathfrak P_1$, $e = f = 1$;
 * $\chi(\mathfrak p) = -1$: $\mathfrak p$ is **inert**, one prime, $e = 1$, $f = 2$;

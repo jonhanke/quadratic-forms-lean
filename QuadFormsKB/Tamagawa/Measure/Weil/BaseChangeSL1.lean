@@ -8,7 +8,7 @@ A generic statement for a subgroup $H\le G$ mapped by $\Phi : G\cong G'$ onto $H
 (`covolume_quatSL1_baseChange`): the covolume of $\mathrm{SL}_1(D_E)(k)$ in $\mathrm{SL}_1(D_E)(\mathbb A_k)$ for the transported
 measure equals the covolume of $\mathrm{SL}_1(D')(K)$ in $\mathrm{SL}_1(D')(\mathbb A_K)$.
 
-Uses only `MulEquiv.subgroupMap` (Mathlib) and the library's `covolume_map_continuousMulEquiv`; the idea is the
+Uses only `MulEquiv.subgroupMap` (Mathlib) and `covolume_map_continuousMulEquiv`; the idea is the
 Weil-restriction viewpoint $R_{K/k}\mathrm{SL}_1(D')(\mathbb A_k) = \mathrm{SL}_1(D')(\mathbb A_K)$ of Weil 1982 §1.3
 [unverified page].
 -/

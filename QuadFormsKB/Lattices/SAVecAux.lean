@@ -21,6 +21,7 @@ namespace QuadFormsKB.Lattices
 variable {F : Type} [Field F] [NumberField F]
 
 /-- **Squares near $1$** in a complete normed field with $2 \ne 0$ (contraction mapping). -/
+@[kb "omeara1963" "§63A, 63:1 and 63:1a, p. 159"]
 theorem isSquare_of_norm_sub_one_lt {K : Type*} [NormedField K] [CompleteSpace K] (h2 : (2 : K) ≠ 0) {u : K}
     (hu : ‖u - 1‖ < ‖(2 : K)‖ ^ 2 / 8) : IsSquare u := by
   have hn : 0 < ‖(2:K)‖ := norm_pos_iff.mpr h2
@@ -113,6 +114,7 @@ theorem exists_mem_ball_neg {n : ℕ} (x : Fin n → Fv) : ∃ s : ℤ, 0 ≤ s 
 /-- **The local choice of $\beta$ on $T$** (O'Meara 104:3, step 4, item 4): if $v(\lambda - 1) < 1$, $a \ne 0$, $d \ne 0$ and
 $v(d/a) \le e^{-2m_0}$, $v(d/a) < v(4)$, there is $\beta_\mathfrak p$ with a neighbourhood $B$ on which
 $v(\lambda\beta - 1) \le e^{-m_0}$ and $a(1 - \lambda^2\beta^2) \in d\,F_\mathfrak p^{\times 2}$. -/
+@[kb "omeara1963" "§104, proof of 104:3, step 4, pp. 314–315"]
 theorem exists_beta_local {lam a d : Fv} (hlam : Valued.v (lam - 1) < 1) (ha : a ≠ 0) (hd : d ≠ 0) (m₀ : ℤ)
     (hda : Valued.v (d / a) ≤ exp (-(2 * m₀))) (hda4 : Valued.v (d / a) < Valued.v (4 : Fv)) :
     ∃ β₀ : Fv, ∃ B ∈ 𝓝 β₀, ∀ β ∈ B, Valued.v (lam * β - 1) ≤ exp (-m₀) ∧

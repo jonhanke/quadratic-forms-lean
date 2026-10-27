@@ -2,7 +2,7 @@
 # $D^\times/K^\times \cong SO(D^0)$ locally: the hessian form of $SO$, continuity, and integral lifts
 
 **Layer:** a field $K$ (any $F$-algebra field, $F$ a number field, so $2 \ne 0$), $D = (A,B)_K$; then the completions
-$F_v$ of a number field. This is the local half of `Quat.conjSO`
+$F_v$ of a number field. This is the local version of `Quat.conjSO`
 ($\alpha\mapsto(y\mapsto\alpha y\alpha^{-1})$ on $D^0$) in the form needed by the adelic groups.
 
 **Defines/proves**

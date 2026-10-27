@@ -6,7 +6,8 @@ completions.
 
 **Defines** `QuadForm.reflMat x w` $= 1 - x w^{\mathsf T}$, i.e. $\tau(y) = y - (w \cdot y)\,x$. When
 $H_Q x = Q(x)\,w$ (so $w = H_Qx/Q(x)$ and $w \cdot y = B(x, y)/Q(x)$) this is the **reflection (symmetry) in $x$**,
-$\tau_x(y) = y - \frac{B(x,y)}{Q(x)}x$ with $B(x, y) = x^{\mathsf T}H_Q y$ (O'Meara 1963, §42 [unverified]).
+$\tau_x(y) = y - \frac{B(x,y)}{Q(x)}x$ with $B(x, y) = x^{\mathsf T}H_Q y$ (O'Meara 1963, §42E, pp. 96–97, who writes
+$x - \frac{2B(x,y)}{Q(y)}y$ with his $B(x,x) = Q(x)$; the same map).
 
 **Proves**
 * `QuadForm.eval_reflMat`, `QuadForm.compMat_reflMat`: $Q(\tau y) = Q(y)$, i.e. $Q \circ \tau = Q$, over **any**
@@ -39,8 +40,8 @@ namespace QuadFormsKB.QuadForm
 variable {A : Type*} [CommRing A] {n : ℕ}
 
 /-- **The reflection matrix** $\tau = 1 - x w^{\mathsf T}$, $\tau y = y - (w\cdot y)\,x$. With $H_Q x = Q(x)\,w$ it is the
-symmetry of $(A^n, Q)$ in the vector $x$ (O'Meara 1963, §42 [unverified]). -/
-@[kb "omeara1963" "§42 (symmetries) [unverified]"]
+symmetry of $(A^n, Q)$ in the vector $x$ (O'Meara 1963, §42E, pp. 96–97). -/
+@[kb "omeara1963" "§42E, pp. 96–97 (symmetry τ_y)"]
 def reflMat (x w : Fin n → A) : Matrix (Fin n) (Fin n) A := 1 - vecMulVec x w
 
 theorem reflMat_mulVec (x w y : Fin n → A) : reflMat x w *ᵥ y = y - (w ⬝ᵥ y) • x := by
@@ -55,7 +56,7 @@ theorem hessian_transpose (Q : QuadForm A n) : Q.hessianᵀ = Q.hessian := by
 
 /-- **The reflection preserves $Q$:** if $H_Q x = Q(x)\,w$ then $Q(\tau y) = Q(y)$ for every $y$. *Proof:*
 $Q(y - cx) = Q(y) - c\,B(x, y) + c^2Q(x)$ and $B(x, y) = (H_Qx)\cdot y = Q(x)\,(w\cdot y) = Q(x)\,c$. -/
-@[kb "omeara1963" "§42 [unverified]"]
+@[kb "omeara1963" "§42E, p. 97 (τ_y is an isometry)"]
 theorem eval_reflMat (Q : QuadForm A n) {x w : Fin n → A} (hw : Q.hessian *ᵥ x = Q.eval x • w)
     (y : Fin n → A) : Q.eval (reflMat x w *ᵥ y) = Q.eval y := by
   rw [reflMat_mulVec]
@@ -81,7 +82,7 @@ theorem compMat_reflMat (Q : QuadForm A n) {x w : Fin n → A} (hw : Q.hessian *
 
 /-- **The reflection is improper:** $\det\tau = 1 - w\cdot x = -1$, since $Q(x)(w\cdot x) = x^{\mathsf T}H_Qx = 2Q(x)$
 (over a domain, $Q(x) \ne 0$). -/
-@[kb "omeara1963" "§42 [unverified]"]
+@[kb "omeara1963" "§43A, p. 100 (every symmetry is a reflexion, det = −1)"]
 theorem det_reflMat [IsDomain A] (Q : QuadForm A n) {x w : Fin n → A}
     (hw : Q.hessian *ᵥ x = Q.eval x • w) (hx : Q.eval x ≠ 0) : (reflMat x w).det = -1 := by
   have hwx : w ⬝ᵥ x = 2 := by
@@ -122,7 +123,8 @@ theorem exists_refl_data_field {K : Type*} [Field K] (Q : QuadForm K n) (hQ : Q.
 
 /-- **Reflection data over a DVR, with $w$ integral:** choose $x$ with $Q(x) \ne 0$ of minimal valuation; then $Q(x)$
 divides every value of $Q$, hence every $B(x, e_j) = Q(x + e_j) - Q(x) - Q(e_j) = (H_Qx)_j$. Valid at every prime,
-dyadic included (O'Meara 1963, 91:? [unverified]: every lattice has a symmetry). -/
+dyadic included (O'Meara 1963, 91:4, p. 241: every lattice over a local field has a symmetry in $O(L)$). -/
+@[kb "omeara1963" "§91B, 91:4, p. 241 (a symmetry in O(L))"]
 theorem exists_refl_data_dvr {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R]
     (Q : QuadForm R n) (hQ : Q.Nondegenerate) (hn : 0 < n) :
     ∃ x w : Fin n → R, Q.eval x ≠ 0 ∧ Q.hessian *ᵥ x = Q.eval x • w := by
@@ -157,7 +159,7 @@ variable {F : Type*} [Field F] [NumberField F] {n : ℕ}
 
 /-- **An improper rational isometry:** for a nondegenerate $Q$ on $F^n$, $n \ge 1$, some $\gamma \in O(V)(F)$ has
 $\det\gamma = -1$ (a reflection in an anisotropic vector). So $[O(V)(F) : SO(V)(F)] = 2$. -/
-@[kb "omeara1963" "§42–43 [unverified]"]
+@[kb "omeara1963" "§43A, p. 100"]
 theorem exists_orthGroup_det_neg_one (Q : QuadForm F n) (hQ : Q.Nondegenerate) (hn : 0 < n) :
     ∃ γ : orthGroup Q F, (γ : GL (Fin n) F).val.det = -1 := by
   obtain ⟨x, w, hx, hw⟩ := QuadForm.exists_refl_data_field Q hQ hn
@@ -186,7 +188,7 @@ theorem evalIn_coe_o (Q₀ : QuadForm (𝓞 F) n) (y : Fin n → 𝔬) :
 for $Q_0$ over $\mathcal O_F$ nondegenerate, $n \ge 1$, the group $O(V)(\mathfrak o_\mathfrak p)$ (`stdStab`, the stabilizer of
 $\mathfrak o_\mathfrak p^n$ in $O(V)(F_\mathfrak p)$, $V = (F^n, Q_0 \otimes F)$) contains an element of determinant $-1$: the
 reflection in a vector $x \in \mathfrak o_\mathfrak p^n$ with $\mathrm{ord}\,Q(x)$ minimal (`QuadForm.exists_refl_data_dvr`). -/
-@[kb "omeara1963" "§91–92 (symmetries of lattices) [unverified]"]
+@[kb "omeara1963" "§91B, 91:4, p. 241 (O(L) contains a symmetry); §82C, p. 223 (O(L), O⁺(L)); cassels1978 Ch. 8, Cor. to Lemma 3.2, p. 114"]
 theorem exists_stdStab_det_neg_one (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hn : 0 < n) :
     ∃ g : orthGroup (Q₀.map (algebraMap (𝓞 F) F)) Fv, g ∈ stdStab (Q₀.map (algebraMap (𝓞 F) F)) v ∧
       (g : GL (Fin n) Fv).val.det = -1 := by

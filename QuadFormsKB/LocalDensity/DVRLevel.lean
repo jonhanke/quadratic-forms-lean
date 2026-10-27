@@ -806,7 +806,7 @@ variable {π : R}
 /-- **Table 1 at dyadic $\pi \nmid N$ for a general form** (Hanke 2004, Table 1, p. 363; the paper leaves $\mathfrak p \mid 2$ to
 "case-by-case" computation): $n = 2r \ge 2$, $\varepsilon$ = `arfSignQ Q π`, $q = \#R/\pi$:
 $r_\pi(s) = q^{n-1} + \varepsilon(q^{n/2} - q^{n/2-1})$ for $\pi \mid s$ and $r_\pi(s) = q^{n-1} - \varepsilon q^{n/2-1}$ for $\pi \nmid s$.
-From `card_pairSum_mod_pi` and `exists_pairSum_of_isLocalLevel_zero`. -/
+From `card_pairSum_mod_pi` and `DVR.exists_pairSum_of_isLocalLevel_zero`. -/
 @[kb "hanke2004" "Table 1, p. 363 (dyadic p ∤ N, general Q)"]
 theorem card_mod_pi_of_level_zero_dyadic [Fintype 𝔽] [DecidableEq 𝔽] (Q : QuadForm R n) (hπ : Irreducible π)
     (h2 : π ∣ 2) (h20 : (2 : R) ≠ 0) (hL : IsLocalLevel Q π 0) (hn : 1 ≤ n) (s : R) :

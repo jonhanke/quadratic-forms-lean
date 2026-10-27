@@ -2,7 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 import QuadFormsKB.Tamagawa.Measure.Weil.FundamentalDomain
 
 /-!
-# The idele group $\mathbb A_F^\times$ ($A = F$)
+# The idele group $\mathbb A_F^\times$
 
 The multiplicative layer for $A = F$ ($F$ any number field), with $\mathbb A_F^\times$ = `(Adeles F)ˣ` (the units of the
 adele ring with the units topology, $x\mapsto(x, x^{-1})$):
@@ -19,7 +19,8 @@ adele ring with the units topology, $x\mapsto(x, x^{-1})$):
 * **`exists_isFundamentalDomain_ideles`**, **`exists_isFundamentalDomain_ideleOne`**: measurable fundamental domains for
   $F^\times$ in $\mathbb A_F^\times$ and in $\mathbb A_F^1$;
 * local measures: `unitsV v` $=\mathcal O_v^\times$, **`selfDualV_unitsV`**: $\operatorname{vol}(\mathcal O_v^\times) =
-  (1 - N(v)^{-1})\operatorname{vol}(\mathcal O_v)$, so with Weil's convergence factor $\lambda_v = 1 - N(v)^{-1}$ (the convention $\lambda_v^{-1}\omega_v$, $\omega_v = |x|_v^{-1}dx_v$, which is $dx_v$ on $\mathcal O_v^\times$):
+  (1 - N(v)^{-1})\operatorname{vol}(\mathcal O_v)$, so with Weil's convergence factor $\lambda_v = 1 - N(v)^{-1}$ (the
+  convention $\lambda_v^{-1}\omega_v$, $\omega_v = |x|_v^{-1}dx_v$, which is $dx_v$ on $\mathcal O_v^\times$):
   $\lambda_v^{-1}\omega_v(\mathcal O_v^\times) = \operatorname{vol}(\mathcal O_v)$ (`lamV_inv_mul_selfDualV_unitsV`).
 -/
 

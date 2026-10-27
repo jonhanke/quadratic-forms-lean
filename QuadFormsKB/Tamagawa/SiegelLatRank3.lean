@@ -7,19 +7,21 @@ import QuadFormsKB.Tamagawa.SiegelLatRanks
 import QuadFormsKB.Tamagawa.BinaryTauNF
 
 /-!
-# Siegel's formula in rank 3 for every genus, every totally real field
+# G4: Siegel's formula in rank 3 for every genus, every totally real field
 
 **Layer:** $F$ totally real (any class number); $Q_0$ a totally positive definite ternary form over $\mathcal O_F$; $L$ an **arbitrary**
 $\mathcal O_F$-lattice on $(F^3, Q_0)$ with $Q_0$ integral on $L$ (any Steinitz class); $m \in \mathcal O_F$ totally positive.
 
-In rank $3$ the plain product $\prod_\mathfrak p\beta_\mathfrak p$ does not converge unconditionally, so, as for $\mathcal O_F^3$ (`siegelProduct3`), the lattice product is the regularized product with the **same** character $\chi_m$ = `chiTern Q₀ m`:
+In rank $3$ the plain product $\prod_\mathfrak p\beta_\mathfrak p$ does not converge unconditionally, so, as for $\mathcal O_F^3$ (
+`siegelProduct3`), the lattice product is the regularized product with the **same** character $\chi_m$ = `chiTern Q₀ m`:
 $$S_3(L, m) = |d_F|^{-1}\prod_\sigma\beta_\sigma(m)\cdot L_F(1,\chi_m)\prod_\mathfrak p\beta_\mathfrak p(L, m)\bigl(1-\chi_m(\mathfrak p)N\mathfrak p^{-1}\bigr)$$
 (`siegelProduct3Lat`); $\beta_\mathfrak p(L, m) = \beta_\mathfrak p(\mathcal O_F^3, m)$ at the almost all primes where $L_\mathfrak p = \mathfrak o_\mathfrak p^3$
 (`latBeta_eq_of_loc_std`), so the corrected product converges.
 
 **Proves**
 * `two_mul_tamagawaKLat_mul_repMass_frame3`: $2\,\mu_{\mathrm{Tam}}(K_{SO}(L))\,\mathrm{repMass}(L, m) = \tau^{\mathrm{reg}}(SO(Q_0'))\cdot S_3(L, m)$ for
-  every adapted frame (`two_mul_tamagawaK_mul_repMass_frame3` for an arbitrary lattice; local input `latOrbitalIdentity`);
+  every adapted frame (`two_mul_tamagawaK_mul_repMass_frame3` for an arbitrary lattice; local input
+  `latOrbitalIdentity`);
 * **`siegelFormulaAt3Lat_totallyReal`** (headline, unconditional): `SiegelFormulaAt3Lat Q₀ L m`; for $L = \mathcal O_F^3$ it is
   `siegelFormulaAt3_nf_uncond` (`siegelFormulaAt3Lat_std_iff`).
 
@@ -84,7 +86,7 @@ variable [IsTotallyReal F]
 
 /-- **The rank-3 frame identity for an arbitrary lattice** (Weil 1982, §4.5, p. 100 and p. 109 [unverified], $N = 3$):
 $$2\,\mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{repMass}(L, m) = \tau^{\mathrm{reg}}(SO(Q_0'))\cdot S_3(L, m).$$
-The proof with `latOrbitalIdentity` and the index ratios $r_\mathfrak p(L)$ of `tamagawaKLat_eq_finprod`. -/
+the proof with `latOrbitalIdentity` and the index ratios $r_\mathfrak p(L)$ of `tamagawaKLat_eq_finprod`. -/
 @[kb "weil1982" "§4.5, p. 100 and p. 109 (N = 3, regularized, arbitrary lattice) [unverified]"]
 theorem two_mul_tamagawaKLat_mul_repMass_frame3 (Q₀ : QuadForm (𝓞 F) (2 + 1)) (hpd : IsTotallyPosDef (formF Q₀))
     (L : Lat F (2 + 1)) (hLi : Lattices.IsIntegral (formF Q₀) L.1)

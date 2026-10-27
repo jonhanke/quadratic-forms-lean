@@ -21,7 +21,7 @@ product):
 The $L$-function and $\zeta_F$ factors of Thm 5.7 belong to the global lower bound for $a_E(T')$ (the minimum over
 $T' \in B_{\mathbb T}$) and are **not** part of these statements; what is proved is the ratio $a_E(m)/a_E(T')$.
 
-**$n = 3$ (product convention).** Statements valid for $n = 3$ use `aEWith Q m P` with
+**$n = 3$ (product convention undecided).** Statements valid for $n = 3$ use `aEWith Q m P` with
 hypotheses `IsEulerProductValue Q m P` (natural-order limit of the partial Euler products) for both $m$ and $T'$;
 `tprod` is never used for $n = 3$. For $n \ge 4$ the `aE` versions follow.
 -/

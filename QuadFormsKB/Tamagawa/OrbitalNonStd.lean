@@ -2,17 +2,19 @@
 # The local orbital identity at the non-standard primes
 
 **Layer:** the completion $\mathfrak o_\mathfrak p \subset F_\mathfrak p$ at a finite prime (every residue characteristic), then the frames of
-The orbital Euler product.
+the orbital Euler product.
 
-`OrbitalEuler` proved `OrbitalLocalIdentityAt` at the *standard* primes of a frame ($g^{-1}L_\mathfrak p = \mathfrak o_\mathfrak p^{n+1}$, $0 \le \mathrm{ord}\,\rho \le 1$)
-and left the others as the input `OrbitalLocalIdentities`. Here the identity is proved at **every** prime where the $\alpha$
-transformation law holds (`AlphaLawAt`), in particular at every $\mathfrak p \nmid 2$ (`alphaLaw_odd`).
+The earlier development proved `OrbitalLocalIdentityAt` at the *standard* primes of a frame
+($g^{-1}L_\mathfrak p = \mathfrak o_\mathfrak p^{n+1}$, $0 \le \mathrm{ord}\,\rho \le 1$) and left the others as the
+input `OrbitalLocalIdentities`. Here the identity is proved at **every** prime where the $\alpha$ transformation law
+holds (`AlphaLawAt`), in particular at every $\mathfrak p \nmid 2$ (`alphaLaw_odd`).
 
 **The per-vector identity** (`perY`). Let $\Lambda = \mathfrak o_\mathfrak p^{N}$ carry the integral form $Q_o$ ($N = n+1$) and let
 $\Lambda_1 = P\,\mathfrak o_\mathfrak p^N \subseteq \Lambda$ be a sublattice in which $y = Pe_0$ splits: $Q_o\circ P = \langle t\rangle\perp Q''$. Then
 $$r\big(\mathrm{St}_{K(\Lambda_1)}(y), \mathrm{St}_{K(\Lambda)}(y)\big)\,\beta(Q_o)\,q^{kn} = N_{k,r}\big(K(\Lambda)y\big)\,\|\det P\|^{n+1}\,q^{en}\,\beta(Q''),$$
 $\varpi^e\,\Vert\,2t$: REL (`rel_local`) at $y$ and the $\alpha$ law for $\Lambda_1 \subseteq \Lambda$ turn the index ratio into the ratio of the near
-counts of the two orbits of $y$, and the orbit count in the split case gives the orbit of $y = e_0$ in the split lattice $\Lambda_1$.
+counts of the two orbits of $y$, and the orbit of $y = e_0$ in the split lattice $\Lambda_1$ is counted as in the
+standard case.
 
 Sources: Weil 1982, §3.4 and §4.5, p. 109 [unverified]; Hanke 2004, §3, Def. 3.1 and the maps $\pi_Z$, $\pi_{B'}$, $\pi_{B''}$, pp. 358–361. Indices are 0-based.
 -/
@@ -658,10 +660,10 @@ theorem eval_orth {N : ℕ} (Q : QuadForm F N) (g : orthGroup Q Fv) (z : Fin N �
   rw [← eval_compMat, (mem_orthGroup_iff_compMat v Q _).mp g.2]
 
 /-- **The local orbital identity at every prime where the $\alpha$ law holds** (Weil 1982, §3.4 and §4.5, p. 109 [unverified];
-lattice change, no Haar measure). For $Q_0$ over $\mathcal O_F$ nondegenerate, $\rho \ne 0$ and any adapted frame
+by lattice change, no Haar measure). For $Q_0$ over $\mathcal O_F$ nondegenerate, $\rho \ne 0$ and any adapted frame
 $Q_0\circ g = \langle\rho\rangle\perp Q_0'$: if the $\alpha$ transformation law holds for $Q_0\otimes\mathfrak o_\mathfrak p$ (`AlphaLawAt`, for every $P$),
 then `OrbitalLocalIdentityAt v Q₀ fr`. *Proof:* the local types of $\varpi^je_0$ correspond to the $O(\mathfrak o_\mathfrak p^{n+1})$-orbits on
-$\{y : Q_0(y) = \rho\varpi^{2j}\}$ (Witt's involutions, as in `OrbitalEuler`); each weight is $N(\text{orbit})$ times a constant (`locWeightG_frame`); the
+$\{y : Q_0(y) = \rho\varpi^{2j}\}$ (Witt's involutions, as for the standard primes); each weight is $N(\text{orbit})$ times a constant (`locWeightG_frame`); the
 orbits partition the level set mod $\varpi^k$ (`repCount_eq_sum_nearCount`). -/
 @[kb "weil1982" "§3.4 and §4.5, p. 109 (the local orbital identity at the non-standard primes) [unverified]"]
 theorem orbitalLocalIdentityAt_of_law (Q₀ : QuadForm (𝓞 F) (n + 1)) (hQ₀ : Q₀.Nondegenerate) {ρ : F} (hρ : ρ ≠ 0)
@@ -909,8 +911,9 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 
 open QuadFormsKB.SphericalZeta QuadFormsKB.SphericalFibration HilbertModular
 
-/-- **Input: the $\alpha$ transformation law at the dyadic places** for $Q_0\otimes\mathfrak o_\mathfrak p$ (Weil 1982, §2.4 and §3.4:
-the Haar measure of $O(\Lambda)$ is $\propto \alpha(\Lambda)\,|\det\Lambda|^{(N+1)/2}$ [unverified]; Kitaoka 1993, §5.6 [unverified]).
+/-- **Input: the $\alpha$ transformation law at the dyadic places** for $Q_0\otimes\mathfrak o_\mathfrak p$
+(Weil 1982, §2.4 and §3.4: the Haar measure of $O(\Lambda)$ is $\propto \alpha(\Lambda)\,|\det\Lambda|^{(N+1)/2}$
+[unverified]; Kitaoka 1993, §5.6 [unverified]).
 
 Field:
 - `law`: at every prime $\mathfrak p \mid 2$ and for every integral $P$ with $\det P \ne 0$, `AlphaLawAt v (NF.Qp v Q₀) P`, i.e.
@@ -919,7 +922,7 @@ Field:
 *Status and hygiene.* A statement about one dyadic place at a time (finitely many: $\mathfrak p \mid 2$), about the lattices of the one
 quadratic space $Q_0\otimes F_\mathfrak p$: index ratios of lattice stabilizers against local self-densities. It mentions no classes, masses
 or $\tau$ and is not equivalent to $\tau(SO(V)) = 2$. The same law is **proved** at every $\mathfrak p \nmid 2$ (`alphaLaw_odd`, by
-counting), and in general it is the normalization of Weil's gauge-form Haar measures (a route not taken here). The proof
+counting), and in general it is the normalization of Weil's gauge-form Haar measures (that route is not used here). The proof
 at $\mathfrak p \nmid 2$ uses diagonal Jordan bases and split vectors; at $\mathfrak p \mid 2$ even unimodular (binary) Jordan components have
 no split vector, which is why this case is left as the input. -/
 @[kb "weil1982" "§2.4 and §3.4 (Haar measures of lattice stabilizers at the dyadic places) [unverified]"]
@@ -952,7 +955,8 @@ theorem orbitalEulerProduct' [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadForm (�
     OrbitalEulerProduct Q₀ (tauComp Q₀) :=
   orbitalEulerProduct Q₀ hpd hn (orbitalLocalIdentities_of_dyadic Q₀ (nondegenerate_of_totallyPosDef' hpd) hdy)
 
-/-- **$\tau(SO(V)) = 2$ from the induction hypothesis, with only the dyadic input** (Weil 1982, §4.5, Thm 4.5.1, p. 109). -/
+/-- **$\tau(SO(V)) = 2$ from the induction hypothesis, with only the dyadic input** (Weil 1982, §4.5, Thm 4.5.1,
+p. 109). -/
 @[kb "weil1982" "§4.5, Thm 4.5.1, p. 109 (induction step n → n+1)"]
 theorem tamagawaNumberTwo_of_complement' [IsPrincipalIdealRing (𝓞 F)] (Q₀ : QuadForm (𝓞 F) (n + 1))
     (hpd : IsTotallyPosDef (formF Q₀)) (hn : 4 ≤ n) (hdy : DyadicAlphaLaw Q₀)

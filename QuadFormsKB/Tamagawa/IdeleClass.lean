@@ -10,11 +10,12 @@ $c\int F(t)\,dt/t$, and $c = \rho_k$ comes out on p. 40). Here it is proved **di
 and the finiteness of the class group, using Mathlib's fundamental cone and its volume
 (`NumberField.mixedEmbedding.fundamentalCone.volume_normLeOne`), so it is an independent proof of (iii) and needs no
 zeta function. Weil uses (iii) in the additive calculations: §4.4, p. 98 ("applying Theorem 3.1.1 (iii) to $D^*$") and
-§4.5, p. 109 ("exactly the same as in 4.4"); it is used there.
+§4.5, p. 109 ("exactly the same as in 4.4").
 
 **Route (a): a concrete model of the unramified ideles.** Mathlib has the idele group (`NumberField.IdeleGroup`, the units
 of the adele ring) but no Haar measure on it or on its quotient. We work instead with functions that are invariant
-under $\hat{\mathcal O}^\times = \prod_v\mathcal O_v^\times$, which is all that is needed (for $\Phi = \Phi_\infty\otimes\bigotimes_v\mathbf 1_{L_v}$
+under $\hat{\mathcal O}^\times = \prod_v\mathcal O_v^\times$, which is all that is needed (for
+$\Phi = \Phi_\infty\otimes\bigotimes_v\mathbf 1_{L_v}$
 the function $z \mapsto \sum_\xi\Phi(\xi z)$ is $\hat{\mathcal O}^\times$-invariant, since each $L_v$ is an $\mathcal O_v$-module).
 * An idele $z = (z_\infty, z_f)$ modulo $\hat{\mathcal O}^\times$ is the pair $(x, \mathfrak a)$ with $x = z_\infty \in K_\infty = K\otimes_{\mathbb Q}\mathbb R$
   (Mathlib's `mixedSpace K` $= \mathbb R^{r_1}\times\mathbb C^{r_2}$; the non-units $\{N(x) = 0\}$ are a null set) and
@@ -45,7 +46,7 @@ quotient measure (Weil §2.4, Lemma 2.4.1, pp. 25–26), so the choice of $C$ an
 * **`ideleClassLIntegral_comp_ideleNorm`** (Theorem 3.1.1 (iii)): for $f : \mathbb R \to [0,\infty]$ measurable,
   $\int_{I_K/K^\times}f(|z|)\,d^\times z = \rho_K\int_0^\infty f(t)\,dt/t$, with $\rho_K$ = `dedekindZeta_residue K`
   $= 2^{r_1}(2\pi)^{r_2}h_KR_K/(w_K\sqrt{|d_K|})$, the residue of $\zeta_K$ at $1$ (`tendsto_sub_one_mul_dedekindZeta_nhdsGT`;
-  The $\rho_F$).
+  the $\rho_F$).
 * `ideleClassIntegral_comp_ideleNorm`: the same for real $f$ with $f(t)/t$ integrable on $(0,\infty)$ ("provided the
   right-hand side is absolutely convergent", p. 41).
 * `ideleClassLIntegral_indicator_Ioc`: $\operatorname{vol}\{z \in I_K/K^\times : a < |z| \le b\} = \rho_K\log(b/a)$; with $b = ea$ this is
@@ -662,7 +663,7 @@ $$\int_{I_K}g(z)\,d^\times z = \int_{I_K/K^\times}\Big(\sum_{\gamma\in K^\times}
 This is the defining property of the measure on $I_K/K^\times$ "locally isomorphic" to $d^\times z$ (Weil, Lemma 2.4.1,
 pp. 25–26, (1) with $\gamma = K^\times$; and the same formula is Lemma 2.4.2's unfolding). It identifies the concrete
 `ideleClassLIntegral` (fundamental cone, class representatives) with the quotient measure, independently of those choices,
-and is the tool needed to unfold $\int_{V(\mathbb A)}$ over $K^\times$-orbits. -/
+and is the tool to unfold $\int_{V(\mathbb A)}$ over $K^\times$-orbits. -/
 @[kb "weil1982" "§2.4, Lemma 2.4.1 (1), pp. 25–26 (∫_{G/γ} f = ∫_{G/g}∫_{g/γ} f); applied to I_k ⊃ k* as in §3.2, p. 42"]
 theorem ideleLIntegral_eq_ideleClassLIntegral (g : mixedSpace K → FracIdeal K → ℝ≥0∞)
     (hg : ∀ 𝔟, Measurable (g · 𝔟)) :

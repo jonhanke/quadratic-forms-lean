@@ -24,6 +24,7 @@ namespace QuadFormsKB.HN
 variable {F : Type} [Field F] [NumberField F]
 
 /-- The local norm group $N(F_v \otimes_F L)^\times \subseteq F_v^\times$ for any field `M` over `F`. -/
+@[kb "omeara1963" "§65A, p. 176 (local norm if and only if the Hilbert symbol is 1)"]
 def normGroup (L : Type) [Field L] [Algebra F L] (M : Type) [Field M] [Algebra F M] : Subgroup Mˣ :=
   (Units.map (Algebra.norm M : M ⊗[F] L →* M)).range
 

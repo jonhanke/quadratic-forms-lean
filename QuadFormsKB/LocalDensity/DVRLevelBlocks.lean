@@ -19,7 +19,7 @@ block contributes $\mu_j$ to the sum (so the block contributes $2\mu_j$) and $2\
   determinant is a product over blocks (`Matrix.BlockTriangular.det_fintype`).
 * **Where the printed formulas hold.** If $\pi^2 \nmid 2$ (all primes of $\mathbb Q$, unramified dyadic primes and all
   non-dyadic primes), every binary block has $\mu_j = w_j$ (`DVR.scale_eq_norm_of_not_sq_dvd_two`), so
-  $\lambda''_j = w_j$ as printed and $\lambda'_j = 2w_j$ (the (2.4) erratum, `docs/updates-and-errata.md`)
+  $\lambda''_j = w_j$ as printed and $\lambda'_j = 2w_j$ (the (2.4) erratum)
   (`DVR.eq_2_4_2_5_of_not_sq_dvd_two`); the same holds for Hanke's printed normal form `IsJordanForm` at every
   prime where it exists (`DVR.eq_2_4_2_5_hankeNormal`). At non-dyadic $\pi$ there are no binary blocks and
   (2.4)/(2.5) hold verbatim: $\lambda'_j = \lambda''_j = w_j$ (`DVR.eq_2_4_2_5_nondyadic_W`).
@@ -278,7 +278,7 @@ noncomputable def levelBlockExp (P : Finset (Fin n × Fin n)) (w μ : Fin n → 
 
 /-- **The corrected (2.4) exponent, per coordinate** (Hanke 2004, (2.4), p. 356, $\lambda'_j$): $w_i + t$ for a
 1-dimensional block ($t = \mathrm{ord}_\pi 2$); $\mu_i$ for each of the two coordinates of a 2-dimensional block, so the
-block contributes $2\mu_j$ (printed: $\nu_j$; see `docs/updates-and-errata.md`). -/
+block contributes $2\mu_j$ (printed: $\nu_j$). -/
 @[kb "hanke2004" "(2.4), p. 356 (λ', corrected)"]
 noncomputable def detBlockExp (P : Finset (Fin n × Fin n)) (w μ : Fin n → ℕ) (t : ℕ) (i : Fin n) : ℕ :=
   open Classical in if IsPaired P i then μ i else w i + t
@@ -634,7 +634,7 @@ unramified dyadic and every non-dyadic prime): for $Q$ in the normal form `IsJor
 $2 = \pi^t v$, $\mathrm{ord}_\pi N = \max_i \lambda''_i$ with $\lambda''_i = w_i$ on 2-dimensional blocks and $w_i + 2t$ on
 1-dimensional blocks (**as printed**), and $\mathrm{ord}_\pi \det H = \sum_i \lambda'_i$ with $\lambda'_i = w_i + t$ on
 1-dimensional blocks (as printed) and $\lambda'_i = w_i$ on each coordinate of a 2-dimensional block, i.e. $2w_j$ per
-block (*erratum:* printed $\nu_j$; `docs/updates-and-errata.md`). -/
+block (*erratum:* printed $\nu_j$). -/
 @[kb "hanke2004" "(2.4), (2.5), p. 356 (p² ∤ 2, corrected (2.4))"]
 theorem eq_2_4_2_5_of_not_sq_dvd_two (hJ : IsJordanFormW Q π P w) (hπ : Irreducible π) (h2 : ¬ π ^ 2 ∣ 2)
     (h20 : (2 : R) ≠ 0) {t : ℕ} {v : R} (hv : IsUnit v) (ht : 2 = π ^ t * v) :

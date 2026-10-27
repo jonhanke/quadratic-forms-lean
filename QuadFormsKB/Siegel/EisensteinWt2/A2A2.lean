@@ -1,6 +1,5 @@
 /-
-# The example $A_2 \oplus A_2$: level 3, trivial character (deliverable 4)
-
+# The example $A_2 \oplus A_2$: level 3, trivial character
 $Q = A_2 \oplus A_2 = x_0^2 + x_0x_1 + x_1^2 + x_2^2 + x_2x_3 + x_3^2$ (`a2a2`, level 3, $\chi_Q = 1$). The Eisenstein space of
 $M_2(\Gamma_0(3))$ is spanned by $E_{w_3} = G_2(z) - 3G_2(3z)$ (`trivEisMF 3`), and
 $$E_Q := -\frac{3}{2\pi^2}E_{w_3} = 1 + 12\sum_{e \ge 1}\bigl(\sigma_1(e) - 3\sigma_1(e/3)\bigr)q^e$$

@@ -1,6 +1,5 @@
 /-
 # Local densities over a number field: the bridge $\mathcal O_F \leftrightarrow \mathfrak o_\mathfrak p$
-
 **Layer:** bridge (number field $F$ ↔ DVR at $R = \mathfrak o_\mathfrak p$ = `v.adicCompletionIntegers F`).
 This is the number-field analogue of `Padic.lean` (the $\mathbb Z \leftrightarrow \mathbb Z_p$ bridge).
 

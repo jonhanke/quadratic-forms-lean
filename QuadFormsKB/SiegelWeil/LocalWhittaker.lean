@@ -378,7 +378,8 @@ theorem whittakerTr_eq_vol (t : Fv) (k : ℕ) (hk : diffExp v ≤ k) :
     rw [e, integral_complex_ofReal, integral_indicator_one (isClosed_congSet v a t j).measurableSet]
   rw [hfub, hx]
 
-/-- **The heart of item 2, before the limit.** For every $k \ge d_v$ and $t \in \mathcal O_v$ (including $t = 0$), with
+/-- **The heart of the Whittaker = local density identity, before the limit.** For every $k \ge d_v$ and
+$t \in \mathcal O_v$ (including $t = 0$), with
 $j = k - d_v$,
 $$\int_{\mathfrak p_v^{-k}}f_v(wn(b))\psi_v(-tb)\,db = \gamma_V\,c_B\,\operatorname{vol}(\mathcal O_v)^{n-1}\,
   \frac{r_{\mathfrak p^j}(t)}{q^{j(n-1)}},$$

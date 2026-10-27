@@ -1,6 +1,5 @@
 /-
 # Euler products over the fractional ideals
-
 **Layer:** real series and products indexed by finitely supported exponent vectors $x : \iota \to_0 \mathbb Z$; then the
 fractional ideals of a number field, $\mathfrak b \leftrightarrow (\mathrm{ord}_\mathfrak p\mathfrak b)_\mathfrak p$ (Mathlib's `FractionalIdeal.count`).
 

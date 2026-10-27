@@ -45,7 +45,7 @@ where $\bar c_{ij}$ is the image of $c_{ij}$ under `algebraMap R K`. Typical use
 $\mathbb{Q}_p$ (the local forms in Hasse–Minkowski).
 
 See also: `evalIn_eq_dotProduct` ($Q(\vec{x}) = \vec{x}^{\mathsf T} C \vec{x}$), `polar_eq_hessian`. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41C, pp. 87–88 (quadratic form as a polynomial)"]
 def evalIn (K : Type*) [CommRing K] [Algebra R K] (Q : QuadForm R n) (x : Fin n → K) : K :=
   ∑ i, ∑ j, if i ≤ j then algebraMap R K (Q.coeff i j) * x i * x j else 0
 
@@ -99,7 +99,7 @@ $R$-algebra $K$,
 $$B(\vec{x}, \vec{y}) := Q(\vec{x} + \vec{y}) - Q(\vec{x}) - Q(\vec{y}) = \vec{x}^{\mathsf T} H\, \vec{y}, \qquad H = C + C^{\mathsf T}.$$
 In particular $B(\vec{x}, \vec{x}) = 2\, Q(\vec{x})$. The form comes first; the bilinear form and its matrix
 are derived from it without dividing by $2$. -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§41B, pp. 85–86 (matrix of a quadratic space); §41C, p. 88"]
 theorem polar_eq_hessian (K : Type*) [CommRing K] [Algebra R K] (Q : QuadForm R n)
     (x y : Fin n → K) :
     Q.evalIn K (x + y) - Q.evalIn K x - Q.evalIn K y =
@@ -125,7 +125,7 @@ that fixes this is deferred.
 
 See also: `RatQF.nondegenerate_iff_det_gram` (over $\mathbb{Q}$: $\det H \ne 0 \iff$ the Gram
 matrix has nonzero determinant). -/
-@[kb "omeara1963" "§41"]
+@[kb "omeara1963" "§42B, p. 91 (regular); §41B, p. 87 (discriminant); 42:3, p. 91"]
 def Nondegenerate (Q : QuadForm R n) : Prop := Q.hessian.det ≠ 0
 
 /-- **Isotropic over $K$:** $Q$ has a nontrivial zero with coordinates **in $K$**, i.e.
@@ -136,7 +136,7 @@ $\mathbb{Q}_5$ (since $-1$ is a square there) and over $\mathbb{C}$. The $0$-dim
 is never isotropic.
 
 See also: `RatQF.isotropicIn_iff_baseChange` (agreement with Mathlib's `Anisotropic`). -/
-@[kb "serre1973" "Ch. IV, §1.6"]
+@[kb "serre1973" "Ch. IV, §1.6; omeara1963 §42, p. 94 (isotropic space, row 42.d2)"]
 def IsotropicIn (K : Type*) [CommRing K] [Algebra R K] (Q : QuadForm R n) : Prop :=
   ∃ x : Fin n → K, x ≠ 0 ∧ Q.evalIn K x = 0
 
@@ -156,7 +156,7 @@ i.e. $Q'$ is obtained from $Q$ by the invertible change of variables $\vec{x} \m
 
 *Why on values.* The matrix $P^{\mathsf T} C P$ is generally not upper triangular, so the condition
 is stated on values rather than as an equation of coefficient matrices. -/
-@[kb "serre1973" "Ch. IV, §1.1"]
+@[kb "serre1973" "Ch. IV, §1.1; omeara1963 §41, p. 85 (equivalence of symmetric matrices, row 41.d5)"]
 def IsometricIn (K : Type*) [CommRing K] [Algebra R K] (Q Q' : QuadForm R n) : Prop :=
   ∃ P : Matrix (Fin n) (Fin n) K, IsUnit P.det ∧ ∀ x, Q.evalIn K (P *ᵥ x) = Q'.evalIn K x
 

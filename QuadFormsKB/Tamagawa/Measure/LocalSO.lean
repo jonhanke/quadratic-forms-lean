@@ -2,14 +2,16 @@
 # Local Tamagawa measures at a finite place
 
 **Layer:** a number field $F$, a finite prime $\mathfrak p = v$, the completion $F_v$ with its topology
-(`Analysis/LocalFourierNF.lean`: locally compact, Borel, proper); the KB's concrete orthogonal group
-$O(V)(F_v) = $ `orthGroup QF Fv` $\le \mathrm{GL}_n(F_v)$ for $V = (F^n, Q_0\otimes F)$, with $L = \mathcal O_F^n$, $O(L_v) = $ `stdStab`, $SO(L_v) = $ `soStab`.
+(`Analysis/LocalFourierNF.lean`: locally compact, Borel, proper); the library's concrete orthogonal group
+$O(V)(F_v) = $ `orthGroup QF Fv` $\le \mathrm{GL}_n(F_v)$ for $V = (F^n, Q_0\otimes F)$,
+with $L = \mathcal O_F^n$, $O(L_v) = $ `stdStab`, $SO(L_v) = $ `soStab`.
 
 **Defines**
 * the topology of $O(V)(F_v)$: the subspace topology from $\mathrm{GL}_n(F_v)$, which carries Mathlib's topology on units
   (induced from $M_n(F_v)\times M_n(F_v)^{\mathrm{op}}$); the Borel $\sigma$-algebra on it;
 * `haarNorm K c`: for a compact open subgroup $K$ of a topological group, the Haar measure with $\mu(K) = c$;
-* `muLoc v Q₀ λ` $= \mu_v$: the **local Tamagawa measure** at $v$ with convergence factor $\lambda_v$ (default $\lambda_v = 1$): the Haar measure on $O(V)(F_v)$ with $\mu_v(O(L_v)) = \beta_v(L, L)/\lambda_v$, equivalently
+* `muLoc v Q₀ λ` $= \mu_v$: the **local Tamagawa measure** at $v$ with convergence factor $\lambda_v$ (default
+  $\lambda_v = 1$): the Haar measure on $O(V)(F_v)$ with $\mu_v(O(L_v)) = \beta_v(L, L)/\lambda_v$, equivalently
   $\mu_v(SO(L_v)) = \alpha_v(L,L)/\lambda_v$ (`muLoc_soStab`; the density normalization).
 * `muLocSO v Q₀ λ`: the same measure on the group $SO(V)(F_v)$ (`SOv v Q₀`), normalized by
   $\mu(SO(L_v)) = \alpha_v(L,L)/\lambda_v$; it is the restriction of `muLoc` (`muLocSO_eq_comap`).
@@ -35,11 +37,11 @@ $O(V)(F_v) = $ `orthGroup QF Fv` $\le \mathrm{GL}_n(F_v)$ for $V = (F^n, Q_0\oti
 **Sources.** Weil 1982, §2.1–§2.2 (Haar measures and gauge-form measures on $p$-adic groups) and §2.3, p. 21 (convergence
 factors $\lambda_v$). The coset-counting lemma `measure_subgroup_eq_relIndex_mul` is the same statement as FLT's
 `MeasureTheory.Measure.relIndex_mul_measure` (ImperialCollegeLondon/FLT, `FLT/Mathlib/MeasureTheory/Group/ModularCharacter.lean`,
-Apache-2.0); it is reproved here to keep the development self-contained.
+Apache-2.0); it is reproved here (self-contained, citing FLT).
 
-*Caveat.* $\mu_v$ is a genuine Haar measure whose value on $SO(L_v)$ is Siegel's density $\alpha_v$;
+*Honesty gap.* $\mu_v$ is a genuine Haar measure whose value on $SO(L_v)$ is Siegel's density $\alpha_v$;
 that $\alpha_v$ is the gauge-form volume $|\omega|_v(SO(L_v))$ is Weil's fibration (`fiberVolume_eq`), not a statement about
-$\mu_v$ (that needs the $p$-adic Leray functional, in `LerayPadic.lean`).
+$\mu_v$ (that needs the $p$-adic Leray functional of `LerayPadic.lean`).
 -/
 import QuadFormsKB.Tamagawa.LocalVolume
 import QuadFormsKB.Tamagawa.LatticeChangeNF
@@ -387,6 +389,7 @@ theorem isCompact_stdStab : IsCompact (stdStab Q v : Set (orthGroup Q Fv)) :=
   isCompact_preimage_val v Q (isCompact_glInt v)
 
 /-- **$O(L_v)$ is open.** -/
+@[kb "omeara1963" "§101A, 101:4 (ii), p. 289"]
 theorem isOpen_stdStab : IsOpen (stdStab Q v : Set (orthGroup Q Fv)) :=
   (isOpen_glInt v).preimage continuous_subtype_val
 
@@ -396,6 +399,7 @@ theorem isCompact_stabLat (g : GL (Fin n) Fv) :
   isCompact_preimage_val v Q (isCompact_stab_locAct v g)
 
 /-- **The stabilizer $O(\Lambda)$ of a lattice $\Lambda = g\,\mathfrak o_v^n$ is open.** -/
+@[kb "omeara1963" "§101A, 101:4 (ii), p. 289"]
 theorem isOpen_stabLat (g : GL (Fin n) Fv) :
     IsOpen (stabLat v (orthGroup Q Fv).subtype (locAct v g (std v)) : Set (orthGroup Q Fv)) :=
   (isOpen_stab_locAct v g).preimage continuous_subtype_val
@@ -451,7 +455,8 @@ theorem isOpen_soStab (hQ : Q₀.Nondegenerate) : IsOpen (soStab v Q₀ : Set (o
 Weil 1982, §2.3, p. 21: the Tamagawa measure is $\prod_v \lambda_v^{-1}\omega_v$): the Haar measure $\mu_v$ on
 $O(V)(F_v)$, $V = (F^n, Q_0)$, normalized by
 $$\mu_v(O(L_v)) = \beta_v(L, L)/\lambda_v,\qquad L = \mathcal O_F^n,$$
-equivalently $\mu_v(SO(L_v)) = \alpha_v(L,L)/\lambda_v$ (`muLoc_soStab`), the density normalization. It agrees with the KB's combinatorial `volLoc` on compact open sets (`muLoc_eq_volLoc`) and
+equivalently $\mu_v(SO(L_v)) = \alpha_v(L,L)/\lambda_v$ (`muLoc_soStab`), the density normalization.
+It agrees with the combinatorial `volLoc` on compact open sets (`muLoc_eq_volLoc`) and
 does not depend on the lattice (`muLoc_eq_haarNorm_latOf`). -/
 @[kb "weil1982" "§2.2 (local measures), §2.3, p. 21 (convergence factors λ_v)"]
 def muLoc (lam : ℝ := 1) : Measure (orthGroup QF Fv) :=
@@ -502,7 +507,7 @@ theorem muLoc_eq_volLoc (hQ : Q₀.Nondegenerate) {lam : ℝ} (hlam : 0 < lam) {
   rw [relRatio]
   ring
 
-/-- **$\mu_v(SO(L_v)) = \alpha_v(L,L)/\lambda_v$**, Siegel's density: the KB's `volSO_eq` as a statement about the Haar
+/-- **$\mu_v(SO(L_v)) = \alpha_v(L,L)/\lambda_v$**, Siegel's density: `volSO_eq` as a statement about the Haar
 measure $\mu_v$. -/
 @[kb "kitaoka1993" "§5.6 [unverified]"]
 theorem muLoc_soStab (hQ : Q₀.Nondegenerate) (hn : 0 < n) {lam : ℝ} (hlam : 0 < lam) :

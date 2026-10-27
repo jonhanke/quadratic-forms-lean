@@ -6,7 +6,7 @@
 **Proves**
 * `exists_symmProd_approx`: products $\tau_{x_1}\cdots\tau_{x_m}$ of local symmetries at finitely many primes (lists of a
   common length) are simultaneously approximated by a product of global symmetries (weak approximation for $O(V)$ in
-  the form needed; O'Meara 1973, 101:7 [unverified]);
+  the form needed; O'Meara 1973, 101:7, p. 290, whose proof approximates the symmetries of a factorization);
 * `exists_quadric_approx`: **weak approximation on the quadric $Q(z) = a$** given one global point $u$: local points
   $z_\mathfrak p$ ($\mathfrak p \in T$) are approximated by a global $w$ with $Q(w) = a$. Each $z_\mathfrak p$ is
   $\tau_{z-u}\tau_y u$ or $\tau_{z+u}\tau_u u$ with $y \perp u$ (step 2 of O'Meara 104:3, p. 312, where O'Meara uses Witt's
@@ -29,6 +29,7 @@ theorem symmProd_cons {K : Type*} [Field K] [Algebra F K] [CharZero K] (a : Fin 
   simp [symmProd]
 
 /-- **Weak approximation for products of symmetries** at finitely many primes. -/
+@[kb "omeara1963" "§101B, 101:7, p. 290 (weak approximation for rotations); cassels1978 Ch. 9, Thm. 7.2, p. 155"]
 theorem exists_symmProd_approx (T : Finset (HeightOneSpectrum (𝓞 F))) :
     ∀ (m : ℕ) (l : ∀ v : HeightOneSpectrum (𝓞 F), List (Fin n → v.adicCompletion F)),
       (∀ v ∈ T, (l v).length = m ∧ ∀ x ∈ l v, Q.evalIn _ x ≠ 0) →
@@ -119,6 +120,7 @@ theorem exists_perp_aniso (hQ : Q.Nondegenerate) (hn : 2 ≤ n) {u : Fin n → F
   exact hiso y _ hyu hx'
 
 /-- **Weak approximation on the quadric $Q(z) = a$** from one global point $u$ ($n \ge 2$, $Q$ nondegenerate). -/
+@[kb "omeara1963" "§104, proof of 104:3, step 2, p. 312"]
 theorem exists_quadric_approx (hQ : Q.Nondegenerate) (hn : 2 ≤ n) {u : Fin n → F} (hu : Q.evalIn F u ≠ 0)
     (T : Finset (HeightOneSpectrum (𝓞 F))) (z : ∀ v : HeightOneSpectrum (𝓞 F), Fin n → v.adicCompletion F)
     (hz : ∀ v ∈ T, Q.evalIn _ (z v) = algebraMap F _ (Q.evalIn F u))

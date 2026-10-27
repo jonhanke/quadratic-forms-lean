@@ -2,7 +2,8 @@
 # Weil's unfolding lemmas, discrete version
 
 **Layer:** abstract measure theory. A countable group $\Gamma$ acts measurably on a measurable space $\alpha$ preserving a
-measure $\mu$ (in the application $\Gamma = SO(V)(F)$ acting on $\alpha = SO(V)(\mathbb A)$ by left multiplication); $\gamma \le \Gamma$
+measure $\mu$ (in the application: $\Gamma = SO(V)(F)$ acting on $\alpha = SO(V)(\mathbb A)$ by left
+multiplication); $\gamma \le \Gamma$
 is a subgroup, acting through $\Gamma$. Fundamental domains are Mathlib's `IsFundamentalDomain` (up to null sets).
 
 **Proves** (all unconditional, standard axioms only)
@@ -23,7 +24,6 @@ is a subgroup, acting through $\Gamma$. Fundamental domains are Mathlib's `IsFun
 
 The continuous case (a closed non-discrete $g \supseteq \gamma$, Weil's quotient measures on $G/g$, Theorem 2.4.3) is not
 here: Mathlib has no Haar measure on $G/H$ for non-normal $H$.
-
 -/
 import QuadFormsKB.Tamagawa.Measure.NeatCovolume
 

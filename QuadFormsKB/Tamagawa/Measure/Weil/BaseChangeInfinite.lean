@@ -1,8 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeFinite
 
 /-!
-# Base change of the archimedean part (infinite part)
-
+# Base change of the archimedean part
 For a finite extension $K/k$ of number fields with a $k$-basis $b$ of $K$:
 * `infMap k K` : $k_\infty\to K_\infty$ ($\mathbb R$-linear, `mixedSpace`), with
   `infMap_mixedEmbedding` : it extends $k\hookrightarrow K$;
@@ -93,7 +92,7 @@ def infBaseChange : (ι → mixedSpace k) ≃L[ℝ] mixedSpace K :=
 
 theorem infBaseChange_apply (a : ι → mixedSpace k) : infBaseChange b a = infBaseChangeLin b a := rfl
 
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗_k k_∞ = K_∞) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., (10.2), p. 57, at the infinite places"]
 theorem infBaseChange_diag (x : ι → k) :
     infBaseChange b (fun i => mixedEmbedding k (x i)) = mixedEmbedding K (b.equivFun.symm x) :=
   infBaseChangeLin_diag b x

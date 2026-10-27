@@ -11,6 +11,9 @@ One page per main result of the repository, with the precise statement, its scop
 | [Hilbert reciprocity](hilbert-reciprocity.md) | the product of the local Hilbert symbols is $`1`$ over every number field, via the Weil index |
 | [Hasse–Minkowski over number fields](hasse-minkowski-number-fields.md) | the local–global principle for isotropy, representation and isometry |
 | [Hasse–Minkowski over ℚ](hasse-minkowski-rationals.md) | isotropy, isometry, and the classification of forms over <img src="../images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> |
+| [Tamagawa numbers of SO(V)](tamagawa-table.md) | $`\tau(\mathrm{SO}(V))`$ over every number field: $`2`$ in dimension $`n \ge 3`$ and for anisotropic binary spaces, $`1`$ for isotropic binary spaces and in dimension $`1`$ (new in 0.2.0) |
+| [Siegel's formula for indefinite forms](siegel-indefinite.md) | the measure form of Siegel's formula over every number field, numbers and forms, every stabilizer rank; definite forms by forms over totally real fields (new in 0.2.0) |
+| [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0) |
 
 ## Further results
 
@@ -20,3 +23,5 @@ One page per main result of the repository, with the precise statement, its scop
 | [Further results](further-results.md) | local isotropy, Jordan decompositions and local densities, class number finiteness, strong approximation and Kneser neighbours, free genera, the Hasse norm theorem, Dirichlet's class number formula and binary Siegel over <img src="../images/inline/242caa40867f.svg" align="absmiddle" alt="\mathbb{Q}">, sums of squares, theta inversion |
 
 Conventions: classes of lattices are isometry classes under the full orthogonal group (improper isometries included), and each class is weighted by the inverse of the order of its orthogonal group. Bibliographic entries are in [references.bib](../../references.bib); locators marked "[unverified locator]" have not been checked against the source.
+
+Errors found in the repository's own statements are listed in [errata](errata.md).

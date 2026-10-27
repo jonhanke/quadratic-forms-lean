@@ -3,7 +3,7 @@ import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.LerayMeasure
 
 /-!
-# Volumes of the Leray measures: the local densities and the cone factor
+# Volumes of the Leray measures: local densities and the cone factor
 
 * `lerayMeasure_latL`: for $\rho \in \mathcal O_v\smallsetminus 0$, $\sigma_\rho(L_v) = \beta_v(L,\rho)\,\nu(\mathcal O_v)^{n-1}$
   (**the Leray volume of the lattice points of the sphere $T(\rho)_v$ is the local density**).

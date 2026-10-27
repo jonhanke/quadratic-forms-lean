@@ -18,7 +18,6 @@ local Hilbert symbol.
   dyadic included).
 
 Source: Serre 1973, Ch. III §1 (Hilbert symbol) [unverified]; Neukirch 1999, Ch. II §4 (Hensel) [unverified].
-
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero Polynomial
@@ -322,7 +321,8 @@ theorem valued_unit_eq_one {u : v.adicCompletionIntegers F} (hu : IsUnit u) :
     norm_nonneg (((w⁻¹ : (v.adicCompletionIntegers F)ˣ) : v.adicCompletionIntegers F) : v.adicCompletion F)]
 
 include S in
-/-- **The genus character is $\psi$:** $\psi_\mathfrak p(x) = (\delta, x)_\mathfrak p = (-D, x)_\mathfrak p$ ($\delta = $ `relD` $= f^2\cdot(-D)$). -/
+/-- **The genus character is $\psi$:** $\psi_\mathfrak p(x) = (\delta, x)_\mathfrak p = (-D, x)_\mathfrak p$
+($\delta = $ `relD` $= f^2\cdot(-D)$). -/
 theorem genusSym_eq_ψv (x : F) :
     genusSym E (NFPlace.finite v) x = ψv v (D := D) (algebraMap F (v.adicCompletion F) x) := by
   have := charZero_top F E

@@ -2,10 +2,9 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeIntegral
 
 /-!
 # The local constant $c_v=1$ at the good places
-
 For a basis $b$ of algebraic integers with $v(\operatorname{disc}b)=1$ we show `localConst b v = 1`, i.e. the coordinate
 measure $dx_v^{\otimes\iota}$ is carried by the base change to exactly the product of the $\psi_{K,w}$-self-dual
-measures. Proof (duality trick, no Fourier analysis beyond the library's `selfDualV_real_mul`):
+measures. Proof (duality trick, no Fourier analysis beyond `selfDualV_real_mul`):
 
 1. `pairing_localPi`: $\sum_{w\mid v}\operatorname{Tr}_{K_w/k_v}(\Phi(c)_w\Phi(y)_w)=\sum_{ij}c_iG_{ij}y_j$ ($G$ the trace Gram
    matrix), by the local trace formula `traceMatrix_map_eq_sum`.
@@ -15,7 +14,7 @@ measures. Proof (duality trick, no Fourier analysis beyond the library's `selfDu
 3. $c_v^2\,\nu(\prod\mathcal O_w)\,\nu(\prod\mathfrak p_w^{-d_w})=\mu(\mathcal O_v^\iota)\,\mu(\ldots)$, and both products of volumes are $1$
    (`selfDualV_real_mul`), so $c_v^2=1$.
 
-Sources: Tate's thesis, Cassels–Fröhlich Ch. XV §2.2 [unverified] (self-dual measure: $\operatorname{vol}(L)\operatorname{vol}(L^\perp)=1$);
+Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §2.2, p. 310, and §3.3, p. 327 (self-dual measure: $\operatorname{vol}(L)\operatorname{vol}(L^\perp)=1$);
 Neukirch, *Algebraic Number Theory*, Ch. III Prop. 2.12 [unverified].
 -/
 
@@ -303,7 +302,7 @@ variable [DecidableEq ι]
 /-- **The local constant is $1$ at the good places.** If $b$ is a $k$-basis of $K$ consisting of algebraic integers and
 $v(\operatorname{disc}b)=1$, the base change carries the coordinate self-dual measure $dx_v^{\otimes\iota}$ of $k_v^\iota$
 to exactly the product $\bigotimes_{w\mid v}\mu_w$ of the $\psi_{K,w}$-self-dual measures. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2 (vol(L) vol(L^⊥) = 1 for self-dual measures) [unverified]; Neukirch III.2.12 [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §2.2, p. 310 (vol(o) = (N𝔡)^{−1/2}), and §3.3, p. 327 (vol(H) vol(H*) = 1); Neukirch III.2.12 [unverified]"]
 theorem localConst_eq_one (hb : ∀ i, IsIntegral ℤ (b i)) (hd : v.valuation k (Algebra.discr k b) = 1) :
     localConst b v = 1 := by
   have hmap := map_volVN_localPi b v
@@ -353,7 +352,8 @@ theorem finite_valuation_ne_one (x : k) (hx : x ≠ 0) :
   exact le_antisymm a' (by simpa using inv_le_one_iff₀.mp b' |>.resolve_left (by simpa using h0) |> fun h => h)
 
 /-- **The local constants are $1$ outside the finitely many places dividing the discriminant**, hence
-$\prod_v c_v$ is a finite product. (The individual $c_v$ at the bad places are not computed: the $\prod_vr_v=1$ comes from the global `map_adeleBaseChange_muAddVec` / `finprod_traceFactor_mul_inf`.) -/
+$\prod_v c_v$ is a finite product. (The individual $c_v$ at the bad places are not computed: the identity
+$\prod_vr_v=1$ comes from the global `map_adeleBaseChange_muAddVec` / `finprod_traceFactor_mul_inf`.) -/
 theorem finite_localConst_ne_one (hb : ∀ i, IsIntegral ℤ (b i)) :
     {v : HeightOneSpectrum (𝓞 k) | localConst b v ≠ 1}.Finite := by
   refine (finite_valuation_ne_one (Algebra.discr k b) (Algebra.discr_not_zero_of_basis k b)).subset fun v hv => ?_

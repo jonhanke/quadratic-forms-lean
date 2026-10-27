@@ -3,14 +3,17 @@
 
 **Layer:** the completion $F_\mathfrak p$ of a number field at a finite prime, the split space
 $V_\mathfrak p = F_\mathfrak p e_0 \perp (F_\mathfrak p^n, Q')$ with $Q = \langle m\rangle\perp Q'$ (`splitForm m Q'`), and the group
-$H = O(Q')(F_\mathfrak p)$ acting through $\mathrm{diag}(1,\cdot)$ (`orthEmb`).
+$H = O(Q')(F_\mathfrak p)$ acting through $\mathrm{diag}(1,\cdot)$ (the `orthEmb`).
 
-The local type set (`LocCompSet`) is $Y_\mathfrak p = \{M \in O(V_\mathfrak p)\,\mathfrak o_\mathfrak p^{n+1} : e_0 \in M\}$: the base lattice is the
-standard split lattice and the base vector $e_0$ is primitive. For Weil's orbital Euler product (`OrbitalEulerProduct`)
+The local type set (`LocCompSet`) is
+$Y_\mathfrak p = \{M \in O(V_\mathfrak p)\,\mathfrak o_\mathfrak p^{n+1} : e_0 \in M\}$: the base lattice is the
+standard split lattice and the base vector $e_0$ is primitive. For Weil's orbital Euler product (the
+`OrbitalEulerProduct`)
 the lattice is $\mathfrak b^{-1}L$ in coordinates adapted to a vector $\xi_\rho$ of norm $\rho$, so both must be general. This file
 introduces, for an $\mathfrak o_\mathfrak p$-lattice $\Lambda \subset F_\mathfrak p^{n+1}$ and a scalar $c \in F_\mathfrak p$,
 $$Y_\mathfrak p(\Lambda, c) = \{M \in O(V_\mathfrak p)\,\Lambda : c\,e_0 \in M\}\qquad(\texttt{LocCompSetG}),$$
-its local weights $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$ (`locWeightG`, the same index ratio as `locWeight`) and
+its local weights $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$ (`locWeightG`, the same index ratio as the
+`locWeight`) and
 the local type sum $W_\mathfrak p(\Lambda, c) = \sum_t w(M_t)$ (`locTypeSumG`).
 
 **Proves**
@@ -22,7 +25,7 @@ the local type sum $W_\mathfrak p(\Lambda, c) = \sum_t w(M_t)$ (`locTypeSumG`).
 * `locTypeSumG_eq_one_of_transitive`, `exists_smul_stdPtG`: one type of weight $1$ at the standard lattice when
   $2m$ is a unit (`exists_smul_locStdPt`, for $m \in F_\mathfrak p$ with an integral model).
 
-Sources: Weil 1982, §3.4–3.5 [unverified locator]; Kitaoka 1993, §5.6 [unverified]; O'Meara 1963, §92 [unverified]. Indices are
+Sources: Weil 1982, §3.4–3.5 [unverified locator]; Kitaoka 1993, §5.6 [unverified]; O'Meara 1963, §92, pp. 246–250 (background). Indices are
 0-based ($e_0$ is the first basis vector).
 -/
 import QuadFormsKB.Tamagawa.LocalUnimodular
@@ -97,7 +100,8 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 /-- **The general local type set** $Y_\mathfrak p(\Lambda, c) = \{M \in O(V_\mathfrak p)\,\Lambda : c\,e_0 \in M\}$ for an $\mathfrak o_\mathfrak p$-lattice
-$\Lambda \subset F_\mathfrak p^{n+1}$ and $c \in F_\mathfrak p$, $V = (F^{n+1}, \langle m\rangle\perp Q')$. `LocCompSet` is $\Lambda = \mathfrak o_\mathfrak p^{n+1}$,
+$\Lambda \subset F_\mathfrak p^{n+1}$ and $c \in F_\mathfrak p$, $V = (F^{n+1}, \langle m\rangle\perp Q')$. The type
+set `LocCompSet` is $\Lambda = \mathfrak o_\mathfrak p^{n+1}$,
 $c = 1$. The group $O(Q')(F_\mathfrak p)$ acts through $\mathrm{diag}(1,\cdot)$, which fixes $c\,e_0$; its orbits are the **local types**
 of the pairs (lattice of the local genus of $\Lambda$, vector $c\,e_0$) (Weil 1982, §3.4 [unverified]). -/
 @[kb "weil1982" "§3.4 (local types, general lattice) [unverified]"]
@@ -127,7 +131,7 @@ theorem LocCompSetG.smul_val {Λ : Submodule 𝔬 (Fin (n + 1) → Fv)} {c : Fv}
     (M : LocCompSetG v m Q' Λ c) : (h • M).1 = locAct v (orthEmb m Q' Fv h : GL (Fin (n + 1)) Fv) M.1 := rfl
 
 /-- **The local weight** of $M \in Y_\mathfrak p(\Lambda, c)$: $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$,
-$K_M = \mathrm{Stab}_{O(Q')(F_\mathfrak p)}(M)$, $K_0' = O(\mathfrak o_\mathfrak p^n)$ (as `locWeight`). -/
+$K_M = \mathrm{Stab}_{O(Q')(F_\mathfrak p)}(M)$, $K_0' = O(\mathfrak o_\mathfrak p^n)$ (as the `locWeight`). -/
 @[kb "weil1982" "§3.5 (local weights) [unverified locator]"]
 def locWeightG {Λ : Submodule 𝔬 (Fin (n + 1) → Fv)} {c : Fv} (M : LocCompSetG v m Q' Λ c) : ℝ :=
   ((stabilizer (orthGroup Q' Fv) M).relIndex (stdStab Q' v) : ℝ) /

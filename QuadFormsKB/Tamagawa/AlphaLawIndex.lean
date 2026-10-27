@@ -4,8 +4,9 @@
 **Layer:** a DVR $R$ with uniformizer $\pi$ and finite residue field of size $q$ (every residue characteristic, dyadic
 included); completeness only where Hensel lifting is used.
 
-The near count $N_{k,r}(A)$ (`nearCount`) is the finite-level stand-in for the invariant measure of a set $A$ of solutions of
-$Q = m$, **in the coordinates of a lattice** ($R^N$). This file proves how it changes when the lattice is replaced by a
+The near count $N_{k,r}(A)$ (`nearCount`) is the finite-level stand-in for the invariant measure of a set $A$ of
+solutions of $Q = m$, **in the coordinates of a lattice** ($R^N$). This file proves how it changes when the
+lattice is replaced by a
 sublattice $\Lambda_1 = PR^N$ ($P$ integral, $\det P \ne 0$): in the coordinates of $\Lambda_1$ the form is $Q\circ P$, and
 $$N^{Q\circ P}_{k,r}(A) = [R^N : PR^N]\cdot N^{Q}_{k,r}(PA)\qquad(k \gg r \gg 0,\ PA \text{ saturated}),$$
 the finite form of "the coordinate measure of $\Lambda_1$ is $[\Lambda_2:\Lambda_1]$ times that of $\Lambda_2$" (Hanke 2004, §3, pp. 359–360, the
@@ -13,7 +14,8 @@ Bad-type reduction maps change the lattice in the same way [unverified]). The in
 $[R^N : PR^N] = \#R/(\det P) = q^{\mathrm{ord}\det P}$ (Smith normal form).
 
 **Proves**
-* `nearCount_compMat` (**the lattice change of near counts**), extracted from the proof of `nearCount_eq_of_involution` and stated for an arbitrary sublattice;
+* `nearCount_compMat` (**the lattice change of near counts**), extracted from the proof of
+  `nearCount_eq_of_involution` and stated for an arbitrary sublattice;
 * `card_ker_redMat`: the kernel of $P \bmod \pi^k$ on $(R/\pi^k)^N$ has $[R^N : PR^N]$ elements for $\pi^kR^N \subseteq PR^N$;
 * `card_quot_range`: $[R^N : PR^N] = \#R/(\det P)$ (Smith normal form, `Submodule.quotientEquivPiSpan`);
 * `card_quot_span_eq`: $\#R/(x) = q^e$ for $\pi^e\,\Vert\,x$.
@@ -73,8 +75,9 @@ theorem redMat_apply (π : R) (k : ℕ) (P : Matrix (Fin N) (Fin N) R) (z : Fin 
 of a sublattice). Let $P$ be integral with $\det P \ne 0$ and $\pi^cR^N \subseteq PR^N$, and let $A \subseteq R^N$ be such that $PA$ is
 saturated at radius $r_0$ for $Q = m$ ($\pi^e\,\Vert\,2m$). Then for $r \ge r_0$, $k \ge r + c + e$, $k \ge 2e + 1$,
 $$N^{Q\circ P}_{k,r}(A) = |\ker(P \bmod \pi^k)|\cdot N^{Q}_{k,r}(PA).$$
-*Proof:* as in `nearCount_eq_of_involution`: the left side counts the $y \bmod \pi^k$ with $Py$ a solution mod $\pi^k$ that is
-$\equiv Pa \bmod \pi^rPR^N$; this condition on $z = Py$ is well defined mod $\pi^k$, the count is $|\ker|$ times the number of such
+*Proof:* as in `nearCount_eq_of_involution`: the left side counts the $y \bmod \pi^k$ with $Py$ a solution mod $\pi^k$
+that is $\equiv Pa \bmod \pi^rPR^N$; this condition on $z = Py$ is well defined mod $\pi^k$,
+the count is $|\ker|$ times the number of such
 $z \bmod \pi^k$ (`card_preimage_eq`), and by Hensel lifting and saturation these $z$ are exactly the solutions near $PA$. -/
 @[kb "weil1982" "§3.4 (the invariant measure in the coordinates of a sublattice) [unverified]"]
 theorem nearCount_compMat [IsAdicComplete (IsLocalRing.maximalIdeal R) R] {π : R} (hπ : Irreducible π)

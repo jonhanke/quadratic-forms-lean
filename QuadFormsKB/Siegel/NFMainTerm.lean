@@ -7,7 +7,7 @@ $\beta_\mathfrak p$ = `LocalDensity.NF.localDensity v Q` (defined over $\mathcal
 completion $\mathfrak o_\mathfrak p$). This is the number-field form of `Siegel/LocalProduct.lean` and
 `Siegel/MainTerm.lean` (the paper's §5 is stated over $F$; the $\mathbb{Q}$ files are its $F = \mathbb{Q}$ case).
 
-**Archimedean density.** The archimedean density is a product over the real places $w$ of $F$ (`RealPlace F`), each a (5.5)-type factor
+The archimedean density is a product over the real places $w$ of $F$ (`RealPlace F`), each a (5.5)-type factor
 $\beta_w(m) = \frac{n\omega_n}{2}D_w^{-1/2}\sigma_w(m)^{(n-2)/2}$ with the local determinant $D_w = \det(\sigma_w(H)/2)$
 (`betaInfAt`, `betaInfNF`; $N_{F_w/\mathbb{R}}$ is the identity at a real place). The local side of Siegel's formula is
 $a_E(m) = \beta_\infty(m)\prod_\mathfrak p\beta_\mathfrak p(m)$ (`aEWithNF` with an explicit Euler-product value; `aENF` with
@@ -19,12 +19,13 @@ $a_E(m) = \beta_\infty(m)\prod_\mathfrak p\beta_\mathfrak p(m)$ (`aEWithNF` with
   N\mathfrak p^{(n-2)\nu_\mathfrak p}\beta_\mathfrak p(\varpi^{2\nu_\mathfrak p}T')/\beta_\mathfrak p(T')$ (`aEWithNF_mul_sq`, `aENF_mul_sq`), and
   **Theorem 5.4** over $F$ (`thm_5_4_NF`, `thm_5_4_aENF`, uniform form `aEWithNF_mul_sq_eq_localConst`).
 
-**Lower bound.** (5.13) (`eq_5_13_NF`, `eq_5_13_aENF`) and the first part of Theorem 5.7(a) (`thm_5_7_a_NF`).
+(5.13) (`eq_5_13_NF`, `eq_5_13_aENF`) and the first part of Theorem 5.7(a) (`thm_5_7_a_NF`).
 
 **The good-prime hypothesis.** Absolute convergence for $n \ge 4$ and the values $C'_\mathfrak p = 1$ at good $\mathfrak p$ need
 the local shape of $Q$ at $\mathfrak p \nmid 2\det H$: the counts of a unit diagonal form (`GoodPrimeShape`, the
-number-field form of `exists_diag_unimodular_same_counts_det`). It is
-taken here as an explicit hypothesis `hshape : ∀ v, IsGoodPrimeNF Q v → GoodPrimeShape Q v`, which is discharged by `goodPrimeShape_of_isGoodPrimeNF` (`Siegel/NFGoodPrime.lean`).
+number-field form of `exists_diag_unimodular_same_counts_det`). This is
+taken here as an explicit hypothesis `hshape : ∀ v, IsGoodPrimeNF Q v → GoodPrimeShape Q v`
+(see `goodPrimeShape_of_isGoodPrimeNF` in `NFGoodPrime.lean`).
 Dyadic $\mathfrak p$ are bad (as $p = 2$ over $\mathbb{Q}$).
 
 **Consistency over $\mathbb{Q}$.** `betaInfNF_rat`, `aEWithNF_rat` (with `LocalDensity.NF.localDensity_rat`): for an
@@ -648,7 +649,7 @@ def IsGoodPrimeNF (Q : QuadForm (𝓞 F) n) (v : HeightOneSpectrum (𝓞 F)) : P
 `exists_diag_unimodular_same_counts_det`): over $\mathfrak o_\mathfrak p$,
 $Q$ has the counts $r_{\varpi^k}(m)$ of a diagonal form $\langle a_0, \dots, a_{n-1}\rangle$ with unit coefficients, and
 $2^n\prod_i a_i = u^2\det H$ with $u$ a unit. At $\mathfrak p \nmid 2\det H$ this holds for every $Q$ (Lemma 2.1); it is taken
-here as the hypothesis `∀ v, IsGoodPrimeNF Q v → GoodPrimeShape Q v`, which is discharged by `goodPrimeShape_of_isGoodPrimeNF`. -/
+here as the hypothesis `∀ v, IsGoodPrimeNF Q v → GoodPrimeShape Q v`. -/
 @[kb "hanke2004" "Lemma 2.1, p. 355, at p ∤ 2det H (hypothesis, over F)"]
 def GoodPrimeShape (Q : QuadForm (𝓞 F) n) (v : HeightOneSpectrum (𝓞 F)) : Prop :=
   ∃ a : Fin n → v.adicCompletionIntegers F, (∀ i, ¬ NF.π v ∣ a i) ∧

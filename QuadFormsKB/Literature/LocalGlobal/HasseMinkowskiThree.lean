@@ -57,7 +57,7 @@ theorem hilbertSymbol_mul_sq_left (K : Type*) [Field K] (a b c : K) (hc : c ≠ 
 
 /-- **Squarefree representatives:** every $a \in \mathbb{Q}^\times$ is $m c^2$ with $m$ a
 squarefree integer and $c \in \mathbb{Q}^\times$. -/
-@[kb "serre1973" "Ch. IV §3.2 [unverified]"]
+@[kb "serre1973" "Ch. IV §3.2 [unverified]; cassels1978 Ch. 6, Lemma 4.1, p. 78"]
 theorem exists_squarefree_mul_sq (a : ℚ) (ha : a ≠ 0) :
     ∃ (m : ℤ) (c : ℚ), Squarefree m ∧ c ≠ 0 ∧ a = m * c ^ 2 := by
   have hN : a.num * a.den ≠ 0 := mul_ne_zero (Rat.num_ne_zero.mpr ha) (by exact_mod_cast a.den_nz)
@@ -88,7 +88,7 @@ theorem exists_squarefree_mul_sq (a : ℚ) (ha : a ≠ 0) :
 prime $p \mid b$, $p \nmid a$: if $(a,b)_p = 1$ then $a$ is a square mod $p$. (For odd $p$ the
 explicit formula gives $(a,b)_p = \left(\frac{a}{p}\right)$; for $p = 2$ every odd residue is a
 square.) -/
-@[kb "serre1973" "Ch. IV §3.2 [unverified]"]
+@[kb "serre1973" "Ch. IV §3.2 [unverified]; cassels1978 Ch. 6, Lemma 4.2, p. 79"]
 theorem isSquare_mod_of_hilbert (a b : ℤ) (p : ℕ) [hp : Fact p.Prime] (hb : Squarefree b)
     (hpb : (p : ℤ) ∣ b) (hpa : ¬ (p : ℤ) ∣ a)
     (h : (RatPlace.finite ⟨p, hp.out⟩).hilbert a b = 1) :
@@ -135,7 +135,7 @@ theorem isSquare_mod_of_hilbert (a b : ℤ) (p : ℕ) [hp : Fact p.Prime] (hb : 
 /-- **Square mod a squarefree modulus, with a small root:** if $b \ne 0$ is squarefree and $a$ is
 a square mod every prime $p \mid b$, then $a \equiv t^2 \pmod b$ for some $t$ with
 $2|t| \le |b|$. -/
-@[kb "serre1973" "Ch. IV §3.2 [unverified]"]
+@[kb "serre1973" "Ch. IV §3.2 [unverified]; cassels1978 Ch. 6, Lemma 4.2, p. 79"]
 theorem exists_sq_mod_small (a b : ℤ) (hb0 : b ≠ 0) (hb : Squarefree b)
     (h : ∀ p : ℕ, p.Prime → (p : ℤ) ∣ b → IsSquare ((a : ZMod p))) :
     ∃ t : ℤ, b ∣ t ^ 2 - a ∧ 2 * |t| ≤ |b| := by
@@ -179,7 +179,7 @@ theorem exists_sq_mod_small (a b : ℤ) (hb0 : b ≠ 0) (hb : Squarefree b)
 $(a,b)_v = 1$ at every place $v$ of $\mathbb{Q}$, then $(a,b)_{\mathbb{Q}} = 1$, i.e.
 $z^2 = a x^2 + b y^2$ has a nonzero rational solution. Proof: reduce to squarefree integers
 $|a| \le |b|$ and descend on $|a| + |b|$ using steps 1–3. -/
-@[kb "serre1973" "Ch. IV §3.2, Thm. 8 (n = 3) [unverified]"]
+@[kb "serre1973" "Ch. IV §3.2, Thm. 8 (n = 3) [unverified]; cassels1978 Ch. 6, Thm. 4.1, p. 80 (Legendre)"]
 theorem hilbert_rat_eq_one_of_everywhere (a b : ℚ) (ha : a ≠ 0) (hb : b ≠ 0)
     (h : ∀ v : RatPlace, v.hilbert a b = 1) : hilbertSymbol ℚ a b = 1 := by
   have hS : ∀ (K : Type) [Field K] (a b : K), hilbertSymbol K a b = 1 ↔ ∃ x y z : K, (x, y, z) ≠ 0 ∧ z ^ 2 = a * x ^ 2 + b * y ^ 2 := by
@@ -553,7 +553,7 @@ theorem isotropicIn_iff_of_isometricIn (K : Type*) [Field K] [CharZero K] {Q Q' 
 /-- **Diagonal ternary forms and the Hilbert symbol:** for nonzero $a_0, a_1, a_2 \in \mathbb{Q}$ and
 a field $K \supseteq \mathbb{Q}$, $\langle a_0, a_1, a_2 \rangle$ is isotropic over $K$ iff
 $\left(-\tfrac{a_1}{a_0}, -\tfrac{a_2}{a_0}\right)_K = 1$. -/
-@[kb "serre1973" "Ch. IV §2.2 [unverified]"]
+@[kb "serre1973" "Ch. IV §2.2 [unverified]; cassels1978 Ch. 4, Lemma 2.5, p. 59"]
 theorem isotropic_diag_three_iff (K : Type*) [Field K] [CharZero K] (a₀ a₁ a₂ : ℚ)
     (h₀ : a₀ ≠ 0) (h₁ : a₁ ≠ 0) (h₂ : a₂ ≠ 0) :
     (QuadForm.diag ![a₀, a₁, a₂]).IsotropicIn K ↔

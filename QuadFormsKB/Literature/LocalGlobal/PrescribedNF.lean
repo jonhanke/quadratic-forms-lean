@@ -646,7 +646,7 @@ $S'$ all symbols are symbols of units at non-dyadic places, hence $1 = \varepsil
 *Locator.* O'Meara 71:19 (with Cor. 71:19a; printed p. 203, PDF p. 211; checked 2026-10-17) is the case of a single
 $a$: given an even set $T$ of places at which $\beta$ is not a square, some $\alpha$ has $(\alpha, \beta)_v = -1$ exactly on $T$.
 The several-$a_i$ statement is Serre's Thm. 4 (stated there over $\mathbb Q$). -/
-@[kb "serre1973" "Ch. III §2.2, Thm. 4 (over a number field); omeara1963 71:19 (one a)"]
+@[kb "serre1973" "Ch. III §2.2, Thm. 4 (over a number field); omeara1963 §71D, 71:19 and 71:19a, p. 203 (one a)"]
 theorem exists_prescribed_hilbert {ι : Type} [Fintype ι] (a : ι → F) (ha : ∀ i, a i ≠ 0)
     (ε : ι → NFPlace F → ℤ) (hε : ∀ i v, ε i v = 1 ∨ ε i v = -1)
     (h1 : {v : NFPlace F | ∃ i, ε i v = -1}.Finite)

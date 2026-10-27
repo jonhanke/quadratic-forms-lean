@@ -1,5 +1,5 @@
 /-
-# The $T(\pi^2)$ relation for the genus average at principal primes, any class number (without $h_F = 1$)
+# The $T(\pi^2)$ relation for the genus average at principal primes, any class number
 
 Copies of `HeckeGenus.lean` (sections *GenusLattice* and *Average*) without $[\texttt{IsPrincipalIdealRing}\ \mathcal O_F]$: the only use of the PID
 there was that genus lattices are free, now `Steinitz.exists_latOf_of_sameGenus`. Names live in the namespace `HilbertModular.NP`.
@@ -11,7 +11,7 @@ there was that genus lattices are free, now `Steinitz.exists_latOf_of_sameGenus`
 
 **Non-principal primes.** For $\mathfrak p$ not principal there is no element $\pi$ with $\pi^2\nu$ the shifted index: the Kneser $\mathfrak p$-neighbour sum
 counts vectors of $\mathfrak p^{-1}M$, a lattice of Steinitz class $[\mathfrak p]^{-n}$ in a different genus, so the relation links $\mathrm{gen}(L)$ to
-$\mathrm{gen}(\mathfrak p^{-1}L)$ (the components of a Hilbert modular form over $\mathrm{Cl}_F$).
+$\mathrm{gen}(\mathfrak p^{-1}L)$ (the components of a Hilbert modular form over $\mathrm{Cl}_F$)..
 
 Sources: Eichler (1952); Kneser (1957) [unverified].
 -/
@@ -167,7 +167,7 @@ $\pi \nmid 2\det H(Q_0)$ (a prime element; any class number) whose neighbours st
 `NeighborsNP.nbrInGenus'`), and $\nu \in \mathcal O_F$ with $\pi \nmid \nu$,
 $$\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^n)}\frac{r_M(\pi^2\nu)}{|O(M)|} = \lambda_\pi\sum_{\mathrm{cls}(M)}\frac{r_M(\nu)}{|O(M)|},
   \qquad\lambda_\pi = q^{n-2} + \chi_\pi q^{n/2-1} + 1$$
-(`heckeEigen`), the sums over the classes of `Lattices.genusClasses` (`genusClasses`, representatives `c.out`, $|O(M)|$ = `LatClass.autCard`). -/
+(`heckeEigen`), the sums over the classes of the genus (`genusClasses`, representatives `c.out`, $|O(M)|$ = `LatClass.autCard`). -/
 @[kb "eichler1952" "T(𝔭²) relation for the genus average, over F, principal primes, any class number [unverified]"]
 theorem genus_sum_latRepF_sq (hn : Even n) (hn2 : 2 ≤ n) {ν : 𝓞 F} (hν : ¬ π ∣ ν) :
     ∑ c ∈ (genusClasses_finite hQ stdLat (isIntegral_stdLat Q₀)).toFinset,

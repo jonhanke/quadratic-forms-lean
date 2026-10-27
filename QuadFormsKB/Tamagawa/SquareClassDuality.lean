@@ -199,7 +199,7 @@ attribute [local instance] HN.compAlgebra in
 /-- **Local nondegeneracy at a finite place** (every place, dyadic included): if $c \in F_v^\times$ is not a square, then
 $(x, c)_v = -1$ for some $x$. *Proof:* $c = a_0d^2$ with $a_0 \in F$; the kernel of $(a_0,\cdot)_v$ is the norm group of
 $F_v\otimes_F F(\sqrt{a_0})$ (`HN.mem_range_norm_iff`), of index $2$ (`HN.index_norm_eq_two`). -/
-@[kb "serre1973" "Ch. III §1.1, Prop. 1 and §2.2, Thm. 2 (nondegeneracy) [unverified]"]
+@[kb "serre1973" "Ch. III §1.1, Prop. 1 and §2.2, Thm. 2 (nondegeneracy) [unverified]; omeara1963 §63B, 63:13, p. 166; cassels1978 Ch. 3, Lemma 2.1 (iii), p. 42"]
 theorem hilbCl_nondeg_fin (v : HeightOneSpectrum (𝓞 F)) (y : SqCl (v.adicCompletion F)) (hy : y ≠ 1) :
     ∃ x, hilbCl _ x y = -1 := by
   induction y using QuotientGroup.induction_on with
@@ -227,6 +227,7 @@ theorem hilbCl_nondeg_fin (v : HeightOneSpectrum (𝓞 F)) (y : SqCl (v.adicComp
 
 /-- **Local nondegeneracy at an infinite place:** at a real place a non-square $c$ is negative and $(c,c)_w = -1$; at a complex
 place every class is trivial. -/
+@[kb "omeara1963" "§63B, 63:13, p. 166; cassels1978 Ch. 3, Lemma 2.1 (iii), p. 42"]
 theorem hilbCl_nondeg_inf (w : InfinitePlace F) (y : SqCl w.Completion) (hy : y ≠ 1) :
     ∃ x, hilbCl _ x y = -1 := by
   induction y using QuotientGroup.induction_on with
@@ -392,6 +393,7 @@ variable {F : Type} [Field F] [NumberField F]
 
 /-- **Two units at a non-dyadic place have Hilbert symbol $1$** (Serre III §1.2, Thm. 1, over $F_v$): $\langle a, b, -1\rangle$ is
 isotropic over $F_v$ (`NFLocal.isotropic_diag_units_nf`). -/
+@[kb "omeara1963" "§63B, 63:12, p. 166"]
 theorem hilbert_units_nondyadic (v : HeightOneSpectrum (𝓞 F)) (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (a b : F)
     (ha : v.valuation F a = 1) (hb : v.valuation F b = 1) : (NFPlace.finite v).hilbert a b = 1 := by
   have hm1 : v.valuation F (-1 : F) = 1 := by rw [Valuation.map_neg, map_one]

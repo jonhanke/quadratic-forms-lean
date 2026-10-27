@@ -326,12 +326,23 @@ section Main
 
 variable (F : Type) [Field F] [NumberField F]
 
+variable {F} in
 set_option maxHeartbeats 8000000 in
-/-- **`NSBadDeepRatio F` holds for every number field $F$**: the bad-place identity of the non-square model at the
-deep levels $M_w = $ `nsLevK w` $+ e_wn$, $n$ large (Weil 1982, Thm 2.3.1 for $m = 4$, non-square discriminant). -/
-@[kb "weil1982" "Thm 2.3.1 (local ratios); §3.7, pp. 64-65 [unverified page]"]
-theorem nsBadDeepRatio : NSBadDeepRatio F := by
-  refine ⟨fun a b d K _ _ _ bK hb₀ hb₁ α β hα hβ hα0 hβ0 _ _ _ v _ => ?_⟩
+/-- **The bad-place identity of the non-square model at deep levels, with no signature hypotheses**: for every number
+field $F$ and every non-square model (no definiteness or positivity of $a, b, d$), the conclusion of `NSBadDeepRatio.ratio`.
+`nsBadDeepRatio` is this statement with the three (unused) definiteness hypotheses added. -/
+theorem nsBadDeepRatio_any (a b d : 𝓞 F) (K : Type) [Field K] [NumberField K] [Algebra F K]
+    (bK : Module.Basis (Fin 2) F K) (hb₀ : bK 0 = 1) (hb₁ : bK 1 * bK 1 = algebraMap F K (d : F))
+    (α β : 𝓞 K) (hα : (α : K) = algebraMap F K (a : F)) (hβ : (β : K) = algebraMap F K (b : F))
+    (hα0 : α ≠ 0) (hβ0 : β ≠ 0) (v : HeightOneSpectrum (𝓞 F))
+    (hv : ¬ NSGoodPlace (bK := bK) (a := a) (b := b) (d := d) v) :
+    ∃ (M : HeightOneSpectrum (𝓞 K) → ℕ) (hM : ∀ w, nsLevK hα0 hβ0 w ≤ M w),
+    (∏ w ∈ placesOver (K := K) v, Measure.muLocSO w (QuatZeta.pureFormO α β) 1
+        (congSO3S (a := α) (b := β) M (one_le_of_deep hα0 hβ0 hM) w) *
+      omegaV w (unitsVSub w) / omegaV w (nL α β M (one_le_of_deep hα0 hβ0 hM) w)) *
+        (omegaV v (nsN α β M (one_le_of_deep hα0 hβ0 hM) v) / omegaV v (unitsVSub v)) =
+      ENNReal.ofReal (nsRatio K a b d v) * Measure.muLocSO v (qNS a b d) 1
+        (nsU hb₁ hα hβ (ne_zero_of_algebraMap_eq hα hα0) (d_ne_zero_of_basis hb₁) M (one_le_of_deep hα0 hβ0 hM) v) := by
   have ha0 := ne_zero_of_algebraMap_eq hα hα0
   have hb0 := ne_zero_of_algebraMap_eq hβ hβ0
   have hd0 := d_ne_zero_of_basis hb₁
@@ -558,6 +569,13 @@ theorem nsBadDeepRatio : NSBadDeepRatio F := by
   refine (ENNReal.toReal_eq_toReal_iff' ?_ ?_).1 hfin
   · intro h; rw [h, ENNReal.toReal_top] at hLreal; rw [← hLreal] at hLpos; exact lt_irrefl _ hLpos
   · intro h; rw [h, ENNReal.toReal_top] at hRreal; rw [← hRreal] at hRpos; exact lt_irrefl _ hRpos
+
+/-- **`NSBadDeepRatio F` holds for every number field $F$**: the bad-place identity of the non-square model at the
+deep levels $M_w = $ `nsLevK w` $+ e_wn$, $n$ large (Weil 1982, Thm 2.3.1 for $m = 4$, non-square discriminant). -/
+@[kb "weil1982" "Thm 2.3.1 (local ratios); §3.7, pp. 64-65 [unverified page]"]
+theorem nsBadDeepRatio : NSBadDeepRatio F :=
+  ⟨fun a b d K _ _ _ bK hb₀ hb₁ α β hα hβ hα0 hβ0 _ _ _ v hv =>
+    nsBadDeepRatio_any a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 v hv⟩
 
 end Main
 

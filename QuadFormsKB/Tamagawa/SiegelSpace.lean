@@ -27,7 +27,6 @@ coordinate system:
 The transport lemmas (`spaceBeta_eq`, `detGram_eq_detGramF`, `prod_archRepDensity_eq`) compare these with G's terms for any
 coordinates $Q\circ\gamma = Q_0$ over $\mathcal O_F$ (`exists_coords_of_isIntegral`); the product formula cancels the factors
 $|\det\gamma|$.
-
 -/
 
 open NumberField IsDedekindDomain Filter

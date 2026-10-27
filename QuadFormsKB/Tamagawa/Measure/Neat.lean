@@ -4,7 +4,7 @@
 **Layer:** pure group theory (any group $G$). No topology and no number theory.
 
 **Setting.** $G$ is a group (in the application $G = SO(V)(\mathbb A_f)$), $K \le G$ a subgroup (the compact open
-$SO(\hat L)$), $\Gamma \le G$ a subgroup (the rational points $SO(V)(F)$). We assume the hypotheses that the KB's
+$SO(\hat L)$), $\Gamma \le G$ a subgroup (the rational points $SO(V)(F)$). We assume the hypotheses that the library's
 `dcMass_of_le` uses: finitely many double cosets $\Gamma\backslash G/K$, and every stabilizer
 $\Gamma \cap \alpha K \alpha^{-1}$ finite.
 
@@ -16,13 +16,14 @@ $\Gamma \cap \alpha K \alpha^{-1}$ finite.
 * `dcRep Γ K ω`: a representative in $G$ of a double coset $\omega \in \Gamma\backslash G/K$.
 
 **Proves**
-* `exists_isNeat_of_reps` (neat member of a separating filtration): given representatives $\beta_1, \dots, \beta_h$ of $\Gamma\backslash G/K$ with every
+* `exists_isNeat_of_reps`: given representatives $\beta_1, \dots, \beta_h$ of $\Gamma\backslash G/K$ with every
   $\Gamma \cap \beta_i K \beta_i^{-1}$ finite, some member $K_k$ of the filtration is neat for $\Gamma$;
 * `exists_isNeat`: the same with the hypotheses of `dcMass_of_le` (finitely many orbits, finite stabilizers);
 * `dcMass_of_isNeat`: for a neat $K'$ all stabilizers are trivial, so $\mathrm{dcMass}(\Gamma, K') = \#(\Gamma\backslash G/K')$;
 * `finite_orbits_of_relIndex`: $\Gamma\backslash G/K'$ is finite when $\Gamma\backslash G/K$ is and $[K : K'] < \infty$.
 
-*Proof idea.* The finitely many elements $s = \beta_i^{-1}\gamma\beta_i \ne 1$ ($\gamma \in \Gamma \cap \beta_i K\beta_i^{-1}$) lie
+*Proof idea.* The finitely many elements $s = \beta_i^{-1}\gamma\beta_i \ne 1$
+($\gamma \in \Gamma \cap \beta_i K\beta_i^{-1}$) lie
 in $K$, so each misses some $K_k$; one $K_k$ misses all of them (the filtration decreases). If $\gamma \in \Gamma$ and
 $\beta^{-1}\gamma\beta \in K_k$, write $\beta = \delta\beta_i\kappa$ ($\delta \in \Gamma$, $\kappa \in K$); normality of $K_k$ in $K$ gives
 $\beta_i^{-1}(\delta^{-1}\gamma\delta)\beta_i \in K_k$, hence $\delta^{-1}\gamma\delta = 1$. This replaces Minkowski's torsion-freeness

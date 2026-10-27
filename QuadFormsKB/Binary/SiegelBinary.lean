@@ -179,7 +179,8 @@ a finite product (all other factors are $1$, `localDensity_div_eq_one`). -/
 noncomputable def binaryEulerCorr (f : BinQF) (D m : ℤ) : ℝ :=
   ∏ p ∈ (m * D).natAbs.primeFactors, localDensity f p m / (1 - kronR D p / p)
 
-/-- **The regularized value of $\prod_p\beta_p(m)$** for a binary form (convention "$L^{-1} \times$ finite product"): $P_f(m) = L(1,\chi_D)^{-1}\,C_f(m)$. It needs no analytic input; under `EulerProductAtOne D` it is the limit
+/-- **The regularized value of $\prod_p\beta_p(m)$** for a binary form (convention "$L^{-1} \times$ finite product"):
+$P_f(m) = L(1,\chi_D)^{-1}\,C_f(m)$. It needs no analytic input; under `EulerProductAtOne D` it is the limit
 of the partial products in the natural order (`isEulerProductValue_binary`). -/
 @[kb "siegel1935" "§§1–2 (regularized product for n = 2) [unverified locator]"]
 noncomputable def binaryEulerValue (f : BinQF) (D : ℤ) [IsQuadDisc D] (m : ℤ) : ℝ :=
@@ -349,7 +350,7 @@ $\beta_\infty$, $\beta_p$ the repo's densities (`betaInf`, `localDensity`), and 
 repo's notation: `genusRepAvg f m = (1/2) * aEWith f m (binaryEulerValue f D m)`.
 
 **The constant $\varepsilon = \frac12$** (Siegel 1935, Hauptsatz: $\varepsilon = \frac12$ when $n = m + 1$, here $n = 2$ and
-the represented form has rank $1$; $\varepsilon = 1$ otherwise). It comes out exactly: by the genus average formula,
+the represented form has rank $1$; $\varepsilon = 1$ otherwise). It comes out exactly: by `genusRepAvg_binary_coprime`,
 $r_{\mathcal G}(m) = \frac{w\,2^{t-1}}{h}S\cdot[\psi_p(m) = \chi_p(f)\ \forall p \mid D]$ with $S = \sum_{d\mid m}\chi_D(d)$; on the
 local side $\beta_\infty = 2\pi/\sqrt{|D|}$ (`betaInf_binary`), $L(1,\chi_D) = 2\pi h/(w\sqrt{|D|})$ and
 $C_f(m) = S\cdot 2^t[\ldots]$ (`binaryEulerCorr_coprime`, `prod_ram_eq`), so
@@ -534,7 +535,8 @@ theorem localDensity_pos_of_eval {g : BinQF} (hg : g.disc ≠ 0) (p : ℕ) [Fact
 
 /-- **The genus of $f$ represents $m$ iff $c_p(m) = \chi_p(f)$ for all $p \mid D$** (when some ideal has norm $m$, i.e.
 $\sum_{d \mid m}\chi_D(d) \ne 0$). ($\Rightarrow$) a form $g$ of the genus with $g(x, y) = m$ has $\beta_p(g, m) > 0$, so
-$\chi_p(f) = \chi_p(g) = c_p(m)$. ($\Leftarrow$) a form $F$ in the class inverse to an ideal of norm $m$ represents $m$, so $\chi_p(F) = c_p(m) = \chi_p(f)$ for all $p \mid D$, and $F$ is in the genus of $f$
+$\chi_p(f) = \chi_p(g) = c_p(m)$. ($\Leftarrow$) a form $F$ in the class inverse to an ideal of norm $m$ represents
+$m$, so $\chi_p(F) = c_p(m) = \chi_p(f)$ for all $p \mid D$, and $F$ is in the genus of $f$
 (`sameGenus_iff_formChar_eq`). -/
 theorem genus_represents_iff [Fact (D < 0)] (f : PosForms D) {m : ℕ} (hm : m ≠ 0)
     (hS : ∑ d ∈ m.divisors, kronR D d ≠ 0) :
@@ -595,12 +597,12 @@ $$r_{\mathcal G}(m) = \frac12\,\beta_\infty(m)\,P_f(m), \qquad P_f(m) = L(1,\chi
 i.e. `genusRepAvg f m = (1/2) * aEWith f m (binaryEulerValue f D m)`, with $r_{\mathcal G}$ = `Siegel.genusRepAvg`
 ($\mathrm{GL}_2(\mathbb{Z})$-classes of the genus, weights $1/|\mathrm{Aut}|$) and the repo's $\beta_\infty$, $\beta_p$.
 
-**$\varepsilon = \frac12$ exactly:** the genus average formula gives $r_{\mathcal G}(m) = \frac{w2^{t-1}}{h}S\cdot[\text{the genus represents } m]$
+**$\varepsilon = \frac12$ exactly:** `genusRepAvg_binary_coprime` gives $r_{\mathcal G}(m) = \frac{w2^{t-1}}{h}S\cdot[\text{the genus represents } m]$
 ($S = \sum_{d\mid m}\chi_D(d)$); the local side is $\frac12\cdot\frac{2\pi}{\sqrt{|D|}}\cdot\frac{w\sqrt{|D|}}{2\pi h}\cdot S\cdot
 \prod_{p\mid D}(1 + \chi_p(f)c_p(m))$ (`betaInf_binary`, `binaryEulerCorr_eq`), the product is $2^t$ or $0$
 (`prod_ram_eq_general`), and it is $2^t$ exactly when the genus represents $m$ (`genus_represents_iff`). Source:
 Siegel (1935), Hauptsatz ($\varepsilon = \frac12$ for $n = m + 1$) [unverified locator]. -/
-@[kb "siegel1935" "Hauptsatz (ε = 1/2 for n = 2) [unverified locator]"]
+@[kb "siegel1935" "Hauptsatz (ε = 1/2 for n = 2) [unverified locator]; cassels1978 App. B, (3.13), p. 378"]
 theorem siegelFormula_binary [Fact (D < 0)] (f : PosForms D) {m : ℕ} (hm : m ≠ 0) :
     Siegel.genusRepAvg f.1 m = (1 / 2 : ℝ) * aEWith f.1 m (binaryEulerValue f.1 D m) := by
   have hD : D < 0 := Fact.out

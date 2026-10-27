@@ -123,8 +123,6 @@ theorem muP_boxK_mul (ha : a ≠ 0) (hb : b ≠ 0) (hna : IsTotallyPos (-(a : F)
       muPD (valued_coe_le_one a) (valued_coe_le_one b) (by simpa using ha) (by simpa using hb)
           (pdMk (a : F) (b : F) '' (HS a b S m hm1 : Set (QuatAdele (a : F) (b : F))ˣ)) ^ 2 *
         muFinQuat (a : F) (b : F) (econgS a b S m) * muFinUnits F (OHatUnits F) := by
-  have hdiv := hdiv_of_totallyNeg (F := F) (a := (a : F)) (b := (b : F))
-    (fun w hw => emb_neg_of_isTotallyPos_neg hna w hw) (fun w hw => emb_neg_of_isTotallyPos_neg hnb w hw)
   have hsm : ∀ v ∈ S, sExp v < m v := fun v hv => by have := (hmS v hv).1; have := hm1 v; omega
   have hHo : IsOpen (HS a b S m hm1 : Set (QuatAdele (a : F) (b : F))ˣ) :=
     (isOpen_quatCongS S m hm1).preimage (continuous_quatFinPart a b)
@@ -148,7 +146,7 @@ theorem muP_boxK_mul (ha : a ≠ 0) (hb : b ≠ 0) (hna : IsTotallyPos (-(a : F)
     refine tamIdeles_sq_mem_Bset _ (fun w => ?_) (finPart_nrd_mem_OHat β ((mem_HS a b S m hm1).1 hβ).1)
     exact nrdUnit_pos_of_ramified β w.1 w.2 ⟨emb_neg_of_isTotallyPos_neg hna w.1 w.2,
       emb_neg_of_isTotallyPos_neg hnb w.1 w.2⟩
-  have h1 := muP_sqS0 ha hb (HS a b S m hm1) (ES a b S m) (HS_normalizes_ES a b S m hm1) hdiv hHo hEo
+  have h1 := muP_sqS0 ha hb (HS a b S m hm1) (ES a b S m) (HS_normalizes_ES a b S m hm1) hHo hEo
     measurableSet_Bset (mul_ne_zero hW0 hU0) (ENNReal.mul_ne_top hWt hUt) hc
   rw [← sqPEquiv_preimage_boxK ha hb S m hm1 hS hmS] at h1
   have h2 := tamQuat_sqX ha hb (HS a b S m hm1) hHo measurableSet_Bset (W * U) hc

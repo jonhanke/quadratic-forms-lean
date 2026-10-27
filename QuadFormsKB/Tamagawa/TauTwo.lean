@@ -11,7 +11,7 @@ $\Phi = \Phi_\infty\otimes\mathbf 1_{\hat L}$ with the Gaussian $\Phi_w = e^{-\p
 
 **Weil's argument** (A. Weil, *Adeles and Algebraic Groups*, 1982, §4.5, pp. 108–109, Theorem 4.5.1, p. 109). The spherical
 sum $Z(s) = \sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho)$ ((2), p. 102; `SphericalZeta.sphericalZeta`) has two residues at $s = 0$:
-1. *multiplicatively* (`ZetaResidue` and `SphericalResidue`, (8), p. 108; `SphericalZeta.tendsto_mul_sphericalZeta_zero_gaussian`):
+1. *multiplicatively* ((8), p. 108; `SphericalZeta.tendsto_mul_sphericalZeta_zero_gaussian`):
    $\lim_{s\to0^+}sZ(s) = \rho_F\int_{V(\mathbb A)}\Phi\,dx$;
 2. *additively* (p. 109; `AdditiveZeta.tendsto_mul_sphericalSum`): if Weil's unfolding over the spheres holds
    (`SphericalFibration`: $Z^+(s) = \sum_\rho\frac{\tau'_\rho}2Z(s,\rho)$) and the stabilizers have $\tau'_\rho = 2$
@@ -20,7 +20,8 @@ sum $Z(s) = \sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho)$ ((2), p. 102; `Spheric
 Since $\rho_F > 0$ and $\int\Phi > 0$, $\tau(G) = 2$ (`tamagawaNumberTwo_of_sphericalFibration`).
 
 **Corollaries.** The mass formula in rank $n$ (`massFormula`: $\mathrm{Mass}(L) = \mu_{\mathrm{Tam}}(K_{SO})^{-1}$,
-`massFormula_of_sphericalFibration`), and Siegel's formula for numbers (`siegelFormulaAt_of_sphericalFibration`, via `siegelFormulaAt_of_tamagawa`, for $Q_0 = \langle m\rangle\perp Q_0'$ split, with $\tau = 2$ in rank $n - 1$ for $Q_0'$).
+`massFormula_of_sphericalFibration`), and Siegel's formula for numbers (`siegelFormulaAt_of_sphericalFibration`, via the
+`siegelFormulaAt_of_tamagawa`, for $Q_0 = \langle m\rangle\perp Q_0'$ split, with $\tau = 2$ in rank $n - 1$ for $Q_0'$).
 
 **Hypothesis hygiene.** The two inputs are the named structures. Neither mentions $\tau(SO(V))$: `SphericalFibration`
 is an identity between the additive zeta function $Z^+$ (a sum over the classes of the genus with the weights) and the

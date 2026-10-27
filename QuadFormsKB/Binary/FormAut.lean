@@ -7,7 +7,8 @@ For a primitive positive definite form $f$ of fundamental discriminant $D < 0$:
 
 * **Proper automorphisms are units:** $\mathrm{Aut}^+(f) = \mathrm{Aut}(f) \cap \mathrm{SL}_2(\mathbb{Z}) \cong \mathbb{Z}[\omega]^\times$
   (`autSLEquivUnits`), so $|\mathrm{Aut}^+(f)| = w$, the number of roots of unity of $K_D$ (`card_autSL`).
-* **All automorphisms** (the convention of this repository, $\mathrm{Aut} \subseteq \mathrm{GL}_2(\mathbb{Z})$, the repo's `Siegel.Aut`):
+* **All automorphisms** (the library's convention, $\mathrm{Aut} \subseteq \mathrm{GL}_2(\mathbb{Z})$, the repo's
+  `Siegel.Aut`):
   $|\mathrm{Aut}(f)| = 2w$ if $f$ has an improper automorphism, i.e. $f \sim_{\mathrm{SL}} \bar f$, i.e. $[\mathfrak a_f]^2 = 1$
   (`card_aut`, `sLEquiv_conj_iff`), and $|\mathrm{Aut}(f)| = w$ otherwise.
 
@@ -222,7 +223,7 @@ theorem sLEquiv_conj_iff (hD : D < 0) (f : PrimPosForm D) :
   exact ⟨fun h => idealClass_eq_of_sLEquiv (f := f.conj) h, fun h => sLEquiv_of_idealClass_eq hD (f := f.conj) h⟩
 
 open Classical in
-/-- **$|\mathrm{Aut}(f)|$ in $\mathrm{GL}_2(\mathbb{Z})$** ($D < 0$ fundamental, the convention of this repository $\mathrm{Aut} \subseteq
+/-- **$|\mathrm{Aut}(f)|$ in $\mathrm{GL}_2(\mathbb{Z})$** ($D < 0$ fundamental, the library's convention $\mathrm{Aut} \subseteq
 \mathrm{GL}_2(\mathbb{Z})$, the repo's `Siegel.Aut`): $|\mathrm{Aut}(f)| = 2w$ if $f$ has an improper automorphism
 ($\bar f \sim_{\mathrm{SL}} f$, equivalently $[\mathfrak a_f]^2 = 1$ by `sLEquiv_conj_iff`), and $|\mathrm{Aut}(f)| = w$
 otherwise; $w$ = `torsionOrder` $(K_D)$. *Proof:* $\det : \mathrm{Aut}(f) \to \{\pm 1\}$ has kernel $\mathrm{Aut}^+(f)$
@@ -371,8 +372,8 @@ theorem eq_neg_three_or_neg_four (hD : D < 0) (h4 : -4 ≤ D) (hD4 : D % 4 = 0 �
     D = -3 ∨ D = -4 := by omega
 
 /-- **The number of roots of unity of an imaginary quadratic field** ($D < 0$ fundamental):
-$w = 6$ for $D = -3$, $w = 4$ for $D = -4$, $w = 2$ for $D < -4$. (`torsionOrder` was left
-uncomputed in the class number formula file). -/
+$w = 6$ for $D = -3$, $w = 4$ for $D = -4$, $w = 2$ for $D < -4$. Fills the D1 gap (`torsionOrder` was left
+uncomputed there). -/
 @[kb "marcus1977" "Ch. 2, Exercise 13 [unverified locator]"]
 theorem torsionOrder_of_neg (hD : D < 0) :
     NumberField.Units.torsionOrder (QField D) = if D = -3 then 6 else if D = -4 then 4 else 2 := by

@@ -158,7 +158,7 @@ theorem evalIn_gramFormF_col (γ : GL (Fin n) F) (y : Fin n → F) :
 
 /-- **The Gram form** $Q_\gamma \in$ `QuadForm (𝓞 F) n` of an integral free lattice $\gamma\mathcal O_F^n$:
 $Q_\gamma(x) = Q(\gamma x)$ for $x \in \mathcal O_F^n$ (`algebraMap_eval_gramZ`). -/
-@[kb "omeara1963" "§82 [unverified]"]
+@[kb "omeara1963" "§82B, p. 221 (matrix of a free lattice)"]
 def gramZ (γ : GL (Fin n) F) (h : IsIntegral Q (latOf γ)) : QuadForm (𝓞 F) n :=
   QuadForm.ofUpper fun i j => (gramFormF_coeff_mem Q.toQuadraticForm ((isIntegralLattice_iff Q _).mpr h)
     (b := fun j => γ.val *ᵥ Pi.single j 1) (fun j => mulVec_mem_glImage (single_one_mem_intVec j)) i j).choose
@@ -180,7 +180,7 @@ theorem algebraMap_eval_gramZ (γ : GL (Fin n) F) (h : IsIntegral Q (latOf γ)) 
 /-- **Classes of free lattices are classes of forms:** $\gamma\mathcal O_F^n$ and $\delta\mathcal O_F^n$ are isometric in
 $(F^n, Q)$ iff their Gram forms are $\mathrm{GL}_n(\mathcal O_F)$-equivalent, $Q_\delta(Px) = Q_\gamma(x)$ for some
 $P \in \mathrm{GL}_n(\mathcal O_F)$. -/
-@[kb "omeara1963" "§82 [unverified]"]
+@[kb "omeara1963" "§82B, 82:1 (2), p. 222; cassels1978 Ch. 7, §2, p. 103 (forms and lattices); Ch. 11, Lemma 1.1, p. 197"]
 theorem isIsometric_latOf_iff (γ δ : GL (Fin n) F) (hγ : IsIntegral Q (latOf γ))
     (hδ : IsIntegral Q (latOf δ)) :
     IsIsometric Q (latOf γ) (latOf δ) ↔ Siegel.IsometricGL (gramZ Q δ hδ) (gramZ Q γ hγ) := by
@@ -381,7 +381,7 @@ end LocalFree
 the same genus in $(F^n, Q)$ iff the Gram forms $Q_\gamma, Q_\delta$ are in the same genus over $\mathcal O_F$
 (`FormSameGenus`). With `formSameGenus_rat_iff` this identifies the lattice genus over $\mathbb Q$ with
 `Siegel.SameGenus`. -/
-@[kb "omeara1963" "§102 [unverified]"]
+@[kb "omeara1963" "§102A, p. 297; §82B, 82:1, p. 222; cassels1978 Ch. 7, §2, p. 103 (forms and lattices); Ch. 11, Lemma 1.1, p. 197"]
 theorem sameGenus_latOf_iff (γ δ : GL (Fin n) F) (hγ : IsIntegral Q (latOf γ))
     (hδ : IsIntegral Q (latOf δ)) :
     SameGenus Q (latOf γ) (latOf δ) ↔ FormSameGenus (gramZ Q γ hγ) (gramZ Q δ hδ) := by
