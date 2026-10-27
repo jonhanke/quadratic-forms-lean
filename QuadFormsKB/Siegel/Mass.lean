@@ -31,10 +31,14 @@ Field:
 - `finite_classes`: $\{[Q'] : Q' \in \mathrm{Gen}(Q)\}$ is a finite set.
 
 True for every nondegenerate integral form (in particular every positive definite one): Cassels,
-*Rational Quadratic Forms*, Ch. 9, Thm. 1.1 (reduction theory) [unverified]; Conway–Sloane,
-*SPLAG*, Ch. 15 [unverified]. Defined here as a hypothesis; **proved** for every positive definite
+*Rational Quadratic Forms*, Ch. 9, Thm. 1.1, p. 128 (finitely many classes of forms of given dimension and determinant;
+proved in §3, pp. 135–136) and Lemma 4.1, Cor. 1, p. 139 (hence finitely many classes in a genus). Cassels' integral
+forms are classically integral (p. 128); for an integral form $Q$ the form $2Q$ is classically integral with the same
+$\mathrm{GL}_n(\mathbb{Z})$-classes, so his theorem covers $Q$; Conway–Sloane,
+*Sphere Packings, Lattices and Groups*, 3rd ed., Ch. 15, §10.1, p. 397 (the Minkowski reduction inequalities "can be used to show that there
+are only finitely many classes of forms of any given determinant"; a genus has fixed determinant). Defined here as a hypothesis; **proved** for every positive definite
 $Q$ by Hermite reduction in `Siegel/GenusFinite.lean` (`genusFinite`). -/
-@[kb "cassels1978" "Ch. 9, Thm. 1.1, finiteness of the class number [unverified]"]
+@[kb "cassels1978" "Ch. 9, Thm. 1.1, p. 128, and Lemma 4.1, Cor. 1, p. 139"]
 structure GenusFinite (Q : QuadForm ℤ n) : Prop where
   finite_classes : (genusClasses Q).Finite
 
@@ -47,7 +51,7 @@ over $\mathrm{GL}_n(\mathbb{Z})$-classes, with $\mathrm{Aut}(Q') \le \mathrm{GL}
 *Mass formula conventions:* the Smith–Minkowski–Siegel mass formula is usually stated for this
 $\mathrm{GL}$ mass (Conway–Sloane); the $\mathrm{SL}$/proper version differs by a factor $2$ for classes without
 improper automorphisms. See also `AWS.mass` (`mass_eq_aws_mass`). -/
-@[kb "hanke2004" "(4.5), p. 366 (denominator)"]
+@[kb "hanke2004" "(4.5), p. 366 (denominator); cassels1978 Ch. 9, §6, (6.9), p. 146 (weight of a genus; differs by the factor 2)"]
 noncomputable def mass (Q : QuadForm ℤ n) : ℝ :=
   ∑ᶠ c ∈ genusClasses Q, ((c.autCard : ℝ))⁻¹
 

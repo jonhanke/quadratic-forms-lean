@@ -55,6 +55,7 @@ theorem valued_qbil_le_one (hk : k ∉ v.asIdeal) {x y : Fin (m + 1) → Fv} (hx
 include hQ₀ in
 /-- **Local representation by the lattice on $v_0^\perp$ at a good prime** (O'Meara 104:3 step 3): with
 $L = \{y : My \in \mathfrak o_\mathfrak p^{m+1}\}$, every unit is $R(y)$, $y \in L$; every integral $c$ is, if $Q(v_0)$ is a unit. -/
+@[kb "omeara1963" "§104, proof of 104:3, step 3, p. 313"]
 theorem exists_rep_perp_lattice (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hk : k ∉ v.asIdeal)
     (hdet : Q₀.hessian.det ∉ v.asIdeal) (hm : 3 ≤ m) {v₀ : Fin (m + 1) → F}
     {Mb : Matrix (Fin (m + 1)) (Fin m) F} {Nb : Matrix (Fin m) (Fin (m + 1)) F}
@@ -143,6 +144,7 @@ theorem valued_eq_one_of_mul_self {v : HeightOneSpectrum (𝓞 F)} {s : v.adicCo
 
 set_option maxHeartbeats 1600000 in
 /-- **The core of O'Meara 104:3** (after the reductions): $T \ne \emptyset$ contains every bad prime. -/
+@[kb "omeara1963" "§104, proof of 104:3, step 4, pp. 314–315"]
 theorem vecApprox_core (Q : QuadForm F (m + 1)) (hQ : Q.Nondegenerate) (hm : 3 ≤ m) (q₀ : InfinitePlace F)
     (hq₀ : Q.IsotropicIn q₀.Completion) {Q₀ : QuadForm (𝓞 F) (m + 1)} {k : 𝓞 F}
     (hQ₀ : Q₀.map (algebraMap (𝓞 F) F) = (algebraMap (𝓞 F) F k) • Q)
@@ -566,7 +568,7 @@ theorem vecApprox_core (Q : QuadForm F (m + 1)) (hQ : Q.Nondegenerate) (hm : 3 �
 indefinite $Q$ in $n \ge 4$ variables. Reductions: $T = \emptyset$ is trivial ($y = u$); otherwise enlarge $T$ by the bad
 primes (targets $u$, neighbourhoods $\mathfrak o_\mathfrak p^n$), shrink the neighbourhoods to balls, and apply
 `vecApprox_core`. -/
-@[kb "omeara1963" "104:3, PDF pp. 319-323"]
+@[kb "omeara1963" "§104, 104:3, pp. 311–315; cassels1978 Ch. 9, Thm. 1.5, p. 131; Ch. 10, Lemma 7.1, p. 187"]
 theorem vecApprox_of_indefinite {n : ℕ} (Q : QuadForm F n) (hn : 4 ≤ n) (hQ : Q.Nondegenerate)
     (hind : IsIndefinite Q) : VecApprox Q := by
   classical
@@ -610,20 +612,20 @@ theorem vecApprox_of_indefinite {n : ℕ} (Q : QuadForm F n) (hn : 4 ≤ n) (hQ 
     · exact hyout v (by simp [T', hv, hvB])
 
 /-- **The input `VecStrongApproximation F` holds** (O'Meara 104:3; `vecApprox_of_indefinite`). -/
-@[kb "omeara1963" "104:3, PDF pp. 319-323"]
+@[kb "omeara1963" "§104, 104:3, pp. 311–315; cassels1978 Ch. 9, Thm. 1.5, p. 131; Ch. 10, Lemma 7.1, p. 187"]
 theorem vecStrongApproximation : VecStrongApproximation F :=
   ⟨fun Q hn hQ hind _ => vecApprox_of_indefinite Q hn hQ hind⟩
 
 /-- **Strong approximation for rotations, unconditional** (Kneser 1956, Eichler 1952; O'Meara 1973, 104:4–104:5): the
 input `StrongApproximationSpin F` holds for every number field $F$: for nondegenerate indefinite $Q$ in $n \ge 3$
 variables, $O'(V_{\mathbb A_f}) \subseteq O'(V)\,O(\hat L)$ for every lattice $L$. -/
-@[kb "omeara1963" "104:4, 104:5, PDF pp. 323-327"]
+@[kb "omeara1963" "§104, 104:4, p. 315; 104:5, p. 319; cassels1978 Ch. 10, Thm. 7.1, Cor., p. 187"]
 theorem strongApproximationSpin : StrongApproximationSpin F :=
   strongApproximationSpin_of_vecInput vecStrongApproximation
 
 /-- **Eichler's theorem, unconditional** (O'Meara 1973, 104:5): for nondegenerate indefinite $Q$ in $n \ge 3$ variables,
 two lattices in the same spinor genus are isometric. -/
-@[kb "omeara1963" "104:5"]
+@[kb "omeara1963" "§104, 104:5, p. 319; cassels1978 Ch. 11, Thm. 1.4, p. 202"]
 theorem eichler_spinorGenus_eq_class_uncond {n : ℕ} (Q : QuadForm F n) (hn : 3 ≤ n) (hQ : Q.Nondegenerate)
     (hind : IsIndefinite Q) {L M : Lat F n} (h : SameSpinorGenus Q L M) : IsIsometric Q L.1 M.1 :=
   eichler_spinorGenus_eq_class Q strongApproximationSpin hn hQ hind h

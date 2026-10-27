@@ -3,7 +3,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.SL2Approx
 
 /-!
 # Lattices cut out by open subgroups of $\mathbb A_f^\iota$, and their covolume
-
 $F$ any number field, $\iota$ finite. For an open subgroup $U\subseteq\mathbb A_f^\iota$ squeezed between $d\hat{\mathcal O}^\iota$
 (on $F$-points) and $d^{-1}\hat{\mathcal O}^\iota$ ($d\ne0$ an integer), the $F$-points with finite part in $U$ form a
 $\mathbb Z$-lattice $L_U = \{\xi_\infty : \xi\in F^\iota,\ \xi_f\in U\}\subset F_\infty^\iota$ (`adelicLat`):
@@ -18,7 +17,7 @@ $\mathbb Z$-lattice $L_U = \{\xi_\infty : \xi\in F^\iota,\ \xi_f\in U\}\subset F
 This is the adelic input of the twisted Poisson formula for $(\mathbb H\otimes\mathbb A)^\times$ (`QuatPoisson.lean`): the
 twist $x$ changes $U = \hat\Lambda$ into $x^{-1}\hat\Lambda$, and $\mu_f(x^{-1}\hat\Lambda) = \|\operatorname{nrd}x_f\|_f^{-2}\mu_f(\hat\Lambda)$.
 
-**Outside results used**: Mathlib's `IsZLattice`,
+**Outside results used:** Mathlib's `IsZLattice`,
 `ZSpan.fundamentalDomain`, `ZSpan.exist_unique_vadd_mem_fundamentalDomain`, `IsAddFundamentalDomain.measure_eq`,
 `DenseRange.piMap`; the library's `addCovolume_muAddVec` and `denseRange_algebraMap_finiteAdele`.
 -/

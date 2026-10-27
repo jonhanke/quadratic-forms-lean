@@ -19,7 +19,7 @@ $(V, Q) \cong (F^n, Q_e)$ (`coordIsometry`). The coordinate layer (genus, class 
 `Lattices/{Local,Genus,ClassSet,Finite}.lean`; forms over $\mathcal O_F$ and the bridge to the $\mathbb Q$ files are in
 `Lattices/Forms.lean`.
 
-O'Meara 1963, §81–82 [unverified]. *Related work (consulted, not imported):* Tau Ceti's
+O'Meara 1963, §§81–82, pp. 208–238. *Related work (consulted, not imported):* Tau Ceti's
 `IntegralLattice` API and `QuadraticForm/OrthogonalGroup/FiniteAdelic.lean`.
 -/
 import QuadFormsKB.Lattices.Local
@@ -44,11 +44,12 @@ variable {V' : Type*} [AddCommGroup V'] [Module F V'] [Module (𝓞 F) V'] [IsSc
 
 /-- **A nondegenerate quadratic space** $(V, Q)$: the polar bilinear form $B(x,y) = Q(x+y) - Q(x) - Q(y)$ is
 nondegenerate. -/
-@[kb "omeara1963" "§42 (regular space) [unverified]"]
+@[kb "omeara1963" "§42B, p. 91 (regular space)"]
 def IsNondeg (Q : QuadraticForm F V) : Prop := (QuadraticMap.polarBilin Q).Nondegenerate
 
-/-- **Integral lattice:** $Q(x) \in \mathcal O_F$ for all $x \in L$. -/
-@[kb "omeara1963" "§82 [unverified]"]
+/-- **Integral lattice:** $Q(x) \in \mathcal O_F$ for all $x \in L$. In O'Meara's terms this is $\mathfrak nL \subseteq \mathfrak o$
+(§82E, p. 227), weaker than his "integral scale" $\mathfrak sL \subseteq \mathfrak o$ (used in 103:4). -/
+@[kb "omeara1963" "§82E, p. 227 (norm nL ⊆ 𝓞)"]
 def IsIntegralLattice (Q : QuadraticForm F V) (L : Submodule (𝓞 F) V) : Prop :=
   ∀ x ∈ L, Q x ∈ (algebraMap (𝓞 F) F).range
 
@@ -58,8 +59,8 @@ abbrev IsometryEquiv.toOLinear {Q : QuadraticForm F V} {Q' : QuadraticForm F V'}
   σ.toLinearEquiv.toLinearMap.restrictScalars (𝓞 F)
 
 /-- **Isometric lattices** $L \subseteq (V, Q)$, $L' \subseteq (V', Q')$: some isometry $\sigma : (V, Q) \cong (V', Q')$
-carries $L$ onto $L'$ (O'Meara §82 [unverified]). Its equivalence classes are the **classes** $\mathrm{cls}(L)$. -/
-@[kb "omeara1963" "§82, cls L [unverified]"]
+carries $L$ onto $L'$ (O'Meara §82C, p. 222). Its equivalence classes are the **classes** $\mathrm{cls}(L)$. -/
+@[kb "omeara1963" "§82A, p. 220 (isometry of lattices); §82C, p. 222 (cls L)"]
 def IsometricLattices (Q : QuadraticForm F V) (Q' : QuadraticForm F V') (L : Submodule (𝓞 F) V)
     (L' : Submodule (𝓞 F) V') : Prop :=
   ∃ σ : Q.IsometryEquiv Q', L.map (IsometryEquiv.toOLinear σ) = L'
@@ -86,7 +87,7 @@ theorem IsometricLattices.symm {Q : QuadraticForm F V} {Q' : QuadraticForm F V'}
     exact ⟨σ.toLinearEquiv x, ⟨x, hx, rfl⟩, σ.toLinearEquiv.symm_apply_apply x⟩
 
 /-- **The orthogonal group** $O(V) = \{g \in \mathrm{GL}(V) : Q(gx) = Q(x)\}$. -/
-@[kb "omeara1963" "§42 [unverified]"]
+@[kb "omeara1963" "§41A, p. 84 (orthogonal group)"]
 def orthGroupV (Q : QuadraticForm F V) : Subgroup (V ≃ₗ[F] V) where
   carrier := {g | ∀ x, Q (g x) = Q x}
   mul_mem' {a b} ha hb x := by
@@ -99,7 +100,7 @@ def orthGroupV (Q : QuadraticForm F V) : Subgroup (V ≃ₗ[F] V) where
     rw [ha]
 
 /-- **The automorphism group** $O(L) = \{g \in O(V) : gL = L\}$ of a lattice. -/
-@[kb "omeara1963" "§82, O(L) [unverified]"]
+@[kb "omeara1963" "§82C, p. 223 (O(L))"]
 def autLatV (Q : QuadraticForm F V) (L : Submodule (𝓞 F) V) : Subgroup (orthGroupV Q) where
   carrier := {g | L.map ((g : V ≃ₗ[F] V).toLinearMap.restrictScalars (𝓞 F)) = L}
   mul_mem' {a b} ha hb := by
@@ -190,7 +191,7 @@ theorem gramFormF_coeff_mem {L : Submodule (𝓞 F) V} (hL : IsIntegralLattice Q
 /-- **The Gram form of a free integral lattice** with basis $b = (b_0, \dots, b_{n-1})$ (`b : Basis (Fin n) (𝓞 F) L`):
 the form $Q_b \in$ `QuadForm (𝓞 F) n` with $Q_b(x) = Q(\sum_i x_i b_i)$ for $x \in \mathcal O_F^n$
 (`algebraMap_eval_gramForm`). Its Hessian is the Gram matrix $(B(b_i, b_j))_{ij}$ (`hessian_gramForm`). -/
-@[kb "omeara1963" "§82 (matrix of a lattice in a base) [unverified]"]
+@[kb "omeara1963" "§82B, p. 221 (matrix of a free lattice)"]
 def gramForm {L : Submodule (𝓞 F) V} (hL : IsIntegralLattice Q L) (b : Basis (Fin n) (𝓞 F) L) :
     QuadForm (𝓞 F) n :=
   QuadForm.ofUpper fun i j => (gramFormF_coeff_mem Q hL (fun k => (b k).2) i j).choose
@@ -205,7 +206,7 @@ theorem gramForm_map {L : Submodule (𝓞 F) V} (hL : IsIntegralLattice Q L)
   · rw [map_zero, (gramFormF Q _).upper (show j < i from not_le.mp h)]
 
 /-- **The Gram form evaluates to $Q$:** $Q_b(x) = Q(\sum_i x_i b_i)$ in $F$, for $x \in \mathcal O_F^n$. -/
-@[kb "omeara1963" "§82 [unverified]"]
+@[kb "omeara1963" "§82B, p. 221"]
 theorem algebraMap_eval_gramForm {L : Submodule (𝓞 F) V} (hL : IsIntegralLattice Q L)
     (b : Basis (Fin n) (𝓞 F) L) (x : Fin n → 𝓞 F) :
     algebraMap (𝓞 F) F ((gramForm Q hL b).eval x) = Q (∑ i, x i • (b i : V)) := by
@@ -214,7 +215,7 @@ theorem algebraMap_eval_gramForm {L : Submodule (𝓞 F) V} (hL : IsIntegralLatt
 
 /-- **The Hessian of the Gram form is the Gram matrix** $(B(b_i, b_j))_{ij}$ of the polar form
 $B(x, y) = Q(x+y) - Q(x) - Q(y)$. -/
-@[kb "omeara1963" "§82 [unverified]"]
+@[kb "omeara1963" "§82B, p. 221"]
 theorem hessian_gramForm {L : Submodule (𝓞 F) V} (hL : IsIntegralLattice Q L)
     (b : Basis (Fin n) (𝓞 F) L) (i j : Fin n) :
     algebraMap (𝓞 F) F ((gramForm Q hL b).hessian i j) = QuadraticMap.polar Q (b i : V) (b j : V) := by
@@ -258,7 +259,7 @@ def coordForm (Q : QuadraticForm F V) (e : Basis (Fin n) F V) : QuadForm F n :=
 
 /-- **Every quadratic space is isometric to a coordinate model:** $(V, Q) \cong (F^n, Q_e)$ via $x \mapsto$ the
 coordinates of $x$ in the basis $e$. -/
-@[kb "omeara1963" "§41 [unverified]"]
+@[kb "omeara1963" "§41B, p. 85 (matrix of a quadratic space; V ≅ ⟨M⟩)"]
 def coordIsometry (Q : QuadraticForm F V) (e : Basis (Fin n) F V) :
     Q.IsometryEquiv (coordForm Q e).toQuadraticForm where
   toLinearEquiv := e.equivFun

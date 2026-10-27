@@ -109,7 +109,7 @@ theorem localDensity_Q4_two_of_not_four_dvd (m : ℤ) (hm : ¬ (4 : ℤ) ∣ m) 
   simp only [hm', ↓reduceIte, zero_add]
 
 /-- **The recursion at $p = 2$:** $\beta_2(4T) = \beta_2(T)/4 + r^{\ne 0}_8(4T)/2^9$ for $T \ne 0$ (Zero part by the map
-$\pi_Z$). *Update* (`docs/updates-and-errata.md`): so, contrary to the AWS notes, p. 38, the solutions mod 8 do not
+$\pi_Z$). *Update:* so, contrary to the AWS notes, p. 38, the solutions mod 8 do not
 determine $\beta_2(m)$ when $4 \mid m$ (e.g. $\beta_2(8) = 3/8$, while $r^{\ne 0}_8(8) = 0$). -/
 theorem localDensity_Q4_two_four_mul (T : ℤ) (hT : T ≠ 0) :
     localDensity AWS.Q4 2 (4 * T) = localDensity AWS.Q4 2 T / 4 +
@@ -157,7 +157,7 @@ theorem localDensity_Q4_two_pow_mul (a : ℕ) (u : ℤ) (hu : Odd u) :
 
 /-- **Local density of $x_0^2 + \dots + x_3^2$ at $p = 2$** (all $m \ge 1$): with $\nu = \mathrm{ord}_2(m)$,
 $$\beta_2(m) = \begin{cases} 1 & m \text{ odd},\\ 3/2^{\nu} & m \text{ even}.\end{cases}$$
-*Update* (`docs/updates-and-errata.md`): the AWS notes' Lemma 2.7.6 gives only $\nu \le 1$. -/
+*Update:* the AWS notes' Lemma 2.7.6 gives only $\nu \le 1$. -/
 @[kb "hanke2011aws" "§2.7.5, Lemma 2.7.6, p. 39 (extended to even m)"]
 theorem localDensity_Q4_two_nat (m : ℕ) (hm : m ≠ 0) :
     localDensity AWS.Q4 2 m =
@@ -235,7 +235,7 @@ theorem localDensity_Q4_odd_pow_mul (hp : p ≠ 2) (a : ℕ) (u : ℤ) (hu : ¬ 
 
 /-- **Local density of $x_0^2 + \dots + x_3^2$ at an odd prime $p$** (all $m \ge 1$): with $\nu = \mathrm{ord}_p(m)$,
 $$\beta_p(m) = \Bigl(1 - \frac1{p^2}\Bigr)\Bigl(1 + \frac1p + \dots + \frac1{p^{\nu}}\Bigr).$$
-For $\nu \le 1$ this is the AWS notes' Lemma 2.7.4. *Update* (`docs/updates-and-errata.md`): the notes give only
+For $\nu \le 1$ this is the AWS notes' Lemma 2.7.4. *Update:* the notes give only
 $\nu \le 1$. -/
 @[kb "hanke2011aws" "§2.7.4, Lemma 2.7.4, p. 38 (extended to all m)"]
 theorem localDensity_Q4_odd (hp : p ≠ 2) (m : ℕ) (hm : m ≠ 0) :

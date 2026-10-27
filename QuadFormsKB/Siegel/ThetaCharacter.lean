@@ -1,5 +1,5 @@
 /-
-# The character of an even-rank form, modulo the level (stage B)
+# The character of an even-rank form, modulo the level
 
 Let $Q$ be a positive definite integral form in $n = 2k$ variables with Hessian $H$, level $N = N_Q$ (`level`), and
 $\Delta = (-1)^k\det H$ (`disc`, equal to `thetaDisc Q k`). Two value functions for "the" character existed before this
@@ -200,7 +200,7 @@ theorem changeLevel_chiCharLevel {Q : IntQF n} (hQ : Q.PosDef) {k : ℕ} (hn : n
     · exact ho
   rw [hcast, chiCharLevel_intCast_eq_chi hQ hn hco hodd rfl]
 
-/-- **$\chi_Q$ is periodic modulo $N_Q$** (item 3; for positive definite $Q$, $n$ even): $\chi_Q(b) = \chi_Q(b')$ for odd
+/-- **$\chi_Q$ is periodic modulo $N_Q$** (for positive definite $Q$, $n$ even): $\chi_Q(b) = \chi_Q(b')$ for odd
 $b, b' \ge 1$ with $b \equiv b' \pmod{N_Q}$. Strengthens `chi_eq_of_modEq` (modulo $4N_Q$). If $\gcd(b, N_Q) > 1$ both
 sides are $0$: a common prime of $b$ and $N_Q$ divides $\Delta$ (`prime_dvd_level_iff`). -/
 @[kb "hanke2004" "p. 357 (the character for even n, mod N) [unverified]"]

@@ -4,9 +4,9 @@ import QuadFormsKB.Tamagawa.TernaryTamagawaNF
 /-!
 # Rank-4 Siegel for the number $m_0$ from $\tau(SO_3) = \tau(SO_4) = 2$
 
-**Layer:** a totally real number field $F$, **any class number**; `tauSO`, `SiegelFormulaAt`.
+**Layer:** a totally real number field $F$, **any class number**; the `tauSO`, the `SiegelFormulaAt`.
 
-The step (`tamagawaNumberTwo_four_of_three_of_siegel`, `tamagawaNumberTwo_three_of_four_of_siegel`) uses three facts
+the step (`tamagawaNumberTwo_four_of_three_of_siegel`, `tamagawaNumberTwo_three_of_four_of_siegel`) uses three facts
 about the split lattice $L = \mathcal O_Fe_0\perp L'$, $Q(e_0) = m_0$:
 $\mathrm{repMass}(L, m_0) = \mathrm{Mass}(L')\,W$ (the reduction), $W\mu(K_{SO}(L)) = \mu(K_{SO}(L'))\,S(L, m_0)$ (the local orbital
 identity, proved at every prime, and the archimedean identity) and Siegel's formula $\mathrm{repMass}(L, m_0) = \mathrm{Mass}(L)S(L, m_0)$.
@@ -19,7 +19,7 @@ Any two of "Siegel", "$\tau(L') = 2$", "$\tau(L) = 2$" give the third. This file
 * consumers: `tamagawaNumberTwo_all_ranks_of_quaternary_nf`, `massFormula_all_ranks_of_quaternary_nf`,
   `siegelFormulaAt_all_ranks_of_quaternary_nf`, `siegelFormulaAt_four_of_quaternary_nf` (rank-4 Siegel for every $m_0\gg0$).
 
-This is the route to `RankFourUnitSiegel F` via $m = 4$ and $\tau(SO_4) = 2$: the remaining content is
+This is the route to `RankFourUnitSiegel F` ("via $m = 4$ and $\tau(SO_4) = 2$"): the remaining content is
 $\tau(SO_4) = 2$ for definite quaternary forms, i.e. Weil's adelic theorem for $m = 4$ (`Measure/Weil/GnatTamagawa*.lean`).
 
 Sources: Weil 1982, §3.7, Thm 3.7.1, p. 65 ($m = 3, 4$) and §4.5, p. 100 (Siegel's theorem as a consequence of $\tau = 2$);
@@ -38,7 +38,8 @@ open Lattices QuadForm HilbertModular
 
 variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
 
-/-- **Siegel's formula for the number $m_0$ in rank $4$ from $\tau(SO_3) = 2$ and $\tau(SO_4) = 2$** (the third direction of the step; no PID, no degree hypothesis): for $m_0\gg0$ and $Q_0'$ ternary with $\langle m_0\rangle\perp Q_0'$ totally positive definite and
+/-- **Siegel's formula for the number $m_0$ in rank $4$ from $\tau(SO_3) = 2$ and $\tau(SO_4) = 2$** (the third direction of the
+step; no PID, no degree hypothesis): for $m_0\gg0$ and $Q_0'$ ternary with $\langle m_0\rangle\perp Q_0'$ totally positive definite and
 $\mathcal O_F^4$ integral,
 $\tau(SO(Q_0')) = 2\ \wedge\ \tau(SO(\langle m_0\rangle\perp Q_0')) = 2\ \Longrightarrow\ \mathrm{repMass}(L, m_0) = \mathrm{Mass}(L)\,S(L, m_0)$.
 

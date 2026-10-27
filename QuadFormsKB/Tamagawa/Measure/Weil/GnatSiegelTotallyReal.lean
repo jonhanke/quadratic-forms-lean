@@ -3,10 +3,10 @@
 
 **Layer:** $F$ a totally real number field (any degree, any class number).
 
-With `nsBadDeepRatio : NSBadDeepRatio F` (the window argument, `GnatNSWinFinal`), every remaining input is
-discharged:
+With `nsBadDeepRatio : NSBadDeepRatio F` (the window argument, `GnatNSWinFinal`), every input of the
+non-square comparison is discharged:
 
-* **`nsBadPlaceRatio`**: `NSBadPlaceRatio F` (`nsBadPlaceRatio_of_deep`);
+* **`nsBadPlaceRatio`**: `NSBadPlaceRatio F` (via `nsBadPlaceRatio_of_deep`);
 * **`gnatMeasureComparisonNS`**, **`gnatMeasureComparisonDef`**, **`gnatTamagawaComparisonDef`**: Weil's Thm 2.3.1 for
   $G^\natural\to SO_4$ (non-square and square discriminants);
 * **`quaternaryTamagawaTwo_nf'`**: $\tau(SO_4) = 2$; **`rankFourUnitSiegel_nf`**: `RankFourUnitSiegel F`;

@@ -3,12 +3,11 @@ import QuadFormsKB.Tamagawa.Measure.NeatCovolume
 
 /-!
 # Generic measure transport for Tamagawa covolumes
-
 **Generic (Mathlib-only hypotheses).** Weil compares Tamagawa numbers of isomorphic groups (e.g. $SO(D^0)\cong PD^\times$,
 AAG Thm 2.3.1 and §3.2) by transporting measures: an isomorphism $G \cong G'$ defined over $k$ induces a topological group
 isomorphism $\varphi : G(\mathbb A)\to G'(\mathbb A)$ carrying $G(k)$ onto $G'(k)$; at each place the local Tamagawa measures
 correspond up to a factor $r_v$, and $\prod_v r_v = 1$ by the product formula. This file proves the abstract statements, so
-that the isomorphism $SO(D^0)\cong PD^\times$ and other applications can reuse them.
+that the comparisons of Tamagawa numbers (e.g. $SO(D^0)\cong PD^\times$) can reuse them.
 
 * `covolume_eq_of_map` : a measurable group isomorphism $\varphi$ with $\varphi(\Gamma) = \Gamma'$ and $\varphi_*\mu = \mu'$
   preserves covolumes: $\mathrm{covol}(\Gamma, G, \mu) = \mathrm{covol}(\Gamma', G', \mu')$.

@@ -55,7 +55,7 @@ variable {F : Type*} [Field F] [NumberField F] {N : ℕ} (Q : QuadForm F N)
 
 /-- **The representation number** $r_M(m) = \#\{v \in M : Q(v) = m\}$ of $m \in F$ by the lattice $M$ (a `Nat.card`;
 finite for totally positive definite $Q$ and integral $M$, `finite_repSet`). -/
-@[kb "omeara1963" "§102 (representations) [unverified]"]
+@[kb "omeara1963" "§82A, p. 220"]
 def repCount (M : Lat F N) (m : F) : ℕ := Nat.card {v : Fin N → F // v ∈ M.1 ∧ Q.eval v = m}
 
 theorem eval_mulVec_of_mem {γ : GL (Fin N) F} (hγ : γ ∈ orthGroup Q F) (v : Fin N → F) :
@@ -89,7 +89,8 @@ def LatClass.repCount (c : LatClass Q) (m : F) : ℕ :=
 
 /-- **The weighted representation number of the genus of $L$:**
 $$\mathrm{repMass}(L, m) = \sum_{\mathrm{cls}(M) \subseteq \mathrm{gen}(L)}\frac{r_M(m)}{|O(M)|},$$
-a `finsum` over the classes in the genus, $O(M)$ including improper automorphisms (the convention of this repository). Siegel's genus
+a `finsum` over the classes in the genus, $O(M)$ including improper automorphisms (the library's convention).
+Siegel's genus
 average is $r_{\mathrm{gen}}(L, m) = \mathrm{repMass}(L,m)/\mathrm{Mass}(L)$ (Siegel 1935 [unverified]; for
 $F = \mathbb Q$ and forms, `Siegel.genusRepAvg`). -/
 @[kb "siegel1935" "§1 (genus average) [unverified]"]

@@ -10,8 +10,8 @@ $= \langle -a,-b,ab\rangle$ (the norm form on $D^0$). `covolume_pd_eq_covolume_m
 between Weil's quotient measure on $PD^\times(F_v) = D_v^\times/F_v^\times$ and `muLocSO v Q₀ 1` with
 $\prod_v r_v = 1$. At a good place ($v \nmid 2ab$, $\mathrm{vol}(\mathfrak o_v) = 1$) the image of $\Lambda_v^\times$ is
 $SO(L_v)$ (`exists_smul_mem_lamLocUnits`, `conjOrth_mem_stdStab`), the quotient measure gives it
-$\lambda_v^{-1}\omega_v(\Lambda_v^\times)/\lambda_v^{-1}\omega_v(\mathfrak o_v^\times) = $ `quatLocalFactor a b v` $/ 1$
-, and the gauge-form volume is $\mu_v(SO(L_v)) = 1 - q^{-2}$ (`muLocSO_soStabSO_ternary`). So:
+$\lambda_v^{-1}\omega_v(\Lambda_v^\times)/\lambda_v^{-1}\omega_v(\mathfrak o_v^\times) = $ `quatLocalFactor a b v`
+$/ 1$, and the gauge-form volume is $\mu_v(SO(L_v)) = 1 - q^{-2}$ (`muLocSO_soStabSO_ternary`). So:
 
 * **`eventually_muLocSO_soStabSO_eq_quatLocalFactor`**: for all but finitely many $v$,
   $\mu_v(SO(L_v)) = \lambda_v^{-1}\omega_v(\Lambda_v^\times)$, i.e. $r_v = 1$.
@@ -46,7 +46,7 @@ theorem valued_algebraMap_le_one (x : 𝓞 F) (v : HeightOneSpectrum (𝓞 F)) :
   rw [hval, show (x : F) = algebraMap (𝓞 F) F x from rfl, HeightOneSpectrum.valuation_of_algebraMap]
   exact v.intValuation_le_one x
 
-/-- **The good-place local ratios are $1$** (at almost every place): for all but finitely many
+/-- **The good-place local ratios are $1$** (the gap, item 2, at almost every place): for all but finitely many
 finite places $v$,
 $$\mu_v(SO(L_v)) = \lambda_v^{-1}\omega_v(\Lambda_v^\times) = 1 - N(v)^{-2},$$
 where $\mu_v$ = `muLocSO v Q₀ 1` is the gauge-form measure on $SO(D^0)(F_v)$ (`LerayPadic.lerayApprox_eventually_eq`),

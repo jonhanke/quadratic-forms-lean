@@ -1,5 +1,5 @@
 /-
-# The $SO$ side: local volumes for $\langle1,-a,-b,ab\rangle$ and $\langle-a,-b,ab\rangle$
+# Local volumes for $\langle1,-a,-b,ab\rangle$ and $\langle-a,-b,ab\rangle$
 
 **Layer:** a number field $F$, a finite place $v$, $a, b\in\mathcal O_F\setminus0$.
 

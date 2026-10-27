@@ -4,7 +4,8 @@
 **Layer:** a number field $F$ (totally real for compactness), a nondegenerate $Q_0$ over $\mathcal O_F$, a finite set $S$ of
 finite places and levels $m_v$.
 
-* `boxSub`: $\prod_{v\in S}K_{m_v}\times\prod_{v\notin S}SO(L_v)$ as a subgroup of $SO(V)(\mathbb A_f)$, equal to `boxSO Q₀ S K_m` (`coe_boxSub`); it is open (hence closed) and contained in $SO(\hat L)$, hence compact.
+* `boxSub`: $\prod_{v\in S}K_{m_v}\times\prod_{v\notin S}SO(L_v)$ as a subgroup of $SO(V)(\mathbb A_f)$, equal to
+  `boxSO Q₀ S K_m` (`coe_boxSub`); it is open (hence closed) and contained in $SO(\hat L)$, hence compact.
 * For $Q_0 = \langle1,-a,-b,ab\rangle$ totally definite: `boxK S m` $= G_\infty\times\mathrm{box}$ is compact, open and nonempty.
 -/
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatSqArch

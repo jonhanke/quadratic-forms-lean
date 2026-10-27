@@ -10,7 +10,7 @@ $F_v \supseteq \mathfrak o_v$, and $D_v = (a,b)_{F_v}$.
   of its image), an $\mathfrak o_v$-order of $D_v$ (`isOrder_localOrder`); an $\mathcal O_F$-basis of $\mathcal O$ is an $\mathfrak o_v$-basis
   of $\mathcal O_v$ and an $F_v$-basis of $D_v$ (`linearIndependent_complHom_basis`, `mem_localOrder_iff`).
 * **`isMaximalOrder_localOrder`**: if $\mathcal O$ is maximal then so is every completion $\mathcal O_v$ (Voight Lemma 10.4.3).
-* **`localOrder_eq_valOrder`** (ramified $v$): $\mathcal O_v = \{x \in D_v : \operatorname{nrd}x \in \mathfrak o_v\}$ (`valOrder`).
+* **`localOrder_eq_valOrder`** (ramified $v$): $\mathcal O_v = \{x \in D_v : \operatorname{nrd}x \in \mathfrak o_v\}$ (the `valOrder`).
 * **`exists_algEquiv_localOrder_eq_matOrder`** (split $v$): there is an $F_v$-algebra isomorphism $\varphi : D_v \cong M_2(F_v)$ with
   $\varphi(\mathcal O_v) = M_2(\mathfrak o_v)$.
 * `henselianLocalRing_adicCompletionIntegers`: $\mathfrak o_v$ is Henselian (it is complete).

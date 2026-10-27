@@ -39,7 +39,7 @@ instance : CharZero (v.adicCompletion K) :=
   charZero_of_injective_algebraMap (algebraMap K (v.adicCompletion K)).injective
 
 /-- **Local square theorem:** in $K_v$, if $v(x - 1) < v(4)$ then $x$ is a square. -/
-@[kb "omeara1963" "§63:1 (local square theorem) [unverified]"]
+@[kb "omeara1963" "§63A, 63:1 and 63:1a, p. 159 (Local Square Theorem); cassels1978 Ch. 3, Lemma 1.6, p. 40"]
 theorem isSquare_of_valued_sub_one_lt (x : Kv) (hx : Valued.v (x - 1) < Valued.v (4 : Kv)) :
     IsSquare x := by
   have h2K : (2 : Kv) ≠ 0 := two_ne_zero
@@ -106,6 +106,7 @@ lemma valued_eq_one_of_sub_le {x : Kv} {n : ℕ} (hx : Valued.v (x - 1) ≤ exp 
   rw [this, Valuation.map_add_eq_of_lt_left _ hlt, map_one]
 
 /-- The higher unit group $U^{(n+1)} = \{x : v(x - 1) \le \exp(-(n+1))\}$ of $K_v^\times$. -/
+@[kb "omeara1963" "§63A, p. 162 (the groups 1 + 𝔭ʳ)"]
 def Ufil (n : ℕ) : Subgroup Kvˣ where
   carrier := {x | Valued.v ((x : Kv) - 1) ≤ exp (-((n : ℤ) + 1))}
   one_mem' := by simp
@@ -293,7 +294,7 @@ lemma ψ_surjective (m n : ℕ) (hnm : n ≤ m + 1) : Function.Surjective (ψ v 
   rw [ht, hz]; rfl
 
 /-- **$[U^{(m+1)} : U^{(m+n+1)}] = |\mathcal O_v/\varpi^n|$** for $n \le m + 1$. -/
-@[kb "neukirch1999" "Ch. II, Prop. 3.10 [unverified]"]
+@[kb "neukirch1999" "Ch. II, Prop. 3.10 [unverified]; omeara1963 §63A, 63:8 (1), p. 163"]
 theorem relIndex_Ufil (m n : ℕ) (hnm : n ≤ m + 1) :
     (Ufil v (m + n)).relIndex (Ufil v m) = Nat.card (Ov ⧸ Ideal.span {ϖO v ^ n}) := by
   rw [Subgroup.relIndex, ← ψ_ker v m n hnm, Subgroup.index_ker,
@@ -491,6 +492,7 @@ lemma relIndex_Ufil_ne_zero (n : ℕ) : (Ufil v n).relIndex (U0 v) ≠ 0 := by
 def ordTwo : ℕ := multiplicity v.asIdeal (Ideal.span {(2 : 𝓞 K)})
 
 /-- $v(2) = \exp(-e)$. -/
+@[kb "omeara1963" "§63, p. 159 (dyadic if and only if 0 < |2| < 1)"]
 lemma valued_two : Valued.v (2 : Kv) = exp (-(ordTwo v : ℤ)) := by
   have h2 : (2 : 𝓞 K) ≠ 0 := two_ne_zero
   have : (2 : Kv) = algebraMap K Kv (algebraMap (𝓞 K) K 2) := by rw [map_ofNat, map_ofNat]
@@ -551,13 +553,14 @@ lemma sq_mem_Ufil_iff (y : Kvˣ) :
 
 
 /-- Relative index in a range is the index of the preimage. -/
+@[kb "omeara1963" "§63A, 63:7, p. 162"]
 lemma relIndex_range_eq_index_comap_mul {G H : Type*} [Group G] [Group H] (f : G →* H)
     (A : Subgroup H) : A.relIndex f.range = (A.comap f).index := by
   rw [Subgroup.relIndex, ← Subgroup.index_comap_of_surjective _ f.rangeRestrict_surjective]
   congr 1
 
 /-- **Squares in the units:** $[\mathcal O_v^\times : \mathcal O_v^{\times 2}] = 2\,(N\mathfrak p)^{e}$, $e = \operatorname{ord}_v 2$. -/
-@[kb "milne2020cft" "Ch. VII, Prop. 6.8 (n = 2) [unverified]"]
+@[kb "milne2020cft" "Ch. VII, Prop. 6.8 (n = 2) [unverified]; omeara1963 §63A, 63:9, p. 163 (the middle term 2(𝔲 : 𝔲²))"]
 theorem index_sq_U0 :
     (powMonoidHom 2 : U0 v →* U0 v).range.index = 2 * Ideal.absNorm v.asIdeal ^ ordTwo v := by
   classical
@@ -701,7 +704,7 @@ lemma mem_sq_sup_U0_iff (x : Kvˣ) :
 
 /-- **Square classes of a completion:** $[K_v^\times : K_v^{\times 2}] = 4\,(N\mathfrak p)^{e}$ with
 $e = \operatorname{ord}_v 2$ (so $= 4$ when $v \nmid 2$). -/
-@[kb "milne2020cft" "Ch. VII, Prop. 6.8 (n = 2) [unverified]"]
+@[kb "milne2020cft" "Ch. VII, Prop. 6.8 (n = 2) [unverified]; omeara1963 §63A, 63:9, p. 163"]
 theorem index_sq_completion :
     (powMonoidHom 2 : Kvˣ →* Kvˣ).range.index = 4 * Ideal.absNorm v.asIdeal ^ ordTwo v := by
   classical

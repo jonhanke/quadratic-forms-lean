@@ -89,7 +89,7 @@ lemma eval_map_eq_qv (Q : QuadForm (𝓞 F) n) (x : Fin n → F) :
 /-- **Total positivity per place from total positive definiteness on $F^n$**: if $Q \otimes F$ is totally positive definite
 (`QuadFormsKB.Lattices.IsTotallyPosDef`), then $\varphi_v(A)$ is positive definite at every real place (`IsTotPosGram`), the hypothesis
 of the theta series over $F$. -/
-@[kb "omeara1963" "§61 (positive definite forms over totally real fields) [unverified]"]
+@[kb "omeara1963" "§61A, p. 154 (positive definite space over a real field)"]
 theorem isTotPosGram_of_isTotallyPosDef {Q : QuadForm (𝓞 F) n}
     (hQ : QuadFormsKB.Lattices.IsTotallyPosDef (Q.map (algebraMap (𝓞 F) F))) :
     IsTotPosGram (gramF Q) := by

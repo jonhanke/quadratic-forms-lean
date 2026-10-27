@@ -21,7 +21,7 @@ $Q(w) = 0$, so $w = 0$.
 * `QuadraticForm.exists_isometryEquiv_extend_of_associated` (**characteristic $\neq 2$**): if the
   associated symmetric bilinear form $\tfrac12 b$ (`QuadraticMap.associated`) is nondegenerate,
   every injective isometric embedding extends. (Lam Ch. I §4, Scharlau Ch. 1 Thm 5.3,
-  O'Meara 42:17 [locators unverified].)
+  O'Meara 42:17, p. 98; Lam and Scharlau locators unverified.)
 * `QuadraticForm.exists_isometryEquiv_extend_of_nondegenerate'`: EKM's `QuadraticMap.Nondegenerate`
   (Mathlib's formalization of EKM §7: quadratic radical $0$ and $\dim \operatorname{rad} b \le 1$).
 
@@ -51,7 +51,8 @@ $x \mapsto y$. Put $z = x - y$; then $b(z, W_0) = 0$ and $b(z, x) = Q(z)$.
    hyperbolic partner $z' \perp W_0$; scaling the pair $(z, z')$ by $(c - 1)/c$ fixes $W_0$ and
    sends $x \mapsto y$.
 
-**Related work.** Tau Ceti (the Lean formalization project) contains a Witt theorem; this is an independent rewrite, nothing is imported or copied.
+**Related work.** Tau Ceti (the Lean formalization project) contains a Witt theorem; this is an
+independent rewrite, nothing is imported or copied.
 
 Sources: EKM Thm 8.3 (extension, all characteristics), §7 (radicals); Lam Ch. I §4; Scharlau
 Ch. 1 Thm 5.3; O'Meara 42:16–42:17.
@@ -232,7 +233,7 @@ Then there is an isometry $\rho : (V, Q) \to (V, Q)$ with $\rho(w) = \sigma(w)$ 
 
 Both hypotheses are necessary: isometries of $V$ preserve $\operatorname{rad} b$, and see the
 module docstring for a counterexample when the quadratic radical is nonzero. -/
-@[kb "ekm2008" "Thm 8.3"]
+@[kb "ekm2008" "Thm 8.3; cassels1978 Ch. 2, Thm. 4.1, p. 21 (Witt)"]
 theorem exists_isometryEquiv_extend [FiniteDimensional K V] (hQ : Q.radical = ⊥)
     {W : Submodule K V} (σ : W →ₗ[K] V) (hσ : ∀ w, Q (σ w) = Q w)
     (hσR : ∀ w : W, σ w ∈ LinearMap.ker (polarBilin Q) ↔ (w : V) ∈ LinearMap.ker (polarBilin Q)) :
@@ -266,7 +267,7 @@ If the polar form $b(x, y) = Q(x + y) - Q(x) - Q(y)$ of $Q$ is nondegenerate
 (`(QuadraticMap.polarBilin Q).Nondegenerate`; in characteristic $2$ this forces $\dim V$ even) and
 $\sigma : W \to V$ is an **injective** linear map on a subspace $W$ with $Q(\sigma w) = Q(w)$, then
 $\sigma$ extends to an isometry of $(V, Q)$. -/
-@[kb "ekm2008" "Thm 8.3 (nonsingular case)"]
+@[kb "ekm2008" "Thm 8.3 (nonsingular case); omeara1963 §42F, 42:17, p. 98 (Witt's theorem)"]
 theorem exists_isometryEquiv_extend_of_nondegenerate [FiniteDimensional K V]
     (hQ : (polarBilin Q).Nondegenerate) {W : Submodule K V} (σ : W →ₗ[K] V)
     (hσi : Function.Injective σ) (hσ : ∀ w, Q (σ w) = Q w) :
@@ -282,7 +283,7 @@ If $2$ is invertible in $K$ and the associated symmetric bilinear form
 $B(x, y) = \tfrac12\big(Q(x + y) - Q(x) - Q(y)\big)$ (`QuadraticMap.associated Q`) is
 nondegenerate, then every injective linear map $\sigma : W \to V$ on a subspace $W$ with
 $Q(\sigma w) = Q(w)$ extends to an isometry of $(V, Q)$. -/
-@[kb "scharlau1985" "Ch. 1, Thm 5.3"]
+@[kb "scharlau1985" "Ch. 1, Thm 5.3; omeara1963 §42F, 42:17, p. 98 (Witt's theorem)"]
 theorem exists_isometryEquiv_extend_of_associated [FiniteDimensional K V] [Invertible (2 : K)]
     (hQ : (associated Q).Nondegenerate) {W : Submodule K V} (σ : W →ₗ[K] V)
     (hσi : Function.Injective σ) (hσ : ∀ w, Q (σ w) = Q w) :
@@ -318,7 +319,7 @@ theorem exists_isometryEquiv_apply_eq [FiniteDimensional K V] (hQ : Q.radical = 
 /-- **$O(V)$ is transitive on each level set $\{v : Q(v) = a\}$, $a \neq 0$** (nonsingular forms,
 every characteristic): if $b$ is nondegenerate and $Q(v) = Q(w) = a \neq 0$, some isometry
 $\rho$ of $V$ has $\rho(v) = w$. (In characteristic $\ne 2$: Lam Ch. I §4; O'Meara 42:17.) -/
-@[kb "ekm2008" "Thm 8.3 (nonsingular case)"]
+@[kb "ekm2008" "Thm 8.3 (nonsingular case); omeara1963 §42F, 42:17, p. 98 (Witt's theorem)"]
 theorem exists_isometryEquiv_apply_eq_of_nondegenerate [FiniteDimensional K V]
     (hQ : (polarBilin Q).Nondegenerate) {a : K} (ha : a ≠ 0) {v w : V} (hv : Q v = a)
     (hw : Q w = a) : ∃ ρ : Q.IsometryEquiv Q, ρ v = w := by

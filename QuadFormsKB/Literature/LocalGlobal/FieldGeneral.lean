@@ -49,7 +49,7 @@ reindex it by `finCongr (Module.finrank_fin_fun F)`, set $a_i = Q(\vec{v}_i)$, t
 basis matrix as $P$, and get $a_i \ne 0$ from `Matrix.exists_vecMul_eq_zero_iff` and
 `QuadForm.polar_eq_hessian`. The proof of `HM3.exists_isometric_diag` does exactly this with
 $\mathbb{Q}$ in place of $F$ and can be followed line by line. -/
-@[kb "lam2005" "Ch. I, Cor. 2.4 [unverified]"]
+@[kb "lam2005" "Ch. I, Cor. 2.4 [unverified]; cassels1978 Ch. 2, Lemma 1.4, p. 13 (normal basis)"]
 theorem exists_isometric_diag (Q : QuadForm F n) (hQ : Q.Nondegenerate) :
     ∃ a : Fin n → F, (∀ i, a i ≠ 0) ∧ Q.IsometricIn F (QuadForm.diag a) := by
   classical
@@ -238,7 +238,7 @@ theorem isotropic_diag_two_iff (K : Type*) [Field K] [Algebra F K] (a b : F) (ha
 $\langle a_0, a_1, a_2 \rangle$ is isotropic over $K$ iff
 $\left(-\tfrac{a_1}{a_0}, -\tfrac{a_2}{a_0}\right)_K = 1$, the Hilbert symbol computed over $K$.
 (The $F = \mathbb{Q}$ case is `HM3.isotropic_diag_three_iff`.) -/
-@[kb "serre1973" "Ch. IV §2.2, Thm. 6 [unverified]"]
+@[kb "serre1973" "Ch. IV §2.2, Thm. 6 [unverified]; cassels1978 Ch. 4, Lemma 2.5, p. 59"]
 theorem isotropic_diag_three_iff (K : Type*) [Field K] [Algebra F K] (a₀ a₁ a₂ : F)
     (h₀ : a₀ ≠ 0) (h₁ : a₁ ≠ 0) (h₂ : a₂ ≠ 0) :
     (QuadForm.diag ![a₀, a₁, a₂]).IsotropicIn K ↔
@@ -578,7 +578,7 @@ $\langle a_0, a_1 \rangle$ represents some $t \in F^\times$ over $F$ and
 $\langle t, a_2, \dots, a_{m+1} \rangle$ is isotropic over $F$ (so $\langle a_2, \dots, a_{m+1} \rangle$
 represents $-t$, or is itself isotropic), then $\langle a_0, \dots, a_{m+1} \rangle$ is isotropic over $F$.
 
-*Correction.* An earlier version was stated with $\langle -t, a_2, \dots \rangle$, which is
+*Correction (llmprove).* This was first stated with $\langle -t, a_2, \dots \rangle$, which is
 false: over $\mathbb{Q}$, $a = (1,1,1)$ and $t = 1$ satisfy that hypothesis, yet $\langle 1,1,1 \rangle$
 is anisotropic. -/
 @[kb "lam2005" "Ch. VI, proof of Thm. 3.1 [unverified]"]

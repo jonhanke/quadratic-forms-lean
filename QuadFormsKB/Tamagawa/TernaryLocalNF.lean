@@ -2,15 +2,18 @@
 # The trace-zero lattice of a maximal order, locally, for every class number
 
 **Layer:** $F$ a number field (any class number), $D = (a,b)_F$ with $a, b \in \mathcal O_F\setminus0$, $\mathcal O \subseteq D$ an order,
-$L = $ `pureLat hO` the trace-zero lattice $\mathcal O^0$ in the coordinates $i, j, k$ (not free in general), $Q = \langle -a,-b,ab\rangle$
+$L = $ `pureLat hO` the trace-zero lattice $\mathcal O^0$ in the coordinates $i, j, k$, $Q = \langle -a,-b,ab\rangle$
 over $F$ (`QP a b`), $v$ a finite place. No basis of $\mathcal O$, of $\mathcal O^0$ or of an ideal is chosen; coordinates are always $i, j, k$
 (`TernaryConj` with $P = 1$).
 
-`Ov0NF v O` $= \{z \in \mathcal O_v : \operatorname{re}z = 0\}$, and **`mem_loc_pureSub_iff`**: $y \in L_v$ iff $y_1i + y_2j + y_3k \in \mathcal O_v$
+**The completion of the trace-zero lattice.**
+`Ov0NF v O` $= \{z \in \mathcal O_v : \operatorname{re}z = 0\}$, and **`mem_loc_pureSub_iff`**:
+$y \in L_v$ iff $y_1i + y_2j + y_3k \in \mathcal O_v$
 (completion commutes with the kernel of the reduced trace; the elementary argument with a local frame and the trace of minimal valuation,
 `Ov0NF_eq_span`).
 
-The local conjugation maps $c_v : D_v^\times \to O(Q)(F_v)$ (`cvvNF`), $c_v(x) \in O(L_v)$ iff conjugation by $x$ preserves $\mathcal O_v^0$
+**The local conjugation maps.** The maps $c_v : D_v^\times \to O(Q)(F_v)$ (`cvvNF`), $c_v(x) \in O(L_v)$ iff
+conjugation by $x$ preserves $\mathcal O_v^0$
 (`cvvNF_stab_iff`), $K'_v = c_v(\mathcal O_v^\times)$ (`KvNF`), contained in $SO(L_v)$; split places: $SO(L_v)\cap c_v(D_v^\times) = K'_v$
 (`mem_KvNF_of_stab_split`); ramified places: every $c_v(x)$ stabilizes $L_v$ and $c_v(x) \in K'_v$ iff $\operatorname{ord}_v\operatorname{nrd}x$ is even.
 

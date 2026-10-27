@@ -1,5 +1,5 @@
 /-
-# Lattices over $\mathcal O_F$: the class set as a double coset space
+# Lattices over $\mathcal O_F$: The class set as a double coset space
 
 **Layer:** lattices in $(V, Q) = (F^n, Q)$ over a number field $F$ (`Lattices/Genus.lean`). This generalizes the AWS
 notes' D15–D16 (`AWS/Adelic.lean`, for $F = \mathbb Q$) to every number field, and **proves** the gluing input
@@ -66,12 +66,13 @@ def stdStab (v : HeightOneSpectrum (𝓞 F)) : Subgroup (orthGroup Q (v.adicComp
 
 /-- **The finite adelic orthogonal group** $O(V)(\mathbb A_f) = \prod'_\mathfrak p O(V)(F_\mathfrak p)$, restricted with
 respect to the $O(V)(\mathfrak o_\mathfrak p)$ (for $F = \mathbb Q$: `AWS.OAf`). -/
-@[kb "hanke2011aws" "§4.2, p. 56 (over F)"]
+@[kb "hanke2011aws" "§4.2, p. 56 (over F); omeara1963 §101D, p. 295 (the group J_V of split rotations)"]
 abbrev OAf : Type _ :=
   Πʳ v : HeightOneSpectrum (𝓞 F), [orthGroup Q (v.adicCompletion F), stdStab Q v]
 
 /-- **The diagonal embedding** $O(V)(F) \to O(V)(\mathbb A_f)$, $\gamma \mapsto (\gamma)_\mathfrak p$ (a rational
 isometry stabilizes $\mathfrak o_\mathfrak p^n$ for almost all $\mathfrak p$, `eventually_locAct_std`). -/
+@[kb "omeara1963" "§101D, p. 296 (principal split rotations P_V)"]
 def diagF : orthGroup Q F →* OAf Q where
   toFun γ := ⟨fun v => orthMap Q (v.adicCompletion F) γ, by
     filter_upwards [eventually_locAct_std (γ : GL (Fin n) F)] with v hv
@@ -80,6 +81,7 @@ def diagF : orthGroup Q F →* OAf Q where
   map_mul' a b := by ext v : 1; exact map_mul (orthMap Q _) a b
 
 /-- **The rational points** $O(V)(F) \le O(V)(\mathbb A_f)$, embedded diagonally. -/
+@[kb "omeara1963" "§101D, p. 296 (principal split rotations P_V)"]
 abbrev ratPoints : Subgroup (OAf Q) := (diagF Q).range
 
 /-! ### The action on lattices -/
@@ -94,7 +96,7 @@ def smulFamily (h : OAf Q) (L : Lat F n) : LocFamily F n where
 
 /-- **$h \cdot L$** for $h \in O(V)(\mathbb A_f)$: the lattice glued from $(h_\mathfrak p L_\mathfrak p)_\mathfrak p$
 (AWS notes pp. 61–62 for $F = \mathbb Q$). -/
-@[kb "hanke2011aws" "§4.5, pp. 61-62 (over F)"]
+@[kb "hanke2011aws" "§4.5, pp. 61-62 (over F); omeara1963 §101B, 101:6, p. 290; §101D, p. 297 (the lattice Σ L)"]
 def latSMul (h : OAf Q) (L : Lat F n) : Lat F n :=
   ⟨(smulFamily Q h L).glue, (smulFamily Q h L).glue_isLattice⟩
 
@@ -103,7 +105,7 @@ theorem loc_latSMul (h : OAf Q) (L : Lat F n) (v : HeightOneSpectrum (𝓞 F)) :
   (smulFamily Q h L).loc_glue v
 
 /-- **$O(V)(\mathbb A_f)$ acts on lattices in $V$.** -/
-@[instance_reducible]
+@[instance_reducible, kb "omeara1963" "§101D, p. 297 (the lattice Σ L)"]
 def latAction : MulAction (OAf Q) (Lat F n) where
   smul := latSMul Q
   one_smul L := Lat.ext <| loc_injective (latSMul Q 1 L).2 L.2 fun v => by
@@ -119,7 +121,7 @@ def latAction : MulAction (OAf Q) (Lat F n) where
 def Lat.image (γ : GL (Fin n) F) (L : Lat F n) : Lat F n := ⟨glImage γ L.1, glImage_isLattice γ L.2⟩
 
 /-- **A rational isometry acts by $L \mapsto \gamma L$** (AWS notes p. 62 for $F = \mathbb Q$, `AWS.diag_smul`). -/
-@[kb "hanke2011aws" "§4.5, p. 62 (over F)"]
+@[kb "hanke2011aws" "§4.5, p. 62 (over F); omeara1963 §101B, 101:6, p. 290"]
 theorem diagF_smul (γ : orthGroup Q F) (L : Lat F n) :
     latSMul Q (diagF Q γ) L = Lat.image (γ : GL (Fin n) F) L := by
   apply Lat.ext
@@ -136,7 +138,7 @@ def latGenus (L : Lat F n) : Set (Lat F n) := {M | SameGenus Q L.1 M.1}
 /-- **AWS Lemma 4.5.2 over $F$: the orbit of $L$ under $O(V)(\mathbb A_f)$ is the genus of $L$.** For the converse
 inclusion take $h_\mathfrak p$ carrying $L_\mathfrak p$ to $M_\mathfrak p$ where $L_\mathfrak p \ne M_\mathfrak p$ (finitely many
 $\mathfrak p$), and $h_\mathfrak p = 1$ elsewhere. -/
-@[kb "hanke2011aws" "§4.5, Lemma 4.5.2, p. 62 (over F)"]
+@[kb "hanke2011aws" "§4.5, Lemma 4.5.2, p. 62 (over F); omeara1963 §102A, p. 298 (K ∈ genL if and only if K = Σ L for some Σ ∈ J_V)"]
 theorem orbit_eq_genus (L : Lat F n) :
     @MulAction.orbit (OAf Q) (Lat F n) (latAction Q).toSMul L = latGenus Q L := by
   let _ : MulAction (OAf Q) (Lat F n) := latAction Q
@@ -168,7 +170,7 @@ theorem orbit_eq_genus (L : Lat F n) :
 
 /-- **The adelic stabilizer** $O(\hat L) = \{h \in O(V)(\mathbb A_f) : h_\mathfrak p L_\mathfrak p = L_\mathfrak p\ \forall \mathfrak p\}
 = \prod_\mathfrak p O(L_\mathfrak p)$ (for $L = \mathcal O_F^n$: $\prod_\mathfrak p O(V)(\mathfrak o_\mathfrak p)$). -/
-@[kb "hanke2011aws" "§4.5, p. 62 (over F)"]
+@[kb "hanke2011aws" "§4.5, p. 62 (over F); omeara1963 §101D, pp. 296–297 (J_L and the stabilizer of L)"]
 def locStab (L : Lat F n) : Subgroup (OAf Q) where
   carrier := {h | ∀ v, locAct v ((h v : orthGroup Q _) : GL (Fin n) _) (loc v L.1) = loc v L.1}
   mul_mem' {a b} ha hb v := by
@@ -181,7 +183,7 @@ def locStab (L : Lat F n) : Subgroup (OAf Q) where
     exact (ha v).symm
 
 /-- **$\mathrm{Stab}_{O(V)(\mathbb A_f)}(L) = O(\hat L)$** (AWS notes p. 62 for $F = \mathbb Q$, `AWS.stabilizer_std`). -/
-@[kb "hanke2011aws" "§4.5, p. 62 (over F)"]
+@[kb "hanke2011aws" "§4.5, p. 62 (over F); omeara1963 §101D, pp. 296–297 (J_L and the stabilizer of L)"]
 theorem stabilizer_eq_locStab (L : Lat F n) :
     @MulAction.stabilizer (OAf Q) (Lat F n) _ (latAction Q) L = locStab Q L := by
   let _ : MulAction (OAf Q) (Lat F n) := latAction Q

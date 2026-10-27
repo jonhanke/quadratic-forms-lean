@@ -13,7 +13,7 @@ $$Q \perp Q_1 \cong Q \perp Q_2 \implies Q_1 \cong Q_2 .$$
 **Special cases.** `QuadraticForm.equivalent_of_prod_equivalent_prod_of_nondegenerate` ($Q$, $Q_1$
 both nonsingular, every characteristic) and
 `QuadraticForm.equivalent_of_prod_equivalent_prod_of_associated` (characteristic $\neq 2$, $Q$ and
-$Q_1$ nondegenerate; Lam Ch. I Thm 4.2, Scharlau Ch. 1 §5, O'Meara 42:16 [locators unverified]).
+$Q_1$ nondegenerate; Lam Ch. I Thm 4.2, Scharlau Ch. 1 §5, O'Meara 42:16, p. 97; Lam and Scharlau locators unverified).
 
 **Why $Q$ must be nonsingular in characteristic $2$.** Over $\mathbb{F}_2$, let $\langle 1 \rangle$
 be $x \mapsto x^2$ on $K$ (its polar form is $0$), $\mathbb{H}$ the hyperbolic plane $xy$ and
@@ -28,7 +28,7 @@ $0$, as $Q$ is nonsingular). Witt's extension theorem (`QuadraticForm.exists_iso
 whose hypothesis holds for $Q \perp Q_1$) extends it to $\rho$; then $g = f \circ \rho$ fixes
 $V_0 \times 0$ pointwise, hence maps its orthogonal complement $0 \times V_1$ onto $0 \times V_2$.
 
-Sources: EKM Thm 8.4; Lam Ch. I §4; Scharlau Ch. 1 §5; O'Meara 42:16. See `docs/witt.md`.
+Sources: EKM Thm 8.4; Lam Ch. I §4; Scharlau Ch. 1 §5; O'Meara 42:16.
 -/
 import QuadFormsKB.Witt.Extension
 
@@ -94,7 +94,7 @@ $V_1$ finite-dimensional. Assume
 If $Q \perp Q_1 \cong Q \perp Q_2$ (`(Q.prod Q₁).Equivalent (Q.prod Q₂)`) then $Q_1 \cong Q_2$.
 
 The nonsingularity of $Q$ cannot be dropped in characteristic $2$ (module docstring). -/
-@[kb "ekm2008" "Thm 8.4"]
+@[kb "ekm2008" "Thm 8.4; cassels1978 Ch. 2, Thm. 4.1, Cor. 1–2, pp. 21–22 (Witt cancellation)"]
 theorem equivalent_of_prod_equivalent_prod [FiniteDimensional K V₀] [FiniteDimensional K V₁]
     {Q : QuadraticForm K V₀} {Q₁ : QuadraticForm K V₁} {Q₂ : QuadraticForm K V₂}
     (hQ : (polarBilin Q).Nondegenerate) (hQ₁ : Q₁.radical = ⊥)
@@ -173,10 +173,10 @@ theorem equivalent_of_prod_equivalent_prod_of_nondegenerate [FiniteDimensional K
   equivalent_of_prod_equivalent_prod hQ (radical_eq_bot_of_nondegenerate Q₁ hQ₁) h
 
 /-- **Witt cancellation in characteristic $\neq 2$** (Lam Ch. I Thm 4.2; Scharlau Ch. 1
-§5; O'Meara 42:16 [locators unverified]): if $2$ is invertible in $K$, the associated bilinear forms
+§5; O'Meara 42:16, p. 97; Lam and Scharlau locators unverified): if $2$ is invertible in $K$, the associated bilinear forms
 $\tfrac12 b_Q$ and $\tfrac12 b_{Q_1}$ (`QuadraticMap.associated`) are nondegenerate, and
 $Q \perp Q_1 \cong Q \perp Q_2$, then $Q_1 \cong Q_2$. -/
-@[kb "lam2005" "Ch. I, Thm 4.2"]
+@[kb "lam2005" "Ch. I, Thm 4.2; omeara1963 §42F, 42:16, p. 97 (Witt cancellation)"]
 theorem equivalent_of_prod_equivalent_prod_of_associated [FiniteDimensional K V₀]
     [FiniteDimensional K V₁] [Invertible (2 : K)] {Q : QuadraticForm K V₀}
     {Q₁ : QuadraticForm K V₁} {Q₂ : QuadraticForm K V₂} (hQ : (associated Q).Nondegenerate)

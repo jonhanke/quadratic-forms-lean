@@ -2,14 +2,15 @@
 # $\mu_{\mathrm{SL}_1}(H_S\cap\mathrm{SL}_1)$ from the two fibrations of `tamQuat`
 
 **Layer:** a totally real number field $L$ (used below for $L = K = F(\sqrt d)$), $\alpha,\beta\in\mathcal O_L\setminus0$ with
-$-\alpha,-\beta\gg0$ ($D' = (\alpha,\beta)_L$ totally definite), a finite set $S$ of places and levels $m_w$; the $H_S = \{x : x_w\in\Lambda_w^\times\ (w\notin S),\ x_w\in\Lambda^{(m_w)}_w\ (w\in S)\}$ (`HS`).
+$-\alpha,-\beta\gg0$ ($D' = (\alpha,\beta)_L$ totally definite), a finite set $S$ of places and levels $m_w$;
+$H_S = \{x : x_w\in\Lambda_w^\times\ (w\notin S),\ x_w\in\Lambda^{(m_w)}_w\ (w\in S)\}$ (`HS`).
 
 * **`nL`**: $\operatorname{nrd}(\Lambda^{(m_w)}_w)\subseteq L_w^\times$; **`NH`** = `ideleBox S nL`.
 * **`nrd_image_HS`**: $\operatorname{nrd}(H_S)\cap\mathrm{Bset} = \{t : t_\infty\in\mathrm{BInf},\ t_f\in N_H\}$.
 * **`tamQuat_XH_eq`** (reduced-norm fibration): $\mathrm{tamQuat}(X_H) = \mu_{\mathrm{SL}_1}(H_S\cap\mathrm{SL}_1)\cdot\omega_\infty(\mathrm{BInf})\,\mu_f(N_H)$.
 * **`muSL1N_HS_mul`** (with the centre fibration `tamQuat_sqX`):
   $$\mu_{\mathrm{SL}_1}(H_S\cap\mathrm{SL}_1)\cdot\mu_f(N_H) = \mu_f(\hat{\mathcal O}^\times)\cdot\mu_{PD}(\operatorname{pd}H_S),$$
-  so $\mu_{\mathrm{SL}_1}(H_S\cap\mathrm{SL}_1)$ is expressed through the $\mu_{PD}$ and local volumes only (the archimedean shell of
+  so $\mu_{\mathrm{SL}_1}(H_S\cap\mathrm{SL}_1)$ is expressed through the measure $\mu_{PD}$ and local volumes only (the archimedean shell of
   $(D'\otimes L_\infty)^\times$ cancels).
 
 Source: Weil 1982, §2.4, Thm 2.4.4; §3.7 [unverified page].

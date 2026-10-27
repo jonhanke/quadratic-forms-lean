@@ -1,11 +1,13 @@
 /-
 # The type sum of a general lattice factors over the primes
 
-**Layer:** the global type set $Y = \{M \in \mathrm{gen}(L) : e_0 \in M\}$ (`CompSet`) for an **arbitrary** integral lattice $L$ in
+**Layer:** the global type set $Y = \{M \in \mathrm{gen}(L) : e_0 \in M\}$ (`CompSet`) for an **arbitrary** integral
+lattice $L$ in
 the split space $V = (F^{n+1}, \langle m\rangle\perp Q')$, $m \in F^\times$, $Q' = Q_0'\otimes F$ with $Q_0'$ over $\mathcal O_F$; the general local
 type sets of `GeneralTypes.lean`.
 
-`typeSum_eq_prod` factors the type sum $\sum_t w(t)$ over the primes dividing $2m$ when $L = \mathcal O_F^{n+1}$ and $m \in \mathcal O_F$.
+The lemma `typeSum_eq_prod` factors the type sum $\sum_t w(t)$ over the primes dividing $2m$ when
+$L = \mathcal O_F^{n+1}$ and $m \in \mathcal O_F$.
 Here $L$ is any lattice and $m$ any nonzero element of $F$:
 $$\sum_{t\in O(Q')(\mathbb A_f)\backslash Y} w(t) = \prod_{\mathfrak p \in S} W_\mathfrak p(L_\mathfrak p, 1),\qquad
   S = \{\mathfrak p : L_\mathfrak p \ne \mathfrak o_\mathfrak p^{n+1}\ \text{or}\ |m|_\mathfrak p \ne 1\ \text{or}\ |2|_\mathfrak p \ne 1\}
@@ -13,11 +15,12 @@ $$\sum_{t\in O(Q')(\mathbb A_f)\backslash Y} w(t) = \prod_{\mathfrak p \in S} W_
 $W_\mathfrak p(\Lambda, c)$ = `locTypeSumG` (local types of the pairs $(M_\mathfrak p, c\,e_0)$, $M_\mathfrak p \in O(V_\mathfrak p)\Lambda$).
 
 **Proves**
-* `exists_smul_stdPtG`, `locTypeSumG_std_eq_one`: at $\mathfrak p \notin S$ there is one local type, of weight $1$ (`exists_smul_locStdPt` for $m \in F$: one of $Q(x \mp e_0)$ is a unit and its reflection is integral).
+* `exists_smul_stdPtG`, `locTypeSumG_std_eq_one`: at $\mathfrak p \notin S$ there is one local type, of weight $1$ (cf.
+  `exists_smul_locStdPt` for $m \in F$: one of $Q(x \mp e_0)$ is a unit and its reflection is integral).
 * `mem_orbit_compSet_iffG`, `typeEquivG`: global types are the families of local types at the primes of $S$.
 * `compWeight_glueCompG`, **`typeSum_eq_prodG`**.
 
-Sources: Weil 1982, §3.4–3.5 [unverified locator]; Kitaoka 1993, §6.8 [unverified]; O'Meara 1963, §92 [unverified]. Indices are 0-based.
+Sources: Weil 1982, §3.4–3.5 [unverified locator]; Kitaoka 1993, §6.8 [unverified]; O'Meara 1963, §92, pp. 246–250 (background). Indices are 0-based.
 -/
 import QuadFormsKB.Tamagawa.GeneralTypes
 
@@ -67,12 +70,13 @@ theorem stabilizer_stdPtG : stabilizer (orthGroup Q' Fv) (stdPtG v m Q') = stdSt
 theorem locWeightG_stdPtG : locWeightG v m Q' (stdPtG v m Q') = 1 := by
   simp [locWeightG, stabilizer_stdPtG]
 
-/-- **Transitivity when $2m$ is a unit** (O'Meara 1963, §92 [unverified]; `exists_smul_locStdPt` for $m \in F_\mathfrak p$): given
+/-- **Transitivity when $2m$ is a unit** (cf. O'Meara 1963, §92, pp. 246–250; `exists_smul_locStdPt` for
+$m \in F_\mathfrak p$): given
 integral models $Q_o'$ of $Q'$ and $m_o$ of $m$ with $4m_o$ a unit and $\langle m_o\rangle\perp Q_o'$ nondegenerate, $O(Q')(F_\mathfrak p)$ is
 transitive on $Y_\mathfrak p(\mathfrak o_\mathfrak p^{n+1}, 1)$. *Proof:* for $M = g\,\mathfrak o_\mathfrak p^{n+1} \ni e_0$, $y = g^{-1}e_0$ is integral with
 $Q(y) = m$; the reflection of `exists_refl_e₀` is an integral isometry $\kappa$ with $\kappa e_0 = y$; $g\kappa$ fixes $e_0$, so it is
 $\mathrm{diag}(1, h)$ and $M = h\cdot\mathfrak o_\mathfrak p^{n+1}$. -/
-@[kb "omeara1963" "§92 (transitivity on unit vectors) [unverified]"]
+@[kb "omeara1963" "§92 (non-dyadic lattices), pp. 246–249"]
 theorem exists_smul_stdPtG {Qo' : QuadForm 𝔬 n} (hQo' : IsIntModel v Q' Qo') {mo : 𝔬}
     (hmo : ((mo : 𝔬) : Fv) = algebraMap F Fv m) (h4 : IsUnit (4 * mo))
     (hnd : (splitForm mo Qo').Nondegenerate) (M : LocCompSetG v m Q' (std v) 1) :

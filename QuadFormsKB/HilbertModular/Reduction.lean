@@ -17,7 +17,7 @@ with $|\sqrt{y_v}\sigma_v(c)| \le r$ and $|\sigma_v(c)x_v + \sigma_v(d)| \le r\s
 **Reduction to finitely many cusps** (`exists_cusp_reduction`). There are finitely many $A_1, \dots, A_r \in \mathrm{SL}_2(F)$
 and $c_0 > 0$ such that every $z \in \mathbb{H}^d$ has some $A_j$ and $\gamma \in \Gamma(\mathfrak N)$ with
 $$N(\operatorname{Im}(A_j\gamma z)) \ge c_0 .$$
-*Proof.* Take a short vector $x = (c, d)$ for $z$; by `finite_cusps` there are $s$ in a fixed finite set $S$,
+*Proof.* Take a short vector $x = (c, d)$ for $z$; by `finite_cusps` (C5a) there are $s$ in a fixed finite set $S$,
 $t \in F^\times$ and $\gamma_0 \in \Gamma(\mathfrak N)$ with $(tx)\gamma_0 = s$. Let $A_s$ be a matrix with bottom row $s$
 (`bottomMat`) and $\gamma = \gamma_0^{-1}$; then $A_s\gamma$ has bottom row $tx$, so
 $N(\operatorname{Im}(A_s\gamma z)) = N(y)/\prod_v|\sigma_v(t)|^2|\sigma_v(c)z_v + \sigma_v(d)|^2 \ge 1/(N(t)^2K^d)$. Finally

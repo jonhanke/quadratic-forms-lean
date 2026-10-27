@@ -91,7 +91,7 @@ lemma latConst_classForm (Q₀ : QuadForm (𝓞 F) n) (hpd : IsTotallyPosDef (fo
 /-! ### The genus additive zeta function and its residue -/
 
 /-- **Weil's additive zeta function of the genus** (§4.4, (4), p. 97; §4.5, p. 109; anisotropic case), with the
-$SO(V)(F)\backslash SO(V)(\mathbb A)$-integral unfolded into the double cosets:
+$SO(V)(F)\backslash SO(V)(\mathbb A)$-integral unfolded into the combinatorial double cosets:
 $$Z^+(s) = 2\,\mu_{\mathrm{Tam}}(K_{SO})\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^n)}\frac{Z^+_M(s)}{|O(M)|},\qquad
   Z^+_M(s) = \int_{I_F/F^\times}|z|^{n+2s}\sum_{\xi\in\mathfrak b^{-1}M\setminus0}\Phi_\infty(\xi z_\infty)\,d^\times z,$$
 $\mu_{\mathrm{Tam}}(K_{SO})$ = `Tamagawa.tamagawaK`, $|O(M)|$ = `LatClass.autCard` (improper automorphisms included), $Z^+_M$ =
@@ -110,7 +110,7 @@ $\rho_F$ = `dedekindZeta_residue F`, $\hat\Phi(0) = c_L = \int_{V(\mathbb A)}\Ph
 (`latConst`, $A = H/2$), $\tau(SO) = \mu_{\mathrm{Tam}}(K_{SO})\,\mathrm{dcMass}(SO(V)(F), SO(\hat L))$ (`Tamagawa.tauSO`). Weil normalizes
 $\hat\Phi(0) = \Psi(0)$ and states the residue as $\rho_k\tau(G)/2$ (p. 109). *Unconditional:* no cited input; `GenusFree` is a scope
 restriction (proved for $\mathcal O_F$ a PID). The proof sums the per-class residues `tendsto_mul_additiveZeta` (Tate's split
-and theta inversion) with the weights. -/
+and theta inversion) with the combinatorial weights. -/
 @[kb "weil1982" "§4.5, p. 109 (residue ρ_kτ(G)/2); §4.4, pp. 97–98 (index 0)"]
 theorem tendsto_mul_genusAdditiveZeta (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hn : 1 ≤ n)
     (hpd : IsTotallyPosDef (formF Q₀)) (hfree : GenusFree (formF Q₀) stdLat) :
@@ -145,7 +145,7 @@ theorem tendsto_mul_genusAdditiveZeta (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.No
   refine Finset.sum_congr rfl fun c _ => ?_
   ring
 
-/-! ### $\hat\Phi(0) = c_L$ in the normalization -/
+/-! ### $\hat\Phi(0) = c_L$ in the normalization of `GlobalZeta` -/
 
 open MeasureTheory Matrix in
 open scoped MatrixOrder in
@@ -203,7 +203,8 @@ lemma realVal_eq_dotProduct (Q₀ : QuadForm (𝓞 F) n) (w : Siegel.RealPlace F
   ring
 
 open Classical in
-/-- **$\hat\Phi(0) = c_L$ is the $\int_{V(\mathbb A)}\Phi\,dx$** for the Gaussian $\Phi_w = e^{-\pi Q_w}$ (`GlobalZeta.gaussian Q₀ π`):
+/-- **$\hat\Phi(0) = c_L$ is the $\int_{V(\mathbb A)}\Phi\,dx$ of `GlobalZeta`** for the Gaussian
+$\Phi_w = e^{-\pi Q_w}$ (`GlobalZeta.gaussian Q₀ π`):
 $$\int_{V(\mathbb A)}\Phi\,dx = |d_F|^{-n/2}\prod_w\int_{\mathbb R^n}e^{-\pi Q_w(x)}dx = |d_F|^{-n/2}\prod_w(\det\varphi_w(A))^{-1/2} = c_L.$$ -/
 @[kb "weil1982" "§2.1.3, pp. 12–13 (self-dual measure, μ_k = |Δ_k|^{1/2}); the Gaussian integral"]
 theorem phiIntegral_gaussian_pi (Q₀ : QuadForm (𝓞 F) n) (hpd : IsTotPosGram (gramF Q₀)) :
@@ -226,8 +227,9 @@ theorem phiIntegral_gaussian_pi (Q₀ : QuadForm (𝓞 F) n) (hpd : IsTotPosGram
     Finset.prod_inv_distrib]
   ring_nf
 
-/-- **The additive residue in the normalization**: $\lim_{s\to0^+}sZ^+(s) = \frac{\rho_F}2\,\tau(SO)\int_{V(\mathbb A)}\Phi\,dx$ for the
-Gaussian $\Phi_w = e^{-\pi Q_w}$, with $\int\Phi$ = `GlobalZeta.phiIntegral (GlobalZeta.gaussian Q₀ π)`, the quantity in `tendsto_mul_globalZeta_zero_gaussian` ($\lim sZ_{\rm mult}(s) = \rho_F\int\Phi$). Unconditional (scope: `GenusFree`). -/
+/-- **The additive residue in the normalization of `GlobalZeta`**: $\lim_{s\to0^+}sZ^+(s) = \frac{\rho_F}2\,\tau(SO)\int_{V(\mathbb A)}\Phi\,dx$ for the
+Gaussian $\Phi_w = e^{-\pi Q_w}$, with $\int\Phi$ = `GlobalZeta.phiIntegral (GlobalZeta.gaussian Q₀ π)`, the quantity in
+`tendsto_mul_globalZeta_zero_gaussian` ($\lim sZ_{\rm mult}(s) = \rho_F\int\Phi$). Unconditional (scope: `GenusFree`). -/
 @[kb "weil1982" "§4.5, p. 109 (residue ρ_kτ(G)/2, Φ̂(0) = ∫Φ); cf. (8), p. 108"]
 theorem tendsto_mul_genusAdditiveZeta_phiIntegral (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hn : 1 ≤ n)
     (hpd : IsTotallyPosDef (formF Q₀)) (hfree : GenusFree (formF Q₀) stdLat) :
@@ -280,8 +282,11 @@ structure ComplementTauTwo {ι : Type*} (τ' : ι → ℝ) : Prop where
 $\rho_k\tau(G)/2$"): given Weil's fibration over the spheres (`SphericalFibration`) and the induction hypothesis
 (`ComplementTauTwo`), the spherical sum $Z(s) = \sum_\rho Z(s,\rho)$ ((2), p. 102) satisfies
 $$\lim_{s\to0^+}s\,\sum_iZ(s,\rho_i) = \frac{\rho_F}2\,\tau(SO)\int_{V(\mathbb A)}\Phi\,dx,$$
-$\int_{V(\mathbb A)}\Phi\,dx = \hat\Phi(0) = c_L$ = `GlobalZeta.phiIntegral (GlobalZeta.gaussian Q₀ π)` (the normalization, `phiIntegral_gaussian_pi`).
-**Use:** combine with the multiplicative residue of the same spherical sum, $\lim sZ(s) = \rho_F\int\Phi\,dx$ ((8), p. 108: `tendsto_mul_globalZeta_zero` for $\int_{V_{\mathbb A}}$, transferred to $\sum_\rho Z(s,\rho)$ by the spherical residue theorem), and $\rho_F > 0$, $c_L > 0$, to get
+$\int_{V(\mathbb A)}\Phi\,dx = \hat\Phi(0) = c_L$ = `GlobalZeta.phiIntegral (GlobalZeta.gaussian Q₀ π)` (the normalization of `GlobalZeta`,
+`phiIntegral_gaussian_pi`).
+**Use:** combine with the multiplicative residue of the same spherical sum,
+$\lim sZ(s) = \rho_F\int\Phi\,dx$ ((8), p. 108:
+`tendsto_mul_globalZeta_zero` for $\int_{V_{\mathbb A}}$, transferred to $\sum_\rho Z(s,\rho)$ by `SphericalResidue.lean`), and $\rho_F > 0$, $c_L > 0$, to get
 $\tau(SO) = 2$. -/
 @[kb "weil1982" "§4.5, p. 109 (additive calculation; residue ρ_kτ(G)/2)"]
 theorem tendsto_mul_sphericalSum (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hn : 1 ≤ n)

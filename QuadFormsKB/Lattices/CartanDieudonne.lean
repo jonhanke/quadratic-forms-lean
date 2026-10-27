@@ -6,8 +6,8 @@
 $B(x, y) = x^{\mathsf T}Hy$ (`qbil`), with $B(x, x) = 2Q(x)$.
 
 **Proves** `exists_symmProd_eq`: if $Q$ is nondegenerate, every $\sigma \in O(V)(K)$ is a product
-$\tau_{x_1}\cdots\tau_{x_r}$ of symmetries in anisotropic vectors, with $r \le 2n$ (O'Meara 1963, 43:3
-[unverified]; the sharp bound $r \le n$ of Cartan–Dieudonné is not needed here).
+$\tau_{x_1}\cdots\tau_{x_r}$ of symmetries in anisotropic vectors, with $r \le 2n$ (O'Meara 1963, 43:3,
+p. 102; the sharp bound $r \le n$ of Cartan–Dieudonné is not needed here).
 
 *Proof* (no restriction to subspaces). Fix a $B$-orthogonal basis $e_0, \dots, e_{n-1}$ of $V$ (anisotropic since $Q$
 is nondegenerate). Inductively find symmetries $\rho$ such that $\rho\sigma$ fixes $e_0, \dots, e_{k-1}$: with
@@ -136,6 +136,7 @@ theorem bilForm_apply (x y : Fin n → K) : bilForm Q K x y = qbil Q K x y := by
   rw [bilForm, Matrix.toBilin'_apply']; rfl
 
 /-- **An orthogonal basis of anisotropic vectors** for a nondegenerate $Q$ over $K$. -/
+@[kb "cassels1978" "Ch. 2, Lemma 1.4, p. 13 (normal basis)"]
 theorem exists_orthogonal_basis (hQ : Q.Nondegenerate) :
     ∃ e : Module.Basis (Fin n) K (Fin n → K),
       (∀ i j, i ≠ j → qbil Q K (e i) (e j) = 0) ∧ ∀ i, Q.evalIn K (e i) ≠ 0 := by
@@ -174,8 +175,8 @@ theorem symmProd_mulVec_cons (x : Fin n → K) (xs : List (Fin n → K)) (y : Fi
   simp [symmProd, mulVec_mulVec]
 
 /-- **Cartan–Dieudonné (generation form):** for nondegenerate $Q$, every $\sigma \in O(V)(K)$ is a product
-$\tau_{x_1}\cdots\tau_{x_r}$ of symmetries in anisotropic vectors (O'Meara 1963, 43:3 [unverified]). -/
-@[kb "omeara1963" "43:3 (Cartan–Dieudonné) [unverified]"]
+$\tau_{x_1}\cdots\tau_{x_r}$ of symmetries in anisotropic vectors (O'Meara 1963, 43:3, p. 102, which also bounds the number of symmetries by $n$). -/
+@[kb "omeara1963" "§43B, 43:3, p. 102 (Cartan–Dieudonné); cassels1978 Ch. 2, Lemma 4.3, p. 20"]
 theorem exists_symmProd_eq (hQ : Q.Nondegenerate) (σ : orthGroup Q K) :
     ∃ xs : List (Fin n → K), (∀ x ∈ xs, Q.evalIn K x ≠ 0) ∧ symmProd Q K xs = σ := by
   obtain ⟨e, he, hea⟩ := exists_orthogonal_basis Q K hQ

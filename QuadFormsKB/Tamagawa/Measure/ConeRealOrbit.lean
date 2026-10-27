@@ -12,7 +12,7 @@ any signature) and the isotropic vector $e = e_0 + e_1$:
   $\sigma'_{-cq^2} = |q|^{k-1}(x \mapsto |q|x)_*\sigma'_{-c}$ (the homogeneity), this is
   $dx_0 \otimes \sigma'_{-cx_0^2} = dx/dQ$ on $C^\circ \cap \{x_0 \ne 0\}$ (the slicing $Q = cx_0^2 + Q_m(x')$), and
   $\{x_0 = 0\}$ is null;
-* `coneOrbitSection`: an explicit measurable section of $g \mapsto ge$, $SO(Q) \to C^\circ$ (`OrbitSection`);
+* `coneOrbitSection`: an explicit measurable section of $g \mapsto ge$, $SO(Q) \to C^\circ$ (the `OrbitSection`);
 * `muP`: the Haar measure of the stabilizer $P = \mathrm{Stab}(e) = N \rtimes SO(Q')$, the image of
   $dw \otimes \mu_{Q'}$ under $(w, h) \mapsto n(w)\,\mathrm{diag}(1,1,h)$; it is left and right invariant ($P$ is
   unimodular, so no modular character appears);
@@ -327,7 +327,7 @@ theorem measurable_smul_cone (g : ArchSO (coneForm c Q')) :
     Measurable fun z : ConeT (coneForm c Q') => g • z :=
   ((continuous_smul_cone _).comp (continuous_const.prodMk continuous_id)).measurable
 
-/-- **An explicit measurable section** of $g \mapsto ge$, $SO(Q)(\mathbb R) \to C^\circ$, as `OrbitSection`:
+/-- **An explicit measurable section** of $g \mapsto ge$, $SO(Q)(\mathbb R) \to C^\circ$, as the `OrbitSection`:
 $s(z) = \iota(s'(z'/z_0))\,d(z_0)$ when $z_0 \ne 0$, else $g^{-1}s(gz)$ for the first $g \in \{d(2), n(\varepsilon_j)\}$
 with $(gz)_0 \ne 0$. (In particular $SO(Q)(\mathbb R)$ is transitive on $C^\circ$.) -/
 abbrev coneOrbitSection (s' : SphSection (-c) Q') : OrbitSection (ArchSO (coneForm c Q')) (ConeT (coneForm c Q')) where

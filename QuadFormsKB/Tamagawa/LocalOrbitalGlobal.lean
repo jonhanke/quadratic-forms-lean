@@ -2,7 +2,7 @@
 # Weil's local orbital identity: from the primes to the input
 
 **Layer:** the finite adelic orthogonal group $O(Q')(\mathbb A_f)$ acting on $Y = \{M \in \mathrm{gen}(\mathcal O_F^{n+1}) : e_0 \in M\}$
-(`CompSet`), its local components (`LocalOrbital.lean`), and the product formula of $F$.
+(the `CompSet`), its local components (`LocalOrbital.lean`), and the product formula of $F$.
 
 The input `LocalOrbitalIdentity Q₀' m` reads
 $$\Big(\sum_{t \in O(Q')(\mathbb A_f)\backslash Y} w(t)\Big)\prod_\mathfrak p\alpha_\mathfrak p(L, L)
@@ -17,14 +17,15 @@ Kitaoka 1993, §6.8 [unverified]).
 * `mem_orbit_compSet_iff`, `typeEquiv`: global types are the families of local types at the primes $\mathfrak p \mid 2m$
   (one local type elsewhere, `exists_smul_locStdPt`); `glueComp` glues a lattice with prescribed local types.
 * `compWeight_glueComp`, **`typeSum_eq_prod`**: $\sum_t w(t) = \prod_{\mathfrak p\mid2m}W_\mathfrak p$, the factorization of the type
-  sum over the primes.
+  sum over the primes (the gap flagged in `MassInduction.lean`).
 * `prod_absTwoM`: $\prod_{\mathfrak p\mid 2m}|2m|_\mathfrak p = |N(2m)|^{-1}$ (Mathlib's product formula).
 * **`localOrbitalIdentity_of_local`**, `localOrbitalIdentity_of_local'`: the local identities at $\mathfrak p \mid 2m$ (and
   convergence of the Euler products) give `LocalOrbitalIdentity`.
 * `localOrbitalIdentity_of_orbitCount`: the same with the orbit-count input `LocalTypeOrbitCount` at $\mathfrak p \mid 2m$.
-* `localOrbitalIdentity_of_massFormula`, `massFormula_succ_of_local`, `tamagawaNumberTwo_succ_of_local` ($n \ge 3$): the induction step with `LocalOrbitalIdentity` replaced by the local identity at the primes dividing $2m$.
+* `localOrbitalIdentity_of_massFormula`, `massFormula_succ_of_local`, `tamagawaNumberTwo_succ_of_local` ($n \ge 3$): the
+  induction step with `LocalOrbitalIdentity` replaced by the local identity at the primes dividing $2m$.
 * **`siegelFormulaAt_of_massFormula`**, `siegelFormulaAt_of_tamagawa`: the mass formula (equivalently $\tau(SO) = 2$) in
-  ranks $n+1$ and $n$ gives Siegel's formula for $m$ (the direction used for the induction step).
+  ranks $n+1$ and $n$ gives Siegel's formula for $m$ (the direction used for the frame identity).
 
 **Scope.** Any totally real $F$ (no class number hypothesis: everything is adelic and lattice-theoretic, with
 non-free lattices allowed); $L = \mathcal O_F e_0 \perp \mathcal O_F^n$; $Q$ totally positive definite. The remaining input is
@@ -159,7 +160,7 @@ open Lattices
 
 variable {F : Type} [Field F] [NumberField F] {n : ℕ} (m : F) (Q' : QuadForm F n) (L : Lat F (n + 1))
 
-/-- **The weight of a lattice** $M \in Y$: $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$; `typeWeight t` is
+/-- **The weight of a lattice** $M \in Y$: $w(M) = [K_0' : K_M\cap K_0']/[K_M : K_M\cap K_0']$; the `typeWeight t` is
 `compWeight t.out`. -/
 def compWeight (y : CompSet m Q' L) : ℝ :=
   ((stabilizer (OAf Q') y).relIndex (locStab Q' (stdLat F n)) : ℝ) /
@@ -404,7 +405,8 @@ theorem compWeight_glueComp (f : (v : S) → LocTypes v mF QF') :
   simp only [A', locWeight]
   rw [locOf_glueComp]
 
-/-- **The type sum factors over the primes dividing $2m$**: for
+/-- **The type sum factors over the primes dividing $2m$** (the factorization flagged as a gap in
+`MassInduction.lean`): for
 $Q = \langle m\rangle\perp Q'$ totally positive definite with $\mathcal O_F^{n+1}$ integral,
 $$\sum_{t\in O(Q')(\mathbb A_f)\backslash Y} w(t) = \prod_{\mathfrak p \mid 2m} W_\mathfrak p,\qquad W_\mathfrak p = \sum_{t_\mathfrak p} w_\mathfrak p(t_\mathfrak p).$$
 *Proof:* global types are the families of local types (`typeEquiv`; one local type off $2m$, `exists_smul_locStdPt`), the
@@ -487,7 +489,7 @@ section TProd
 
 variable {ι : Type*}
 
-/-- **Assembling local identities into a product identity** (the $\prod_\mathfrak p$ of `LocalOrbitalIdentity`): if
+/-- **Assembling local identities into a product identity** (the $\prod_\mathfrak p$ of the `LocalOrbitalIdentity`): if
 $W_v a_v c_v^n = b_v\beta_v$ for every $v$, with $W_v = c_v = 1$ off a finite set $S$, $W_v, c_v \ne 0$, and $\prod b_v$,
 $\prod\beta_v$ convergent, then $\big(\prod_S W_v\big)\prod_v a_v = \big(\prod_S c_v\big)^{-n}\prod_v b_v\prod_v\beta_v$. -/
 theorem tprod_local_identity (S : Finset ι) (n : ℕ) (a b β W c : ι → ℝ) (hW : ∀ v ∉ S, W v = 1)
@@ -542,7 +544,7 @@ open LocalDensity Lattices
 
 variable {F : Type} [Field F] [NumberField F] {n : ℕ}
 
-/-- **The product of the local orbital identities is `LocalOrbitalIdentity`** (Weil 1982, §3.4–3.5 [unverified locator];
+/-- **The product of the local orbital identities is the `LocalOrbitalIdentity`** (Weil 1982, §3.4–3.5 [unverified locator];
 Kitaoka 1993, §6.8 [unverified]). For $Q_0 = \langle m\rangle\perp Q_0'$ over $\mathcal O_F$, totally positive definite with
 $\mathcal O_F^{n+1}$ integral, $m \ne 0$: if the local identity holds at the finitely many primes $\mathfrak p \mid 2m$
 (`LocalOrbitalIdentityAt`; at all other primes it is a theorem, `localOrbitalIdentityAt_of_not_mem`) and the Euler
@@ -709,7 +711,8 @@ theorem tamagawaNumberTwo_succ_of_local (m : 𝓞 F) (hm : m ≠ 0) (Q₀' : Qua
   tamagawaNumberTwo_succ m hm Q₀' hpd hLi hS (localOrbitalIdentity_of_massFormula m hm Q₀' hn hpd hLi hbad hIH)
     hIH
 
-/-- **The mass formula in ranks $n+1$ and $n$ gives Siegel's formula for $m$** (Weil 1982,
+/-- **The direction used for the frame identity: the mass formula in ranks $n+1$ and $n$ gives Siegel's formula for
+$m$** (Weil 1982,
 §4.5, p. 100 and Thm. 4.5.1, p. 109; Siegel 1935 [unverified]): with the global reduction (`repMass_eq_mass_mul`), the local orbital
 identity and the archimedean identity (`archProd_splitForm`),
 $$\sum_{\mathrm{cls}(M)}\frac{r_M(m)}{|O(M)|} = \mathrm{Mass}(L')\,W = \frac{W}{\mu_{\mathrm{Tam}}(K_{SO}(Q_0'))}
@@ -769,7 +772,8 @@ theorem siegelFormulaAt_of_massFormula (m : 𝓞 F) (hm : m ≠ 0) (Q₀' : Quad
   linear_combination key
 
 /-- **Siegel's formula for $m$ from $\tau(SO) = 2$ in ranks $n + 1$ and $n$** ($n \ge 3$), given the local orbital identity at
-the primes $\mathfrak p \mid 2m$: the direction needed for the induction (`massFormula` turns $\tau = 2$ into the mass formula). -/
+the primes $\mathfrak p \mid 2m$: the direction needed for the frame identity (`massFormula` turns $\tau = 2$ into
+the mass formula). -/
 @[kb "weil1982" "§4.5, p. 100 (τ(G) = 2 is equivalent to Siegel's main theorem); Thm. 4.5.1, p. 109"]
 theorem siegelFormulaAt_of_tamagawa (m : 𝓞 F) (hm : m ≠ 0) (Q₀' : QuadForm (𝓞 F) n) (hn : 3 ≤ n)
     (hpd : IsTotallyPosDef ((splitForm m Q₀').map (algebraMap (𝓞 F) F)))

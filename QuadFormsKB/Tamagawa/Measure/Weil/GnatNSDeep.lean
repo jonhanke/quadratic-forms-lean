@@ -483,14 +483,29 @@ structure NSBadDeepRatio : Prop where
 variable {F}
 
 set_option maxHeartbeats 1600000 in
-/-- **Test-set independence of the bad-place ratio**: the identity at any deeper level gives the identity at the level
-`nsLevK`, i.e. `NSBadDeepRatio F → NSBadPlaceRatio F`. Raising the level multiplies both sides by the same index
-$\prod_{w\mid v}[K^{(3)}_{m_w} : K^{(3)}_{M_w}] = [U^{(m)}_v : U^{(M)}_v]$ (`relIndex_nsLocSub`, `relIndex_nsUSub`), and leaves
-$\operatorname{nrd}\Lambda^{(\cdot)}_w = \mathcal O_w^{\times2}$ and $N_v$ unchanged (`nL_eq_sqUnits`). -/
-@[kb "weil1982" "Thm 2.3.1 and §2.2-2.3 (the local ratio is independent of the test set) [unverified page]"]
-theorem nsBadPlaceRatio_of_deep (hD : NSBadDeepRatio F) : NSBadPlaceRatio F := by
-  refine ⟨fun a b d K _ _ _ bK hb₀ hb₁ α β hα hβ hα0 hβ0 hna hnb hdpos v hv => ?_⟩
-  obtain ⟨M, hM, hEq⟩ := hD.ratio a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hna hnb hdpos v hv
+/-- **Test-set independence of the bad-place ratio, for one model and one place** (no signature hypotheses): the
+identity at some deeper level $M\ge$ `nsLevK` gives the identity at the level `nsLevK`. The proof of
+`nsBadPlaceRatio_of_deep`, factored out. -/
+theorem nsBadPlaceRatio_of_deep_at {a b d : 𝓞 F} {K : Type} [Field K] [NumberField K] [Algebra F K]
+    {bK : Module.Basis (Fin 2) F K} (hb₀ : bK 0 = 1) (hb₁ : bK 1 * bK 1 = algebraMap F K (d : F))
+    {α β : 𝓞 K} (hα : (α : K) = algebraMap F K (a : F)) (hβ : (β : K) = algebraMap F K (b : F))
+    (hα0 : α ≠ 0) (hβ0 : β ≠ 0) {v : HeightOneSpectrum (𝓞 F)}
+    (hv : ¬ NSGoodPlace (bK := bK) (a := a) (b := b) (d := d) v)
+    (hD : ∃ (M : HeightOneSpectrum (𝓞 K) → ℕ) (hM : ∀ w, nsLevK hα0 hβ0 w ≤ M w),
+      (∏ w ∈ placesOver (K := K) v, Measure.muLocSO w (QuatZeta.pureFormO α β) 1
+          (congSO3S (a := α) (b := β) M (one_le_of_deep hα0 hβ0 hM) w) *
+        omegaV w (unitsVSub w) / omegaV w (nL α β M (one_le_of_deep hα0 hβ0 hM) w)) *
+          (omegaV v (nsN α β M (one_le_of_deep hα0 hβ0 hM) v) / omegaV v (unitsVSub v)) =
+        ENNReal.ofReal (nsRatio K a b d v) * Measure.muLocSO v (qNS a b d) 1
+          (nsU hb₁ hα hβ (ne_zero_of_algebraMap_eq hα hα0) (d_ne_zero_of_basis hb₁) M (one_le_of_deep hα0 hβ0 hM) v)) :
+    (∏ w ∈ placesOver (K := K) v, Measure.muLocSO w (QuatZeta.pureFormO α β) 1
+        (congSO3S (a := α) (b := β) (nsLevK hα0 hβ0) (one_le_nsLevK hα0 hβ0) w) *
+      omegaV w (unitsVSub w) / omegaV w (nL α β (nsLevK hα0 hβ0) (one_le_nsLevK hα0 hβ0) w)) *
+        (omegaV v (nsN α β (nsLevK hα0 hβ0) (one_le_nsLevK hα0 hβ0) v) / omegaV v (unitsVSub v)) =
+      ENNReal.ofReal (nsRatio K a b d v) * Measure.muLocSO v (qNS a b d) 1
+        (nsU hb₁ hα hβ (ne_zero_of_algebraMap_eq hα hα0) (d_ne_zero_of_basis hb₁) (nsLevK hα0 hβ0)
+          (one_le_nsLevK hα0 hβ0) v) := by
+  obtain ⟨M, hM, hEq⟩ := hD
   have ha0 := ne_zero_of_algebraMap_eq hα hα0
   have hb0 := ne_zero_of_algebraMap_eq hβ hβ0
   have hd0 := d_ne_zero_of_basis hb₁
@@ -547,6 +562,16 @@ theorem nsBadPlaceRatio_of_deep (hD : NSBadDeepRatio F) : NSBadPlaceRatio F := b
     simp only [div_eq_mul_inv, mul_assoc]
   rw [Finset.prod_congr rfl hsplit, Finset.prod_mul_distrib, mul_assoc, hEq]
   ring
+
+/-- **Test-set independence of the bad-place ratio**: the identity at any deeper level gives the identity at the level
+`nsLevK`, i.e. `NSBadDeepRatio F → NSBadPlaceRatio F`. Raising the level multiplies both sides by the same index
+$\prod_{w\mid v}[K^{(3)}_{m_w} : K^{(3)}_{M_w}] = [U^{(m)}_v : U^{(M)}_v]$ (`relIndex_nsLocSub`, `relIndex_nsUSub`), and leaves
+$\operatorname{nrd}\Lambda^{(\cdot)}_w = \mathcal O_w^{\times2}$ and $N_v$ unchanged (`nL_eq_sqUnits`). -/
+@[kb "weil1982" "Thm 2.3.1 and §2.2-2.3 (the local ratio is independent of the test set) [unverified page]"]
+theorem nsBadPlaceRatio_of_deep (hD : NSBadDeepRatio F) : NSBadPlaceRatio F :=
+  ⟨fun a b d K _ _ _ bK hb₀ hb₁ α β hα hβ hα0 hβ0 hna hnb hdpos v hv =>
+    nsBadPlaceRatio_of_deep_at hb₀ hb₁ hα hβ hα0 hβ0 hv
+      (hD.ratio a b d K bK hb₀ hb₁ α β hα hβ hα0 hβ0 hna hnb hdpos v hv)⟩
 
 open QuadFormsKB.HilbertModular in
 /-- **`GnatMeasureComparisonNSDef F`** from the bad-place identity at some deeper level. -/

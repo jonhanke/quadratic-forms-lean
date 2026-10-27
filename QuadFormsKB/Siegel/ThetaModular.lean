@@ -226,7 +226,7 @@ theorem thetaDual_add_level {Q : QuadForm ℤ n} {N : ℕ} (hN : IsThetaLevel Q 
 $$\Theta_Q\Big(\frac{-1}{Nz}\Big) = (-iNz)^k\, (\det H)^{-1/2}\, \Theta_{Q^*}(Nz).$$
 When $N$ is a level, $\Theta_{Q^*}(Nz) = \sum_{\vec{y}} e(z\, N Q^*(\vec{y}))$ is the theta series of the integral form
 $NQ^*$ (the "dual form of level $N$"), so this is the action of the Fricke involution $W_N$. This is `theta_S'` at $Nz$. -/
-@[kb "serre1973" "Ch. VII §6 [unverified]"]
+@[kb "serre1973" "Ch. VII §6 [unverified]; cassels1978 App. B, (5.20), p. 386"]
 theorem theta_fricke {Q : IntQF n} (hQ : Q.PosDef) {k : ℕ} (hn : n = 2 * k) {N : ℕ} (hN0 : 0 < N)
     {z : ℂ} (hz : 0 < z.im) :
     theta Q (-1 / (N * z)) =
@@ -241,7 +241,7 @@ $$\Theta_Q\Big(\frac{z}{Nz + 1}\Big) = (Nz + 1)^k\, \Theta_Q(z).$$
 *Proof:* with $\tau = -1/(Nz)$ one has $z/(Nz+1) = -1/(N(\tau - 1))$; apply the Fricke relation at $\tau$ and
 $\tau - 1$, and use $\Theta_{Q^*}(N\tau - N) = \Theta_{Q^*}(N\tau)$ (`thetaDual_add_level`); the ratio of the factors is
 $((\tau - 1)/\tau)^k = (Nz + 1)^k$. No character appears: $U_N$ has $d = 1$. -/
-@[kb "serre1973" "Ch. VII §6 [unverified]"]
+@[kb "serre1973" "Ch. VII §6 [unverified]; cassels1978 App. B, (5.20), p. 386"]
 theorem theta_U {Q : IntQF n} (hQ : Q.PosDef) {k : ℕ} (hn : n = 2 * k) {N : ℕ} (hN0 : 0 < N)
     (hN : IsThetaLevel Q N) {z : ℂ} (hz : 0 < z.im) :
     theta Q (z / (N * z + 1)) = (N * z + 1) ^ k * theta Q z := by
@@ -303,7 +303,7 @@ def thetaGroup (N : ℤ) : Subgroup SL(2, ℤ) := Subgroup.closure {ModularGroup
 /-- **$\Theta_Q$ is invariant of weight $k$ under $\langle T, U_N\rangle$** (even $n = 2k$, $Q$ positive definite, $N \ge 1$ a
 level): a Mathlib `SlashInvariantForm` for that group. Holomorphy is `differentiableOn_theta`; boundedness at the
 cusps of this group and invariance under all of $\Gamma_0(N)$ (with the character $\chi_D$) are not proved here. -/
-@[kb "serre1973" "Ch. VII §6 [unverified]"]
+@[kb "serre1973" "Ch. VII §6 [unverified]; cassels1978 App. B, (5.20), p. 386"]
 def thetaSIF {Q : IntQF n} (hQ : Q.PosDef) {k : ℕ} (hn : n = 2 * k) {N : ℕ}
     (hN0 : 0 < N) (hN : IsThetaLevel Q N) :
     SlashInvariantForm ((thetaGroup N).map (Matrix.SpecialLinearGroup.mapGL ℝ)) k where

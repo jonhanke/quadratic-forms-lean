@@ -35,7 +35,7 @@ def ofGram (A : Matrix (Fin n) (Fin n) ℚ) : RatQF n where
     simp only [Matrix.of_apply, ite_eq_right h.ne', ite_eq_right (not_lt.mpr h.le)]
 
 /-- **The Gram matrix is symmetric:** $A^{\mathsf T} = A$. -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, (2.1)–(2.2), p. 5, and (2.7)–(2.8), p. 6; Ch. 2, §1, (1.3), p. 12"]
 theorem gram_isSymm (Q : RatQF n) : Q.gram.IsSymm := by
   ext i j
   simp [gram, QuadFormsKB.QuadForm.hessian]
@@ -43,7 +43,7 @@ theorem gram_isSymm (Q : RatQF n) : Q.gram.IsSymm := by
 
 /-- **Values via the Gram matrix:** $Q(\vec{x}) = \vec{x}^{\mathsf T} A\, \vec{x}$ for all
 $\vec{x} \in K^n$, over every field $K \supseteq \mathbb{Q}$, where $A = $ `gram Q`. -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, (2.7)–(2.8), p. 6"]
 theorem evalIn_eq_gram (K : Type*) [Field K] [CharZero K] (Q : RatQF n) (x : Fin n → K) :
     Q.evalIn K x = x ⬝ᵥ (Q.gram.map (algebraMap ℚ K) *ᵥ x) := by
   have hS : QuadForm.evalIn K Q x = ∑ i, ∑ j, algebraMap ℚ K (Q.coeff i j) * x i * x j := by
@@ -66,7 +66,7 @@ theorem evalIn_eq_gram (K : Type*) [Field K] [CharZero K] (Q : RatQF n) (x : Fin
 /-- **Values of `ofGram`:** for a symmetric rational matrix $A$, the form `ofGram A` takes
 the value $\vec{x}^{\mathsf T} A\, \vec{x}$ at every $\vec{x} \in K^n$ ($K \supseteq \mathbb{Q}$ a
 field). -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, (2.1)–(2.2), p. 5, and (2.7), p. 6"]
 theorem evalIn_ofGram (K : Type*) [Field K] [CharZero K] (A : Matrix (Fin n) (Fin n) ℚ)
     (hA : A.IsSymm) (x : Fin n → K) :
     (ofGram A).evalIn K x = x ⬝ᵥ (A.map (algebraMap ℚ K) *ᵥ x) := by
@@ -107,7 +107,7 @@ theorem evalIn_ofGram (K : Type*) [Field K] [CharZero K] (A : Matrix (Fin n) (Fi
 
 /-- **Round trip form → Gram matrix → form is the identity:** `ofGram (gram Q) = Q`. Every
 rational quadratic form is determined by its Gram matrix. -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, (2.1)–(2.2), p. 5, and (2.7)–(2.8), p. 6"]
 theorem ofGram_gram (Q : RatQF n) : ofGram Q.gram = Q := by
   apply QuadFormsKB.QuadForm.ext
   ext i j
@@ -123,7 +123,7 @@ theorem ofGram_gram (Q : RatQF n) : ofGram Q.gram = Q := by
 
 /-- **Round trip Gram matrix → form → Gram matrix is the identity** on symmetric matrices:
 `gram (ofGram A) = A` when $A^{\mathsf T} = A$. -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, (2.1)–(2.2), p. 5, and (2.7)–(2.8), p. 6"]
 theorem gram_ofGram (A : Matrix (Fin n) (Fin n) ℚ) (hA : A.IsSymm) : (ofGram A).gram = A := by
   ext i j
   have hs : A j i = A i j := hA.apply i j
@@ -137,7 +137,7 @@ theorem gram_ofGram (A : Matrix (Fin n) (Fin n) ℚ) (hA : A.IsSymm) : (ofGram A
 /-- **Two nondegeneracy tests agree over $\mathbb{Q}$:** $\det H \ne 0$ for the Hessian
 $H = C + C^{\mathsf T}$ (`Nondegenerate`) iff $\det A \ne 0$ for the Gram matrix $A = \tfrac12 H$
 (since $\det A = 2^{-n} \det H$). -/
-@[kb "cassels1978" "Ch. 2, §1"]
+@[kb "cassels1978" "Ch. 1, §2, p. 6 (regular: d(f) = det F ≠ 0); Ch. 2, Lemma 1.2, p. 12"]
 theorem nondegenerate_iff_det_gram (Q : RatQF n) : Q.Nondegenerate ↔ Q.gram.det ≠ 0 := by
   unfold QuadFormsKB.QuadForm.Nondegenerate gram
   rw [Matrix.det_smul]

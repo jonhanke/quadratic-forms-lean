@@ -18,7 +18,7 @@ $\beta_v(t)$ = `DVR.localDensity (NF.Qp v Q) π t` for $t \in \mathcal O_v\setmi
   $r_{\mathfrak p^k}(tu^2) = r_{\mathfrak p^k}(t)$).
 * **`sphLocal_eq_tsum`** (Weil 1982, §4.5, (3), p. 102, and p. 107: "$T(\rho)$ covers twice the set $F(x)\in\rho k_v^{*2}$"):
   $$Z_\mathfrak p(s,\rho) = \frac{2}{1-q^{-1}}\int_{x\in L_v,\ Q(x)\in\rho F_v^{\times2}}|Q(x)|_v^s\,dx = |2|_v\sum_{j\in\mathbb Z}|\rho\pi^{2j}|_v^{1+s}\,\beta_v(\rho\pi^{2j}),$$
-  terms with $\rho\pi^{2j}\notin\mathcal O_v$ being $0$. This is the local half of the bookkeeping of `SphericalFibration`:
+  terms with $\rho\pi^{2j}\notin\mathcal O_v$ being $0$. This is the local half of the bookkeeping in the spherical fibration:
   the $2$ and $(1 - q^{-1})^{-1}$ of `sphLocal` against $\operatorname{vol}(U^2)$.
 -/
 
@@ -249,7 +249,7 @@ lemma haarV_unitSet : haarV v (unitSet v) = ENNReal.ofReal (1 - (Ideal.absNorm v
 
 /-- **The volume of the unit squares** (every finite place): $\operatorname{vol}(U^2) = \dfrac{1 - q^{-1}}{[U : U^2]} = \dfrac{1-q^{-1}}{2q^e}$,
 $e = \operatorname{ord}_v2$ (`HN.index_sq_U0`). The $[U:U^2]$ cosets $cU^2$ partition $U$ and have equal volume ($|c|_v = 1$). -/
-@[kb "weil1982" "§4.5, p. 107 (T(ρ) covers twice F(x) ∈ ρk_v*²); O'Meara 63:9 [unverified]"]
+@[kb "weil1982" "§4.5, p. 107 (T(ρ) covers twice F(x) ∈ ρk_v*²); O'Meara 63:9, p. 163 ((u : u²) = 2(Np)^{ord 2})"]
 theorem haarV_shell_one : haarV v (shell v 1) =
     ENNReal.ofReal ((1 - (Ideal.absNorm v.asIdeal : ℝ)⁻¹) / (2 * (Ideal.absNorm v.asIdeal : ℝ) ^ HN.ordTwo v)) := by
   have hm : MeasurableSet (shell v 1) := measurableSet_shell v one_ne_zero

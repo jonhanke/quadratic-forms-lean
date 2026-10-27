@@ -20,7 +20,7 @@ This discharges the hypothesis `hbound` of `MeanSquare.lean` for cusp forms: `su
    $\varphi(z) = \varphi(A^{-1}w) = N(\operatorname{Im}w)^{k/2}|(f\,|_k\,A^{-1})(w)|$.
 3. *The bound at one cusp* (`exists_bound_slash_of_mem_cuspFormSpace`): for $g = f\,|_k\,B$ ($B \in \mathrm{SL}_2(F)$),
    $N(\operatorname{Im}w)^{k/2}|g(w)|$ is bounded on $\{N(\operatorname{Im}w) \ge c_0\}$. Indeed $B^{-1}\Gamma B$ contains $T(I)$ for a fractional
-   ideal $I$ and $\mathrm{diag}(u^m, u^{-m})$ for all units $u$ (`koecher_cusp_hyp_of_GammaFull_le`). The units act by
+   ideal $I$ and $\mathrm{diag}(u^m, u^{-m})$ for all units $u$ (`koecher_cusp_hyp_of_GammaFull_le`, C2). The units act by
    $w \mapsto u^{2m}w$, preserving $|g|$ and $N(\operatorname{Im}w)$; by Dirichlet's unit theorem (`exists_unit_log_balance`) a unit
    moves $y = \operatorname{Im}w$ to $y'$ with $\log y'_v \ge \frac1d\log N(y) - R$ for all $v$, so $\min_vy'_v \ge e^{-R}N(y)^{1/d}$. The
    cusp form $g$ decays like $e^{-2\pi\min_vy_v/N}$ (`CuspDecay.lean`; $N \in I$ a positive integer), and

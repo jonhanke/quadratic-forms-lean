@@ -10,7 +10,8 @@ not prime to $\mathfrak N$); its classes are those of the "ray class group with 
 of level $\mathfrak N$.
 
 **The key** (`rayKey`). Let $\mathfrak a = \mathfrak b_{[\mathfrak d]^{-1}}$ be the fixed integral ideal of the inverse class (`compIdeal`,
-`repIdeal`), so $\mathfrak d\mathfrak a = (\alpha)$ is principal with $\alpha \in \mathcal{O}_F$ (`rayGen`). The key of $\mathfrak d$ is
+the `repIdeal`), so $\mathfrak d\mathfrak a = (\alpha)$ is principal with $\alpha \in \mathcal{O}_F$ (`rayGen`). The
+key of $\mathfrak d$ is
 $$\kappa(\mathfrak d) = \big([\mathfrak d],\ \alpha \bmod \mathfrak N\mathfrak a_0\big) \in \mathrm{Cl}_F \times \mathcal{O}_F/\mathfrak N\mathfrak a_0,
   \qquad \mathfrak a_0 = \prod_{C\in\mathrm{Cl}_F}\mathfrak b_C\ (\texttt{repProd}),$$
 a **finite** set (`finite_rayKey`: $h_F < \infty$ and $\mathcal{O}_F/\mathfrak N\mathfrak a_0$ finite). If $\kappa(\mathfrak d) = \kappa(\mathfrak d')$ then

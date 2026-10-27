@@ -1,8 +1,8 @@
 /-
 # The β-decomposition of the covolume for noncompact `G_∞`
 
-**Layer:** abstract group and measure theory (no topology, no number theory). Generalizes
-`NeatCovolume.lean`, where `Γ ∩ βKβ⁻¹` was trivial (neat level) and `G_∞` compact.
+**Layer:** abstract group and measure theory (no topology, no number theory). Generalizes `NeatCovolume.lean`
+(`NeatCovolume.lean`), where `Γ ∩ βKβ⁻¹` was trivial (neat level) and `G_∞` compact.
 
 **Setting.** `G = A × B` (`A = G_∞`, `B = G_f`), `Γ ≤ A × B` countable, `K' ≤ B` a measurable subgroup, and
 `β : ι → B` (`ι` countable) exact representatives of the double cosets `Γ_f \\ B / K'` (`Γ_f` = image of `Γ` in `B`).

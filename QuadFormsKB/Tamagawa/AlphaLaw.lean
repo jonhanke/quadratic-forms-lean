@@ -11,7 +11,7 @@ index ratio $r(K_1, K_2) = [K_1 : K_1\cap K_2]/[K_2 : K_1\cap K_2]$ is Weil's ra
 $$r(K_1, K_2)\cdot\beta(\Lambda_2) = \beta(\Lambda_1)\cdot\|\det P\|^{N+1},$$
 $\beta(\Lambda) = \beta_\mathfrak p(Q_\Lambda, Q_\Lambda)$ the self-density of the Gram form of $\Lambda$ (`DVR.localDensityForm`). It is the finite
 form of the normalization $\mu(O(\Lambda)) \propto \alpha(\Lambda)|\det\Lambda|^{(N+1)/2}$ of Weil's gauge-form measures, proved here by
-counting (Route B: no Haar measure).
+counting (no Haar measure is used).
 
 **Proves (this part)**
 * `rel_nearCount` (**REL, the lattice change of orbit counts**): for $y \in \Lambda_1$,

@@ -250,9 +250,9 @@ theorem diag_eq_splitForm {m : ℕ} (e : Fin (m + 1) → 𝓞 F) :
     simp [QuadForm.diag, diagonal_apply, Fin.succ_ne_zero, (Fin.succ_ne_zero _).symm]
 
 /-- **$\tau(SO_4) = 2$ for every totally positive definite quaternary form over $\mathcal O_F$**, given the ternary input
-($F$ totally real of degree $\ge 2$, $\mathcal O_F$ a PID). `TauFour` proved this for split lattices $\mathcal O_Fe_0\perp L'$ only;
-change of lattice removes the restriction: $Q_0\circ G = \langle e_0\rangle\perp\langle e_1, e_2, e_3\rangle$ and $\tau$ is
-lattice-independent. -/
+($F$ totally real of degree $\ge 2$, $\mathcal O_F$ a PID). The split lattices $\mathcal O_Fe_0\perp L'$ are
+treated in `TauFour.lean`; change of lattice removes the restriction:
+$Q_0\circ G = \langle e_0\rangle\perp\langle e_1, e_2, e_3\rangle$ and $\tau$ is lattice-independent. -/
 @[kb "weil1982" "Thm. 3.7.1 (m = 4), p. 65"]
 theorem tamagawaNumberTwo_four_all (I : TernaryTamagawaTwo F) (hd : 2 ≤ Fintype.card (InfinitePlace F))
     (Q₀ : QuadForm (𝓞 F) 4) (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F))) :

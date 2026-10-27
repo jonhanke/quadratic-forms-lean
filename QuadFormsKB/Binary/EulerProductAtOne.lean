@@ -763,7 +763,7 @@ end Mertens
 
 end QuadFormsKB.Binary.EulerOne
 
-/-! ### The Kronecker character: the input is a theorem -/
+/-! ### The Kronecker character: The input is a theorem -/
 
 namespace QuadFormsKB.Binary
 

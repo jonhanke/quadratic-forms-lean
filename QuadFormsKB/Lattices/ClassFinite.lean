@@ -18,7 +18,7 @@ $(B(x_i, x_j))_{ij}$ of a family of vectors).
   an $F$-basis $x_0, \dots, x_{n-1}$ of $V$ with Gram matrix in $S$.
 * **`classes_finite`** (O'Meara 103:4): integral lattices with $c M^\# \subseteq M$ fall into finitely many classes.
 * **`genusClasses_finite_of_nondegenerate`**: the genus of an integral lattice contains finitely many classes, for every
-  nondegenerate $Q$; **`genusClasses_finite_nf`**: the same for every lattice (no integrality); the totally definite
+  nondegenerate $Q$; **`genusClasses_finite_nf`**: The same for every lattice (no integrality); the totally definite
   `genusClasses_finite` is recovered as `genusClasses_finite_of_totallyPosDef`.
 * **`exists_genus_reps`** (the form used by O'Meara 104:1): finitely many lattices $L_1, \dots, L_h$ in $\mathrm{gen}(L)$
   such that every lattice in $\mathrm{gen}(L)$ is isometric to one of them.
@@ -67,7 +67,7 @@ variable (Q : QuadForm F n)
 /-- **Bounded dual** $c\,M^\# \subseteq M$: every $x \in F^n$ with $B(x, M) \subseteq \mathcal O_F$ has $c\,x \in M$ ($c \in \mathbb Z$).
 On a genus this holds with one $c$ for all members (`exists_dual_zsmul_mem`); it plays the role of O'Meara's condition
 $\mathfrak v L \supseteq \mathfrak c$ on the volume in 103:3–103:4. -/
-@[kb "omeara1963" "103:3-103:4 (volume condition 𝔳L ⊇ 𝔠), PDF pp. 315-318"]
+@[kb "omeara1963" "§103, 103:3–103:4, pp. 307–310 (volume condition 𝔳L ⊇ 𝔠)"]
 def IsDualBounded (M : Submodule (𝓞 F) (Fin n → F)) (c : ℤ) : Prop :=
   ∀ x : Fin n → F, (∀ m ∈ M, bil Q x m ∈ (algebraMap (𝓞 F) F).range) → c • x ∈ M
 
@@ -144,7 +144,7 @@ theorem isDualBounded_glImage {M : Submodule (𝓞 F) (Fin n → F)} {c : ℤ} (
 
 /-- **Moving a vector by an isometry** (in place of Witt's theorem, O'Meara 42:17): if $Q(x) = Q(y) \ne 0$ then
 $\gamma x = y$ for some $\gamma \in O(V)$, a product of at most two symmetries. -/
-@[kb "omeara1963" "42:17 (Witt), special case [unverified]"]
+@[kb "omeara1963" "§42F, 42:17, p. 98 (Witt's theorem), special case; cassels1978 Ch. 2, Lemma 4.2, Cor. 1, p. 20"]
 theorem exists_orth_mulVec_eq {x y : Fin n → F} (hxy : Q.eval x = Q.eval y) (hx : Q.eval x ≠ 0) :
     ∃ γ ∈ orthGroup Q F, γ.val *ᵥ x = y := by
   have hyx : Q.evalIn F y = Q.evalIn F x := hxy.symm
@@ -167,7 +167,7 @@ end Defs
 $P \in \mathrm{GL}_n(F)$ with $P\mathcal O_F^n \subseteq M$ and $k\,P^{-1}M \subseteq \mathcal O_F^n$ for some integer
 $0 < k \le K_F$. (Steinitz: $M = \gamma(\mathcal O_F^{n-1} \oplus \mathfrak c)$; replace $\mathfrak c$ by $a_0\mathcal O_F$ with
 $a_0 \in \mathfrak c$, $b a_0 = m_0$, $b\mathfrak c \subseteq \mathcal O_F$, `exists_scale_ideal`.) -/
-@[kb "omeara1963" "103:3, proof step 3 (81:5 [unverified]), PDF p. 316"]
+@[kb "omeara1963" "§103, proof of 103:3, step 3, p. 308 (with 81:5, p. 212)"]
 theorem exists_free_sublattice :
     ∃ K : ℕ, ∀ M : Submodule (𝓞 F) (Fin n → F), M.IsLattice F →
       ∃ P : GL (Fin n) F, (∀ ξ ∈ intVec, P.val *ᵥ ξ ∈ M) ∧
@@ -404,6 +404,7 @@ theorem eval_add_smul_of_isotropic {x : Fin n → F} (hx : Q.eval x = 0) (y : Fi
 /-- **O'Meara 103:3, bounded form:** for nondegenerate $Q$ on $F^n$ ($n \ge 1$) and $c \ne 0$ there is $B$ such that every
 integral lattice $M$ with $c\,M^\# \subseteq M$ has $x \in M$ with $Q(x) \ne 0$ and $|\varphi(Q(x))| \le B$ for every
 embedding $\varphi$. -/
+@[kb "omeara1963" "§103, 103:3, p. 307 (bounded form)"]
 theorem exists_value_bound (hn : 0 < n) {Q : QuadForm F n} (hQ : Q.Nondegenerate) {c : ℤ} (hc : c ≠ 0) :
     ∃ B : ℝ, ∀ M : Submodule (𝓞 F) (Fin n → F), M.IsLattice F → Lattices.IsIntegral Q M →
       IsDualBounded Q M c → ∃ x ∈ M, Q.eval x ≠ 0 ∧ ∀ φ : F →+* ℂ, ‖φ (Q.eval x)‖ ≤ B := by
@@ -543,7 +544,7 @@ finite set $\Theta \subseteq F \setminus \{0\}$ such that every integral lattice
 $x \in M$ with $Q(x) \in \Theta$ *Update (simplification):* in the isotropic case O'Meara passes to
 $\mathfrak o$-maximal lattices and splits off hyperbolic planes (82:11, 82:20, 82:21); here an isotropic vector with almost
 primitive coordinates and a partner $y$ with $B(x, y)$ of bounded norm suffice (`exists_value_bound`). -/
-@[kb "omeara1963" "103:3, PDF pp. 315-317"]
+@[kb "omeara1963" "§103, 103:3, p. 307"]
 theorem exists_value_set (hn : 0 < n) {Q : QuadForm F n} (hQ : Q.Nondegenerate) {c : ℤ} (hc : c ≠ 0) :
     ∃ Θ : Set F, Θ.Finite ∧ (0 : F) ∉ Θ ∧ ∀ M : Submodule (𝓞 F) (Fin n → F), M.IsLattice F →
       Lattices.IsIntegral Q M → IsDualBounded Q M c → ∃ x ∈ M, Q.eval x ∈ Θ := by
@@ -569,6 +570,7 @@ theorem exists_smul_mem_lattice {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.I
 /-- **The inductive step of O'Meara 103:4:** for $Q$ on $F^{n+1}$, $c \ne 0$ and $\alpha \ne 0$, assuming the Gram-basis
 statement in dimension $n$ (`IH`), there is a finite set $S$ of Gram matrices such that every integral lattice $M$ with
 $c\,M^\# \subseteq M$ and a vector $x \in M$ with $Q(x) = \alpha$ has a basis in $M$ with Gram matrix in $S$. -/
+@[kb "omeara1963" "§103, proof of 103:4, step 2, pp. 309–310"]
 theorem gram_step (IH : ∀ Q' : QuadForm F n, Q'.Nondegenerate → ∀ c' : ℤ, c' ≠ 0 →
       ∃ S' : Set (Matrix (Fin n) (Fin n) F), S'.Finite ∧ ∀ M' : Submodule (𝓞 F) (Fin n → F), M'.IsLattice F →
         Lattices.IsIntegral Q' M' → IsDualBounded Q' M' c' → ∃ z : Fin n → Fin n → F, LinearIndependent F z ∧
@@ -750,7 +752,7 @@ theorem gram_step (IH : ∀ Q' : QuadForm F n, Q'.Nondegenerate → ∀ c' : ℤ
 /-- **Gram bases with Gram matrix in a finite set** (the induction of O'Meara 103:4): for nondegenerate $Q$ on $F^n$ and
 $c \ne 0$ there is a finite set $S$ of $n \times n$ matrices such that every integral lattice $M$ with
 $c\,M^\# \subseteq M$ contains an $F$-basis $x_0, \dots, x_{n-1}$ of $F^n$ whose Gram matrix $(B(x_i, x_j))$ lies in $S$. -/
-@[kb "omeara1963" "103:4, proof, PDF pp. 317-318"]
+@[kb "omeara1963" "§103, proof of 103:4, pp. 309–310"]
 theorem exists_gram_basis : ∀ (n : ℕ) (Q : QuadForm F n), Q.Nondegenerate → ∀ c : ℤ, c ≠ 0 →
     ∃ S : Set (Matrix (Fin n) (Fin n) F), S.Finite ∧ ∀ M : Submodule (𝓞 F) (Fin n → F), M.IsLattice F →
       Lattices.IsIntegral Q M → IsDualBounded Q M c → ∃ x : Fin n → Fin n → F, LinearIndependent F x ∧
@@ -842,7 +844,7 @@ variable {Q : QuadForm F n}
 /-- **O'Meara 103:4 (finiteness of the class number):** for nondegenerate $Q$ on $F^n$ (definite or indefinite) and
 $c \ne 0$, the integral lattices $M \subseteq F^n$ with $c\,M^\# \subseteq M$ fall into finitely many classes
 (isometry classes under $O(V)(F)$). -/
-@[kb "omeara1963" "103:4, PDF pp. 317-318"]
+@[kb "omeara1963" "§103, 103:4, p. 309; cassels1978 Ch. 9, Thm. 1.1, p. 128"]
 theorem classes_finite (hQ : Q.Nondegenerate) {c : ℤ} (hc : c ≠ 0) :
     {cls : LatClass Q | ∃ M : Lat F n, Quotient.mk _ M = cls ∧ Lattices.IsIntegral Q M.1 ∧
       IsDualBounded Q M.1 c}.Finite := by
@@ -922,7 +924,7 @@ theorem classes_finite (hQ : Q.Nondegenerate) {c : ℤ} (hc : c ≠ 0) :
 /-- **The genus of an integral lattice has finitely many classes, for every nondegenerate $Q$** (O'Meara 103:4): the
 dual bound $c\,M^\# \subseteq M$ holds uniformly on the genus (`exists_dual_zsmul_mem`) and integrality is a genus
 invariant (`SameGenus.isIntegral`). This removes the hypothesis `IsTotallyPosDef` of `genusClasses_finite`. -/
-@[kb "omeara1963" "103:4, PDF pp. 317-318"]
+@[kb "omeara1963" "§103, 103:4, p. 309 ('in particular, the number of proper classes in a genus is finite')"]
 theorem genusClasses_finite_of_nondegenerate (hQ : Q.Nondegenerate) (L : Lat F n)
     (hLi : Lattices.IsIntegral Q L.1) : (genusClasses Q L).Finite := by
   obtain ⟨c, hc, hdual⟩ := exists_dual_zsmul_mem Q hQ L.2
@@ -930,8 +932,8 @@ theorem genusClasses_finite_of_nondegenerate (hQ : Q.Nondegenerate) (L : Lat F n
   rintro _ ⟨M, rfl, hgen⟩
   exact ⟨M, rfl, hgen.isIntegral Q hLi, fun x hx => hdual M.1 M.2 hgen x hx⟩
 
-/-- **Consistency with the totally definite case:** `genusClasses_finite` (proved separately by Hermite reduction of the
-trace form) also follows from the general theorem. -/
+/-- **Consistency with the earlier result:** the totally definite case `genusClasses_finite` (proved there by Hermite
+reduction of the trace form) also follows from the general theorem. -/
 theorem genusClasses_finite_of_totallyPosDef (hQ : IsTotallyPosDef Q) (L : Lat F n)
     (hLi : Lattices.IsIntegral Q L.1) : (genusClasses Q L).Finite :=
   genusClasses_finite_of_nondegenerate hQ.nondegenerate L hLi
@@ -998,7 +1000,7 @@ theorem exists_smul_isIntegral {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.Is
 nondegenerate $Q$ on $F^n$ (definite or indefinite) and **every** lattice $L$ (integral or not), $\mathrm{gen}(L)$
 contains only finitely many classes. Rescale $Q$ by $a \ne 0$ with $aQ(L)$ integral; $O(aQ) = O(Q)$, so classes and genera
 are unchanged. -/
-@[kb "omeara1963" "103:4, PDF pp. 317-318"]
+@[kb "omeara1963" "§103, 103:4, p. 309"]
 theorem genusClasses_finite_nf (hQ : Q.Nondegenerate) (L : Lat F n) : (genusClasses Q L).Finite := by
   obtain ⟨a, ha, hLi⟩ := exists_smul_isIntegral Q L.2
   have hQa : (a • Q).Nondegenerate := by
@@ -1018,7 +1020,7 @@ theorem genusClasses_finite_nf (hQ : Q.Nondegenerate) (L : Lat F n) : (genusClas
 /-- **Class representatives of a genus (the input of O'Meara 104:1):** for nondegenerate $Q$ and any lattice $L$ there
 are finitely many lattices $L_1, \dots, L_h$ in $\mathrm{gen}(L)$ such that every lattice in $\mathrm{gen}(L)$ is isometric
 to one of them. -/
-@[kb "omeara1963" "103:4; 104:1, proof (L₁, …, L_h one from each class in gen L), PDF pp. 317-319"]
+@[kb "omeara1963" "§103, 103:4, p. 309; §104, proof of 104:1, p. 311 (L_1, …, L_h one from each class in gen L)"]
 theorem exists_genus_reps (hQ : Q.Nondegenerate) (L : Lat F n) :
     ∃ s : Finset (Lat F n), (∀ M ∈ s, SameGenus Q L.1 M.1) ∧
       ∀ M : Lat F n, SameGenus Q L.1 M.1 → ∃ M' ∈ s, IsIsometric Q M.1 M'.1 := by

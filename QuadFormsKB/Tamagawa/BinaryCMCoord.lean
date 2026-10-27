@@ -16,7 +16,6 @@ $E$ exists by `exists_sqrtExt_of_not_isSquare`, and it is a CM extension).
   `latE` of the maximal order, which contains $\mathcal O_F^2$ (the order $\mathcal O_F[\theta]$) and is contained in $(2D)^{-1}\mathcal O_F^2$.
 
 Source: Shimura 2010, §4 (orders of CM fields and their norm forms) [unverified].
-
 -/
 
 open NumberField IsDedekindDomain Matrix

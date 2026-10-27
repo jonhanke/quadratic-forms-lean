@@ -33,7 +33,9 @@ $N(\mathfrak a)|d_F|^{1/2}$ (`selfDual_covolume_idealLattice`).
 The adele ring itself (`AdeleRing`) is not used: $f(\gamma)$ for $\gamma\in F$ is written directly as
 $f_\infty(\gamma)\prod_v f_v(\gamma)$.
 
-Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, Thm. 4.2.1 [unverified]; Weil, *Basic Number Theory*,
+Sources: Tate's thesis, Cassels–Fröhlich Ch. XV, §4.2, Lemma 4.2.4 (Poisson formula), p. 333 (his Thm. 4.2.1,
+p. 333, the "Riemann–Roch theorem", is the same formula for $x \mapsto f(ax)$, $a$ an idele); $\operatorname{vol}(V/k) = 1$
+is Thm. 4.1.3 (2), pp. 330–331; strong approximation: Cassels, *Global fields*, Ch. II, §15, Thm., p. 67; Weil, *Basic Number Theory*,
 Ch. VII §2, Prop. 4 and Ch. VIII [unverified].
 -/
 
@@ -259,7 +261,7 @@ $f(\gamma) = f_\infty(\gamma)\prod_v f_v(\gamma)$ and the products over $v$ are 
 (`finprod_fourierV_ballIndV`, using the product formula `finprod_psiV_eq_fourierChar` and
 $\mathfrak a^\vee = \mathfrak a^{-1}\mathfrak d^{-1}$); then `poisson_fractionalIdeal`, with
 $\operatorname{vol}(\hat{\mathfrak a}) = (N(\mathfrak a)|d_F|^{1/2})^{-1} = (2^{r_2}\operatorname{covol}\mathfrak a)^{-1}$. -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 4.2.1 (Poisson summation formula) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2, Lemma 4.2.4 (Poisson formula), p. 333"]
 theorem adelicPoisson (f : SchwartzMap V ℂ) (ξ : F) {k : HeightOneSpectrum (𝓞 F) → ℤ}
     (hk : (Function.support k).Finite) :
     ∑' γ : F, f (mixedEmbedding F γ) *
@@ -347,7 +349,7 @@ lemma valued_algebraMap_int_le_of_mem (v : HeightOneSpectrum (𝓞 F)) {b : 𝓞
 /-- **Strong approximation for the finite adeles** (in the form needed here): for a finite set $S$ of finite
 places, $c_v \in F_v$ and $k_v \in \mathbb{Z}$, there is $\xi \in F$ with $v(\xi - c_v) \le \exp(-k_v)$ for $v \in S$
 and $\xi \in \mathcal O_v$ for $v \notin S$. -/
-@[kb "casselsfrohlich1967" "Ch. II (Cassels), §15 (strong approximation) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §15, Thm. (strong approximation), p. 67, in the equivalent form at the start of its proof; Ch. XV (Tate), §4.1, Lemma 4.1.3 (2), p. 329"]
 theorem exists_strong_approx (S : Finset (HeightOneSpectrum (𝓞 F)))
     (c : ∀ v : HeightOneSpectrum (𝓞 F), v.adicCompletion F) (k : HeightOneSpectrum (𝓞 F) → ℤ) :
     ∃ ξ : F, (∀ v ∈ S, Valued.v (algebraMap F (v.adicCompletion F) ξ - c v) ≤ exp (-k v)) ∧
@@ -583,7 +585,7 @@ both sums converging absolutely (`summable_adelicPoisson_factorizable_lhs`, `_rh
 *Proof:* expand $\prod_{v\in S}f_v$ into products of single cosets (`finprod_expand`), give each product of cosets a
 global center by strong approximation (`exists_strong_approx`, `ballIndV_recenter`), and apply `adelicPoisson`
 to each term (`factorizable_expansion`). -/
-@[kb "casselsfrohlich1967" "Ch. XV (Tate), Thm. 4.2.1 (Poisson summation formula) [unverified]"]
+@[kb "casselsfrohlich1967" "Ch. XV (Tate), §4.2, Lemma 4.2.4 (Poisson formula), p. 333"]
 theorem adelicPoisson_factorizable (f : SchwartzMap V ℂ) :
     ∑' γ : F, f (mixedEmbedding F γ) * ∏ᶠ v, fv v (algebraMap F (v.adicCompletion F) γ) =
       ∑' γ : F, fourierInf f (mixedEmbedding F γ) *

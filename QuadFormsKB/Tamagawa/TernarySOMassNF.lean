@@ -6,7 +6,7 @@ $L = \mathcal O^0$ (`pureLat`), $Q = \langle -a,-b,ab\rangle$, $\Gamma = SO(Q)(F
 
 * `finite_orbits_KpNF`, `finite_stab_KpNF`: $\Gamma\backslash G/K'$ is finite with finite stabilizers;
 * `dcMass_KpNF_eq_mul`: $\mathrm{dcMass}(\Gamma, K') = 2^{\#\mathrm{Ram}_f}\,\mathrm{dcMass}(\Gamma, K_0)$ (`relIndex_KpNF_K0NF`);
-* **`dcMass_K0NF_eq`**: with Eichler's mass formula for every class number (`eichler_mass_formula_nf'`) and the double coset mass
+* **`dcMass_K0NF_eq`**: with Eichler's mass formula for every class number (`eichler_mass_formula_nf'`) and
   (`classNumber_mul_dcMass_KpNF`), **$h_F$ cancels**:
   $$\mathrm{dcMass}(SO(Q)(F), SO(\hat L)) = 2^{-\#\mathrm{Ram}_f}\cdot\frac{2\,\zeta_F(2)\prod_{\mathfrak p\in\mathrm{Ram}_f}(1-N\mathfrak p^{-1})}
     {c_{\mathcal O}\,d_F^{1/2}\,\pi^{2[F:\mathbb Q]}},$$
@@ -78,7 +78,8 @@ theorem finite_stab_KpNF (ha : a ≠ 0) (hb : b ≠ 0) (hdef : IsTotDefinite a b
   rw [hcard]
   exact mul_ne_zero hfi.index_ne_zero hpos.ne'
 
-/-- $\mathrm{dcMass}(\Gamma, K') = 2^{\#\mathrm{Ram}_f}\cdot\mathrm{dcMass}(\Gamma, K_0)$. -/
+/-- **Index of $K'$ in $K_0$ for the mass:**
+$\mathrm{dcMass}(\Gamma, K') = 2^{\#\mathrm{Ram}_f}\cdot\mathrm{dcMass}(\Gamma, K_0)$. -/
 theorem dcMass_KpNF_eq_mul (ha : a ≠ 0) (hb : b ≠ 0) (hdef : IsTotDefinite a b) (hO : IsMaximalOrder (𝓞 F) F O)
     (hstd : stdOrder F a b ≤ O) :
     dcMass (GamNF a b) (KpNF O) = (2 : ℝ) ^ (ramFin ha hb).card * dcMass (GamNF a b) (K0NF hO.1) := by

@@ -13,7 +13,8 @@ $r_\mathfrak p = P_1/P_0$. Then:
 1. (**(7)**, p. 107) $Z_\mathfrak p(s,\rho) = e_\mathfrak p(\rho)\,P_{\operatorname{ord}_\mathfrak p\rho \bmod 2}(\mathfrak p)$ with $|e_\mathfrak p - 1| \le 2N\mathfrak p^{-2}$
    ($n \ge 5$), so $Z(s,\rho) = E_S(\rho)\cdot|d_F|^{-n/2}\alpha_S(\rho)\,B_S\prod_{\mathfrak p\in T(\rho)}r_\mathfrak p$, $E_S(\rho) \in [\mu(S), \mu'(S)]$.
 2. (**(4)–(6)**, p. 106) summing over $F^\times/F^{\times2} \cong \{T\}\times\Lambda_S$ with the finite Poisson formula gives
-   $|\Lambda_S|^{-1}\sum_{\lambda\in\Lambda_S}\hat\alpha_S(\lambda)\prod_{\mathfrak p\notin S}(1 + \chi_\lambda(\mathfrak p)r_\mathfrak p)$, whose $\lambda = 1$ term is `globalZeta` and whose other terms are $o(1/s)$ (`QTwist.tendsto_mul_LFunction_zero`).
+   $|\Lambda_S|^{-1}\sum_{\lambda\in\Lambda_S}\hat\alpha_S(\lambda)\prod_{\mathfrak p\notin S}(1 + \chi_\lambda(\mathfrak p)r_\mathfrak p)$, whose $\lambda = 1$ term is the
+   `globalZeta` and whose other terms are $o(1/s)$ (`QTwist.tendsto_mul_LFunction_zero`).
 3. (**(8)**, p. 108) letting $S \to \infty$, $\mu(S), \mu'(S) \to 1$.
 -/
 import Mathlib

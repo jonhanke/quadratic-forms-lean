@@ -10,7 +10,11 @@ project:
     every totally real number field; the Tamagawa number tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass
     formula over totally real fields; Hilbert reciprocity over every number field, proved locally via the
     Weil index; and the Hasse-Minkowski local-global principle over every number field (isotropy,
-    representation, isometry) and over the rationals. Further results include Witt's theorems over every
+    representation, isometry) and over the rationals. Release 0.2.0 adds the Tamagawa numbers of SO(V) over every
+    number field (tau = 2 for dimension >= 3 and for anisotropic binary spaces, tau = 1 for isotropic binary spaces
+    and in dimension 1), Siegel's formula in measure form for indefinite forms of any signature over every number
+    field (numbers and forms, every rank of the stabilizer), Siegel's formula for definite forms representing forms
+    over totally real fields, and classical cases over Q (three squares, two squares, x^2 - 2y^2). Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
     strong approximation for spin groups, Kneser neighbours, the Hasse norm theorem for quadratic
@@ -149,20 +153,30 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 13 statements of Challenge.lean, proved in Solution.lean): Siegel's theorem for
-    totally positive definite quadratic lattices over totally real number fields, in every rank and every
-    genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
+    Formalized (the 34 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
+    rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
     L_F(1, chi) (each with a basis-dependent and a basis-free character), rank 1 with Siegel's factor 1/2;
-    tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass formula for totally positive definite forms in
-    n >= 4 variables with coefficients in O_F, for the genus of the free lattice O_F^n (lower ranks and
-    general lattices are proved in the library but not stated in Challenge.lean); Hilbert reciprocity over
-    every number field; Hasse-Minkowski over every number field for isotropy, for representation of a
-    nonzero number, and for isometry (both directions); Hasse-Minkowski over Q in any number of variables.
-    Not formalized: Siegel's theorem for indefinite forms, representations of forms by forms (only numbers
-    by forms), and the Siegel-Weil formula beyond these cases. Over a general totally real field the
-    natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
-    hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements.
+    tau(SO(Q)) = 2 and the Smith-Minkowski-Siegel mass formula for totally positive definite forms in n >= 4
+    variables with coefficients in O_F, for the genus of the free lattice O_F^n; Hilbert reciprocity over every
+    number field; Hasse-Minkowski over every number field for isotropy, for representation of a nonzero number,
+    and for isometry (both directions); Hasse-Minkowski over Q in any number of variables. Release 0.2.0 (21
+    statements): the Tamagawa number of SO(V) over every number field for every nondegenerate quadratic form or
+    space (tau = 2 for n >= 3 with convergence factors 1; tau = 2 for anisotropic binary spaces with the convergence
+    factors L_v(1, chi_E); tau = 1 for isotropic binary spaces, measured on the norm-one subgroup; tau = 1 for n = 1);
+    Siegel's formula in measure form for indefinite forms over every number field: numbers by forms in N >= 4
+    variables, forms by forms with stabilizer rank >= 3, stabilizer rank 2 (anisotropic, regularized by L_F(1, chi);
+    isotropic, Siegel's excluded case, regularized by the residue of zeta_F), ternary forms representing numbers in
+    both cases, corank 1 (including anisotropic binary forms representing numbers) and corank 0; Siegel's formula
+    for totally positive definite forms representing totally positive definite forms over totally real fields
+    (N >= 3, N - r != 2); Gauss's three-squares theorem, Jacobi's two-squares theorem, Siegel's formula for
+    x^2 + y^2 with explicit constants, and Dirichlet's theorem for x^2 - 2y^2. Not formalized: the Siegel-Weil
+    formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
+    the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
+    hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
+    AdelicSphereEulerGaussInputs, is false; the three theorems assuming it are vacuous and are not headlines
+    (docs/results/errata.md).
   sorry_count: 0
   sorry_in_definitions: 0
   # No custom axioms; the standard axioms used (checked by scripts/check_axioms.lean and lake comparator):
@@ -178,17 +192,24 @@ automation:
         builds (lake build) as the check and pull requests merged into the main branch; human direction
         throughout.
       cost:
-        wall_time: "about one week (2026-10-13 to 2026-10-20), agents running around the clock"
+        wall_time: >-
+          release 0.1.0: about one week (2026-10-13 to 2026-10-20), agents running around the clock; up to
+          release 0.2.0: the source repository was created on 2026-10-14, and its main branch has about 3,260
+          commits as of 2026-10-27
         spend_usd: >-
-          subscription-based (Claude Max plan, $200/month); API-equivalent value of the tokens about
-          $1,200-1,800 (measured from local Claude Code logs)
+          subscription-based (Claude Max plan, $200/month); API-equivalent value of the tokens at list prices
+          about $1,200-1,800 for release 0.1.0, and about $3,090 for the source repository up to release 0.2.0
+          (35,720 requests, mostly Claude Opus 5.5, with Claude Sonnet 5.5 subagents; overhead included;
+          measured from local Claude Code logs on 2026-10-27)
         hardware: "local machine (MacBook) for builds; API for models"
       prompting_notes: >-
         Human-written roadmaps and goals per result; agents were given design documents and handoff notes
         from earlier sessions. The human chose the results, the conventions (e.g. classes under the full
         orthogonal group with weights 1/|O(L)|) and the proof routes (local routes such as the Weil index
         for Hilbert reciprocity; Weil's adelic route for Siegel's theorem).
-  spend_usd: "subscription-based (Claude Max plan); API-equivalent value about $1,200-1,800"
+  spend_usd: >-
+    subscription-based (Claude Max plan); API-equivalent value about $1,200-1,800 for release 0.1.0 and about
+    $3,090 for the source repository up to release 0.2.0
   notes: >-
     Jonathan Hanke designed and directed the project; the Lean code was written almost entirely by
     Claude Opus 5.5, with a small share by Claude Sonnet 5.5. An orchestrating session split each result
@@ -216,18 +237,23 @@ fidelity:
     genus are finite, that the infinite products converge unconditionally, that L_F(1, chi) exists and is
     positive (ranks 2 and 3, where the corrected product inside the regularized product converges
     unconditionally), and, for tau(SO(Q)) = 2, that the SO double coset space is finite with finite
-    stabilizers.
+    stabilizers. For the 0.2.0 statements the same is done where the library proves the fact (convergence of the
+    products in the Tamagawa measures and of the products of local densities, existence and positivity of
+    L_F(1, chi), 0 < sum of unit volumes < infinity); the docstrings name the one fact that is not yet a library
+    lemma (finiteness of the proper classes of an indefinite genus; the sums over these classes are sums in
+    [0, infinity] and need no finiteness to be meaningful).
     (7) Quadratic forms in the local-global statements are coefficient-based forms sum_{i<=j} c_ij x_i x_j;
     nondegenerate means the Hessian has nonzero determinant. (8) Literature locators marked [unverified]
     have not been checked against the sources.
 
 review:
-  status: "author-reviewed: headline statements in Challenge.lean and the definitions they use"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 are not yet reviewed (planned for 0.2.1)"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
-    Jonathan Hanke reviewed the headline statements in Challenge.lean and every definition they use
-    (October 2026). The rest of the library has not been reviewed by a human, and there has been no
+    Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
+    (October 2026). The 21 headline statements added in release 0.2.0, and the definitions they use, have not yet
+    been reviewed by a human; that review is planned for release 0.2.1. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -299,6 +325,111 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "Isotropy over Q, any number of variables."
+    - source: "Weil 1982, Thm 3.7.1, Thm 4.5.1 (tau(SO) = 2) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Every number field, every nondegenerate form in n >= 3 variables."
+    - source: "Weil 1982, Thm 3.7.1, Thm 4.5.1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_space"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Quadratic spaces of dimension >= 3, via integral models."
+    - source: "Weil 1982, §3.7, p. 62 (SO_1 trivial) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_one_rankOne"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Dimension 1."
+    - source: "Ono 1963 (tau of the norm-one torus); Weil 1982 §2.3-2.4 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_binary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Anisotropic binary forms, convergence factors L_v(1, chi_E)."
+    - source: "Ono 1963; Weil 1982 §2.3-2.4 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_space_binary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Anisotropic binary quadratic spaces."
+    - source: "Ono 1963 (tau(G_m) = 1); Weil 1982 §2.4, §3.1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_one_binary_isotropic"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Isotropic binary forms, norm-one volume."
+    - source: "Ono 1963; Weil 1982 §2.4, §3.1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_one_space_binary_isotropic"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Isotropic binary quadratic spaces."
+    - source: "Siegel 1936 (Ann. of Math. 37), Hauptsatz for indefinite forms; Weil 1965 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Numbers, N >= 4 variables, every number field, any signature."
+    - source: "Siegel 1936; Weil 1965 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_forms_numberField"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Forms by forms, stabilizer rank >= 3."
+    - source: "Siegel 1935-1936 (regularized) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Stabilizer rank 2, anisotropic; regularized by L_F(1, chi)."
+    - source: "Siegel 1935-1936 (regularized) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_ternary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Numbers by ternary forms, m-perp anisotropic."
+    - source: "Siegel 1944, On the theory of indefinite quadratic forms (Ann. of Math. 45, 577-622), the excluded case [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2_isotropic"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Stabilizer rank 2, isotropic; regularized by the residue of zeta_F."
+    - source: "Siegel 1944, On the theory of indefinite quadratic forms, the excluded case [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_ternary_isotropic"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Numbers by ternary forms, m-perp isotropic."
+    - source: "Siegel 1935, Hauptsatz for n = m + 1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_forms_corank1"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Corank 1, factor 1/2."
+    - source: "Siegel 1935, Hauptsatz for n = 2, m = 1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_binary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Anisotropic binary forms representing numbers, every number field."
+    - source: "Siegel 1935, Hauptsatz for n = m [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_indefinite_forms_corank0"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Corank 0, factor 1/2 at every place."
+    - source: "Siegel 1935, Hauptsatz (forms by forms) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegelForms_totallyReal"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Definite forms by forms over totally real fields, N >= 3, N - r != 2."
+    - source: "Gauss, Disquisitiones Arithmeticae, art. 291-292 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.gauss_threeSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Squarefree m, via Siegel's formula and Dirichlet's class number formula."
+    - source: "Jacobi (two squares) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.jacobi_twoSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "r_2(m) = 4 sum_{d | m} chi_{-4}(d)."
+    - source: "Siegel 1935, Hauptsatz for n = 2, m = 1 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.siegel_twoSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Explicit constants: unit volume pi/16."
+    - source: "Dirichlet (forms x^2 - 2y^2) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Representations modulo the infinite unit group."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

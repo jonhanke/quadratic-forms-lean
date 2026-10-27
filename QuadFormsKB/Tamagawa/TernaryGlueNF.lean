@@ -3,8 +3,9 @@
 
 **Layer:** $F$ a number field (any class number), $D = (a,b)_F$, $\mathcal O$ an order of $D$, $v$ the finite places.
 
-The gluing lemma (`exists_scalar_of_local`) turns local scalars $r_v \in F_v^\times$ (almost all units) into one global scalar
-$c \in F^\times$, which needs $h_F = 1$. In general the $r_v$ glue to the **fractional ideal** $\prod_v\mathfrak p_v^{v(r_v)}$, written
+The gluing lemma (`exists_scalar_of_local`) turns local scalars $r_v \in F_v^\times$ (almost all units) into one
+global scalar $c \in F^\times$, which needs $h_F = 1$. In general the $r_v$ glue to the **fractional ideal**
+$\prod_v\mathfrak p_v^{v(r_v)}$, written
 $\mathfrak a\mathfrak b^{-1}$ with $\mathfrak a, \mathfrak b$ integral ($\mathfrak a = \prod\mathfrak p_v^{\max(-k_v,0)}$, $\mathfrak b = \prod\mathfrak p_v^{\max(k_v,0)}$,
 $|r_v|_v = e^{k_v}$):
 
@@ -32,7 +33,7 @@ open QuadFormsKB.Quat QuadFormsKB.Lattices QuadFormsKB.Tamagawa QuadFormsKB.Loca
 
 attribute [-instance] NumberField.RingOfIntegers.instAlgebra
 
-/-! ### Local helpers (PID-free copies of the helpers in `TernaryAssembly`) -/
+/-! ### Local helpers (PID-free copies of the lemmas in `TernaryGlue.lean`) -/
 
 section LocalHelpers
 

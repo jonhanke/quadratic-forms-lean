@@ -1,7 +1,7 @@
 /-
-# Siegel's formula over $F$: the constant is $|d_F|^{-(n-1)/2}$
+# Siegel's formula over $F$: The constant is $|d_F|^{-(n-1)/2}$
 
-**Answer to the question on Hanke 2004 (5.3) over $F$.** With the
+**Answer to the question of the exact constant in Hanke 2004 (5.3) over $F$.** With the
 repository's normalizations, the Fourier coefficients of the genus Eisenstein series $E_Q$ (`eisQ`) are
 $$a_{E_Q}(\nu) = |d_F|^{-(n-1)/2}\,\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu)\qquad(\nu \in \mathcal O_F,\ \nu \gg 0),$$
 **not** $\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu)$ (`eisQ_coeff_eq_discr_mul_aENF`). Here $\beta_\infty = \prod_w\beta_w$ with
@@ -12,7 +12,7 @@ archimedean factors: the archimedean factors $\beta_w$ come out exactly (`eisArc
 three explicit constants, each proved:
 * $|d_F|^{-1/2}$: the covolume of $\sigma(\mathcal O_F) \subset \mathbb R^d$ in the Poisson summation of each row of $E_Q$
   (`latConst_oBasis_eq`);
-* $|d_F|^{-n/2}$: the covolume of $\sigma(\mathcal O_F)^n$ in the theta transformation (the theta constant, `thetaK`,
+* $|d_F|^{-n/2}$: The covolume of $\sigma(\mathcal O_F)^n$ in the theta transformation (the theta constant, `thetaK`,
   `embDet_one`);
 * $|d_F|^{+1} = \prod_\mathfrak pN(\mathfrak d_\mathfrak p)$: the local factors of the singular series are
   $N(\mathfrak d_\mathfrak p)\beta_\mathfrak p$, because the dual of $\mathcal O_\mathfrak p$ for $e(\operatorname{Tr}\,\cdot)$ is
@@ -26,8 +26,8 @@ With self-dual measures ($\operatorname{vol}(\mathfrak o_\mathfrak p) = N(\mathf
 $a_{E_Q}(\nu) \ne$ `aENF Q₀ ν` (both sides are positive and $|d_F| > 2$, Minkowski). For example $F = \mathbb Q(\sqrt5)$, $|d_F| = 5$:
 $a_{E_Q}(\nu) = 5^{-(n-1)/2}\,\mathrm{aENF}(\nu)$.
 
-Hypotheses (as in `SteinitzGenus.lean`): $Q_0$ totally positive definite over $\mathcal O_F$ in $n = 2k$ variables, $k \ge 3$; $\mathfrak N \ne 0$ a theta
-level (`IsThetaLevelF`); the genus of $\mathcal O_F^n$ free (`GenusFree`, true for $h_F = 1$).
+Hypotheses: $Q_0$ totally positive definite over $\mathcal O_F$ in $n = 2k$ variables, $k \ge 3$; $\mathfrak N \ne 0$
+a theta level (`IsThetaLevelF`); the genus of $\mathcal O_F^n$ free (`GenusFree`, true for $h_F = 1$).
 
 Sources: Hanke 2004, (5.1)–(5.5), pp. 368–369; Siegel, Ann. Math. 36 (1935) and 38 (1937) [unverified]; Shimura, Duke
 Math. J. 45 (1978), §3 [unverified].
@@ -153,18 +153,18 @@ variable {Q₀ : QuadForm (𝓞 F) n} (hQ : IsTotallyPosDef (formF Q₀)) {k : �
   {𝔑 : Ideal (𝓞 F)} (hlev : IsThetaLevelF Q₀ 𝔑) (h𝔑 : 𝔑 ≠ ⊥) (hfree : GenusFree (formF Q₀) stdLat)
 
 include hQ hn hlev h𝔑 hfree in
-/-- **Siegel's formula over $F$: the Fourier coefficients of $E_Q$, with the exact constant** (answer to the question).
+/-- **Siegel's formula over $F$: The Fourier coefficients of $E_Q$, with the exact constant**.
 For $F$ totally real, $Q_0$ totally positive definite over $\mathcal O_F$ in $n = 2k \ge 6$ variables (theta level $\mathfrak N$,
 free genus) and $\nu \in \mathcal O_F$ totally positive,
 $$\mathrm{qCoeff}(E_Q, \nu) = |d_F|^{-(n-1)/2}\cdot\beta_\infty(\nu)\prod_\mathfrak p\beta_\mathfrak p(\nu) = |d_F|^{-(n-1)/2}\cdot\texttt{aENF}\,Q_0\,\nu,$$
 $\beta_\infty = \prod_w\beta_w$ with Lebesgue measure at each real place (Hanke (5.5), `betaInfAt`), $\beta_\mathfrak p$ with
 $\operatorname{Vol}(\mathfrak o_\mathfrak p) = 1$ (Hanke (5.1)–(5.2), every prime, dyadic included), and `qCoeff` the $\nu$-th Fourier coefficient
-of $E_Q$ (the integral over $\mathbb R^d/\sigma(\mathcal O_F)$). The factor is **not** absorbed in the archimedean factors:
-$|d_F|^{-(n-1)/2} = |d_F|^{-1/2}$ (Poisson for the rows, `latConst_oBasis_eq`) $\cdot\,|d_F|^{-n/2}$ (theta constant)
-$\cdot\,|d_F|$ (singular series, $\prod_\mathfrak pN(\mathfrak d_\mathfrak p)$, `SingularNF.singSeries_eq`).
+of $E_Q$ (the integral over $\mathbb R^d/\sigma(\mathcal O_F)$). The factor is **not** absorbed in the archimedean
+factors: $|d_F|^{-(n-1)/2} = |d_F|^{-1/2}$ (Poisson for the rows, `latConst_oBasis_eq`) $\cdot\,|d_F|^{-n/2}$ (theta
+constant) $\cdot\,|d_F|$ (singular series, $\prod_\mathfrak pN(\mathfrak d_\mathfrak p)$, `SingularNF.singSeries_eq`).
 
 *Erratum (Hanke 2004, (5.3), p. 368, over $F \ne \mathbb Q$):* with the normalizations of (5.1) and (5.5), (5.3) needs the factor
-$|d_F|^{-(n-1)/2}$ (an erratum of the source). Over $\mathbb Q$ the factor is $1$. -/
+$|d_F|^{-(n-1)/2}$. Over $\mathbb Q$ the factor is $1$. -/
 @[kb "hanke2004" "(5.3), p. 368, over F: a_E(ν) = |d_F|^{-(n-1)/2} ∏_v β_v(ν) (corrected constant); Siegel 1935/1937 [unverified]"]
 theorem eisQ_coeff_eq_discr_mul_aENF (hk : 3 ≤ k) {ν : 𝓞 F} (hν : ∀ v, 0 < realEmb F v (ιO ν)) :
     qCoeff (eisQ Q₀ k) (oBasis F) (realVec (ιO ν)) =
@@ -211,9 +211,9 @@ statement of `Siegel.aE` (whose singular series is `Siegel.hasSum_ssTerm`, with 
 theorem discrFactor_rat (n : ℕ) : (Real.sqrt |((discr ℚ : ℤ) : ℝ)|)⁻¹ ^ (n - 1) = 1 := by
   rw [Rat.numberField_discr]; simp
 
-/-! ### Consistency with `Tamagawa.siegelProduct` is $|d_F|^{-(N-1)/2}\,\mathrm{aENF}$ -/
+/-! ### Consistency with the Tamagawa side: `Tamagawa.siegelProduct` is $|d_F|^{-(N-1)/2}\,\mathrm{aENF}$ -/
 
-/-- $\frac{N\omega_N}{2} = \frac{\pi^{N/2}}{\Gamma(N/2)}$ ($N \ge 1$): Hanke's (5.5) constant is `archRepDensity` constant. -/
+/-- $\frac{N\omega_N}{2} = \frac{\pi^{N/2}}{\Gamma(N/2)}$ ($N \ge 1$): Hanke's (5.5) constant is the `archRepDensity` constant. -/
 lemma n_mul_unitBallVol_div_two' {N : ℕ} (hN : 1 ≤ N) :
     (N : ℝ) * QuadFormsKB.Siegel.unitBallVol N / 2 = Real.pi ^ ((N : ℝ) / 2) / Real.Gamma ((N : ℝ) / 2) := by
   rw [QuadFormsKB.Siegel.unitBallVol_eq hN, Real.Gamma_add_one (by positivity), Real.sqrt_eq_rpow,
@@ -223,10 +223,11 @@ lemma n_mul_unitBallVol_div_two' {N : ℕ} (hN : 1 ≤ N) :
   field_simp
 
 open Classical in
-/-- **The Siegel product is $|d_F|^{-(N-1)/2}$ times `aENF`** (totally real $F$, $Q_0$ totally positive definite, $m \gg 0$):
+/-- **The Siegel product is $|d_F|^{-(N-1)/2}$ times `aENF`** (totally real $F$, $Q_0$ totally positive definite,
+$m \gg 0$):
 $$\texttt{Tamagawa.siegelProduct}\ Q_0\ m = |d_F|^{-(N-1)/2}\cdot\texttt{Siegel.aENF}\ Q_0\ m.$$
 The product over the embeddings $\sigma : F \to \mathbb C$ is the product over the real places (one embedding each), and
-`archRepDensity` at $\sigma$ is `Siegel.betaInfAt` at its place. With `eisQ_coeff_eq_discr_mul_aENF`: the input
+`archRepDensity` at $\sigma$ is `Siegel.betaInfAt` at its place. With `eisQ_coeff_eq_discr_mul_aENF`: The input
 `SiegelFormulaAt Q₀ m` says that the genus average $\mathrm{repMass}/\mathrm{Mass}$ is the $m$-th Fourier coefficient of $E_Q$. -/
 theorem siegelProduct_eq_discr_mul_aENF {N : ℕ} {Q : QuadForm (𝓞 F) N} (hQ : IsTotPosGram (gramF Q)) (hN : 1 ≤ N)
     {m : 𝓞 F} (hm : ∀ v, 0 < realEmb F v (ιO m)) :

@@ -4,7 +4,7 @@
 **Layer:** forms over $\mathbb{Z}_p$ (`QuadForm ℤ_[p] n`), $p$ an odd prime.
 
 **Proves** the classification of $p$-unimodular forms (O'Meara, *Introduction to Quadratic Forms*, 92:2; Cassels,
-*Rational Quadratic Forms*, Ch. 8, Lemma 3.4 [unverified]): if $p \nmid \det H$ and $\det H' = \det H$, then $Q$ and $Q'$
+*Rational Quadratic Forms*, Ch. 8, Lemma 3.4, p. 115, and Thm. 3.1, Corollary, p. 116, both for $p \ne 2$): if $p \nmid \det H$ and $\det H' = \det H$, then $Q$ and $Q'$
 are $\mathrm{GL}_n(\mathbb{Z}_p)$-equivalent (`isometricGL_of_unimodular`). Used to show that Kneser neighbours stay in the genus
 at $p$ (`Siegel/NeighborGenus.lean`).
 
@@ -311,9 +311,9 @@ theorem not_p_dvd_two (hp2 : p ≠ 2) : ¬ (p : ℤ_[p]) ∣ 2 := by
   apply toZMod_two_ne_zero (p := p) hp2
   rw [hc, map_mul, toZMod_natCast_self, zero_mul]
 
-/-- **Classification of unimodular forms over $\mathbb{Z}_p$, $p$ odd** (O'Meara 92:2 [unverified]): if
+/-- **Classification of unimodular forms over $\mathbb{Z}_p$, $p$ odd** (O'Meara 92:1, p. 246, and 92:2, p. 247, special case $F = \mathbb Q_p$): if
 $p \nmid \det H$ and $\det H' = \det H$ ($H, H'$ the Hessians), then $Q \cong Q'$ over $\mathbb{Z}_p$. -/
-@[kb "omeara1963" "92:2 (unimodular lattices, p odd) [unverified]"]
+@[kb "omeara1963" "§92, 92:1, p. 246 (unimodular lattices over a non-dyadic local field); cf. 92:2, p. 247; cassels1978 Ch. 8, Lemma 3.4 and Cor. to Thm. 3.1, pp. 115–116"]
 theorem isometricGL_of_unimodular (hp2 : p ≠ 2) (Q Q' : QuadForm ℤ_[p] n)
     (hQ : ¬ (p : ℤ_[p]) ∣ Q.hessian.det) (hdet : Q'.hessian.det = Q.hessian.det) : IsometricGL Q Q' := by
   cases n with

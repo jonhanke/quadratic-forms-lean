@@ -16,7 +16,7 @@ checks $D = 1$, $\beta_\infty(m) = \pi^2 m$ (`gramDet_Q4`, `betaInf_Q4`).
 the determinant of the Gram matrix $A = H/2$, not of the Hessian $H$ (`gramDet`). With this $D$, (5.5) gives
 $\beta_\infty(m) = \pi^2 m$ for the sum of four squares, matching the AWS notes' (2.9).
 
-**$n = 3$ (open):** the Euler product converges only conditionally; its value is taken as a
+**$n = 3$ (open):** the Euler product converges only conditionally; here its value is taken as a
 parameter.
 -/
 import QuadFormsKB.Siegel.Mass
@@ -268,8 +268,8 @@ noncomputable def eulerPartialProd (Q : QuadForm ℤ n) (m : ℤ) (X : ℕ) : �
 *Role:* for $n \ge 4$ the product converges absolutely and its value `eulerProduct` satisfies this
 (`isEulerProductValue_eulerProduct`). For $n = 3$ the product converges at best conditionally and **the
 convention is undecided**; this predicate is one candidate (Siegel's own definition takes the
-limit in the natural order [unverified]), the other is $L(1, \chi) \cdot (\text{finite product})$. Batch 1 leaves
-$n = 3$ parameterized: see `aEWith`. -/
+limit in the natural order [unverified]), the other is $L(1, \chi) \cdot (\text{finite product})$. The case
+$n = 3$ is left parameterized: see `aEWith`. -/
 def IsEulerProductValue (Q : QuadForm ℤ n) (m : ℤ) (P : ℝ) : Prop :=
   Tendsto (eulerPartialProd Q m) atTop (𝓝 P)
 
@@ -333,7 +333,7 @@ noncomputable def betaInf (Q : QuadForm ℤ n) (m : ℝ) : ℝ :=
 
 /-- **The local product with a given Euler-product value $P$:** $\beta_\infty(m)\cdot P$.
 
-*Role:* for $n = 3$ the meaning of $\prod_p \beta_p(m)$ is not fixed here, so statements for
+*Role:* for $n = 3$ the meaning of $\prod_p \beta_p(m)$ is not yet fixed, so statements for
 $n = 3$ take the value $P$ as an explicit parameter (with a hypothesis such as `IsEulerProductValue Q m P`). For
 $n \ge 4$, use `aE` $=$ `aEWith Q m (eulerProduct Q m)`. -/
 noncomputable def aEWith (Q : QuadForm ℤ n) (m : ℤ) (P : ℝ) : ℝ := betaInf Q m * P

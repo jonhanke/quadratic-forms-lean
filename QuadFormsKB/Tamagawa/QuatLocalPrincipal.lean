@@ -6,7 +6,8 @@ the division algebra $D$ (ramified case, `valOrder`) or $\varphi^{-1}(M_2(R))$ f
 
 * `det_mulRight`: the $K$-linear map $x \mapsto x\alpha$ of $D$ has determinant $\operatorname{nrd}(\alpha)^2$ (any field $K$).
 * `exists_eq_rTrans_of_valOrder`, `exists_eq_rTrans_of_map_eq_matOrder`: every left ideal $I$ of $\mathcal O$ with
-  $\operatorname{nrd}(I) \ne 0$ is $\mathcal O\alpha$ for some $\alpha$ with $\operatorname{nrd}(\alpha) \ne 0$ (as subsets of $D$). Ramified: `exists_eq_span_singleton`. Split: the row space of $I$ is a Hermite lattice $R(\pi^{k-b}, c) + R(0, \pi^b)$ (`exists_eq_hnf`), so $I$ is
+  $\operatorname{nrd}(I) \ne 0$ is $\mathcal O\alpha$ for some $\alpha$ with $\operatorname{nrd}(\alpha) \ne 0$ (as subsets of $D$). Ramified: the
+  `exists_eq_span_singleton`. Split: the row space of $I$ is a Hermite lattice $R(\pi^{k-b}, c) + R(0, \pi^b)$ (`exists_eq_hnf`), so $I$ is
   $M_2(R)P$ with $P = \begin{pmatrix}\pi^{k-b} & c\\ 0 & \pi^b\end{pmatrix}$ (`ofRowSpace_hnf`).
 
 Source: Voight, *Quaternion Algebras* (2021), Prop. 16.4.3 / Lemma 16.4.11 (locally principal = invertible lattices over a local

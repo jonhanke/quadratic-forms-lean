@@ -2,7 +2,7 @@
 # Existence of a measurable fundamental domain for a discrete subgroup
 
 **Layer:** abstract topological group and measure theory. Written for upstreaming to Mathlib: general
-hypotheses, no number theory, no imports from the rest of the library.
+hypotheses, no number theory, no KB imports.
 
 Mathlib has `IsFundamentalDomain` and the integration API but no general existence statement (see the TODO in
 `Mathlib/MeasureTheory/Group/FundamentalDomain.lean`). We prove: if `G` is a second-countable topological group and

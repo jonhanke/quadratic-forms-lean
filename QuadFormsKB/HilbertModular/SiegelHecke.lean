@@ -2,16 +2,16 @@
 # Siegel's formula over a totally real field by the Hecke/Kneser route: $\theta_{\mathrm{Gen}} = E_Q$
 
 **Setting.** $F$ totally real with $\mathcal O_F$ a PID, $Q_0$ a totally positive definite form over $\mathcal O_F$ in $n = 2k$ variables,
-$\mathfrak N \ne 0$ a theta level (`IsThetaLevelF`), $\chi_Q$ its character, $\theta_{\mathrm{Gen}}$ the genus theta series (`SteinitzGenus.lean`; the classes,
+$\mathfrak N \ne 0$ a theta level (`IsThetaLevelF`), $\chi_Q$ its character, $\theta_{\mathrm{Gen}}$ the genus theta series (the classes,
 weights $1/|O(M)|$), $a_\nu$ = `qCoeff · (koecherBasis 1) (realVec ν)` the $q$-coefficients ($\nu \in \mathfrak d^{-1}$).
 
 **Main theorems.**
 * `thetaGen_eq_of_sub_mem_cuspFormChar` (any $k \ge 2$): if $E$ is a function with $\theta_{\mathrm{Gen}} - E \in S_k(\Gamma_0(\mathfrak N), \chi_Q)$ whose
   coefficients satisfy the $T(\pi^2)$ relations with the Eichler eigenvalue (`EisHeckeRel Q₀ E`), then $\theta_{\mathrm{Gen}} = E$.
 * **`thetaGen_eq_eisQ`** ($n \ge 6$): $\theta_{\mathrm{Gen}} = E_Q$ for the Eisenstein series $E_Q$ (`eisQ`), with
-  $\theta_{\mathrm{Gen}} - E_Q \in S_k$ from `thetaGen_sub_eisQ_mem_cuspFormChar_of_pid`).
+  $\theta_{\mathrm{Gen}} - E_Q \in S_k$ (`thetaGen_sub_eisQ_mem_cuspFormChar_of_pid`).
 * `thetaGen_eq_of_wt2` ($n = 4$): the same with $\theta_{\mathrm{Gen}} - E \in S_2$ as the named hypothesis `ThetaGenSubCusp2`, to be
-  discharged by the weight-2 Eisenstein series (`Cuspidal2.lean`).
+  discharged by the weight-2 Eisenstein series.
 * **`qCoeff_eisQ_eq_genus_avg`** (coefficients): $a_\nu(E_Q) = r_{\mathrm{Gen}}(\nu) = \mathrm{Mass}^{-1}\sum_{\mathrm{cls}(M)}r_M(\nu)/|O(M)|$
   for $\nu \in \mathcal O_F$.
 
@@ -24,12 +24,12 @@ is `EisHeckeRel`. So $a(g)$ satisfies it, with $|\lambda_\pi| = |q^{n-2} + \chi_
 
 **Inputs (named, none equivalent to the conclusion).** (That Kneser neighbours stay in the genus is *proved*:
 `nbrInGenus_of_pid`, via the classification of unimodular forms over $\mathfrak o_\mathfrak p$.)
-* `EisHeckeRel Q₀ E`: the $T(\pi^2)$ relations for the coefficients of $E$ (the local-density formula
+* `EisHeckeRel Q₀ E`: The $T(\pi^2)$ relations for the coefficients of $E$ (the local-density formula
   $a_\nu(E_Q) = c_\infty N(\nu)^{k-1}\prod_\mathfrak q\beta_\mathfrak q(\nu)$ gives them prime by prime; not equivalent to $\theta_{\mathrm{Gen}} = E$).
-* `ThetaGenSubCusp2` ($n = 4$ only): $\theta_{\mathrm{Gen}} - E \in S_2$ (`Cuspidal2.lean`).
+* `ThetaGenSubCusp2` ($n = 4$ only): $\theta_{\mathrm{Gen}} - E \in S_2$.
 
-**Status.** Both are now theorems for every $E$ used, so they are hypotheses on the arbitrary $E$ of the generic lemmas
-only (as conditions): `EisHeckeRel` for $E_Q$ is `eisHeckeRel_eisQ'` / `eisHeckeRel_eisQ_of_pid` ($n \ge 6$)
+**Status (2026-10-17).** Both are now theorems for every $E$ used, so they are hypotheses on the arbitrary $E$ of the
+generic lemmas only: `EisHeckeRel` for $E_Q$ is `eisHeckeRel_eisQ'` / `eisHeckeRel_eisQ_of_pid` ($n \ge 6$)
 and `eisHeckeRel_eisQ2'` / `eisHeckeRel_eisQ2_of_pid` ($n = 4$, $d \ge 2$), from the explicit coefficients and a local identity at $\pi$
 (`aENF_mul_pi_sq`); `ThetaGenSubCusp2` for $E_Q$ is `thetaGenSubCusp2_eisQ2'`. The unconditional forms of this file's $E_Q$ statements are
 `thetaGen_eq_eisQ_of_pid`, `qCoeff_eisQ_eq_genus_avg_of_pid` (`SiegelFormulaNF.lean`) and `thetaGen_eq_eisQ2_of_pid`,
@@ -69,7 +69,7 @@ def EisHeckeRel (Q₀ : QuadForm (𝓞 F) n) (E : (InfinitePlace F → UpperHalf
       qCoeff E (koecherBasis I1) (realVec ((π : F) ^ 2 * QuadFormsKB.Analysis.dualElt I1 m)) =
         heckeEigen Q₀ hπ * qCoeff E (koecherBasis I1) (realVec (QuadFormsKB.Analysis.dualElt I1 m))
 
-/-- **$\theta_{\mathrm{Gen}} - E$ is a weight-2 cusp form** (the $n = 4$ input, to be discharged by `Cuspidal2.lean`). Parameters: `Q₀`, `E`, `𝔑`, `χ`. -/
+/-- **$\theta_{\mathrm{Gen}} - E$ is a weight-2 cusp form** (the $n = 4$ input, to be discharged by the weight-2 Eisenstein series). Parameters: `Q₀`, `E`, `𝔑`, `χ`. -/
 @[kb "siegel1935" "θ_Gen − E ∈ S₂ (input for n = 4) [unverified]"]
 def ThetaGenSubCusp2 (Q₀ : QuadForm (𝓞 F) n) (E : (InfinitePlace F → UpperHalfPlane) → ℂ) (𝔑 : Ideal (𝓞 F))
     (χ : MulChar (𝓞 F ⧸ 𝔑) ℂ) : Prop :=
@@ -317,7 +317,7 @@ theorem thetaGen_eq_of_sub_mem_cuspFormChar (hk : 2 ≤ k) {E : (InfinitePlace F
 include hQ hn hlev h𝔑 in
 /-- **Siegel's formula over $F$, $n \ge 6$: $\theta_{\mathrm{Gen}} = E_Q$** (Hecke/Kneser route). For $F$ totally real with $\mathcal O_F$ a PID,
 $Q_0$ totally positive definite over $\mathcal O_F$ in $n = 2k \ge 6$ variables and $\mathfrak N \ne 0$ a theta level, the genus theta series equals
-The Eisenstein series of the genus, given the input `EisHeckeRel Q₀ (eisQ Q₀ k)`. -/
+the Eisenstein series of the genus, given the input `EisHeckeRel Q₀ (eisQ Q₀ k)`. -/
 @[kb "siegel1935" "Hauptsatz, θ_Gen = E_Q over F, n ≥ 6 [unverified]"]
 theorem thetaGen_eq_eisQ (hk : 3 ≤ k) (hE : EisHeckeRel Q₀ (eisQ Q₀ k)) :
     thetaGen (formF Q₀) stdLat = eisQ Q₀ k :=
@@ -326,7 +326,7 @@ theorem thetaGen_eq_eisQ (hk : 3 ≤ k) (hE : EisHeckeRel Q₀ (eisQ Q₀ k)) :
 
 include hQ hlev h𝔑 in
 /-- **Siegel's formula over $F$, $n = 4$: $\theta_{\mathrm{Gen}} = E$** for any $E$ with $\theta_{\mathrm{Gen}} - E \in S_2(\Gamma_0(\mathfrak N), \chi_Q)$
-(`ThetaGenSubCusp2`, to be discharged by the weight-2 Eisenstein series of `Cuspidal2.lean`) and the $T(\pi^2)$ relations (`EisHeckeRel`). -/
+(`ThetaGenSubCusp2`, to be discharged by the weight-2 Eisenstein series) and the $T(\pi^2)$ relations (`EisHeckeRel`). -/
 @[kb "siegel1935" "Hauptsatz, θ_Gen = E over F, n = 4 [unverified]"]
 theorem thetaGen_eq_of_wt2 (hn : n = 2 * 2) {E : (InfinitePlace F → UpperHalfPlane) → ℂ}
     (hcusp : ThetaGenSubCusp2 Q₀ E 𝔑 (thetaCharF (isTotPosGram_Q₀ hQ) hn hlev h𝔑))
@@ -336,7 +336,7 @@ theorem thetaGen_eq_of_wt2 (hn : n = 2 * 2) {E : (InfinitePlace F → UpperHalfP
 include hQ hn hlev h𝔑 in
 /-- **The coefficients of $E_Q$ are the genus averages** ($n \ge 6$, inputs as in `thetaGen_eq_eisQ`): for $\nu \in \mathcal O_F$,
 $$a_\nu(E_Q) = r_{\mathrm{Gen}}(\nu) = \mathrm{Mass}^{-1}\sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(\mathcal O_F^n)}\frac{r_M(\nu)}{|O(M)|}.$$
-(The coefficient formula identifies the left side with $c_\infty N(\nu)^{k-1}\prod_\mathfrak q\beta_\mathfrak q(\nu)$.) -/
+(This identifies the left side with $c_\infty N(\nu)^{k-1}\prod_\mathfrak q\beta_\mathfrak q(\nu)$.) -/
 @[kb "siegel1935" "r_Gen(ν) = ν-th coefficient of E_Q, over F, n ≥ 6 [unverified]"]
 theorem qCoeff_eisQ_eq_genus_avg (hk : 3 ≤ k) (hE : EisHeckeRel Q₀ (eisQ Q₀ k)) (ν : 𝓞 F) :
     qCoeff (eisQ Q₀ k) (koecherBasis I1) (realVec (ν : F)) =

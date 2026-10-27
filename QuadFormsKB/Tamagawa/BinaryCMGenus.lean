@@ -15,8 +15,7 @@ $c(x) = x_0 + x_1\theta$, `latE` $= c^{-1}(\mathcal O_E)$.
 * **`exists_mem_eval_not_mem`**: every lattice in the genus of `latE` represents a $\mathfrak p$-adic unit, at every prime
   $\mathfrak p$ (approximate the image of $1 \in \mathcal O_{E,\mathfrak p}$ under the local isometry).
 
-Source: O'Meara 1963, §§81–82, 102 (localization, genus) [unverified]; Shimura 2010, §4 [unverified].
-
+Source: O'Meara 1963, §81E, pp. 216–219 (localization), §102A, p. 297 (genus); Shimura 2010, §4 [unverified].
 -/
 
 open NumberField IsDedekindDomain Matrix WithZero

@@ -16,7 +16,6 @@ import QuadFormsKB.Tamagawa.BinaryCMAssembly
   `IsCMField.regulator_div_regulator_eq_two_pow_mul_indexRealUnits_inv`).
 
 Source: Washington 1997, Ch. 4, Prop. 4.16 and Thm. 4.12 [unverified locator].
-
 -/
 
 open NumberField NumberField.InfinitePlace NumberField.Units Matrix IsDedekindDomain

@@ -1,6 +1,5 @@
 /-
 # A counting Hensel lemma for quadratic maps over a DVR
-
 **Layer:** DVR. The engine behind the stabilization of densities of forms by forms (`FormDensityStab.lean`).
 
 **Setting.** $\iota, \kappa$ finite index sets, $F : R^\iota \to R^\kappa$ a *quadratic map* with differential $D$:

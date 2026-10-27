@@ -8,7 +8,6 @@ import QuadFormsKB.Tamagawa.SiegelRank3NF
 
 /-!
 # Natural-order Euler products for every genus, ranks 2 and 3
-
 **Layer:** $F$ a totally real number field (any class number), $Q_0$ a totally positive definite form over $\mathcal O_F$ in $2$ or
 $3$ variables, $L$ **any** lattice on $(F^N, Q_0)$ with $Q_0$ integral on $L$ (any Steinitz class), $m \in \mathcal O_F$ totally
 positive.
@@ -32,7 +31,6 @@ The only input is `NaturalOrderEulerOne` (already classified: a prime ideal theo
 convention-level; a theorem over $\mathbb Q$).
 
 Source: Siegel 1935, Hauptsatz; Hanke 2004, (5.3), p. 368 (natural order) [unverified locators for $F$].
-
 -/
 
 open NumberField IsDedekindDomain Filter

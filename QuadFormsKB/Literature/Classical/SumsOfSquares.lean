@@ -21,14 +21,14 @@ theorem fermat_two_squares (p : ℕ) [Fact p.Prime] (hp : p % 4 = 1) :
 /-- **Sums of two squares (Euler, Gauss):** $n \in \mathbb{N}$ is a sum of two squares iff every
 prime $q \equiv 3 \pmod 4$ divides $n$ to an even power, i.e. $v_q(n)$ is even. Proved by citing
 Mathlib's `Nat.eq_sq_add_sq_iff`. -/
-@[kb "grosswald1985" "Ch. 2, Thm. 3"]
+@[kb "grosswald1985" "Ch. 2, Thm. 3; cassels1978 Ch. 1, §1, p. 2 (Euler's criterion for two squares)"]
 theorem two_squares_iff (n : ℕ) :
     (∃ x y, n = x ^ 2 + y ^ 2) ↔ ∀ q ∈ n.primeFactors, q % 4 = 3 → Even (padicValNat q n) :=
   Nat.eq_sq_add_sq_iff
 
 /-- **Lagrange's four-squares theorem:** every $n \in \mathbb{N}$ is $a^2 + b^2 + c^2 + d^2$ with
 $a, b, c, d \in \mathbb{N}$. Proved by citing Mathlib's `Nat.sum_four_squares`. -/
-@[kb "grosswald1985" "Ch. 3, Thm. 1"]
+@[kb "grosswald1985" "Ch. 3, Thm. 1; cassels1978 Ch. 1, §1, p. 2 (Lagrange's four squares)"]
 theorem lagrange_four_squares (n : ℕ) : ∃ a b c d : ℕ, a ^ 2 + b ^ 2 + c ^ 2 + d ^ 2 = n :=
   Nat.sum_four_squares n
 
@@ -93,7 +93,7 @@ v4.35.0.
 Appendix): local representability at every place, Hasse–Minkowski over $\mathbb{Q}$
 (`QuadFormsKB.represents_iff_everywhere`), then the Davenport–Cassels lemma
 (`QuadFormsKB.DavenportCassels.davenport_cassels`). -/
-@[kb "grosswald1985" "Ch. 4, Thm. 1"]
+@[kb "grosswald1985" "Ch. 4, Thm. 1; cassels1978 Ch. 1, §1, p. 2 (Legendre's three squares)"]
 theorem legendre_three_squares (n : ℕ) :
     (∃ a b c : ℕ, a ^ 2 + b ^ 2 + c ^ 2 = n) ↔ ¬ ∃ a b : ℕ, n = 4 ^ a * (8 * b + 7) := by
   refine ⟨?_, ThreeSquares.three_squares_of_not_form n⟩

@@ -7,7 +7,7 @@ $K_N\le SO(\langle1,-ad,-bd,abd\rangle)(F_v)$ the principal congruence subgroup.
 **`congSub_le_nsUSub`**: for $N$ large compared with $M$ (`WinHyp` and $M_w\le e_w(N - e_a - e_b - e_d - 2s - c_0)$), every
 $g\in K_N$ is $\varphi_y$ for some $y\in Y^{(M)}$.
 
-*Proof.* Write $g = \varphi_y$ ($y\in G^\natural(F_v)$). The $\Gamma(\varphi_y) = 4\operatorname{nrd}(y)^{-1}y\,\sigma(\operatorname{re}y)$
+*Proof.* Write $g = \varphi_y$ ($y\in G^\natural(F_v)$). the $\Gamma(\varphi_y) = 4\operatorname{nrd}(y)^{-1}y\,\sigma(\operatorname{re}y)$
 recovers $y$ up to a scalar, and $\Gamma(g)\equiv4$ (`gammaV_eq_four_add`), so $u = \Gamma(g)/4 = \operatorname{re}(u)(1+\eta_u)$ with
 $\eta_u\in\mathfrak L$. The element $y^*\in Y$ with $\eta(y^*) = \eta_u$ (`exists_mem_etaY_eq`) is $\lambda y$ for a scalar $\lambda$ with
 $\lambda^2\in F_v$, so $\varphi_{y^*} = \pm g$ (`phiLin_coe_mul`); in the case $-g$ the sign scalar $t$ of `exists_scalar_mul_mem`

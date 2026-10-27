@@ -21,7 +21,7 @@ spinor norm are from `Lattices/SpinorKernel.lean` and `Lattices/SpinorNorm.lean`
   $\mathfrak o_\mathfrak p^n$ (since $B(x, y)/Q(x) \in \mathfrak o_\mathfrak p$);
 * `localSpinorUnits_of_unimodular`: **if $\mathfrak p \nmid 2\det H$ and $n \ge 2$, then $L_\mathfrak p = \mathfrak o_\mathfrak p^n$ has
   `LocalSpinorUnits`**, in particular $\theta(O(L_\mathfrak p)) \supseteq \mathfrak o_\mathfrak p^\times F_\mathfrak p^{\times 2}$
-  (`spinorNorm_stdStab_unit`) (O'Meara 1963, 92:5 [unverified]; Kneser 1956, Satz 3 [unverified]). Purely local.
+  (`spinorNorm_stdStab_unit`) (cf. O'Meara 1963, 92:5, p. 249: $\theta(O^+(L)) = \mathfrak u F^{\times 2}$ for modular $L$ of rank $\ge 2$; Kneser 1956, Satz 3 [unverified]). Purely local.
 -/
 import QuadFormsKB.Lattices.SpinorNorm
 import QuadFormsKB.Lattices.UnimodularDVR
@@ -45,8 +45,9 @@ variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] {n : 
   [Fintype (IsLocalRing.ResidueField R)] [DecidableEq (IsLocalRing.ResidueField R)]
   [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
 
-/-- **A unimodular form in $n \ge 2$ variables over a complete non-dyadic DVR represents every unit**
-(O'Meara 1963, 92:1–92:2 [unverified]). -/
+/-- **A unimodular form in $n \ge 2$ variables over a complete non-dyadic DVR with finite residue field represents
+every unit** (O'Meara 1963, 92:1b, p. 247). -/
+@[kb "omeara1963" "§92, 92:1b, p. 247 (a unimodular lattice represents every unit)"]
 theorem exists_eval_eq_unit_dvr {π : R} (hπ : Irreducible π) (h2 : ¬ π ∣ 2) (Q₀ : QuadForm R n)
     (hdet : ¬ π ∣ Q₀.hessian.det) (hn : 2 ≤ n) {u : R} (hu : IsUnit u) : ∃ x, Q₀.eval x = u := by
   obtain ⟨a, ha, ⟨U, -, hU⟩, -⟩ := DVR.exists_diag_of_unimodular Q₀ π hπ h2 hdet
@@ -110,6 +111,7 @@ theorem qbil_le_one {x y : Fin n → Fv} (hx : x ∈ std v) (hy : y ∈ std v) :
 
 /-- **A symmetry in a unit vector stabilizes $\mathfrak o_\mathfrak p^n$:** if $x \in \mathfrak o_\mathfrak p^n$ and
 $Q(x) \in \mathfrak o_\mathfrak p^\times$, then $\tau_x\,\mathfrak o_\mathfrak p^n = \mathfrak o_\mathfrak p^n$. -/
+@[kb "omeara1963" "§91B, p. 241 (τ_u ∈ O(L) if and only if 2B(u,L) ⊆ Q(u)𝔬)"]
 theorem symm_mem_stdStab {x : Fin n → Fv} (hx : x ∈ std v) (hQx : Valued.v ((Q).evalIn Fv x) = 1) :
     symm (Q) Fv x ∈ stdStab (Q) v := by
   have hx0 : (Q).evalIn Fv x ≠ 0 := fun h => by rw [h, map_zero] at hQx; exact zero_ne_one hQx
@@ -179,14 +181,57 @@ def IsUnitSqClass (c : SqClass Fv) : Prop := ∃ u : Fv, Valued.v u = 1 ∧ c = 
 
 /-- **Local spinor norms contain the units** (at $\mathfrak p$, for the lattice $L$): every $\sigma \in O(V_\mathfrak p)$ whose
 spinor norm is a unit class lies in $O'(V_\mathfrak p)\,O(L_\mathfrak p)$. This is the local condition of the classical
-criterion "genus = spinor genus" (O'Meara 1963, 102:9 and §92 [unverified]). It holds at every $\mathfrak p \nmid 2\det H$
+criterion "genus = spinor genus" (O'Meara 1963, 102:9, p. 304, and 92:5, p. 249). It holds at every $\mathfrak p \nmid 2\det H$
 for $n \ge 2$ (`localSpinorUnits_of_unimodular`); at the finitely many other primes it is a hypothesis. -/
-@[kb "omeara1963" "92:5, 102:9 (θ(O(L_p)) ⊇ units) [unverified]"]
+@[kb "omeara1963" "§102B, 102:9, p. 304 (hypothesis θ(O⁺(L_𝔭)) ⊇ 𝔲_𝔭); §92, 92:5, p. 249"]
 def LocalSpinorUnits (L : Lat F n) : Prop :=
   ∀ σ : orthGroup Q Fv, IsUnitSqClass v (spinorNorm Q Fv σ) →
     ∃ k ∈ spinorKernel Q Fv, k⁻¹ * σ ∈ locStabV Q v L
 
 end LocalCondition
+
+/-! ### `LocalSpinorUnits` from improper elements of $O(L_\mathfrak p)$ -/
+
+section Improper
+
+variable (Q : QuadForm F n) (v : HeightOneSpectrum (𝓞 F))
+
+local notation "Fv" => v.adicCompletion F
+
+/-- **`LocalSpinorUnits` from improper automorphs with prescribed unit spinor norms** (any prime, dyadic or not): if
+for every unit $u\in\mathfrak o_\mathfrak p^\times$ there is $g\in O(L_\mathfrak p)$ with $\det g = -1$ and
+$\theta(g) = u\,F_\mathfrak p^{\times2}$, then every $\sigma\in O(V_\mathfrak p)$ with unit spinor norm lies in
+$O'(V_\mathfrak p)\,O(L_\mathfrak p)$. *Proof:* pick $g$ (or $g\,g_1$, $\theta(g_1) = 1$) in $O(L_\mathfrak p)$ with the
+determinant and spinor norm of $\sigma$; then $\sigma g^{-1}\in O'(V_\mathfrak p)$. Purely local. -/
+@[kb "omeara1963" "§92, 92:5, p. 249; §102B, 102:9, p. 304"]
+theorem localSpinorUnits_of_improper (hQ : Q.Nondegenerate) (L : Lat F n)
+    (himp : ∀ u : Fv, Valued.v u = 1 →
+      ∃ g ∈ locStabV Q v L, detHom Q Fv g = -1 ∧ spinorNorm Q Fv g = sqClassOf u) :
+    LocalSpinorUnits Q v L := by
+  intro σ ⟨u, hu, hσ⟩
+  obtain ⟨g₁, hg₁, hd₁, hθ₁⟩ := himp u hu
+  obtain ⟨g₂, hg₂, hd₂, hθ₂⟩ := himp 1 (by simp)
+  -- `det σ = ±1`
+  obtain ⟨xs, hxs, rfl⟩ := exists_symmProd_eq Q Fv hQ σ
+  have hdσ := detHom_symmProd Q Fv xs hxs
+  -- choose `g ∈ O(L_p)` with the same spinor norm and determinant as `σ`
+  obtain ⟨g, hg, hdg, hθg⟩ : ∃ g ∈ locStabV Q v L, detHom Q Fv g = detHom Q Fv (symmProd Q Fv xs) ∧
+      spinorNorm Q Fv g = sqClassOf u := by
+    rcases Nat.even_or_odd xs.length with he | ho
+    · refine ⟨g₁ * g₂, (locStabV Q v L).mul_mem hg₁ hg₂, ?_, ?_⟩
+      · ext; rw [map_mul, hd₁, hd₂, hdσ, he.neg_one_pow]; simp
+      · rw [← spinorNormHom_apply Q Fv hQ, map_mul, spinorNormHom_apply, spinorNormHom_apply, hθ₁, hθ₂,
+          sqClassOf_one, mul_one]
+    · exact ⟨g₁, hg₁, by ext; rw [hd₁, hdσ, ho.neg_one_pow]; simp, hθ₁⟩
+  refine ⟨symmProd Q Fv xs * g⁻¹, ?_, ?_⟩
+  · rw [spinorKernel_eq_ker Q Fv hQ]
+    refine Subgroup.mem_inf.mpr ⟨?_, ?_⟩
+    · rw [MonoidHom.mem_ker, map_mul, map_inv, spinorNormHom_apply, spinorNormHom_apply, hθg, ← hσ,
+        mul_inv_cancel]
+    · rw [MonoidHom.mem_ker, map_mul, map_inv, hdg, mul_inv_cancel]
+  · simpa using hg
+
+end Improper
 
 section Unimodular
 
@@ -203,8 +248,9 @@ theorem nondegenerate_map_of_det_not_mem (hdet : Q₀.hessian.det ∉ v.asIdeal)
   rw [this]; exact v.asIdeal.zero_mem
 
 /-- **$\theta(O(\mathfrak o_\mathfrak p^n)) \supseteq \mathfrak o_\mathfrak p^\times F_\mathfrak p^{\times 2}$ at non-dyadic unimodular primes**,
-$n \ge 2$, realized by symmetries of $\mathfrak o_\mathfrak p^n$ (determinant $-1$) (O'Meara 1963, 92:5 [unverified]). -/
-@[kb "omeara1963" "92:5 [unverified]"]
+$n \ge 2$, realized by symmetries of $\mathfrak o_\mathfrak p^n$ (determinant $-1$) (cf. O'Meara 1963, 92:5, p. 249, which gives $\theta(O^+(L)) = \mathfrak u F^{\times 2}$; the
+containment for $O(L)$ follows). -/
+@[kb "omeara1963" "§92, 92:5, p. 249; cassels1978 Ch. 10, Lemma 4.1, p. 183; Ch. 11, Lemma 3.3, p. 208"]
 theorem spinorNorm_stdStab_unit (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hdet : Q₀.hessian.det ∉ v.asIdeal) (hn : 2 ≤ n)
     {u : Fv} (hu : Valued.v u = 1) :
     ∃ g ∈ stdStab (Q) v, detHom (Q) Fv g = -1 ∧ spinorNorm (Q) Fv g = sqClassOf u := by
@@ -217,34 +263,13 @@ theorem spinorNorm_stdStab_unit (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hdet : Q₀.h
 
 /-- **`LocalSpinorUnits` at non-dyadic unimodular primes:** if $\mathfrak p \nmid 2\det H$, $n \ge 2$ and
 $L_\mathfrak p = \mathfrak o_\mathfrak p^n$, then every $\sigma \in O(V_\mathfrak p)$ with unit spinor norm is in
-$O'(V_\mathfrak p)O(L_\mathfrak p)$ (O'Meara 1963, 92:5 [unverified]). Purely local. -/
-@[kb "omeara1963" "92:5 [unverified]"]
+$O'(V_\mathfrak p)O(L_\mathfrak p)$ (a consequence of O'Meara 1963, 92:5, p. 249). Purely local. -/
+@[kb "omeara1963" "§92, 92:5, p. 249; §102B, 102:9, p. 304; §102B, 102:10 (ii), p. 304; cassels1978 Ch. 10, Lemma 4.1, p. 183; Ch. 11, Lemma 3.3, p. 208"]
 theorem localSpinorUnits_of_unimodular (h2 : (2 : 𝓞 F) ∉ v.asIdeal) (hdet : Q₀.hessian.det ∉ v.asIdeal)
     (hn : 2 ≤ n) (L : Lat F n) (hL : loc v L.1 = std v) : LocalSpinorUnits (Q) v L := by
-  intro σ ⟨u, hu, hσ⟩
-  have hQ := nondegenerate_map_of_det_not_mem v Q₀ hdet
-  obtain ⟨g₁, hg₁, hd₁, hθ₁⟩ := spinorNorm_stdStab_unit v Q₀ h2 hdet hn hu
-  obtain ⟨g₂, hg₂, hd₂, hθ₂⟩ := spinorNorm_stdStab_unit v Q₀ h2 hdet hn (u := 1) (by simp)
-  -- `det σ = ±1`
-  obtain ⟨xs, hxs, rfl⟩ := exists_symmProd_eq (Q) Fv hQ σ
-  have hdσ := detHom_symmProd (Q) Fv xs hxs
-  -- choose `g ∈ O(L_p)` with the same spinor norm and determinant as `σ`
-  obtain ⟨g, hg, hdg, hθg⟩ : ∃ g ∈ stdStab (Q) v, detHom (Q) Fv g = detHom (Q) Fv (symmProd (Q) Fv xs) ∧
-      spinorNorm (Q) Fv g = sqClassOf u := by
-    rcases Nat.even_or_odd xs.length with he | ho
-    · refine ⟨g₁ * g₂, (stdStab (Q) v).mul_mem hg₁ hg₂, ?_, ?_⟩
-      · ext; rw [map_mul, hd₁, hd₂, hdσ, he.neg_one_pow]; simp
-      · rw [← spinorNormHom_apply (Q) Fv hQ, map_mul, spinorNormHom_apply, spinorNormHom_apply, hθ₁, hθ₂,
-          sqClassOf_one, mul_one]
-    · exact ⟨g₁, hg₁, by ext; rw [hd₁, hdσ, ho.neg_one_pow]; simp, hθ₁⟩
-  refine ⟨symmProd (Q) Fv xs * g⁻¹, ?_, ?_⟩
-  · rw [spinorKernel_eq_ker (Q) Fv hQ]
-    refine Subgroup.mem_inf.mpr ⟨?_, ?_⟩
-    · rw [MonoidHom.mem_ker, map_mul, map_inv, spinorNormHom_apply, spinorNormHom_apply, hθg, ← hσ,
-        mul_inv_cancel]
-    · rw [MonoidHom.mem_ker, map_mul, map_inv, hdg, mul_inv_cancel]
-  · rw [locStabV_eq_stdStab (Q) v L hL]
-    simpa using hg
+  refine localSpinorUnits_of_improper (Q) v (nondegenerate_map_of_det_not_mem v Q₀ hdet) L fun u hu => ?_
+  obtain ⟨g, hg, hd, hθ⟩ := spinorNorm_stdStab_unit v Q₀ h2 hdet hn hu
+  exact ⟨g, (locStabV_eq_stdStab (Q) v L hL).mpr hg, hd, hθ⟩
 
 end Unimodular
 

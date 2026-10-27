@@ -1,5 +1,5 @@
 /-
-# $\theta_Q - \theta_{Q'}$ is a cusp form for $Q'$ in the genus of $Q$ (part A)
+# $\theta_Q - \theta_{Q'}$ is a cusp form for $Q'$ in the genus of $Q$
 
 For a positive definite integral form $Q$ in $n = 2k$ variables and $\gamma = \begin{pmatrix}a&b\\c&d\end{pmatrix} \in
 \mathrm{SL}_2(\mathbb{Z})$ with $c \ge 1$, the expansion of $\Theta_Q$ at the cusp $a/c$ (`thetaGram_cusp`) gives
@@ -142,8 +142,12 @@ lemma surjective_to_zmod {R : Type*} [CommRing R] {m : ℕ} (f : R →+* ZMod m)
 
 /-- **Forms in one genus are equivalent modulo every $c \ge 1$:** there is $\bar g \in \mathrm{GL}_n(\mathbb{Z}/c)$ with
 $Q(\bar g\vec{x}) = Q'(\vec{x})$ for all $\vec{x} \in (\mathbb{Z}/c)^n$. *Proof:* reduce $g_p \in \mathrm{GL}_n(\mathbb{Z}_p)$
-modulo $p^{e_p}$ (`PadicInt.toZModPow`) and glue by CRT (`ZMod.equivPi`, `IsometricGL.pi`). -/
-@[kb "cassels1978" "Ch. 9, §1 (genus and congruences) [unverified]"]
+modulo $p^{e_p}$ (`PadicInt.toZModPow`) and glue by CRT (`ZMod.equivPi`, `IsometricGL.pi`).
+
+*Cassels* (Ch. 9, Lemma 4.2, Cor. 1 and Note, p. 140) proves more: some $f^*$ *properly equivalent over
+$\mathbb{Z}$* to $f$ has $f^*_{ij} \equiv g_{ij} \pmod M$, using strong approximation in $\mathrm{SL}_n$ (Thm. 2.1, p. 133). The
+statement here is the consequence over $\mathbb{Z}/c$, which needs only the local equivalences. -/
+@[kb "cassels1978" "Ch. 9, Lemma 4.2, Cor. 1 and Note, p. 140"]
 theorem SameGenus.isometricGL_zmod (h : SameGenus Q Q') {c : ℕ} (hc : c ≠ 0) :
     IsometricGL (Q.map (Int.castRingHom (ZMod c))) (Q'.map (Int.castRingHom (ZMod c))) := by
   have hloc : ∀ p : c.primeFactors, IsometricGL
@@ -223,8 +227,9 @@ lemma det_hessian_pos {Q : IntQF n} (hQ : Q.PosDef) : 0 < Q.hessian.det := by
   exact_mod_cast this
 
 /-- **$\det H$ is a genus invariant** (for positive definite forms): $\det H = \det H'$. *Proof:* modulo $c = \det H$
-and $c = \det H'$, $\det H' \equiv u^2\det H$ with $u$ a unit, so each divides the other. -/
-@[kb "cassels1978" "Ch. 9, §1 (the determinant is a genus invariant) [unverified]"]
+and $c = \det H'$, $\det H' \equiv u^2\det H$ with $u$ a unit, so each divides the other. (Cassels, Ch. 9, Lemma 4.1,
+p. 139, for every regular form, with $d(f) = \det(f_{ij})$; here $\det H = 2^n d$.) -/
+@[kb "cassels1978" "Ch. 9, Lemma 4.1, p. 139; Ch. 9, Lemma 1.1, p. 127"]
 theorem SameGenus.det_hessian_eq {Q Q' : IntQF n} (hQ : Q.PosDef) (h : SameGenus Q Q') :
     Q.hessian.det = Q'.hessian.det := by
   have hQ' := h.posDef hQ
@@ -508,7 +513,7 @@ theorem thetaGen_eq_sum {Q : QuadForm ℤ n} (hF : GenusFinite Q) (z : ℂ) :
 
 /-- **The $q$-expansion of the genus theta series:** $\Theta_{\mathrm{Gen}(Q)}(z) = \sum_{m \ge 0}a_E(m)e(mz)$ with
 $a_E(m)$ = `genusRepAvg` ($a_E(0) = 1$), for $Q$ positive definite, `GenusFinite`, $\operatorname{Im} z > 0$. -/
-@[kb "hanke2004" "(4.5), p. 366 [unverified]"]
+@[kb "hanke2004" "(4.5), p. 366 [unverified]; cassels1978 App. B, (5.23)–(5.24), pp. 386–387"]
 theorem hasSum_thetaGen {Q : IntQF n} (hQ : Q.PosDef) (hF : GenusFinite Q) {z : ℂ} (hz : 0 < z.im) :
     HasSum (fun m : ℕ => (genusRepAvg Q m : ℂ) * cexp (2 * Real.pi * I * z * m)) (thetaGen Q z) := by
   rw [thetaGen_eq_sum hF]
@@ -550,7 +555,7 @@ $Q$ positive definite in $n = 2k$ variables, `GenusFinite`, $N \ge 1$ a level of
 `exists_isThetaLevel_genus`): the combination
 $\mathrm{Mass}(Q)^{-1}\sum_{[Q']}|\mathrm{Aut}(Q')|^{-1}(\Theta_Q - \Theta_{Q'})$ of the cusp forms `thetaCuspDiff`
 (`thetaGenCusp_apply`). It transforms with $\chi_Q$ under $\Gamma_0(N)$ (`thetaGenCusp_slash_gamma0`). -/
-@[kb "hanke2004" "(4.3)–(4.5), pp. 365–366 [unverified]"]
+@[kb "hanke2004" "(4.3)–(4.5), pp. 365–366 [unverified]; cassels1978 App. B, (5.23)–(5.24), pp. 386–387"]
 def thetaGenCusp {Q : IntQF n} (hQ : Q.PosDef) (hF : GenusFinite Q) {k : ℕ} (hn : n = 2 * k) {N : ℕ}
     (hN0 : 0 < N) (hN : ∀ Q', SameGenus Q Q' → IsThetaLevel Q' N) :
     CuspForm (CongruenceSubgroup.Gamma1 N) k :=

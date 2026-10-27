@@ -11,10 +11,11 @@ for numbers is known in rank $4$; over a totally real $F$ of degree $\ge 2$ with
 * `tamagawaNumberTwo_four_of_three`: then $\tau(SO(V)) = 2$ for every split quaternary form $\langle m\rangle\perp Q_0'$
   ($m \gg 0$) with $\mathcal O_F^4$ integral; `massFormula_four_of_three`: the mass formula for its genus.
 
-**Scope.** Split lattices $\mathcal O_Fe_0 \perp L'$ only. The $\tau$ is proved invariant under change of
+**Scope.** Split lattices $\mathcal O_Fe_0 \perp L'$ only (the setting). The $\tau$ is now proved invariant under change of
 lattice (`LatChange.tauSO_smul_compMat`), and `LatChange.tamagawaNumberTwo_four_all` / `massFormula_four_all` extend these results
 to every totally positive definite quaternary genus. $h_F = 1$ and $[F:\mathbb Q] \ge 2$ come from the rank-4
-Siegel formula (over $\mathbb Q$ it is `Siegel.siegelFormula_quaternary`, for forms over $\mathbb Z$; its bridge to `SiegelFormulaAt` is not formalized).
+Siegel formula (over $\mathbb Q$ it is `Siegel.siegelFormula_quaternary`, for forms over $\mathbb Z$; its bridge to the
+`SiegelFormulaAt` is not formalized).
 -/
 import QuadFormsKB.Tamagawa.LocalUnimodular
 import QuadFormsKB.HilbertModular.SiegelFormulaNF4
@@ -55,7 +56,8 @@ totally positive and $Q_0'$ ternary over $\mathcal O_F$ with $\langle m_0\rangle
 $\mathcal O_F^4$ integral, $\tau(SO(\langle m_0\rangle \perp Q_0')) = 2$, given $\tau(SO(Q_0')) = 2$.
 
 *Proof.* Siegel's formula for the number $m_0$ in rank $4$ (the hypothesis `hS`: `siegelFormulaAt_of_pid_four` for
-$[F:\mathbb Q] \ge 2$, `RatBridge.siegelFormulaAt_rat_four` for $F = \mathbb Q$), the mass formula in rank $3$ (`massFormula` from `hτ`), and the induction step with the local orbital identity proved at every prime
+$[F:\mathbb Q] \ge 2$, via `RatBridge.siegelFormulaAt_rat_four` for $F = \mathbb Q$), the mass formula in rank $3$ (the
+`massFormula` from `hτ`), and the induction step with the local orbital identity proved at every prime
 (`tamagawaNumberTwo_succ'`). -/
 @[kb "weil1982" "§3.7, pp. 62-65; Thm. 3.7.1 (m = 4), p. 65; given rank-4 Siegel (any totally real F, ℚ included)"]
 theorem tamagawaNumberTwo_four_of_three_of_siegel {m₀ : 𝓞 F}
@@ -77,7 +79,7 @@ theorem tamagawaNumberTwo_four_of_three_of_siegel {m₀ : 𝓞 F}
   have hIH : MassFormulaHolds Q₀' := massFormula Q₀' hQ' (by norm_num) hpd' hLi' hτ
   exact tamagawaNumberTwo_succ' m₀ hm0 Q₀' le_rfl hpd hLi hS hIH
 
-/-- `tamagawaNumberTwo_four_of_three_of_siegel` with rank-4 Siegel from Hilbert modular forms ($[F:\mathbb Q] \ge 2$). -/
+/-- `tamagawaNumberTwo_four_of_three_of_siegel` with rank-4 Siegel ($[F:\mathbb Q] \ge 2$). -/
 @[kb "weil1982" "§3.7, pp. 62-65; Thm. 3.7.1 (m = 4), p. 65; here via the induction step of §4.5"]
 theorem tamagawaNumberTwo_four_of_three (hd : 2 ≤ Fintype.card (InfinitePlace F)) {m₀ : 𝓞 F}
     (hm : ∀ v, 0 < HilbertModular.realEmb F v (algebraMap (𝓞 F) F m₀)) (Q₀' : QuadForm (𝓞 F) 3)
@@ -155,14 +157,16 @@ omit [IsPrincipalIdealRing (𝓞 F)] in
 real of degree $\ge 2$ with $h_F = 1$, $m_0 \gg 0$ and $\langle m_0\rangle\perp Q_0'$ totally positive definite with $\mathcal O_F^4$
 integral, $\tau(SO(\langle m_0\rangle\perp Q_0')) = 2$ implies $\tau(SO(Q_0')) = 2$.
 
-*Proof.* the reduction and Siegel's formula give $\mathrm{Mass}(L)\,S(L, m_0) = \mathrm{Mass}(L')\,W$ with $W > 0$; the local
+*Proof.* The reduction and Siegel's formula give $\mathrm{Mass}(L)\,S(L, m_0) = \mathrm{Mass}(L')\,W$ with $W > 0$; the
+local
 orbital identity (proved at every prime; its convergence input $\prod_\mathfrak p\alpha_\mathfrak p(L') \ne 0$ is
 `tprod_siegelDensity_three_ne_zero`) and the archimedean identity give $W\mu(K_{SO}(L)) = \mu(K_{SO}(L'))\,S(L, m_0)$; so
 $\mathrm{Mass}(L) = \mu(K_{SO}(L))^{-1}$ forces $\mathrm{Mass}(L') = \mu(K_{SO}(L'))^{-1}$.
 
 So, given rank-4 Siegel, **the two base cases of Weil's Theorem 3.7.1 are equivalent** for split lattices: $\tau(SO(Q_0')) = 2
-\iff \tau(SO(\langle m_0\rangle\perp Q_0')) = 2$ (`tamagawaNumberTwo_three_iff_four`). Rank-4 Siegel for $m_0$ is the hypothesis `hS`
-(Hilbert modular forms for $[F:\mathbb Q] \ge 2$, `tamagawaNumberTwo_three_of_four`; `RatBridge.siegelFormulaAt_rat_four` for $F = \mathbb Q$). -/
+\iff \tau(SO(\langle m_0\rangle\perp Q_0')) = 2$ (`tamagawaNumberTwo_three_iff_four`). Rank-4 Siegel for $m_0$ is the
+hypothesis `hS` (for $[F:\mathbb Q] \ge 2$ see `tamagawaNumberTwo_three_of_four`; via
+`RatBridge.siegelFormulaAt_rat_four` for $F = \mathbb Q$). -/
 @[kb "weil1982" "Thm. 3.7.1 (m = 3 from m = 4), p. 65; given rank-4 Siegel (any totally real F, ℚ included)"]
 theorem tamagawaNumberTwo_three_of_four_of_siegel {m₀ : 𝓞 F}
     (hm : ∀ v, 0 < HilbertModular.realEmb F v (algebraMap (𝓞 F) F m₀)) (Q₀' : QuadForm (𝓞 F) 3)
@@ -250,7 +254,7 @@ theorem tamagawaNumberTwo_three_of_four_of_siegel {m₀ : 𝓞 F}
     rw [← e]; field_simp
   nlinarith [e2, key]
 
-/-- `tamagawaNumberTwo_three_of_four_of_siegel` with rank-4 Siegel from Hilbert modular forms ($[F:\mathbb Q] \ge 2$). -/
+/-- `tamagawaNumberTwo_three_of_four_of_siegel` with rank-4 Siegel ($[F:\mathbb Q] \ge 2$). -/
 @[kb "weil1982" "Thm. 3.7.1 (m = 3 from m = 4), p. 65; induction step of §4.5 read backwards"]
 theorem tamagawaNumberTwo_three_of_four (hd : 2 ≤ Fintype.card (InfinitePlace F)) {m₀ : 𝓞 F}
     (hm : ∀ v, 0 < HilbertModular.realEmb F v (algebraMap (𝓞 F) F m₀)) (Q₀' : QuadForm (𝓞 F) 3)

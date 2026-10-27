@@ -4,13 +4,14 @@ import QuadFormsKB.Binary.RepresentationCount
 /-!
 # Gauss composition from forms ↔ ideals: discharging `IsFormClassGroup`
 
-The genus-theory consequences of composition (every genus has $h/2^{t-1}$ classes) from a named
-**interface** `IsFormClassGroup D G cls` (`GenusClassGroup.lean`). The proper classes are identified with the ideal class group in the forms ↔ ideals development. This file
-supplies the interface from it, for a fundamental discriminant $D < 0$, with $G = \mathrm{Cl}(\mathcal O_{K_D})$ and
-$\mathrm{cls}(f) = [\mathfrak a_f]$ (`isFormClassGroup`), so the class count becomes **unconditional**
-(`card_classes_in_genus'`, `card_slClasses_in_genus`).
+`GenusClassGroup.lean` proves the genus-theory consequences of composition (every genus has $h/2^{t-1}$ classes) from
+a named
+**interface** `IsFormClassGroup D G cls`. The proper classes are identified with the ideal class group. This file
+supplies the interface from that identification, for a fundamental discriminant $D < 0$, with
+$G = \mathrm{Cl}(\mathcal O_{K_D})$ and $\mathrm{cls}(f) = [\mathfrak a_f]$ (`isFormClassGroup`), so the class count
+becomes **unconditional** (`card_classes_in_genus'`, `card_slClasses_in_genus`).
 
-* **Reconciliation.** `PosForms D` ($\gcd(a,b,c) = 1$, $a > 0$, $D < 0$) and `PrimPosForm D` (every common
+* **Reconciliation.** the `PosForms D` ($\gcd(a,b,c) = 1$, $a > 0$, $D < 0$) and the `PrimPosForm D` (every common
   divisor of $a, b, c$ is a unit, `BinQF.PosDef`) are the same forms: `primitive_iff_isPrimitive`, `posFormsEquiv`.
 * **Genus characters of ideals, computed on norms** (`genusChar_norm_eq_formChar`): if $\mathfrak b \ne 0$ has
   $N\mathfrak b = m$ and $[\mathfrak b] = [\mathfrak a_f]^{-1}$, then $f$ represents $m$ (`exists_gen`,
@@ -37,9 +38,10 @@ open BinQF Siegel
 
 variable {D : ℤ}
 
-/-! ### the and the primitive positive definite forms agree -/
+/-! ### The two definitions of primitive positive definite forms agree -/
 
-/-- **The two notions of primitivity agree:** `Primitive f` ($\gcd(a, \gcd(b, c)) = 1$) iff `BinQF.IsPrimitive f` (every common divisor of $a, b, c$ is a unit of $\mathbb{Z}$). -/
+/-- **The two notions of primitivity agree:** the `Primitive f` ($\gcd(a, \gcd(b, c)) = 1$) iff the
+`BinQF.IsPrimitive f` (every common divisor of $a, b, c$ is a unit of $\mathbb{Z}$). -/
 theorem primitive_iff_isPrimitive (f : BinQF) : Primitive f ↔ f.IsPrimitive := by
   unfold Primitive BinQF.IsPrimitive
   constructor
@@ -80,7 +82,7 @@ variable [IsQuadDisc D]
 /-! ### The class map -/
 
 /-- **The ideal class of a form** of `PosForms D`, in $\mathrm{Cl}(\mathbb{Z}[\omega])$: $f \mapsto [\mathfrak a_f]$
-(`idealClass`). -/
+(the `idealClass`). -/
 noncomputable def formClassOrder (f : PosForms D) : ClassGroup (QOrder D) := idealClass f.toPrim
 
 /-- **The ideal class of a form** of `PosForms D`, in $\mathrm{Cl}(\mathcal O_{K_D})$: $f \mapsto [\mathfrak a_f]$,
@@ -90,7 +92,8 @@ noncomputable def formClass (f : PosForms D) : ClassGroup (𝓞 (QField D)) := c
 /-! ### Genus characters of ideals, computed on norms -/
 
 /-- **A form represents the norms of the ideals in the inverse of its class** ($D < 0$): if $\mathfrak b \ne 0$,
-$N\mathfrak b = m$ and $[\mathfrak b] = [\mathfrak a_f]^{-1}$, then $f(x, y) = m$ for some $x, y \in \mathbb{Z}$ (`exists_gen`: $\mathfrak b\,\mathfrak a_f = (z)$ with $N z = a m$, and `repSetEquiv`). -/
+$N\mathfrak b = m$ and $[\mathfrak b] = [\mathfrak a_f]^{-1}$, then $f(x, y) = m$ for some $x, y \in \mathbb{Z}$ (the
+`exists_gen`: $\mathfrak b\,\mathfrak a_f = (z)$ with $N z = a m$, and `repSetEquiv`). -/
 theorem exists_eval_of_ideal (hD : D < 0) (f : PrimPosForm D) {m : ℕ} {𝔟 : Ideal (QOrder D)}
     (hN : Ideal.absNorm 𝔟 = m) (h0 : 𝔟 ∈ (Ideal (QOrder D))⁰)
     (hc : ClassGroup.mk0 ⟨𝔟, h0⟩ = (idealClass f)⁻¹) : ∃ x y : ℤ, f.1.eval x y = m := by
@@ -208,7 +211,7 @@ theorem IsFormClassGroup.map {G G' : Type*} [CommGroup G] [CommGroup G'] {cls : 
   sameGenus_of_cls_eq f g h := C.sameGenus_of_cls_eq f g (e.injective h)
   genusVec_mul f g h hcls := C.genusVec_mul f g h (e.injective (by rw [hcls, map_mul]))
 
-/-- **Gauss composition for $D < 0$, from forms ↔ ideals, in $\mathrm{Cl}(\mathbb{Z}[\omega])$**: the interface
+/-- **Gauss composition for $D < 0$, from forms ↔ ideals, in $\mathrm{Cl}(\mathbb{Z}[\omega])$**: The interface
 `IsFormClassGroup` holds for $G = \mathrm{Cl}(\mathbb{Z}[\omega])$ and $\mathrm{cls}(f) = [\mathfrak a_f]$. -/
 theorem isFormClassGroupOrder (hD : D < 0) :
     IsFormClassGroup D (ClassGroup (QOrder D)) formClassOrder where
@@ -227,7 +230,7 @@ $G = \mathrm{Cl}(\mathcal O_{K_D})$ and $\mathrm{cls}(f) = [\mathfrak a_f]$ (`fo
   the same genus;
 - `genusVec_mul`: the genus characters are multiplicative (`genusVec_formClass_mul`).
 Source: Cox, §3.B, Thm. 3.15 and §7.B, Thm. 7.7 [unverified locator]. -/
-@[kb "cox2013" "§3.B, Thm. 3.15; §7.B, Thm. 7.7 [unverified locator]"]
+@[kb "cox2013" "§3.B, Thm. 3.15; §7.B, Thm. 7.7 [unverified locator]; cassels1978 Ch. 14, Thm. 2.1, p. 337"]
 theorem isFormClassGroup (hD : D < 0) :
     IsFormClassGroup D (ClassGroup (𝓞 (QField D))) formClass :=
   (isFormClassGroupOrder hD).map (classGroupEquiv D)

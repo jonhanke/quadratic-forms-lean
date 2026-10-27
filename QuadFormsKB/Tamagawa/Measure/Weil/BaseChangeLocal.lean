@@ -2,7 +2,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeQuat
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Approx
 /-!
 # Place-by-place base change for finite adeles
-
 For a finite extension $K/k$ of number fields, the idempotents $e_v\in\mathbb A_{k,f}$ ($1$ at $v$, $0$ elsewhere) are
 sent by $\iota_f$ (`finMap`) to the idempotents of $\mathbb A_{K,f}$ supported exactly at the places $w\mid v$
 (`finMap_eAdele_apply`). This gives, with the $\mathbb A_{k,f}$-linearity of the global base change, the local
@@ -128,7 +127,7 @@ open Classical in
 /-- **Places of `K` over `v` see exactly the idempotent `e_v`.** The `w`-component of `ι(e_v)` is `1` if `w` lies over `v`
 and `0` otherwise (`ι = finMap`). Proof by density (strong approximation): `ι(e_v)_w` is an idempotent of the field `K_w`;
 an approximating integer `s ∈ 𝓞 k` would lie in `w ∩ 𝓞 k` and `1 + w ∩ 𝓞 k` at once. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem finMap_eAdele_apply (v : HeightOneSpectrum (𝓞 k)) (w : HeightOneSpectrum (𝓞 K)) :
     (finMap k K (eAdele v)) w = if underPlace w = v then 1 else 0 := by
   classical
@@ -311,7 +310,7 @@ theorem eAdele_smul_localBaseChange (c : ι → v.adicCompletion k) :
 
 /-- **Range of the local base change.** $\Psi_f(c e_v)$ ranges exactly over the $y\in\mathbb A_{K,f}$ with
 $\iota(e_v)y = y$, i.e. (by `finMap_eAdele_apply`) over the adeles supported at the places over $v$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem range_localBaseChange :
     Set.range (localBaseChange b v) = {y : AK | finMap k K (eAdele v) * y = y} := by
   ext y
@@ -328,7 +327,7 @@ theorem range_localBaseChange :
 
 /-- The local base change is injective, continuous and a homeomorphism onto its range: the topological identification of
 $K\otimes_kk_v$ with the closed subgroup of $\mathbb A_{K,f}$ of adeles supported over $v$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., (10.2), p. 57 (algebraically and topologically); §14, proof of the Lemma, p. 64; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem isEmbedding_localBaseChange : Topology.IsEmbedding (localBaseChange b v) := by
   classical
   let g : (ι → v.adicCompletion k) → (ι → Ak) := fun c i => singleAdele v (c i)
@@ -347,7 +346,7 @@ theorem evAdele_finMap_mul (t y : AK) (w : HeightOneSpectrum (𝓞 K)) :
 open Classical in
 /-- **Support characterisation.** $y\in\mathbb A_{K,f}$ is in the image of $K\otimes_kk_v$ iff its components at the
 places $w$ not over $v$ vanish. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem mem_range_localBaseChange_iff (y : AK) :
     y ∈ Set.range (localBaseChange b v) ↔ ∀ w : HeightOneSpectrum (𝓞 K), underPlace (k := k) w ≠ v → y w = 0 := by
   rw [range_localBaseChange]
@@ -390,7 +389,7 @@ theorem continuous_localRingHom (w : HeightOneSpectrum (𝓞 K)) (h : underPlace
 
 /-- **The $v$-component of the global base change is the local map** (additive level):
 for $w\mid v$, $\Psi(ce_v)_w = \sum_ib_i\,\varphi_w(c_i)$ with $\varphi_w$ = `localRingHom`. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem localBaseChange_apply_over (w : HeightOneSpectrum (𝓞 K)) (h : underPlace (k := k) w = v)
     (c : ι → v.adicCompletion k) :
     (localBaseChange b v c) w = ∑ i, ((b i : K) : w.adicCompletion K) * localRingHom v w h (c i) := by
@@ -407,7 +406,7 @@ theorem localBaseChange_apply_ne (w : HeightOneSpectrum (𝓞 K)) (h : underPlac
 
 /-- **The $w$-component of $\iota_f$ factors through the $v$-component** ($w\mid v$):
 $\iota_f(a)_w = \varphi_w(a_v)$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem finMap_apply_over (w : HeightOneSpectrum (𝓞 K)) (h : underPlace (k := k) w = v) (a : Ak) :
     (finMap k K a) w = localRingHom v w h (a v) := by
   classical
@@ -465,7 +464,7 @@ include hb0 in
 /-- **Local decomposition, quadratic case (components).** For $w\mid v$ the $w$-component of the local base change is the
 ring homomorphism `quadLocalHom`; for $w\nmid v$ it vanishes. So `quadLocalBaseChange` is the map
 $E\otimes_kk_v\to\prod_{w\mid v}K_w$ with components `quadLocalHom`. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem quadLocalBaseChange_apply_over (w : HeightOneSpectrum (𝓞 K)) (h : underPlace (k := k) w = v)
     (z : QuadraticAlgebra (v.adicCompletion k) (d : v.adicCompletion k) 0) :
     (quadLocalBaseChange v (b := b) z) w = quadLocalHom hb1 v w h z := by
@@ -483,7 +482,7 @@ theorem quadLocalBaseChange_apply_ne (w : HeightOneSpectrum (𝓞 K)) (h : under
 
 /-- **Compatibility with the global `quadBaseChange`**: for $w\mid v$, the $w$-component of
 $\Theta(z)$ is `quadLocalHom` applied to the $v$-components of $z$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem quadBaseChange_snd_apply_over (w : HeightOneSpectrum (𝓞 K)) (h : underPlace (k := k) w = v)
     (z : QuadAdele k d) :
     ((quadBaseChange hb0 hb1 z).2) w =
@@ -496,7 +495,7 @@ theorem quadBaseChange_snd_apply_over (w : HeightOneSpectrum (𝓞 K)) (h : unde
 
 /-- **Range of the local quadratic base change**: exactly the adeles supported over $v$. (Topologically, the map is
 an embedding for the coordinate topology $(x,y)\in k_v^2$ by `isEmbedding_localBaseChange`.) -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, proof of the Lemma, (14.3)–(14.6), p. 64; §10, (10.2), p. 57; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem range_quadLocalBaseChange :
     Set.range (quadLocalBaseChange v (b := b) (d := d)) =
       {y : AK | ∀ w, underPlace (k := k) w ≠ v → y w = 0} := by
@@ -552,7 +551,7 @@ theorem quadLocalBaseChange_one_apply (w : HeightOneSpectrum (𝓞 K)) (h : unde
 
 include hb0 hb1 in
 /-- Every place $v$ of $k$ has a place $w$ of $K$ over it. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Thm., (10.2), p. 57 (J ≥ 1 since k_v ⊗ K ≠ 0); FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem exists_place_over : ∃ w : HeightOneSpectrum (𝓞 K), underPlace (k := k) w = v := by
   by_contra hne
   push_neg at hne
@@ -564,7 +563,7 @@ theorem exists_place_over : ∃ w : HeightOneSpectrum (𝓞 K), underPlace (k :=
 
 include hb0 hb1 in
 /-- **Split case: two places.** If $d$ is a nonzero square in $k_v$, there are two distinct places of $K$ over $v$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Cor., p. 58 (the places over v correspond to the irreducible factors over k_v of the minimal polynomial); FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem exists_two_places_of_sq (c : v.adicCompletion k) (hc : c ≠ 0) (hd : (d : v.adicCompletion k) = c * c) :
     ∃ w₁ w₂ : HeightOneSpectrum (𝓞 K), w₁ ≠ w₂ ∧ underPlace (k := k) w₁ = v ∧ underPlace (k := k) w₂ = v := by
   have h2 : (2 : v.adicCompletion k) ≠ 0 := two_ne_zero
@@ -636,7 +635,7 @@ theorem idempotent_of_nonsq (hns : ∀ c : v.adicCompletion k, (d : v.adicComple
 
 include hb0 hb1 in
 /-- **Inert / ramified case: one place.** If $d$ is not a square in $k_v$, there is exactly one place of $K$ over $v$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (K ⊗ k_v ≅ ∏_{w|v} K_w) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §10, Cor., p. 58 (the places over v correspond to the irreducible factors over k_v of the minimal polynomial); FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited, not imported)"]
 theorem place_unique_of_nonsq (hns : ∀ c : v.adicCompletion k, (d : v.adicCompletion k) ≠ c * c)
     (w₁ w₂ : HeightOneSpectrum (𝓞 K)) (h₁ : underPlace (k := k) w₁ = v) (h₂ : underPlace (k := k) w₂ = v) :
     w₁ = w₂ := by

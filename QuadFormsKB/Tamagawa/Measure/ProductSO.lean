@@ -22,7 +22,7 @@ normalized by $\mu_f(SO(\hat L)) = \prod'_v\mu_v(SO(L_v))$ with the local measur
 * `map_restrict_muFin_KSO`: on $K = \prod_v K_v$, $\mu_f$ is $\mu_f(K)$ times the **infinite product** of the normalized
   local Haar probability measures (Mathlib's `Measure.infinitePi`).
 * `resEquiv`: **$SO(V)(\mathbb A_f) \cong \prod'_v SO(V)(F_v)$ as topological groups** (Mathlib's `Πʳ` with respect to the
-  $SO(L_v)$; the $SO(V)(\mathbb A_f)$ is the closed subgroup `soAf` of $O(V)(\mathbb A_f)$ with the subspace topology);
+  $SO(L_v)$; $SO(V)(\mathbb A_f)$ is the closed subgroup `soAf` of $O(V)(\mathbb A_f)$ with the subspace topology);
 * `muFin_lam_eq_smul`: changing the convergence factors rescales $\mu_f$: $\mu_f^{\lambda} = (\prod'\mu_v^\lambda(K_v) /
   \prod'\mu_v^{\lambda'}(K_v))\,\mu_f^{\lambda'}$.
 
@@ -32,7 +32,6 @@ push $\mu_f$ restricted to them forward along $g \mapsto g_w$. The result is a l
 many cosets of $K_w$ cover a compact set), hence a multiple of the Haar measure of $SO(V)(F_w)$ (`isMulLeftInvariant_eq_smul`;
 $SO(V)(F_w)$ is second countable); its value on $K_w$ is the box for $S$. Infinite-measure $U_v$ by monotone exhaustion.
 Template: AxiomMath's additive `finiteMeasure_chart` (not imported).
-
 -/
 import QuadFormsKB.Tamagawa.Measure.AdelicSO
 
@@ -438,7 +437,7 @@ instance (v : HeightOneSpectrum (𝓞 F)) :
   ⟨by rw [Measure.restrict_apply_univ]; exact haarSO_soStabSO Q₀ v⟩
 
 /-- **$\mu_f$ on $SO(\hat L) = \prod_v SO(L_v)$ is the infinite product measure** of the normalized local Haar probability
-measures, times $\mu_f(SO(\hat L)) = \prod'_v\mu_v(SO(L_v))$ (Mathlib's `Measure.infinitePi`). -/
+measures, times $\mu_f(SO(\hat L)) = \prod'_v\mu_v(SO(L_v))$ (Mathlib's `Measure.infinitePi`, design L3). -/
 @[kb "weil1982" "§2.3, p. 21 (Tamagawa measure on ∏_v V_{o_v})"]
 theorem map_restrict_muFin_KSO (lam : HeightOneSpectrum (𝓞 F) → ℝ) :
     ((muFin Q₀ lam).restrict (KSO Q₀ : Set (SOAf Q₀))).map (piEvalSO Q₀) =
@@ -543,7 +542,7 @@ theorem continuous_ofRes : Continuous (ofRes Q₀) := by
   exact hc
 
 /-- **$SO(V)(\mathbb A_f) \cong \prod'_v SO(V)(F_v)$ as topological groups** (restricted product with respect to the
-$SO(L_v)$): the $SO(V)(\mathbb A_f)$, a closed subgroup of $O(V)(\mathbb A_f)$ with the subspace topology, is the restricted
+$SO(L_v)$): $SO(V)(\mathbb A_f)$, a closed subgroup of $O(V)(\mathbb A_f)$ with the subspace topology, is the restricted
 product of the local groups. -/
 def resEquiv : SOAf Q₀ ≃ₜ* SOAfRes Q₀ where
   toFun := toRes Q₀

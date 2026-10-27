@@ -1,5 +1,5 @@
 /-
-# Forms over $\mathcal O_F$: the genus of a form, and the bridge to $F = \mathbb Q$
+# Forms over $\mathcal O_F$: The genus of a form, and the bridge to $F = \mathbb Q$
 
 **Layer:** forms `Q : QuadForm (𝓞 F) n` (a free lattice $\mathcal O_F^n$ with a chosen basis). The genus of a *form* compares
 two forms locally everywhere, over every completion $\mathfrak o_\mathfrak p$ and every real place; the genus of
@@ -70,9 +70,9 @@ variable {F : Type*} [Field F] [NumberField F]
 
 /-- **Forms in the same genus** over $\mathcal O_F$: $Q \cong Q'$ over the completion $\mathfrak o_\mathfrak p$ (by an element
 of $\mathrm{GL}_n(\mathfrak o_\mathfrak p)$) for every finite prime $\mathfrak p$, and over $\mathbb R$ for every real embedding
-$\sigma : F \to \mathbb R$ (O'Meara §102 [unverified]). For $F = \mathbb Q$ this is `Siegel.SameGenus`
+$\sigma : F \to \mathbb R$ (cf. O'Meara §102A, p. 297, where the genus is defined for lattices on one space $V$, so no condition at the real places is needed). For $F = \mathbb Q$ this is `Siegel.SameGenus`
 (`formSameGenus_rat_iff`). -/
-@[kb "omeara1963" "§102, gen [unverified]"]
+@[kb "omeara1963" "§102A, p. 297 (genus); §82B, 82:1, p. 222 (free lattices and matrices)"]
 def FormSameGenus (Q Q' : QuadForm (𝓞 F) n) : Prop :=
   (∀ v : HeightOneSpectrum (𝓞 F),
       Siegel.IsometricGL (Q.map (algebraMap (𝓞 F) (v.adicCompletionIntegers F)))
@@ -99,7 +99,7 @@ abbrev toOQ : ℤ →+* 𝓞 ℚ := algebraMap ℤ (𝓞 ℚ)
 `FormSameGenus` of their images in `QuadForm (𝓞 ℚ) n` holds iff `Siegel.SameGenus Q Q'` (equivalence over every
 $\mathbb Z_p$ and over $\mathbb R$). Uses Mathlib's isomorphisms $\mathfrak o_{\mathfrak p} \cong \mathbb Z_p$
 (`PadicInt.adicCompletionIntegersEquiv`, `Rat.HeightOneSpectrum.adicCompletionIntegers.padicIntEquiv`). -/
-@[kb "omeara1963" "§102 [unverified]"]
+@[kb "omeara1963" "§102A, p. 297"]
 theorem formSameGenus_rat_iff (Q Q' : QuadForm ℤ n) :
     FormSameGenus (Q.map toOQ) (Q'.map toOQ) ↔ Siegel.SameGenus Q Q' := by
   constructor

@@ -653,7 +653,8 @@ $|a|_v = q^{-e_a}$, $|b|_v = q^{-e_b}$ and $m \ge 2d+1$, $d = 3s + 2e_a + 2e_b$ 
 $$\omega_v(\Lambda^{(m)}_v)\cdot q^{3(s+e_a+e_b)} = \omega_v(\mathfrak o_v^\times)\cdot\mathrm{vol}(\mathfrak o_v)^3\cdot
 \mu_v(K_m),$$
 where $\Lambda^{(m)}_v = c^{-1}(K_m)\cap\Lambda_v^\times$ (`lamCong`; $c(\Lambda^{(m)}_v) = K_m$ by `map_lamCong`),
-$\omega_v$ = the $\|\operatorname{nrd}\|_v^{-2}dx_v$ and the $|x|_v^{-1}dx_v$ (self-dual $dx_v$), $\mu_v$ = the gauge-form measure. So Weil's quotient measure $\omega_v^{D^\times}/\omega_v^{G_m}$ on $PD^\times(F_v)$ and $\mu_v$ on
+$\omega_v$ = $\|\operatorname{nrd}\|_v^{-2}dx_v$ and $|x|_v^{-1}dx_v$ (self-dual $dx_v$), $\mu_v$ =
+gauge-form measure. So Weil's quotient measure $\omega_v^{D^\times}/\omega_v^{G_m}$ on $PD^\times(F_v)$ and $\mu_v$ on
 $SO(D^0)(F_v)$ differ by $r_v = |8a^3b^3|_v\,\mathrm{vol}(\mathfrak o_v)^3 = |8a^3b^3|_v\,|\mathfrak d_v|^{3/2}$ (Weil's
 Thm 2.3.1: the ratio of two $F$-rational gauge forms is a global constant $c = 8a^3b^3$). -/
 @[kb "weil1982" "§2.3, Thm 2.3.1 (local ratios of gauge-form measures) [unverified]"]

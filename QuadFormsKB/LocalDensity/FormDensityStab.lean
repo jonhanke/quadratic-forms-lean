@@ -1,6 +1,5 @@
 /-
 # Densities of forms by forms over a DVR: stabilization and existence of the limit
-
 **Layer:** DVR, every residue characteristic (dyadic primes included).
 
 **Proves** Siegel's stabilization (Siegel 1935, Hilfssatz 13; Kitaoka 1993, §5.6 [unverified]) in the repo's

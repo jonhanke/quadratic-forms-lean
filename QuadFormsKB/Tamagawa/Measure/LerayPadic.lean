@@ -9,17 +9,18 @@ $F_v$ = `v.adicCompletion F` (any finite place, **dyadic included**), $Q_0$ a no
 variables, $V = (F^n, Q_0)$, $H$ its Hessian, $q = N(v)$. On $M_n(F_v)$ we use the standard Haar measure
 $dX = \prod_{i,j}dx_{ij}$ (`volM`, $\mathrm{vol}(M_n(\mathfrak o_v)) = 1$) and the fibre map
 $X \mapsto \Phi(X) = Q_0\circ X$ (the form $y \mapsto Q_0(Xy)$, `QuadForm.compMat`), whose fibre over $\Phi(1) = Q_0$ is
-$O(V)(F_v)$, in the $N = n(n+1)/2$ coefficient coordinates of `LerayReal.lean` (`phi`). Weil's gauge form $\omega = dX/d\Phi$ on
+$O(V)(F_v)$, in the $N = n(n+1)/2$ coefficient coordinates (`phi`). Weil's gauge form $\omega = dX/d\Phi$ on
 $O(V)$ (AAG §2.2 [unverified]) gives the measure characterized by the **Leray limit**
 $$|\omega|_v(W \cap O(V)) = \lim_{k\to\infty} q^{kN}\,\mathrm{vol}\{X \in W : \Phi(X) \equiv Q_0 \bmod \mathfrak p_v^k\}
 \qquad (W \subseteq M_n(F_v) \text{ compact open}),$$
-the $p$-adic counterpart of `LerayReal.tendsto_lerayMeasure` (`lerayApprox` here, `thick k` the congruence set).
+the $p$-adic counterpart of the real `LerayReal.tendsto_lerayMeasure` (`lerayApprox` here,
+`thick k` the congruence set).
 
 **Main theorem** (`lerayApprox_eventually_eq`): for every compact open $W \subseteq M_n(F_v)$ the normalized volumes
 $q^{kN}\mathrm{vol}(W \cap \Phi^{-1}(Q_0 + \mathfrak p^k))$ are **eventually equal** to $\mu_v(W \cap O(V)(F_v))$, where
-$\mu_v$ = `muLoc v Q₀ 1` is the density-normalized Haar measure ($\mu_v(O(L_v)) = \beta_v(L, L)$). So the $\mu_v$
+$\mu_v$ = `muLoc v Q₀ 1` is the density-normalized Haar measure ($\mu_v(O(L_v)) = \beta_v(L, L)$). So $\mu_v$
 **is** Weil's gauge-form measure $|\omega|_v$ at every finite place, and `muLocSO v Q₀ 1` is $|\omega|_v$ on $SO(V)(F_v)$
-(`lerayApprox_eventually_eq_muLocSO`). No inverse function theorem is used (an earlier plan for p-adic places needed one):
+(`lerayApprox_eventually_eq_muLocSO`). No inverse function theorem is used:
 * `volM_intMat_inter_thick`: $\mathrm{vol}(M_n(\mathfrak o) \cap \Phi^{-1}(Q_0 + \mathfrak p^k)) = A_{\pi^k}(Q_0, Q_0)\,q^{-kn^2}$,
   so on $W = M_n(\mathfrak o)$ the Leray quotient is $A_{\pi^k}/q^{k\dim}$, eventually $\beta_v(L,L)$ (Siegel's stabilization,
   `NF.localDensityForm_self_eventually_eq`);
@@ -233,7 +234,8 @@ theorem distribHaarChar_eq_one_of_sq {u : Fvˣ} (hu : u ^ 2 = 1) : distribHaarCh
   have h : (distribHaarChar Fv u) ^ 2 = 1 := by rw [← map_pow, hu, map_one]
   exact (pow_eq_one_iff_of_nonneg zero_le two_ne_zero).mp h
 
-/-- $x \mapsto gx$ preserves Haar measure on $F_v^n$ for $g \in O(V)(F_v)$ ($|\det g|_v = 1$; `glHaarChar_eq_of_field`). -/
+/-- $x \mapsto gx$ preserves Haar measure on $F_v^n$ for $g \in O(V)(F_v)$ ($|\det g|_v = 1$;
+`glHaarChar_eq_of_field`). -/
 theorem measurePreserving_mulVec (hQ : Q₀.Nondegenerate) (g : orthGroup QF Fv) :
     MeasurePreserving (((g : GL (Fin n) Fv) : Matrix (Fin n) (Fin n) Fv).mulVec)
       (Measure.pi fun _ : Fin n => haarV v) (Measure.pi fun _ : Fin n => haarV v) := by
@@ -884,12 +886,13 @@ theorem lerayApprox_ballOne_eventually (hQ : Q₀.Nondegenerate) (m : ℕ) (hm :
   rw [h2, ← hβ, hμ] at h1
   exact ((ENNReal.mul_right_inj hN0 (ENNReal.natCast_ne_top _)).mp h1).symm
 
-/-- **The $\mu_v$ is Weil's gauge-form (Leray) measure** (every finite place $v$, dyadic included; $Q_0$ nondegenerate):
+/-- **$\mu_v$ is Weil's gauge-form (Leray) measure** (every finite place $v$, dyadic included; $Q_0$ nondegenerate):
 for every compact open $W \subseteq M_n(F_v)$,
 $$q^{kN}\,\mathrm{vol}\{X \in W : Q_0 \circ X \equiv Q_0 \bmod \mathfrak p_v^k\} = \mu_v(W \cap O(V)(F_v))
 \qquad\text{for all large } k,$$
 $N = n(n+1)/2$, $dX$ the standard Haar measure on $M_n(F_v)$ (`volM`), $\mu_v$ = `muLoc v Q₀ 1`. This is Weil's
-$|\omega|_v = |dX/d\Phi|_v$ on the fibre $O(V) = \Phi^{-1}(Q_0)$ (AAG §2.2 [unverified]), the $p$-adic analogue of `LerayReal.tendsto_lerayMeasure`. -/
+$|\omega|_v = |dX/d\Phi|_v$ on the fibre $O(V) = \Phi^{-1}(Q_0)$ (AAG §2.2 [unverified]), the $p$-adic analogue of
+the real `LerayReal.tendsto_lerayMeasure`. -/
 @[kb "weil1982" "§2.2 (gauge-form measures on p-adic varieties; Leray/volume limit) [unverified]"]
 theorem lerayApprox_eventually_eq (hQ : Q₀.Nondegenerate) {W : Set (Matrix (Fin n) (Fin n) Fv)}
     (hWc : IsCompact W) (hWo : IsOpen W) :
@@ -969,7 +972,7 @@ theorem muLocSO_soStabSO_unimodular (Q₁ : QuadForm (𝓞 F) n) (hdet : ¬ πv 
 
 /-- **Gauge-form volume of $SO(L_v)$, odd rank, good place** ($v \nmid 2\det H_Q$, $n = 2m + 1$):
 $$|\omega|_v(SO(L_v)) = \mu_v(SO(L_v)) = \prod_{i=1}^m(1 - q^{-2i})$$
-(`DVR.localDensityForm_self_odd`, via $|O_{2m+1}(\mathbb F_q)| = 2q^{m^2}\prod_{i=1}^m(q^{2i}-1)$; Conway–Sloane 1988,
+(KB's `DVR.localDensityForm_self_odd`, via $|O_{2m+1}(\mathbb F_q)| = 2q^{m^2}\prod_{i=1}^m(q^{2i}-1)$; Conway–Sloane 1988,
 Table 1 [unverified]). For $n = 3$: $1 - q^{-2}$. Index shift: $i = 0,\dots,m-1$ with exponent $2(i+1)$. -/
 @[kb "weil1982" "§2.2 [unverified]"]
 theorem muLocSO_soStabSO_odd (m : ℕ) (Q₁ : QuadForm (𝓞 F) (2 * m + 1)) (h2 : ¬ πv ∣ 2)
@@ -1014,7 +1017,7 @@ $$\#S_{k+1}\cdot q^{k|\kappa|} = q^{k|\iota|}\cdot\#S_1,\qquad\text{i.e.}\qquad
   \frac{\#S_{k+1}}{q^{(k+1)(|\iota| - |\kappa|)}} = \frac{\#\{\mathbb F_q\text{-points}\}}{q^{|\iota|-|\kappa|}},$$
 $S_N = \{\vec x \bmod \pi^N : F(\vec x) \equiv \vec t \bmod \pi^N\}$: the gauge-form volume of the smooth model is
 $\#X(\mathbb F_q)/q^{\dim X}$. (For $X = O(Q)$, $F = $ `formF`, this is `localDensityForm_self_unimodular`.) Iterates the
-counting Hensel lemma `card_sol_succ` with $d = 0$. -/
+KB's counting Hensel lemma `card_sol_succ` with $d = 0$. -/
 @[kb "weil1982" "§2.2 (smooth models: vol = #X(F_q)/q^dim) [unverified]"]
 theorem card_sol_of_smooth (π : R) (hπ : Irreducible π) (Fm : (ι → R) → (κ → R))
     (D : (ι → R) → (ι → R) →ₗ[R] (κ → R))

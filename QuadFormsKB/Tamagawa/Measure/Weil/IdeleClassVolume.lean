@@ -366,7 +366,8 @@ theorem lintegral_ideleTest : ∫⁻ g, ideleTest g ∂tamIdeles F = muIdeleOne 
   have hS : MeasurableSet (Multiplicative.toAdd ⁻¹' Ioc (0 : ℝ) 1) := (measurableSet_Ioc : MeasurableSet (Ioc (0 : ℝ) 1))
   rw [lintegral_mul_const _ (measurable_one.indicator hS), lintegral_indicator_one hS, dtt_toAdd_Ioc, one_mul]
 
-/-- The integrand corresponding to $\Phi$: $G(x,\mathfrak a) = \mathbf 1_{(1,e]}(N(x)/N(\mathfrak a))\,w(x,\mathfrak a)$. -/
+/-- The integrand corresponding to $\Phi$:
+$G(x,\mathfrak a) = \mathbf 1_{(1,e]}(N(x)/N(\mathfrak a))\,w(x,\mathfrak a)$. -/
 def ideleTestModel (x : mixedSpace F) (𝔞 : FI) : ℝ≥0∞ :=
   (Ioc 1 (Real.exp 1)).indicator 1 (IdeleClass.ideleNorm F x 𝔞) * ideleWeight x 𝔞
 

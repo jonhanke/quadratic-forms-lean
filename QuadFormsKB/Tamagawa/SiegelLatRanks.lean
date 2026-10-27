@@ -8,7 +8,7 @@ import QuadFormsKB.Tamagawa.Measure.Weil.GnatSiegelTotallyReal
 import QuadFormsKB.Tamagawa.TernaryTamagawaNF
 
 /-!
-# Siegel's formula for every genus in rank $N \ge 4$, every totally real field
+# G3: Siegel's formula for every genus in rank $N \ge 4$, every totally real field
 
 **Layer:** $F$ totally real (any class number); $Q_0$ totally positive definite over $\mathcal O_F$ in $N = n + 1 \ge 4$ variables; $L$ an
 **arbitrary** $\mathcal O_F$-lattice on $V = (F^N, Q_0)$ with $Q_0$ integral on $L$ (any Steinitz class); $m \in \mathcal O_F$ totally positive.
@@ -44,11 +44,12 @@ variable {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ}
 
 /-! ### Siegel's theorem for one number and one lattice, with the stabilizer's $\tau$ -/
 
-/-- **The frame identity for the genus of an arbitrary lattice** (Weil 1982, §4.5, p. 109 [unverified]): for $Q_0$ totally positive
-definite in $N = n + 1 \ge 4$ variables, $L$ integral, $m = \rho$ totally positive and an adapted frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$,
+/-- **The frame identity for the genus of an arbitrary lattice** (Weil 1982, §4.5, p. 109 [unverified]): for $Q_0$
+totally positive definite in $N = n + 1 \ge 4$ variables, $L$ integral, $m = \rho$ totally positive and an adapted
+frame $Q_0\circ g = \langle\rho\rangle\perp Q_0'$,
 $$2\,\mu_{\mathrm{Tam}}(K_{SO}(L))\cdot\mathrm{repMass}(L, \rho) = \tau(SO(Q_0'))\cdot S(L, m).$$
 *Proof:* `repMass_eq_mass_mul_finprod_lat` gives $\mathrm{repMass}(L, \rho) = \mathrm{Mass}(Q_0')\prod_\mathfrak pW_\mathfrak p(g^{-1}L_\mathfrak p, 1)$; `latOrbitalIdentity` gives $W_\mathfrak p\,r_\mathfrak p(L) = \alpha_\mathfrak p(Q_0')\,|\det g|^{n+1}|2\rho|^{-n}\beta_\mathfrak p(L, m)/\alpha_\mathfrak p(Q_0)$;
-$\mu(K_{SO}(L)) = \mu(K_{SO}(\mathcal O_F^N))\prod_\mathfrak pr_\mathfrak p(L)$ (`tamagawaKLat_eq_finprod`); the archimedean step is that of `SiegelAllRanks`. -/
+$\mu(K_{SO}(L)) = \mu(K_{SO}(\mathcal O_F^N))\prod_\mathfrak pr_\mathfrak p(L)$ (`tamagawaKLat_eq_finprod`); the archimedean step is that of the frame identity. -/
 @[kb "weil1982" "§4.5, p. 100 and p. 109 (Siegel's theorem from the fibration over T(ρ), arbitrary lattice) [unverified]"]
 theorem two_mul_tamagawaKLat_mul_repMass_frame (Q₀ : QuadForm (𝓞 F) (n + 1)) (hpd : IsTotallyPosDef (formF Q₀))
     (hn : 3 ≤ n) (L : Lat F (n + 1)) (hLi : Lattices.IsIntegral (formF Q₀) L.1) {m : 𝓞 F} {ρ : F}

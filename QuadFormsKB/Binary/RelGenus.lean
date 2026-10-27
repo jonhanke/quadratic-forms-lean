@@ -3,10 +3,11 @@ import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelRepCount
 
 /-!
-# Genus characters over $F$ at the ramified primes
+# Genus characters over $F$ at the ramified primes (partial)
 
 Let $E/F$ be a quadratic extension of number fields and $\mathfrak p$ a prime of $F$ **ramified** in $E$ ($\chi_{E/F}(\mathfrak p) = 0$,
-`relChar`; then $\mathfrak p\mathcal O_E = \mathfrak P^2$ with residue degree $1$, `splitting`). The analogue over $F$ of the genus characters $\psi_p$ for $p \mid D$:
+the `relChar`; then $\mathfrak p\mathcal O_E = \mathfrak P^2$ with residue degree $1$, the `splitting`). The analogue
+over $F$ of the genus characters $\psi_p$ for $p \mid D$:
 
 * **Norms are squares mod $\mathfrak p$** (`exists_sq_sub_intNorm_mem`): for every $x \in \mathcal O_E$ there is $b \in \mathcal O_F$ with
   $N_{E/F}(x) \equiv b^2 \pmod{\mathfrak p}$. Proof: $\sigma(\mathfrak P) = \mathfrak P$ (`conjIdeal_prime_eq`, the only prime over $\mathfrak p$),
@@ -18,7 +19,8 @@ Let $E/F$ be a quadratic extension of number fields and $\mathfrak p$ a prime of
   quadratic character $\psi_\mathfrak p$ of the residue field $\mathcal O_F/\mathfrak p$ (Mathlib's `quadraticChar`). So every normalized lattice
   $(\mathfrak A, \frac{\eta}{a}N)$ has a well-defined genus character $\chi_\mathfrak p = \psi_\mathfrak p(\eta)\psi_\mathfrak p(s)$ at each odd ramified $\mathfrak p$:
   the value of $\psi_\mathfrak p$ on any represented value prime to $\mathfrak p$. Proof: $x\,\sigma(y) \in \mathfrak A\,\sigma(\mathfrak A) = a\,\mathcal O_E$
-  (`mul_conjIdeal`), so $x\sigma(y) = az$ and $st = N(z)$, a square mod $\mathfrak p$. This is the argument of `genusChar_eval_eq_formChar` (there: $4af(x,y) = X^2 - DY^2$), and over $\mathbb Q$ it is the statement for odd $p \mid D$.
+  (`mul_conjIdeal`), so $x\sigma(y) = az$ and $st = N(z)$, a square mod $\mathfrak p$. This is the argument of the
+  `genusChar_eval_eq_formChar` (there: $4af(x,y) = X^2 - DY^2$), and over $\mathbb Q$ it is the statement for odd $p \mid D$.
 
 **Not done:** the dyadic ramified primes (squares modulo $\mathfrak p$ carry no information there; one needs
 the norm residue symbol of $E_\mathfrak P/F_\mathfrak p$ modulo a power of $\mathfrak p$), the product formula $\prod_\mathfrak p\chi_\mathfrak p = 1$
@@ -26,7 +28,8 @@ the norm residue symbol of $E_\mathfrak P/F_\mathfrak p$ modulo a power of $\mat
 genus and the mass of a genus. These need local class field theory for $E_\mathfrak P/F_\mathfrak p$ (or Hilbert symbols over $F$),
 which Mathlib does not have.
 
-*Update:* the repository proves Hilbert symbols, reciprocity and the Hasse norm theorem over $F$; `RelGenusHilbert.lean` defines the characters at every place (dyadic included) as $(\delta, \cdot)_v$ and proves the product
+*Update:* the repository proves Hilbert symbols, reciprocity and the Hasse norm theorem over $F$; the
+`RelGenusHilbert.lean` defines the characters at every place (dyadic included) as $(\delta, \cdot)_v$ and proves the product
 formula, genus = local equivalence and the principal genus theorem; `RelGenusCount.lean` bounds the number of genera.
 
 Sources: Shimura, *Arithmetic of Quadratic Forms* (2010), §4 [unverified locator]; Neukirch, *Algebraic Number Theory*,

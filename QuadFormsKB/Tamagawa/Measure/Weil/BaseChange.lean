@@ -3,7 +3,6 @@ import QuadFormsKB.Tamagawa.Measure.Weil.Ideles
 
 /-!
 # Base change of adeles: $K\otimes_k\mathbb A_k\cong\mathbb A_K$
-
 $K/k$ is any finite extension of number fields and $b = (b_i)_{i\in\iota}$ any $k$-basis of $K$, so that
 $K\otimes_k\mathbb A_k = \mathbb A_k^\iota$ (`AdeleSpace k ι`) in the coordinates $b$.
 
@@ -198,7 +197,7 @@ theorem adeleBaseChange_apply (a : AdeleSpace k ι) :
     rfl
 
 /-- **$\Psi$ is the identity on $K$**: $\Psi(x) = \sum_ix_ib_i$ for $x\in k^\iota$. -/
-@[kb "casselsfrohlich1967" "Ch. II §14 (A_K = K ⊗_k A_k) [unverified]; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited)"]
+@[kb "casselsfrohlich1967" "Ch. II (Cassels), §14, Lemma, (14.2), pp. 63–64 (k ⊗ K = K is mapped identically onto K ⊂ V_K), and Cor., p. 64; FLT `FiniteAdeleRing.baseChangeAlgEquiv` (cited)"]
 theorem adeleBaseChange_diag (x : ι → k) :
     adeleBaseChange b (diagVec k ι x) = diag K (b.equivFun.symm x) := by
   rw [adeleBaseChange_apply]

@@ -13,8 +13,7 @@ theory, from two facts:
   (\prod_i m_i)^{n+1}$; on a transvection $T$ it is $1$, because $T$ is conjugate (by a diagonal matrix) to $T^2$; and
   every matrix is a product of transvections and a diagonal matrix (Mathlib's
   `Matrix.Pivot.exists_list_transvec_mul_diagonal_mul_list_transvec`). In particular $|\det(\text{act}\,h)| = 1$ on
-  $SO(Q)$: this is the remark in `docs/weil-aag-design.md` that the fibre map $c \mapsto g^{\mathsf T}cg$ has determinant
-  one for $g \in O(Q)$.
+  $SO(Q)$: the fibre map $c \mapsto g^{\mathsf T}cg$ has determinant one for $g \in O(Q)$.
 * **The Leray limit along transported balls**: right translation by $h \in SO(Q)(\mathbb R)$ is $X \mapsto Xh$ on
   $M_n(\mathbb R)$ (Lebesgue-measure preserving, $\det$-preserving), and it moves the Leray regions over balls
   $B_\varepsilon(c_Q)$ to the regions over $h \cdot B_\varepsilon(c_Q)$, which have the same volume and shrink to $c_Q$.

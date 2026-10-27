@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# Slices of invariant measures: the abstract part
+# Slices of invariant measures (the abstract part)
 
 The measure-theoretic core of the Leray (gauge-form) measures. A gauge form $\omega$ on a fibre $G = \Phi^{-1}(c)$
 of a submersion $\Phi$ is characterized by $dX = \omega \wedge d\Phi$ near the fibre. When a second group $B$ acts
