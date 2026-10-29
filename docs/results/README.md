@@ -13,7 +13,7 @@ One page per main result of the repository, with the precise statement, its scop
 | [Hasse–Minkowski over ℚ](hasse-minkowski-rationals.md) | isotropy, isometry, and the classification of forms over <img src="../images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> |
 | [Tamagawa numbers of SO(V)](tamagawa-table.md) | $`\tau(\mathrm{SO}(V))`$ over every number field: $`2`$ in dimension $`n \ge 3`$ and for anisotropic binary spaces, $`1`$ for isotropic binary spaces and in dimension $`1`$ (new in 0.2.0) |
 | [Siegel's formula for indefinite forms](siegel-indefinite.md) | the measure form of Siegel's formula over every number field, numbers and forms, every stabilizer rank; definite forms by forms over totally real fields (new in 0.2.0) |
-| [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0) |
+| [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0); the divisor count for $`xy`$ (new in 0.2.1) |
 
 ## Further results
 

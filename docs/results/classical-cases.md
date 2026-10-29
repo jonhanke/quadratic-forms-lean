@@ -1,6 +1,6 @@
 # Classical cases of Siegel's formula over ℚ
 
-Classical theorems on representation numbers recovered from Siegel's formula and the Tamagawa numbers of release 0.2.0, with explicit constants.
+Classical theorems on representation numbers recovered from Siegel's formula and the Tamagawa numbers of release 0.2.0, with explicit constants (the divisor count for $`xy`$ added in 0.2.1).
 
 ## Statements
 
@@ -15,6 +15,7 @@ Classical theorems on representation numbers recovered from Siegel's formula and
 - **Siegel's formula for $`x^2 + y^2`$ with explicit constants.** For a nondegenerate unary form $`T_0`$ over $`\mathbb{Z}`$ represented by $`x^2 + y^2`$ over $`\mathbb{Q}`$,
   $`\sum_i n(M_i, T_0) = \tfrac{\pi}{8}\, L(1,\chi_{-4})^{-1}\prod_p L_p(1,\chi_{-4})\,\beta_p(T_0)`$ (Siegel's Hauptsatz for $`n = 2`$, $`m = 1`$: $`c^{(1)}_\infty = 1/4`$, $`\varepsilon = \tfrac12`$, $`\sum_i v(M_i) = \pi/16`$).
 - **Dirichlet's theorem for $`x^2 - 2y^2`$.** For $`m \ge 1`$, the number of representations of $`m`$ by the genus of $`x^2 - 2y^2`$ (one class), counted modulo its infinite unit group, is $`\sum_{d \mid m}\chi_8(d)`$.
+- **The divisor count for $`xy`$** (new in 0.2.1). The genus of $`\mathbb{Z}^2`$ for $`xy`$ has one proper class, and for $`m \in \mathbb{Z}`$, $`m \ne 0`$, the number of representations of $`m`$ by it modulo its unit group $`\{\pm1\}`$ is $`d(|m|)`$, the number of positive divisors of $`|m|`$. This is Siegel's excluded case (an isotropic binary form, regularized by the residue of $`\zeta_{\mathbb{Q}}`$), with the norm-one unit volume $`v^1(\mathbb{Z}^2) = 1`$ and $`\prod_p(v_p(m) + 1) = d(|m|)`$.
 
 ## In Lean
 
@@ -24,6 +25,7 @@ The headline statements are in [`Challenge.lean`](../../Challenge.lean), section
 - `QuadFormsKB.Headlines.jacobi_twoSquares` (from `QuadFormsKB.Tamagawa.Classical.dirichlet_sumTwoSq_r2`).
 - `QuadFormsKB.Headlines.siegel_twoSquares` (from `QuadFormsKB.Tamagawa.Classical.siegel_sumTwoSq_explicit`).
 - `QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq` (from `QuadFormsKB.Tamagawa.Classical.dirichlet_pell2_uncond`).
+- `QuadFormsKB.Headlines.divisorCount_xy` (from `QuadFormsKB.Tamagawa.Classical.tsum_repCount_hypForm_rat` and `subsingleton_DC_hypForm`). Not headlines, in the same file (`QuadFormsKB/Tamagawa/Classical/HyperbolicRat.lean`): `unitVolumeIso_hypForm_rat` ($`v^1(\mathbb{Z}^2) = 1`$), `tprod_count_add_one_rat` ($`\prod_p(v_p(m) + 1) = d(|m|)`$), `repCount_hypForm_rat` (the count for the single class), `siegel_hypForm_rat_explicit` (Siegel's formula for $`xy`$ with $`v^1(\mathbb{Z}^2) = 1`$ inserted), and, over every number field whose ring of integers is a principal ideal domain, one proper class (`subsingleton_DC_hypForm`) and $`v^1 = \rho_F`$ (`unitVolumeIso_hypForm_of_isPrincipalIdealRing`).
 
 ## Proof outline
 

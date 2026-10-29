@@ -22,10 +22,12 @@ prime $\mathfrak p$ = `v`).
   (`latDensity_sameGenus_left/right`), in particular not on the bases. Free lattices are the locally free case;
   for a non-free $L$ the same definition applies to a basis of the free $\mathfrak o_\mathfrak p$-module $L_\mathfrak p$ (not
   formalized).
-**Depends on** `FormDensitySelf.lean`, `NFLocal.lean`, `Lattices/FreeBridge.lean`.
+**Depends on** `FormDensitySelf.lean`, `NFLocal.lean`, `NFLocalGeneral.lean` (`NF.det_hessian_Qp`),
+`Lattices/FreeBridge.lean`.
 -/
 import QuadFormsKB.LocalDensity.FormDensitySelf
 import QuadFormsKB.LocalDensity.NFLocal
+import QuadFormsKB.LocalDensity.NFLocalGeneral
 import QuadFormsKB.Lattices.FreeBridge
 
 open NumberField IsDedekindDomain Filter Matrix
@@ -166,9 +168,6 @@ theorem repCountForm_eq_completion (Q : QuadForm (𝓞 F) n) (T : QuadForm (𝓞
 theorem localDensityForm_eq_completion (Q : QuadForm (𝓞 F) n) (T : QuadForm (𝓞 F) r) :
     localDensityForm v Q T = DVR.localDensityForm (Qp v Q) (Qp v T) (π v) := by
   simp only [localDensityForm, DVR.localDensityForm, repCountForm_eq_completion, q_completion]
-
-theorem det_hessian_Qp (T : QuadForm (𝓞 F) r) : (Qp v T).hessian.det = ι v T.hessian.det := by
-  rw [QuadForm.hessian_map, ← RingHom.mapMatrix_apply, ← RingHom.map_det]
 
 /-- **Stabilization over $\mathcal O_F$** (Siegel 1935, Hilfssatz 13 [unverified]): if $\det H_T \in \mathfrak p^d \setminus
 \mathfrak p^{d+1}$ and $k \ge 2d + 1$, then $A_{\mathfrak p^{k+1}}(Q, T)\, N\mathfrak p^{r(r+1)/2} = N\mathfrak p^{nr} A_{\mathfrak p^k}(Q, T)$. Every

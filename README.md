@@ -27,10 +27,18 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 - **[Hasse–Minkowski over ℚ](docs/results/hasse-minkowski-rationals.md)**, for forms in any number of variables.
 - **[Tamagawa numbers of SO(V) over every number field](docs/results/tamagawa-table.md)** (new in 0.2.0): $`\tau(\mathrm{SO}(V)) = 2`$ for every nondegenerate quadratic space of dimension $`n \ge 3`$ over every number field (any signature, isotropic or not, complex places allowed); $`\tau = 2`$ for anisotropic and $`\tau = 1`$ for isotropic binary spaces, with Weil's convergence factors; $`\tau = 1`$ in dimension $`1`$.
 - **[Siegel's formula for indefinite forms over every number field](docs/results/siegel-indefinite.md)** (new in 0.2.0): the measure form of Siegel's formula for numbers and for forms represented by forms of any signature, for every rank of the stabilizer, including Siegel's excluded case of an isotropic binary stabilizer (regularized by the residue of $`\zeta_F`$); and Siegel's formula for definite forms representing forms over totally real fields.
-- **[Classical cases over ℚ](docs/results/classical-cases.md)** (new in 0.2.0): Gauss's three-squares theorem, Jacobi's two-squares theorem and Dirichlet's theorem for $`x^2 - 2y^2`$, from Siegel's formula with explicit constants.
+- **[Classical cases over ℚ](docs/results/classical-cases.md)** (new in 0.2.0): Gauss's three-squares theorem, Jacobi's two-squares theorem and Dirichlet's theorem for $`x^2 - 2y^2`$, from Siegel's formula with explicit constants; and (new in 0.2.1) the number of representations of $`m \ne 0`$ by $`xy`$ modulo $`\pm1`$ is the number of divisors of $`|m|`$, from Siegel's formula in its excluded isotropic binary case.
 
 
-**Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value; the few such facts of the 0.2.0 headlines that are not yet library lemmas are named in their docstrings. [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
+**Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value (since 0.2.1 this includes the finiteness of the number of proper classes in the genus for the indefinite Siegel formulas). [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
+
+## What's new in 0.2.1
+
+- **Finitely many classes in the genus, every signature:** for every number field $`F`$ and every nondegenerate quadratic form over $`\mathcal{O}_F`$, of any signature, the genus contains only finitely many proper classes (`QuadFormsKB.Tamagawa.Indefinite.finite_DC`). The nine indefinite Siegel headlines now state this finiteness (`Finite (DC Q₀)`); release 0.2.0 named it in their docstrings as not stated.
+- **The form $`xy`$ over ℚ:** a new headline, `divisorCount_xy`: for $`m \ne 0`$ the genus of $`\mathbb{Z}^2`$ has one proper class, and the number of representations of $`m`$ modulo $`\pm1`$ is the number of positive divisors of $`|m|`$. On the way: the unit volume $`v^1(\mathbb{Z}^2) = 1`$ and $`\prod_p (v_p(m) + 1) = d(|m|)`$.
+- **One declaration for one theorem:** `QuadFormsKB.LocalDensity.NF.det_hessian_Qp` was declared in two files; it is now declared once.
+- **Further library material** (no new headlines): more numbered results from Cassels, *Rational Quadratic Forms* (from Chapters 2–8, 10, 13, 14 and Appendix B) and from O'Meara, *Introduction to Quadratic Forms* (from Chapters I–X); the Weil representation of $`\mathrm{Sp}_{2g}`$ and the theta series of genus $`g`$ with its transformation law under $`\mathrm{Sp}_{2g}(\mathbb{Z})`$, and the classical consequence that the rank of an even unimodular positive definite lattice is divisible by $`8`$; for positive definite forms, the finiteness facts assumed in Hanke's Arizona Winter School notes are proved, and their four-squares formulas hold without inputs.
+- The 21 headline statements added in 0.2.0, the nine of them extended here, and `divisorCount_xy` are still **not yet reviewed** by a human (see Provenance); that review is planned for release 0.2.2.
 
 ## Further results
 
@@ -86,7 +94,7 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 ## Layout
 
 ```
-Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, 0.2.0's not yet
+Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, 0.2.x's not yet
 Solution.lean           the same statements, proved from the library
 comparator.json         configuration for `lake comparator` (Solution against Challenge)
 formalization.yaml      scope, sources, divergences, provenance, review (formalization.yaml v0.4)
@@ -145,8 +153,9 @@ source repository up to 2026-10-27, including release 0.1.0 and overhead, not on
 Jonathan Hanke designed and directed it: he chose the results, the conventions and the proof routes.
 The proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
 standard axioms. The 13 headline statements of release 0.1.0 in `Challenge.lean`, and the definitions they use, were
-reviewed by Jonathan Hanke. The 21 headline statements added in release 0.2.0, and the definitions they use, have
-**not yet been reviewed** by a human; that review is planned for release 0.2.1. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
+reviewed by Jonathan Hanke. The 21 headline statements added in release 0.2.0 (nine of them
+extended in release 0.2.1 by the finiteness of the proper classes in the genus), the one added in release 0.2.1, and
+the definitions they use, have **not yet been reviewed** by a human; that review is planned for release 0.2.2. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
 reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
 against the literature. Corrections and reports of mis-formalizations are very welcome.
 
@@ -154,12 +163,13 @@ against the literature. Corrections and reports of mis-formalizations are very w
 
 Releases are tagged with semantic versions; `main` continues to develop. The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
 
+- **[v0.2.1](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.2.1)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:ZENODO-DOI-v0.2.1](https://doi.org/ZENODO-DOI-v0.2.1) *(to be filled in after Zenodo issues the DOI)*. The proper classes in the genus of a nondegenerate form over the ring of integers of a number field, of any signature, are finite in number (`QuadFormsKB.Tamagawa.Indefinite.finite_DC`); the nine indefinite Siegel headlines now state this finiteness (`Finite (DC Q₀)`), which 0.2.0 named in their docstrings as not stated. For $`xy`$ over ℚ: one proper class in the genus of $`\mathbb{Z}^2`$, the unit volume $`v^1(\mathbb{Z}^2) = 1`$, $`\prod_p (v_p(m) + 1) = d(|m|)`$, and the new headline `divisorCount_xy` (the number of representations of $`m \ne 0`$ modulo $`\pm1`$ is the number of divisors of $`|m|`$; 35 headline statements in total). A theorem that was declared twice in the library (`QuadFormsKB.LocalDensity.NF.det_hessian_Qp`) is now declared once.
 - **[v0.2.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.2.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23693826](https://doi.org/10.5281/zenodo.23693826). Adds the Tamagawa numbers of $`\mathrm{SO}(V)`$ over every number field, Siegel's formula for indefinite forms and for forms by forms, and classical cases over ℚ (21 new headline statements in `Challenge.lean`, 34 in total). It also records an [erratum](docs/results/errata.md): an input assumed by three earlier theorems is false; those theorems are vacuous, are not headlines, and are replaced by unconditional ones.
 - **[v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23509793](https://doi.org/10.5281/zenodo.23509793).
 
-**Not in this release** (planned for 0.2.1 or later; none changes a headline):
+**Not in this release** (planned for a later release; none changes a headline):
 
-- for the isotropic binary form $`xy`$ over ℚ: the identification of $`\prod_p (v_p(m) + 1)`$ with the number of divisors of $`m`$, and the unit volume $`v^1(\mathbb{Z}^2) = 1`$ (one class in the genus, then the volume of the norm-one shell);
+- for $`xy`$ over ℚ: the number of representations modulo the units rewritten as an explicit count of the integer pairs $`(x, y)`$ with $`xy = m`$ modulo $`\pm1`$ (the headline counts them through the library's `repCount`);
 - Tamagawa numbers of the other groups of type $`D_n`$ (for example spin groups and similitude groups); only $`\mathrm{SO}(V)`$ is treated.
 
 ## License
