@@ -22,12 +22,13 @@ Short statements of further results in the repository, each with its Lean names.
 
 ## Finiteness of the class number
 
-**Statement.** Over <img src="../images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">, the genus of every positive definite integral quadratic form contains only finitely many classes; the proof is Hermite reduction. Over a number field $`F`$, for every nondegenerate form (definite or indefinite) and every lattice $`L`$ (integral or not), the genus of $`L`$ contains only finitely many classes.
+**Statement.** Over <img src="../images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">, the genus of every positive definite integral quadratic form contains only finitely many classes; the proof is Hermite reduction. Over a number field $`F`$, for every nondegenerate form (definite or indefinite) and every lattice $`L`$ (integral or not), the genus of $`L`$ contains only finitely many classes; for a form over the ring of integers and $`L`$ the standard lattice, the genus also contains only finitely many proper classes (classes under the rotations).
 
 **In Lean.**
 - `QuadFormsKB.Siegel.genusFinite`: over <img src="../images/inline/b719c7ce5a74.svg" align="absmiddle" alt="\mathbb{Z}">; `QuadFormsKB.Siegel.Hermite.exists_hermite_bound`: Hermite's bound.
 - `QuadFormsKB.Lattices.genusClasses_finite`: totally positive definite forms over a totally real field, by Hermite reduction of the trace form.
 - `QuadFormsKB.Lattices.ClassFin.genusClasses_finite_nf`: every nondegenerate form and every lattice over every number field.
+- `QuadFormsKB.Tamagawa.Indefinite.finite_DC` (new in 0.2.1): the proper classes (classes under the rotations $`\mathrm{SO}`$) in the genus of <img src="../images/inline/203e27023b18.svg" align="absmiddle" alt="\mathcal{O}_F^n"> are finite in number, for every nondegenerate form over <img src="../images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F"> of any signature (O'Meara 103:4); these are the classes summed over in [Siegel's formula for indefinite forms](siegel-indefinite.md).
 
 ## Strong approximation for spin groups, and Kneser neighbours
 

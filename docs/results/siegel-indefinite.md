@@ -19,8 +19,7 @@ Here $`\delta = -\det H_{Q_0}\det H_{T_0}`$, $`\chi_\delta`$ its quadratic chara
 ## Scope and hypotheses
 
 - Every number field, every signature (at a complex place every form is indefinite), every class number; the only hypothesis is that $`T_0`$ is represented over $`F`$ (a rational frame), which is necessary for the formula to say anything.
-- The sums over the classes are sums in $`[0, \infty]`$; the headline statements also state $`0 < \sum_i v(M_i) < \infty`$, that the products of local densities (plain or regularized) converge unconditionally, and that $`L_F(1,\chi)`$ exists and is positive.
-- Not stated as headlines (no library lemma yet): the finiteness of the number of proper classes for indefinite $`Q_0`$ (the library proves it for classes under the full orthogonal group).
+- The sums over the classes are sums in $`[0, \infty]`$; the headline statements also state $`0 < \sum_i v(M_i) < \infty`$, that the products of local densities (plain or regularized) converge unconditionally, that $`L_F(1,\chi)`$ exists and is positive, and (since v0.2.1) that there are finitely many proper classes $`M_i`$ in the genus (`Finite (DC Q₀)`, from `QuadFormsKB.Tamagawa.Indefinite.finite_DC`, O'Meara 103:4, every nondegenerate $`Q_0`$ of any signature), so the sums are finite sums.
 - Siegel's formula for **definite** forms representing **forms** over totally real fields (every rank $`1 \le r \le N`$) is also proved: `QuadFormsKB.Tamagawa.Frames.siegelForms_all_ranks`; the headline `QuadFormsKB.Headlines.siegelForms_totallyReal` states the case $`N \ge 3`$, $`N - r \ne 2`$.
 
 ## In Lean

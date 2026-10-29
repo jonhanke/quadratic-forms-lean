@@ -35,7 +35,8 @@
     "QuadFormsKB.Headlines.gauss_threeSquares",
     "QuadFormsKB.Headlines.jacobi_twoSquares",
     "QuadFormsKB.Headlines.siegel_twoSquares",
-    "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq"
+    "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq",
+    "QuadFormsKB.Headlines.divisorCount_xy"
   ],
   "definition_names": [],
   "permitted_axioms": [

@@ -14,7 +14,8 @@ hypotheses (no new axioms and no unproved placeholders). The inputs are listed a
 - **D1** (2.8), p. 34: $a_E(Q) = \frac{\sum r_{Q''}(Q)/|\mathrm{Aut}Q''|}{\sum 1/|\mathrm{Aut}Q''|} = 1/\mathrm{Mass}(Q)$,
   using $r_{Q''}(Q) = \#\mathrm{Aut}(Q)$ or $0$. Assumes: class representatives of equal nonzero
   determinant, finite $\mathrm{Aut}$. Formalized with Hessians: `reps`, `autZ`, `EquivZ`, `mass`,
-  `card_reps_of_equiv`, `card_reps_of_not_equiv`, `eisenstein_coeff_self`. **Proved.**
+  `card_reps_of_equiv`, `card_reps_of_not_equiv`, `eisenstein_coeff_self`. **Proved.** For positive
+  definite forms the finiteness of $\mathrm{Aut}$ is proved (`finite_autZ`): `eisenstein_coeff_self_uncond`.
 - **D2** p. 35: $\mathrm{Mass}(Q) \le h(Q)/2$ (since $\pm 1 \in \mathrm{Aut}$). `mass_le_half_classNumber`.
   **Proved** ($n \ge 1$).
 
@@ -111,10 +112,13 @@ hypotheses (no new axioms and no unproved placeholders). The inputs are listed a
 - **D23** (4.31)–(4.37), pp. 65–66: $y^{-n/4}\Theta(\Phi_{L_j})(g_{\infty,z}) = \Theta_{L_j}(z)/|\mathrm{Aut}(L_j)|$, with
   $g_{\infty,z}\cdot i = z$ and $(ci+d)^{n/2} = y^{-n/4}$. `thetaSeries`, `AWSInputs`,
   `thetaLift_indicator_eq`, `thetaLift_classical`, `gInf`, `gInf_smul_I`, `gInf_denom`,
-  `exists_rep_infty_one`. **Relative to** `QuotientIntegralInputs` and `AWSInputs`.
+  `exists_rep_infty_one`. **Relative to** `QuotientIntegralInputs` and `AWSInputs`. For positive definite
+  $Q$, **relative to** `QuotientIntegralInputs` only (`AWS/Finiteness.lean`): `thetaLift_indicator_eq_posDef`,
+  `thetaLift_classical_posDef`; the representatives exist (`exists_doset_reps`).
 - **D24** (corollary; p. 62 "the constant function 1"): $\mathrm{vol}(O(V)\backslash O(V_\mathbb{A})) = \mathrm{Mass}(L)$
   and $y^{-n/4}\Theta(1) = \sum_j \Theta_{L_j}/|\mathrm{Aut}(L_j)|$. `integral_one_eq_mass`,
-  `integral_eq_sum_integral_indicator_mul`, `thetaLift_one`. **Relative to** the same inputs.
+  `integral_eq_sum_integral_indicator_mul`, `thetaLift_one`. **Relative to** the same inputs; for positive
+  definite $Q$ relative to `QuotientIntegralInputs` only: `integral_one_eq_mass_posDef`, `thetaLift_one_posDef`.
 
 ## The inputs (all hypotheses, none an `axiom`)
 
@@ -125,7 +129,9 @@ hypotheses (no new axioms and no unproved placeholders). The inputs are listed a
    `AWS/Gluing.lean`), so it is no longer an input.
 3. `AWSInputs Q` (`AWS/ThetaLift.lean`): `gluing` (= 2, proved; `AWSInputs.ofFinite` builds the bundle
    from the other two fields), `finite_classes` (finite class number),
-   `finite_aut` (finite $\mathrm{Aut}(L')$).
+   `finite_aut` (finite $\mathrm{Aut}(L')$). **Proved for positive definite $Q$** (`awsInputs_of_posDef`,
+   `AWS/Finiteness.lean`: Hermite reduction and short vectors); `finite_aut` is false for indefinite $Q$
+   (e.g. $x_0^2 - 2x_1^2$), so the bundle stays a hypothesis of the general statements.
 4. `AdelicSL2Data N χ` with hypotheses `hSA`, `hΓU` (`AWS/ClassicalToAdelic.lean`): $K_f(N)$, its
    character $\varepsilon$, the diagonal $\Gamma_0(N)$, strong approximation for $\mathrm{SL}_2$,
    $\mathrm{SL}_2(\mathbb{Q}) \cap U = \Gamma_0(N)$.

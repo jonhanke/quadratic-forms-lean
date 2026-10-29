@@ -213,3 +213,45 @@ example : (AWS.r4 3 : ℂ) = 32 := by
   norm_num
 
 end QuadFormsKB.Siegel
+
+/-! ### The AWS notes' four-squares results without inputs
+
+The theorems of `Literature/AWS/FourSquares.lean` take `FourSquaresInputs` as a hypothesis because that directory
+does not import `Siegel/`. Here the input is discharged by `Siegel.fourSquaresInputs`. -/
+
+namespace QuadFormsKB.AWS
+
+/-- **The AWS notes' four-squares inputs hold** (`FourSquaresInputs`: Siegel's formula
+$r_{I_4}(m) = \pi^2 m\prod_p\beta_p(m)$ for $m \ge 1$ and $\beta_2(m) = 1$ for odd $m$), unconditionally. -/
+@[kb "hanke2011aws" "§2.7.2–§2.7.5, pp. 37–40"]
+theorem fourSquaresInputs_holds : FourSquaresInputs :=
+  Siegel.fourSquaresInputs
+
+/-- **The local densities of $I_4 = x_0^2+x_1^2+x_2^2+x_3^2$ at an odd squarefree $t$** (Lemmas 2.7.4, 2.7.6),
+unconditionally: $\beta_p(t) = (1 - p^{-2})\cdot c_2(p)\cdot c_t(p)$ with $c_2(2) = 4/3$, $c_2(p) = 1$ for odd $p$,
+$c_t(p) = 1 + 1/p$ for $p \mid t$ and $c_t(p) = 1$ otherwise. -/
+@[kb "hanke2011aws" "§2.7.4, Lemmas 2.7.4 and 2.7.6, p. 38"]
+theorem beta_eq_uncond (t : ℕ) (ht : Odd t) (hsq : Squarefree t) (p : PrimeIdx) :
+    ((LocalDensity.localDensity Q4 p t : ℝ) : ℂ) =
+      (1 - 1 / ((p : ℕ) : ℂ) ^ 2) * corr2 p * corrT t p :=
+  beta_eq fourSquaresInputs_holds t ht hsq p
+
+/-- **(2.21)–(2.23), p. 40: $r_{I_4}(t) = 8\prod_{p \mid t}(p+1)$ for every odd squarefree $t$**, unconditionally
+($r_{I_4}(t)$ is the number of $x \in \mathbb Z^4$ with $x_0^2+x_1^2+x_2^2+x_3^2 = t$). -/
+@[kb "hanke2011aws" "§2.7.5, (2.21)-(2.23), p. 40"]
+theorem r4_squarefree_uncond (t : ℕ) (ht : Odd t) (hsq : Squarefree t) :
+    (r4 t : ℂ) = 8 * ∏ p ∈ t.primeFactors, ((p : ℂ) + 1) :=
+  r4_squarefree fourSquaresInputs_holds t ht hsq
+
+/-- **(2.10)–(2.16), p. 39: $r_{I_4}(1) = 8$**, unconditionally. -/
+@[kb "hanke2011aws" "§2.7.5, (2.10)-(2.16), p. 39"]
+theorem r4_one_uncond : (r4 1 : ℂ) = 8 :=
+  r4_one fourSquaresInputs_holds
+
+/-- **(2.17)–(2.20), p. 40: $r_{I_4}(p) = 8(p+1)$ for every odd prime $p$**, unconditionally. -/
+@[kb "hanke2011aws" "§2.7.5, (2.17)-(2.20), p. 40"]
+theorem r4_prime_uncond (p : ℕ) (hp : p.Prime) (hp2 : p ≠ 2) :
+    (r4 p : ℂ) = 8 * ((p : ℂ) + 1) :=
+  r4_prime fourSquaresInputs_holds p hp hp2
+
+end QuadFormsKB.AWS

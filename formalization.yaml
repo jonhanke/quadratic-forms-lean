@@ -14,7 +14,10 @@ project:
     number field (tau = 2 for dimension >= 3 and for anisotropic binary spaces, tau = 1 for isotropic binary spaces
     and in dimension 1), Siegel's formula in measure form for indefinite forms of any signature over every number
     field (numbers and forms, every rank of the stabilizer), Siegel's formula for definite forms representing forms
-    over totally real fields, and classical cases over Q (three squares, two squares, x^2 - 2y^2). Further results include Witt's theorems over every
+    over totally real fields, and classical cases over Q (three squares, two squares, x^2 - 2y^2). Release 0.2.1
+    adds the finiteness of the proper classes in a genus for every signature (stated in the indefinite Siegel
+    headlines), the divisor count for xy over Q, and (without new headlines) more of Cassels and O'Meara,
+    the Weil representation of Sp_2g and theta series of genus g. Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
     strong approximation for spin groups, Kneser neighbours, the Hasse norm theorem for quadratic
@@ -153,7 +156,7 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 34 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Formalized (the 35 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
     Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
     rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
@@ -171,7 +174,10 @@ status:
     both cases, corank 1 (including anisotropic binary forms representing numbers) and corank 0; Siegel's formula
     for totally positive definite forms representing totally positive definite forms over totally real fields
     (N >= 3, N - r != 2); Gauss's three-squares theorem, Jacobi's two-squares theorem, Siegel's formula for
-    x^2 + y^2 with explicit constants, and Dirichlet's theorem for x^2 - 2y^2. Not formalized: the Siegel-Weil
+    x^2 + y^2 with explicit constants, and Dirichlet's theorem for x^2 - 2y^2. Release 0.2.1 (1 new statement, 9
+    extended): the number of representations of m != 0 by xy over Q modulo +-1 is the number of divisors of |m|,
+    with one proper class in the genus of Z^2; the nine indefinite Siegel statements of 0.2.0 now also state that
+    the genus has finitely many proper classes. Not formalized: the Siegel-Weil
     formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
     the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
     hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
@@ -237,23 +243,22 @@ fidelity:
     genus are finite, that the infinite products converge unconditionally, that L_F(1, chi) exists and is
     positive (ranks 2 and 3, where the corrected product inside the regularized product converges
     unconditionally), and, for tau(SO(Q)) = 2, that the SO double coset space is finite with finite
-    stabilizers. For the 0.2.0 statements the same is done where the library proves the fact (convergence of the
-    products in the Tamagawa measures and of the products of local densities, existence and positivity of
-    L_F(1, chi), 0 < sum of unit volumes < infinity); the docstrings name the one fact that is not yet a library
-    lemma (finiteness of the proper classes of an indefinite genus; the sums over these classes are sums in
-    [0, infinity] and need no finiteness to be meaningful).
+    stabilizers. For the 0.2.x statements the same is done (convergence of the products in the Tamagawa measures
+    and of the products of local densities, existence and positivity of L_F(1, chi), 0 < sum of unit volumes <
+    infinity, and, since 0.2.1, finiteness of the proper classes of the genus in the indefinite Siegel formulas,
+    whose sums over these classes are sums in [0, infinity]).
     (7) Quadratic forms in the local-global statements are coefficient-based forms sum_{i<=j} c_ij x_i x_j;
     nondegenerate means the Hessian has nonzero determinant. (8) Literature locators marked [unverified]
     have not been checked against the sources.
 
 review:
-  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 are not yet reviewed (planned for 0.2.1)"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1) and the one added in 0.2.1 are not yet reviewed (planned for 0.2.2)"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
     Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
-    (October 2026). The 21 headline statements added in release 0.2.0, and the definitions they use, have not yet
-    been reviewed by a human; that review is planned for release 0.2.1. The rest of the library has not been reviewed by a human, and there has been no
+    (October 2026). The 21 headline statements added in release 0.2.0 (nine of them extended in release 0.2.1), the
+    one added in release 0.2.1, and the definitions they use, have not yet been reviewed by a human; that review is planned for release 0.2.2. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -430,6 +435,11 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "Representations modulo the infinite unit group."
+    - source: "Siegel 1935, Hauptsatz for n = 2, m = 1, the isotropic binary case (xy over Q); the divisor count d(|m|) [unverified locator]"
+      lean: "QuadFormsKB.Headlines.divisorCount_xy"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "One proper class; representations modulo the unit group {+1, -1}. Added in 0.2.1."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

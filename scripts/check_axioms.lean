@@ -52,3 +52,4 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.jacobi_twoSquares
 #print axioms QuadFormsKB.Headlines.siegel_twoSquares
 #print axioms QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq
+#print axioms QuadFormsKB.Headlines.divisorCount_xy
