@@ -25,6 +25,14 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Add swap space (the build needs more than the runner's 16 GB of memory)
+        run: |
+          sudo fallocate -l 16G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
       - name: Build (with the Mathlib cache)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
