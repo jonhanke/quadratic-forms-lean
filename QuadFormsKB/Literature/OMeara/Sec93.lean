@@ -209,11 +209,13 @@ p. 255). -/
 def matA (α β : F) : Matrix (Fin 2) (Fin 2) F := !![α, 1; 1, β]
 
 /-- **$L \cong A(\alpha, \beta)$** (O'Meara 1963, §93B, p. 255): $\alpha, \beta \in \mathfrak o$ with
-$-1 + 4\alpha\beta \in \mathfrak u$ (so that $A(\alpha, \beta)$ is unimodular), and $L$ has a base with matrix
-$A(\alpha, \beta)$. -/
+$-1 + \alpha\beta \in \mathfrak u$ (so that $A(\alpha, \beta)$ is unimodular: its determinant is $\alpha\beta - 1$),
+and $L$ has a base with matrix $A(\alpha, \beta)$. (*Correction:* this definition first required
+$-1 + 4\alpha\beta \in \mathfrak u$, a slip; the condition printed on p. 255 is $-1 + \alpha\beta \in \mathfrak u$,
+read on the page image.) -/
 @[kb "omeara1963" "§93B, p. 255 (L ≅ A(α, β))"]
 def HasMatrixA (L : Submodule R V) (α β : R) : Prop :=
-  IsUnit (-1 + 4 * α * β) ∧ ∃ b : Basis (Fin 2) R L,
+  IsUnit (-1 + α * β) ∧ ∃ b : Basis (Fin 2) R L,
     gram Q (fun i => (b i : V)) = matA (algebraMap R F α) (algebraMap R F β)
 
 /-- **Example 93:9** (O'Meara 1963, p. 255): if $L \cong A(\alpha, 0)$ then $L \cong A(\alpha + 2\beta, 0)$ for every

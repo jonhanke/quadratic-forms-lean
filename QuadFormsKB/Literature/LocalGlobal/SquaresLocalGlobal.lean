@@ -121,7 +121,7 @@ $\mathfrak{Q} \supseteq \mathfrak{p}\mathcal{O}_L + (\sigma + r)$; both lie over
 proper ideal containing the maximal ideal $\mathfrak{p}$). If $\mathfrak{P} = \mathfrak{Q}$ then
 $2r \in \mathfrak{P} \cap \mathcal{O}_F = \mathfrak{p}$, impossible.
 
-*Correction (llmprove).* First stated without `hd` and `hspan`, which is false: $F = L = \mathbb{Q}$,
+*Correction.* First stated without `hd` and `hspan`, which is false: $F = L = \mathbb{Q}$,
 $a = s = r = 1$, $\mathfrak{p} = (3)$ has only one prime above $\mathfrak{p}$. -/
 @[kb "neukirch1999" "Ch. I, Prop. 8.3 [unverified]; omeara1963 §65A, p. 175 (local degree n_{𝔭})"]
 theorem exists_two_primes_over {L : Type} [Field L] [NumberField L] [Algebra F L]

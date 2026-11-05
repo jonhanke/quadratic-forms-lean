@@ -1,0 +1,70 @@
+/-
+# Hanke 2005: all formalized results of *An exact mass formula for quadratic forms over number fields*
+
+J. Hanke, J. Reine Angew. Math. 584 (2005), 1–27 (bib key `hanke2005crelle`); locators refer to the 1999 thesis of the
+same title until the Crelle version is available.
+-/
+import QuadFormsKB.Literature.Hanke2005.Jacobians
+import QuadFormsKB.Literature.Hanke2005.Archimedean
+import QuadFormsKB.Literature.Hanke2005.LocalDensity
+import QuadFormsKB.Literature.Hanke2005.TheoremTwoOne
+import QuadFormsKB.Literature.Hanke2005.Similitudes
+import QuadFormsKB.Literature.Hanke2005.SymmetricSpaceC
+import QuadFormsKB.Literature.Hanke2005.MassFormula
+import QuadFormsKB.Literature.Hanke2005.MassDefinite
+import QuadFormsKB.Literature.Hanke2005.Lemma22
+import QuadFormsKB.Literature.Hanke2005.Sec6Defs
+import QuadFormsKB.Literature.Hanke2005.Lemma61
+import QuadFormsKB.Literature.Hanke2005.Lemma62
+import QuadFormsKB.Literature.Hanke2005.MaximalLocal
+import QuadFormsKB.Literature.Hanke2005.MaximalSimilitude
+import QuadFormsKB.Literature.Hanke2005.TheoremSixThree
+import QuadFormsKB.Literature.Hanke2005.LocalTypes
+import QuadFormsKB.Literature.Hanke2005.DensitySelfDual
+import QuadFormsKB.Literature.Hanke2005.Unconditional
+import QuadFormsKB.Literature.Hanke2005.DensityOddProduct
+import QuadFormsKB.Literature.Hanke2005.DensityOddSplit
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicSelfDual
+import QuadFormsKB.Literature.Hanke2005.DensityOddShape
+import QuadFormsKB.Literature.Hanke2005.DensityOddJordan
+import QuadFormsKB.Literature.Hanke2005.DensityOddWitt
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicFinite
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicWitt
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicBadShape
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicKernelShape
+import QuadFormsKB.Literature.Hanke2005.DensityDyadicKernelLow
+import QuadFormsKB.Literature.Hanke2005.TheoremFiveOneDyadic
+import QuadFormsKB.Literature.Hanke2005.DyadicR2Ram
+import QuadFormsKB.Literature.Hanke2005.GHYConductorOdd
+import QuadFormsKB.Literature.Hanke2005.Eq57
+import QuadFormsKB.Literature.Hanke2005.Eq56Kernel
+import QuadFormsKB.Literature.Hanke2005.InvarianceZR
+import QuadFormsKB.Literature.Hanke2005.LemmaA1Real
+import QuadFormsKB.Literature.Hanke2005.ArchStabilizerReal
+import QuadFormsKB.Literature.Hanke2005.Corollary52
+import QuadFormsKB.Literature.Hanke2005.InvarianceZC
+import QuadFormsKB.Literature.Hanke2005.ArchComplexConsequences
+import QuadFormsKB.Literature.Hanke2005.DyadicR2RamConductor
+import QuadFormsKB.Literature.Hanke2005.GHYConductorDyadic
+import QuadFormsKB.Literature.Hanke2005.EqualMasses
+import QuadFormsKB.Literature.Hanke2005.ClassIndex
+import QuadFormsKB.Literature.Hanke2005.BasisDependence
+import QuadFormsKB.Literature.Hanke2005.InvariantForms
+import QuadFormsKB.Literature.Hanke2005.CasselsFourNineteen
+import QuadFormsKB.Literature.Hanke2005.Citations
+import QuadFormsKB.Literature.Hanke2005.RemarkSixThreeOdd
+import QuadFormsKB.Literature.Hanke2005.SpinorSurjLocal
+import QuadFormsKB.Literature.Hanke2005.SpinorIdele
+import QuadFormsKB.Literature.Hanke2005.SpinorIdeleMain
+import QuadFormsKB.Literature.Hanke2005.ShimuraLemma25
+import QuadFormsKB.Literature.Hanke2005.ClassGroupSigns
+import QuadFormsKB.Literature.Hanke2005.ClassGroupSignsObstruction
+import QuadFormsKB.Literature.Hanke2005.InvariantFormsEverywhere
+import QuadFormsKB.Literature.Hanke2005.Cor52Field
+import QuadFormsKB.Literature.Hanke2005.Cor52Form
+import QuadFormsKB.Literature.Hanke2005.Cor52ClassNumber
+import QuadFormsKB.Literature.Hanke2005.HilbertUnitsCompletion
+import QuadFormsKB.Literature.Hanke2005.Cor52Real
+import QuadFormsKB.Literature.Hanke2005.Cor52Local
+import QuadFormsKB.Literature.Hanke2005.Cor52Maximal
+import QuadFormsKB.Literature.Hanke2005.Cor52Counterexample

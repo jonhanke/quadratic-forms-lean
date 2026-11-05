@@ -344,7 +344,7 @@ theorem ternaryTamagawaTwo_of_pureForm_nf
 
 /-- **$\tau = 2$ in every rank $N \ge 4$, every totally real field, from the pure quaternion forms** and rank-4 Siegel for the
 number $1$: the two remaining inputs for $h_F > 1$ are $\tau(\langle -a,-b,ab\rangle) = 2$ (the standard orders of the totally definite
-quaternion algebras $(a,b)_F$; stage 2, the quaternion route) and `RankFourUnitSiegel F`. -/
+quaternion algebras $(a,b)_F$) and `RankFourUnitSiegel F`. -/
 @[kb "weil1982" "§3.7, Thm. 3.7.1; Thm. 4.5.1, p. 109; any class number (given τ = 2 for ⟨-a,-b,ab⟩ and rank-4 Siegel for m = 1)"]
 theorem tamagawaNumberTwo_of_pureForm_nf
     (h : ∀ a b : 𝓞 F, a ≠ 0 → b ≠ 0 → IsTotallyPosDef ((pureFormO a b).map (algebraMap (𝓞 F) F)) →

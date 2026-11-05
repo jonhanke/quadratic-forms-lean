@@ -183,8 +183,10 @@ theorem muSum_swap_lt {x : Fin n → V} {y : V} {i : ℕ} (hi : i + 1 < n)
   rw [Finset.sum_insert hnot, ← Finset.add_sum_erase (supp Q y x) _ hw]
   simp [hu_def, hw_def]
 
-/-- **The reduction step of 58:1** (O'Meara 1973, p. 150, the displayed substitution, whose OCR text is garbled; this is a
-reconstruction). Let $x$ be an orthogonal anisotropic family and $y$ a vector with $b_u = B(y, x_u) \ne 0$,
+/-- **The reduction step of 58:1** (O'Meara 1973, p. 150, the displayed substitution). *Page image (2026-10-29):* the
+book takes $\bar x_1 = \alpha_1x_1 + \alpha_2x_2$, $\bar x_2 = x_2 - \frac{B(\bar x_1,x_2)}{Q(\bar x_1)}\bar x_1$; the
+second vector here is a nonzero multiple of the book's (both span the line of $Fx_u + Fx_w$ orthogonal to
+$\bar x_1$). Let $x$ be an orthogonal anisotropic family and $y$ a vector with $b_u = B(y, x_u) \ne 0$,
 $b_w = B(y, x_w) \ne 0$ for two positions $u \ne w$ and
 $Q(a_u x_u) + Q(a_w x_w) = b_u^2/Q(x_u) + b_w^2/Q(x_w) \ne 0$, where $a_j = b_j/Q(x_j)$ are the coordinates of $y$.
 Replace $x_u, x_w$ by $x_u' = a_u x_u + a_w x_w$ and $x_w' = b_w x_u - b_u x_w$ (a vector of the plane

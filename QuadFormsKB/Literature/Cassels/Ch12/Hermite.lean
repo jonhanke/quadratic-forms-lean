@@ -253,7 +253,7 @@ theorem first_le {F : Matrix (Fin (m + 1)) (Fin (m + 1)) ℝ} (hF : F.PosDef)
   nlinarith
 
 /-- **A Hermite-reduced form lies in the Siegel domain $\mathcal S(4/3, 1/2)$** (Cassels, Ch. 12, p. 259, "it is easy
-to see"; the parameters are garbled in the machine-read text and reconstructed from Hermite's argument:
+to see"; the parameters $4/3, 1/2$ are read from the page image; the proof is Hermite's argument:
 $|c_{0j}| = |f_{0j}|/f_{00} \le \tfrac12$ by (ii), and $f_{00} \le f(\vec{e}_1 + t\vec{e}_0) \le \tfrac14 f_{00} + h_1$ for a
 suitable integer $t$ by (i), so $h_0 \le \tfrac43 h_1$). -/
 @[kb "cassels1978" "Ch. 12, §1, p. 259 (a Hermite-reduced form is in 𝒮(4/3, 1/2))"]

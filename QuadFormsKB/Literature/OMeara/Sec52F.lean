@@ -233,7 +233,7 @@ def quaternionOpEquiv (α β : F) : ℍ[F,α,β] ≃ₐ[F] ℍ[F,α,β]ᵐᵒᵖ
 $(\alpha,\beta) \otimes (\alpha,\beta) \sim 1$.  Proof: conjugation is an isomorphism
 $(\alpha,\beta) \cong (\alpha,\beta)^*$, so $(\alpha,\beta) \otimes (\alpha,\beta) \cong
 (\alpha,\beta) \otimes (\alpha,\beta)^* \sim 1$ by 52:10. -/
-@[kb "omeara1963" "§57C, 57:11, p. 148 (second assertion)"]
+@[kb "omeara1963" "§57B, 57:11, p. 148 (second assertion)"]
 theorem isBrauerEquivalent_quaternion_tensor_self (α β : F) (hα : α ≠ 0) (hβ : β ≠ 0) :
     IsBrauerEquivalent (tensor (quaternion α β hα hβ) (quaternion α β hα hβ)) one := by
   have e0 : (quaternion α β hα hβ) ⊗[F] ℍ[F,α,β] ≃ₐ[F] (quaternion α β hα hβ) ⊗[F] ℍ[F,α,β]ᵐᵒᵖ :=

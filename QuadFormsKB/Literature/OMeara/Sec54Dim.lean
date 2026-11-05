@@ -15,7 +15,8 @@ subset $s \subseteq \{0, \dots, n-1\}$ the product of the $j(x_i)$, $i \in s$, i
 **Clifford algebra.** O'Meara's definition (a compatible algebra with a universal mapping property) is
 `IsCliffordAlgebra`; Mathlib's `CliffordAlgebra Q` (with universal property `CliffordAlgebra.lift`) is the model.
 O'Meara's 54:1 (uniqueness up to unique isomorphism) is exactly Mathlib's universal property
-(`CliffordAlgebra.lift`, `CliffordAlgebra.lift_unique`), and is not restated.
+(`CliffordAlgebra.lift`, `CliffordAlgebra.lift_unique`); it is restated as
+`existsUnique_algEquiv_of_isCliffordAlgebraOf` in `Sec54Gap.lean`.
 
 **Generalization.** O'Meara assumes $V$ regular throughout §54. None of the statements below needs regularity
 (only $2$ invertible and, where stated, finite dimension).

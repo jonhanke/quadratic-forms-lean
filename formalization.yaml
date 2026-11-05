@@ -17,7 +17,11 @@ project:
     over totally real fields, and classical cases over Q (three squares, two squares, x^2 - 2y^2). Release 0.2.1
     adds the finiteness of the proper classes in a genus for every signature (stated in the indefinite Siegel
     headlines), the divisor count for xy over Q, and (without new headlines) more of Cassels and O'Meara,
-    the Weil representation of Sp_2g and theta series of genus g. Further results include Witt's theorems over every
+    the Weil representation of Sp_2g and theta series of genus g. Release 0.3.0 adds tau(SO(Q)) = 2 and the mass
+    formula for ternary forms over totally real fields, Siegel's formula for positive definite ternary forms
+    over Z in the natural order of the primes, and (without new headlines) O'Meara's classification of lattices
+    at the dyadic primes of number fields, the Siegel-Weil formula in degree one over totally real fields, and
+    results of Hanke's papers, of Conway-Sloane and of Cassels and O'Meara. Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
     strong approximation for spin groups, Kneser neighbours, the Hasse norm theorem for quadratic
@@ -156,7 +160,7 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 35 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Formalized (the 38 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
     Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
     rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
@@ -177,7 +181,10 @@ status:
     x^2 + y^2 with explicit constants, and Dirichlet's theorem for x^2 - 2y^2. Release 0.2.1 (1 new statement, 9
     extended): the number of representations of m != 0 by xy over Q modulo +-1 is the number of divisors of |m|,
     with one proper class in the genus of Z^2; the nine indefinite Siegel statements of 0.2.0 now also state that
-    the genus has finitely many proper classes. Not formalized: the Siegel-Weil
+    the genus has finitely many proper classes. Release 0.3.0 (3 new statements): tau(SO(Q)) = 2 and the mass
+    formula for ternary totally positive definite forms over O_F, F totally real; Siegel's formula for positive
+    definite ternary forms over Z with the Euler product in the natural order of the primes (the regularized form
+    is the library lemma it rests on). Not formalized: the Siegel-Weil
     formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
     the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
     hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
@@ -233,7 +240,7 @@ fidelity:
     1/|O(L)|, rather than proper classes weighted by 1/|SO(L)|. (3) Siegel's factor 1/2 appears in ranks
     1 and 2 as in the classical statement; in rank 1 it is placed at every place. (4) The Tamagawa number
     and mass formula statements in Challenge.lean are for forms with coefficients in O_F on the free
-    lattice O_F^n in n >= 4 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
+    lattice O_F^n in n >= 3 variables; tauSO is defined as a Tamagawa volume times a double-coset mass and
     proved equal to the covolume for Weil's Tamagawa measure in the library. (5) Local densities are the
     classical counts beta_p = lim #{x mod p^k : Q(x) = m mod p^k} / Np^{k(n-1)}, and the mass formula uses
     Siegel's alpha_p = beta_p / 2 for the representation of Q by itself. (6) No term of the headline
@@ -252,13 +259,14 @@ fidelity:
     have not been checked against the sources.
 
 review:
-  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1) and the one added in 0.2.1 are not yet reviewed (planned for 0.2.2)"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1 and the three added in 0.3.0 are not yet reviewed"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
     Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
     (October 2026). The 21 headline statements added in release 0.2.0 (nine of them extended in release 0.2.1), the
-    one added in release 0.2.1, and the definitions they use, have not yet been reviewed by a human; that review is planned for release 0.2.2. The rest of the library has not been reviewed by a human, and there has been no
+    one added in release 0.2.1, the three added in release 0.3.0, and the definitions they use, have not yet been
+    reviewed by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -305,6 +313,16 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "Genus of the free lattice O_F^n, n >= 4."
+    - source: "Weil 1982, Adeles and Algebraic Groups, Thm 3.7.1 (m = 3), tau(SO) = 2 [unverified locator]"
+      lean: "QuadFormsKB.Headlines.tamagawa_two_totallyReal_ternary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Totally positive definite forms over O_F in 3 variables, F totally real. Added in 0.3.0."
+    - source: "Smith-Minkowski-Siegel mass formula; Siegel 1935 [unverified locator], rank 3"
+      lean: "QuadFormsKB.Headlines.massFormula_totallyReal_ternary"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Genus of the free lattice O_F^3. Added in 0.3.0."
     - source: "O'Meara 1963, 71:18 (Hilbert reciprocity) [unverified locator]"
       lean: "QuadFormsKB.Headlines.hilbertReciprocity_numberField"
       module: "Challenge / Solution"
@@ -440,6 +458,11 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "One proper class; representations modulo the unit group {+1, -1}. Added in 0.2.1."
+    - source: "Siegel 1935, Hauptsatz [unverified locator], n = 3 over Z, natural-order Euler product"
+      lean: "QuadFormsKB.Headlines.siegel_ternary_rat_natural"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Positive definite ternary forms over Z, m >= 1; the partial products over p <= X converge. Added in 0.3.0."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

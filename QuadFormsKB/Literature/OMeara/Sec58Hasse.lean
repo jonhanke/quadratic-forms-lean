@@ -105,7 +105,7 @@ theorem isBrauerEquivalent_quaternion_one_neg_one :
 $(\alpha,\beta) \otimes (\alpha,\gamma) \sim (\alpha,\beta\gamma)$.  The isomorphism of 57:10 (4),
 $(\alpha,\beta)\otimes(\alpha,\gamma) \cong (\alpha,\beta\gamma)\otimes(1,-1)$, replaces the isomorphism symbol by
 the similarity symbol, and $(1,-1)$ splits (57:4), so $(\alpha,\beta\gamma)\otimes(1,-1) \sim (\alpha,\beta\gamma)$. -/
-@[kb "omeara1963" "§57C, 57:11, p. 148 (first assertion)"]
+@[kb "omeara1963" "§57B, 57:11, p. 148 (first assertion)"]
 theorem isBrauerEquivalent_quaternion_tensor_quaternion (α β γ : F) (hα : α ≠ 0) (hβ : β ≠ 0)
     (hγ : γ ≠ 0) :
     IsBrauerEquivalent (tensor (quaternion α β hα hβ) (quaternion α γ hα hγ))
@@ -683,10 +683,8 @@ tensor product is $F$).  It is central simple by 57:2 and 52:1 (this is why it i
 *Implementation.*  `hasseAlg a := Rev.hasseAlg a.reverse`, whose factors are $(a_i, a_0 \cdots a_i)$ listed in
 decreasing order of $i$; the order of the tensor factors is immaterial up to isomorphism (`A ⊗ B ≅ B ⊗ A`).
 
-*Reading of the definition.*  The machine-read text of the displayed definition is garbled; the prefix products
-$d_i = a_0 \cdots a_i$ are reconstructed from the surviving "where $d_i = \ldots$" and from the proof of 58:2, which
-says that when $x_i, x_{i+1}$ change, $d_\lambda$ is unchanged for $\lambda < i$ and changes by a square factor for
-$\lambda > i$, which is true for prefix products only.  The product over all pairs $i \le j$ of $(a_i,a_j)$ is the
+*Reading of the definition.*  The book prints $S_FV = \bigotimes_{1\le i\le n}(\alpha_i, d_i)$ with
+$d_i = \alpha_1\cdots\alpha_i$ (confirmed from the page image, 2026-10-29; the machine-read text was garbled).  The product over all pairs $i \le j$ of $(a_i,a_j)$ is the
 first rule of 58:3, `hasseAlgPairs`; it is similar to this algebra
 (`isBrauerEquivalent_hasseAlg_hasseAlgPairs`) but has a larger dimension. -/
 @[kb "omeara1963" "§58, p. 150 (the Hasse algebra S V)"]
@@ -720,17 +718,15 @@ theorem isBrauerEquivalent_hasseAlg_append (a a' : List Fˣ) :
     simp only [cls_tensor, cls_hasseAlg_eq]
     rw [Rev.cls_hasseAlg_append]; rfl)
 
-/-- **O'Meara 58:3, scaling** (p. 151-152), reconstruction of the garbled formula.  If $V$ has an orthogonal
-base of values `l` $= (a_0,\dots,a_{n-1})$ then $V^\alpha$ has the orthogonal base of values $\alpha a_i$
+/-- **O'Meara 58:3, scaling** (pp. 151-152, as printed; confirmed from the page image, 2026-10-29).  If $V$ has an
+orthogonal base of values `l` $= (a_0,\dots,a_{n-1})$ then $V^\alpha$ has the orthogonal base of values $\alpha a_i$
 (`l.map (α * ·)`), and
 $$S(V^\alpha) \sim \bigl(\alpha,\ (-1)^{n(n+1)/2}\, (dV)^{n+1}\bigr) \otimes S V,\qquad dV = \prod a_i.$$
-*Reconstruction note.*  The printed formula is illegible in the machine-read text; this formula was derived by
-computation from the definition and 57:10, 57:11: $S(V^\alpha)$ and $S V$ differ by the factor
+Proof by computation from the definition and 57:10, 57:11: $S(V^\alpha)$ and $S V$ differ by the factor
 $(\alpha,\alpha)^{n(n+1)/2}\,(\alpha,dV)^{n+1}$ (each of the $n(n+1)/2$ pairs $i \le j$ contributes $(\alpha,\alpha)$,
 and each $a_k$ occurs in $n+1$ pairs), and $(\alpha,\alpha) \cong (\alpha,-1)$ (57:10 (3)),
-$(\alpha,b)\otimes(\alpha,c) \sim (\alpha,bc)$ (57:11).  Since $(\alpha,b)\otimes(\alpha,b) \sim 1$ the exponent
-$n+1$ may be reduced modulo $2$. -/
-@[kb "omeara1963" "§58, 58:3, pp. 151-152 (scaling) [garbled; reconstructed]"]
+$(\alpha,b)\otimes(\alpha,c) \sim (\alpha,bc)$ (57:11). -/
+@[kb "omeara1963" "§58, 58:3, pp. 151–152 (scaling)"]
 theorem isBrauerEquivalent_hasseAlg_scale (α : Fˣ) (l : List Fˣ) :
     IsBrauerEquivalent (hasseAlg (l.map (α * ·)))
       (tensor (qs α ((-1) ^ (l.length * (l.length + 1) / 2) * l.prod ^ (l.length + 1))) (hasseAlg l)) :=
@@ -738,30 +734,27 @@ theorem isBrauerEquivalent_hasseAlg_scale (α : Fˣ) (l : List Fˣ) :
     simp only [cls_tensor, cls_hasseAlg_eq]
     rw [Rev.cls_hasseAlg_scale]; rfl)
 
-/-- **O'Meara 58:3, ternary spaces** (p. 152), reconstruction of the garbled formula.  For a ternary space with
-an orthogonal base of values $a_0, a_1, a_2$ (0-based; the book's $a_1,a_2,a_3$):
-$$(-1,-1) \otimes S V \sim (-a_0a_1,\ -a_1a_2).$$
-*Reconstruction note.*  The machine-read text has illegible arguments; the formula was derived (and is true) as
-stated, by expanding both sides with bimultiplicativity of the symbol, $(a,a) \cong (a,-1)$ and
-$(a,b)\otimes(a,b)\sim 1$.  The class of $S V$ is $(dV,-1)\otimes\bigotimes_{i<j}(a_i,a_j)$, symmetric in the
-order of the values, so the formula holds for prefix and suffix products alike.  No hypothesis on the
-discriminant is needed. -/
-@[kb "omeara1963" "§58, 58:3, p. 152 (ternary) [garbled; reconstructed]"]
+/-- **O'Meara 58:3, ternary spaces, an equivalent form** (p. 152).  For a ternary space with an orthogonal base of
+values $a_0, a_1, a_2$ (0-based; the book's $\alpha_1,\alpha_2,\alpha_3$):
+$$(-1,-1) \otimes S V \sim (-a_0a_1, -a_1a_2).$$
+*Page image (2026-10-29):* the book prints the right-hand side $(-\alpha_1\alpha_2, -\alpha_1\alpha_3)$, which is
+`isBrauerEquivalent_hasseAlg_ternary_printed` (`Sec58Base.lean`); this form (derived before the page image was
+available, by expanding both sides with bimultiplicativity, $(a,a) \cong (a,-1)$ and $(a,b)\otimes(a,b)\sim 1$) is
+equivalent since $(x,y) \sim (x,-xy)$.  No hypothesis on the discriminant is needed. -/
+@[kb "omeara1963" "§58, 58:3, p. 152 (ternary, equivalent form)"]
 theorem isBrauerEquivalent_hasseAlg_ternary (a b c : Fˣ) :
     IsBrauerEquivalent (tensor (qs (-1) (-1)) (hasseAlg [a, b, c])) (qs (-(a * b)) (-(b * c))) :=
   cls_eq_iff.1 (by
     simp only [cls_tensor, cls_hasseAlg_eq]
     exact Rev.cls_hasseAlg_ternary a b c)
 
-/-- **O'Meara 58:3, quaternary spaces** (p. 152), reconstruction of the garbled formula.  For a quaternary space
-with an orthogonal base of values $a_0,a_1,a_2,a_3$ (0-based) and discriminant $dV = a_0a_1a_2a_3$:
-$$(-1,-1) \otimes S V \sim (-a_0a_1,\ -a_1a_2) \otimes (a_3,\ dV).$$
-*Reconstruction note.*  The machine-read text shows the ternary right-hand side times a factor "$(a_?, dV)$";
-the index of the first entry is illegible.  Computing, the missing factor is $(a_3, dV)$ with $a_3$ the *last*
-value: the ternary formula for the first three values leaves $(a_3,-a_0a_1a_2)$ (from the pairs involving $a_3$),
-and $(a_3,-a_0a_1a_2) = (a_3,-1)\otimes(a_3,a_0a_1a_2) \sim (a_3,a_3)\otimes(a_3,a_0a_1a_2) \sim
-(a_3, a_0a_1a_2a_3)$ by 57:10 (3) and 57:11. -/
-@[kb "omeara1963" "§58, 58:3, p. 152 (quaternary) [garbled; reconstructed]"]
+/-- **O'Meara 58:3, quaternary spaces, an equivalent form** (p. 152).  For a quaternary space with an orthogonal
+base of values $a_0,a_1,a_2,a_3$ (0-based) and discriminant $dV = a_0a_1a_2a_3$:
+$$(-1,-1) \otimes S V \sim (-a_0a_1, -a_1a_2) \otimes (a_3, dV).$$
+*Page image (2026-10-29):* the book prints $(-\alpha_1\alpha_2, -\alpha_1\alpha_3)\otimes(\alpha_4, dV)$, which is
+`isBrauerEquivalent_hasseAlg_quaternary_printed` (`Sec58Base.lean`); the first factor here is equivalent
+($(x,y) \sim (x,-xy)$), and the last factor $(a_3, dV)$ agrees with the book. -/
+@[kb "omeara1963" "§58, 58:3, p. 152 (quaternary, equivalent form)"]
 theorem isBrauerEquivalent_hasseAlg_quaternary (a b c d : Fˣ) :
     IsBrauerEquivalent (tensor (qs (-1) (-1)) (hasseAlg [a, b, c, d]))
       (tensor (qs (-(a * b)) (-(b * c))) (qs d (a * b * c * d))) :=

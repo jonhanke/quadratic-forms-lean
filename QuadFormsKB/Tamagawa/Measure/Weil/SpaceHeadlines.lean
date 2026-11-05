@@ -148,7 +148,7 @@ private theorem coeff_ofQuadraticForm_smul {n : ℕ} (a : F) (B : QuadraticForm 
 
 /-- **Every quadratic space over a number field has an integral model** (clear denominators): take any basis $b$ of $V$
 and a common denominator $d\in\mathcal O_F\setminus0$ of the coefficients of $Q$ in $b$. -/
-@[kb "omeara1963" "§82, p. 220 (lattices on a quadratic space; scaling) [unverified page]"]
+@[kb "omeara1963" "§82J, p. 238 (scaling by a common denominator gives an integral model)"]
 theorem integralModel_nonempty (Q : QuadraticForm F V) : Nonempty (IntegralModel Q) := by
   classical
   set b := Module.finBasis F V with hb

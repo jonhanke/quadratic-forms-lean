@@ -69,7 +69,7 @@ attribute [kb "cassels1978" "Ch. 11, Lemma 1.4 (ii), p. 201 (properly equivalent
   Lattices.IsProperIsometric.sameProperSpinorGenus
 attribute [kb "cassels1978" "Ch. 11, Lemma 1.4 (iii), p. 201 (a spinor genus lies in a genus)"]
   Lattices.SameProperSpinorGenus.sameProperGenus
-attribute [kb "cassels1978" "Ch. 11, §1, p. 198 (proper equivalence Γ = αΛ, α ∈ O⁺(V))"] Lattices.IsProperIsometric
+attribute [kb "cassels1978" "Ch. 11, §1, p. 196 (proper equivalence of lattices: definition)"] Lattices.IsProperIsometric
 
 /-! ### §2. Localization of lattices -/
 

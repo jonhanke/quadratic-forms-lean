@@ -5,9 +5,8 @@ Cassels, *Rational Quadratic Forms* (1978), Ch. 12, §6, pp. 273–276.
 
 A binary form $f = f_{00}x_0^2 + 2f_{01}x_0x_1 + f_{11}x_1^2$ is represented by the point
 $$(\xi, \eta) = \Bigl(\frac{2f_{01}}{f_{00} + f_{11}},\ \frac{f_{11} - f_{00}}{f_{00} + f_{11}}\Bigr)$$
-((6.4), `binXi`, `binEta`; the formula is lost in the machine-read text and is reconstructed from the vertices of
-Figure 12.1, p. 274: $(0,1) \sim [0,0,1]$, $(\tfrac12, 0) \sim [1,1,1]$, $(1,0) \sim [1,2,1]$ in the notation
-$[f_{00}, 2f_{01}, f_{11}]$, and from (6.5)–(6.6)). Then:
+((6.4), `binXi`, `binEta`; read from the page image, p. 273: $\xi = 2f_{12}/(f_{22} + f_{11})$,
+$\eta = (f_{22} - f_{11})/(f_{22} + f_{11})$ in Cassels' 1-based indices). Then:
 * strictly definite forms are the points of the open unit disc ((6.2), (6.5), `binary_posDef_iff`);
 * reduced forms are the points of the triangle with vertices $(0,1)$, $(\pm\tfrac12, 0)$ other than $(0,1)$
   ((6.3), (6.6), `binary_isMinkowskiReduced_iff`, `binary_isMinkowskiReduced_iff_triangle`);
@@ -25,12 +24,12 @@ open Matrix
 
 namespace QuadFormsKB.Reduction
 
-/-- **The coordinate $\xi$ of a binary form** (Cassels, Ch. 12, (6.4), p. 273, reconstructed):
+/-- **The coordinate $\xi$ of a binary form** (Cassels, Ch. 12, (6.4), p. 273, read from the page image):
 $\xi = 2f_{01}/(f_{00} + f_{11})$ (Lean's $x/0 = 0$ if $f_{00} + f_{11} = 0$). -/
 @[kb "cassels1978" "Ch. 12, §6, (6.4), p. 273"]
 noncomputable def binXi (F : Matrix (Fin 2) (Fin 2) ℝ) : ℝ := 2 * F 0 1 / (F 0 0 + F 1 1)
 
-/-- **The coordinate $\eta$ of a binary form** (Cassels, Ch. 12, (6.4), p. 273, reconstructed):
+/-- **The coordinate $\eta$ of a binary form** (Cassels, Ch. 12, (6.4), p. 273, read from the page image):
 $\eta = (f_{11} - f_{00})/(f_{00} + f_{11})$. -/
 @[kb "cassels1978" "Ch. 12, §6, (6.4), p. 273"]
 noncomputable def binEta (F : Matrix (Fin 2) (Fin 2) ℝ) : ℝ := (F 1 1 - F 0 0) / (F 0 0 + F 1 1)
@@ -322,13 +321,13 @@ theorem binary_isStrictlyReduced_iff {F : Matrix (Fin 2) (Fin 2) ℝ} (hF : F.Is
       rw [hab, hb2] at hge
       nlinarith [mul_le_mul_of_nonneg_left hsq' h0.le, mul_lt_mul_of_pos_right h2 (by linarith : 0 < |(e 0 : ℝ)|)]
 
-/-- **$S_1$**: the substitution $(x_0, x_1) \mapsto (x_1, x_0)$ (Cassels, Ch. 12, p. 276; reconstructed, the formulas
-are garbled in the machine-read text). It maps $\mathcal F$ to the triangle across the side $\eta = 0$. -/
+/-- **$S_1$**: the substitution $(x_0, x_1) \mapsto (x_1, x_0)$ (Cassels, Ch. 12, p. 276). The book prints
+$S_1(x_1, x_2) = (-x_2, x_1)$ (read from the page image; `bookS1`); it gives the same triangle (`img_bookS1`). It maps $\mathcal F$ to the triangle across the side $\eta = 0$. -/
 @[kb "cassels1978" "Ch. 12, §6, p. 276 (S_1)"]
 def binS1 : GL (Fin 2) ℤ := ⟨!![0, 1; 1, 0], !![0, 1; 1, 0], by decide, by decide⟩
 
-/-- **$S_2$**: the substitution $(x_0, x_1) \mapsto (x_0 + x_1, x_1)$ (Cassels, Ch. 12, p. 276, reconstructed); $S_3$ is
-$S_2^{-1}$. They map $\mathcal F$ to the triangles across the sides $2\xi = \pm(1 - \eta)$. -/
+/-- **$S_2$**: the substitution $(x_0, x_1) \mapsto (x_0 + x_1, x_1)$ (Cassels, Ch. 12, p. 276, as printed: $S_2(x_1, x_2) =
+(x_1 + x_2, x_2)$, $S_3(x_1, x_2) = (x_1 - x_2, x_2)$); $S_3$ is $S_2^{-1}$. They map $\mathcal F$ to the triangles across the sides $2\xi = \pm(1 - \eta)$. -/
 @[kb "cassels1978" "Ch. 12, §6, p. 276 (S_2; S_3 = S_2^{−1})"]
 def binS2 : GL (Fin 2) ℤ := ⟨!![1, 1; 0, 1], !![1, -1; 0, 1], by decide, by decide⟩
 

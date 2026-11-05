@@ -26,7 +26,7 @@ attribute [kb "omeara1963" "§91B, p. 241 (τ_u ∈ O(L) when 2B(u,L) ⊆ Q(u)o;
   Lattices.symm_mem_stdStab Lattices.symm_mem_stdStab'
 
 -- 91:1, proof route: {x : Q(x) ∈ a} on an anisotropic space
-attribute [kb "omeara1963" "§91A, 91:1, p. 239 (proof route)"]
+attribute [kb "omeara1963" "§91A, 91:1, p. 240 (proof route)"]
   LocalDensity.DVR.exists_isZeroType_of_anisotropic LocalDensity.exists_isZeroType_of_anisotropic
 
 -- 92:1b: a unimodular lattice represents every unit (and every integer in rank ≥ 3)

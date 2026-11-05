@@ -84,7 +84,7 @@ theorem det_not_mem_of_notDvdLevel {Q : QuadForm (𝓞 F) n} (hN : NF.NotDvdLeve
 $\Delta = (-1)^{n/2}\det H$): $\varepsilon(Q \bmod \mathfrak p) = \left(\frac{\Delta}{\mathfrak p}\right)$, i.e. $\varepsilon = +1 \iff \Delta$ is a square
 in $F_\mathfrak p$ $\iff \mathfrak p$ splits. ($F(\sqrt\Delta)/F$ is unramified at $\mathfrak p$:
 `DVR.exists_disc_eq_sq_mul_one_sub_four_of_level_zero`.) From `DVR.arfSignQ_eq_one_iff_isSquare_frac`. -/
-@[kb "omeara1963" "§93D, 93:16, p. 259; 93:18, p. 260 (dyadic unimodular lattices)"]
+@[kb "omeara1963" "§93D, pp. 259–262 (background for 93:16 and 93:18: the Arf sign is the discriminant square class)"]
 theorem arfSignQ_eq_quadSymbolNF {Q : QuadForm (𝓞 F) n} (h2 : (2 : 𝓞 F) ∈ v.asIdeal)
     (hN : NF.NotDvdLevel v Q) (hn : 1 ≤ n) :
     DVR.arfSignQ (NF.Qp v Q) (NF.π v) = quadSymbolNF v ((-1) ^ (n / 2) * Q.hessian.det) := by

@@ -95,14 +95,21 @@ def IsPerfect (H : Matrix (Fin n) (Fin n) ℝ) : Prop :=
     ∀ F : Matrix (Fin n) (Fin n) ℝ, F.IsSymm → (∀ m : Fin n → ℤ, val H (cast m) = 1 → val F (cast m) = 1) → F = H
 
 /-- **Extreme form (of minimum $1$)** (Cassels, Ch. 12, Notes, p. 281; item 12.d2): a strictly positive definite $H$ with
-(i) $\inf_{\vec{m} \ne 0} h(\vec{m}) = 1$ and (ii) $d(h) = \det H$ a local maximum among the forms satisfying (i): some
-neighbourhood $U$ of $H$ in $M_n(\mathbb{R})$ has $\det G \le \det H$ for every strictly positive definite $G \in U$ whose
-minimum over nonzero integral vectors is $1$. -/
-@[kb "cassels1978" "Ch. 12, Notes, p. 281 (extreme forms)"]
+(i) $\inf_{\vec{m} \ne 0} h(\vec{m}) = 1$ and (ii) $d(h) = \det H$ a local **minimum** among the forms satisfying (i):
+some neighbourhood $U$ of $H$ in $M_n(\mathbb{R})$ has $\det H \le \det G$ for every strictly positive definite $G \in U$
+whose minimum over nonzero integral vectors is $1$. Equivalently, the Hermite quotient
+$\min h / d(h)^{1/n}$ (`hermiteQuotient`) is a local maximum at $H$.
+
+*Erratum:* Cassels prints "(ii) $d(h)$ is a local maximum". Since $d(f) = \det F$ (Ch. 12, §2, p. 260) and the best
+constant $\gamma_n$ of Theorem 2.1 is the largest value of $\min f / d(f)^{1/n}$, the forms of minimum $1$ that matter
+are those of locally *smallest* determinant (Voronoi; e.g. $x^2 + xy + y^2$ in two variables). Read literally, (ii)
+is never satisfied for $n \ge 2$ (from a form of minimum $1$ one can always increase the determinant keeping the
+minimum $1$), and "one need consider only extreme forms" would be false. -/
+@[kb "cassels1978" "Ch. 12, Notes, p. 281 (extreme forms; erratum: local minimum of d(h))"]
 def IsExtreme (H : Matrix (Fin n) (Fin n) ℝ) : Prop :=
   H.PosDef ∧ IsGLB ((fun m : Fin n → ℤ => val H (cast m)) '' {m | m ≠ 0}) 1 ∧
     ∃ U ∈ nhds H, ∀ G ∈ U, G.PosDef → IsGLB ((fun m : Fin n → ℤ => val G (cast m)) '' {m | m ≠ 0}) 1 →
-      G.det ≤ H.det
+      H.det ≤ G.det
 
 /-- **Reduction by the lexicographic order of the diagonal** (Cassels, Ch. 12, Notes, p. 282, the "Hermite-reduced" of
 some writers of the Soviet school): a strictly positive definite $F$ such that

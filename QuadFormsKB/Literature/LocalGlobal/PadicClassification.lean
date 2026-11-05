@@ -51,7 +51,7 @@ open QuadForm Matrix
 
 section Hilbert
 
-variable {K : Type*} [Field K] [CharZero K]
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K]
 
 /-- **Axioms on the Hilbert symbol of a field $K$** used for the classification (all hold for
 $K = \mathbb{Q}_p$, `localHilbertField_padic`):
@@ -60,7 +60,7 @@ $K = \mathbb{Q}_p$, `localHilbertField_padic`):
   $x \in K^\times$ (nondegeneracy);
 * `isotropic_five`: every diagonal form $\langle a_0, \dots, a_4 \rangle$ with all $a_i \ne 0$ is
   isotropic over $K$. -/
-structure LocalHilbertField (K : Type*) [Field K] [CharZero K] : Prop where
+structure LocalHilbertField (K : Type*) [Field K] [NeZero (2 : K)] [Infinite K] : Prop where
   mul_left : ∀ a a' b : K, a ≠ 0 → a' ≠ 0 → b ≠ 0 →
     hilbertSymbol K (a * a') b = hilbertSymbol K a b * hilbertSymbol K a' b
   exists_neg_one : ∀ a : K, a ≠ 0 → ¬ IsSquare a → ∃ x : K, x ≠ 0 ∧ hilbertSymbol K a x = -1
@@ -166,7 +166,7 @@ end Hilbert
 
 section Diag
 
-variable {K : Type*} [Field K] [CharZero K] {m n : ℕ}
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K] {m n : ℕ}
 
 theorem evalIn_diag_self (a : Fin n → K) (x : Fin n → K) :
     (diag a).evalIn K x = ∑ i, a i * x i ^ 2 := by
@@ -220,7 +220,7 @@ end Diag
 
 section Binary
 
-variable {K : Type*} [Field K] [CharZero K] (hK : LocalHilbertField K)
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K] (hK : LocalHilbertField K)
 include hK
 
 /-- **Thm. 6, rank 2** (Serre IV §2.2): for $a_0, a_1, x \in K^\times$,
@@ -267,7 +267,7 @@ end Binary
 
 section Rank34
 
-variable {K : Type*} [Field K] [CharZero K] {n : ℕ}
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K] {n : ℕ}
 
 /-- A quaternary diagonal form $\langle g_0, g_1, g_2, g_3 \rangle$ is isotropic iff
 $\langle g_0, g_1 \rangle$ and $\langle -g_2, -g_3 \rangle$ represent a common $x \ne 0$
@@ -403,7 +403,7 @@ end Rank34
 
 section Invariants
 
-variable {K : Type*} [Field K] [CharZero K] {m n : ℕ}
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K] {m n : ℕ}
 
 /-- The Hasse invariant $\prod_{0 \le i < j < n} (a_i, a_j)_K$ of a diagonal form with
 coefficients $a_i \in K$ (`hasseInvariant` is the case $a_i \in \mathbb{Q}$). -/
@@ -544,7 +544,7 @@ end Invariants
 
 section Classification
 
-variable {K : Type*} [Field K] [CharZero K] {m n : ℕ}
+variable {K : Type*} [Field K] [NeZero (2 : K)] [Infinite K] {m n : ℕ}
 
 theorem represents_coeff (a : Fin n → K) (i : Fin n) : (diag a).RepresentsIn K (a i) := by
   rw [representsIn_diag_iff]

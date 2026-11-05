@@ -1,408 +1,805 @@
-import Mathlib
-import QuadFormsKB.Citation
+/-
+# Cassels, Chapter 13, §5: isotropic ternary forms
 
-/-!
-# Cassels, Chapter 13, §5: the ternary form $x_0x_2 - x_1^{2}$ and binary forms
+Formalization of Cassels, *Rational Quadratic Forms* (1978), Ch. 13, §5, *Isotropic ternary forms*, pp. 301–303: the
+automorphs of $f_0(\vec{x}) = x_0x_2 - x_1^2$ come from $2 \times 2$ matrices acting on binary forms (Lemmas 5.1, 5.2),
+and the orbits of representations of $m$ by $f_0$ correspond to proper classes of binary forms of determinant $m$
+(Lemma 5.3, its Corollary, Lemma 5.4).
 
-Cassels, *Rational Quadratic Forms* (1978), Ch. 13, §5 (*Isotropic ternary forms*), pp. 301–302.
-
-**Setting.** $f_0(\vec{x}) = x_0x_2 - x_1^{2}$ (`f₀`) is the determinant of the binary form
-$\varphi_{\vec{x}}(\vec{u}) = x_0u_0^{2} + 2x_1u_0u_1 + x_2u_1^{2}$; a $2\times2$ matrix $S$ acts on the coefficient vectors
-$\vec{x}$ by `symSq S`, multiplying $f_0$ by $(\det S)^{2}$, so $T(S) = (\det S)^{-1}\mathrm{symSq}(S)$ (`spinRep`) is an automorph
-of $f_0$ with $\det T(S) = 1$ (5.6)–(5.7).
-
-**What is proved.**
-* Lemma 5.1 (`lemma_5_1`), over any field: $S \mapsto T(S)$ is a homomorphism $GL_2 \to O^{+}(f_0)$, onto, with kernel
-  the scalars.
-* Lemma 5.2 (`lemma_5_2`): over $\mathbb Z$, $SL^{\pm}_2(\mathbb Z) \to O^{+}(f_0)$ is onto with kernel $\pm I$.
-* Lemma 5.3 (`lemma_5_3`): orbits of the image $\mathfrak G$ of $SL_2(\mathbb Z)$ correspond to proper classes of
-  classically integral binary forms (`phi`).
-
-**Proof notes.** Surjectivity follows Cassels: move the first column of $T$ (an isotropic vector) to $\vec{e}_0$ by
-some $T(S_1)$ (`exists_spinRep_col`, `spinRep_surjective_int`), then an automorph fixing $\vec{e}_0$ is $T$ of a
-unipotent matrix (`eq_spinRep_of_fix`). Over $\mathbb Z$ the first column is primitive (cofactor expansion of
-$\det T = 1$), so its first and last entries are coprime and Mathlib's `Int.sq_of_isCoprime` gives
-$(\pm\alpha^{2}, \alpha\gamma, \pm\gamma^{2})$.
-
-**Conventions.** Indices are 0-based. The display (5.6) is partly lost in the machine-read text. With the action
-$\varphi_{\vec{x}}(S\vec{u})$ the map would be an anti-homomorphism; we use the transposed matrix (the action
-$\varphi_{\vec{x}}(S^{\mathsf T}\vec{u})$), which makes $S \mapsto T(S)$ a homomorphism as Cassels states. The group $O^{+}(f_0)$
-of proper automorphs is expressed as the matrices of $SL_3$ preserving $f_0$.
+**Conventions.** Cassels' variables $x_1, x_2, x_3$ are $x_0, x_1, x_2$ here, so (5.1) reads
+$f_0(\vec{x}) = x_0x_2 - x_1^2$, the determinant of the binary form (5.2)
+$$\phi_{\vec{x}}(\vec{u}) = x_0u_0^2 + 2x_1u_0u_1 + x_2u_1^2.$$
+A $2 \times 2$ matrix $S = \begin{pmatrix}\alpha & \beta\\ \gamma & \delta\end{pmatrix}$ (5.3) with
+$\Delta = \alpha\delta - \beta\gamma \ne 0$ (5.5) gives the matrix $T(S)$ of (5.6) (`spinMat`). Binary forms
+$\phi_{\vec{b}}$ are the classically integral forms `Siegel.ofGram !![b 0, b 1; b 1, b 2]`. Proper equivalence of
+integral forms is `Siegel.ProperIntEquiv`.
 -/
+import QuadFormsKB.Literature.Cassels.Ch13.Basic
+import QuadFormsKB.Literature.Cassels.Ch9Sec6Weight
 
 open Matrix
 
-namespace QuadFormsKB.Cassels.Ch13
+namespace QuadFormsKB.Reduction
 
-variable {R : Type*} [CommRing R]
+/-- **The form $f_0 = x_0x_2 - x_1^2$** (Cassels, Ch. 13, §5, (5.1), p. 301), the determinant of the binary form
+$\phi_{\vec{x}}$ of (5.2). -/
+@[kb "cassels1978" "Ch. 13, §5, (5.1)–(5.2), p. 301 (f₀ as an integral form; the polynomial function is Cassels.Ch13.f₀)"]
+def fZero : IntQF 3 := QuadForm.ofUpper ![![0, 0, 1], ![0, -1, 0], ![0, 0, 0]]
 
-/-- The ternary form $f_0(\vec{x}) = x_0x_2 - x_1^{2}$ (Cassels (5.1), $x_1x_3 - x_2^{2}$ in his 1-based indexing): the determinant of the binary form $\varphi_{\vec{x}}(u_0,u_1) = x_0u_0^{2} + 2x_1u_0u_1 + x_2u_1^{2}$ (5.2). -/
-@[kb "cassels1978" "Ch. 13, §5, (5.1)–(5.2), p. 301"]
-def f₀ (x : Fin 3 → R) : R := x 0 * x 2 - x 1 ^ 2
+/-- $f_0(\vec{x}) = x_0x_2 - x_1^2$, over any commutative ring. -/
+theorem evalIn_fZero {K : Type*} [CommRing K] (x : Fin 3 → K) :
+    fZero.evalIn K x = x 0 * x 2 - x 1 ^ 2 := by
+  simp [fZero, QuadForm.evalIn, QuadForm.ofUpper, Fin.sum_univ_three]
+  ring
 
-/-- For $S = \begin{pmatrix}\alpha&\beta\\\gamma&\delta\end{pmatrix}$, the $3\times3$ matrix $\begin{pmatrix}\alpha^{2}&2\alpha\beta&\beta^{2}\\\alpha\gamma&\alpha\delta+\beta\gamma&\beta\delta\\\gamma^{2}&2\gamma\delta&\delta^{2}\end{pmatrix}$ by which $S$ acts on the coefficient vectors $(x_0,x_1,x_2)$ of the binary forms $\varphi_{\vec{x}}$: $\varphi_{\vec{x}}(S^{\mathsf T}\vec{u}) = \varphi_{\mathrm{symSq}(S)\vec{x}}(\vec{u})$. It is $\det(S)\,T(S)$ in Cassels' notation (5.6). -/
-def symSq (S : Matrix (Fin 2) (Fin 2) R) : Matrix (Fin 3) (Fin 3) R :=
-  !![S 0 0 ^ 2, 2 * S 0 0 * S 0 1, S 0 1 ^ 2;
-     S 0 0 * S 1 0, S 0 0 * S 1 1 + S 0 1 * S 1 0, S 0 1 * S 1 1;
-     S 1 0 ^ 2, 2 * S 1 0 * S 1 1, S 1 1 ^ 2]
+/-- **The matrix $T(S)$ of (5.6)** (Cassels, Ch. 13, §5, p. 301): for
+$S = \begin{pmatrix}\alpha & \beta\\ \gamma & \delta\end{pmatrix}$ with $\Delta = \det S$,
+$$T(S) = \Delta^{-1}\begin{pmatrix}\alpha^2 & 2\alpha\gamma & \gamma^2\\ \alpha\beta & \alpha\delta + \beta\gamma &
+\gamma\delta\\ \beta^2 & 2\beta\delta & \delta^2\end{pmatrix},$$
+so that $\phi_{\vec{x}}(S\vec{u}) = \Delta\,\phi_{T(S)\vec{x}}(\vec{u})$. (The display (5.6) is partly garbled in the
+machine-read text; the matrix is determined by $\phi_{\vec{x}}(S\vec{u})$.) -/
+@[kb "cassels1978" "Ch. 13, §5, (5.3)–(5.6), p. 301"]
+def spinMat {K : Type*} [Field K] (S : Matrix (Fin 2) (Fin 2) K) : Matrix (Fin 3) (Fin 3) K :=
+  (S.det)⁻¹ • !![S 0 0 ^ 2, 2 * S 0 0 * S 1 0, S 1 0 ^ 2;
+    S 0 0 * S 0 1, S 0 0 * S 1 1 + S 0 1 * S 1 0, S 1 0 * S 1 1;
+    S 0 1 ^ 2, 2 * S 0 1 * S 1 1, S 1 1 ^ 2]
 
-/-- $\mathrm{symSq}(SS') = \mathrm{symSq}(S)\,\mathrm{symSq}(S')$. -/
-theorem symSq_mul (S S' : Matrix (Fin 2) (Fin 2) R) : symSq (S * S') = symSq S * symSq S' := by
-  ext i j; fin_cases i <;> fin_cases j <;>
-    simp [symSq, Matrix.mul_apply, Fin.sum_univ_two, Fin.sum_univ_three] <;> ring
+/-- `spinMat` on an explicit matrix. -/
+theorem spinMat_eq (a b c d : ℚ) :
+    spinMat !![a, b; c, d] = (a * d - b * c)⁻¹ • !![a ^ 2, 2 * a * c, c ^ 2; a * b, a * d + b * c, c * d;
+      b ^ 2, 2 * b * d, d ^ 2] := by
+  simp [spinMat, Matrix.det_fin_two_of]
 
-/-- $\mathrm{symSq}(I) = I$. -/
-theorem symSq_one : symSq (1 : Matrix (Fin 2) (Fin 2) R) = 1 := by
-  ext i j; fin_cases i <;> fin_cases j <;> simp [symSq, sq]
+theorem spinMat_f0 (a b c d : ℚ) (h : a * d - b * c ≠ 0) (x : Fin 3 → ℚ) :
+    fZero.evalIn ℚ (spinMat !![a, b; c, d] *ᵥ x) = fZero.evalIn ℚ x := by
+  rw [spinMat_eq, evalIn_fZero, evalIn_fZero]
+  simp [mulVec, dotProduct, Fin.sum_univ_three]
+  field_simp
+  ring
 
-/-- $\det \mathrm{symSq}(S) = (\det S)^{3}$. -/
-theorem det_symSq (S : Matrix (Fin 2) (Fin 2) R) : (symSq S).det = S.det ^ 3 := by
-  rw [Matrix.det_fin_three, Matrix.det_fin_two]; simp [symSq]; ring
+theorem spinMat_det (a b c d : ℚ) (h : a * d - b * c ≠ 0) : (spinMat !![a, b; c, d]).det = 1 := by
+  rw [spinMat_eq, Matrix.det_smul, Matrix.det_fin_three]
+  simp
+  field_simp
+  ring
 
-/-- $f_0(\mathrm{symSq}(S)\vec{x}) = (\det S)^{2} f_0(\vec{x})$ ("the determinant of $\varphi_x(Su)$ is $\det(S)^2$ times the determinant of $\varphi_x(u)$", p. 301). -/
-theorem f₀_symSq (S : Matrix (Fin 2) (Fin 2) R) (x : Fin 3 → R) :
-    f₀ (symSq S *ᵥ x) = S.det ^ 2 * f₀ x := by
-  simp [f₀, symSq, Matrix.mulVec, dotProduct, Fin.sum_univ_three, Matrix.det_fin_two]; ring
+theorem spinMat_mul (a b c d a' b' c' d' : ℚ) (h : a * d - b * c ≠ 0) (h' : a' * d' - b' * c' ≠ 0) :
+    spinMat (!![a, b; c, d] * !![a', b'; c', d']) = spinMat !![a', b'; c', d'] * spinMat !![a, b; c, d] := by
+  rw [Matrix.mul_fin_two, spinMat_eq, spinMat_eq, spinMat_eq]
+  have h2 : (a * a' + b * c') * (c * b' + d * d') - (a * b' + b * d') * (c * a' + d * c') =
+        (a * d - b * c) * (a' * d' - b' * c') := by ring
+  rw [h2, mul_inv]
+  ext i j
+  fin_cases i <;> fin_cases j <;>
+  simp [Matrix.mul_apply, Fin.sum_univ_three] <;> field_simp <;> ring
 
-/-- The map $S \mapsto T(S) = (\det S)^{-1}\,\mathrm{symSq}(S)$ (Cassels (5.6)) as a group homomorphism $GL_2(R) \to SL_3(R)$ (5.7), for any commutative ring $R$; for $R = \mathbb Q$ this is Cassels' map on $GL$, for $R = \mathbb Z$ his map on $SL^{\pm}$ ($\det S = \pm 1$, (5.17)–(5.18)). -/
-@[kb "cassels1978" "Ch. 13, §5, (5.6)–(5.7), p. 301"]
-def spinRep : GL (Fin 2) R →* SpecialLinearGroup (Fin 3) R where
-  toFun S := ⟨(((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • symSq (S : Matrix (Fin 2) (Fin 2) R), by
-    rw [Matrix.det_smul, det_symSq, Fintype.card_fin, ← GeneralLinearGroup.val_det_apply, ← Units.val_pow_eq_pow_val,
-      ← Units.val_pow_eq_pow_val, ← Units.val_mul, inv_pow, inv_mul_cancel, Units.val_one]⟩
-  map_one' := by
-    apply Subtype.ext
-    simp [symSq_one]
-  map_mul' S S' := by
-    apply Subtype.ext
-    show (((GeneralLinearGroup.det (S * S'))⁻¹ : Rˣ) : R) • symSq ((S * S' : GL (Fin 2) R) : Matrix (Fin 2) (Fin 2) R)
-      = ((((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • symSq (S : Matrix (Fin 2) (Fin 2) R)) *
-        ((((GeneralLinearGroup.det S')⁻¹ : Rˣ) : R) • symSq (S' : Matrix (Fin 2) (Fin 2) R))
-    rw [Units.val_mul, symSq_mul, map_mul, _root_.mul_inv_rev, Matrix.smul_mul, Matrix.mul_smul, smul_smul,
-      Units.val_mul, mul_comm]
-
-/-- $T(S)$ is an automorph of $f_0$: $f_0(T(S)\vec{x}) = f_0(\vec{x})$. -/
-theorem f₀_spinRep (S : GL (Fin 2) R) (x : Fin 3 → R) :
-    f₀ ((spinRep S : Matrix (Fin 3) (Fin 3) R) *ᵥ x) = f₀ x := by
-  show f₀ (((((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • symSq (S : Matrix (Fin 2) (Fin 2) R)) *ᵥ x) = f₀ x
-  rw [Matrix.smul_mulVec, ← Matrix.mulVec_smul]
-  have h1 : f₀ (symSq (S : Matrix (Fin 2) (Fin 2) R) *ᵥ ((((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • x)) =
-      (S : Matrix (Fin 2) (Fin 2) R).det ^ 2 * f₀ ((((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • x) :=
-    f₀_symSq _ _
-  rw [h1]
-  have h2 : (S : Matrix (Fin 2) (Fin 2) R).det * (((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) = 1 := by
-    rw [← GeneralLinearGroup.val_det_apply, ← Units.val_mul, mul_inv_cancel, Units.val_one]
-  simp only [f₀, Pi.smul_apply, smul_eq_mul]
-  linear_combination (x 0 * x 2 - x 1 ^ 2) * ((S : Matrix (Fin 2) (Fin 2) R).det * (((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) + 1) * h2
-
-
-/-- The matrix of $T(S)$ is $(\det S)^{-1}\mathrm{symSq}(S)$. -/
-theorem coe_spinRep (S : GL (Fin 2) R) :
-    ((spinRep S : SpecialLinearGroup (Fin 3) R) : Matrix (Fin 3) (Fin 3) R) =
-      (((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) • symSq (S : Matrix (Fin 2) (Fin 2) R) := rfl
-
-/-- Over an integral domain, the kernel of $S \mapsto T(S)$ is the scalar matrices. -/
-theorem spinRep_eq_one_iff [IsDomain R] (S : GL (Fin 2) R) :
-    spinRep S = 1 ↔ ∃ c : R, (S : Matrix (Fin 2) (Fin 2) R) = c • 1 := by
-  have hdu : (S : Matrix (Fin 2) (Fin 2) R).det * (((GeneralLinearGroup.det S)⁻¹ : Rˣ) : R) = 1 := by
-    rw [← GeneralLinearGroup.val_det_apply, ← Units.val_mul, mul_inv_cancel, Units.val_one]
-  have key : spinRep S = 1 ↔
-      symSq (S : Matrix (Fin 2) (Fin 2) R) = (S : Matrix (Fin 2) (Fin 2) R).det • (1 : Matrix (Fin 3) (Fin 3) R) := by
-    constructor
-    · intro h
-      have h' := congrArg Subtype.val h
-      rw [coe_spinRep] at h'
-      change _ = (1 : Matrix (Fin 3) (Fin 3) R) at h'
-      rw [← h', smul_smul, hdu, one_smul]
-    · intro h
-      apply Subtype.ext
-      rw [coe_spinRep, h, smul_smul, mul_comm, hdu, one_smul]; rfl
-  rw [key]
-  set M := (S : Matrix (Fin 2) (Fin 2) R)
-  have hdet : M.det ≠ 0 := by
-    intro h0; rw [h0, zero_mul] at hdu; exact zero_ne_one hdu
+theorem spinMat_eq_one (a b c d : ℚ) (h : a * d - b * c ≠ 0) :
+    spinMat !![a, b; c, d] = 1 ↔ ∃ e : ℚ, !![a, b; c, d] = e • (1 : Matrix (Fin 2) (Fin 2) ℚ) := by
   constructor
-  · intro h
-    have e02 := congrFun (congrFun h 0) 2
-    have e20 := congrFun (congrFun h 2) 0
-    have e00 := congrFun (congrFun h 0) 0
-    have e22 := congrFun (congrFun h 2) 2
-    simp [symSq] at e02 e20 e00 e22
-    rw [Matrix.det_fin_two, e02, e20] at e00 e22 hdet
-    simp at e00 e22 hdet
-    have h1 : M 0 0 * (M 0 0 - M 1 1) = 0 := by linear_combination e00
-    have h2 : M 0 0 = M 1 1 := by
-      rcases mul_eq_zero.1 h1 with h | h
-      · exact absurd h hdet.1
-      · exact sub_eq_zero.1 h
-    refine ⟨M 0 0, ?_⟩
-    ext i j; fin_cases i <;> fin_cases j <;> simp [e02, e20, h2]
-  · rintro ⟨c, hc⟩
-    rw [hc]
-    ext i j; fin_cases i <;> fin_cases j <;> simp [symSq, sq]
+  · intro hT
+    rw [spinMat_eq] at hT
+    have e02 := congrFun (congrFun hT 0) 2
+    have e20 := congrFun (congrFun hT 2) 0
+    simp [h] at e02 e20
+    subst e02 e20
+    have e00 := congrFun (congrFun hT 0) 0
+    simp at e00
+    have ha : a ≠ 0 := by rintro rfl; simp at h
+    have hd : d ≠ 0 := by rintro rfl; simp at h
+    refine ⟨a, ?_⟩
+    have : a = d := by field_simp at e00; nlinarith [e00, ha, hd]
+    subst this
+    ext i j; fin_cases i <;> fin_cases j <;> simp
+  · rintro ⟨e, he⟩
+    have hb : b = 0 := by simpa using congrFun (congrFun he 0) 1
+    have hc : c = 0 := by simpa using congrFun (congrFun he 1) 0
+    have ha : a = e := by simpa using congrFun (congrFun he 0) 0
+    have hd : d = e := by simpa using congrFun (congrFun he 1) 1
+    have hne : e ≠ 0 := by rw [ha, hd, hb, hc] at h; rintro rfl; simp at h
+    rw [spinMat_eq, ha, hd, hb, hc]
+    ext i j; fin_cases i <;> fin_cases j <;> simp <;> field_simp
 
-/-- Over $\mathbb Z$, the kernel of $S \mapsto T(S)$ is $\{\pm I\}$. -/
-theorem spinRep_eq_one_iff_int (S : GL (Fin 2) ℤ) : spinRep S = 1 ↔ S = 1 ∨ S = -1 := by
-  rw [spinRep_eq_one_iff]
-  constructor
-  · rintro ⟨c, hc⟩
-    have hdet := (GeneralLinearGroup.det S).isUnit
-    rw [GeneralLinearGroup.val_det_apply, hc, Matrix.det_smul, Fintype.card_fin, det_one, mul_one] at hdet
-    have hc1 : IsUnit c := (isUnit_pow_iff two_ne_zero).1 hdet
-    rcases Int.isUnit_iff.1 hc1 with rfl | rfl
-    · left; exact Units.ext (by rw [hc, one_smul]; rfl)
-    · right; exact Units.ext (by rw [hc, neg_one_smul]; rfl)
-  · rintro (rfl | rfl)
-    · exact ⟨1, by simp⟩
-    · exact ⟨-1, by simp⟩
+/-- Rational isotropic vectors of $f_0$ are $\lambda(p^2, pq, q^2)$. -/
+theorem iso_param (v : Fin 3 → ℚ) (h : v 0 * v 2 = v 1 ^ 2) (hv : v ≠ 0) :
+    ∃ l p q : ℚ, l ≠ 0 ∧ v 0 = l * p ^ 2 ∧ v 1 = l * p * q ∧ v 2 = l * q ^ 2 := by
+  by_cases h0 : v 0 = 0
+  · have h1 : v 1 = 0 := by rw [h0] at h; simpa using h.symm
+    have h2 : v 2 ≠ 0 := by
+      intro h2; apply hv; ext i; fin_cases i <;> simp [h0, h1, h2]
+    exact ⟨v 2, 0, 1, h2, by simp [h0], by simp [h1], by simp⟩
+  · refine ⟨v 0, 1, v 1 / v 0, h0, by simp, by field_simp, ?_⟩
+    field_simp
+    linarith
 
+/-- A proper automorph fixing $e_0$ and $e_2$ is the identity. -/
+theorem eq_one_of_cols (U : Matrix (Fin 3) (Fin 3) ℚ)
+    (hU : ∀ x : Fin 3 → ℚ, fZero.evalIn ℚ (U *ᵥ x) = fZero.evalIn ℚ x) (hdet : U.det = 1)
+    (h00 : U 0 0 = 1) (h10 : U 1 0 = 0) (h20 : U 2 0 = 0) (h02 : U 0 2 = 0) (h12 : U 1 2 = 0) (h22 : U 2 2 = 1) :
+    U = 1 := by
+  have a := hU ![0, 1, 0]
+  have b := hU ![1, 1, 0]
+  have c := hU ![0, 1, 1]
+  simp [evalIn_fZero, mulVec, dotProduct, Fin.sum_univ_three, h00, h10, h20, h02, h12, h22] at a b c
+  rw [Matrix.det_fin_three] at hdet
+  simp [h00, h10, h20, h02, h12, h22] at hdet
+  have v2 : U 2 1 = 0 := by nlinarith
+  have v0 : U 0 1 = 0 := by nlinarith
+  ext i j
+  fin_cases i <;> fin_cases j <;> simp [h00, h10, h20, h02, h12, h22, v2, v0, hdet]
 
-/-- $f_0(T\vec{x})$ in coordinates for $\vec{x} = (x_0, x_1, x_2)$. -/
-theorem f₀_mulVec_apply (T : Matrix (Fin 3) (Fin 3) R) (x₀ x₁ x₂ : R) :
-    f₀ (T *ᵥ ![x₀, x₁, x₂]) = (T 0 0 * x₀ + T 0 1 * x₁ + T 0 2 * x₂) * (T 2 0 * x₀ + T 2 1 * x₁ + T 2 2 * x₂)
-      - (T 1 0 * x₀ + T 1 1 * x₁ + T 1 2 * x₂) ^ 2 := by
-  simp [f₀, Matrix.mulVec, dotProduct, Fin.sum_univ_three]
+/-- **Lemma 5.1** (Cassels, Ch. 13, §5, p. 301): for $S \in \mathrm{GL}_2(\mathbb{Q})$, $T(S)$ is a rational proper
+automorph of $f_0$ ($\det T(S) = 1$, (5.7)); every rational proper automorph of $f_0$ is a $T(S)$; and $T(S) = I$
+iff $S$ is a scalar multiple of $I$. *Erratum*: Cassels calls $S \mapsto T(S)$ a group
+homomorphism; with (5.6) it reverses products, $T(S_1S_2) = T(S_2)T(S_1)$ (an anti-homomorphism; $S \mapsto T(S^{\mathsf
+T})$ is a homomorphism), as $\phi_{\vec{x}}(S_1S_2\vec{u})$ shows.
 
-/-- An automorph $T \in SL_3(R)$ of $f_0$ fixing $\vec{e}_0$ is $T(S)$ for the unipotent $S = \begin{pmatrix}1&t_{12}\\0&1\end{pmatrix}$ (the "diagonal case" at the end of the proof of Lemma 5.1, after the reduction (5.12)–(5.16)). -/
-theorem eq_spinRep_of_fix (T : SpecialLinearGroup (Fin 3) R)
-    (hT : ∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) R) *ᵥ x) = f₀ x)
-    (h0 : (T : Matrix (Fin 3) (Fin 3) R) 0 0 = 1) (h1 : (T : Matrix (Fin 3) (Fin 3) R) 1 0 = 0)
-    (h2 : (T : Matrix (Fin 3) (Fin 3) R) 2 0 = 0) :
-    ∃ S : GL (Fin 2) R, spinRep S = T := by
-  set M := (T : Matrix (Fin 3) (Fin 3) R) with hM
-  have e1 := hT ![0, 1, 0]
-  have e2 := hT ![0, 0, 1]
-  have e01 := hT ![1, 1, 0]
-  have e02 := hT ![1, 0, 1]
-  have e12 := hT ![0, 1, 1]
-  simp only [f₀_mulVec_apply] at e1 e2 e01 e02 e12
-  simp [f₀, h0, h1, h2] at e1 e2 e01 e02 e12
-  have hdet := T.prop
-  rw [Matrix.det_fin_three, ← hM, h0, h1, h2] at hdet
-  have hM21 : M 2 1 = 0 := by linear_combination e01 - e1
-  have hM22 : M 2 2 = 1 := by linear_combination e02 - e2
-  have hM11 : M 1 1 = 1 := by rw [hM21, hM22] at hdet; linear_combination hdet
-  have hM02 : M 0 2 = M 1 2 ^ 2 := by rw [hM22] at e2; linear_combination e2
-  have hM01 : M 0 1 = 2 * M 1 2 := by
-    rw [hM21, hM22, hM11, hM02] at e12; linear_combination e12
-  have hU : IsUnit (!![(1 : R), M 1 2; 0, 1] : Matrix (Fin 2) (Fin 2) R).det := by
-    simp [Matrix.det_fin_two]
-  refine ⟨Matrix.nonsingInvUnit _ hU, ?_⟩
-  apply Subtype.ext
-  rw [coe_spinRep]
-  have hd : GeneralLinearGroup.det (Matrix.nonsingInvUnit _ hU) = 1 := by
-    ext; rw [GeneralLinearGroup.val_det_apply]; simp [Matrix.nonsingInvUnit, Matrix.det_fin_two]
-  rw [hd, inv_one, Units.val_one, one_smul]
-  ext i j; fin_cases i <;> fin_cases j <;>
-    simp [symSq, Matrix.nonsingInvUnit, ← hM, h0, h1, h2, hM21, hM22, hM11, hM02, hM01]
+*Note*: Lemma 5.1 itself is tagged at `Cassels.Ch13.lemma_5_1` (over every field, for $S \mapsto T(S^{\mathsf T})$);
+this declaration keeps the tag for Cassels' literal map and the erratum. -/
+@[kb "cassels1978" "Ch. 13, §5, Lemma 5.1, (5.7), p. 301"]
+theorem spinMat_rat (S S' : Matrix (Fin 2) (Fin 2) ℚ) (hS : S.det ≠ 0) (hS' : S'.det ≠ 0) :
+    (∀ x : Fin 3 → ℚ, fZero.evalIn ℚ (spinMat S *ᵥ x) = fZero.evalIn ℚ x) ∧ (spinMat S).det = 1 ∧
+      spinMat (S * S') = spinMat S' * spinMat S ∧ (spinMat S = 1 ↔ ∃ c : ℚ, S = c • 1) := by
+  rw [Matrix.eta_fin_two S] at hS ⊢
+  rw [Matrix.eta_fin_two S'] at hS' ⊢
+  rw [Matrix.det_fin_two_of] at hS hS'
+  refine ⟨fun x => spinMat_f0 _ _ _ _ hS x, ?_, spinMat_mul _ _ _ _ _ _ _ _ hS hS',
+    spinMat_eq_one _ _ _ _ hS⟩
+  exact spinMat_det _ _ _ _ hS
 
-/-- Reduction step of the proof of Lemmas 5.1 and 5.2: if the first column of an automorph $T$ of $f_0$ is the first column of some $T(S_1)$, then $T$ is in the image of $S \mapsto T(S)$. -/
-theorem exists_spinRep_of_col (T : SpecialLinearGroup (Fin 3) R)
-    (hT : ∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) R) *ᵥ x) = f₀ x) (S₁ : GL (Fin 2) R)
-    (hS₁ : ∀ i, (spinRep S₁ : Matrix (Fin 3) (Fin 3) R) i 0 = (T : Matrix (Fin 3) (Fin 3) R) i 0) :
-    ∃ S : GL (Fin 2) R, spinRep S = T := by
-  have hmul : ∀ A B : SpecialLinearGroup (Fin 3) R,
-      ((A * B : SpecialLinearGroup (Fin 3) R) : Matrix (Fin 3) (Fin 3) R) = A * B := fun _ _ => rfl
-  obtain ⟨T', hT'def⟩ : ∃ T', T' = (spinRep S₁)⁻¹ * T := ⟨_, rfl⟩
-  have hT' : ∀ x, f₀ ((T' : Matrix (Fin 3) (Fin 3) R) *ᵥ x) = f₀ x := by
-    intro x
-    rw [hT'def, hmul, ← Matrix.mulVec_mulVec, ← map_inv, f₀_spinRep, hT]
-  have hcol : (T : Matrix (Fin 3) (Fin 3) R) *ᵥ ![1, 0, 0] =
-      (spinRep S₁ : Matrix (Fin 3) (Fin 3) R) *ᵥ ![1, 0, 0] := by
-    ext i; simp [Matrix.mulVec, dotProduct, Fin.sum_univ_three, hS₁]
-  have hcol' : (T' : Matrix (Fin 3) (Fin 3) R) *ᵥ ![1, 0, 0] = ![1, 0, 0] := by
-    rw [hT'def, hmul, ← Matrix.mulVec_mulVec, hcol, Matrix.mulVec_mulVec, ← hmul, inv_mul_cancel]
-    exact Matrix.one_mulVec _
-  have hc0 := congrFun hcol' 0
-  have hc1 := congrFun hcol' 1
-  have hc2 := congrFun hcol' 2
-  simp [Matrix.mulVec, dotProduct, Fin.sum_univ_three] at hc0 hc1 hc2
-  obtain ⟨S₂, hS₂⟩ := eq_spinRep_of_fix T' hT' hc0 hc1 hc2
-  refine ⟨S₁ * S₂, ?_⟩
-  rw [map_mul, hS₂, hT'def, mul_inv_cancel_left]
+/-- **Lemma 5.1, surjectivity** (Cassels, Ch. 13, §5, pp. 301–302): every rational proper automorph $T$ of $f_0$
+($f_0(T\vec{x}) = f_0(\vec{x})$, $\det T = 1$) is $T(S)$ for some $S \in \mathrm{GL}_2(\mathbb{Q})$.
 
-/-- Over a field, the matrix of $T(S)$ is $(\det S)^{-1}\mathrm{symSq}(S)$. -/
-theorem coe_spinRep_field {K : Type*} [Field K] (S : GL (Fin 2) K) :
-    ((spinRep S : SpecialLinearGroup (Fin 3) K) : Matrix (Fin 3) (Fin 3) K) =
-      ((S : Matrix (Fin 2) (Fin 2) K).det)⁻¹ • symSq (S : Matrix (Fin 2) (Fin 2) K) := by
-  rw [coe_spinRep, Units.val_inv_eq_inv_val, GeneralLinearGroup.val_det_apply]
-
-/-- Over a field, every nonzero $\vec{c}$ with $f_0(\vec{c}) = 0$ is the first column of some $T(S_1)$ ((5.9)–(5.11)). -/
-theorem exists_spinRep_col {K : Type*} [Field K] (c : Fin 3 → K) (hc : f₀ c = 0) (hc0 : c ≠ 0) :
-    ∃ S : GL (Fin 2) K, ∀ i, (spinRep S : Matrix (Fin 3) (Fin 3) K) i 0 = c i := by
-  simp only [f₀] at hc
-  by_cases h0 : c 0 = 0
-  · have h1 : c 1 = 0 := by rw [h0] at hc; simpa using hc
-    have h2 : c 2 ≠ 0 := by
-      intro h2; apply hc0; ext i; fin_cases i <;> simp [h0, h1, h2]
-    have hdet : (!![0, -1 / c 2; 1, 0] : Matrix (Fin 2) (Fin 2) K).det ≠ 0 := by
-      simp [Matrix.det_fin_two, h2]
-    refine ⟨GeneralLinearGroup.mkOfDetNeZero _ hdet, fun i => ?_⟩
-    rw [coe_spinRep_field]
-    fin_cases i <;> simp [symSq, GeneralLinearGroup.mkOfDetNeZero, Matrix.det_fin_two, h0, h1, div_neg]
-  · have hdet : (!![1, 0; c 1 / c 0, 1 / c 0] : Matrix (Fin 2) (Fin 2) K).det ≠ 0 := by
-      simp [Matrix.det_fin_two, h0]
-    refine ⟨GeneralLinearGroup.mkOfDetNeZero _ hdet, fun i => ?_⟩
-    rw [coe_spinRep_field]
-    fin_cases i <;> simp [symSq, GeneralLinearGroup.mkOfDetNeZero, Matrix.det_fin_two]
-    · field_simp
-    · field_simp; linear_combination -hc
-
-/-- Over a field, every automorph of $f_0$ in $SL_3$ is some $T(S)$. -/
-theorem spinRep_surjective {K : Type*} [Field K] (T : SpecialLinearGroup (Fin 3) K)
-    (hT : ∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) K) *ᵥ x) = f₀ x) :
-    ∃ S : GL (Fin 2) K, spinRep S = T := by
-  set c : Fin 3 → K := fun i => (T : Matrix (Fin 3) (Fin 3) K) i 0
-  have hcv : (T : Matrix (Fin 3) (Fin 3) K) *ᵥ ![1, 0, 0] = c := by
-    ext i; simp [c, Matrix.mulVec, dotProduct, Fin.sum_univ_three]
-  have hc : f₀ c = 0 := by rw [← hcv, hT]; simp [f₀]
-  have hc0 : c ≠ 0 := by
+*Note*: Superseded by `Cassels.Ch13.lemma_5_1` (over every field; its map `spinRep S` is `spinMat` of
+$S^{\mathsf T}$). -/
+theorem exists_spinMat_eq_rat {T : Matrix (Fin 3) (Fin 3) ℚ}
+    (hT : ∀ x : Fin 3 → ℚ, fZero.evalIn ℚ (T *ᵥ x) = fZero.evalIn ℚ x) (hdet : T.det = 1) :
+    ∃ S : Matrix (Fin 2) (Fin 2) ℚ, S.det ≠ 0 ∧ T = spinMat S := by
+  have a0 := hT ![1, 0, 0]
+  have a2 := hT ![0, 0, 1]
+  have a02 := hT ![1, 0, 1]
+  simp [evalIn_fZero, mulVec, dotProduct, Fin.sum_univ_three] at a0 a2 a02
+  have iso0 : T 0 0 * T 2 0 = T 1 0 ^ 2 := by linarith
+  have iso2 : T 0 2 * T 2 2 = T 1 2 ^ 2 := by linarith
+  have hB : T 0 0 * T 2 2 + T 2 0 * T 0 2 - 2 * T 1 0 * T 1 2 = 1 := by nlinarith
+  have hv0 : (fun i => T i 0) ≠ 0 := by
     intro h
-    have hdet := T.prop
-    have h0 : ∀ i, (T : Matrix (Fin 3) (Fin 3) K) i 0 = 0 := fun i => congrFun h i
-    rw [Matrix.det_fin_three, h0, h0, h0] at hdet
-    simp at hdet
-  obtain ⟨S₁, hS₁⟩ := exists_spinRep_col c hc hc0
-  exact exists_spinRep_of_col T hT S₁ hS₁
+    have e0 := congrFun h 0; have e1 := congrFun h 1; have e2 := congrFun h 2
+    simp at e0 e1 e2
+    rw [e0, e1, e2] at hB; simp at hB
+  have hv2 : (fun i => T i 2) ≠ 0 := by
+    intro h
+    have e0 := congrFun h 0; have e1 := congrFun h 1; have e2 := congrFun h 2
+    simp at e0 e1 e2
+    rw [e0, e1, e2] at hB; simp at hB
+  obtain ⟨l, p, q, hl, c00, c10, c20⟩ := iso_param _ iso0 hv0
+  obtain ⟨m, r, s, hm, c02, c12, c22⟩ := iso_param _ iso2 hv2
+  have hD : l * m * (p * s - q * r) ^ 2 = 1 := by
+    rw [c00, c10, c20, c02, c12, c22] at hB; linarith
+  have hD0 : p * s - q * r ≠ 0 := by
+    intro h; rw [h] at hD; simp at hD
+  have hm' : m = (l * (p * s - q * r) ^ 2)⁻¹ := by
+    field_simp; linarith
+  set k : ℚ := (l * (p * s - q * r))⁻¹ with hk
+  have hkne : k ≠ 0 := by simp [hk, hl, hD0]
+  have hdetS : (!![p, q; k * r, k * s] : Matrix (Fin 2) (Fin 2) ℚ).det = k * (p * s - q * r) := by
+    rw [Matrix.det_fin_two_of]; ring
+  have hdetS' : k * (p * s - q * r) ≠ 0 := mul_ne_zero hkne hD0
+  set S : Matrix (Fin 2) (Fin 2) ℚ := !![p, q; k * r, k * s] with hS
+  have hSdet : S.det ≠ 0 := by rw [hdetS]; exact hdetS'
+  have hkD : (k * (p * s - q * r))⁻¹ = l := by
+    simp only [hk]; field_simp
+  have col0 : ∀ i, spinMat S i 0 = T i 0 := by
+    intro i
+    rw [hS, spinMat_eq]
+    have : p * (k * s) - q * (k * r) = k * (p * s - q * r) := by ring
+    rw [this, hkD]
+    fin_cases i <;> simp [c00, c10, c20] <;> ring
+  have col2 : ∀ i, spinMat S i 2 = T i 2 := by
+    intro i
+    rw [hS, spinMat_eq]
+    have : p * (k * s) - q * (k * r) = k * (p * s - q * r) := by ring
+    rw [this, hkD]
+    fin_cases i <;> simp [c02, c12, c22, hm', hk] <;> field_simp <;> ring
+  obtain ⟨hS1, hS2, hS3, hS4⟩ := spinMat_rat S S⁻¹ hSdet (by
+    rw [Matrix.det_nonsing_inv]; simp [hSdet])
+  have hSS : S * S⁻¹ = 1 := Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr hSdet)
+  have hone : spinMat (1 : Matrix (Fin 2) (Fin 2) ℚ) = 1 := by
+    simp [spinMat]
+    exact Matrix.one_fin_three.symm
+  rw [hSS, hone] at hS3
+  -- R * T(S) = 1
+  obtain ⟨hR1, hR2, -, -⟩ := spinMat_rat S⁻¹ S (by
+    rw [Matrix.det_nonsing_inv]; simp [hSdet]) hSdet
+  have hSS' : S⁻¹ * S = 1 := Matrix.nonsing_inv_mul _ (isUnit_iff_ne_zero.mpr hSdet)
+  have hS3' := (spinMat_rat S⁻¹ S (by rw [Matrix.det_nonsing_inv]; simp [hSdet]) hSdet).2.2.1
+  rw [hSS', hone] at hS3'
+  -- U = R * T
+  set R := spinMat S⁻¹ with hR
+  have hRT : R * spinMat S = 1 := hS3.symm
+  have hTR : spinMat S * R = 1 := hS3'.symm
+  have key : ∀ j, (∀ i, spinMat S i j = T i j) → ∀ i, (R * T) i j = (1 : Matrix (Fin 3) (Fin 3) ℚ) i j := by
+    intro j hj i
+    rw [← hRT, Matrix.mul_apply, Matrix.mul_apply]
+    simp_rw [hj]
+  have hU : R * T = 1 := by
+    apply eq_one_of_cols (R * T)
+    · intro x
+      rw [← Matrix.mulVec_mulVec, hR1, hT]
+    · rw [Matrix.det_mul, hR2, hdet]; simp
+    · simpa using key 0 col0 0
+    · simpa using key 0 col0 1
+    · simpa using key 0 col0 2
+    · simpa using key 2 col2 0
+    · simpa using key 2 col2 1
+    · simpa using key 2 col2 2
+  refine ⟨S, hSdet, ?_⟩
+  calc T = (spinMat S * R) * T := by rw [hTR, Matrix.one_mul]
+    _ = spinMat S := by rw [Matrix.mul_assoc, hU, Matrix.mul_one]
 
+theorem spinMat_one : spinMat (1 : Matrix (Fin 2) (Fin 2) ℚ) = 1 := by
+  simp [spinMat]
+  exact Matrix.one_fin_three.symm
 
-/-- Over $\mathbb Z$, the matrix of $T(S)$ is $\det(S)\,\mathrm{symSq}(S)$ (as $\det S = \pm1$). -/
-theorem coe_spinRep_int (S : GL (Fin 2) ℤ) :
-    ((spinRep S : SpecialLinearGroup (Fin 3) ℤ) : Matrix (Fin 3) (Fin 3) ℤ) =
-      (S : Matrix (Fin 2) (Fin 2) ℤ).det • symSq (S : Matrix (Fin 2) (Fin 2) ℤ) := by
-  rw [coe_spinRep, Int.units_inv_eq_self, GeneralLinearGroup.val_det_apply]
+/-- Casting an integral vector to `ℚ` commutes with `fZero`. -/
+theorem cast_eval_fZero (y : Fin 3 → ℤ) :
+    ((fZero.eval y : ℤ) : ℚ) = fZero.evalIn ℚ (fun i => (y i : ℚ)) := by
+  simp [QuadForm.eval, evalIn_fZero]
 
-/-- Over $\mathbb Z$, every integral automorph of $f_0$ in $SL_3(\mathbb Z)$ is $T(S)$ for an integral $S$ with $\det S = \pm1$: the first column of $T$ is primitive with $t_{00}t_{20} = t_{10}^{2}$, hence $\pm(\alpha^{2}, \alpha\gamma, \gamma^{2})$ with $\gcd(\alpha,\gamma) = 1$ (proof of Lemma 5.2). -/
-theorem spinRep_surjective_int (T : SpecialLinearGroup (Fin 3) ℤ)
-    (hT : ∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) ℤ) *ᵥ x) = f₀ x) :
-    ∃ S : GL (Fin 2) ℤ, spinRep S = T := by
-  set M := (T : Matrix (Fin 3) (Fin 3) ℤ) with hM
-  have hc : M 0 0 * M 2 0 = M 1 0 ^ 2 := by
-    have := hT ![1, 0, 0]
-    rw [f₀_mulVec_apply] at this
-    simp [f₀] at this; linear_combination this
-  have hdet := T.prop
-  rw [Matrix.det_fin_three, ← hM] at hdet
-  -- the first column is primitive, so `M 0 0` and `M 2 0` are coprime
-  have hcop : IsCoprime (M 0 0) (M 2 0) := by
-    set A := M 1 1 * M 2 2 - M 1 2 * M 2 1
-    set B := M 0 2 * M 2 1 - M 0 1 * M 2 2
-    set C := M 0 1 * M 1 2 - M 0 2 * M 1 1
-    have hE : M 0 0 * A + M 1 0 * B + M 2 0 * C = 1 := by
-      simp only [A, B, C]; linear_combination hdet
-    set L := M 0 0 * A + M 2 0 * C
-    refine ⟨A * L + 2 * M 1 0 * B * A + M 2 0 * B ^ 2, C * L + 2 * M 1 0 * B * C, ?_⟩
-    simp only [L]
-    linear_combination (M 0 0 * A + M 1 0 * B + M 2 0 * C + 1) * hE + B ^ 2 * hc
-  obtain ⟨a, ha⟩ := Int.sq_of_isCoprime hcop (by rw [hc])
-  obtain ⟨ε, hε, hεa⟩ : ∃ ε : ℤ, ε * ε = 1 ∧ M 0 0 = ε * a ^ 2 := by
-    rcases ha with h | h
-    · exact ⟨1, by norm_num, by rw [h]; ring⟩
-    · exact ⟨-1, by norm_num, by rw [h]; ring⟩
-  by_cases ha0 : a = 0
-  · rw [ha0] at hεa
-    have h00 : M 0 0 = 0 := by simpa using hεa
-    have h10 : M 1 0 = 0 := by rw [h00] at hc; simpa using hc.symm
-    rw [h00] at hcop
-    have hu : IsUnit (M 2 0) := isCoprime_zero_left.1 hcop
-    have hU : IsUnit (!![(0 : ℤ), -M 2 0; 1, 0] : Matrix (Fin 2) (Fin 2) ℤ).det := by
-      simpa [Matrix.det_fin_two] using hu
-    refine exists_spinRep_of_col T hT (Matrix.nonsingInvUnit _ hU) (fun i => ?_)
-    rw [coe_spinRep_int]
-    rcases Int.isUnit_iff.1 hu with h | h <;>
-      fin_cases i <;> simp [symSq, Matrix.nonsingInvUnit, Matrix.det_fin_two, ← hM, h00, h10, h]
-  · have hdvd : a ^ 2 ∣ M 1 0 ^ 2 := ⟨ε * M 2 0, by rw [← hc, hεa]; ring⟩
-    obtain ⟨k, hk⟩ := (Int.pow_dvd_pow_iff two_ne_zero).1 hdvd
-    have h20 : M 2 0 = ε * k ^ 2 := by
-      have : a ^ 2 * (ε * M 2 0) = a ^ 2 * k ^ 2 := by
-        linear_combination hεa * 0 + hc - 0 * hk + (M 1 0 + a * k) * hk - (M 2 0) * hεa
-      have h' := mul_left_cancel₀ (pow_ne_zero 2 ha0) this
-      linear_combination ε * h' - M 2 0 * hε
-    -- Bezout for `a` and `k`
-    obtain ⟨u, v, huv⟩ := hcop
-    rw [hεa, h20] at huv
-    have hD : (!![a, -(ε * v * k); ε * k, u * a] : Matrix (Fin 2) (Fin 2) ℤ).det = ε := by
-      rw [Matrix.det_fin_two_of]; linear_combination ε * huv - u * a ^ 2 * hε
-    refine exists_spinRep_of_col T hT (Matrix.nonsingInvUnit _ (hD ▸ IsUnit.of_mul_eq_one ε hε))
-      (fun i => ?_)
-    rw [coe_spinRep_int]
-    have hD' : (Matrix.nonsingInvUnit _ (hD ▸ IsUnit.of_mul_eq_one ε hε) : Matrix (Fin 2) (Fin 2) ℤ).det = ε := hD
-    rw [hD']
-    fin_cases i <;> simp [symSq, Matrix.nonsingInvUnit, ← hM, hεa, hk, h20]
-    · linear_combination (a * k) * hε
-    · left; linear_combination k ^ 2 * hε
+theorem cast_mulVec (T : Matrix (Fin 3) (Fin 3) ℤ) (x : Fin 3 → ℤ) :
+    T.map (Int.cast : ℤ → ℚ) *ᵥ (fun i => (x i : ℚ)) = fun i => ((T *ᵥ x) i : ℚ) := by
+  ext i; simp [mulVec, dotProduct]
 
+/-- An integral matrix preserving `fZero` on `ℚ³` preserves it on `ℤ³`. -/
+theorem int_aut_of_cast (T : Matrix (Fin 3) (Fin 3) ℤ)
+    (h : ∀ x : Fin 3 → ℚ, fZero.evalIn ℚ (T.map (Int.cast : ℤ → ℚ) *ᵥ x) = fZero.evalIn ℚ x)
+    (x : Fin 3 → ℤ) : fZero.eval (T *ᵥ x) = fZero.eval x := by
+  apply Int.cast_injective (α := ℚ)
+  rw [cast_eval_fZero, cast_eval_fZero, ← cast_mulVec]
+  exact h _
 
-/-- **Lemma 5.1**: over a field $K$, $S \mapsto T(S)$ is a homomorphism of $GL_2(K)$ onto the group $O^{+}_K(f_0)$ of proper automorphs of $f_0 = x_0x_2 - x_1^{2}$, with kernel the scalar matrices. (Cassels states it for $K = \mathbb Q$.) -/
-@[kb "cassels1978" "Ch. 13, §5, Lemma 5.1, p. 301"]
-theorem lemma_5_1 {K : Type*} [Field K] :
-    (∀ (S : GL (Fin 2) K) (x : Fin 3 → K), f₀ ((spinRep S : Matrix (Fin 3) (Fin 3) K) *ᵥ x) = f₀ x) ∧
-    (∀ T : SpecialLinearGroup (Fin 3) K, (∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) K) *ᵥ x) = f₀ x) →
-      ∃ S : GL (Fin 2) K, spinRep S = T) ∧
-    (∀ S : GL (Fin 2) K, spinRep S = 1 ↔ ∃ c : K, (S : Matrix (Fin 2) (Fin 2) K) = c • 1) :=
-  ⟨f₀_spinRep, spinRep_surjective, spinRep_eq_one_iff⟩
+/-- An integral automorph of `fZero` preserves it on `ℚ³`. -/
+theorem cast_aut_of_int (T : Matrix (Fin 3) (Fin 3) ℤ)
+    (h : ∀ x : Fin 3 → ℤ, fZero.eval (T *ᵥ x) = fZero.eval x) (x : Fin 3 → ℚ) :
+    fZero.evalIn ℚ (T.map (Int.cast : ℤ → ℚ) *ᵥ x) = fZero.evalIn ℚ x := by
+  have a0 := congrArg (Int.cast : ℤ → ℚ) (h ![1, 0, 0])
+  have a1 := congrArg (Int.cast : ℤ → ℚ) (h ![0, 1, 0])
+  have a2 := congrArg (Int.cast : ℤ → ℚ) (h ![0, 0, 1])
+  have b01 := congrArg (Int.cast : ℤ → ℚ) (h ![1, 1, 0])
+  have b02 := congrArg (Int.cast : ℤ → ℚ) (h ![1, 0, 1])
+  have b12 := congrArg (Int.cast : ℤ → ℚ) (h ![0, 1, 1])
+  simp [QuadForm.eval, evalIn_fZero, mulVec, dotProduct, Fin.sum_univ_three] at a0 a1 a2 b01 b02 b12
+  rw [evalIn_fZero, evalIn_fZero]
+  simp [mulVec, dotProduct, Fin.sum_univ_three]
+  linear_combination (x 0) ^ 2 * a0 + (x 1) ^ 2 * a1 + (x 2) ^ 2 * a2 + x 0 * x 1 * (b01 - a0 - a1) +
+    x 0 * x 2 * (b02 - a0 - a2) + x 1 * x 2 * (b12 - a1 - a2)
 
-/-- **Lemma 5.2**: $S \mapsto T(S)$ is a homomorphism of $SL^{\pm}_2(\mathbb Z) = GL_2(\mathbb Z)$ onto the group $O^{+}(f_0)$ of proper integral automorphs of $f_0 = x_0x_2 - x_1^{2}$, with kernel $\{\pm I\}$. -/
-@[kb "cassels1978" "Ch. 13, §5, Lemma 5.2, p. 302"]
-theorem lemma_5_2 :
-    (∀ (S : GL (Fin 2) ℤ) (x : Fin 3 → ℤ), f₀ ((spinRep S : Matrix (Fin 3) (Fin 3) ℤ) *ᵥ x) = f₀ x) ∧
-    (∀ T : SpecialLinearGroup (Fin 3) ℤ, (∀ x, f₀ ((T : Matrix (Fin 3) (Fin 3) ℤ) *ᵥ x) = f₀ x) →
-      ∃ S : GL (Fin 2) ℤ, spinRep S = T) ∧
-    (∀ S : GL (Fin 2) ℤ, spinRep S = 1 ↔ S = 1 ∨ S = -1) :=
-  ⟨f₀_spinRep, spinRep_surjective_int, spinRep_eq_one_iff_int⟩
+theorem spinMat_scale (e a b c d : ℚ) (he : e ≠ 0) :
+    spinMat !![e * a, e * b; e * c, e * d] = spinMat !![a, b; c, d] := by
+  rw [spinMat_eq, spinMat_eq]
+  have h2 : e * a * (e * d) - e * b * (e * c) = e ^ 2 * (a * d - b * c) := by ring
+  rw [h2]
+  by_cases h : a * d - b * c = 0
+  · simp [h]
+  · ext i j
+    fin_cases i <;> fin_cases j <;> simp <;> field_simp <;> ring
 
+/-- Primitive integral scaling of a nondegenerate rational $2 \times 2$ matrix. -/
+theorem prim_scale (a b c d : ℚ) (h : a * d - b * c ≠ 0) :
+    ∃ (a' b' c' d' : ℤ) (e : ℚ), e ≠ 0 ∧ a = e * a' ∧ b = e * b' ∧ c = e * c' ∧ d = e * d' ∧
+      ∀ p : ℤ, Prime p → ¬ (p ∣ a' ∧ p ∣ b' ∧ p ∣ c' ∧ p ∣ d') := by
+  set N : ℕ := a.den * b.den * c.den * d.den with hN
+  have hNpos : (N : ℚ) ≠ 0 := by
+    have : 0 < N := by positivity
+    exact_mod_cast this.ne'
+  have ha := Rat.mul_den_eq_num a
+  have hb := Rat.mul_den_eq_num b
+  have hc := Rat.mul_den_eq_num c
+  have hd := Rat.mul_den_eq_num d
+  set a₀ : ℤ := a.num * (b.den * c.den * d.den) with ha₀
+  set b₀ : ℤ := b.num * (a.den * c.den * d.den) with hb₀
+  set c₀ : ℤ := c.num * (a.den * b.den * d.den) with hc₀
+  set d₀ : ℤ := d.num * (a.den * b.den * c.den) with hd₀
+  have ea : (N : ℚ) * a = a₀ := by rw [ha₀, hN]; push_cast; rw [← ha]; ring
+  have eb : (N : ℚ) * b = b₀ := by rw [hb₀, hN]; push_cast; rw [← hb]; ring
+  have ec : (N : ℚ) * c = c₀ := by rw [hc₀, hN]; push_cast; rw [← hc]; ring
+  have ed : (N : ℚ) * d = d₀ := by rw [hd₀, hN]; push_cast; rw [← hd]; ring
+  set g : ℕ := Int.gcd (Int.gcd a₀ b₀) (Int.gcd c₀ d₀) with hg
+  have hga : (g : ℤ) ∣ a₀ := (Int.gcd_dvd_left ..).trans (Int.gcd_dvd_left ..)
+  have hgb : (g : ℤ) ∣ b₀ := (Int.gcd_dvd_left ..).trans (Int.gcd_dvd_right ..)
+  have hgc : (g : ℤ) ∣ c₀ := (Int.gcd_dvd_right ..).trans (Int.gcd_dvd_left ..)
+  have hgd : (g : ℤ) ∣ d₀ := (Int.gcd_dvd_right ..).trans (Int.gcd_dvd_right ..)
+  have hg0 : (g : ℚ) ≠ 0 := by
+    intro h0
+    have h0' : g = 0 := by exact_mod_cast h0
+    simp only [hg, Int.gcd_eq_zero_iff, Nat.cast_eq_zero] at h0'
+    obtain ⟨⟨h1, h2⟩, h3, h4⟩ := h0'
+    have : (N : ℚ) * a = 0 := by rw [ea]; exact_mod_cast h1
+    have : (N : ℚ) * b = 0 := by rw [eb]; exact_mod_cast h2
+    have : (N : ℚ) * c = 0 := by rw [ec]; exact_mod_cast h3
+    have : (N : ℚ) * d = 0 := by rw [ed]; exact_mod_cast h4
+    have : a = 0 := by simp_all
+    have : b = 0 := by simp_all
+    simp_all
+  have hgz : (g : ℤ) ≠ 0 := by exact_mod_cast (by exact_mod_cast hg0 : g ≠ 0)
+  obtain ⟨a', ha'⟩ := hga
+  obtain ⟨b', hb'⟩ := hgb
+  obtain ⟨c', hc'⟩ := hgc
+  obtain ⟨d', hd'⟩ := hgd
+  refine ⟨a', b', c', d', (g : ℚ) / N, div_ne_zero hg0 hNpos, ?_, ?_, ?_, ?_, ?_⟩
+  · have haq : (a₀ : ℚ) = g * a' := by exact_mod_cast ha'
+    field_simp; linear_combination ea + haq
+  · have hbq : (b₀ : ℚ) = g * b' := by exact_mod_cast hb'
+    field_simp; linear_combination eb + hbq
+  · have hcq : (c₀ : ℚ) = g * c' := by exact_mod_cast hc'
+    field_simp; linear_combination ec + hcq
+  · have hdq : (d₀ : ℚ) = g * d' := by exact_mod_cast hd'
+    field_simp; linear_combination ed + hdq
+  · rintro p hp ⟨h1, h2, h3, h4⟩
+    have hdv : ∀ {x : ℤ} {y : ℤ}, (g : ℤ) * p ∣ x → (g : ℤ) * p ∣ y → (g : ℤ) * p ∣ ((Int.gcd x y : ℕ) : ℤ) :=
+      fun hx hy => Int.dvd_coe_gcd hx hy
+    have key : (g : ℤ) * p ∣ (g : ℤ) :=
+      hdv (hdv (by rw [ha']; exact mul_dvd_mul_left _ h1) (by rw [hb']; exact mul_dvd_mul_left _ h2))
+        (hdv (by rw [hc']; exact mul_dvd_mul_left _ h3) (by rw [hd']; exact mul_dvd_mul_left _ h4))
+    have : p ∣ 1 := by
+      obtain ⟨k, hk⟩ := key
+      have : (g : ℤ) * (p * k) = (g : ℤ) * 1 := by rw [← mul_assoc, ← hk, mul_one]
+      exact ⟨k, (mul_left_cancel₀ hgz this).symm⟩
+    exact hp.not_isUnit (isUnit_of_dvd_one this)
 
-/-- The classically integral binary form $\varphi_{\vec{x}}(u_0,u_1) = x_0u_0^{2} + 2x_1u_0u_1 + x_2u_1^{2}$ with coefficient vector $\vec{x}$ (Cassels (5.2)); its determinant $x_0x_2 - x_1^{2}$ is $f_0(\vec{x})$, and $\vec{x} \mapsto \varphi_{\vec{x}}$ is a bijection from $\mathbb Z^{3}$ onto the classically integral binary forms. -/
-@[kb "cassels1978" "Ch. 13, §5, (5.2), p. 301"]
-def phi (x : Fin 3 → R) (u : Fin 2 → R) : R := x 0 * u 0 ^ 2 + 2 * x 1 * u 0 * u 1 + x 2 * u 1 ^ 2
+/-- The integral matrix $\det(S)\cdot\Delta^{-1}\cdots$, i.e. $T(S)$ for $\det S = \pm 1$. -/
+def tInt (S : Matrix (Fin 2) (Fin 2) ℤ) : Matrix (Fin 3) (Fin 3) ℤ :=
+  S.det • !![S 0 0 ^ 2, 2 * S 0 0 * S 1 0, S 1 0 ^ 2;
+    S 0 0 * S 0 1, S 0 0 * S 1 1 + S 0 1 * S 1 0, S 1 0 * S 1 1;
+    S 0 1 ^ 2, 2 * S 0 1 * S 1 1, S 1 1 ^ 2]
 
-/-- $\varphi_{\mathrm{symSq}(S)\vec{x}}(\vec{u}) = \varphi_{\vec{x}}(S^{\mathsf T}\vec{u})$. -/
-theorem phi_symSq (S : Matrix (Fin 2) (Fin 2) R) (x : Fin 3 → R) (u : Fin 2 → R) :
-    phi (symSq S *ᵥ x) u = phi x (Sᵀ *ᵥ u) := by
-  simp [phi, symSq, Matrix.mulVec, dotProduct, Fin.sum_univ_three, Fin.sum_univ_two]; ring
+theorem map_fin2 (a b c d : ℤ) :
+    (!![a, b; c, d] : Matrix (Fin 2) (Fin 2) ℤ).map (Int.cast : ℤ → ℚ) = !![(a : ℚ), b; c, d] := by
+  ext i j; fin_cases i <;> fin_cases j <;> simp
 
-/-- A binary form determines its coefficient vector (characteristic $0$). -/
-theorem eq_of_phi_eq {x y : Fin 3 → R} [IsDomain R] [CharZero R] (h : ∀ u, phi x u = phi y u) : x = y := by
-  have h1 := h ![1, 0]
-  have h2 := h ![0, 1]
-  have h3 := h ![1, 1]
-  simp [phi] at h1 h2 h3
-  have h4 : (2 : R) * (x 1 - y 1) = 0 := by linear_combination h3 - h1 - h2
-  have h5 : x 1 = y 1 := sub_eq_zero.1 ((mul_eq_zero.1 h4).resolve_left two_ne_zero)
-  ext i; fin_cases i <;> simp [h1, h2, h5]
+theorem tInt_map (S : Matrix (Fin 2) (Fin 2) ℤ) (hD : S.det = 1 ∨ S.det = -1) :
+    (tInt S).map (Int.cast : ℤ → ℚ) = spinMat (S.map (Int.cast : ℤ → ℚ)) := by
+  obtain ⟨a, b, c, d, rfl⟩ : ∃ a b c d, S = !![a, b; c, d] := ⟨_, _, _, _, Matrix.eta_fin_two S⟩
+  rw [map_fin2, spinMat_eq]
+  rw [Matrix.det_fin_two_of] at hD
+  rcases hD with hD | hD
+  · have hq : (a : ℚ) * d - b * c = 1 := by exact_mod_cast hD
+    rw [hq]
+    ext i j; fin_cases i <;> fin_cases j <;> simp [tInt, hD, Matrix.det_fin_two_of]
+  · have hq : (a : ℚ) * d - b * c = -1 := by exact_mod_cast hD
+    rw [hq]
+    ext i j; fin_cases i <;> fin_cases j <;> simp [tInt, hD, Matrix.det_fin_two_of]
 
-/-- For $\det S = 1$, $T(S) = \mathrm{symSq}(S)$. -/
-theorem coe_spinRep_toGL (S : SpecialLinearGroup (Fin 2) R) :
-    ((spinRep (SpecialLinearGroup.toGL S) : SpecialLinearGroup (Fin 3) R) : Matrix (Fin 3) (Fin 3) R) =
-      symSq (S : Matrix (Fin 2) (Fin 2) R) := by
-  rw [coe_spinRep]
-  have : GeneralLinearGroup.det (SpecialLinearGroup.toGL S) = 1 := by
-    ext; rw [GeneralLinearGroup.val_det_apply]; exact S.prop
-  rw [this, inv_one, Units.val_one, one_smul]; rfl
+theorem tInt_det (S : Matrix (Fin 2) (Fin 2) ℤ) (hD : S.det = 1 ∨ S.det = -1) : (tInt S).det = 1 := by
+  apply Int.cast_injective (α := ℚ)
+  rw [Int.cast_det, tInt_map S hD]
+  have hq : (S.map (Int.cast : ℤ → ℚ)).det ≠ 0 := by
+    rw [← Int.cast_det]; rcases hD with h | h <;> simp [h]
+  rw [Matrix.eta_fin_two (S.map (Int.cast : ℤ → ℚ))] at hq ⊢
+  rw [Matrix.det_fin_two_of] at hq
+  simpa using spinMat_det _ _ _ _ hq
 
-/-- The transpose of a matrix in $SL_2$. -/
-def trSL (U : SpecialLinearGroup (Fin 2) R) : SpecialLinearGroup (Fin 2) R :=
-  ⟨(U : Matrix (Fin 2) (Fin 2) R)ᵀ, by rw [Matrix.det_transpose]; exact U.prop⟩
+/-- **Lemma 5.2** (Cassels, Ch. 13, §5, p. 302): $S \mapsto T(S)$ maps the integral $2 \times 2$ matrices of
+determinant $\pm 1$ ($SL^{\pm}_2(\mathbb{Z})$ = `GL (Fin 2) ℤ`, (5.17)–(5.18)) onto the group $O^+(f_0)$ of proper
+integral automorphs, with kernel $\pm I$.
 
-/-- The matrix of `trSL U` is $U^{\mathsf T}$. -/
-theorem coe_trSL (U : SpecialLinearGroup (Fin 2) R) :
-    ((trSL U : SpecialLinearGroup (Fin 2) R) : Matrix (Fin 2) (Fin 2) R) = (U : Matrix (Fin 2) (Fin 2) R)ᵀ := rfl
+*Note*: Equivalent to `Cassels.Ch13.lemma_5_2` (its map `spinRep S` is `spinMat` of $S^{\mathsf T}$), which carries
+the tag. -/
+theorem spinMat_int :
+    (∀ S : GL (Fin 2) ℤ, ∃ T ∈ Siegel.AutPlus fZero,
+      T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))) ∧
+    (∀ T ∈ Siegel.AutPlus fZero, ∃ S : GL (Fin 2) ℤ,
+      T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))) ∧
+    (∀ S : GL (Fin 2) ℤ, spinMat (S.val.map (Int.cast : ℤ → ℚ)) = 1 ↔ S = 1 ∨ S = -1) := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro S
+    have hD := Siegel.det_GL_int_eq S
+    have hdet := tInt_det S.val hD
+    refine ⟨Matrix.GeneralLinearGroup.mk'' (tInt S.val) (by rw [hdet]; exact isUnit_one), ?_, ?_⟩
+    · rw [Siegel.mem_autPlus_iff]
+      refine ⟨?_, hdet⟩
+      intro x
+      apply int_aut_of_cast
+      intro y
+      show fZero.evalIn ℚ ((tInt S.val).map (Int.cast : ℤ → ℚ) *ᵥ y) = _
+      rw [tInt_map _ hD]
+      have hne : (S.val.map (Int.cast : ℤ → ℚ)).det ≠ 0 := by
+        rw [← Int.cast_det]; rcases hD with h | h <;> simp [h]
+      exact (spinMat_rat _ _ hne hne).1 y
+    · exact tInt_map _ hD
+  · intro T hT
+    obtain ⟨hTa, hdet⟩ := Siegel.mem_autPlus_iff.mp hT
+    have hTq := cast_aut_of_int T.val hTa
+    have hdq : (T.val.map (Int.cast : ℤ → ℚ)).det = 1 := by rw [← Int.cast_det, hdet]; simp
+    obtain ⟨S, hS, hTS⟩ := exists_spinMat_eq_rat hTq hdq
+    obtain ⟨a, b, c, d, rfl⟩ : ∃ a b c d, S = !![a, b; c, d] := ⟨_, _, _, _, Matrix.eta_fin_two S⟩
+    rw [Matrix.det_fin_two_of] at hS
+    obtain ⟨a', b', c', d', e, he, ha, hb, hc, hd, hprim⟩ := prim_scale a b c d hS
+    subst ha hb hc hd
+    rw [spinMat_scale _ _ _ _ _ he] at hTS
+    have hD'ne : ((a' : ℚ) * d' - b' * c') ≠ 0 := by
+      intro h0; apply hS
+      have : (e * a') * (e * d') - (e * b') * (e * c') = e ^ 2 * (a' * d' - b' * c') := by ring
+      rw [this, h0, mul_zero]
+    have ent : ∀ i j, (T.val i j : ℚ) = (spinMat !![(a' : ℚ), b'; c', d']) i j := fun i j => by
+      rw [← hTS]; rfl
+    have key : ∀ (x : ℤ) (i j : Fin 3) (r : ℚ), (spinMat !![(a' : ℚ), b'; c', d']) i j = r / (a' * d' - b' * c') →
+        r = (x : ℚ) ^ 2 → (a' * d' - b' * c' : ℤ) ∣ x ^ 2 := by
+      intro x i j r hij hr
+      refine ⟨T.val i j, ?_⟩
+      apply Int.cast_injective (α := ℚ)
+      have := ent i j
+      rw [hij] at this
+      push_cast
+      rw [← hr, this]; field_simp
+    have h00 : (a' * d' - b' * c' : ℤ) ∣ a' ^ 2 :=
+      key a' 0 0 ((a' : ℚ) ^ 2) (by rw [spinMat_eq]; simp; ring) (by rfl)
+    have h02 : (a' * d' - b' * c' : ℤ) ∣ c' ^ 2 :=
+      key c' 0 2 ((c' : ℚ) ^ 2) (by rw [spinMat_eq]; simp; ring) (by rfl)
+    have h20 : (a' * d' - b' * c' : ℤ) ∣ b' ^ 2 :=
+      key b' 2 0 ((b' : ℚ) ^ 2) (by rw [spinMat_eq]; simp; ring) (by rfl)
+    have h22 : (a' * d' - b' * c' : ℤ) ∣ d' ^ 2 :=
+      key d' 2 2 ((d' : ℚ) ^ 2) (by rw [spinMat_eq]; simp; ring) (by rfl)
+    have hunit : a' * d' - b' * c' = 1 ∨ a' * d' - b' * c' = -1 := by
+      by_contra hne
+      have hn1 : (a' * d' - b' * c' : ℤ).natAbs ≠ 1 := fun h1 => hne (by omega)
+      obtain ⟨q, hq, hqd⟩ := Nat.exists_prime_and_dvd hn1
+      have hp : Prime (q : ℤ) := Nat.prime_iff_prime_int.mp hq
+      have hpD : (q : ℤ) ∣ (a' * d' - b' * c' : ℤ) := Int.natCast_dvd.mpr hqd
+      exact hprim q hp ⟨hp.dvd_of_dvd_pow (hpD.trans h00), hp.dvd_of_dvd_pow (hpD.trans h20),
+        hp.dvd_of_dvd_pow (hpD.trans h02), hp.dvd_of_dvd_pow (hpD.trans h22)⟩
+    have hunit' : IsUnit (!![a', b'; c', d'] : Matrix (Fin 2) (Fin 2) ℤ).det := by
+      rw [Matrix.det_fin_two_of]; rcases hunit with h | h <;> rw [h] <;> simp
+    refine ⟨Matrix.GeneralLinearGroup.mk'' !![a', b'; c', d'] hunit', ?_⟩
+    rw [hTS]
+    show spinMat !![(a' : ℚ), b'; c', d'] = spinMat ((!![a', b'; c', d'] : Matrix (Fin 2) (Fin 2) ℤ).map (Int.cast : ℤ → ℚ))
+    rw [map_fin2]
+  · intro S
+    obtain ⟨a, b, c, d, hS⟩ : ∃ a b c d, S.val = !![a, b; c, d] := ⟨_, _, _, _, Matrix.eta_fin_two _⟩
+    have hD := Siegel.det_GL_int_eq S
+    rw [hS, Matrix.det_fin_two_of] at hD
+    rw [hS, map_fin2]
+    have hne : (a : ℚ) * d - b * c ≠ 0 := by
+      rcases hD with h | h
+      · have : (a : ℚ) * d - b * c = 1 := by exact_mod_cast h
+        rw [this]; norm_num
+      · have : (a : ℚ) * d - b * c = -1 := by exact_mod_cast h
+        rw [this]; norm_num
+    rw [spinMat_eq_one _ _ _ _ hne]
+    constructor
+    · rintro ⟨e, he⟩
+      have hb : (b : ℚ) = 0 := by simpa using congrFun (congrFun he 0) 1
+      have hc : (c : ℚ) = 0 := by simpa using congrFun (congrFun he 1) 0
+      have ha : (a : ℚ) = e := by simpa using congrFun (congrFun he 0) 0
+      have hd : (d : ℚ) = e := by simpa using congrFun (congrFun he 1) 1
+      have hb' : b = 0 := by exact_mod_cast hb
+      have hc' : c = 0 := by exact_mod_cast hc
+      have had : a = d := by
+        have : (a : ℚ) = d := by rw [ha, hd]
+        exact_mod_cast this
+      subst hb' hc' had
+      have h1 : (a - 1) * (a + 1) = 0 := by
+        rcases hD with h | h <;> nlinarith
+      rcases mul_eq_zero.mp h1 with h | h
+      · left; apply Units.ext; rw [hS]; have : a = 1 := by omega
+        subst this; ext i j; fin_cases i <;> fin_cases j <;> simp
+      · right; apply Units.ext; rw [hS]; have : a = -1 := by omega
+        subst this; ext i j; fin_cases i <;> fin_cases j <;> simp
+    · rintro (h | h)
+      · have h1 := congrArg Units.val h
+        rw [hS] at h1
+        have h2 : (a = 1 ∧ b = 0) ∧ c = 0 ∧ d = 1 := by
+          have e00 := congrFun (congrFun h1 0) 0
+          have e01 := congrFun (congrFun h1 0) 1
+          have e10 := congrFun (congrFun h1 1) 0
+          have e11 := congrFun (congrFun h1 1) 1
+          simp at e00 e01 e10 e11
+          exact ⟨⟨e00, e01⟩, e10, e11⟩
+        obtain ⟨⟨rfl, rfl⟩, rfl, rfl⟩ := h2
+        exact ⟨1, by ext i j; fin_cases i <;> fin_cases j <;> simp⟩
+      · have h1 := congrArg Units.val h
+        rw [hS] at h1
+        have h2 : (a = -1 ∧ b = 0) ∧ c = 0 ∧ d = -1 := by
+          have e00 := congrFun (congrFun h1 0) 0
+          have e01 := congrFun (congrFun h1 0) 1
+          have e10 := congrFun (congrFun h1 1) 0
+          have e11 := congrFun (congrFun h1 1) 1
+          simp at e00 e01 e10 e11
+          exact ⟨⟨e00, e01⟩, e10, e11⟩
+        obtain ⟨⟨rfl, rfl⟩, rfl, rfl⟩ := h2
+        exact ⟨-1, by ext i j; fin_cases i <;> fin_cases j <;> simp⟩
 
-/-- **Lemma 5.3**: two integral vectors $\vec{b}, \vec{b}'$ lie in the same orbit of the group $\mathfrak G = \{T(S) : S \in SL_2(\mathbb Z)\}$ if and only if the binary forms $\varphi_{\vec{b}}$, $\varphi_{\vec{b}'}$ are properly equivalent ($\varphi_{\vec{b}'}(\vec{u}) = \varphi_{\vec{b}}(U\vec{u})$, $U \in SL_2(\mathbb Z)$). Since $f_0(\vec{b})$ is the determinant of $\varphi_{\vec{b}}$ and $\vec{b} \mapsto \varphi_{\vec{b}}$ is a bijection onto the classically integral binary forms (`phi`), the $\mathfrak G$-orbits of the $\vec{b}$ with $f_0(\vec{b}) = m$ correspond bijectively to the proper classes of classically integral binary forms of determinant $m$. -/
-@[kb "cassels1978" "Ch. 13, §5, Lemma 5.3, p. 303"]
-theorem lemma_5_3 (b b' : Fin 3 → ℤ) :
-    (∃ S : SpecialLinearGroup (Fin 2) ℤ,
-      (spinRep (SpecialLinearGroup.toGL S) : Matrix (Fin 3) (Fin 3) ℤ) *ᵥ b = b') ↔
-    ∃ U : SpecialLinearGroup (Fin 2) ℤ, ∀ u : Fin 2 → ℤ,
-      phi b' u = phi b ((U : Matrix (Fin 2) (Fin 2) ℤ) *ᵥ u) := by
+theorem map_mul_cast {n : ℕ} (A B : Matrix (Fin n) (Fin n) ℤ) :
+    (A * B).map (Int.cast : ℤ → ℚ) = A.map (Int.cast : ℤ → ℚ) * B.map (Int.cast : ℤ → ℚ) := by
+  ext i j; simp [Matrix.mul_apply]
+
+theorem det_map_cast {n : ℕ} (A : Matrix (Fin n) (Fin n) ℤ) :
+    (A.map (Int.cast : ℤ → ℚ)).det = (A.det : ℚ) := (Int.cast_det A).symm
+
+theorem frakG_mul {T₁ T₂ : GL (Fin 3) ℤ} {S₁ S₂ : GL (Fin 2) ℤ}
+    (h₁ : T₁.val.map (Int.cast : ℤ → ℚ) = spinMat (S₁.val.map (Int.cast : ℤ → ℚ)))
+    (h₂ : T₂.val.map (Int.cast : ℤ → ℚ) = spinMat (S₂.val.map (Int.cast : ℤ → ℚ))) :
+    (T₁ * T₂).val.map (Int.cast : ℤ → ℚ) = spinMat ((S₂ * S₁).val.map (Int.cast : ℤ → ℚ)) := by
+  have hne : ∀ S : GL (Fin 2) ℤ, (S.val.map (Int.cast : ℤ → ℚ)).det ≠ 0 := fun S => by
+    rw [det_map_cast]; rcases Siegel.det_GL_int_eq S with h | h <;> simp [h]
+  rw [Units.val_mul, map_mul_cast, h₁, h₂, Units.val_mul, map_mul_cast]
+  exact (spinMat_rat _ _ (hne S₂) (hne S₁)).2.2.1.symm
+
+theorem frakG_inv {T : GL (Fin 3) ℤ} {S : GL (Fin 2) ℤ}
+    (h : T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))) :
+    (T⁻¹).val.map (Int.cast : ℤ → ℚ) = spinMat ((S⁻¹).val.map (Int.cast : ℤ → ℚ)) := by
+  have hne : ∀ S : GL (Fin 2) ℤ, (S.val.map (Int.cast : ℤ → ℚ)).det ≠ 0 := fun S => by
+    rw [det_map_cast]; rcases Siegel.det_GL_int_eq S with h | h <;> simp [h]
+  have h1 : (T⁻¹).val.map (Int.cast : ℤ → ℚ) * T.val.map (Int.cast : ℤ → ℚ) = 1 := by
+    rw [← map_mul_cast, ← Units.val_mul, inv_mul_cancel]; ext i j; simp [Matrix.one_apply]
+  have h2 : spinMat ((S⁻¹).val.map (Int.cast : ℤ → ℚ)) * T.val.map (Int.cast : ℤ → ℚ) = 1 := by
+    rw [h, ← (spinMat_rat _ _ (hne S) (hne S⁻¹)).2.2.1, ← map_mul_cast, ← Units.val_mul, mul_inv_cancel]
+    simpa using spinMat_one
+  exact (Matrix.inv_eq_left_inv h1).symm.trans (Matrix.inv_eq_left_inv h2)
+
+/-- **The subgroup $\mathfrak{G}$** (Cassels, Ch. 13, §5, p. 303): the image in $O^+(f_0)$ of the integral matrices of
+determinant $1$. -/
+@[kb "cassels1978" "Ch. 13, §5, p. 303 (the subgroup 𝔊, image of SL₂(ℤ))"]
+def frakG : Subgroup (GL (Fin 3) ℤ) where
+  carrier := {T | T ∈ Siegel.AutPlus fZero ∧ ∃ S : GL (Fin 2) ℤ, S.val.det = 1 ∧
+    T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))}
+  mul_mem' := by
+    rintro T₁ T₂ ⟨hT₁, S₁, hS₁, h₁⟩ ⟨hT₂, S₂, hS₂, h₂⟩
+    refine ⟨(Siegel.AutPlus fZero).mul_mem hT₁ hT₂, S₂ * S₁, ?_, frakG_mul h₁ h₂⟩
+    rw [Units.val_mul, Matrix.det_mul, hS₁, hS₂, one_mul]
+  one_mem' := by
+    refine ⟨(Siegel.AutPlus fZero).one_mem, 1, by simp, ?_⟩
+    simp [spinMat_one]
+  inv_mem' := by
+    rintro T ⟨hT, S, hS, h⟩
+    refine ⟨(Siegel.AutPlus fZero).inv_mem hT, S⁻¹, ?_, frakG_inv h⟩
+    have := congrArg Matrix.det (S.inv_val)
+    rw [Matrix.det_mul, hS, mul_one, Matrix.det_one] at this
+    exact this
+
+theorem spinMat_cast_det_ne (S : GL (Fin 2) ℤ) : (S.val.map (Int.cast : ℤ → ℚ)).det ≠ 0 := by
+  rw [det_map_cast]; rcases Siegel.det_GL_int_eq S with h | h <;> simp [h]
+
+/-- $T(S_1) = T(S_2)$ for integral unimodular $S_i$ forces $\det S_1 = \det S_2$. -/
+theorem det_eq_of_spinMat_eq {S₁ S₂ : GL (Fin 2) ℤ}
+    (h : spinMat (S₁.val.map (Int.cast : ℤ → ℚ)) = spinMat (S₂.val.map (Int.cast : ℤ → ℚ))) :
+    S₁.val.det = S₂.val.det := by
+  have h1 : spinMat ((S₂ * S₁⁻¹).val.map (Int.cast : ℤ → ℚ)) = 1 := by
+    rw [Units.val_mul, map_mul_cast,
+      (spinMat_rat _ _ (spinMat_cast_det_ne S₂) (spinMat_cast_det_ne S₁⁻¹)).2.2.1, ← h,
+      ← (spinMat_rat _ _ (spinMat_cast_det_ne S₁) (spinMat_cast_det_ne S₁⁻¹)).2.2.1, ← map_mul_cast,
+      ← Units.val_mul, mul_inv_cancel]
+    simpa using spinMat_one
+  have h2 : S₂ * S₁⁻¹ = 1 ∨ S₂ * S₁⁻¹ = -1 := (spinMat_int.2.2 _).mp h1
+  have h3 : (S₂ * S₁⁻¹).val.det = 1 := by
+    rcases h2 with h2 | h2 <;> rw [h2] <;> simp [Matrix.det_neg]
+  rw [Units.val_mul, Matrix.det_mul] at h3
+  have h4 : S₁.val.det * (S₁⁻¹).val.det = 1 := by
+    rw [← Matrix.det_mul, ← Units.val_mul, mul_inv_cancel]; simp
+  have hne : (S₁⁻¹).val.det ≠ 0 := right_ne_zero_of_mul_eq_one h4
+  exact (mul_right_cancel₀ hne (h3.trans h4.symm)).symm
+
+/-- For $T = T(S)$ in $O^+(f_0)$: $T \in \mathfrak{G}$ iff $\det S = 1$. -/
+theorem mem_frakG_iff {T : GL (Fin 3) ℤ} {S : GL (Fin 2) ℤ} (hT : T ∈ Siegel.AutPlus fZero)
+    (h : T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))) :
+    T ∈ frakG ↔ S.val.det = 1 := by
   constructor
-  · rintro ⟨S, hS⟩
-    refine ⟨trSL S, fun u => ?_⟩
-    rw [← hS, coe_spinRep_toGL, phi_symSq, coe_trSL]
-  · rintro ⟨U, hU⟩
-    refine ⟨trSL U, ?_⟩
-    apply eq_of_phi_eq
-    intro u
-    rw [coe_spinRep_toGL, coe_trSL, phi_symSq, Matrix.transpose_transpose, hU]
+  · rintro ⟨-, S', hS', h'⟩
+    rw [← hS']
+    exact det_eq_of_spinMat_eq (h.symm.trans h')
+  · intro hS
+    exact ⟨hT, S, hS, h⟩
 
-end QuadFormsKB.Cassels.Ch13
+/-- **$\mathfrak{G}$ has index $2$ in $O^+(f_0)$** (Cassels, Ch. 13, §5, p. 303). -/
+@[kb "cassels1978" "Ch. 13, §5, p. 303 (𝔊 has index 2 in O⁺(f₀))"]
+theorem frakG_index : frakG ≤ Siegel.AutPlus fZero ∧ (frakG.subgroupOf (Siegel.AutPlus fZero)).index = 2 := by
+  refine ⟨fun T hT => hT.1, ?_⟩
+  obtain ⟨S₀, hS₀⟩ : ∃ S₀ : GL (Fin 2) ℤ, S₀.val = !![1, 0; 0, -1] :=
+    ⟨Matrix.GeneralLinearGroup.mk'' !![1, 0; 0, -1] (by rw [Matrix.det_fin_two_of]; simp), rfl⟩
+  have hdet₀ : S₀.val.det = -1 := by rw [hS₀, Matrix.det_fin_two_of]; simp
+  obtain ⟨A, hA, hAS⟩ := spinMat_int.1 S₀
+  rw [Subgroup.index_eq_two_iff]
+  refine ⟨⟨A, hA⟩, ?_⟩
+  rintro ⟨B, hB⟩
+  obtain ⟨S, hS⟩ := spinMat_int.2.1 B hB
+  have hBA := frakG_mul hS hAS
+  have hBm := mem_frakG_iff hB hS
+  have hBAm := mem_frakG_iff ((Siegel.AutPlus fZero).mul_mem hB hA) hBA
+  simp only [Subgroup.mem_subgroupOf, Subgroup.coe_mul]
+  rw [hBm, hBAm, Units.val_mul, Matrix.det_mul, hdet₀]
+  rcases Siegel.det_GL_int_eq S with h | h <;> simp [h]
+
+/-- The binary form $\phi_{\vec b}(\vec x) = b_0x_0^2 + 2b_1x_0x_1 + b_2x_1^2$ of (5.2). -/
+def bq (b : Fin 3 → ℤ) (x : Fin 2 → ℤ) : ℤ := b 0 * x 0 ^ 2 + 2 * b 1 * x 0 * x 1 + b 2 * x 1 ^ 2
+
+theorem eval_binGram (b : Fin 3 → ℤ) (x : Fin 2 → ℤ) :
+    (Siegel.ofGram !![b 0, b 1; b 1, b 2]).eval x = bq b x := by
+  have hA : (!![b 0, b 1; b 1, b 2] : Matrix (Fin 2) (Fin 2) ℤ).IsSymm := by
+    ext i j; fin_cases i <;> fin_cases j <;> simp
+  rw [Siegel.eval_ofGram hA]
+  simp [bq, dotProduct, mulVec, Fin.sum_univ_two]
+  ring
+
+theorem tInt_core (U : Matrix (Fin 2) (Fin 2) ℤ) (hU : U.det = 1) (b b' : Fin 3 → ℤ) :
+    tInt U *ᵥ b = b' ↔ ∀ x, bq b (U *ᵥ x) = bq b' x := by
+  obtain ⟨a, c, e, d, rfl⟩ : ∃ a c e d, U = !![a, c; e, d] := ⟨_, _, _, _, Matrix.eta_fin_two U⟩
+  rw [Matrix.det_fin_two_of] at hU
+  constructor
+  · rintro rfl x
+    simp [bq, tInt, mulVec, dotProduct, Fin.sum_univ_three, Matrix.det_fin_two_of, hU]
+    ring
+  · intro h
+    have h0 := h ![1, 0]
+    have h1 := h ![0, 1]
+    have h2 := h ![1, 1]
+    simp [bq, mulVec, dotProduct, Fin.sum_univ_two] at h0 h1 h2
+    ext i
+    fin_cases i <;> simp [tInt, mulVec, dotProduct, Fin.sum_univ_three, Matrix.det_fin_two_of, hU]
+    · linarith
+    · linarith
+    · linarith
+
+theorem eq_tInt {T : GL (Fin 3) ℤ} {S : GL (Fin 2) ℤ}
+    (h : T.val.map (Int.cast : ℤ → ℚ) = spinMat (S.val.map (Int.cast : ℤ → ℚ))) : T.val = tInt S.val :=
+  Matrix.map_injective Int.cast_injective (h.trans (tInt_map _ (Siegel.det_GL_int_eq S)).symm)
+
+/-- **Lemma 5.3** (Cassels, Ch. 13, §5, p. 303): the orbits under $\mathfrak{G}$ of the integral $\vec{b}$ with
+$f_0(\vec{b}) = m$ correspond bijectively to the proper equivalence classes of classically integral binary forms of
+determinant $m$, by $\vec{b} \mapsto \phi_{\vec{b}} = b_0u_0^2 + 2b_1u_0u_1 + b_2u_1^2$ (whose determinant is
+$f_0(\vec{b})$; every such binary form is a $\phi_{\vec{b}}$). Stated: $\vec{b}, \vec{b}'$ are in the same
+$\mathfrak{G}$-orbit iff $\phi_{\vec{b}}$, $\phi_{\vec{b}'}$ are properly equivalent. (Cassels assumes $m \ne 0$; not
+needed.)
+
+*Note*: Equivalent to `Cassels.Ch13.lemma_5_3` (the image of $SL_2(\mathbb Z)$ is the same group under
+$S \mapsto S^{\mathsf T}$), which carries the tag. -/
+theorem frakG_orbit_iff (b b' : Fin 3 → ℤ) :
+    (∃ T ∈ frakG, T.val *ᵥ b = b') ↔
+      Siegel.ProperIntEquiv (Siegel.ofGram !![b 0, b 1; b 1, b 2]) (Siegel.ofGram !![b' 0, b' 1; b' 1, b' 2]) := by
+  constructor
+  · rintro ⟨T, ⟨hTa, S, hS, hmap⟩, hTb⟩
+    refine ⟨S, hS, fun x => ?_⟩
+    rw [eval_binGram, eval_binGram]
+    rw [eq_tInt hmap] at hTb
+    exact (tInt_core S.val hS b b').mp hTb x
+  · rintro ⟨S, hS, h⟩
+    simp only [eval_binGram] at h
+    obtain ⟨T, hT, hmap⟩ := spinMat_int.1 S
+    refine ⟨T, (mem_frakG_iff hT hmap).mpr hS, ?_⟩
+    rw [eq_tInt hmap]
+    exact (tInt_core S.val hS b b').mpr h
+
+/-- Proper equivalence of the binary forms $\phi_{\vec b}$, $\phi_{\vec b'}$. -/
+def BE (b b' : Fin 3 → ℤ) : Prop :=
+  Siegel.ProperIntEquiv (Siegel.ofGram !![b 0, b 1; b 1, b 2]) (Siegel.ofGram !![b' 0, b' 1; b' 1, b' 2])
+
+/-- The substitution $x_0 \mapsto x_0 + t x_1$ on coefficients. -/
+def shiftV (t : ℤ) (b : Fin 3 → ℤ) : Fin 3 → ℤ := ![b 0, b 1 + t * b 0, b 2 + 2 * t * b 1 + t ^ 2 * b 0]
+
+/-- The substitution $(x_0, x_1) \mapsto (-x_1, x_0)$ on coefficients. -/
+def swapV (b : Fin 3 → ℤ) : Fin 3 → ℤ := ![b 2, -b 1, b 0]
+
+theorem BE_refl (b : Fin 3 → ℤ) : BE b b := Siegel.ProperIntEquiv.refl _
+
+theorem BE_trans {b b' b'' : Fin 3 → ℤ} (h : BE b b') (h' : BE b' b'') : BE b b'' :=
+  Siegel.ProperIntEquiv.trans h h'
+
+theorem BE_shift (t : ℤ) (b : Fin 3 → ℤ) : BE b (shiftV t b) := by
+  refine ⟨Matrix.GeneralLinearGroup.mk'' !![1, t; 0, 1] (by rw [Matrix.det_fin_two_of]; simp), ?_, fun x => ?_⟩
+  · show (!![1, t; 0, 1] : Matrix (Fin 2) (Fin 2) ℤ).det = 1
+    rw [Matrix.det_fin_two_of]; simp
+  · rw [eval_binGram, eval_binGram]
+    show bq b (!![1, t; 0, 1] *ᵥ x) = bq (shiftV t b) x
+    simp [bq, shiftV, mulVec, dotProduct, Fin.sum_univ_two]
+    ring
+
+theorem BE_swap (b : Fin 3 → ℤ) : BE b (swapV b) := by
+  refine ⟨Matrix.GeneralLinearGroup.mk'' !![0, -1; 1, 0] (by rw [Matrix.det_fin_two_of]; simp), ?_, fun x => ?_⟩
+  · show (!![0, -1; 1, 0] : Matrix (Fin 2) (Fin 2) ℤ).det = 1
+    rw [Matrix.det_fin_two_of]; simp
+  · rw [eval_binGram, eval_binGram]
+    show bq b (!![0, -1; 1, 0] *ᵥ x) = bq (swapV b) x
+    simp [bq, swapV, mulVec, dotProduct, Fin.sum_univ_two]
+    ring
+
+/-- Residue of smallest absolute value: $2|x + ty| \le |y|$ for some integer $t$. -/
+theorem exists_res (x y : ℤ) (hy : y ≠ 0) : ∃ t : ℤ, 2 * |x + t * y| ≤ |y| := by
+  rcases lt_or_gt_of_ne hy with h | h
+  · have hc : 0 < -y := by omega
+    have h1 := Int.ediv_mul_le (2 * x + -y) (show 2 * -y ≠ 0 by omega)
+    have h2 := Int.lt_ediv_add_one_mul_self (2 * x + -y) (show 0 < 2 * -y by omega)
+    refine ⟨(2 * x + -y) / (2 * -y), ?_⟩
+    rw [abs_of_neg h]
+    have : 2 * |x + (2 * x + -y) / (2 * -y) * y| = |2 * (x + (2 * x + -y) / (2 * -y) * y)| := by
+      rw [abs_mul]; norm_num
+    rw [this, abs_le]
+    constructor <;> nlinarith
+  · have h1 := Int.ediv_mul_le (2 * x + y) (show 2 * y ≠ 0 by omega)
+    have h2 := Int.lt_ediv_add_one_mul_self (2 * x + y) (show 0 < 2 * y by omega)
+    refine ⟨-((2 * x + y) / (2 * y)), ?_⟩
+    rw [abs_of_pos h]
+    have : 2 * |x + -((2 * x + y) / (2 * y)) * y| = |2 * (x + -((2 * x + y) / (2 * y)) * y)| := by
+      rw [abs_mul]; norm_num
+    rw [this, abs_le]
+    constructor <;> nlinarith
+
+theorem bounded_aux (m : ℤ) (hm : m ≠ 0) (b : Fin 3 → ℤ) (hb : b 0 * b 2 - b 1 ^ 2 = m) :
+    ∃ b', BE b b' ∧ ∀ i, |b' i| ≤ 2 * |m| := by
+  classical
+  have hex : ∃ n, ∃ b', BE b b' ∧ b' 0 * b' 2 - b' 1 ^ 2 = m ∧ (b' 0).natAbs = n :=
+    ⟨_, b, BE_refl b, hb, rfl⟩
+  obtain ⟨c, hE, hm', hn⟩ := Nat.find_spec hex
+  have hmin : ∀ b'', BE b b'' → b'' 0 * b'' 2 - b'' 1 ^ 2 = m → (c 0).natAbs ≤ (b'' 0).natAbs :=
+    fun b'' h1 h2 => by rw [hn]; exact Nat.find_min' hex ⟨b'', h1, h2, rfl⟩
+  clear hn hex
+  have hmabs : 0 < |m| := abs_pos.mpr hm
+  by_cases h0 : c 0 = 0
+  · have h1 : c 1 ≠ 0 := by
+      intro h; apply hm; rw [← hm', h0, h]; ring
+    obtain ⟨t, ht⟩ := exists_res (c 2) (2 * c 1) (by omega)
+    have habs : |2 * c 1| = 2 * |c 1| := by rw [abs_mul]; norm_num
+    rw [habs] at ht
+    have hm1 : |c 1| ≤ |m| := by
+      have : |m| = |c 1| * |c 1| := by
+        have e : c 0 * c 2 - c 1 ^ 2 = -(c 1 * c 1) := by rw [h0]; ring
+        rw [← hm', e, abs_neg, abs_mul]
+      have hp : 1 ≤ |c 1| := by have := abs_pos.mpr h1; omega
+      nlinarith
+    refine ⟨shiftV t c, BE_trans hE (BE_shift t c), fun i => ?_⟩
+    fin_cases i
+    · simp [shiftV, h0] <;> omega
+    · simp [shiftV, h0] <;> omega
+    · simp only [shiftV, h0]
+      simp
+      have : |c 2 + 2 * t * c 1| ≤ |c 1| := by
+        have : c 2 + t * (2 * c 1) = c 2 + 2 * t * c 1 := by ring
+        rw [this] at ht; omega
+      omega
+  · obtain ⟨t, ht⟩ := exists_res (c 1) (c 0) h0
+    set d := shiftV t c with hd
+    have hdm : d 0 * d 2 - d 1 ^ 2 = m := by
+      rw [← hm']; simp [hd, shiftV]; ring
+    have hdE : BE b d := BE_trans hE (BE_shift t c)
+    have hd0 : d 0 = c 0 := by simp [hd, shiftV]
+    have hd1 : d 1 = c 1 + t * c 0 := by simp [hd, shiftV]
+    have hsw := hmin (swapV d) (BE_trans hdE (BE_swap d)) (by simp [swapV]; rw [← hdm]; ring)
+    simp only [swapV] at hsw
+    simp at hsw
+    refine ⟨d, hdE, fun i => ?_⟩
+    have hA : 1 ≤ |d 0| := by rw [hd0]; have := abs_pos.mpr h0; omega
+    have hB : 2 * |d 1| ≤ |d 0| := by rw [hd1, hd0]; exact ht
+    have hC : |d 0| ≤ |d 2| := by
+      rw [hd0, Int.abs_eq_natAbs, Int.abs_eq_natAbs]; exact_mod_cast hsw
+    have hprod : |d 0| * |d 2| ≤ |m| + |d 1| * |d 1| := by
+      have : d 0 * d 2 = m + d 1 ^ 2 := by linarith
+      calc |d 0| * |d 2| = |d 0 * d 2| := (abs_mul _ _).symm
+        _ = |m + d 1 ^ 2| := by rw [this]
+        _ ≤ |m| + |d 1 ^ 2| := abs_add_le _ _
+        _ = |m| + |d 1| * |d 1| := by rw [abs_pow, sq]
+    have hB0 := abs_nonneg (d 1)
+    have hC2 : |d 2| ≤ 2 * |m| := by nlinarith
+    fin_cases i
+    · simp; nlinarith
+    · simp; nlinarith
+    · simpa using hC2
+
+/-- **Lemma 5.3, Corollary** (Cassels, Ch. 13, §5, p. 303): the orbits under $\mathfrak{G}$ of the $\vec{b}$ with
+$f_0(\vec{b}) = m \ne 0$ can be effectively determined. Effective form: each orbit contains a $\vec{b}$ with
+$|b_i| \le 2|m|$ (a reduced binary form $\phi_{\vec{b}}$, by the reduction theory of binary forms), so the
+representatives are found by a finite search, and the proper equivalence of the finitely many candidates is decided
+by §3 (indefinite) or by the reduction of definite forms (Ch. 12). -/
+@[kb "cassels1978" "Ch. 13, §5, Lemma 5.3, Cor., p. 303"]
+theorem exists_frakG_bounded {m : ℤ} (hm : m ≠ 0) {b : Fin 3 → ℤ} (hb : fZero.eval b = m) :
+    ∃ T ∈ frakG, ∀ i, |(T.val *ᵥ b) i| ≤ 2 * |m| := by
+  have hb' : b 0 * b 2 - b 1 ^ 2 = m := by simpa [QuadForm.eval, evalIn_fZero] using hb
+  obtain ⟨b', hE, hbd⟩ := bounded_aux m hm b hb'
+  obtain ⟨T, hT, hTb⟩ := (frakG_orbit_iff b b').mpr hE
+  exact ⟨T, hT, fun i => by rw [hTb]; exact hbd i⟩
+
+/-- **Lemma 5.4** (Cassels, Ch. 13, §5, p. 303): the orbits under $O^+(f_0)$ of the integral $\vec{b}$ with
+$f_0(\vec{b}) = m \ne 0$ can be effectively determined; effective form as in the Corollary to Lemma 5.3. -/
+@[kb "cassels1978" "Ch. 13, §5, Lemma 5.4, p. 303"]
+theorem exists_autPlus_fZero_bounded {m : ℤ} (hm : m ≠ 0) {b : Fin 3 → ℤ} (hb : fZero.eval b = m) :
+    ∃ T ∈ Siegel.AutPlus fZero, ∀ i, |(T.val *ᵥ b) i| ≤ 2 * |m| := by
+  obtain ⟨T, hT, h⟩ := exists_frakG_bounded hm hb
+  exact ⟨T, hT.1, h⟩
+
+end QuadFormsKB.Reduction

@@ -606,7 +606,7 @@ theorem isotropicIn_of_primitive_pow_dvd (Q : QuadForm ℤ n) (p : ℕ) [Fact p.
 /-- **Bounded valuation of primitive vectors** (Hanke 2004, p. 363, O'Meara 91:1): if $Q$ is anisotropic
 over $\mathbb{Q}_p$, there is $C$ such that for $k \ge C$ every solution of $Q(\vec{x}) \equiv 0
 \pmod{p^k}$ is of Zero type. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
+@[kb "omeara1963" "§91A, 91:1, p. 240 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
 theorem exists_isZeroType_of_anisotropic (Q : QuadForm ℤ n) (p : ℕ) [Fact p.Prime]
     (haniso : ¬ Q.IsotropicIn ℚ_[p]) :
     ∃ C : ℕ, ∀ k ≥ C, ∀ x : Fin n → ZMod (p ^ k),

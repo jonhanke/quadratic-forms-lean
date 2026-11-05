@@ -67,7 +67,7 @@ $g$ is in the genus of $f$ (`Siegel.SameGenus`), then $\operatorname{disc} g = D
 primitive. Positive definiteness is read at the real place (`Siegel.SameGenus.posDef`), the discriminant
 $= -\det H$ at every $p$ (`Siegel.SameGenus.det_hessian_eq`), and primitivity follows from $D$ fundamental
 (`isPrimitive_of_fund`). -/
-@[kb "cassels1978" "Ch. 9, Lemma 4.1 and (4.1), p. 139; Ch. 14, (1.5), p. 331 (D = −4d)"]
+@[kb "cassels1978" "Ch. 9, Lemma 4.1 and (4.1), p. 139; Ch. 14, §1, (1.5), p. 331 (proof route: the discriminant is minus the Hessian determinant)"]
 theorem mem_primPosForm_of_sameGenus (f : PrimPosForm D) {g : BinQF} (h : SameGenus f.1 g) :
     g.disc = D ∧ g.PosDef ∧ g.IsPrimitive := by
   have hf : IntQF.PosDef f.1 := (intQF_posDef_iff _).mpr f.2.2.1

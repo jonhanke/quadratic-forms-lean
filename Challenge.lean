@@ -50,6 +50,8 @@ import QuadFormsKB.Tamagawa.RatBridge
 import QuadFormsKB.Binary.QuadraticField
 import QuadFormsKB.Siegel.FourSquares
 import QuadFormsKB.Siegel.Genus
+import QuadFormsKB.Siegel.LocalProduct
+import QuadFormsKB.Literature.Universal.Basic
 import QuadFormsKB.LocalDensity.FormDensityHyperbolic
 import QuadFormsKB.LocalDensity.NFFormDensity
 
@@ -247,7 +249,8 @@ end Siegel
 /-! ## The Tamagawa number and the mass formula over totally real number fields
 
 Setting: F a totally real number field, Q₀ a quadratic form in n ≥ 4 variables with coefficients in 𝓞 F that is
-totally positive definite over F. (Ranks 1–3 are also proved in the library; see `docs/results/`.) -/
+totally positive definite over F; the last two statements are the case n = 3. (Ranks 1 and 2 are also
+proved in the library; see `docs/results/`.) -/
 
 section Tamagawa
 
@@ -279,6 +282,33 @@ theorem massFormula_totallyReal (hn : 4 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ 
         ∏' v : HeightOneSpectrum (𝓞 F), LocalDensity.NF.siegelDensity v Q₀ Q₀)⁻¹ ∧
       (genusClasses (formF Q₀) (stdLat F n)).Finite ∧
       (∀ M : Lat F n, SameGenus (formF Q₀) (stdLat F n).1 M.1 → Finite (autLat (formF Q₀) M.1)) ∧
+      Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀ := by
+  sorry
+
+/-- **τ(SO(Q)) = 2, ternary forms.** As `tamagawa_two_totallyReal`, for a form Q₀ in 3 variables with coefficients
+in 𝓞 F that is totally positive definite over F: the Tamagawa number `tauSO Q₀` of SO(Q₀) is 2. Moreover the
+product ∏_𝔭 α_𝔭(Q₀, Q₀) in μ_Tam(K) converges unconditionally, and the double-coset space
+SO(Q₀)(F)\SO(Q₀)(𝔸_f)/SO(𝓞̂_F^3) in the mass is finite, with finite stabilizers Γ_α. -/
+theorem tamagawa_two_totallyReal_ternary (Q₀ : QuadForm (𝓞 F) 3) (hQ : IsTotallyPosDef (formF Q₀)) :
+    tauSO Q₀ = 2 ∧
+      (Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀) ∧
+      Finite (MulAction.orbitRel.Quotient ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀)))
+        (soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F 3)).subgroupOf (soAf (formF Q₀)))) ∧
+      ∀ x : soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F 3)).subgroupOf (soAf (formF Q₀)),
+        Finite (MulAction.stabilizer ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀))) x) := by
+  sorry
+
+/-- **The Smith–Minkowski–Siegel mass formula, ternary forms.** As `massFormula_totallyReal`, for a form Q₀ in
+3 variables with coefficients in 𝓞 F that is totally positive definite over F, and L = 𝓞_F^3:
+∑_{L' ∈ Gen(L)} 1/|O(L')| = ( |d_F|^{-3/2} · ∏_σ vol(SO(Q₀^σ)) · ∏_𝔭 α_𝔭(Q₀, Q₀) )^{-1}
+(the exponent is -n(n-1)/4 at n = 3). Moreover the genus of L has finitely many classes, every lattice in the genus
+has a finite automorphism group, and the product ∏_𝔭 α_𝔭(Q₀, Q₀) converges unconditionally. -/
+theorem massFormula_totallyReal_ternary (Q₀ : QuadForm (𝓞 F) 3) (hQ : IsTotallyPosDef (formF Q₀)) :
+    (∑ᶠ c ∈ genusClasses (formF Q₀) (stdLat F 3), ((LatClass.autCard (formF Q₀) c : ℝ))⁻¹) =
+      (|(discr F : ℝ)| ^ (-((3 : ℝ) * (3 - 1) / 4)) * (∏ σ : F →ₐ[ℚ] ℂ, archVolSO 3 (detGram Q₀ σ)) *
+        ∏' v : HeightOneSpectrum (𝓞 F), LocalDensity.NF.siegelDensity v Q₀ Q₀)⁻¹ ∧
+      (genusClasses (formF Q₀) (stdLat F 3)).Finite ∧
+      (∀ M : Lat F 3, SameGenus (formF Q₀) (stdLat F 3).1 M.1 → Finite (autLat (formF Q₀) M.1)) ∧
       Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀ := by
   sorry
 
@@ -738,6 +768,24 @@ theorem divisorCount_xy {m : ℤ} (hm : m ≠ 0) :
       Subsingleton (DC (DVR.hyperbolic (𝓞 ℚ))) := by
   sorry
 
+/-- **Siegel's formula for positive definite ternary forms over ℤ, Euler product in the natural order of the
+primes** (Siegel 1935, Hauptsatz for n = 3). Let Q be a positive definite form over ℤ in 3 variables and m ≥ 1.
+Then the partial products ∏_{p ≤ X} β_p(m) of the local densities converge, as X → ∞, to a limit P
+(`Siegel.IsEulerProductValue Q m P`; the primes are taken in their natural order, since for n = 3 the product
+need not converge unconditionally), and
+a_E(m) = β_∞(m) · P.
+Here a_E(m) = (∑_{[Q'] ∈ Gen(Q)} r_{Q'}(m)/|Aut(Q')|) / (∑_{[Q'] ∈ Gen(Q)} 1/|Aut(Q')|) is the average over the
+GL_3(ℤ)-classes [Q'] of forms in the genus of Q (`Siegel.genusRepAvg`), r_{Q'}(m) = #{x ∈ ℤ³ : Q'(x) = m}, and
+β_∞(m) = (3 ω_3 D^{-1/2}/2) m^{1/2} with ω_3 the volume of the unit ball and D = det(H/2), H the Hessian of Q
+(`Siegel.aEWith Q m P` = β_∞(m) · P). Moreover the genus of Q has finitely many classes and its mass
+∑_{[Q'] ∈ Gen(Q)} 1/|Aut(Q')| is positive. (The library also proves the same formula with P the regularized value
+L(1, χ) · ∏_p β_p(m)(1 - χ(p)/p), `Tamagawa.RatHeadline3.siegelFormula3_rat_uncond`, on which this one rests; the
+two values agree.) -/
+theorem siegel_ternary_rat_natural (Q : QuadForm ℤ 3) (hQ : IntQF.PosDef Q) {m : ℤ} (hm : 1 ≤ m) :
+    (∃ P : ℝ, Siegel.IsEulerProductValue Q m P ∧ Siegel.genusRepAvg Q m = Siegel.aEWith Q m P) ∧
+      (Siegel.genusClasses Q).Finite ∧ 0 < Siegel.mass Q := by
+  sorry
+
 end Classical
 
 
@@ -872,6 +920,14 @@ Classical cases over ℚ
   discriminant of ℚ(√-m). `Binary.QField D`, `Binary.IsQuadDisc D` (Binary/QuadraticField.lean): the quadratic field
   of discriminant D. `Tamagawa.RatBridge.up Q` (Tamagawa/RatBridge.lean): Q over 𝓞_ℚ.
 * `LocalDensity.DVR.hyperbolic A` (LocalDensity/FormDensityHyperbolic.lean): the form x₀x₁ over A.
+* `IntQF.PosDef Q` (Literature/Universal/Basic.lean): Q(x) > 0 for every nonzero x ∈ ℤ^n.
+* `Siegel.genusClasses Q`, `Siegel.QClass.repNum`, `Siegel.QClass.autCard` (Siegel/Genus.lean): the
+  GL_n(ℤ)-classes of forms in the genus of Q; r_{Q'}(m) and |Aut(Q')| for a form Q' in the class.
+* `Siegel.mass Q`, `Siegel.genusRepSum Q m`, `Siegel.genusRepAvg Q m` (Siegel/Mass.lean): ∑ 1/|Aut(Q')|,
+  ∑ r_{Q'}(m)/|Aut(Q')| over the classes in the genus, and their quotient a_E(m).
+* `Siegel.eulerFactor Q m p`, `Siegel.eulerPartialProd Q m X`, `Siegel.IsEulerProductValue Q m P`,
+  `Siegel.betaInf Q m`, `Siegel.aEWith Q m P` (Siegel/LocalProduct.lean): β_p(m); ∏_{p ≤ X} β_p(m); these
+  partial products tend to P as X → ∞; β_∞(m); β_∞(m) · P.
 -/
 
 end QuadFormsKB.Headlines

@@ -234,8 +234,8 @@ end Embedding
 /-- **57:4** (O'Meara 1963, §57A, p. 145): $(1,-1) \cong M_2(F)$ as $F$-algebras. Following the book, take
 $y = e_{12} + e_{21}$ and $z = e_{12} - e_{21}$ (so $y^2 = 1$, $z^2 = -1$, $yz = -zy$); by 57:3 the map
 $i \mapsto y$, $j \mapsto z$ is injective, and it is onto since both sides have dimension $4$ over $F$.
-(The indices of $y$ and $z$ are lost in the machine-read text; they are reconstructed from the stated relations
-$y^2 = 1$, $z^2 = -1$, $yz = -zy$.) -/
+(*Page image, 2026-10-29:* the book takes $y = e_{21} + e_{12}$ and $z = e_{21} - e_{12}$; the proof here uses
+$z = e_{12} - e_{21}$, the negative, which satisfies the same relations.) -/
 @[kb "omeara1963" "§57A, 57:4, p. 145"]
 theorem nonempty_algEquiv_matrix_one_neg_one :
     Nonempty (ℍ[F,1,-1] ≃ₐ[F] Matrix (Fin 2) (Fin 2) F) := by

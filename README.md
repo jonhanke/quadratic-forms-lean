@@ -20,8 +20,8 @@ A Lean 4 library (built on Mathlib v4.35.0) for the arithmetic theory of quadrat
 Every result listed here is checked by the Lean kernel with only the standard axioms
 (`propext`, `Classical.choice`, `Quot.sound`) and depends on no unproved input.
 
-- **[Siegel's theorem for totally positive definite quadratic lattices representing numbers over totally real number fields](docs/results/siegel-totally-real.md):** for every totally positive definite quadratic lattice $`L`$ over <img src="docs/images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F"> of every rank $`n`$, in every genus (including genera of non-free lattices), and every totally positive $`m \in`$ <img src="docs/images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F">, the genus average $`\sum_{L'} r_{L'}(m)/|\mathrm{O}(L')| \big/ \sum_{L'} 1/|\mathrm{O}(L')|`$ equals the product of the local densities of $`L`$ (regularized by $`L(1,\chi)`$ when $`n = 2, 3`$).
-- **[Tamagawa number and mass formula over totally real number fields](docs/results/tamagawa-mass-formula.md):** $`\tau(\mathrm{SO}(Q)) = 2`$ and the Smith–Minkowski–Siegel mass formula for totally positive definite quadratic lattices of every rank over every totally real number field.
+- **[Siegel's theorem for totally positive definite quadratic lattices representing numbers over totally real number fields](docs/results/siegel-totally-real.md):** for every totally positive definite quadratic lattice $`L`$ over <img src="docs/images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F"> of every rank $`n`$, in every genus (including genera of non-free lattices), and every totally positive $`m \in`$ <img src="docs/images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F">, the genus average $`\sum_{L'} r_{L'}(m)/|\mathrm{O}(L')| \big/ \sum_{L'} 1/|\mathrm{O}(L')|`$ equals the product of the local densities of $`L`$ (regularized by $`L(1,\chi)`$ when $`n = 2, 3`$; over ℚ in rank $`3`$ also in the natural order of the primes).
+- **[Tamagawa number and mass formula over totally real number fields](docs/results/tamagawa-mass-formula.md):** $`\tau(\mathrm{SO}(Q)) = 2`$ and the Smith–Minkowski–Siegel mass formula (Siegel's general form, as an Euler product of local densities) for totally positive definite quadratic lattices of every rank over every totally real number field.
 - **[Hilbert reciprocity over number fields](docs/results/hilbert-reciprocity.md):** $`\prod_v (a,b)_v = 1`$ for all $`a, b \in F^\times`$ and every number field $`F`$, by a purely local proof via the Weil index, independent of class field theory. (Tau Ceti proves it through class field theory and the Brauer group.)
 - **[Hasse–Minkowski over number fields](docs/results/hasse-minkowski-number-fields.md):** a quadratic form over a number field is isotropic, represents $`c`$, or is isometric to another form if and only if this holds over every completion $`F_v`$. (Tau Ceti has the rank-4 and rank-≥5 induction steps, conditional on the lower ranks.)
 - **[Hasse–Minkowski over ℚ](docs/results/hasse-minkowski-rationals.md)**, for forms in any number of variables.
@@ -32,13 +32,24 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 
 **Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value (since 0.2.1 this includes the finiteness of the number of proper classes in the genus for the indefinite Siegel formulas). [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
 
+## What's new in 0.3.0
+
+- **Three new headlines** (38 in total): $`\tau(\mathrm{SO}(Q)) = 2`$ and the Smith–Minkowski–Siegel mass formula for ternary totally positive definite forms over every totally real number field (`tamagawa_two_totallyReal_ternary`, `massFormula_totallyReal_ternary`; earlier releases stated them for $`n \ge 4`$), and Siegel's formula for positive definite ternary forms over ℤ with the Euler product in the natural order of the primes (`siegel_ternary_rat_natural`).
+- **Ternary Siegel formula, natural order:** over ℚ in rank $`3`$ the headline reads the product in the natural order of the primes; over a totally real field $`F`$ it is the regularized form, since the natural-order reading over $`F`$ needs the prime ideal theorem for Hecke characters, which is proved in a separate library.
+- **Local classification at the dyadic primes:** O'Meara's Theorem 93:28 (classification of lattices over a dyadic local field) over the completion of every number field at every dyadic prime, and Theorem 93:29 over every 2-adic completion, unconditionally.
+- **The Siegel–Weil formula in degree one** over totally real number fields, for diagonal totally positive definite forms in $`n = 2m \ge 6`$ variables: the Siegel Eisenstein series at $`s_0 = m - 1`$ equals the weighted average of the theta series over the classes of the genus (unconditional when $`\mathcal{O}_F`$ has class number one, under named inputs in general), with the Eisenstein series, its Fourier expansion and the local Whittaker functions.
+- **Hanke's papers:** results of *An exact mass formula for quadratic forms over number fields* (2005), of the two papers on the structure of masses of lattices of varying determinant over number fields (2011), of Gan–Hanke–Yu, *On an exact mass formula of Shimura* (2001), of Berkovich–Hanke–Jagy on the S-genus identities (2012) and of Saha–Hanke on three-term relations for theta series (2023).
+- **Conway and Sloane:** results of *Sphere Packings, Lattices and Groups*, Chapters 15 and 16 (genus symbols over ℤ and the mass formula) and of *Low-dimensional lattices IV: the mass formula* (1988).
+- **More of Cassels and O'Meara:** further numbered results of Cassels, *Rational Quadratic Forms*, and of O'Meara, *Introduction to Quadratic Forms*.
+- The headline statements added in releases 0.2.0, 0.2.1 and 0.3.0 are still **not yet reviewed** by a human (see Provenance).
+
 ## What's new in 0.2.1
 
 - **Finitely many classes in the genus, every signature:** for every number field $`F`$ and every nondegenerate quadratic form over $`\mathcal{O}_F`$, of any signature, the genus contains only finitely many proper classes (`QuadFormsKB.Tamagawa.Indefinite.finite_DC`). The nine indefinite Siegel headlines now state this finiteness (`Finite (DC Q₀)`); release 0.2.0 named it in their docstrings as not stated.
 - **The form $`xy`$ over ℚ:** a new headline, `divisorCount_xy`: for $`m \ne 0`$ the genus of $`\mathbb{Z}^2`$ has one proper class, and the number of representations of $`m`$ modulo $`\pm1`$ is the number of positive divisors of $`|m|`$. On the way: the unit volume $`v^1(\mathbb{Z}^2) = 1`$ and $`\prod_p (v_p(m) + 1) = d(|m|)`$.
 - **One declaration for one theorem:** `QuadFormsKB.LocalDensity.NF.det_hessian_Qp` was declared in two files; it is now declared once.
 - **Further library material** (no new headlines): more numbered results from Cassels, *Rational Quadratic Forms* (from Chapters 2–8, 10, 13, 14 and Appendix B) and from O'Meara, *Introduction to Quadratic Forms* (from Chapters I–X); the Weil representation of $`\mathrm{Sp}_{2g}`$ and the theta series of genus $`g`$ with its transformation law under $`\mathrm{Sp}_{2g}(\mathbb{Z})`$, and the classical consequence that the rank of an even unimodular positive definite lattice is divisible by $`8`$; for positive definite forms, the finiteness facts assumed in Hanke's Arizona Winter School notes are proved, and their four-squares formulas hold without inputs.
-- The 21 headline statements added in 0.2.0, the nine of them extended here, and `divisorCount_xy` are still **not yet reviewed** by a human (see Provenance); that review is planned for release 0.2.2.
+- The 21 headline statements added in 0.2.0, the nine of them extended here, and `divisorCount_xy` were **not yet reviewed** by a human at the time of this release (see Provenance).
 
 ## Further results
 
@@ -94,7 +105,7 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 ## Layout
 
 ```
-Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, 0.2.x's not yet
+Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, later not yet
 Solution.lean           the same statements, proved from the library
 comparator.json         configuration for `lake comparator` (Solution against Challenge)
 formalization.yaml      scope, sources, divergences, provenance, review (formalization.yaml v0.4)
@@ -144,7 +155,7 @@ lake env lean scripts/check_axioms.lean   # axioms of the headline theorems
 ## Provenance
 
 QuadFormsKB was written by AI, with Claude Code (Anthropic): almost entirely by Claude Opus 5.5,
-with a small share by Claude Sonnet 5.5, in October 2026. Release 0.1.0 took about a week of development; at list
+with a small share by Claude Sonnet 5.5, in October and November 2026. Release 0.1.0 took about a week of development; at list
 prices its model usage would have cost roughly $1,200–1,800 (it ran on a flat-rate subscription).
 Up to release 0.2.0 the source repository (created on 2026-10-14) has about 3,260 commits on its main branch; at list
 prices its model usage, about 35,720 requests, mostly to Claude Opus 5.5 with Claude Sonnet 5.5 subagents, would have
@@ -154,8 +165,8 @@ Jonathan Hanke designed and directed it: he chose the results, the conventions a
 The proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
 standard axioms. The 13 headline statements of release 0.1.0 in `Challenge.lean`, and the definitions they use, were
 reviewed by Jonathan Hanke. The 21 headline statements added in release 0.2.0 (nine of them
-extended in release 0.2.1 by the finiteness of the proper classes in the genus), the one added in release 0.2.1, and
-the definitions they use, have **not yet been reviewed** by a human; that review is planned for release 0.2.2. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
+extended in release 0.2.1 by the finiteness of the proper classes in the genus), the one added in release 0.2.1, the three added in release 0.3.0, and
+the definitions they use, have **not yet been reviewed** by a human; that review is planned for a later release. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
 reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
 against the literature. Corrections and reports of mis-formalizations are very welcome.
 
@@ -163,6 +174,7 @@ against the literature. Corrections and reports of mis-formalizations are very w
 
 Releases are tagged with semantic versions; `main` continues to develop. The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
 
+- **[v0.3.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.3.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:ZENODO-DOI-v0.3.0](https://doi.org/ZENODO-DOI-v0.3.0). Three new headline statements (38 in total): $`\tau(\mathrm{SO}(Q)) = 2`$ and the mass formula for ternary totally positive definite forms over totally real number fields, and Siegel's formula for positive definite ternary forms over ℤ in the natural order of the primes. The library adds O'Meara's classification of lattices at the dyadic primes of number fields, the Siegel–Weil formula in degree one over totally real fields, results of Hanke's papers on mass formulas, of Conway and Sloane on genus symbols and masses, and further results of Cassels and O'Meara.
 - **[v0.2.1](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.2.1)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23761129](https://doi.org/10.5281/zenodo.23761129). The proper classes in the genus of a nondegenerate form over the ring of integers of a number field, of any signature, are finite in number (`QuadFormsKB.Tamagawa.Indefinite.finite_DC`); the nine indefinite Siegel headlines now state this finiteness (`Finite (DC Q₀)`), which 0.2.0 named in their docstrings as not stated. For $`xy`$ over ℚ: one proper class in the genus of $`\mathbb{Z}^2`$, the unit volume $`v^1(\mathbb{Z}^2) = 1`$, $`\prod_p (v_p(m) + 1) = d(|m|)`$, and the new headline `divisorCount_xy` (the number of representations of $`m \ne 0`$ modulo $`\pm1`$ is the number of divisors of $`|m|`$; 35 headline statements in total). A theorem that was declared twice in the library (`QuadFormsKB.LocalDensity.NF.det_hessian_Qp`) is now declared once.
 - **[v0.2.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.2.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23693826](https://doi.org/10.5281/zenodo.23693826). Adds the Tamagawa numbers of $`\mathrm{SO}(V)`$ over every number field, Siegel's formula for indefinite forms and for forms by forms, and classical cases over ℚ (21 new headline statements in `Challenge.lean`, 34 in total). It also records an [erratum](docs/results/errata.md): an input assumed by three earlier theorems is false; those theorems are vacuous, are not headlines, and are replaced by unconditional ones.
 - **[v0.1.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.1.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.23509793](https://doi.org/10.5281/zenodo.23509793).

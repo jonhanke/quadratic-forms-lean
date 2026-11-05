@@ -135,7 +135,7 @@ theorem nondegenerate_orthSum {Q₁ : QuadForm F m} {Q₂ : QuadForm F n} (h₁ 
 /-- **A diagonal form with nonzero entries is nondegenerate** (characteristic $0$): its Hessian is
 $\operatorname{diag}(2a_0, \dots, 2a_{n-1})$. -/
 @[kb "cassels1978" "Ch. 2, Lemma 1.5, p. 14"]
-theorem nondegenerate_diag [CharZero F] {a : Fin n → F} (ha : ∀ i, a i ≠ 0) :
+theorem nondegenerate_diag [NeZero (2 : F)] {a : Fin n → F} (ha : ∀ i, a i ≠ 0) :
     (diag a).Nondegenerate := by
   unfold Nondegenerate hessian diag
   simp only [Matrix.diagonal_transpose, Matrix.diagonal_add, Matrix.det_diagonal]
@@ -227,7 +227,7 @@ noncomputable def isometryEquivDiagCons (b : F) (α : Fin m → F) :
 /-- **Witt cancellation of a first diagonal entry** (characteristic $0$): if
 $\langle b, \alpha \rangle \cong \langle b, \beta \rangle$ over $K$ with $b \ne 0$ and all
 $\alpha_i \ne 0$, then $\langle \alpha \rangle \cong \langle \beta \rangle$ over $K$. -/
-theorem isometricIn_of_diag_cons [CharZero F] {b : F} (hb : b ≠ 0) {α β : Fin m → F}
+theorem isometricIn_of_diag_cons [NeZero (2 : F)] {b : F} (hb : b ≠ 0) {α β : Fin m → F}
     (hα : ∀ i, α i ≠ 0) (h : (diag (Fin.cons b α)).IsometricIn K (diag (Fin.cons b β))) :
     (diag α).IsometricIn K (diag β) := by
   rw [isometricIn_iff_equivalent] at h ⊢
@@ -314,7 +314,7 @@ theorem halfBilin_isSymm (Q : QuadForm F n) : Q.halfBilin.IsSymm := by
   simp only [halfBilin_apply]
   rw [Matrix.dotProduct_mulVec, ← Matrix.mulVec_transpose, hMt, dotProduct_comm]
 
-variable [CharZero F]
+variable [NeZero (2 : F)]
 
 theorem halfBilin_self (Q : QuadForm F n) (y : Fin n → F) : Q.halfBilin y y = Q.evalIn F y := by
   have h := QuadForm.polar_eq_hessian F Q y y
@@ -323,7 +323,8 @@ theorem halfBilin_self (Q : QuadForm F n) (y : Fin n → F) : Q.halfBilin y y = 
   rw [halfBilin_apply, Matrix.smul_mulVec, dotProduct_smul]
   have h3 : Q.hessian.map (algebraMap F F) = Q.hessian := by ext; simp
   rw [h3] at h
-  rw [← h, smul_eq_mul]; ring
+  have h2' : (2 : F) ≠ 0 := two_ne_zero
+  rw [← h, smul_eq_mul]; field_simp; ring
 
 /-- **Diagonalisation along an orthogonal basis:** if $\vec{w}_0, \dots, \vec{w}_{n-1}$ is a basis of
 $F^n$, orthogonal for $\tfrac12 b_Q$, and $Q$ is nondegenerate, then all $Q(\vec{w}_i) \ne 0$ and
@@ -335,7 +336,7 @@ theorem isometric_diag_of_basis (Q : QuadForm F n) (hQ : Q.Nondegenerate)
   classical
   have hMdet : ((1 / 2 : F) • Q.hessian).det ≠ 0 := by
     rw [Matrix.det_smul]
-    exact mul_ne_zero (pow_ne_zero _ (by norm_num)) hQ
+    exact mul_ne_zero (pow_ne_zero _ (one_div_ne_zero two_ne_zero)) hQ
   refine ⟨fun i hi => ?_, ?_⟩
   · rw [← halfBilin_self] at hi
     have hz : Q.halfBilin (w i) = 0 := by

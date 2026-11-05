@@ -112,7 +112,9 @@ theorem one_le_finrank_of_ne_bot {J : Submodule R V} (hJ : J ≠ ⊥) : 1 ≤ fi
   rw [h] at this
   simpa using this
 
-/-- A lattice with scale in $\mathfrak a$ and volume $\mathfrak a^r$ is $\mathfrak a$-modular. -/
+/-- A lattice with scale in $\mathfrak a$ and volume $\mathfrak a^r$ is $\mathfrak a$-modular (O'Meara 1963, §82G,
+p. 231: "$L$ is $\mathfrak a$-modular if $\mathfrak sL \subseteq \mathfrak a$ and $\mathfrak vL = \mathfrak a^r$", by
+82:10). *Update:* the hypothesis $L \ne 0$ is needed (the zero lattice satisfies both conditions but is not modular). -/
 theorem isModular_of_volume_eq {a : Submodule R F} {M : Submodule R V} (ha : a.FG) (ha0 : a ≠ ⊥)
     (hM0 : M ≠ ⊥) (hs : scale Q M ≤ a) (hv : volume Q M = a ^ finrank R M) : IsModular Q a M := by
   refine ⟨ha0, ?_, hv⟩

@@ -19,7 +19,10 @@ basis, using the remark on direct orthogonal summands, p. 213):
 * (iii) `units_mem_localSpinorNormGroup_two_ternary'`: as in (ii) but $\lvert\phi(b_j)\rvert = \tfrac12\lvert\phi(b_i)\rvert$,
   $\lvert\phi(b_k)\rvert = \tfrac14\lvert\phi(b_i)\rvert$.
 
-*Reconstruction.* The scan of p. 214 has lost most of the formulas of Lemma 3.8. Case (i) is reconstructed from the
+*Source of the formulas.* The machine-read text of p. 214 has lost most formulas of Lemma 3.8; they were first
+reconstructed and then checked against the page image (2026-10-30): (i) $\phi = 2^ex_1x_2$ or $2^e(x_1^2 + x_1x_2 + x_2^2)$;
+(ii) $\lvert a_1\rvert_2 = \lvert a_2\rvert_2$ and $\lvert a_3\rvert_2 \in \{\lvert a_1\rvert_2, 2\lvert a_1\rvert_2, \tfrac12\lvert a_1\rvert_2\}$;
+(iii) $\lvert a_2\rvert_2 = 2\lvert a_1\rvert_2$, $\lvert a_3\rvert_2 = 4\lvert a_1\rvert_2$ (the patterns below up to renaming). Case (i) also follows from the
 proof of the Corollary (p. 215: "the direct orthogonal sum of $1$-dimensional lattices and of $2$-dimensional lattices
 of type (i)", i.e. the binary $2$-adic Jordan components $2^ex_1x_2$ and $2^e(x_1^2 + x_1x_2 + x_2^2)$ of Ch. 8,
 Lemma 4.1, which are the two forms printed in (i)); here the common generalization with $a, c$ arbitrary is stated.
@@ -762,9 +765,9 @@ end Final
 /-- **Cassels, Lemma 3.8 (i)** (Ch. 11, p. 214): *$\Lambda^{(2)}$ is $2$-dimensional with basis $b_1, b_2$ and
 $\phi(x_1b_1 + x_2b_2) = 2^ex_1x_2$ or $2^e(x_1^2 + x_1x_2 + x_2^2)$; then $U_2 \subseteq \theta(\Lambda^{(2)})$.*
 Here for an orthogonal summand spanned by $b_i, b_j$ of a basis of $L_2$ on which $\phi = 2^e(ax_i^2 + x_ix_j +
-cx_j^2)$ with $a, c \in \mathbb Z_2$ (reconstructed, see the module docstring): every unit of $\mathbb Z_2$ is the
+cx_j^2)$ with $a, c \in \mathbb Z_2$ (read from the page image; generalized, see the module docstring): every unit of $\mathbb Z_2$ is the
 spinor norm of a rotation of $L_2$. -/
-@[kb "cassels1978" "Ch. 11, Lemma 3.8 (i), p. 214 (reconstructed; generalization: a, c ∈ ℤ₂)"]
+@[kb "cassels1978" "Ch. 11, Lemma 3.8 (i), p. 214 (generalization: a, c ∈ ℤ₂)"]
 theorem units_mem_localSpinorNormGroup_two_binary (hQ : Q.Nondegenerate) (h2 : (2 : 𝓞 ℚ) ∈ v.asIdeal)
     (L : Lat ℚ n) (γ : GL (Fin n) Fv) (hγ : loc v L.1 = locAct v γ (std v)) {i j : Fin n} (hij : i ≠ j)
     (horth : ∀ m, m ≠ i → m ≠ j → locGram Q v γ m i = 0 ∧ locGram Q v γ m j = 0)
@@ -798,9 +801,9 @@ theorem units_mem_localSpinorNormGroup_two_binary (hQ : Q.Nondegenerate) (h2 : (
 /-- **Cassels, Lemma 3.8 (ii)** (Ch. 11, p. 214): *$\Lambda^{(2)}$ is $3$-dimensional with basis $b_1, b_2, b_3$,
 $\phi(x_1b_1 + x_2b_2 + x_3b_3) = a_1x_1^2 + a_2x_2^2 + a_3x_3^2$ and $\lvert a_1\rvert_2 = \lvert a_2\rvert_2$, with
 $\lvert a_3\rvert_2 = \lvert a_1\rvert_2$, $\lvert a_3\rvert_2 = \tfrac12\lvert a_1\rvert_2$ or
-$\lvert a_3\rvert_2 = 2\lvert a_1\rvert_2$ (reconstructed); then $U_2 \subseteq \theta(\Lambda^{(2)})$*, for such an
+$\lvert a_3\rvert_2 = 2\lvert a_1\rvert_2$ (read from the page image); then $U_2 \subseteq \theta(\Lambda^{(2)})$*, for such an
 orthogonal summand $b_i, b_j, b_k$ of a basis of $L_2$ ($a_\bullet = \phi(b_\bullet) = \tfrac12G_{\bullet\bullet}$). -/
-@[kb "cassels1978" "Ch. 11, Lemma 3.8 (ii), p. 214 (reconstructed)"]
+@[kb "cassels1978" "Ch. 11, Lemma 3.8 (ii), p. 214"]
 theorem units_mem_localSpinorNormGroup_two_ternary (hQ : Q.Nondegenerate) (h2 : (2 : 𝓞 ℚ) ∈ v.asIdeal)
     (L : Lat ℚ n) (γ : GL (Fin n) Fv) (hγ : loc v L.1 = locAct v γ (std v)) {i j k : Fin n}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)
@@ -835,9 +838,10 @@ theorem units_mem_localSpinorNormGroup_two_ternary (hQ : Q.Nondegenerate) (h2 : 
       (by rw [hi']; push_cast; rw [coe_two_eq]; ring) (by rw [hj']; push_cast; rw [coe_two_eq]; ring) u hu
 
 /-- **Cassels, Lemma 3.8 (iii)** (Ch. 11, p. 214): *as in (ii) but with $\lvert a_2\rvert_2 = \tfrac12\lvert
-a_1\rvert_2$ and $\lvert a_3\rvert_2 = \tfrac14\lvert a_1\rvert_2$* (reconstructed: the valuations of $a_1, a_2, a_3$ are
+a_1\rvert_2$ and $\lvert a_3\rvert_2 = \tfrac14\lvert a_1\rvert_2$* (read from the page image, printed with $\lvert a_2\rvert_2 = 2\lvert a_1\rvert_2$, $\lvert a_3\rvert_2 = 4\lvert a_1\rvert_2$, the same up to
+renaming: here the valuations of $a_1, a_2, a_3$ are
 $e, e+1, e+2$); *then $U_2 \subseteq \theta(\Lambda^{(2)})$.* -/
-@[kb "cassels1978" "Ch. 11, Lemma 3.8 (iii), p. 214 (reconstructed)"]
+@[kb "cassels1978" "Ch. 11, Lemma 3.8 (iii), p. 214"]
 theorem units_mem_localSpinorNormGroup_two_ternary' (hQ : Q.Nondegenerate) (h2 : (2 : 𝓞 ℚ) ∈ v.asIdeal)
     (L : Lat ℚ n) (γ : GL (Fin n) Fv) (hγ : loc v L.1 = locAct v γ (std v)) {i j k : Fin n}
     (hij : i ≠ j) (hik : i ≠ k) (hjk : j ≠ k)

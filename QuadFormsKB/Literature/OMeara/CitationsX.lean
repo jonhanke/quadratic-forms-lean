@@ -56,7 +56,7 @@ attribute [kb "omeara1963" "§101B, p. 289 ((τ_u)_𝔭 = τ_{u_𝔭})"]
 attribute [kb "omeara1963" "§101B, 101:6, p. 290 ((σL)_𝔭 = σ_𝔭 L_𝔭)"] Lattices.diagF_smul
 
 -- 101:7: weak approximation for rotations (finite spots, products of symmetries)
-attribute [kb "omeara1963" "§101B, 101:7, p. 290 (special case: finite spots)"] Lattices.exists_symmProd_approx
+attribute [kb "omeara1963" "§101B, 101:7, p. 290 (special case: finite spots; variant: products of symmetries of a common length, instead of an arbitrary rotation)"] Lattices.exists_symmProd_approx
 
 -- §101D: split rotations J_V, J'_V, P_V, J_L, the lattice ΣL
 attribute [kb "omeara1963" "§101D, p. 295 (J_V; finite spots, full orthogonal groups)"] Lattices.OAf

@@ -12,10 +12,10 @@ from `siegelPresentation_one`).
 
 **What remains** (the input `SiegelPresentationSmallField`, $g \ge 2$): for a fixed $g$ only the finitely many
 finite fields $\mathbb F_q$ with $q \le 3g$ (e.g. $q = 2, 3, 4, 5$ for $g = 2$). There the big-cell method fails (over
-$\mathbb F_2$, $g = 2$ no common $n(T)w$ moves the needed elements into the big cell), and the proof needs the Bruhat
-decomposition $\mathrm{Sp}_{2g}(k) = \bigsqcup_{r \le g} P w_r P$.
-The statement has been confirmed by a computer coset enumeration (outside Lean) for
-$(g, q) = (2, 2), (2, 3), (3, 2)$.
+$\mathbb F_2$, $g = 2$ no common $n(T)w$ moves the needed elements into the big cell). It is reduced to one
+linear-algebra statement, `CellGraphConnected g k` (`siegelPresentationSmallField_of_cellGraphConnected`,
+`TwoRowTransversal.lean`). The statement has been confirmed by a computer coset enumeration (outside Lean) for
+$(g, q) = (2, 2), (2, 3), (2, 5), (3, 2)$.
 
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified]; Rao, Pacific J. Math. 157
 (1993), §2 (Bruhat decomposition relative to the Siegel parabolic) [unverified].

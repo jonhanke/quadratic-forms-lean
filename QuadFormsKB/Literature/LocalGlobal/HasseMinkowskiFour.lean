@@ -27,10 +27,10 @@ isotropic).
 
 *Caution.* The often-quoted form "$(x, -ab)_K = (a, b)_K$" needs bimultiplicativity of the
 symbol, which holds over $\mathbb{Q}_p$ and $\mathbb{R}$ but **not** over $\mathbb{Q}$: for $a = b = -1$,
-$x = 3$ it gives $-1 = -1$ although $-X^2 - Y^2 = 3$ has no rational solution (counterexample
-found by llmprove). -/
+$x = 3$ it gives $-1 = -1$ although $-X^2 - Y^2 = 3$ has no rational solution (this counterexample
+was found by computer search). -/
 @[kb "serre1973" "Ch. IV §2.2, Thm. 6 (n = 2) [unverified]"]
-theorem binary_represents_iff (K : Type*) [Field K] [CharZero K] (a b x : K) (ha : a ≠ 0)
+theorem binary_represents_iff (K : Type*) [Field K] [NeZero (2 : K)] (a b x : K) (ha : a ≠ 0)
     (hb : b ≠ 0) (hx : x ≠ 0) :
     (∃ X Y : K, a * X ^ 2 + b * Y ^ 2 = x) ↔ hilbertSymbol K (a / x) (b / x) = 1 := by
   rw [hilbertSymbol_eq_one_iff_conic K two_ne_zero (div_ne_zero ha hx) (div_ne_zero hb hx)]
