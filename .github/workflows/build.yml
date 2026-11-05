@@ -27,6 +27,9 @@ jobs:
 
       - name: Add swap space (the build needs more than the runner's 16 GB of memory)
         run: |
+          # the runner already has a small /swapfile in use: switch it off and replace it
+          sudo swapoff -a
+          sudo rm -f /swapfile
           sudo fallocate -l 16G /swapfile
           sudo chmod 600 /swapfile
           sudo mkswap /swapfile
