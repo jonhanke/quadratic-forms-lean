@@ -172,7 +172,7 @@ def anisoSub (hQ : Q.Anisotropic) (a : Submodule R F) : Submodule R V where
 an $\mathfrak a$-maximal lattice on $V$, then $L = \{x \in V : Q(x) \in \mathfrak a\}$. Here the local field is
 replaced by the fraction field $F$ of a Henselian discrete valuation ring (completeness is used only through
 the Local Square Theorem); $V$ need not be finite-dimensional or regular beyond anisotropy. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239"]
+@[kb "omeara1963" "§91A, 91:1, p. 240"]
 theorem mem_iff_of_isMaximal (hQ : Q.Anisotropic) {a : Submodule R F} {L : Submodule R V}
     (hL : IsMaximal Q a L) (x : V) : x ∈ L ↔ Q x ∈ a := by
   obtain ⟨hlat, hn, hmax⟩ := hL
@@ -195,14 +195,14 @@ theorem mem_iff_of_isMaximal (hQ : Q.Anisotropic) {a : Submodule R F} {L : Submo
 
 /-- **91:1, second part** (O'Meara 1963, p. 239): on an anisotropic space all $\mathfrak a$-maximal lattices are
 equal. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239 (all a-maximal lattices on V are equal)"]
+@[kb "omeara1963" "§91A, 91:1, p. 240 (all a-maximal lattices on V are equal)"]
 theorem eq_of_isMaximal (hQ : Q.Anisotropic) {a : Submodule R F} {L K : Submodule R V}
     (hL : IsMaximal Q a L) (hK : IsMaximal Q a K) : L = K := by
   ext x; rw [mem_iff_of_isMaximal Q hQ hL, mem_iff_of_isMaximal Q hQ hK]
 
 /-- **Proposition 91:5** (O'Meara 1963, p. 242): if $L$ is a maximal lattice on an anisotropic quadratic space
 $V$ over a local field, then $O(L) = O(V)$. -/
-@[kb "omeara1963" "§91A, 91:5, p. 242"]
+@[kb "omeara1963" "§91B, 91:5, p. 242"]
 theorem orthLat_eq_orth_of_isMaximal (hQ : Q.Anisotropic) {a : Submodule R F} {L : Submodule R V}
     (hL : IsMaximal Q a L) : orthLat Q L = orth Q := by
   ext σ
@@ -263,7 +263,7 @@ theorem symmetry_symmetry {u : V} (hu : Q u ≠ 0) (x : V) : symmetry Q u hu (sy
 
 /-- A vector $u$ is **maximal** in $L$ (O'Meara 1963, §81D, p. 216): $u \in L$ and $cu \in L$ with $c \in F$
 forces $c \in \mathfrak o$. -/
-@[kb "omeara1963" "§81D, p. 216 (maximal vector of a lattice)"]
+@[kb "omeara1963" "§81B, p. 210 (maximal vector of a lattice)"]
 def IsMaxVec (F : Type*) [Field F] [Algebra R F] [Module F V] [IsScalarTower R F V]
     (L : Submodule R V) (u : V) : Prop :=
   u ∈ L ∧ ∀ c : F, c • u ∈ L → c ∈ (algebraMap R F).range

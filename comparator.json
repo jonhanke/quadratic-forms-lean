@@ -10,6 +10,8 @@
     "QuadFormsKB.Headlines.siegel_totallyReal_rank1",
     "QuadFormsKB.Headlines.tamagawa_two_totallyReal",
     "QuadFormsKB.Headlines.massFormula_totallyReal",
+    "QuadFormsKB.Headlines.tamagawa_two_totallyReal_ternary",
+    "QuadFormsKB.Headlines.massFormula_totallyReal_ternary",
     "QuadFormsKB.Headlines.hilbertReciprocity_numberField",
     "QuadFormsKB.Headlines.hasseMinkowski_numberField",
     "QuadFormsKB.Headlines.represents_iff_everywhere_numberField",
@@ -36,7 +38,8 @@
     "QuadFormsKB.Headlines.jacobi_twoSquares",
     "QuadFormsKB.Headlines.siegel_twoSquares",
     "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq",
-    "QuadFormsKB.Headlines.divisorCount_xy"
+    "QuadFormsKB.Headlines.divisorCount_xy",
+    "QuadFormsKB.Headlines.siegel_ternary_rat_natural"
   ],
   "definition_names": [],
   "permitted_axioms": [

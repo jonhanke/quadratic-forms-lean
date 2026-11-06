@@ -268,8 +268,9 @@ variable (Q : QuadraticForm F V) {x y : V}
 /-- **55:1, the value** (O'Meara 1963, 55:1, p. 138): for $x, y$ with $Q(x) = Q(y) = 0$ and $B(x,y) = 1$ (a hyperbolic
 pair, as in the hyperbolic plane $H = Fx + Fy$ of 42:15) and $a \in F$, $Q(x - ay) = -2a$.
 
-*Reconstruction:* the machine-read text of the matrix of $H$ is garbled; the hypotheses are reconstructed from the
-book's value $Q(x - ay) = -2a$. -/
+*Page image (2026-10-29):* the book takes $H \cong \begin{pmatrix}0&\gamma\\\gamma&0\end{pmatrix}$ in the base $x, y$ and
+finds $Q(x - \alpha y) = -2\alpha\gamma$; this is the case $\gamma = 1$, and the general statement is
+`hyperbolic_Q_sub_smul_gamma` (`Sec56.lean`). -/
 @[kb "omeara1963" "§55, 55:1, p. 138 (Q(x − ay) = −2a in the hyperbolic plane)"]
 theorem hyperbolic_Q_sub_smul (hx : Q x = 0) (hy : Q y = 0) (hxy : bil Q x y = 1) (a : F) :
     Q (x - a • y) = -2 * a := by
@@ -308,8 +309,10 @@ theorem hyperbolic_symmetry (hx : Q x = 0) (hy : Q y = 0) (hxy : bil Q x y = 1) 
 $\sigma = \tau_{x-y}\tau_{x-ay}$ satisfies $\sigma x = ax$ and $\sigma y = a^{-1}y$ and has spinor norm $a$
 (since $(-2)(-2a) = a \cdot 2^2$).
 
-*Reconstruction:* the printed equations are "$\sigma x = ax$, $\sigma y = ay$"; the second is $\sigma y = a^{-1}y$,
-as $\det\sigma = 1$ forces. -/
+*Page image (2026-10-29):* the book prints $\sigma x = \alpha x$, $\sigma y = \alpha^{-1}y$ (the machine-read text had lost
+the exponent) for the general plane $H \cong \begin{pmatrix}0&\gamma\\\gamma&0\end{pmatrix}$, with
+$\theta(\sigma) = (-2\gamma)(-2\alpha\gamma)$; this is the case $\gamma = 1$, the general one is `hyperbolic_rotation_gamma`
+(`Sec56.lean`). -/
 @[kb "omeara1963" "§55, 55:1, p. 139 (σ = τ_{x−y}τ_{x−ay}: x ↦ ax, y ↦ a⁻¹y, θ(σ) = a)"]
 theorem hyperbolic_rotation (hx : Q x = 0) (hy : Q y = 0) (hxy : bil Q x y = 1) {a : F} (ha : a ≠ 0)
     {u v : V} (hu : u = x - y) (hv : v = x - a • y) (hu0 : Q u ≠ 0) (hv0 : Q v ≠ 0) :
@@ -943,9 +946,9 @@ theorem sq_mem_omega (hQ : (QuadraticMap.associated Q).Nondegenerate) {σ : V �
 spinor norm of a rotation if and only if $c = \kappa_1\cdots\kappa_r$ with $r \le n$ even and
 $\kappa_i = Q(u_i)$ nonzero values of $Q$ (here phrased through the vectors $u_1, \dots, u_r$).
 
-*Reconstruction:* the machine-read text says "$r \le n$ and $\kappa_1, \dots, \kappa_r \in Q(V)$"; the evenness of $r$
-(a rotation is a product of an even number of symmetries) is implicit in the book and is made explicit here; for
-$r$ odd the statement would be false (e.g. $n = 2$, $r = 1$). -/
+*Page image (2026-10-29):* the book states the products $\alpha_1 \cdots \alpha_{2r}$ with $2r \le n$ and
+$\alpha_1, \dots, \alpha_{2r} \in Q(V)$ (nonzero scalars), exactly as here (the machine-read text had lost the even
+index $2r$). -/
 @[kb "omeara1963" "§55, 55:2, p. 139 (θ(O⁺) = products of ≤ n values of Q)"]
 theorem exists_hasSpinorNorm_iff (hQ : (QuadraticMap.associated Q).Nondegenerate)
     (hn : 2 ≤ Module.finrank F V) {c : F} :

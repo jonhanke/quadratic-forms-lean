@@ -267,7 +267,7 @@ theorem exists_lattice_of_Q_mem [FiniteDimensional F V] (hV : (QuadraticMap.asso
 
 /-- **Example 91:3** (O'Meara 1963, p. 240): if $L$ is an $\mathfrak a$-maximal lattice on a regular quadratic space $V$
 over a local field, then $Q(L) = Q(V) \cap \mathfrak a$. -/
-@[kb "omeara1963" "§91A, 91:3, p. 240"]
+@[kb "omeara1963" "§91A, 91:3, p. 241"]
 theorem Q_image_eq_of_isMaximal [HenselianLocalRing R] [FiniteDimensional F V]
     (hV : (QuadraticMap.associated Q).Nondegenerate) {a : Submodule R F} {L : Submodule R V}
     (hL : IsMaximal Q a L) : Q '' (L : Set V) = Set.range Q ∩ (a : Set F) := by

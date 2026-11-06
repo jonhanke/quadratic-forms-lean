@@ -246,7 +246,7 @@ theorem isotropicIn_of_primitive_pow_dvd [Finite (IsLocalRing.ResidueField R)]
 /-- **Bounded valuation of primitive vectors** (Hanke 2004, p. 363, O'Meara 91:1) over a complete $R$ with
 finite residue field: if $Q$ is anisotropic over $K$, there is $C$ such that for $k \ge C$ every solution of
 $Q(\vec{x}) \equiv 0 \pmod{\pi^k}$ is of Zero type. -/
-@[kb "omeara1963" "§91A, 91:1, p. 239 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
+@[kb "omeara1963" "§91A, 91:1, p. 240 (the set {x : Q(x) ∈ 𝔞} is a lattice on an anisotropic space)"]
 theorem exists_isZeroType_of_anisotropic [Finite (IsLocalRing.ResidueField R)]
     [IsAdicComplete (IsLocalRing.maximalIdeal R) R] (K : Type*) [Field K] [Algebra R K]
     [IsFractionRing R K] (Q : QuadForm R n) (π : R) (hπ : Irreducible π)

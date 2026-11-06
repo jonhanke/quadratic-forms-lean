@@ -354,7 +354,7 @@ $Q$ even unimodular, i.e. $\pi \nmid N$, $n = 2r \ge 2$): with $\Delta = (-1)^{n
 $$\varepsilon(Q \bmod \pi) = +1 \iff \Delta \in (R^\times)^2.$$
 Since $\Delta \equiv 1 \pmod 4$ up to unit squares (`exists_disc_eq_sq_mul_one_sub_four_of_level_zero`), $K(\sqrt\Delta)/K$ is
 unramified, and $\varepsilon$ is its Frobenius: $+1$ iff it splits (is trivial). -/
-@[kb "omeara1963" "§93D, 93:16, p. 259; 93:18, p. 260 (dyadic unimodular lattices)"]
+@[kb "omeara1963" "§93D, pp. 259–262 (background for 93:16 and 93:18: the Arf sign is the discriminant square class)"]
 theorem arfSignQ_eq_one_iff [Fintype 𝔽] [DecidableEq 𝔽] [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
     (Q : QuadForm R n) {π : R} (hπ : Irreducible π) (h2 : π ∣ 2) (h20 : (2 : R) ≠ 0)
     (hL : IsLocalLevel Q π 0) (hn : 1 ≤ n) :

@@ -7,7 +7,7 @@ One page per main result of the repository, with the precise statement, its scop
 | Page | Result |
 |---|---|
 | [Siegel's theorem over totally real fields](siegel-totally-real.md) | the genus average of representation numbers of totally positive definite quadratic lattices over <img src="../images/inline/42d5ddede335.svg" align="absmiddle" alt="\mathcal{O}_F"> equals a product of local densities, every rank and every genus |
-| [Tamagawa number and mass formula](tamagawa-mass-formula.md) | $`\tau(\mathrm{SO}(Q)) = 2`$ and the Smith–Minkowski–Siegel mass formula over every totally real number field |
+| [Tamagawa number and mass formula](tamagawa-mass-formula.md) | $`\tau(\mathrm{SO}(Q)) = 2`$ and the Smith–Minkowski–Siegel mass formula (Siegel's general form, with local densities) over every totally real number field |
 | [Hilbert reciprocity](hilbert-reciprocity.md) | the product of the local Hilbert symbols is $`1`$ over every number field, via the Weil index |
 | [Hasse–Minkowski over number fields](hasse-minkowski-number-fields.md) | the local–global principle for isotropy, representation and isometry |
 | [Hasse–Minkowski over ℚ](hasse-minkowski-rationals.md) | isotropy, isometry, and the classification of forms over <img src="../images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> |

@@ -20,6 +20,8 @@ fails if any other axiom (in particular `sorryAx`) appears.
 -- Tamagawa number and mass formula over totally real number fields
 #print axioms QuadFormsKB.Headlines.tamagawa_two_totallyReal
 #print axioms QuadFormsKB.Headlines.massFormula_totallyReal
+#print axioms QuadFormsKB.Headlines.tamagawa_two_totallyReal_ternary
+#print axioms QuadFormsKB.Headlines.massFormula_totallyReal_ternary
 -- Hilbert reciprocity and Hasse–Minkowski over number fields
 #print axioms QuadFormsKB.Headlines.hilbertReciprocity_numberField
 #print axioms QuadFormsKB.Headlines.hasseMinkowski_numberField
@@ -53,3 +55,4 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.siegel_twoSquares
 #print axioms QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq
 #print axioms QuadFormsKB.Headlines.divisorCount_xy
+#print axioms QuadFormsKB.Headlines.siegel_ternary_rat_natural

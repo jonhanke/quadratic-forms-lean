@@ -189,7 +189,8 @@ end Siegel
 /-! ## The Tamagawa number and the mass formula over totally real number fields
 
 Setting: F a totally real number field, Q₀ a quadratic form in n ≥ 4 variables with coefficients in 𝓞 F that is
-totally positive definite over F. (Ranks 1–3 are also proved in the library; see `docs/results/`.) -/
+totally positive definite over F; the last two statements are the case n = 3. (Ranks 1 and 2 are also
+proved in the library; see `docs/results/`.) -/
 
 section Tamagawa
 
@@ -229,6 +230,40 @@ theorem massFormula_totallyReal (hn : 4 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ 
     genusClasses_finite hQ _ (LatChange.isIntegral_std Q₀),
     fun M hM => finite_autLat hQ M.2 (SameGenus.isIntegral _ (LatChange.isIntegral_std Q₀) hM),
     multipliable_siegelDensity (by omega) (by omega) Q₀ (nondegenerate_of_isTotallyPosDef hQ)⟩
+
+/-- **τ(SO(Q)) = 2, ternary forms.** As `tamagawa_two_totallyReal`, for a form Q₀ in 3 variables with coefficients
+in 𝓞 F that is totally positive definite over F: the Tamagawa number `tauSO Q₀` of SO(Q₀) is 2. Moreover the
+product ∏_𝔭 α_𝔭(Q₀, Q₀) in μ_Tam(K) converges unconditionally, and the double-coset space
+SO(Q₀)(F)\SO(Q₀)(𝔸_f)/SO(𝓞̂_F^3) in the mass is finite, with finite stabilizers Γ_α. -/
+theorem tamagawa_two_totallyReal_ternary (Q₀ : QuadForm (𝓞 F) 3) (hQ : IsTotallyPosDef (formF Q₀)) :
+    tauSO Q₀ = 2 ∧
+      (Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀) ∧
+      Finite (MulAction.orbitRel.Quotient ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀)))
+        (soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F 3)).subgroupOf (soAf (formF Q₀)))) ∧
+      ∀ x : soAf (formF Q₀) ⧸ (locStab (formF Q₀) (stdLat F 3)).subgroupOf (soAf (formF Q₀)),
+        Finite (MulAction.stabilizer ((ratPoints (formF Q₀)).subgroupOf (soAf (formF Q₀))) x) :=
+  ⟨QuatOrder.ternaryTamagawaTwo_nf.tau_eq_two Q₀ (nondegenerate_of_isTotallyPosDef hQ) hQ
+      (LatChange.isIntegral_std Q₀),
+    multipliable_siegelDensity (by norm_num) (by norm_num) Q₀ (nondegenerate_of_isTotallyPosDef hQ),
+    finite_orbits_SO Q₀ (nondegenerate_of_isTotallyPosDef hQ) (by norm_num) hQ,
+    finite_stabilizer_SO hQ _ (LatChange.isIntegral_std Q₀)⟩
+
+/-- **The Smith–Minkowski–Siegel mass formula, ternary forms.** As `massFormula_totallyReal`, for a form Q₀ in
+3 variables with coefficients in 𝓞 F that is totally positive definite over F, and L = 𝓞_F^3:
+∑_{L' ∈ Gen(L)} 1/|O(L')| = ( |d_F|^{-3/2} · ∏_σ vol(SO(Q₀^σ)) · ∏_𝔭 α_𝔭(Q₀, Q₀) )^{-1}
+(the exponent is -n(n-1)/4 at n = 3). Moreover the genus of L has finitely many classes, every lattice in the genus
+has a finite automorphism group, and the product ∏_𝔭 α_𝔭(Q₀, Q₀) converges unconditionally. -/
+theorem massFormula_totallyReal_ternary (Q₀ : QuadForm (𝓞 F) 3) (hQ : IsTotallyPosDef (formF Q₀)) :
+    (∑ᶠ c ∈ genusClasses (formF Q₀) (stdLat F 3), ((LatClass.autCard (formF Q₀) c : ℝ))⁻¹) =
+      (|(discr F : ℝ)| ^ (-((3 : ℝ) * (3 - 1) / 4)) * (∏ σ : F →ₐ[ℚ] ℂ, archVolSO 3 (detGram Q₀ σ)) *
+        ∏' v : HeightOneSpectrum (𝓞 F), LocalDensity.NF.siegelDensity v Q₀ Q₀)⁻¹ ∧
+      (genusClasses (formF Q₀) (stdLat F 3)).Finite ∧
+      (∀ M : Lat F 3, SameGenus (formF Q₀) (stdLat F 3).1 M.1 → Finite (autLat (formF Q₀) M.1)) ∧
+      Multipliable fun v : HeightOneSpectrum (𝓞 F) => LocalDensity.NF.siegelDensity v Q₀ Q₀ :=
+  ⟨massFormulaHolds_ternary_nf Q₀ hQ,
+    genusClasses_finite hQ _ (LatChange.isIntegral_std Q₀),
+    fun M hM => finite_autLat hQ M.2 (SameGenus.isIntegral _ (LatChange.isIntegral_std Q₀) hM),
+    multipliable_siegelDensity (by norm_num) (by norm_num) Q₀ (nondegenerate_of_isTotallyPosDef hQ)⟩
 
 end Tamagawa
 
@@ -743,6 +778,25 @@ theorem divisorCount_xy {m : ℤ} (hm : m ≠ 0) :
     ∑' i, Indefinite.repCount (DVR.hyperbolic (𝓞 ℚ)) (DVR.unary (m : 𝓞 ℚ)) i = (m.natAbs.divisors.card : ENNReal) ∧
       Subsingleton (DC (DVR.hyperbolic (𝓞 ℚ))) :=
   ⟨tsum_repCount_hypForm_rat hm, subsingleton_DC_hypForm (F := ℚ)⟩
+
+/-- **Siegel's formula for positive definite ternary forms over ℤ, Euler product in the natural order of the
+primes** (Siegel 1935, Hauptsatz for n = 3). Let Q be a positive definite form over ℤ in 3 variables and m ≥ 1.
+Then the partial products ∏_{p ≤ X} β_p(m) of the local densities converge, as X → ∞, to a limit P
+(`Siegel.IsEulerProductValue Q m P`; the primes are taken in their natural order, since for n = 3 the product
+need not converge unconditionally), and
+a_E(m) = β_∞(m) · P.
+Here a_E(m) = (∑_{[Q'] ∈ Gen(Q)} r_{Q'}(m)/|Aut(Q')|) / (∑_{[Q'] ∈ Gen(Q)} 1/|Aut(Q')|) is the average over the
+GL_3(ℤ)-classes [Q'] of forms in the genus of Q (`Siegel.genusRepAvg`), r_{Q'}(m) = #{x ∈ ℤ³ : Q'(x) = m}, and
+β_∞(m) = (3 ω_3 D^{-1/2}/2) m^{1/2} with ω_3 the volume of the unit ball and D = det(H/2), H the Hessian of Q
+(`Siegel.aEWith Q m P` = β_∞(m) · P). Moreover the genus of Q has finitely many classes and its mass
+∑_{[Q'] ∈ Gen(Q)} 1/|Aut(Q')| is positive. (The library also proves the same formula with P the regularized value
+L(1, χ) · ∏_p β_p(m)(1 - χ(p)/p), `Tamagawa.RatHeadline3.siegelFormula3_rat_uncond`, on which this one rests; the
+two values agree.) -/
+theorem siegel_ternary_rat_natural (Q : QuadForm ℤ 3) (hQ : IntQF.PosDef Q) {m : ℤ} (hm : 1 ≤ m) :
+    (∃ P : ℝ, Siegel.IsEulerProductValue Q m P ∧ Siegel.genusRepAvg Q m = Siegel.aEWith Q m P) ∧
+      (Siegel.genusClasses Q).Finite ∧ 0 < Siegel.mass Q :=
+  ⟨RatHeadline3.siegelFormula3_natural_rat_uncond Q hQ hm, (Siegel.genusFinite hQ).finite_classes,
+    Siegel.mass_pos hQ (Siegel.genusFinite hQ)⟩
 
 end Classical
 

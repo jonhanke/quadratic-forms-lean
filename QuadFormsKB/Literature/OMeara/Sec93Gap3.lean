@@ -4,7 +4,7 @@
 **Setting** (as in `Sec93Gap2.lean`): $R$ a Henselian discrete valuation ring with finite residue field, $F$ its
 fraction field, $2 \in F^\times$, $F$ dyadic ($2$ not a unit of $R$); $(V, Q)$ a quadratic space over $F$, O'Meara's
 $B$ = `bil Q`, lattices = `Submodule R V`. $L \cong A(\alpha, \beta)$ is `HasMatrixA Q L α β` (`Sec93.lean`): $L$ has a
-base with matrix $\begin{pmatrix}\alpha & 1\\ 1 & \beta\end{pmatrix}$ and $-1 + 4\alpha\beta$ is a unit.
+base with matrix $\begin{pmatrix}\alpha & 1\\ 1 & \beta\end{pmatrix}$ and $-1 + \alpha\beta$ is a unit.
 
 **Proves** (O'Meara 1963, §93B, p. 255)
 * `exists_hasMatrixA` (**93:10 (i)**): if $L$ is a binary unimodular lattice and $a = Q(x)$, $x \in L$, is a norm
@@ -148,7 +148,7 @@ for some $\beta \in \mathfrak wL$, in a base whose first vector is $x$. -/
 theorem exists_hasMatrixA (h2p : ¬ IsUnit (2 : R)) {L : Submodule R V} (hfg : L.FG) (hL : IsUnimodular Q L)
     (hrk : finrank R L = 2) {x : V} (hx : x ∈ L) {α : R} (hQx : Q x = algebraMap R F α)
     (ha : IsNormGenerator Q L (Q x)) :
-    ∃ β : R, algebraMap R F β ∈ weight Q L ∧ IsUnit (-1 + 4 * α * β) ∧ ∃ b : Basis (Fin 2) R L,
+    ∃ β : R, algebraMap R F β ∈ weight Q L ∧ IsUnit (-1 + α * β) ∧ ∃ b : Basis (Fin 2) R L,
       (b 0 : V) = x ∧ gram Q (fun i => (b i : V)) = matA (algebraMap R F α) (algebraMap R F β) := by
   have hne : L ≠ ⊥ := by rintro rfl; simp at hrk
   have hreg : IsRegular Q L := IsModular.isRegular Q hL hfg
@@ -217,10 +217,8 @@ theorem exists_hasMatrixA (h2p : ¬ IsUnit (2 : R)) {L : Submodule R V} (hfg : L
   let b : Basis (Fin 2) R L := (Basis.span hli).map (LinearEquiv.ofEq _ _ hspan)
   have hb : ∀ i, (b i : V) = v i := fun i => by simp [b]
   refine ⟨β, hβw, ?_, b, by rw [hb]; rfl, ?_⟩
-  · have : -1 + 4 * α * β = -1 + α * (4 * β) := by ring
-    rw [this, add_comm]
-    exact u93_isUnit_add_of_nonunit
-      (fun h => (mem_maximalIdeal _).mp (Ideal.mul_mem_left _ α (Ideal.mul_mem_left _ 4 hβp)) h) isUnit_one.neg
+  · have : U.det = -1 + α * β := by simp [U, Matrix.det_fin_two_of]; ring
+    rwa [← this]
   · have : (fun i => (b i : V)) = v := funext hb
     rw [this, hG]
     ext i j; fin_cases i <;> fin_cases j <;> simp [U, matA]

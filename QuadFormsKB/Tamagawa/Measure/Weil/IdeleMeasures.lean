@@ -25,7 +25,7 @@ $F$ is any number field. With $\Delta$ the modulus (`distribHaarChar`) and the l
   **`map_restrict_eq_muIdeleClass`**: it does not depend on the fundamental domain; `muIdeleClass_univ`: its total mass
   is $\mu^1(D)$ for every fundamental domain $D$.
 
-*Remark (not proved here; the job).* Weil's Theorem 3.1.1 (iii) for $A = F$ (Tate) gives
+*Remark (not proved here).* Weil's Theorem 3.1.1 (iii) for $A = F$ (Tate) gives
 $\operatorname{vol}(F^\times\backslash\mathbb A_F^1) = \rho_F = \operatorname{Res}_{s=1}\zeta_F(s)$ for the measure
 $\mu^1$ (no $\rho_F^{-1}$), i.e. $c_F = \rho_F$ (the class number formula, KB's `dedekindZeta_residue`).
 -/

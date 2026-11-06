@@ -31,7 +31,9 @@ $a_i \in F^\times$, $n = 2m$ (0-based); at a finite place $v$ the lattice sectio
 $\operatorname{Re}s > 1$ (Godement; Weil 1965), and the **unfolding** $E_t(g, s) = \int_{\mathbb A}f(wn(b)g, s)\psi(-tb)\,db =
 \prod_{v\le\infty}W_v(t, g_v, s)$ for $t \in F^\times$ (Bruhat, `eisenstein_eq_bruhat`, then $F\backslash\mathbb A$-unfolding and
 factorization of the adelic integral; Weil 1965; Kudla 2008, §1). The repo has no integration over $F\backslash\mathbb A_F$; no
-hypothesis structure is introduced for these, and no theorem here depends on them.
+hypothesis structure is introduced for these, and no theorem here depends on them. *Update (`SiegelWeil/SiegelWeilFormula.lean`):*
+at $s_0$, $g = (g_z, 1)$, $n \ge 6$ the convergence and the unfolding are proved (`eisenstein_archSec_eq_eisQ`,
+`eisenstein_fourier_eq_whittaker`), and so is the Siegel–Weil formula (`siegelWeil_formula_of_pid`).
 
 Sources: Weil, Acta Math. 113 (1965) [unverified]; Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1
 [unverified]; Bump (1997), §3.7 (Eisenstein series on $\mathrm{GL}_2$ and the Bruhat decomposition) [unverified];

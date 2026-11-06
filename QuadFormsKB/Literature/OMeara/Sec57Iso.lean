@@ -480,20 +480,19 @@ theorem algEquiv_scale (hα : α ≠ 0) (hβ : β ≠ 0) {l m : F} (hl : l ≠ 0
   · rw [smul_mul_smul_comm, qJ_mul_qJ, smul_smul]; congr 1; ring
   · rw [smul_mul_smul_comm, smul_mul_smul_comm, qJ_mul_qI, mul_comm m l, smul_neg, neg_neg]
 
-/-- **57:10 (3)** (O'Meara 1963, 57:10, p. 147; the machine-read statement is garbled): for $\alpha,\beta\ne 0$,
+/-- **57:10 (3)** (O'Meara 1963, 57:10, p. 147): for $\alpha,\beta\ne 0$,
 $(\alpha, -\alpha\beta) \cong (\alpha,\beta)$ (take $y = i$, $z = k = ij$, $k^2 = -\alpha\beta$, $ik = -ki$;
-57:7). *Reconstruction:* the book's line reads "$(\alpha, \alpha\beta) \cong (\alpha, -\ldots)$" with the right-hand
-side lost; `algEquiv_mul_neg` is the form "$(\alpha,\alpha\beta) \cong (\alpha,-\beta)$", which is this statement
-for $-\beta$ in place of $\beta$. -/
-@[kb "omeara1963" "57:10 (3), p. 147 [garbled; reconstructed]"]
+57:7). The book prints $(\alpha,\alpha\beta) \cong (\alpha,-\beta)$ (confirmed from the page image, 2026-10-29), which is
+`algEquiv_mul_neg`, this statement for $-\beta$ in place of $\beta$. -/
+@[kb "omeara1963" "57:10 (3), p. 147 ((α, -αβ) ≅ (α, β))"]
 theorem algEquiv_neg_mul (hα : α ≠ 0) (hβ : β ≠ 0) :
     Nonempty (ℍ[F,α,-(α * β)] ≃ₐ[F] ℍ[F,α,β]) :=
   nonempty_algEquiv_of_sq hα (neg_ne_zero.2 (mul_ne_zero hα hβ)) (qI α β) (qK α β) (qI_mul_qI _ _)
     (qK_mul_qK _ _) (by rw [← neg_neg (qI α β * qK α β), ← qK_mul_qI])
 
-/-- **57:10 (3), the form $(\alpha,\alpha\beta) \cong (\alpha,-\beta)$** (reconstruction of the garbled line): for
+/-- **57:10 (3), as printed: $(\alpha,\alpha\beta) \cong (\alpha,-\beta)$** (p. 147, confirmed from the page image): for
 $\alpha, \beta \ne 0$ (take $y = i$, $z = k$ in $(\alpha,-\beta)$, where $k^2 = \alpha\beta$). -/
-@[kb "omeara1963" "57:10 (3), p. 147 [garbled; reconstructed]"]
+@[kb "omeara1963" "57:10 (3), p. 147 ((α, αβ) ≅ (α, -β))"]
 theorem algEquiv_mul_neg (hα : α ≠ 0) (hβ : β ≠ 0) :
     Nonempty (ℍ[F,α,α * β] ≃ₐ[F] ℍ[F,α,-β]) := by
   have := algEquiv_neg_mul hα (neg_ne_zero.2 hβ)
@@ -634,7 +633,8 @@ theorem equiv_tensor_of_subalgebras {A P Q : Type u} [Ring A] [Algebra F A] [Fin
 $(\alpha,\beta)\otimes(\alpha,\gamma) \cong (\alpha,\beta\gamma)\otimes(1,-1)$ as $F$-algebras.
 Following the book, in $A = (\alpha,\beta)\otimes(\alpha,\gamma)$ let $X = F1 + F(i\otimes 1) + F(j\otimes j) +
 F(k\otimes j)$, which is $\cong (\alpha,\beta\gamma)$ by 57:3 ($y = i\otimes 1$, $z = j\otimes j$). For $Y$ the
-book's definition is garbled in the machine-read text; we take $Y$ spanned by $1$, $u = \alpha^{-1}\, i\otimes i$,
+book (page image, 2026-10-29) takes $Y = F(1\otimes1)+F(1\otimes j)+F(i\otimes k)+F(-\gamma\,(i\otimes i))$,
+$Y \cong (\gamma,-\alpha^2\gamma) \cong (1,-1)$; we take instead $Y$ spanned by $1$, $u = \alpha^{-1}\, i\otimes i$,
 $v = 1\otimes j$ and $uv$ ($u^2 = 1$, $v^2 = \gamma$, $uv = -vu$), so $Y \cong (1,\gamma) \cong (1,-1)$ by 57:3
 and 57:10 (1). The generators of $X$ and $Y$ commute, both are central simple (57:2), so
 $X \otimes Y \to A$ is injective (52:2, `subalgebraTensorMap_injective`) and bijective by dimension $16$. -/

@@ -89,17 +89,17 @@ theorem sameSpinorGenus_iff {L M : Lat F n} :
     obtain ⟨γ, k, hk, rfl⟩ := (mem_spnGroup Q).mp hg
     exact ⟨γ, k, hk, mul_smul (diagF Q γ) k L⟩
 
-@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4, p. 200"]
+@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4 (i), p. 201 (variant: full orthogonal group)"]
 theorem SameSpinorGenus.refl (L : Lat F n) : SameSpinorGenus Q L L :=
   (sameSpinorGenus_iff Q).mpr ⟨1, (spnGroup Q).one_mem, (latAction Q).one_smul L⟩
 
-@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4, p. 200"]
+@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4 (i), p. 201 (variant: full orthogonal group)"]
 theorem SameSpinorGenus.symm {L M : Lat F n} (h : SameSpinorGenus Q L M) : SameSpinorGenus Q M L := by
   let _ : MulAction (OAf Q) (Lat F n) := latAction Q
   obtain ⟨g, hg, rfl⟩ := (sameSpinorGenus_iff Q).mp h
   exact (sameSpinorGenus_iff Q).mpr ⟨g⁻¹, (spnGroup Q).inv_mem hg, inv_smul_smul g L⟩
 
-@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4, p. 200"]
+@[kb "omeara1963" "§102A, p. 298 (partition into spinor genera); cassels1978 Ch. 11, Lemma 1.4 (i), p. 201 (variant: full orthogonal group)"]
 theorem SameSpinorGenus.trans {L M N : Lat F n} (h : SameSpinorGenus Q L M) (h' : SameSpinorGenus Q M N) :
     SameSpinorGenus Q L N := by
   let _ : MulAction (OAf Q) (Lat F n) := latAction Q

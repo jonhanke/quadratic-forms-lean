@@ -10,9 +10,9 @@
 * (i) (`casselsg_eq_of_isSquare`, `casselsg_eq_of_cong`): if $c_1/c_2$ is a square in $\mathbb Q_p$ for all
   $p \in P$, then $g(c_1) = g(c_2)$; in particular this holds under the congruence conditions
   $\lvert c_1 - c_2\rvert_p < \lvert c_1\rvert_p$ ($p \in P$, $p \ne 2$) and $\lvert c_1 - c_2\rvert_2 \le
-  \lvert 8c_1\rvert_2$ ($2 \in P$). *Reconstruction:* the scan has lost the conditions of (i) (only "$(p \in P, p \ne 2)$"
-  survives); they are reconstructed from the proof ("the given conditions imply that $c_1/c_2 \in
-  (\mathbb Q_p^\times)^2$ (all $p \in P$)") as the usual congruences modulo $p$ and modulo $8$.
+  \lvert 8c_1\rvert_2$ ($2 \in P$). The printed conditions (read from the page image) are
+  $\lvert c_1/c_2 - 1\rvert_2 \le 2^{-3}$ and $\lvert c_1/c_2 - 1\rvert_p \le p^{-1}$ ($p \in P$, $p \ne 2$);
+  they are equivalent to the ones above (each forces $\lvert c_1\rvert_p = \lvert c_2\rvert_p$).
 * (ii) (`exists_casselsg_eq`): for $n \ge 3$, every $g^* \in G$ is $g(c)$ for some positive integer $c$ prime to a
   given positive integer $M$.
 -/
@@ -348,10 +348,10 @@ theorem exists_res (v : HeightOneSpectrum (𝓞 ℚ)) (u : v.adicCompletion ℚ)
 end Hensel
 
 /-- **Cassels, Lemma 4.3 (i)** (Ch. 11, pp. 216–217): *if $c_1, c_2 \in \mathbb Q^\times$ satisfy the congruence
-conditions at the $p \in P$, then $g(c_1) = g(c_2)$.* The conditions are lost in the scan and are reconstructed
-(module docstring): $\lvert c_1 - c_2\rvert_p < \lvert c_1\rvert_p$ for odd $p \in P$ and
+conditions at the $p \in P$, then $g(c_1) = g(c_2)$.* The printed conditions $\lvert c_1/c_2 - 1\rvert_2 \le 2^{-3}$, $\lvert c_1/c_2 - 1\rvert_p \le p^{-1}$
+(read from the page image) are equivalent to the hypotheses: $\lvert c_1 - c_2\rvert_p < \lvert c_1\rvert_p$ for odd $p \in P$ and
 $\lvert c_1 - c_2\rvert_2 \le \lvert 8c_1\rvert_2$ if $2 \in P$. -/
-@[kb "cassels1978" "Ch. 11, Lemma 4.3 (i), pp. 216–217 (congruence conditions reconstructed)"]
+@[kb "cassels1978" "Ch. 11, Lemma 4.3 (i), pp. 216–217 (congruence conditions in an equivalent form)"]
 theorem casselsg_eq_of_cong {n : ℕ} (Q : QuadForm ℚ n) (hQ : Q.Nondegenerate) (L : Lat ℚ n)
     (P : Finset (HeightOneSpectrum (𝓞 ℚ))) (c₁ c₂ : ℚˣ)
     (hodd : ∀ v ∈ P, (2 : 𝓞 ℚ) ∉ v.asIdeal →

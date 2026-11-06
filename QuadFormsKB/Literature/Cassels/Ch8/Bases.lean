@@ -292,7 +292,10 @@ noncomputable def qf (F : Matrix (Fin n) (Fin n) ℚ_[p]) (x : Fin n → ℚ_[p]
 /-- A vector of $\mathbb Z_p^n$ viewed in $\mathbb Q_p^n$. -/
 def toQ (a : Fin n → ℤ_[p]) : Fin n → ℚ_[p] := fun i => (a i : ℚ_[p])
 
-private theorem qf_bound (F : Matrix (Fin n) (Fin n) ℚ_[p]) (a : Fin n → ℤ_[p]) :
+/-- **Cassels, Ch. 8, §3** (p. 113): *$\lvert f(\vec a)\rvert$ for $\vec a \in \mathbb Z_p^n$ is bounded above*, by
+$\sum_{i,j}\lvert f_{ij}\rvert_p$. -/
+@[kb "cassels1978" "Ch. 8, §3, p. 113 (|f(a)| is bounded on ℤ_p^n)"]
+theorem qf_bound_padic (F : Matrix (Fin n) (Fin n) ℚ_[p]) (a : Fin n → ℤ_[p]) :
     ‖qf F (toQ a)‖ ≤ ∑ i, ∑ j, ‖F i j‖ := by
   unfold qf
   simp only [dotProduct, Matrix.mulVec, Finset.mul_sum]
@@ -308,8 +311,10 @@ private theorem qf_smul (F : Matrix (Fin n) (Fin n) ℚ_[p]) (t : ℚ_[p]) (x : 
     qf F (t • x) = t ^ 2 * qf F x := by
   simp only [qf, Matrix.mulVec_smul, dotProduct_smul, smul_dotProduct, smul_eq_mul]; ring
 
-/-- The supremum of $\lvert f(\vec a)\rvert_p$ over $\vec a \in \mathbb Z_p^n$ is attained. -/
-private theorem exists_max (F : Matrix (Fin n) (Fin n) ℚ_[p]) :
+/-- **Cassels, Ch. 8, (3.5)** (p. 113): *the supremum of $\lvert f(\vec a)\rvert_p$ over $\vec a \in \mathbb Z_p^n$ is
+attained*, at some $\vec c$ (the valuation takes a discrete set of values). -/
+@[kb "cassels1978" "Ch. 8, §3, (3.5), p. 113 (the supremum of |f(a)| is attained)"]
+theorem exists_qf_max (F : Matrix (Fin n) (Fin n) ℚ_[p]) :
     ∃ a₀ : Fin n → ℤ_[p], ∀ a, ‖qf F (toQ a)‖ ≤ ‖qf F (toQ a₀)‖ := by
   classical
   by_cases h0 : ∀ a : Fin n → ℤ_[p], qf F (toQ a) = 0
@@ -324,7 +329,7 @@ private theorem exists_max (F : Matrix (Fin n) (Fin n) ℚ_[p]) :
   have hbdd : ∃ K : ℤ, ∀ k, P k → k ≤ K := by
     refine ⟨N, fun k ⟨a, _, ha⟩ => ?_⟩
     have h1 : (p : ℝ) ^ k < (p : ℝ) ^ (N : ℤ) := by
-      rw [← ha, zpow_natCast]; exact (qf_bound F a).trans_lt hN
+      rw [← ha, zpow_natCast]; exact (qf_bound_padic F a).trans_lt hN
     exact ((zpow_lt_zpow_iff_right₀ hp1).1 h1).le
   obtain ⟨k₀, ⟨a₀, ha₀, hk₀⟩, hmax⟩ := Int.exists_greatest_of_bdd hbdd ⟨_, hnorm b hb⟩
   refine ⟨a₀, fun a => ?_⟩
@@ -345,7 +350,7 @@ theorem exists_equiv_sup_first (hn : 0 < n) (F : Matrix (Fin n) (Fin n) ℚ_[p])
         ‖qf ((T.val.map PadicInt.Coe.ringHom)ᵀ * F * T.val.map PadicInt.Coe.ringHom)
           (toQ (Pi.single ⟨0, hn⟩ 1))‖ := by
   classical
-  obtain ⟨a₀, hmax⟩ := exists_max F
+  obtain ⟨a₀, hmax⟩ := exists_qf_max F
   -- a maximizing vector with `f(a₀) ≠ 0` has a unit coordinate
   by_cases hz : qf F (toQ a₀) = 0
   · refine ⟨1, fun a => ?_⟩

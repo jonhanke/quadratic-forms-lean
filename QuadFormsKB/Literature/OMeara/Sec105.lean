@@ -71,12 +71,13 @@ $y, z \in L$ and $B(y, z) = 0$; otherwise $x$ is *irreducible*. -/
 def IsReducibleVec (L : Submodule (𝓞 F) (Fin n → F)) (x : Fin n → F) : Prop :=
   ∃ y ∈ L, ∃ z ∈ L, y ≠ 0 ∧ z ≠ 0 ∧ bil Q y z = 0 ∧ x = y + z
 
-/-- Helper (§105): an irreducible vector of $L$: a non-zero element of $L$ which is not reducible in $L$. -/
-private def IsIrr (L : Submodule (𝓞 F) (Fin n → F)) (x : Fin n → F) : Prop :=
+/-- **An irreducible vector** of $L$ (O'Meara 1973, §105, p. 322): a non-zero element of $L$ which is not reducible in $L$. -/
+def IsIrr (L : Submodule (𝓞 F) (Fin n → F)) (x : Fin n → F) : Prop :=
   x ∈ L ∧ x ≠ 0 ∧ ¬ IsReducibleVec Q L x
 
-/-- Helper (§105): the relation "both irreducible in $L$ and not orthogonal". -/
-private def IrrRel (L : Submodule (𝓞 F) (Fin n → F)) (y z : Fin n → F) : Prop :=
+/-- The relation "$y$ and $z$ are both irreducible in $L$ and not orthogonal" (O'Meara 1973, §105, proof of 105:1,
+p. 322); its reflexive-transitive closure on the irreducible vectors is Cassels' equivalence (App. A, p. 364). -/
+def IrrRel (L : Submodule (𝓞 F) (Fin n → F)) (y z : Fin n → F) : Prop :=
   IsIrr Q L y ∧ IsIrr Q L z ∧ bil Q y z ≠ 0
 
 section Helpers
@@ -129,7 +130,9 @@ private theorem sum_eq_comp {S : Finset (Submodule (𝓞 F) (Fin n → F))} (hin
   have hd := (Finset.supIndep_iff_disjoint_erase.mp hind) K hK
   exact sub_eq_zero.mp ((Submodule.disjoint_def.mp hd) _ h2 h3)
 
-private theorem exists_mem_of_irr {L : Submodule (𝓞 F) (Fin n → F)} {S : Finset (Submodule (𝓞 F) (Fin n → F))}
+/-- An irreducible vector of $L$ lies in one of the components of an orthogonal splitting of $L$ (O'Meara 1973,
+§105, proof of 105:1, p. 322). -/
+theorem exists_mem_of_irr {L : Submodule (𝓞 F) (Fin n → F)} {S : Finset (Submodule (𝓞 F) (Fin n → F))}
     (hS : IsOrthSplitting Q L S) {x : Fin n → F} (hx : IsIrr Q L x) : ∃ K ∈ S, x ∈ K := by
   classical
   obtain ⟨hxL, hx0, hxr⟩ := hx
@@ -155,13 +158,16 @@ private theorem exists_mem_of_irr {L : Submodule (𝓞 F) (Fin n → F)} {S : Fi
     rw [← hsum, ← Finset.add_sum_erase S f hK0, hrest, add_zero]
   rw [this]; exact hf K0 hK0
 
-private theorem irr_of_rtg {L : Submodule (𝓞 F) (Fin n → F)} {x y : Fin n → F} (hx : IsIrr Q L x)
+/-- A vector joined to an irreducible vector $x$ by a chain of `IrrRel` steps is irreducible. -/
+theorem irr_of_rtg {L : Submodule (𝓞 F) (Fin n → F)} {x y : Fin n → F} (hx : IsIrr Q L x)
     (h : Relation.ReflTransGen (IrrRel Q L) x y) : IsIrr Q L y := by
   induction h with
   | refl => exact hx
   | tail _ hbc _ => exact hbc.2.1
 
-private theorem mem_of_rtg {L : Submodule (𝓞 F) (Fin n → F)} {S : Finset (Submodule (𝓞 F) (Fin n → F))}
+/-- A vector joined to $x \in K$ ($K$ a component of an orthogonal splitting of $L$) by a chain of irreducible
+vectors, consecutive ones non-orthogonal, lies in $K$ (O'Meara 1973, §105, proof of 105:1, p. 322). -/
+theorem mem_of_rtg {L : Submodule (𝓞 F) (Fin n → F)} {S : Finset (Submodule (𝓞 F) (Fin n → F))}
     (hS : IsOrthSplitting Q L S) {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ∈ S) {x : Fin n → F}
     (hxK : x ∈ K) {y : Fin n → F} (h : Relation.ReflTransGen (IrrRel Q L) x y) : y ∈ K := by
   induction h with
@@ -230,7 +236,9 @@ private theorem exists_measure (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) 
     have h' : bil Q z y = 0 := by rw [bil_comm]; exact h
     simp only [bil_add_left', bil_add_right', h, h', add_zero, zero_add, mul_add, map_add]
 
-private theorem span_irr (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG) :
+/-- **Every vector of $L$ is a sum of irreducible vectors** ($V$ totally positive definite, $L$ finitely generated;
+O'Meara 1973, §105, proof of 105:1, p. 322): $L$ is contained in the span of its irreducible vectors. -/
+theorem span_irr (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG) :
     ∀ x ∈ L, x ∈ Submodule.span (𝓞 F) {y | IsIrr Q L y} := by
   obtain ⟨τ, hint, hpos, hadd⟩ := exists_measure hQ hL
   have key : ∀ m : ℕ, ∀ x ∈ L, τ x = m → x ∈ Submodule.span (𝓞 F) {y | IsIrr Q L y} := by
@@ -304,7 +312,9 @@ private theorem le_span_irr (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fi
   have := sum_eq_comp hS.supIndep hK f hfJ (hsum ▸ hk)
   rw [← hsum, this]; exact hf K hK
 
-private theorem exists_irr_mem (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
+/-- Every component of an orthogonal splitting of $L$ contains an irreducible vector of $L$ ($V$ totally positive
+definite, $L$ finitely generated). -/
+theorem exists_irr_mem (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
     {S : Finset (Submodule (𝓞 F) (Fin n → F))} (hS : IsOrthSplitting Q L S)
     {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ∈ S) : ∃ x, IsIrr Q L x ∧ x ∈ K := by
   obtain ⟨k, hkK, hk0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot (hS.ne_bot K hK)
@@ -316,7 +326,10 @@ private theorem exists_irr_mem (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) 
   rw [e, Submodule.span_empty] at h
   exact hk0 (by simpa using h)
 
-private theorem eq_span_class (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
+/-- **The components are the spans of the classes** (O'Meara 1973, §105, proof of 105:1, p. 322): if $K$ is an
+indecomposable component of an orthogonal splitting of $L$ and $x \in K$ is irreducible in $L$, then $K$ is spanned by
+the vectors joined to $x$ by chains of irreducible vectors of $L$ with consecutive members non-orthogonal. -/
+theorem eq_span_class (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
     {S : Finset (Submodule (𝓞 F) (Fin n → F))} (hS : IsOrthSplitting Q L S)
     (hSi : ∀ K ∈ S, IsIndecomposable Q K) {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ∈ S)
     {x : Fin n → F} (hxK : x ∈ K) (hx : IsIrr Q L x) :
@@ -364,6 +377,70 @@ private theorem subset_of_splittings (hQ : IsTotallyPosDef Q) {L : Submodule (�
   obtain ⟨K', hK', hxK'⟩ := exists_mem_of_irr hS' hx
   rw [eq_span_class hQ hL hS hSi hK hxK hx, ← eq_span_class hQ hL hS' hSi' hK' hxK' hx]
   exact hK'
+
+/-! ### Public statements of the steps of the proof of 105:1 (rows 105.p2–p6) -/
+
+/-- **105:1, step 1a: scaling** (O'Meara 1973, §105, proof of 105:1, p. 322, step 1): for a finitely
+generated lattice $L$ on $F^n$ there is a non-zero integer $k$ with $k\,B(x, y) \in \mathfrak o$ for all
+$x, y \in L$ ($B$ = `bil Q`, twice O'Meara's bilinear form, which is irrelevant for the scaling). *Deviation:*
+O'Meara scales so that $N(Q(x))$ is a natural number for $x \in L$; here only the integrality of the scaled form is
+proved, and the norm is replaced by a trace in step 1b (see the module docstring). -/
+@[kb "omeara1963" "§105, proof of 105:1, step 1, p. 322 (scaling)"]
+theorem omeara105_scale {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG) :
+    ∃ k : ℤ, k ≠ 0 ∧ ∀ x ∈ L, ∀ y ∈ L, (k : F) * bil Q x y ∈ (algebraMap (𝓞 F) F).range :=
+  exists_scale hL
+
+/-- **105:1, step 1b: a natural-number measure** (O'Meara 1973, §105, proof of 105:1, p. 322, step 1):
+for $V$ totally positive definite and $L$ finitely generated there is $\tau : F^n \to \mathbb Q$ (namely
+$\tau(x) = \operatorname{Tr}_{F/\mathbb Q}(k^2B(x, x))$, $k$ as in `omeara105_scale`) which is a natural number on
+$L$, positive on non-zero vectors, and additive on orthogonal pairs: $\tau(y + z) = \tau(y) + \tau(z)$ when
+$B(y, z) = 0$. *Deviation:* O'Meara uses the norm $N(Q(x))$ and the Local Square Theorem outside $S$; the trace
+makes this additive (module docstring, "Deviations"). -/
+@[kb "omeara1963" "§105, proof of 105:1, step 1, p. 322 (natural-number measure, trace instead of norm)"]
+theorem omeara105_measure (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG) :
+    ∃ τ : (Fin n → F) → ℚ, (∀ x ∈ L, ∃ m : ℕ, τ x = m) ∧ (∀ x, x ≠ 0 → 0 < τ x) ∧
+      (∀ y z, bil Q y z = 0 → τ (y + z) = τ y + τ z) :=
+  exists_measure hQ hL
+
+/-- **105:1, step 2: every vector is a sum of irreducible vectors** (O'Meara 1973, §105, proof of 105:1, p. 322,
+step 2): for $V$ totally positive definite and $L$ finitely generated, every $x \in L$ lies in the
+$\mathfrak o$-span of the irreducible vectors of $L$ (`IsIrr`). -/
+@[kb "omeara1963" "§105, proof of 105:1, step 2, p. 322 (every vector is a sum of irreducible vectors)"]
+theorem omeara105_span_irr (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG) :
+    ∀ x ∈ L, x ∈ Submodule.span (𝓞 F) {y | IsIrr Q L y} :=
+  span_irr hQ hL
+
+/-- **105:1, step 3: the irreducible vectors generate an orthogonal splitting** (O'Meara 1973, §105, proof of 105:1,
+p. 322, step 3): if $L = K_1 \perp \dots \perp K_t$ is an orthogonal splitting (`IsOrthSplitting`,
+$S = \{K_1, \dots, K_t\}$), every irreducible vector of $L$ lies in some $K_i$, and every $K \in S$ is contained in the
+span of the irreducible vectors of $L$ lying in $K$. ($V$ totally positive definite, $L$ finitely generated.) -/
+@[kb "omeara1963" "§105, proof of 105:1, step 3, p. 322 (irreducible vectors and splittings)"]
+theorem omeara105_irr_splitting (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
+    {S : Finset (Submodule (𝓞 F) (Fin n → F))} (hS : IsOrthSplitting Q L S) :
+    (∀ x, IsIrr Q L x → ∃ K ∈ S, x ∈ K) ∧
+      ∀ K ∈ S, K ≤ Submodule.span (𝓞 F) {y | IsIrr Q L y ∧ y ∈ K} :=
+  ⟨fun _ hx => exists_mem_of_irr hS hx, fun _ hK => le_span_irr hQ hL hS hK⟩
+
+/-- **105:1, step 4: each component is a class** (O'Meara 1973, §105, proof of 105:1, p. 322, step 4): if
+$S$ is an indecomposable splitting of $L$ and $K \in S$ contains the irreducible vector $x$, then $K$ is the span of the
+irreducible vectors joined to $x$ by chains with consecutive members non-orthogonal (`eq_span_class`); consequently
+every component of one indecomposable splitting is a component of any other (`subset_of_splittings`). -/
+@[kb "omeara1963" "§105, proof of 105:1, step 4, p. 322 (components are the classes)"]
+theorem omeara105_component_eq_class (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
+    {S : Finset (Submodule (𝓞 F) (Fin n → F))} (hS : IsOrthSplitting Q L S)
+    (hSi : ∀ K ∈ S, IsIndecomposable Q K) {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ∈ S)
+    {x : Fin n → F} (hxK : x ∈ K) (hx : IsIrr Q L x) :
+    K = Submodule.span (𝓞 F) {y | Relation.ReflTransGen (IrrRel Q L) x y} :=
+  eq_span_class hQ hL hS hSi hK hxK hx
+
+/-- **105:1, step 4, conclusion**: the components of one indecomposable splitting of $L$ are components
+of every other indecomposable splitting of $L$. -/
+@[kb "omeara1963" "§105, proof of 105:1, step 4, p. 322 (each component of S is one of the K_i')"]
+theorem omeara105_subset_of_splittings (hQ : IsTotallyPosDef Q) {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.FG)
+    {S S' : Finset (Submodule (𝓞 F) (Fin n → F))} (hS : IsOrthSplitting Q L S)
+    (hSi : ∀ K ∈ S, IsIndecomposable Q K) (hS' : IsOrthSplitting Q L S')
+    (hSi' : ∀ K ∈ S', IsIndecomposable Q K) : S ⊆ S' :=
+  subset_of_splittings hQ hL hS hSi hS' hSi'
 
 /-! ### Existence -/
 
@@ -453,7 +530,8 @@ private theorem splitting_empty : IsOrthSplitting Q ⊥ (∅ : Finset (Submodule
   indep := (Finset.supIndep_empty (id : Submodule (𝓞 F) (Fin n → F) → _)).independent
   sup_eq := by simp
 
-private theorem splitting_single {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ≠ ⊥) :
+/-- A single non-zero lattice is an orthogonal splitting of itself. -/
+theorem splitting_single {K : Submodule (𝓞 F) (Fin n → F)} (hK : K ≠ ⊥) :
     IsOrthSplitting Q K ({K} : Finset (Submodule (𝓞 F) (Fin n → F))) where
   ne_bot := by simpa using hK
   orth := by
@@ -484,7 +562,8 @@ private theorem supIndep_aux {K₁ K₂ : Submodule (𝓞 F) (Fin n → F)} (hd 
       · exact h
     exact le_sup_of_le_right (hle2 j this)
 
-private theorem splitting_union {K₁ K₂ : Submodule (𝓞 F) (Fin n → F)} (ho : LatOrth Q K₁ K₂) (hd : Disjoint K₁ K₂)
+/-- **Orthogonal splittings of two orthogonal, independent lattices combine** to an orthogonal splitting of their sum. -/
+theorem splitting_union {K₁ K₂ : Submodule (𝓞 F) (Fin n → F)} (ho : LatOrth Q K₁ K₂) (hd : Disjoint K₁ K₂)
     {S₁ S₂ : Finset (Submodule (𝓞 F) (Fin n → F))} (h1 : IsOrthSplitting Q K₁ S₁)
     (h2 : IsOrthSplitting Q K₂ S₂) : IsOrthSplitting Q (K₁ ⊔ K₂) (S₁ ∪ S₂) where
   ne_bot := by

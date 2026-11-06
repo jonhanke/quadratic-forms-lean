@@ -441,9 +441,10 @@ theorem exists_hasseS_neg_iff (hn : 1 ≤ n) (a : Fin n → K) (ha : ∀ i, a i 
 a regular space $V$ over $F_\mathfrak p$ with $\dim V = n_0$, $dV = d_0$ and $S_\mathfrak pV = s_0$ if and only if
 $s_0 = (-1, d_0)_\mathfrak p$ whenever $n_0 = 1$, or $n_0 = 2$ and $d_0 \in -F_\mathfrak p^{2}$.
 
-*Reconstruction:* the formula for $s_0$ is lost in the machine-read text; it is reconstructed from the proof ("the
-spaces $\langle d_0\rangle$ and $\langle 1\rangle \perp \langle -1\rangle$ will work in the exceptional cases"):
-$S\langle d_0\rangle = (d_0, d_0) = (-1, d_0)$ and $S(\langle 1\rangle \perp \langle -1\rangle) = (-1, -1) =
+The page image (read 2026-10-29) prints $s_0 = \bigl(\tfrac{d_0, -1}{\mathfrak p}\bigr)$, which is
+$(-1, d_0)_\mathfrak p$ by the symmetry of the Hilbert symbol; this agrees with the earlier reconstruction from the
+proof ("the spaces $\langle d_0\rangle$ and $\langle 1\rangle \perp \langle -1\rangle$ will work in the exceptional
+cases"): $S\langle d_0\rangle = (d_0, d_0) = (-1, d_0)$ and $S(\langle 1\rangle \perp \langle -1\rangle) = (-1, -1) =
 (-1, d_0)$ when $d_0 \in -F^{2}$. O'Meara's $n_0 \in \mathbb N$ is a positive integer (for $n_0 = 0$ only
 $d_0 = 1$, $s_0 = 1$ occur). -/
 @[kb "omeara1963" "§63C, 63:23, p. 171 (the invariants (n₀, d₀, s₀) that occur)"]

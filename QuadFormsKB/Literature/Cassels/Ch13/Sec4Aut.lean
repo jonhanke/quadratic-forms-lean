@@ -14,7 +14,10 @@ describes.
 **What is proved.** Theorem 4.1, first and last statements: an integral automorph fixing $\vec{e}_0$ induces an
 automorph of $g$ (`thm_4_1`), and every automorph $S \equiv I \bmod f_{00}$ of $g$ is induced (`thm_4_1_ext`). The
 middle statement (the induced $S$ form a subgroup of finite index of $O(g)$) follows from these and the finite index
-of congruence subgroups (`Ch13/Sec4.lean`) but is not stated separately.
+of congruence subgroups (`Ch13/Sec4Matrix.lean`) but is not stated here; it is part (iii) of
+`Reduction.aut_fix_restrict` (`Ch13/Sec4.lean`), the later and complete statement of Theorem 4.1 for automorphs in
+$\mathrm{GL}_n(\mathbb Z)$ and $f_{00} \ne 0$. Both are kept: `thm_4_1` needs no hypothesis
+$f_{00} \ne 0$, and `thm_4_1_ext` asks less of $S$ (any integral matrix preserving $g$).
 
 **Conventions.** 0-based indices: Cassels' $e_1$, $f_{11}$ are $\vec{e}_0$, $f_{00}$ here. Automorphs are integral
 matrices $T$ with $T^{\mathsf T}FT = F$ (unimodularity is not needed for these statements).

@@ -745,7 +745,7 @@ including the case $E = F$ for square $d$).  *Deviation of notation:* the book w
 $S(EV) \cong E(S V)$ (§53B); here $S(EV)$ is taken as the Hasse algebra, over $E$, of the *image in $E$ of the value
 list of $X$* (`List.map (Units.map (algebraMap F E))`), which is the Hasse algebra of the orthogonal basis
 $1 \otimes X_i$ of $EV$ and is (by 58:2 over $E$) $S(EV)$.  The base-change rule $S(EV) \cong E\,S(V)$ of 58:3
-is not formalized.  `Invertible (2 : E)` holds automatically (it is the image of that of $F$) and is only needed to
+is `Hasse58.nonempty_algEquiv_hasseAlg_baseChange` (`Sec58Base.lean`).  `Invertible (2 : E)` holds automatically (it is the image of that of $F$) and is only needed to
 form `hasseAlg` over $E$.
 
 *Proof.*  58:7 reduces to the isotropy of $EV$, i.e. to a nontrivial solution of $\sum_i Q(X_i) t_i^2 = 0$ in $E$
@@ -813,9 +813,8 @@ $W = \langle -1\rangle\perp\langle -1\rangle\perp\langle -1\rangle\perp\langle -
 value functions on $\mathbb R^4$) have the same invariants but are not isometric.  Both have dimension $4$
 (both live on `Fin 4 → ℝ`), the discriminant products $1$ and $(-1)^4 = 1$ agree, and both Hasse algebras are
 similar to $\mathbb R$ (`SameInv` packages discriminant and Hasse algebra), but $V$ represents $1 > 0$ whereas
-every value of $W$ is $\le 0$.  *Reconstruction note:* the machine-read text of the example is garbled; the
-spaces are reconstructed as the sums of four copies of $\langle 1\rangle$ and of $\langle -1\rangle$ (the book
-says "the real quadratic spaces ... have the same invariants but are not isometric"). -/
+every value of $W$ is $\le 0$.  The book's spaces are $V \cong \perp^4\langle 1\rangle$ and $W \cong \perp^4\langle -1\rangle$ (confirmed from the page
+image, 2026-10-29; the machine-read text was garbled). -/
 @[kb "omeara1963" "§58, 58:5, p. 152"]
 theorem example_58_5 [Invertible (2 : ℝ)] :
     SameInv (fun _ : Fin 4 => (1 : ℝˣ)) (fun _ : Fin 4 => (-1 : ℝˣ)) ∧

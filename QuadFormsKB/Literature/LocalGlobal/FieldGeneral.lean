@@ -15,7 +15,7 @@ import QuadFormsKB.Literature.LocalGlobal.RankFive
 
 namespace QuadFormsKB.FieldGen
 
-variable {F : Type*} [Field F] [CharZero F] {n : ℕ}
+variable {F : Type*} [Field F] [NeZero (2 : F)] {n : ℕ}
 
 /-- **Isotropy goes up** (the trivial direction of every local–global principle): if $Q$ over $F$
 has a nonzero zero $\vec{x} \in F^n$, then it is isotropic over every field $K \supseteq F$. -/
@@ -59,7 +59,7 @@ theorem exists_isometric_diag (Q : QuadForm F n) (hQ : Q.Nondegenerate) :
     simp [hM, QuadForm.hessian, Matrix.transpose_add, add_comm]
   have hMdet : M.det ≠ 0 := by
     rw [hM, Matrix.det_smul]
-    exact mul_ne_zero (pow_ne_zero _ (by norm_num)) hQ
+    exact mul_ne_zero (pow_ne_zero _ (one_div_ne_zero two_ne_zero)) hQ
   set B : LinearMap.BilinForm F (Fin n → F) := Matrix.toLinearMap₂' F M with hB
   have hBapp : ∀ x y, B x y = x ⬝ᵥ M.mulVec y := fun x y => Matrix.toLinearMap₂'_apply' M x y
   have hsymm : LinearMap.IsSymm B := by
@@ -82,7 +82,10 @@ theorem exists_isometric_diag (Q : QuadForm F n) (hQ : Q.Nondegenerate) :
     rw [hBapp, hM, Matrix.smul_mulVec, dotProduct_smul]
     have h3 : Q.hessian.map (algebraMap F F) = Q.hessian := by ext; simp
     rw [h3] at h
-    rw [← h, smul_eq_mul]; ring
+    rw [← h, smul_eq_mul]
+    have h2' : (2:F) ≠ 0 := two_ne_zero
+    field_simp
+    ring
   obtain ⟨v, hv⟩ := LinearMap.BilinForm.exists_orthogonal_basis hsymm
   set w := v.reindex (finCongr (Module.finrank_fin_fun F)) with hw
   have hwo : ∀ i j, i ≠ j → B (w i) (w j) = 0 := by
@@ -124,7 +127,7 @@ theorem exists_isometric_diag (Q : QuadForm F n) (hQ : Q.Nondegenerate) :
 /-- **Isometry over $F$ persists over $K \supseteq F$:** if $Q \cong Q'$ over $F$ then
 $Q \cong Q'$ over $K$. -/
 @[kb "lam2005" "Ch. I §1 [unverified]"]
-theorem isometricIn_of_base (K : Type*) [Field K] [Algebra F K] {Q Q' : QuadForm F n}
+theorem isometricIn_of_base [Infinite F] (K : Type*) [Field K] [Algebra F K] {Q Q' : QuadForm F n}
     (h : Q.IsometricIn F Q') : Q.IsometricIn K Q' := by
   obtain ⟨P, hP, hPx⟩ := h
   have keyF : ∀ (φ : MvPolynomial (Fin n) F →ₐ[F] F) (R : QuadForm F n) (v : Fin n → MvPolynomial (Fin n) F),
@@ -578,7 +581,7 @@ $\langle a_0, a_1 \rangle$ represents some $t \in F^\times$ over $F$ and
 $\langle t, a_2, \dots, a_{m+1} \rangle$ is isotropic over $F$ (so $\langle a_2, \dots, a_{m+1} \rangle$
 represents $-t$, or is itself isotropic), then $\langle a_0, \dots, a_{m+1} \rangle$ is isotropic over $F$.
 
-*Correction (llmprove).* This was first stated with $\langle -t, a_2, \dots \rangle$, which is
+*Correction.* This was first stated with $\langle -t, a_2, \dots \rangle$, which is
 false: over $\mathbb{Q}$, $a = (1,1,1)$ and $t = 1$ satisfy that hypothesis, yet $\langle 1,1,1 \rangle$
 is anisotropic. -/
 @[kb "lam2005" "Ch. VI, proof of Thm. 3.1 [unverified]"]

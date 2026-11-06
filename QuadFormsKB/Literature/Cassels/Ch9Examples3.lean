@@ -143,7 +143,7 @@ theorem exists_odd_padicValInt {N : ℤ} (hN : N % 8 = 3 ∨ N % 8 = 5) :
 
 /-- **Cassels, Ch. 9, Example 23** (p. 167), global part: *let $m \equiv \pm 3 \pmod 8$. Then $m^2$ is not
 represented primitively by $x^2 - 2y^2 + 64z^2$ over $\mathbb Z$.* -/
-@[kb "cassels1978" "Ch. 9, Ex. 23, p. 167 (not over ℤ)"]
+@[kb "cassels1978" "Ch. 9, Examples, Ex. 23, p. 168 (not over ℤ)"]
 theorem ex23_not_primRep {m : ℤ} (hm : m % 8 = 3 ∨ m % 8 = 5) : primRepSet ex23Form (m ^ 2) = ∅ := by
   ext x
   simp only [primRepSet, Set.mem_ofPred_eq, Set.mem_empty_iff_false, iff_false, not_and]
@@ -196,7 +196,7 @@ theorem ex23_not_primRep {m : ℤ} (hm : m % 8 = 3 ∨ m % 8 = 5) : primRepSet e
 /-- **Cassels, Ch. 9, Example 23** (p. 167), local part: *let $m \equiv \pm 3 \pmod 8$. Then $m^2$ is represented
 primitively by $x^2 - 2y^2 + 64z^2$ over every $\mathbb Z_p$* (some coordinate a unit of $\mathbb Z_p$). Over
 $\mathbb R$, $(m, 0, 0)$ is a representation. -/
-@[kb "cassels1978" "Ch. 9, Ex. 23, p. 167 (over every ℤ_p)"]
+@[kb "cassels1978" "Ch. 9, Examples, Ex. 23, p. 168 (over every ℤ_p)"]
 theorem ex23_local {m : ℤ} (hm : m % 8 = 3 ∨ m % 8 = 5) (p : ℕ) [hp : Fact p.Prime] :
     ∃ x : Fin 3 → ℤ_[p], (∃ i, IsUnit (x i)) ∧ (ex23Form.map (Int.castRingHom ℤ_[p])).eval x = (m : ℤ_[p]) ^ 2 := by
   have hunit : ∀ c : ℤ_[p], PadicInt.toZMod c ≠ 0 → IsUnit c := fun c hc => by
