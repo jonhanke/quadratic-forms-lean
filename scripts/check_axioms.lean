@@ -65,3 +65,4 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.twoAdicClassification
 #print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso
 #print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso_one
+#print axioms QuadFormsKB.Headlines.watson_twoClasses

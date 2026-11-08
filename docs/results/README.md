@@ -14,7 +14,7 @@ One page per main result of the repository, with the precise statement, its scop
 | [Tamagawa numbers of SO(V)](tamagawa-table.md) | $`\tau(\mathrm{SO}(V))`$ over every number field: $`2`$ in dimension $`n \ge 3`$ and for anisotropic binary spaces, $`1`$ for isotropic binary spaces and in dimension $`1`$ (new in 0.2.0) |
 | [Siegel's formula for indefinite forms](siegel-indefinite.md) | the measure form of Siegel's formula over every number field, numbers and forms, every stabilizer rank; definite forms by forms over totally real fields (new in 0.2.0) |
 | [Mass formulas](mass-formulas.md) | Siegel's general form, and the exact evaluations: Conway–Sloane over ℤ from the genus symbols, Shimura's formula for SO over totally real fields (Gan, Hanke and Yu), Hanke's formula over every number field in corrected general form (new in 0.4.0) |
-| [Classification of lattices and genera](classification.md) | O'Meara 93:28 and 93:29 at the dyadic primes, Conway–Sloane's Theorem 18 at every prime, the genus from the discriminant form (new in 0.4.0) |
+| [Classification of lattices and genera](classification.md) | O'Meara 93:28 and 93:29 at the dyadic primes, Conway–Sloane's Theorem 18 at every prime, the genus from the discriminant form (new in 0.4.0); Watson's theorem, at least two classes in every genus in n > 11 variables (new in 0.4.1) |
 | [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0); the divisor count for $`xy`$ (new in 0.2.1) |
 
 ## Further results

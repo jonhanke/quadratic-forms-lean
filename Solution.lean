@@ -1018,5 +1018,25 @@ theorem sameGenus_iff_discIso_one {n : ℕ} {A B : Matrix (Fin n) (Fin n) ℤ} (
 
 end Classification
 
+/-! ## Class numbers
+
+Watson's theorem (1963): a genus of positive definite integer-valued forms in more than 11 variables is never a single
+class. -/
+
+section ClassNumbers
+
+/-- **Watson's theorem: every genus in n > 11 variables has at least two classes** (G. L. Watson, "The
+class-number of a positive quadratic form", Proc. London Math. Soc. (3) 13 (1963), 549–576, Theorem 1, the case
+n ≥ 12 of (1.1); quoted without proof in J. W. S. Cassels, Rational Quadratic Forms, Appendix A, §3, p. 364). Let Q
+be a positive definite integer-valued form in n > 11 variables (`QuadForm ℤ n`, the polynomial ∑_{i ≤ j} c_ij x_i x_j
+with integer coefficients, and `IntQF.PosDef Q`). Then the genus of Q contains at least two GL_n(ℤ)-classes of forms
+(`Siegel.genusClasses Q`, counted with Mathlib's `Set.encard`), and finitely many. Watson's other case of (1.1),
+n = 11, is not part of this statement. -/
+theorem watson_twoClasses {n : ℕ} (hn : 11 < n) (Q : QuadForm ℤ n) (hQ : IntQF.PosDef Q) :
+    (2 : ℕ∞) ≤ (Siegel.genusClasses Q).encard ∧ (Siegel.genusClasses Q).Finite :=
+  ⟨QuadFormsKB.Watson1963.two_le_encard_genusClasses hn hQ, (Siegel.genusFinite hQ).finite_classes⟩
+
+end ClassNumbers
+
 
 end QuadFormsKB.Headlines
