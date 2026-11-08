@@ -26,7 +26,9 @@ project:
     and adds as headlines the Conway-Sloane mass formula over Z from the genus symbols, Shimura's exact mass
     formula for SO over totally real fields (Gan-Hanke-Yu, odd and even rank), Hanke's exact mass formula over
     number fields in corrected general form, Conway-Sloane's Theorem 18 at every prime, O'Meara 93:28 and
-    93:29, and Lemmas 2 and 4 of Conway-Sloane 1988. Further results include Witt's theorems over every
+    93:29, and Lemmas 2 and 4 of Conway-Sloane 1988. Release 0.4.1 adds as a headline Watson's theorem (1963):
+    every genus of positive definite integer-valued forms in n > 11 variables has at least two classes.
+    Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
     strong approximation for spin groups, Kneser neighbours, the Hasse norm theorem for quadratic
@@ -165,7 +167,7 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 47 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Formalized (the 48 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
     Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
     rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
@@ -194,7 +196,9 @@ status:
     totally definite, O_F^n maximal, F totally real); Hanke 2005 Theorem 5.1 for every number field without
     Shimura's determinant hypothesis (corrected local factors at the excluded primes; the printed statement is
     false without the hypothesis); Conway-Sloane Ch. 15 Theorem 18 at every prime; O'Meara 93:28 and 93:29 over
-    completions of number fields; Conway-Sloane 1988 Lemmas 2 and 4. Not formalized: the Siegel-Weil
+    completions of number fields; Conway-Sloane 1988 Lemmas 2 and 4. Release 0.4.1 (1 new statement): Watson
+    1963, Theorem 1 for n >= 12 (every genus of positive definite integer-valued forms in n > 11 variables has at
+    least two classes; Watson's case n = 11 is not included). Not formalized: the Siegel-Weil
     formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
     the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
     hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
@@ -269,14 +273,14 @@ fidelity:
     have not been checked against the sources.
 
 review:
-  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0 and the nine added in 0.4.0 are not yet reviewed"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0, the nine added in 0.4.0 and the one added in 0.4.1 are not yet reviewed"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
     Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
     (October 2026). The 21 headline statements added in release 0.2.0 (nine of them extended in release 0.2.1), the
-    one added in release 0.2.1, the three added in release 0.3.0, the nine added in release 0.4.0, and the
-    definitions they use, have not yet been reviewed by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
+    one added in release 0.2.1, the three added in release 0.3.0, the nine added in release 0.4.0, the one added
+    in release 0.4.1, and the definitions they use, have not yet been reviewed by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -518,6 +522,11 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "Positive definite integral lattices. Added in 0.4.0."
+    - source: "Watson 1963, The class-number of a positive quadratic form, Theorem 1, (1.1) for n >= 12"
+      lean: "QuadFormsKB.Headlines.watson_twoClasses"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Positive definite integer-valued forms in n > 11 variables; also stated that the genus is finite. Added in 0.4.1."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

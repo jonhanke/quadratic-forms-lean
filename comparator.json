@@ -48,7 +48,8 @@
     "QuadFormsKB.Headlines.dyadicClassification",
     "QuadFormsKB.Headlines.twoAdicClassification",
     "QuadFormsKB.Headlines.sameGenus_iff_discIso",
-    "QuadFormsKB.Headlines.sameGenus_iff_discIso_one"
+    "QuadFormsKB.Headlines.sameGenus_iff_discIso_one",
+    "QuadFormsKB.Headlines.watson_twoClasses"
   ],
   "definition_names": [],
   "permitted_axioms": [
