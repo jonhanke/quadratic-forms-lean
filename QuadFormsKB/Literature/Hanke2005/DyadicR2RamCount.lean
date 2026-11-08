@@ -24,7 +24,7 @@ a discrete valuation ring $R$ (the counts).
 * **The norm-one count** (`card_normOne`): if the unit norms have index $2$ in the units (`IndexTwo`, from the Hilbert
   symbol in `DyadicR2RamNorm.lean`) and $1 + \pi^k R$ consists of squares, then $\#\{\xi \bmod \pi^k : N\xi\equiv1\} = 2q^k$.
 
-Indices are 0-based. Sources: GHY 2001, §6 (the shape of the kernel); the counting is elementary.
+Indices are 0-based. Sources: Gan–Hanke–Yu 2001, §6 (the shape of the kernel); the counting is elementary.
 -/
 import QuadFormsKB.Literature.Hanke2005.DyadicAnisoKernel
 import QuadFormsKB.LocalDensity.FormDensitySelf

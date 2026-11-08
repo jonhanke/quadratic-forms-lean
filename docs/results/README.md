@@ -13,6 +13,8 @@ One page per main result of the repository, with the precise statement, its scop
 | [Hasse–Minkowski over ℚ](hasse-minkowski-rationals.md) | isotropy, isometry, and the classification of forms over <img src="../images/inline/903326f5e2d2.svg" align="absmiddle" alt="\mathbb{Q}_p"> |
 | [Tamagawa numbers of SO(V)](tamagawa-table.md) | $`\tau(\mathrm{SO}(V))`$ over every number field: $`2`$ in dimension $`n \ge 3`$ and for anisotropic binary spaces, $`1`$ for isotropic binary spaces and in dimension $`1`$ (new in 0.2.0) |
 | [Siegel's formula for indefinite forms](siegel-indefinite.md) | the measure form of Siegel's formula over every number field, numbers and forms, every stabilizer rank; definite forms by forms over totally real fields (new in 0.2.0) |
+| [Mass formulas](mass-formulas.md) | Siegel's general form, and the exact evaluations: Conway–Sloane over ℤ from the genus symbols, Shimura's formula for SO over totally real fields (Gan, Hanke and Yu), Hanke's formula over every number field in corrected general form (new in 0.4.0) |
+| [Classification of lattices and genera](classification.md) | O'Meara 93:28 and 93:29 at the dyadic primes, Conway–Sloane's Theorem 18 at every prime, the genus from the discriminant form (new in 0.4.0) |
 | [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0); the divisor count for $`xy`$ (new in 0.2.1) |
 
 ## Further results
@@ -24,4 +26,4 @@ One page per main result of the repository, with the precise statement, its scop
 
 Conventions: classes of lattices are isometry classes under the full orthogonal group (improper isometries included), and each class is weighted by the inverse of the order of its orthogonal group. Bibliographic entries are in [references.bib](../../references.bib); locators marked "[unverified locator]" have not been checked against the source.
 
-Errors found in the repository's own statements are listed in [errata](errata.md).
+Errors found in the repository's own statements are listed in [errata](errata.md). Item-by-item maps from the four books to the Lean declarations: [book maps](books/README.md).

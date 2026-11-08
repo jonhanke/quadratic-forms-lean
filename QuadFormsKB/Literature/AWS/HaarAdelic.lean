@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.6: the Haar measure on $O(V_\mathbb{A})$ and the integral over $O(V)\backslash O(V_\mathbb{A})$
+# Hanke, Arizona Winter School 2009 notes, §4.6: the Haar measure on $O(V_\mathbb{A})$ and the integral over $O(V)\backslash O(V_\mathbb{A})$
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.5–§4.6 (pp. 61–64).
 This file **constructs** the measure $dh_\mathbb{A}$ on $G = O(V_\mathbb{A})$ used in the notes and the

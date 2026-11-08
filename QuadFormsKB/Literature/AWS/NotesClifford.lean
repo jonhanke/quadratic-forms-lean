@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §3.2: Clifford algebras are central simple (Thm 3.2.4)
+# Hanke, Arizona Winter School 2009 notes, §3.2: Clifford algebras are central simple (Thm 3.2.4)
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, notes from the 2009 Arizona Winter School,
 arXiv:1105.5759 v3 (bibkey `hanke2011aws`), §3.2, Theorem 3.2.4, p. 47.
@@ -532,7 +532,7 @@ theorem nontrivial_cliffordAlgebra : Nontrivial (CliffordAlgebra Q) :=
   Module.nontrivial_of_finrank_pos (R := K)
     (by rw [CliffordDim.finrank_cliffordAlgebra]; positivity)
 
-/-- **Theorem 3.2.4, even dimension** (Hanke, AWS notes, §3.2, p. 47). Let $V$ be a finite-dimensional
+/-- **Theorem 3.2.4, even dimension** (Hanke, Arizona Winter School notes, §3.2, p. 47). Let $V$ be a finite-dimensional
 quadratic space over a field $K$ in which $2$ is invertible (`Invertible (2 : K)`, i.e. $\operatorname{char} K \ne 2$),
 with quadratic form $Q$ (`Q`) that is non-degenerate (`hQ`: the associated symmetric bilinear form
 $B(x,y) = \tfrac12(Q(x+y)-Q(x)-Q(y))$ is non-degenerate). If $n = \dim_K V$ is even (`hn`), then the Clifford algebra
@@ -554,7 +554,7 @@ theorem theorem_3_2_4_even (hQ : (QuadraticMap.associated Q).Nondegenerate)
   obtain ⟨c, hc⟩ := center_scalar_even Q e he hea hn x (fun v => (hx (ι Q v)).symm)
   exact Algebra.mem_bot.mpr ⟨c, hc.symm⟩
 
-/-- **Theorem 3.2.4, odd dimension** (Hanke, AWS notes, §3.2, p. 47). Same hypotheses as `theorem_3_2_4_even`
+/-- **Theorem 3.2.4, odd dimension** (Hanke, Arizona Winter School notes, §3.2, p. 47). Same hypotheses as `theorem_3_2_4_even`
 (`Invertible (2 : K)`, finite dimension, non-degenerate `hQ`), but $n = \dim_K V$ is odd (`hn`). Then the even
 Clifford algebra $C_0(V)$ (`CliffordAlgebra.even Q`, the subalgebra spanned by products of an even number of vectors)
 is a central simple $K$-algebra: `Algebra.IsCentral K (CliffordAlgebra.even Q)` and `IsSimpleRing`.

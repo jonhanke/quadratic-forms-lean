@@ -1,12 +1,12 @@
 /-
-# The Gan–Hanke–Yu mass formula for special orthogonal groups, even rank (GHY 2001, Proposition 7.5)
+# The Gan–Hanke–Yu mass formula for special orthogonal groups, even rank (Gan–Hanke–Yu 2001, Proposition 7.5)
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), §7 ((7.1)–(7.3),
 Prop. 7.5, p. 119), Lemma A.1(iv) (p. 123); J. Hanke, *An exact mass formula for quadratic forms over number fields*,
 J. Reine Angew. Math. 584 (2005), Theorem 5.1.
 
-Let $k$ (= `F`) be totally real of degree $d$, $V$ totally definite of even rank $m = 2n\ge4$ (GHY's $n$ = `n / 2`),
-$\delta$ the discriminant, $L = k(\sqrt\delta)$, $\chi$ its quadratic character, $\Lambda = \mathcal O_k^m$ maximal. GHY:
+Let $k$ (= `F`) be totally real of degree $d$, $V$ totally definite of even rank $m = 2n\ge4$ (Gan–Hanke–Yu's $n$ = `n / 2`),
+$\delta$ the discriminant, $L = k(\sqrt\delta)$, $\chi$ its quadratic character, $\Lambda = \mathcal O_k^m$ maximal. Gan–Hanke–Yu:
 $$\mathrm{Mass}(\Lambda) = \Big(\frac1{2^{nd}}L(M)\,\tau(G)\Big)\prod_{v\in S}\lambda_v,\qquad
 L(M) = \prod_{r=1}^{n-1}\zeta_k(1-2r)\cdot L(1-n,\chi),\qquad\tau(G) = 2,$$
 $$\lambda_v = \frac{(q^{n-1}-1)(q^n-1)}{2(q+1)}\ (\delta\in k_v^{\times2},\ w = -1),\quad
@@ -15,17 +15,17 @@ $$\lambda_v = \frac{(q^{n-1}-1)(q^n-1)}{2(q+1)}\ (\delta\in k_v^{\times2},\ w = 
 and $\lambda_v = 1$ otherwise. **Formalized** as `ghy_prop75`, conditional on one named input:
 
 * `RamifiedDualIndexConductor`: at a place ramified in $E_\delta$, $[\widetilde\Lambda_v:\Lambda_v] = q_v^{f_v}$, $f_v$ the conductor
-  exponent of $k_v(\sqrt\delta)/k_v$ (`condExp`, defined by norm groups: the least $c$ with $U^{(c)}\subseteq N(E_v^\times)$; GHY
+  exponent of $k_v(\sqrt\delta)/k_v$ (`condExp`, defined by norm groups: the least $c$ with $U^{(c)}\subseteq N(E_v^\times)$; Gan–Hanke–Yu
   Lemma A.1(iv): $f_v = d$, the exponent of the different, and $[\widetilde\Lambda_v:\Lambda_v] = |\mathrm{disc}\,A_{E_\delta}|^{-1} = q^d$).
 
 Readings (as for Prop. 7.4, `GHYMassFormula.lean`): $L(M)$ is read as $|L(M)|$; $|\zeta_k(1-2r)|$ and
 $|L(1-n,\chi)| = (|D_k|\,N\mathfrak f_\chi)^{n-1/2}\big(2(n-1)!/(2\pi)^n\big)^dL(n,\chi)$ are written through the functional
 equations (Mathlib has no analytic continuation), with $N\mathfrak f_\chi = \prod_{v\ \text{ramified}}q_v^{f_v}$ (`condNorm`); $w = -1$
 is read as $t_v = 4$ for $\delta$ a square and as $[\widetilde\Lambda_v:\Lambda_v]\ne1$ for $E_\delta$ unramified (the lattices
-$\Delta^{n-2}\perp A_D$ and $\Delta^{n-1}\perp\pi A_{E_\delta}$ of GHY (6.5)).
+$\Delta^{n-2}\perp A_D$ and $\Delta^{n-1}\perp\pi A_{E_\delta}$ of Gan–Hanke–Yu (6.5)).
 
 *Proof.* `theorem51_definite_general` (for even rank $\lambda'_v = \lambda_v$) and the placewise identity
-$\lambda^{\rm GHY}_v\,(q_v^{f_v})^{n-1/2} = [\widetilde\Lambda_v:\Lambda_v]^{n-1/2}\lambda_v$ (`lambdaGHYEvenAt_mul`; the factor $q^{f_v}$ only at
+$\lambda^{\rm Gan–Hanke–Yu}_v\,(q_v^{f_v})^{n-1/2} = [\widetilde\Lambda_v:\Lambda_v]^{n-1/2}\lambda_v$ (`lambdaGHYEvenAt_mul`; the factor $q^{f_v}$ only at
 ramified places), from the dual index at the unramified places (`dualIndexAt_even_unram`) and the input.
 -/
 import QuadFormsKB.Literature.Hanke2005.GHYEvenDual
@@ -53,7 +53,7 @@ section Conductor
 variable (v : HeightOneSpectrum (𝓞 F))
 
 open Classical in
-/-- **The conductor exponent $f_v$ of $F_v(\sqrt x)/F_v$** (GHY 2001, Lemma A.1(iv), p. 123; Serre, *Local Fields*, Ch. XV,
+/-- **The conductor exponent $f_v$ of $F_v(\sqrt x)/F_v$** (Gan–Hanke–Yu 2001, Lemma A.1(iv), p. 123; Serre, *Local Fields*, Ch. XV,
 §2): the least $c$ such that every unit $u\equiv1 \bmod \pi^c$ is a norm from $F_v(\sqrt x)$, i.e. has Hilbert symbol
 $(x,u)_v = 1$ (and $0$ if there is no such $c$, which does not happen for $x\ne0$, by the local square theorem). -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123 (U^i ⊆ N E^× iff i ≥ d: the conductor of E/F)"]
@@ -72,7 +72,7 @@ end Conductor
 $\prod_vq_v^{f_v}$ over the places ramified in $F(\sqrt\delta)$. -/
 def condNorm (Q₀ : QuadForm (𝓞 F) n) : ℝ := ∏' v : HeightOneSpectrum (𝓞 F), condFactor v Q₀
 
-/-- **The dual index at a ramified place is the norm of the local conductor** (a **named input**; GHY 2001, Lemma A.1(iv),
+/-- **The dual index at a ramified place is the norm of the local conductor** (a **named input**; Gan–Hanke–Yu 2001, Lemma A.1(iv),
 (6.5), (6.13): the maximal lattice is $\Delta^{n-1}\perp A_{E_\delta}$ with $A_{E_\delta}$ the scaled norm form of the ring of integers,
 whose discriminant has valuation $d$ = the exponent of the different = the conductor exponent $f_v$). For even $n\ge4$,
 $Q_0$ nondegenerate with $\mathcal O_F^n$ maximal, and $v$ ramified in $F(\sqrt\delta)$:
@@ -85,10 +85,10 @@ structure RamifiedDualIndexConductor (F : Type) [Field F] [NumberField F] : Prop
     ∀ v : HeightOneSpectrum (𝓞 F), IsRamifiedAt v Q₀ →
       dualIndexAt v Q₀ = (normQ v) ^ condExp v (algebraMap F (v.adicCompletion F) (discK Q₀))
 
-/-! ### GHY's local factor, even rank -/
+/-! ### Gan–Hanke–Yu's local factor, even rank -/
 
 open Classical in
-/-- **GHY's $\lambda_v$ for even rank $m = 2k$** (GHY 2001, Proposition 7.5, p. 119; Table 3), as a function of $q$, $k$,
+/-- **Gan–Hanke–Yu's $\lambda_v$ for even rank $m = 2k$** (Gan–Hanke–Yu 2001, Proposition 7.5, p. 119; Table 3), as a function of $q$, $k$,
 $t = t_v$, whether $\delta$ is a square (`sq`), whether $E_\delta$ is ramified (`ram`) and whether the lattice is self-dual
 (`sd`; for $E_\delta$ unramified, $w = 1$ iff self-dual). -/
 @[kb "ganhankeyu2001" "Proposition 7.5, p. 119 (λ_v, even rank)"]
@@ -97,7 +97,7 @@ def lambdaGHYEven (q : ℝ) (k t : ℕ) (sq ram sd : Prop) : ℝ :=
   else if ram then 1 / 2
   else if sd then 1 else (q ^ (k - 1) + 1) * (q ^ k + 1) / (2 * (q + 1))
 
-/-- GHY's $\lambda_v$ at a finite place for $Q_0$ of even rank. -/
+/-- Gan–Hanke–Yu's $\lambda_v$ at a finite place for $Q_0$ of even rank. -/
 def lambdaGHYEvenAt (v : HeightOneSpectrum (𝓞 F)) (Q₀ : QuadForm (𝓞 F) n) : ℝ :=
   lambdaGHYEven (normQ v) (n / 2) (anisoDim v Q₀) (IsSquare (algebraMap F (v.adicCompletion F) (discK Q₀)))
     (IsRamifiedAt v Q₀) (dualIndexAt v Q₀ = 1)
@@ -123,7 +123,7 @@ theorem sq_rpow_half {q : ℝ} (hq : 0 < q) (k : ℕ) : (q ^ 2) ^ ((k : ℝ) - 1
   rw [← Real.rpow_natCast q 2, ← Real.rpow_mul hq.le]
   norm_num
 
-/-- **GHY's even-rank $\lambda_v$ against Hanke's** (placewise): $\lambda^{\rm GHY}_v\,(N\mathfrak f_{\chi,v})^{k-1/2} =
+/-- **Gan–Hanke–Yu's even-rank $\lambda_v$ against Hanke's** (placewise): $\lambda^{\rm Gan–Hanke–Yu}_v\,(N\mathfrak f_{\chi,v})^{k-1/2} =
 [\widetilde\Lambda_v:\Lambda_v]^{k-1/2}\,\lambda_v$, $k = n/2$. -/
 theorem lambdaGHYEvenAt_mul (I : RamifiedDualIndexConductor F) (v : HeightOneSpectrum (𝓞 F)) (hn : 4 ≤ n)
     (heven : Even n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
@@ -201,7 +201,7 @@ theorem condFactor_pos (v : HeightOneSpectrum (𝓞 F)) (Q₀ : QuadForm (𝓞 F
   · exact pow_pos (lt_trans zero_lt_one (one_lt_normQ v)) _
   · exact one_pos
 
-/-- **The product of GHY's even-rank local factors:** $\prod_v\lambda^{\rm GHY}_v\cdot(N\mathfrak f_\chi)^{k-1/2} =
+/-- **The product of Gan–Hanke–Yu's even-rank local factors:** $\prod_v\lambda^{\rm Gan–Hanke–Yu}_v\cdot(N\mathfrak f_\chi)^{k-1/2} =
 [\widetilde\Lambda:\Lambda]^{k-1/2}\prod_v\lambda_v$. -/
 theorem tprod_lambdaGHYEvenAt (I : RamifiedDualIndexConductor F) (hn : 4 ≤ n) (heven : Even n) (Q₀ : QuadForm (𝓞 F) n)
     (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
@@ -235,13 +235,13 @@ def absLNeg (Q₀ : QuadForm (𝓞 F) n) (k : ℕ) : ℝ :=
     (2 * (Nat.factorial (k - 1) : ℝ) / (2 * π) ^ k) ^ Module.finrank ℚ F *
       NFEuler.LFunctionNF (fun v => chiK v Q₀) (k : ℝ)
 
-/-- **GHY's $|L(M)|$ for even rank $2k$** (GHY 2001, (7.2)): $\prod_{r=1}^{k-1}|\zeta_F(1-2r)|\cdot|L(1-k,\chi)|$. -/
+/-- **Gan–Hanke–Yu's $|L(M)|$ for even rank $2k$** (Gan–Hanke–Yu 2001, (7.2)): $\prod_{r=1}^{k-1}|\zeta_F(1-2r)|\cdot|L(1-k,\chi)|$. -/
 @[kb "ganhankeyu2001" "(7.2) (L(M) for m = 2n, in absolute value)"]
 def lMotiveEven (Q₀ : QuadForm (𝓞 F) n) (k : ℕ) : ℝ := lMotiveOdd F (k - 1) * absLNeg Q₀ k
 
-/-- **GHY 2001, Proposition 7.5** (even rank $m = 2k\ge4$; totally real $F$ of degree $d$; $V$ totally definite;
+/-- **Gan–Hanke–Yu 2001, Proposition 7.5** (even rank $m = 2k\ge4$; totally real $F$ of degree $d$; $V$ totally definite;
 $\Lambda = \mathcal O_F^m$ maximal): $\mathrm{Mass}(\Lambda) = \big(2^{-kd}\,|L(M)|\,\tau(G)\big)\prod_v\lambda_v$, $\tau(G) = 2$, with
-GHY's $\lambda_v$ (`lambdaGHYEvenAt`). **Conditional** on the named input `RamifiedDualIndexConductor F` (the dual index at
+Gan–Hanke–Yu's $\lambda_v$ (`lambdaGHYEvenAt`). **Conditional** on the named input `RamifiedDualIndexConductor F` (the dual index at
 a ramified place is the norm of the local conductor). -/
 @[kb "ganhankeyu2001" "Proposition 7.5, p. 119 (with (7.1)–(7.3))"]
 theorem ghy_prop75 [IsTotallyReal F] (I : RamifiedDualIndexConductor F) (hn : 4 ≤ n) (heven : Even n)
@@ -296,7 +296,7 @@ theorem ghy_prop75 [IsTotallyReal F] (I : RamifiedDualIndexConductor F) (hn : 4 
     congr 1; push_cast; ring
   rw [fs, fL, fπ]
   rw [Real.mul_rpow hD.le hNpos.le]
-  -- isolate `∏ λ^GHY` from `hT`
+  -- isolate the Gan–Hanke–Yu product `∏ λ` from `hT`
   have hT' : (∏' v : HeightOneSpectrum (𝓞 F), lambdaGHYEvenAt v Q₀) =
       (∏' v, dualIndexAt v Q₀) ^ (((j + 2 : ℕ) : ℝ) - 1 / 2) * (∏' v, lambdaAt v Q₀) /
         condNorm Q₀ ^ (((j + 2 : ℕ) : ℝ) - 1 / 2) := by

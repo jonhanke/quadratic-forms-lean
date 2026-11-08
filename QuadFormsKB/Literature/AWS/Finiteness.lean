@@ -1,7 +1,7 @@
 /-
 # The finiteness inputs of the theta lift, for positive definite $Q$
 
-**Layer:** the AWS notes' adelic setting over $\mathbb{Q}$ (`AWS/Adelic.lean`, `AWS/Gluing.lean`): $H$ is the Hessian
+**Layer:** the Arizona Winter School notes' adelic setting over $\mathbb{Q}$ (`AWS/Adelic.lean`, `AWS/Gluing.lean`): $H$ is the Hessian
 of $Q$, $O(V_\mathbb{A})$ acts on the lattices $L = g\mathbb{Z}^n \subset \mathbb{Q}^n$, $K_\mathbb{A}$ is the stabilizer of
 $\mathbb{Z}^n$ and $O(V)$ is embedded diagonally (`ratPoints`).
 
@@ -36,7 +36,7 @@ of $\mathbb{Z}^2$ of infinite order. (`finite_classes` holds for every nondegene
 number fields as `Lattices.ClassFin.genusClasses_finite_nf`; that layer is not connected to this one.)
 
 *Sources:* Cassels, *Rational Quadratic Forms*, Ch. 9, Thm. 1.1, p. 128 and Lemma 4.1, Cor. 1, p. 139 (finiteness of
-classes); Ch. 13, §1, p. 284 (finiteness of $O(f)$ for definite $f$); AWS notes §4.6, p. 64.
+classes); Ch. 13, §1, p. 284 (finiteness of $O(f)$ for definite $f$); Arizona Winter School notes §4.6, p. 64.
 -/
 import QuadFormsKB.Literature.AWS.Gluing
 import QuadFormsKB.Literature.AWS.Measures

@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §2.7: the sum of four squares via Siegel's formula
+# Hanke, Arizona Winter School 2009 notes, §2.7: the sum of four squares via Siegel's formula
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §2.7.2–§2.7.5,
 pp. 36–40. The list D1, D2, … of the notes' derivations is in `AWS/Overview.lean`; this file is

@@ -8,18 +8,22 @@ $O^+(V)$ = `Tamagawa.soSub Q F`, $O'(V)$ = `spinorKernel Q F`, $\Omega_n(V)$ = t
 all spots of $F$, finite and infinite; both kinds appear explicitly below.
 
 **Defines** (named statements: Prop-valued structures stating the book's results; they are not assumed anywhere
-as axioms, and they are not proved here)
+as axioms; all of them are now proved, see below)
 * `OMeara101_10` (Example 101:10, pp. 292–293): for even $n \ge 2$ some lattice $K$ has $\operatorname{cls}^+K \ne
-  \operatorname{cls}K$. O'Meara's construction needs 65:20, 66:6, 81:14 and the local lattices of Example 92:8.
+  \operatorname{cls}K$. Proved in `Sec101Ten.lean` (`omeara101_10`) by O'Meara's construction from 65:20, 81:14 and
+  the local lattices of Example 92:8.
 * `OMeara101_11` (Lemma 101:11, pp. 293–294): regular ternary subspaces representing a finite set, local–global.
-  It needs representations of spaces by spaces (63:21, 66:3 for spaces), which the library has only for numbers.
+  PROVED in `Sec101ElevenMain.lean` (`omeara101_11`).
 * `OMeara101_12` (Proposition 101:12, p. 294, the book's statement for $\Omega_n$; the library proves the version for
-  $O'_n$, `mem_spinorKernel_iff_forall`, which is the first step of O'Meara's proof). The case $n \ge 4$ needs 95:2 and
-  101:11.
+  $O'_n$, `mem_spinorKernel_iff_forall`, which is the first step of O'Meara's proof). PROVED in `Sec101ElevenMain.lean`
+  (`omeara101_12`, from 101:11 by `omeara101_12_of_101_11`).
 * `OMeara101_r39` (p. 295): $O'_n/\Omega_n \cong \prod_\mathfrak p O'_n(V_\mathfrak p)/\Omega_n(V_\mathfrak p)$, stated as
   "kernel and image" of the localization map; O'Meara deduces it from 101:9 and 101:12.
 * `OMeara101_r40` (p. 295): $O'_n = \Omega_n$ for $n \ne 4$, and $O'_4/\Omega_4$ is a finite product of groups of
   order $2$.
+Both follow from `OMeara101_12` (`omeara101_r39_of_101_12`, `omeara101_r40_of_101_12`, `Sec101Omega.lean`); the
+field `image` of `OMeara101_r39` is proved unconditionally (`omeara101_r39_image`). Both are PROVED in
+`Sec101ElevenMain.lean` (`omeara101_r39`, `omeara101_r40`).
 
 **Proves**
 * `negOne` ($-1_V \in O(V)$) and 101.r38 (p. 295, from 101:12): $\Omega_n \cap Z_n = \{\pm 1_V\}$ if $-1_V \in
@@ -62,7 +66,8 @@ the number field $F$ with $n$ even ($n \ge 2$; O'Meara's $V$ is non-zero). Then 
 $\operatorname{cls}^+K \ne \operatorname{cls}K$: some lattice isometric to $K$ is not properly isometric to it.
 (For odd $n$, and over local fields, $\operatorname{cls}^+ = \operatorname{cls}$: Example 82:4, Corollary 91:4a.)
 O'Meara's proof chooses two spots $\mathfrak q, \mathfrak q'$ by Proposition 65:20 and local lattices with prescribed
-spinor norms there (Example 92:8), glued by 81:14; it is not formalized here. -/
+spinor norms there (Example 92:8), glued by 81:14. PROVED in `Sec101Ten.lean` (`omeara101_10 : OMeara101_10 F`),
+following the book. -/
 @[kb "omeara1963" "§101B, 101:10, pp. 292–293"]
 structure OMeara101_10 (F : Type) [Field F] [NumberField F] : Prop where
   /-- For even $n \ge 2$ some lattice has $\operatorname{cls}^+K \ne \operatorname{cls}K$. -/
@@ -73,7 +78,9 @@ structure OMeara101_10 (F : Type) [Field F] [NumberField F] : Prop where
 field $F$ and $X \subseteq F$ finite. If at every spot (finite and infinite) some regular ternary subspace of the
 localization of $V$ represents all of $X$, then some regular ternary subspace of $V$ represents all of $X$.
 O'Meara's proof (cases $n = 3$, $n = 4$, $n \ge 5$) uses Theorem 66:3 for representations of spaces by spaces, 63:18,
-63:21, 63:24 and Witt's theorem; it is not formalized here. -/
+63:21, 63:24 and Witt's theorem. PROVED in `Sec101ElevenMain.lean` (`omeara101_11 : OMeara101_11 F`, unconditional),
+following O'Meara's splitting $V \cong \langle\gamma\rangle \perp W$; for $n \ge 5$ by induction on $n$ instead of 66:3
+for spaces. -/
 @[kb "omeara1963" "§101C, 101:11, pp. 293–294"]
 structure OMeara101_11 (F : Type) [Field F] [NumberField F] : Prop where
   /-- Local–global principle for regular ternary subspaces representing a finite set. -/
@@ -86,7 +93,9 @@ structure OMeara101_11 (F : Type) [Field F] [NumberField F] : Prop where
 regular $V$ over the number field $F$ and $\sigma \in O^+(V)$, $\sigma \in \Omega_n(V)$ if and only if $\sigma_\mathfrak p
 \in \Omega_n(V_\mathfrak p)$ at every spot $\mathfrak p$ (finite and infinite). The library proves the analogue for the
 spinor kernel $O'_n$ (`mem_spinorKernel_iff_forall`, `Sec101B.lean`), which is the book's statement when $n \le 3$;
-the case $n \ge 4$ (Proposition 95:2, Lemma 101:11, Proposition 55:3) is not formalized. -/
+the case $n \ge 4$ uses Proposition 95:2, Lemma 101:11 and Proposition 55:3. The book's statement for $n \le 3$ is
+proved in `Sec101Twelve.lean` (`omeara101_12_of_le_three`); in general it is PROVED in `Sec101ElevenMain.lean`
+(`omeara101_12 : OMeara101_12 F`, unconditional). -/
 @[kb "omeara1963" "§101C, 101:12, p. 294"]
 structure OMeara101_12 (F : Type) [Field F] [NumberField F] : Prop where
   /-- $\sigma \in \Omega_n(V)$ iff $\sigma_\mathfrak p \in \Omega_n(V_\mathfrak p)$ at every spot. -/
@@ -103,7 +112,9 @@ isomorphism of $O'_n(V)/\Omega_n(V)$ onto the product (only finitely many factor
 * (kernel) for $\sigma \in O'(V)$: $\sigma \in \Omega_n(V)$ iff $\sigma_\mathfrak p \in \Omega_n(V_\mathfrak p)$ at every spot;
 * (image) for every family $\varphi_\mathfrak p \in O'(V_\mathfrak p)$, with $\varphi_\mathfrak p \in \Omega_n(V_\mathfrak p)$
   at almost all finite spots, there is $\sigma \in O'(V)$ with $\sigma_\mathfrak p \in \varphi_\mathfrak p\,
-  \Omega_n(V_\mathfrak p)$ at every spot. -/
+  \Omega_n(V_\mathfrak p)$ at every spot.
+
+PROVED in `Sec101ElevenMain.lean` (`omeara101_r39 : OMeara101_r39 F`, unconditional). -/
 @[kb "omeara1963" "§101C, p. 295 (O'_n/Ω_n ≅ ∏_𝔭 O'_n(V_𝔭)/Ω_n(V_𝔭))"]
 structure OMeara101_r39 (F : Type) [Field F] [NumberField F] : Prop where
   /-- The kernel of the localization map on $O'(V)$ is $\Omega_n(V)$. -/
@@ -125,7 +136,8 @@ structure OMeara101_r39 (F : Type) [Field F] [NumberField F] : Prop where
 /-- **$O'_n = \Omega_n$ for $n \ne 4$; $O'_4/\Omega_4$ is a finite product of groups of order $2$ — named statement**
 (O'Meara 1973, §101C, p. 295, from 101:9, 101:12 and the local results of §95). The second part is stated as: every
 $\sigma \in O'_4(V)$ has $\sigma^2 \in \Omega_4(V)$ (so the quotient is an elementary abelian $2$-group, i.e. a direct
-product of groups of order $2$), and finitely many cosets of $\Omega_4(V)$ cover $O'_4(V)$. -/
+product of groups of order $2$), and finitely many cosets of $\Omega_4(V)$ cover $O'_4(V)$. PROVED in
+`Sec101ElevenMain.lean` (`omeara101_r40 : OMeara101_r40 F`, unconditional). -/
 @[kb "omeara1963" "§101C, p. 295 (O'_n = Ω_n for n ≠ 4; O'_4/Ω_4 a finite product of groups of order 2)"]
 structure OMeara101_r40 (F : Type) [Field F] [NumberField F] : Prop where
   /-- $O'_n(V) \subseteq \Omega_n(V)$ for $n \ne 4$ (the reverse inclusion always holds). -/

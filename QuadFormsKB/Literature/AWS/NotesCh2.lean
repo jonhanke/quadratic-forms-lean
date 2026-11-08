@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Ch. 2: theta functions (§2.1–§2.6)
+# Hanke, Arizona Winter School 2009 notes, Ch. 2: theta functions (§2.1–§2.6)
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed
 page), Chapter 2, pp. 25–35. The library already proves most of §2.1–§2.5 (theta series, Poisson summation, the

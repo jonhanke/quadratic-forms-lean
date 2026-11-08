@@ -22,7 +22,7 @@ almost all $\mathfrak p$ (`eventually_locAct_std`). That integrality is a genus 
 `SameGenus.isIntegral` (`Lattices/Finite.lean`).
 
 *Conventions:* $O(V)$ includes improper isometries ($\det = -1$), as `Siegel.Aut` does for $F = \mathbb Q$.
-O'Meara 1963, §82C (classes, $O(L)$), pp. 222–223, §102A (genus), p. 297; for $F = \mathbb Q$ the AWS notes §4.5
+O'Meara 1963, §82C (classes, $O(L)$), pp. 222–223, §102A (genus), p. 297; for $F = \mathbb Q$ the Arizona Winter School notes §4.5
 (`AWS.latGenus`, `AWS.autLat`).
 -/
 import QuadFormsKB.Lattices.Local
@@ -251,7 +251,7 @@ section Genus
 variable (Q : QuadForm F n)
 
 /-- **Isometric lattices (same class)** in $(V, Q) = (F^n, Q)$: $M = \gamma L$ for some isometry
-$\gamma \in O(V)(F)$ (O'Meara §82C, p. 222; AWS notes p. 62 for $F = \mathbb Q$). -/
+$\gamma \in O(V)(F)$ (O'Meara §82C, p. 222; Arizona Winter School notes p. 62 for $F = \mathbb Q$). -/
 @[kb "omeara1963" "§82C, p. 222 (cls L)"]
 def IsIsometric (L M : Submodule (𝓞 F) (Fin n → F)) : Prop :=
   ∃ γ ∈ orthGroup Q F, glImage γ L = M

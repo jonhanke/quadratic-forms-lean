@@ -126,7 +126,7 @@ theorem IsNbrForm.of_intEquiv {p : ℕ} {Q₁ Q Q' : QuadForm ℤ n} (h₁ : Int
     exact hL.integral _ ⟨c, rfl⟩
   · rw [hQ', ← mulVec_mulVec, evalIn_qM hU]
 
-/-- **Neighbour forms are in the genus** ($p$ odd, $p \nmid \det H$; AWS notes, Thm. 1.10.3(1)). -/
+/-- **Neighbour forms are in the genus** ($p$ odd, $p \nmid \det H$; Arizona Winter School notes, Thm. 1.10.3(1)). -/
 theorem IsNbrForm.sameGenus {p : ℕ} [Fact p.Prime] {Q Q' : QuadForm ℤ n} (hp2 : p ≠ 2)
     (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) (h : IsNbrForm p Q Q') : SameGenus Q Q' := by
   obtain ⟨g, hg, hL, hQ'⟩ := h

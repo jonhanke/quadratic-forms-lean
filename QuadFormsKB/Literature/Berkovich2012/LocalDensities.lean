@@ -126,7 +126,7 @@ theorem density_ord_one (m : ℤ) (hm : padicValInt p m = 1) :
   field_simp
 
 include hp in
-/-- **Lemma 4.1 (BHJ).** For an odd prime $p$ and $m \ne 0$,
+/-- **Lemma 4.1 (Berkovich–Hanke–Jagy).** For an odd prime $p$ and $m \ne 0$,
 $\beta_{x^2+y^2+z^2,\,p}(m)$ equals the explicit formula `beta3 p m`:
 $(1 - p^{-2})(1 + p^{-1} + \dots + p^{1-k}) + p^{-k}(1 + \chi/p)$ if $\operatorname{ord}_p(m) = 2k$ and
 $(1 - p^{-2})(1 + p^{-1} + \dots + p^{-k})$ if $\operatorname{ord}_p(m) = 2k+1$, where
@@ -278,7 +278,7 @@ theorem localDensity_C_card {u : ℤ} (hu : Odd u) {m : ℤ} (hm : ¬ (4 : ℤ) 
   norm_num
 
 
-/-- **Lemma 4.3, formula (2) (BHJ).** The dyadic density of $x^2+y^2+z^2$:
+/-- **Lemma 4.3, formula (2) (Berkovich–Hanke–Jagy).** The dyadic density of $x^2+y^2+z^2$:
 $\beta_{x^2+y^2+z^2,\,2}(m) = 3/2$ if $m \equiv 1, 2 \pmod 4$, $1$ if $m \equiv 3 \pmod 8$ and
 $0$ if $m \equiv 7 \pmod 8$ (here $m$ is any integer, `m % 4` etc. in `ℤ`). -/
 @[kb "berkovich2012" "§4, Lemma 4.3, formula (2), p. 5"]
@@ -289,7 +289,7 @@ theorem localDensity_sumSq_three_two_paper (m : ℤ) :
   refine ⟨fun h => ?_, fun h => ?_, fun h => ?_⟩ <;>
     rw [localDensity_sumSq_three_two (by omega)] <;> split_ifs <;> first | rfl | omega
 
-/-- **Lemma 4.3, formula (3) (BHJ), for $m \equiv 1, 2 \pmod 4$ and $m \equiv 3 \pmod 4$.** For
+/-- **Lemma 4.3, formula (3) (Berkovich–Hanke–Jagy), for $m \equiv 1, 2 \pmod 4$ and $m \equiv 3 \pmod 4$.** For
 $u$ odd, the form $G = u x^2 + 2u y^2 + 2 z^2$ has dyadic density
 $\beta_{G,2}(m) = 1$ if $m \equiv 1, 2 \pmod 4$, and, for $m \equiv 3 \pmod 4$,
 $\beta_{G,2}(m) = 2$ if ($m \equiv 3 \pmod 8$ and $u \equiv 1, 3 \pmod 8$) or

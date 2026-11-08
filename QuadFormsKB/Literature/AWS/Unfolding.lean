@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.6: unfolding the integral over $O(V)\backslash O(V_\mathbb{A})$
+# Hanke, Arizona Winter School 2009 notes, §4.6: unfolding the integral over $O(V)\backslash O(V_\mathbb{A})$
 
 The computation (4.5)–(4.17) (pp. 63–64) of J. Hanke, *Quadratic Forms and Automorphic Forms*
 (bibkey `hanke2011aws`), for an abstract group. The list D1, D2, … of the notes' derivations is in

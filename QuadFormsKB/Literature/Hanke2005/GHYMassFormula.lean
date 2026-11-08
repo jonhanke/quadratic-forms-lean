@@ -1,13 +1,13 @@
 /-
-# The Gan–Hanke–Yu mass formula for special orthogonal groups, odd rank (GHY 2001, Proposition 7.4)
+# The Gan–Hanke–Yu mass formula for special orthogonal groups, odd rank (Gan–Hanke–Yu 2001, Proposition 7.4)
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), §2 (Prop. 2.13), §7
 ((7.1)–(7.3), Prop. 7.4); J. Hanke, *An exact mass formula for quadratic forms over number fields*, J. Reine Angew. Math.
 584 (2005), Theorem 5.1.
 
 Let $k$ be a totally real number field of degree $d$, $V$ a totally definite quadratic space of odd rank $m = 2n+1\ge3$ over
-$k$, $G = SO(V)$ and $\Lambda$ a maximal lattice (here $\Lambda = \mathcal O_F^m$ with the form $Q_0$; `F` is GHY's $k$, and the
-rank is called `n` in Lean with GHY's $n$ = `n / 2`). GHY's Proposition 7.4:
+$k$, $G = SO(V)$ and $\Lambda$ a maximal lattice (here $\Lambda = \mathcal O_F^m$ with the form $Q_0$; `F` is Gan–Hanke–Yu's $k$, and the
+rank is called `n` in Lean with Gan–Hanke–Yu's $n$ = `n / 2`). Gan–Hanke–Yu's Proposition 7.4:
 $$\mathrm{Mass}(\Lambda) = \Big(\frac1{2^{nd}}\,L(M)\,\tau(G)\Big)\prod_{v\in S}\lambda_v,\qquad
 L(M) = \prod_{r=1}^n\zeta_k(1-2r)\ \ (7.2),\qquad \tau(G) = 2\ \ (7.3),$$
 $$\lambda_v = \frac{q_v^{2n}-1}{2(q_v+1)}\ \ (V_v\cong V_{\delta,-1},\ \delta\in A_v^\times),\qquad
@@ -16,7 +16,7 @@ and $\lambda_v = 1$ for $v\notin S$ ($V_v\cong V_{\delta,1}$, $\delta\in A_v^\ti
 $=\sum_i 1/|\Gamma_i|$, the sum over the $SO$-classes in the genus, i.e. the left side of `theorem51_definite_general`.
 
 **Formalized** as `ghy_prop74` (unconditional), with these readings:
-* *$\delta\in A_v^\times$* is `DetUnitSqAt` ($\det\varphi$ a unit times a square; GHY's discriminant is that of the bilinear
+* *$\delta\in A_v^\times$* is `DetUnitSqAt` ($\det\varphi$ a unit times a square; Gan–Hanke–Yu's discriminant is that of the bilinear
   form $\langle x,x\rangle = Q(x)$, i.e. $\det H/2^m$ up to sign), and $w = 1$ iff $t_v = 1$ (the space $V_{\delta,1}$ is the one of
   larger Witt index); `lambdaGHYAt`.
 * *Clarification:* $L(M)$ must be read as $|L(M)|$: $\zeta_k(1-2r)$ has sign $(-1)^{rd}$ (e.g. $k = \mathbb Q$, $m = 3$:
@@ -26,7 +26,7 @@ $=\sum_i 1/|\Gamma_i|$, the sum over the $SO$-classes in the genus, i.e. the lef
   $|\zeta_k(1-2r)| = |D_k|^{2r-1/2}\big(2(2r-1)!/(2\pi)^{2r}\big)^d\zeta_k(2r)$ (`absZetaNeg`).
 
 *Proof.* `theorem51_definite_general` gives the mass as `theorem51RHSGen`. Placewise,
-$\lambda^{\rm GHY}_v = |2|_v^n\,[\widetilde\Lambda_v:\Lambda_v]^n\,\lambda'_v$ (`lambdaGHYAt_eq`, from the dual indices of
+$\lambda^{\rm Gan–Hanke–Yu}_v = |2|_v^n\,[\widetilde\Lambda_v:\Lambda_v]^n\,\lambda'_v$ (`lambdaGHYAt_eq`, from the dual indices of
 `GHYOddDual.lean`: $[\widetilde\Lambda_v:\Lambda_v] = |2|_v^{-1}q^c$, $c = 0, 2, 1$), and $\prod_v|2|_v = 2^{-d}$ (product formula).
 -/
 import QuadFormsKB.Literature.Hanke2005.GHYOddDual
@@ -57,7 +57,7 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 open Classical in
-/-- **The dual index of a maximal lattice of odd rank** (GHY 2001, (6.6), (6.10), (6.13); Shimura 1999, (3.2.1)):
+/-- **The dual index of a maximal lattice of odd rank** (Gan–Hanke–Yu 2001, (6.6), (6.10), (6.13); Shimura 1999, (3.2.1)):
 $t_v\in\{1,3\}$ and $[\widetilde\Lambda_v:\Lambda_v] = |2|_v^{-1}q^c$ with $c = 0$ ($\det\varphi$ a unit times a square, $t_v = 1$),
 $c = 2$ (unit times a square, $t_v = 3$), $c = 1$ (not a unit times a square). -/
 @[kb "ganhankeyu2001" "(6.6), (6.10), (6.13) (the dual index of the maximal lattice, odd rank)"]
@@ -149,10 +149,10 @@ theorem dualIndexAt_odd (hn : 3 ≤ n) (hodd : Odd n) (Q₀ : QuadForm (𝓞 F) 
 
 end Dual
 
-/-! ### GHY's local factor -/
+/-! ### Gan–Hanke–Yu's local factor -/
 
 open Classical in
-/-- **GHY's $\lambda_v$ for odd rank $m = 2n+1$** (GHY 2001, Proposition 7.4, p. 119; Table 4), as a function of $q = q_v$, $n$,
+/-- **Gan–Hanke–Yu's $\lambda_v$ for odd rank $m = 2n+1$** (Gan–Hanke–Yu 2001, Proposition 7.4, p. 119; Table 4), as a function of $q = q_v$, $n$,
 $t = t_v$ and whether the discriminant is a unit ($\delta\in A_v^\times$): $1$ ($\delta$ a unit, $t = 1$, i.e. $v\notin S$);
 $(q^{2n}-1)/(2(q+1))$ ($\delta$ a unit, $t = 3$, i.e. $w = -1$); $(q^n+w)/2$ with $w = 1$ for $t = 1$ and $w = -1$ for $t = 3$
 ($\delta$ not a unit). -/
@@ -161,12 +161,12 @@ def lambdaGHYOdd (q : ℝ) (k t : ℕ) (unitDisc : Prop) : ℝ :=
   if unitDisc then (if t = 1 then 1 else (q ^ (2 * k) - 1) / (2 * (q + 1)))
   else (if t = 1 then (q ^ k + 1) / 2 else (q ^ k - 1) / 2)
 
-/-- GHY's $\lambda_v$ at a finite place for $Q_0$ ($n$ odd; GHY's $n$ is `n / 2`). -/
+/-- Gan–Hanke–Yu's $\lambda_v$ at a finite place for $Q_0$ ($n$ odd; Gan–Hanke–Yu's $n$ is `n / 2`). -/
 def lambdaGHYAt (v : HeightOneSpectrum (𝓞 F)) (Q₀ : QuadForm (𝓞 F) n) : ℝ :=
   lambdaGHYOdd (normQ v) (n / 2) (anisoDim v Q₀) (DetUnitSqAt v Q₀)
 
-/-- **GHY's $\lambda_v$ against Hanke's (generalized) $\lambda'_v$:** $\lambda^{\rm GHY}_v = |2|_v^{\,n}\,
-[\widetilde\Lambda_v:\Lambda_v]^n\,\lambda'_v$ ($n$ = GHY's $n$ = `n / 2`). -/
+/-- **Gan–Hanke–Yu's $\lambda_v$ against Hanke's (generalized) $\lambda'_v$:** $\lambda^{\rm Gan–Hanke–Yu}_v = |2|_v^{\,n}\,
+[\widetilde\Lambda_v:\Lambda_v]^n\,\lambda'_v$ ($n$ = Gan–Hanke–Yu's $n$ = `n / 2`). -/
 theorem lambdaGHYAt_eq (v : HeightOneSpectrum (𝓞 F)) (hn : 3 ≤ n) (hodd : Odd n) (Q₀ : QuadForm (𝓞 F) n)
     (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
     lambdaGHYAt v Q₀ = ‖(2 : v.adicCompletion F)‖ ^ (n / 2) * dualIndexAt v Q₀ ^ (n / 2) * lambdaGen v Q₀ := by
@@ -236,7 +236,7 @@ def absZetaNeg (F : Type) [Field F] [NumberField F] (r : ℕ) : ℝ :=
     (2 * (Nat.factorial (2 * r - 1) : ℝ) / (2 * π) ^ (2 * r)) ^ Module.finrank ℚ F *
       NFEuler.dedekindZetaR F (2 * (r : ℝ))
 
-/-- **GHY's $|L(M)|$ for odd rank $2k+1$** (GHY 2001, (7.2)): $\prod_{r=1}^k|\zeta_F(1-2r)|$. -/
+/-- **Gan–Hanke–Yu's $|L(M)|$ for odd rank $2k+1$** (Gan–Hanke–Yu 2001, (7.2)): $\prod_{r=1}^k|\zeta_F(1-2r)|$. -/
 @[kb "ganhankeyu2001" "(7.2) (L(M) for m = 2n + 1, in absolute value)"]
 def lMotiveOdd (F : Type) [Field F] [NumberField F] (k : ℕ) : ℝ :=
   ∏ r ∈ Finset.range k, absZetaNeg F (r + 1)
@@ -263,7 +263,7 @@ theorem lMotiveOdd_eq (k : ℕ) :
       show (k + 1) ^ 2 = k ^ 2 + (2 * k + 1) by ring, pow_add, pow_add]
     ring
 
-/-- **The product of GHY's local factors:** $\prod_v\lambda^{\rm GHY}_v = 2^{-nd}\,[\widetilde\Lambda:\Lambda]^n\prod_v\lambda'_v$. -/
+/-- **The product of Gan–Hanke–Yu's local factors:** $\prod_v\lambda^{\rm Gan–Hanke–Yu}_v = 2^{-nd}\,[\widetilde\Lambda:\Lambda]^n\prod_v\lambda'_v$. -/
 theorem tprod_lambdaGHYAt (hn : 3 ≤ n) (hodd : Odd n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate)
     (hmax : StdIsMaximal Q₀) :
     ∏' v : HeightOneSpectrum (𝓞 F), lambdaGHYAt v Q₀ =
@@ -292,9 +292,9 @@ theorem tprod_lambdaGHYAt (hn : 3 ≤ n) (hodd : Odd n) (Q₀ : QuadForm (𝓞 F
     ← tprod_eq_finprod (L := SummationFilter.unconditional _) h3, tprod_norm_two, inv_pow, ← pow_mul,
     mul_comm (Module.finrank ℚ F) (n / 2)]
 
-/-- **GHY 2001, Proposition 7.4** (odd rank $m = 2n+1\ge3$; totally real $k$ = `F` of degree $d$; $V$ totally definite;
+/-- **Gan–Hanke–Yu 2001, Proposition 7.4** (odd rank $m = 2n+1\ge3$; totally real $k$ = `F` of degree $d$; $V$ totally definite;
 $\Lambda = \mathcal O_F^m$ maximal): $\mathrm{Mass}(\Lambda) = \big(2^{-nd}\,|L(M)|\,\tau(G)\big)\prod_v\lambda_v$ with $\tau(G) = 2$
-(7.3), $|L(M)| = \prod_{r=1}^n|\zeta_F(1-2r)|$ (`lMotiveOdd`, through the functional equation) and GHY's $\lambda_v$
+(7.3), $|L(M)| = \prod_{r=1}^n|\zeta_F(1-2r)|$ (`lMotiveOdd`, through the functional equation) and Gan–Hanke–Yu's $\lambda_v$
 (`lambdaGHYAt`, equal to $1$ off $S$). The mass is $\sum_i1/|\Gamma_i|$ over the $SO$-classes of the genus. **Unconditional.** -/
 @[kb "ganhankeyu2001" "Proposition 7.4, p. 119 (with (7.1)–(7.3))"]
 theorem ghy_prop74 [IsTotallyReal F] (hn : 3 ≤ n) (hodd : Odd n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate)

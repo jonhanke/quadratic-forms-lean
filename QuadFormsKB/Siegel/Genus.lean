@@ -7,7 +7,7 @@
 representation numbers $r_Q(m)$ (`repNum`), the genus (`SameGenus`: equivalent over every $\mathbb{Z}_p$ and over
 $\mathbb{R}$) and the classes in it (`genusClasses`). **Proves** that equivalence base-changes to every ring
 (`IsometricGL.map`; so a class lies in a genus), invariance of $|\mathrm{Aut}|$ and $r_Q(m)$ on classes, the bridges to
-the AWS notes' Hessian notions (`intEquiv_iff_equivZ`, `coe_aut_eq_autZ`), and for positive definite $Q$
+the Arizona Winter School notes' Hessian notions (`intEquiv_iff_equivZ`, `coe_aut_eq_autZ`), and for positive definite $Q$
 (`IntQF.PosDef`): definiteness over $\mathbb{R}$, nondegeneracy, and finiteness of $r_Q(m)$ and of $\mathrm{Aut}(Q)$.
 
 **Conventions:** our own small definitions (Tau Ceti's `IntegralLattice` API is related
@@ -212,7 +212,7 @@ for all $\vec{x} \in \mathbb{Z}^n$, for some $g \in \mathrm{GL}_n(\mathbb{Z})$ (
 $I$-equivalence in general as mutual representation (Ch. 1, §2, p. 5), which is $\mathrm{GL}_n(I)$-equivalence for
 regular forms (Lemma 2.1, p. 7), and he also uses proper equivalence ($\det T = 1$).
 
-*See also:* `intEquiv_iff_equivZ` (the AWS notes' `EquivZ` on Hessians), `IntEquiv.sameGenus`. -/
+*See also:* `intEquiv_iff_equivZ` (the Arizona Winter School notes' `EquivZ` on Hessians), `IntEquiv.sameGenus`. -/
 @[kb "cassels1978" "Ch. 9, §1, (1.1), p. 127; Ch. 1, §2, Lemma 2.1, p. 7"]
 def IntEquiv (Q Q' : QuadForm ℤ n) : Prop := IsometricGL Q Q'
 
@@ -236,7 +236,7 @@ Q(g\vec{x}) = Q(\vec{x})\ \forall \vec{x} \in \mathbb{Z}^n\}$, a subgroup of $\m
 (including improper automorphisms, $\det g = -1$). Finite for positive definite $Q$
 (`IntQF.PosDef.finite_aut`). Hanke 2004 writes $|\mathrm{Aut}(Q')|$ in (4.5), p. 366.
 
-*Bridge:* `coe_aut_eq_autZ` (the AWS notes' `autZ` on the Hessian). -/
+*Bridge:* `coe_aut_eq_autZ` (the Arizona Winter School notes' `autZ` on the Hessian). -/
 @[kb "hanke2004" "(4.5), p. 366 (|Aut(Q')|)"]
 abbrev Aut (Q : QuadForm ℤ n) : Subgroup (GL (Fin n) ℤ) := aut Q
 
@@ -250,7 +250,7 @@ theorem intEquiv_iff_equivZ (Q Q' : QuadForm ℤ n) :
   · rintro ⟨g, hg⟩
     exact ⟨g, (eval_mulVec_eq_iff_hessian Q Q' g.val).mpr hg⟩
 
-/-- **Bridge to `AWS.autZ`:** $\mathrm{Aut}(Q)$ is the AWS notes' $\{X \in \mathrm{GL}_n(\mathbb{Z}) : X^{\mathsf T}HX = H\}$. -/
+/-- **Bridge to `AWS.autZ`:** $\mathrm{Aut}(Q)$ is the Arizona Winter School notes' $\{X \in \mathrm{GL}_n(\mathbb{Z}) : X^{\mathsf T}HX = H\}$. -/
 theorem coe_aut_eq_autZ (Q : QuadForm ℤ n) : ((Aut Q : Set (GL (Fin n) ℤ))) = AWS.autZ Q.hessian := by
   ext g
   exact eval_mulVec_eq_iff_hessian Q Q g.val
@@ -285,7 +285,7 @@ def repSet (Q : QuadForm ℤ n) (m : ℤ) : Set (Fin n → ℤ) := {x | Q.eval x
 
 /-- **The representation number** $r_Q(m) = \#\{\vec{x} \in \mathbb{Z}^n : Q(\vec{x}) = m\}$, as `Nat.card`
 (so it is $0$ if the set is infinite; for positive definite $Q$ it is finite, `IntQF.PosDef.repSet_finite`).
-For the sum of four squares it is the AWS notes' `r4` (`repNum_Q4`). -/
+For the sum of four squares it is the Arizona Winter School notes' `r4` (`repNum_Q4`). -/
 @[kb "hanke2004" "§2, r_Q(m) = #R_Q(m), p. 357"]
 noncomputable def repNum (Q : QuadForm ℤ n) (m : ℤ) : ℕ := Nat.card (repSet Q m)
 

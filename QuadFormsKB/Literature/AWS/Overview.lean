@@ -1,5 +1,5 @@
 /-
-# Hanke, *Quadratic Forms and Automorphic Forms* (AWS 2009): the derivations D1–D24
+# Hanke, *Quadratic Forms and Automorphic Forms* (Arizona Winter School 2009): the derivations D1–D24
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, expanded notes from the 2009 Arizona Winter
 School, arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page numbers = printed page numbers).

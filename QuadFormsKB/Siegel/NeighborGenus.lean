@@ -11,7 +11,7 @@ is the integral form $Q'(\vec{c}) = Q(g\vec{c})$.
 - `exists_basis`: $L' = g\,\mathbb{Z}^n$ for some $g \in \mathrm{GL}_n(\mathbb{Q})$ (via Mathlib's bases of submodules over a PID), with
   $|\det g| = 1$ (`abs_det_eq_one`, by comparing $[L' : p\mathbb{Z}^n] = [\mathbb{Z}^n : p\mathbb{Z}^n]$ through $L' \cap \mathbb{Z}^n$);
 - `exists_gramForm`: the Gram form $Q'$ with $Q'(\vec{x}) = Q(g\vec{x})$ is integral, with Hessian $g^{\mathsf T}Hg$;
-- `sameGenus_of_basis` (AWS notes, Thm. 1.10.3(1), p. 23): **$Q'$ is in the genus of $Q$**. At $\infty$ and at $\ell \ne p$ the
+- `sameGenus_of_basis` (Arizona Winter School notes, Thm. 1.10.3(1), p. 23): **$Q'$ is in the genus of $Q$**. At $\infty$ and at $\ell \ne p$ the
   matrix $g$ itself works ($pg$ and $pg^{-1}$ are integral, and $p \in \mathbb{Z}_\ell^\times$); at $p$ both forms are unimodular with
   the same determinant, so they are $\mathbb{Z}_p$-equivalent (`isometricGL_of_unimodular`);
 - `latRep_eq_repNum`: $r_{L'}(m) = r_{Q'}(m)$.
@@ -392,7 +392,7 @@ theorem isometricGL_of_scaled {K : Type*} [CommRing K] (f : ℤ →+* K) {Q Q' :
 theorem toZMod_intCast {ℓ : ℕ} [Fact ℓ.Prime] (z : ℤ) : PadicInt.toZMod (z : ℤ_[ℓ]) = (z : ZMod ℓ) :=
   map_intCast _ z
 
-/-- **Neighbours are in the genus** (AWS notes, Thm. 1.10.3(1), p. 23): for $p$ an odd prime, $p \nmid \det H$,
+/-- **Neighbours are in the genus** (Arizona Winter School notes, Thm. 1.10.3(1), p. 23): for $p$ an odd prime, $p \nmid \det H$,
 $g\mathbb{Z}^n$ a $p$-neighbour of $\mathbb{Z}^n$ ($\det g \ne 0$), and $Q'$ the Gram form, $Q'(\vec{x}) = Q(g\vec{x})$, the form $Q'$ is in the
 genus of $Q$. -/
 @[kb "hanke2011aws" "Thm. 1.10.3(1), p. 23"]

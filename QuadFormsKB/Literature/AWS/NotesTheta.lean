@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Thm 2.2.2: the transformation law of $\Theta_{x^2}$ under $\Gamma_0(4)$
+# Hanke, Arizona Winter School 2009 notes, Thm 2.2.2: the transformation law of $\Theta_{x^2}$ under $\Gamma_0(4)$
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, notes from the 2009 Arizona Winter School,
 arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed page), §2.2, p. 27.

@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.6: the theta lift for positive definite $Q$, with no inputs
+# Hanke, Arizona Winter School 2009 notes, §4.6: the theta lift for positive definite $Q$, with no inputs
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.5–§4.6 (pp. 61–66).
 The theta-lift results D23–D24 (`AWS/ThetaLift.lean`) are stated relative to two inputs:

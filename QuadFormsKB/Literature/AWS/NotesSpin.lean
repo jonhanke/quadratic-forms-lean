@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §3.4: Spin(V) as a double cover
+# Hanke, Arizona Winter School 2009 notes, §3.4: Spin(V) as a double cover
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, notes from the 2009 Arizona Winter School,
 arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed page), §3.4, p. 52.

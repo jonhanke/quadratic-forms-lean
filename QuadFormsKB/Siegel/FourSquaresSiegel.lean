@@ -11,7 +11,7 @@ So $\prod_p\beta_p(m) = \frac{6}{\pi^2}\cdot\frac43\cdot\frac{F(m)}{m}$ ($\prod_
 (`repNum_sumSq_four`).
 
 Consequences:
-* `fourSquaresInputs`: **both fields of the AWS notes' `FourSquaresInputs` are proved**, so the notes' (2.10)–(2.23)
+* `fourSquaresInputs`: **both fields of the Arizona Winter School notes' `FourSquaresInputs` are proved**, so the notes' (2.10)–(2.23)
   (`AWS.r4_one`, `AWS.r4_prime`, `AWS.r4_squarefree`) hold unconditionally.
 * `siegelFormula_Q4`: `SiegelFormula AWS.Q4` (genus average $a_E(m) = $ `aE`) **given class number one**
   (`FourSquaresClassNumberOne`); class number one is proved in `Siegel/FourSquaresClassNumber.lean`, which gives the
@@ -172,7 +172,7 @@ theorem hasProd_localDensity_Q4 (m : ℕ) (hm : m ≠ 0) :
 
 /-! ### Siegel's formula for $I_4$ -/
 
-/-- **Siegel's formula for the sum of four squares (AWS form):** for every $m \ge 1$,
+/-- **Siegel's formula for the sum of four squares (Arizona Winter School form):** for every $m \ge 1$,
 $$r_{I_4}(m) = \pi^2 m\prod_p\beta_p(m)$$
 (the product a `tprod` over the primes, in $\mathbb{C}$). This is the field `siegel` of `AWS.FourSquaresInputs`.
 *Proof:* `hasProd_localDensity_Q4` and Jacobi's $r_{I_4}(m) = 8F(m)$ (`repNum_sumSq_four`). -/
@@ -188,7 +188,7 @@ theorem fourSquares_siegel (m : ℕ) (hm : 0 < m) :
   field_simp
   ring
 
-/-- **The AWS notes' four-squares inputs are proved** (both fields: `siegel` here, `beta_two` in
+/-- **The Arizona Winter School notes' four-squares inputs are proved** (both fields: `siegel` here, `beta_two` in
 `localDensity_Q4_two`), so (2.10)–(2.23) (`AWS.r4_one`, `AWS.r4_prime`, `AWS.r4_squarefree`) hold unconditionally. -/
 theorem fourSquaresInputs : AWS.FourSquaresInputs :=
   fourSquaresInputs_of_siegel fourSquares_siegel
@@ -207,21 +207,21 @@ theorem siegelFormula_Q4 (h : FourSquaresClassNumberOne) : SiegelFormula AWS.Q4 
   lift m to ℕ using (by omega)
   exact repNum_Q4_eq_aE m (by omega)
 
-/-- Sanity check: the AWS notes' (2.17)–(2.20) now hold without inputs, $r_{I_4}(3) = 8 \cdot 4 = 32$. -/
+/-- Sanity check: the Arizona Winter School notes' (2.17)–(2.20) now hold without inputs, $r_{I_4}(3) = 8 \cdot 4 = 32$. -/
 example : (AWS.r4 3 : ℂ) = 32 := by
   rw [AWS.r4_prime fourSquaresInputs 3 Nat.prime_three (by norm_num)]
   norm_num
 
 end QuadFormsKB.Siegel
 
-/-! ### The AWS notes' four-squares results without inputs
+/-! ### The Arizona Winter School notes' four-squares results without inputs
 
 The theorems of `Literature/AWS/FourSquares.lean` take `FourSquaresInputs` as a hypothesis because that directory
 does not import `Siegel/`. Here the input is discharged by `Siegel.fourSquaresInputs`. -/
 
 namespace QuadFormsKB.AWS
 
-/-- **The AWS notes' four-squares inputs hold** (`FourSquaresInputs`: Siegel's formula
+/-- **The Arizona Winter School notes' four-squares inputs hold** (`FourSquaresInputs`: Siegel's formula
 $r_{I_4}(m) = \pi^2 m\prod_p\beta_p(m)$ for $m \ge 1$ and $\beta_2(m) = 1$ for odd $m$), unconditionally. -/
 @[kb "hanke2011aws" "§2.7.2–§2.7.5, pp. 37–40"]
 theorem fourSquaresInputs_holds : FourSquaresInputs :=

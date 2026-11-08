@@ -26,7 +26,7 @@ $\mathrm{Sym}(\mathfrak o_\mathfrak p)$ volume $1$,
 $$\mathrm{vol}_{|\omega_Q|}(O(L_\mathfrak p)) = \lim_k \frac{\mathrm{vol}\{X \in M_n(\mathfrak o) : Q\circ X \equiv Q \bmod \mathfrak p^k\}}
   {\mathrm{vol}(Q + \mathfrak p^k\,\mathrm{Sym})} = \lim_k \frac{A_{\mathfrak p^k}(Q,Q)\,N\mathfrak p^{-kn^2}}{N\mathfrak p^{-kn(n+1)/2}}
   = \beta_\mathfrak p(Q, Q)$$
-(Weil 1982, §2.2 and §3.5 [unverified locator]; Gan–Yu 2000, §3 [unverified]; AWS notes Lemma 2.7.2 for the analogue with
+(Weil 1982, §2.2 and §3.5 [unverified locator]; Gan–Yu 2000, §3 [unverified]; Arizona Winter School notes Lemma 2.7.2 for the analogue with
 numbers, `AWS.vol_preimage_div_vol`). The middle equality is `fiberVolume_eq` (the residue classes mod $\mathfrak p^k$ have
 volume $N\mathfrak p^{-kn^2}$ and $N\mathfrak p^{-kn(n+1)/2}$; this Haar-measure fact is not formalized here).
 

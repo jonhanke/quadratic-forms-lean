@@ -16,7 +16,7 @@ At a finite place $\mathfrak p$, a maximal lattice is $\mathbb H^k\perp N$ with 
   (`kernel_three_odd_of_not_detSq`: diagonalization $\langle u_0,u_1\rangle\perp\langle\pi w\rangle$; $\langle u_0,u_1\rangle$ is
   residually anisotropic, else Hensel gives an isotropic vector).
 
-These are GHY's lattices $\Delta^k\perp A$ (form $\delta x^2$) and $\Delta^k\perp\Lambda_\delta$ for $\delta$ a uniformizer
+These are Gan–Hanke–Yu's lattices $\Delta^k\perp A$ (form $\delta x^2$) and $\Delta^k\perp\Lambda_\delta$ for $\delta$ a uniformizer
 times a unit. Indices are 0-based.
 -/
 import QuadFormsKB.Literature.Hanke2005.DensityDyadicKernelAniso
@@ -46,7 +46,7 @@ theorem norm_pi_pow_Fv (a : ℕ) : ‖((NF.π v : 𝔬) : Fv) ^ a‖ = ((DVR.q �
 
 /-! ### Rank one -/
 
-/-- **The rank-one kernel** (GHY 2001, (6.6), the form $\delta x^2$, $\delta\notin A^\times$): a nondegenerate unary $N$ with
+/-- **The rank-one kernel** (Gan–Hanke–Yu 2001, (6.6), the form $\delta x^2$, $\delta\notin A^\times$): a nondegenerate unary $N$ with
 the extension property whose determinant is not a unit times a square is $\langle\pi u\rangle$ with $u$ a unit. -/
 @[kb "ganhankeyu2001" "(6.6), (6.11) (odd rank, δ ∉ A×: the kernel δx²)"]
 theorem kernel_one_of_not_detSq (N : QuadForm 𝔬 1) (hN : N.Nondegenerate)
@@ -82,7 +82,7 @@ theorem kernel_one_of_not_detSq (N : QuadForm 𝔬 1) (hN : N.Nondegenerate)
 
 /-! ### Rank three, dyadic -/
 
-/-- **The ternary kernel at a dyadic place** (GHY 2001, (6.10), (6.11), $\delta\notin A^\times$): an anisotropic ternary $N$
+/-- **The ternary kernel at a dyadic place** (Gan–Hanke–Yu 2001, (6.10), (6.11), $\delta\notin A^\times$): an anisotropic ternary $N$
 with the extension property whose determinant $\det H_N/8$ is not a unit times a square is $\langle\pi c\rangle\perp T$, $c$ a
 unit, $T$ unimodular with $\bar T$ anisotropic. *Proof:* the residue zero space has dimension $1$ or $2$; dimension $2$ gives
 $\langle u\rangle\perp\pi S$ (`exists_shape_bottom`), with $|\det H_N| = q^{-(e+2)}$ so that $\det H_N/8\cdot\pi^{2(e-1)}$ is a
@@ -250,7 +250,7 @@ theorem detSq_of_even (h2 : IsUnit (2 : 𝔬)) (N X : QuadForm 𝔬 3) (hE : DVR
   field_simp
   ring
 
-/-- **The ternary kernel at a non-dyadic place** (GHY 2001, (6.10), (6.11), $\delta\notin A^\times$): an anisotropic ternary
+/-- **The ternary kernel at a non-dyadic place** (Gan–Hanke–Yu 2001, (6.10), (6.11), $\delta\notin A^\times$): an anisotropic ternary
 $N$ with the extension property whose determinant is not a unit times a square is $\langle\pi c\rangle\perp T$ with $c$ a unit and
 $T = \langle u_0,u_1\rangle$ unimodular with $\bar T$ anisotropic. *Proof:* diagonalize, $N\simeq\langle u'\rangle\perp\langle\pi w\rangle$
 (`exists_diag_pi`, `nu_le_one`, `exists_shape_of_nu`); $b\le2$ (`aniso_of_maxProp`, `rank_le_two`), $b$ odd (determinant), so

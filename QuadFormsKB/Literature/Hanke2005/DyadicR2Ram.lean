@@ -293,7 +293,7 @@ theorem resZero_ramBinary (h2 : ¬ IsUnit (2 : 𝔬)) (N : QuadForm 𝔬 2) (hN 
   rw [hZ, zStar, if_neg (by norm_num), if_pos ⟨rfl, ramBinary_ram v h2 N hN hmax han hD hnot⟩]
 
 open Classical in
-/-- **GHY Table 3, rows $\delta\notin F^{\times2}$, $E_\delta$ ramified ($w = \pm1$), at a dyadic place, every rank $2 + 2k$:** the
+/-- **Gan–Hanke–Yu Table 3, rows $\delta\notin F^{\times2}$, $E_\delta$ ramified ($w = \pm1$), at a dyadic place, every rank $2 + 2k$:** the
 maximal lattice $\Lambda_{\delta,w} = \Delta^{k}\oplus A_{E_\delta}$ of (6.5) has
 $\beta(\Lambda, \Lambda) = 2[\widetilde\Lambda:\Lambda]\,\xi = 2|\det H_N|^{-1}\cdot2\prod_{i=1}^{k}(1 - q^{-2i})$ (Shimura's (3.3) in the
 repository's normalization; $|\det H_N|^{-1} = q^d$, $d$ the exponent of the different of $E_\delta/F$). -/

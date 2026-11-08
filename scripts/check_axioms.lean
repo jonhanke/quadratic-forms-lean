@@ -56,3 +56,12 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq
 #print axioms QuadFormsKB.Headlines.divisorCount_xy
 #print axioms QuadFormsKB.Headlines.siegel_ternary_rat_natural
+#print axioms QuadFormsKB.Headlines.massFormula_genusSymbols
+#print axioms QuadFormsKB.Headlines.shimuraMass_odd
+#print axioms QuadFormsKB.Headlines.shimuraMass_even
+#print axioms QuadFormsKB.Headlines.hankeMass_numberField
+#print axioms QuadFormsKB.Headlines.automorphous_iff_rootVectors
+#print axioms QuadFormsKB.Headlines.dyadicClassification
+#print axioms QuadFormsKB.Headlines.twoAdicClassification
+#print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso
+#print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso_one

@@ -11,7 +11,7 @@ $\mathrm{GL}_n(\mathbb{Z})$-classes; they are genuine finite sums under `GenusFi
 
 **Proves** that every form in the genus of a positive definite form is positive definite
 (`SameGenus.posDef`), $\mathrm{Mass}(Q) > 0$ (`mass_pos`), the one-class case $a_E(m) = r_Q(m)$
-(`genusRepAvg_of_classNumber_one`), and the bridge to the AWS notes' `AWS.mass` (`mass_eq_aws_mass`).
+(`genusRepAvg_of_classNumber_one`), and the bridge to the Arizona Winter School notes' `AWS.mass` (`mass_eq_aws_mass`).
 
 Siegel's formula itself ($a_E(m) = \beta_\infty(m)\prod_p\beta_p(m)$) is **not** stated here.
 -/
@@ -120,7 +120,7 @@ theorem mass_pos {Q : IntQF n} (hQ : Q.PosDef) (hF : GenusFinite Q) : 0 < mass Q
   positivity
 
 /-- **One-class genus:** if $[Q]$ is the only class in its genus (class number one), then
-$a_E(m) = r_Q(m)$ (used for the sum of four squares in the AWS notes, `hanke2011aws`, p. 36). -/
+$a_E(m) = r_Q(m)$ (used for the sum of four squares in the Arizona Winter School notes, `hanke2011aws`, p. 36). -/
 theorem genusRepAvg_of_classNumber_one {Q : IntQF n} (hQ : Q.PosDef)
     (h1 : genusClasses Q = {classOf Q}) (m : ℤ) : genusRepAvg Q m = repNum Q m := by
   have ha : (0 : ℝ) < Nat.card (Aut Q) := by exact_mod_cast hQ.card_aut_pos
@@ -128,7 +128,7 @@ theorem genusRepAvg_of_classNumber_one {Q : IntQF n} (hQ : Q.PosDef)
     QClass.autCard_classOf]
   field_simp
 
-/-- **Bridge to `AWS.mass`:** under `GenusFinite`, `mass Q` is the AWS notes' mass
+/-- **Bridge to `AWS.mass`:** under `GenusFinite`, `mass Q` is the Arizona Winter School notes' mass
 $\sum_i 1/|\mathrm{Aut}(H_i)|$ of the Hessians $H_i$ of any choice of representatives of the classes in the genus
 (here `Quotient.out`). -/
 theorem mass_eq_aws_mass {Q : QuadForm ℤ n} (hF : GenusFinite Q) :
@@ -145,7 +145,7 @@ theorem mass_eq_aws_mass {Q : QuadForm ℤ n} (hF : GenusFinite Q) :
   rw [e, ← coe_aut_eq_autZ]
   rfl
 
-/-- **The sum of four squares:** `repNum` of $x_0^2 + x_1^2 + x_2^2 + x_3^2$ is the AWS notes' `r4`. -/
+/-- **The sum of four squares:** `repNum` of $x_0^2 + x_1^2 + x_2^2 + x_3^2$ is the Arizona Winter School notes' `r4`. -/
 theorem repNum_Q4 (m : ℕ) : repNum AWS.Q4 m = AWS.r4 m := rfl
 
 end QuadFormsKB.Siegel

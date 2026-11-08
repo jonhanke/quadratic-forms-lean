@@ -9,7 +9,7 @@ $\pi\mid t$, $\pi\,\|\,n$, $\pi^d\,\|\,4n - t^2$):
   (`IndexTwo`) and $1 + \pi^kR$ consists of squares;
 * `localDensityForm_eisForm`: $\beta(N, N) = 4q^d = 4|\det H_N|^{-1}$.
 
-Sources: GHY 2001, §6, (6.5) (the kernel of the ramified case is the norm form of $\mathcal O_{E}$); Kitaoka 1993, §5.6
+Sources: Gan–Hanke–Yu 2001, §6, (6.5) (the kernel of the ramified case is the norm form of $\mathcal O_{E}$); Kitaoka 1993, §5.6
 [unverified] (densities). Indices are 0-based.
 -/
 import QuadFormsKB.Literature.Hanke2005.DyadicR2RamCount
@@ -385,8 +385,8 @@ variable [Finite (IsLocalRing.ResidueField R)]
 
 /-- **The self-density of the ramified norm form** $\beta(N, N) = 4q^d$, $\pi^d\,\|\,\det H_N = 4n - t^2$ ($\pi \mid t$,
 $\pi\,\|\,n$, $d \ge 1$, unit norms of index $2$, and $1 + \pi^{k_0}R$ consisting of squares for some $k_0$). Here $d$ is the
-exponent of the different of $E = F(\varpi)$ (GHY Lemma A.1: $\mathfrak D = (\pi_E^d)$; $4n - t^2 = -(\varpi - \bar\varpi)^2$), and the
-stabilizer count mirrors the integral models of GHY Lemma B.1. -/
+exponent of the different of $E = F(\varpi)$ (Gan–Hanke–Yu Lemma A.1: $\mathfrak D = (\pi_E^d)$; $4n - t^2 = -(\varpi - \bar\varpi)^2$), and the
+stabilizer count mirrors the integral models of Gan–Hanke–Yu Lemma B.1. -/
 @[kb "ganhankeyu2001" "§6, (6.5) (A_{E_δ} with αN, E_δ ramified); Appendix A, Lemma A.1; Appendix B, Lemma B.1, pp. 123–124"]
 theorem localDensityForm_eisForm (hπ : Irreducible π) {t n w : R} (ht : π ∣ t) (hn : n = π * w) (hw : IsUnit w)
     {d : ℕ} (hd : π ^ d ∣ 4 * n - t ^ 2) (hd' : ¬ π ^ (d + 1) ∣ 4 * n - t ^ 2) (hd1 : 1 ≤ d)

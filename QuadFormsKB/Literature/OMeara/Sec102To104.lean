@@ -125,10 +125,9 @@ def genusVolume (L : Lat F n) : Submodule (𝓞 F) F := OMeara.volume Q.toQuadra
 
 /-- **Statement 102.r18: all lattices in a genus have the same volume** (O'Meara 1973, §102A, p. 299, "All lattices
 in the same genus have the same volume"): for every $K \in \operatorname{gen}L$, $\mathfrak vK = \mathfrak vL$, so
-`genusVolume` is well defined on genera. *Not proved here:* O'Meara's argument is local–global, $(\mathfrak vK)_\mathfrak p
-= \mathfrak vK_\mathfrak p = \mathfrak vL_\mathfrak p = (\mathfrak vL)_\mathfrak p$ for all $\mathfrak p$; it needs the
-comparison of the library's localization at the completion (`Lattices.loc`) with the §82K localization
-(`OMeara.volume_locLat`, at the localization of $\mathfrak o$), which is not available. A statement, never assumed. -/
+`genusVolume` is well defined on genera. *Proved* (unconditionally) as `omeara102_r18_holds` in `Sec102Volume.lean`,
+by O'Meara's local–global argument $(\mathfrak vK)_\mathfrak p = \mathfrak vK_\mathfrak p = \mathfrak vL_\mathfrak p =
+(\mathfrak vL)_\mathfrak p$ at the completions (`volume_loc`, `Sec104LocalMod.lean`). -/
 @[kb "omeara1963" "§102A, p. 299 (all lattices in a genus have the same volume) [statement]"]
 structure OMeara102_r18 (Q : QuadForm F n) : Prop where
   holds : ∀ L K : Lat F n, SameGenus Q L.1 K.1 → genusVolume Q L = genusVolume Q K
@@ -137,10 +136,8 @@ structure OMeara102_r18 (Q : QuadForm F n) : Prop where
 for a regular space ($Q$ nondegenerate on $F^n$, $F$ a number field) and a non-zero fractional ideal $\mathfrak a$, if
 $L$ is an $\mathfrak a$-maximal lattice on $V$ then a lattice $K$ on $V$ is in $\operatorname{gen}L$ if and only if $K$ is
 $\mathfrak a$-maximal; in particular any two $\mathfrak a$-maximal lattices on $V$ have the same scale, norm and
-volume. *Not proved here:* the proof uses that every lattice in the genus of an $\mathfrak a$-maximal lattice is
-$\mathfrak a$-maximal (maximality is local, `OMeara.isMaximal_iff_locLat`, but at the localization of $\mathfrak o$, not at
-the completion used by `SameGenus`) and the local uniqueness 91:2 of $\mathfrak a_\mathfrak p$-maximal lattices on $V_\mathfrak p$,
-and the volume equality is `OMeara102_r18`. A statement, never assumed. -/
+volume. *Proved* (unconditionally) as `omeara102_3_holds` in `Sec102Three.lean` (maximality is local at the
+completions, `Sec102Max.lean`, and 91:2 at each completion). -/
 @[kb "omeara1963" "§102A, 102:3, p. 299 (genus of an a-maximal lattice) [statement]"]
 structure OMeara102_3 (Q : QuadForm F n) (hQ : Q.Nondegenerate) (a : FractionalIdeal (𝓞 F)⁰ F) : Prop where
   genus_iff : a ≠ 0 → ∀ L K : Lat F n, OMeara.IsMaximal Q.toQuadraticForm (a : Submodule (𝓞 F) F) L.1 →
@@ -157,10 +154,8 @@ finite spots), a fixed dimension $n$ and a fixed integral ideal $\mathfrak c$ of
 regular quadratic spaces of dimension $n$ over $F$, up to isometry, carry a lattice $L$ with integral scale
 ($\mathfrak sL \subseteq \mathfrak o_F$) and volume $\mathfrak vL = \mathfrak c$. Stated for the spaces $(F^n, Q)$,
 $Q$ nondegenerate (every $n$-ary space is of this form): there is a finite set $s$ of forms such that each such $Q$ is
-isometric over $F$ (`IsometricIn F`) to a member of $s$. *Not proved here:* the proof combines the unimodularity of
-$L_\mathfrak p$ at almost all $\mathfrak p$, the finiteness of $\mathfrak u(T)/\mathfrak u(T)^2$ (65:6), the local
-classification (63:20) and the Hasse–Minkowski Theorem; the whole chain over a number field is not assembled in the
-library. A statement, never assumed. -/
+isometric over $F$ (`IsometricIn F`) to a member of $s$. *Proved* (unconditionally) as `omeara103_5_holds` in
+`Sec103Five.lean`, by O'Meara's route (finitely many discriminant classes, 63:20 and Hasse–Minkowski). -/
 @[kb "omeara1963" "§103, 103:5, pp. 310–311 (finitely many spaces carrying a lattice of given volume) [statement]"]
 structure OMeara103_5 (F : Type) [Field F] [NumberField F] (n : ℕ) (c : Ideal (𝓞 F)) : Prop where
   holds : ∃ s : Finset (QuadForm F n), ∀ Q : QuadForm F n, Q.Nondegenerate →
@@ -184,9 +179,10 @@ $i = (\alpha)\,j$ with $\alpha \in D$ and $j \in J_F^S$ (a unit at every finite 
 
 *Deviation/Note.* O'Meara's $S$ is a Dedekind set of spots containing almost all spots; only the case of all finite
 spots is stated. The OCR of the book reads `dim V = 3`; the hypothesis is $\dim V \ge 3$ (as in 104:5).
-*Not proved here:* the proof is the combination of 104:5 ($\operatorname{cls}^+L = \operatorname{spn}^+L$ in the
-indefinite case, strong approximation) with 102:9 and Example 102:10 ($\operatorname{spn}^+L = \operatorname{gen}L$ for
-modular and maximal lattices); these are not assembled in the library in this form. A statement, never assumed. -/
+*Proved* (unconditionally) as `omeara104_9` in `Sec104NineMain.lean`: 104:5 ($\operatorname{cls}^+L =
+\operatorname{spn}^+L$ in the indefinite case, strong approximation) with 102:9 (`omeara102_9`, `Sec104Nine.lean`) and
+Example 102:10 (ii) ($\theta(O^+(L_\mathfrak p)) \supseteq \mathfrak u_\mathfrak p$ for modular and maximal lattices, by
+92:5, 93:20 and 91:8). -/
 @[kb "omeara1963" "§104, 104:9, p. 320 [statement]"]
 structure OMeara104_9 (Q : QuadForm F n) (hQ : Q.Nondegenerate) : Prop where
   holds : 3 ≤ n → IsIndefinite Q →
@@ -202,8 +198,8 @@ lattices $L, K$ on $V$ with the same norm and the same scale, which are either b
 the same proper class: $\operatorname{cls}^+L = \operatorname{cls}^+K$ (`IsProperIsometric Q L K`). Norm and scale are
 `OMeara.normIdeal` and `OMeara.scale` over $R = \mathbb Z = \mathfrak o_{\mathbb Q}$. (The idèle condition of 104:9 holds
 over $\mathbb Q$, Example 102:10, which is why it is not a hypothesis here.) *Note:* the OCR of the book reads
-$\dim V = 3$; the hypothesis is $n \ge 3$. *Not proved here:* the proof is 104:9 together with genus equality for
-modular lattices (92:2, 93:29) and maximal lattices (91:2). A statement, never assumed. -/
+$\dim V = 3$; the hypothesis is $n \ge 3$. *Proved* (unconditionally) as `omeara104_10` in `Sec104Ten.lean`: 104:9 with genus equality for modular lattices
+(92:2, 93:29; `Sec104TenModular.lean`) and maximal lattices (91:2; `Sec104TenMax.lean`) and 102:10 (i) for $\mathbb Q$. -/
 @[kb "omeara1963" "§104, 104:10, pp. 320–321 [statement]"]
 structure OMeara104_10 {n : ℕ} (Q : QuadForm ℚ n) (hQ : Q.Nondegenerate) : Prop where
   holds : 3 ≤ n → IsIndefinite Q → ∀ L K : Lat ℚ n,
@@ -215,16 +211,22 @@ structure OMeara104_10 {n : ℕ} (Q : QuadForm ℚ n) (hQ : Q.Nondegenerate) : P
 /-- **Statement 104:12, lattice part** (O'Meara 1973, §104, Example 104:12, p. 321): a unimodular $\mathbb Z$-lattice
 $L = \mathbb Z^n$ with norm $\mathbb Z$ on a space $V$ with $V_\infty$ isotropic is isometric to
 $\langle 1\rangle^p \perp \langle -1\rangle^q$ ($p + q = n$). Here the lattice is $\mathbb Z^n$ with the integral
-form `Q : QuadForm ℤ n` (O'Meara's $B(x, x) = Q(x)$): *unimodular* means $\det H_Q = \pm 2^n$ (O'Meara's matrix
-$\tfrac12H_Q$ has determinant $\pm1$, as in `omeara104_12_space`); *norm $\mathbb Z$* means the values $Q(x)$ generate
+form `Q : QuadForm ℤ n` (O'Meara's $B(x, x) = Q(x)$): *unimodular* ($\mathfrak sL = \mathbb Z$, $\mathfrak vL =
+\mathbb Z$) means that O'Meara's matrix $G = \tfrac12H_Q$ is an integral matrix (`IsClassicallyIntegral Q`) of
+determinant $\pm1$, i.e. $\det H_Q = \pm 2^n$; *norm $\mathbb Z$* means the values $Q(x)$ generate
 the ideal $\mathbb Z$; *$V_\infty$ isotropic* means $Q$ is isotropic over $\mathbb R$ (`IsotropicIn ℝ` for
 `Q.map (Int.castRingHom ℚ)`); the conclusion is the existence of $p$ and of a $\mathbb Z$-isometry
 $U \in GL_n(\mathbb Z)$ with $Q \circ U = \langle 1\rangle^p \perp \langle -1\rangle^{n-p}$ (`signDiag ℤ p`,
-`IsometricIn ℤ`). The space part (first part of 104:12) is proved as `omeara104_12_space`. *Not proved here:* it needs the
-dyadic theory (93:29). A statement, never assumed. -/
+`IsometricIn ℤ`). The space part (first part of 104:12) is proved as `omeara104_12_space`.
+
+*Correction.* An earlier version of this statement omitted the hypothesis
+`IsClassicallyIntegral Q` (the integrality of $\tfrac12H_Q$, part of "unimodular"); without it the statement is false:
+$Q = x_0x_1 + 4x_2^2$ has $\det H_Q = -2^3$, norm $\mathbb Z$ and $V_\infty$ isotropic, but its bilinear form takes the
+value $\tfrac12$ on $\mathbb Z^3$, so $Q$ is not $\mathbb Z$-equivalent to any $\langle\pm1,\pm1,\pm1\rangle$.
+*Proved* (unconditionally) as `omeara104_12_lattice` / `omeara104_12Lattice_holds` in `Sec104Twelve.lean`. -/
 @[kb "omeara1963" "§104, 104:12, p. 321 (lattice part: L ≅ ⟨1⟩ᵖ ⊥ ⟨−1⟩^q) [statement]"]
 structure OMeara104_12Lattice {n : ℕ} (Q : QuadForm ℤ n) : Prop where
-  holds : (Q.hessian.det = 2 ^ n ∨ Q.hessian.det = -2 ^ n) →
+  holds : IsClassicallyIntegral Q → (Q.hessian.det = 2 ^ n ∨ Q.hessian.det = -2 ^ n) →
     Ideal.span (Set.range Q.eval) = ⊤ →
     (Q.map (Int.castRingHom ℚ)).IsotropicIn ℝ →
     ∃ p : ℕ, Q.IsometricIn ℤ (signDiag ℤ p)

@@ -9,7 +9,7 @@ $$[\widetilde\Lambda_\mathfrak p:\Lambda_\mathfrak p] = |2|_\mathfrak p^{-1}\,q^
 c = \begin{cases}0 & \det\varphi\ \text{a unit times a square},\ t_\mathfrak p = 1,\\
 2 & \det\varphi\ \text{a unit times a square},\ t_\mathfrak p = 3,\\
 1 & \det\varphi\ \text{not a unit times a square}\end{cases}$$
-(`dualIndexAt_odd`), and $t_\mathfrak p\in\{1,3\}$. These are the lattices $\Delta^k\perp A$, $\Delta^{k-1}\perp\Lambda_\delta$ of GHY
+(`dualIndexAt_odd`), and $t_\mathfrak p\in\{1,3\}$. These are the lattices $\Delta^k\perp A$, $\Delta^{k-1}\perp\Lambda_\delta$ of Gan–Hanke–Yu
 (6.6), (6.10). *Proof:* $\Lambda_\mathfrak p\simeq\mathbb H^k\perp N$ (`exists_hypSum_shape`); $|\det H_N| = |2|\,q^{-\nu}$ with
 $\nu\le1$ for $r = 1$ (maximality) and $\nu\in\{1,2\}$ for $r = 3$ (the two shapes at a dyadic place; diagonalization at a
 non-dyadic place, where $\nu = 0$ would make $N$ unimodular, hence isotropic); and $\det H_N/2^r$ is a unit times a square iff

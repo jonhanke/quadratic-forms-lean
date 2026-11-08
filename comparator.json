@@ -39,7 +39,16 @@
     "QuadFormsKB.Headlines.siegel_twoSquares",
     "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq",
     "QuadFormsKB.Headlines.divisorCount_xy",
-    "QuadFormsKB.Headlines.siegel_ternary_rat_natural"
+    "QuadFormsKB.Headlines.siegel_ternary_rat_natural",
+    "QuadFormsKB.Headlines.massFormula_genusSymbols",
+    "QuadFormsKB.Headlines.shimuraMass_odd",
+    "QuadFormsKB.Headlines.shimuraMass_even",
+    "QuadFormsKB.Headlines.hankeMass_numberField",
+    "QuadFormsKB.Headlines.automorphous_iff_rootVectors",
+    "QuadFormsKB.Headlines.dyadicClassification",
+    "QuadFormsKB.Headlines.twoAdicClassification",
+    "QuadFormsKB.Headlines.sameGenus_iff_discIso",
+    "QuadFormsKB.Headlines.sameGenus_iff_discIso_one"
   ],
   "definition_names": [],
   "permitted_axioms": [

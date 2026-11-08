@@ -266,7 +266,7 @@ $\varphi = \varphi_\infty\otimes\bigotimes_v\mathbf 1_{\mathcal O_v^n}$ and $g_z
 $$\theta(g_z, 1;\varphi) = \sum_{\xi\in F^n}\big(\omega(g_z)\varphi\big)(\xi) = \prod_vy_v^{n/4}\cdot\theta_Q(z),\qquad n = 2m,$$
 $\theta_Q$ = `HilbertModular.thetaQ`. Here $\omega_\infty(m(y^{1/2}))$ contributes $\chi_V(y^{1/2})|y^{1/2}|^{n/2} = \prod_vy_v^{n/4}$
 ($\chi_V = 1$ on totally positive elements), and $\omega_\infty(n(x))$ the phase $e(\operatorname{Tr}(xQ(\xi)))$. -/
-@[kb "kudla1996" "§I.4; Hanke, AWS notes (4.24)–(4.30) (the classical theta function from the kernel) [unverified]"]
+@[kb "kudla1996" "§I.4; Hanke, Arizona Winter School notes (4.24)–(4.30) (the classical theta function from the kernel) [unverified]"]
 theorem thetaKernel_gz_eq_thetaQ (z : InfinitePlace F → UpperHalfPlane) :
     thetaDist (borelInf (bF b hb) (zRe z) (zSqrtIm z) (phiStd b)) =
       ((∏ v : InfinitePlace F, (z v).im ^ ((2 * m : ℝ) / 4) : ℝ) : ℂ) * HilbertModular.thetaQ (QuadForm.diag b) z := by

@@ -15,7 +15,7 @@ $\mathrm{glue}(M) = \{x \in F^n : x \in M_\mathfrak p\ \forall \mathfrak p\}$ of
 
 **Proves** the local–global correspondence for lattices over the Dedekind domain $\mathcal O_F$
 (O'Meara 1963, §81E, p. 218: 81:14 and $L = \bigcap_\mathfrak p L_\mathfrak p$; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]; the
-$F = \mathbb Q$ case is Lemma 4.5.1 of the AWS notes, `AWS.LatticeGluing`, there an input):
+$F = \mathbb Q$ case is Lemma 4.5.1 of the Arizona Winter School notes, `AWS.LatticeGluing`, there an input):
 * `loc_isLattice`: $L_\mathfrak p$ is a local lattice; `loc_eventually_std`: $L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for
   almost all $\mathfrak p$;
 * `mem_iff_forall_loc`: $L = \bigcap_\mathfrak p (F^n \cap L_\mathfrak p)$, so $L$ is determined by its localizations
@@ -594,7 +594,7 @@ theorem loc_eq_std_of_not_mem {L : Submodule (𝓞 F) (Fin n → F)} {d : 𝓞 F
 
 end Localization
 
-/-- **$L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for almost all $\mathfrak p$** (O'Meara §81E, p. 218, the remark before 81:14; AWS notes
+/-- **$L_\mathfrak p = \mathfrak o_\mathfrak p^n$ for almost all $\mathfrak p$** (O'Meara §81E, p. 218, the remark before 81:14; Arizona Winter School notes
 p. 61 for $F = \mathbb Q$, `AWS.loc_eventually_std`). -/
 @[kb "omeara1963" "§81E, p. 218 (L_𝔭 = K_𝔭 for almost all 𝔭, from 81:11)"]
 theorem loc_eventually_std {L : Submodule (𝓞 F) (Fin n → F)} (hL : L.IsLattice F) :
@@ -870,7 +870,7 @@ theorem glue_isLattice (M : LocFamily F n) : M.glue.IsLattice F := by
 
 /-- **Gluing (existence half of the local–global correspondence):** the localizations of $\mathrm{glue}(M)$ are the
 $M_\mathfrak p$ (O'Meara §81E, 81:14, p. 218; Weil, *Basic Number Theory*, Ch. V, Thm. 2 [unverified]). For
-$F = \mathbb Q$ this is the AWS notes' Lemma 4.5.1 (`AWS.LatticeGluing`, an input there). -/
+$F = \mathbb Q$ this is the Arizona Winter School notes' Lemma 4.5.1 (`AWS.LatticeGluing`, an input there). -/
 @[kb "omeara1963" "§81E, 81:14, p. 218"]
 theorem loc_glue (M : LocFamily F n) (v : HeightOneSpectrum (𝓞 F)) : loc v M.glue = M.M v := by
   apply le_antisymm

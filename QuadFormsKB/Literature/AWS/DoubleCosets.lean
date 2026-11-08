@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Ch. 4: the group theory behind the adelic constructions
+# Hanke, Arizona Winter School 2009 notes, Ch. 4: the group theory behind the adelic constructions
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (2009 Arizona Winter School notes,
 arXiv:1105.5759 v3), bibkey `hanke2011aws`. Page numbers are the printed ones (they equal the PDF

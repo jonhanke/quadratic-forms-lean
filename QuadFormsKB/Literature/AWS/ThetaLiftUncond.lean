@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.6: the unfolding and the theta lift without `QuotientIntegralInputs`
+# Hanke, Arizona Winter School 2009 notes, §4.6: the unfolding and the theta lift without `QuotientIntegralInputs`
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.5–§4.6 (pp. 61–66).
 The results of `AWS/Unfolding.lean` (D18, D19, D24) and `AWS/ThetaLift.lean` (D23, D24) are stated there

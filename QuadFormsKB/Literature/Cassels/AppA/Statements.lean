@@ -14,7 +14,7 @@ $\Gamma_{16}$ is `Lattices.gamma16`, $r\Gamma_8$ is `DefiniteForms.repE8 r`.
 | Cassels | Lean |
 |---|---|
 | p. 363: for indefinite $\phi$ the decomposition of a decomposable lattice is never unique, except possibly $n = 2$, $\phi$ isotropic | `IndefiniteSplittingNotUnique` (named) |
-| p. 364: Watson: every genus of definite forms in $n > 11$ variables has at least two classes | `WatsonTwoClasses` (named), `WatsonTwoClasses.two_le_encard` (proved from it) |
+| p. 364: Watson: every genus of definite forms in $n > 11$ variables has at least two classes | `WatsonTwoClasses` (named), `WatsonTwoClasses.two_le_encard` (proved from it); derived from the narrower named input `WatsonMinimalTwoClasses` in `AppA/WatsonTwoClasses.lean` (`watsonTwoClasses_of_minimal`) |
 | p. 365, footnote †: Niemeier: the genus of $3\Gamma_8$ contains $22$ indecomposable classes besides $3\Gamma_8$, $\Gamma_8 + \Gamma_{16}$ | `NiemeierThreeE8` (named) |
 | p. 366: Theorem 3.1 for spinor genera | `minSpinorGenusClasses`, `WatsonSpinor` (named) |
 | p. 366: the two points of the spinor-genus version | `WatsonSpinorConstruction`, `WatsonSpinorTypeLattice` (named) |

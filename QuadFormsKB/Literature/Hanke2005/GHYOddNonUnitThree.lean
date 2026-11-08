@@ -337,7 +337,7 @@ section Main
 variable {R : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [Finite (IsLocalRing.ResidueField R)]
   [IsAdicComplete (IsLocalRing.maximalIdeal R) R]
 
-/-- **The kernel's self-density** (GHY Table 4, $\delta\notin A^\times$, $w=-1$, level $0$):
+/-- **The kernel's self-density** (Gan–Hanke–Yu Table 4, $\delta\notin A^\times$, $w=-1$, level $0$):
 $\beta(\langle\pi c\rangle\perp T,\ \langle\pi c\rangle\perp T) = 4q^{e+1}(1 + q^{-1})$, $\pi^e\,\|\,2$.
 From the frame lemma, `localDensityForm_piU_T_any`, and $\beta(\langle\pi c\rangle) = q\cdot2q^e$. -/
 theorem localDensityForm_splitForm_piUnit {π : R} (hπ : Irreducible π) {e : ℕ}
@@ -358,7 +358,7 @@ theorem localDensityForm_splitForm_piUnit {π : R} (hπ : Irreducible π) {e : �
   field_simp
   ring
 
-/-- **The density of $\mathbb H^k\perp(\langle\pi c\rangle\perp T)$ at every prime** (GHY Table 4, $\delta\notin A^\times$,
+/-- **The density of $\mathbb H^k\perp(\langle\pi c\rangle\perp T)$ at every prime** (Gan–Hanke–Yu Table 4, $\delta\notin A^\times$,
 $w = -1$): $4q^{e+1}(1 + q^{-1})\prod_{j<k}\rho_j(q)$, $\pi^e\,\|\,2$ ($e = 0$ allowed), $c$ a unit, $T$ unimodular
 binary with $\bar T$ anisotropic. -/
 @[kb "ganhankeyu2001" "(6.6), (6.11), Table 4 (odd rank, δ ∉ A×, w = −1)"]
@@ -382,7 +382,7 @@ theorem localDensityForm_hypSum_piUnitT {π : R} (hπ : Irreducible π) {e : ℕ
     rw [localDensityForm_hypSum_succ hπ _ hN han k, ih, hZ, Finset.prod_range_succ]
     ring
 
-/-- **Closed form, $w = 1$ row** (GHY Table 4, $\delta\notin A^\times$): for $k\ge1$ and $q>1$ real, with $q = q_R$,
+/-- **Closed form, $w = 1$ row** (Gan–Hanke–Yu Table 4, $\delta\notin A^\times$): for $k\ge1$ and $q>1$ real, with $q = q_R$,
 $\beta(\mathbb H^k\perp\langle\pi u\rangle) = 2q^{e+1}\cdot2(1 - q^{-k})\,\mathrm{ppow}_{k-1}(q)$. -/
 theorem localDensityForm_hypSum_piUnit_closed {π : R} (hπ : Irreducible π) {e : ℕ}
     (he : π ^ e ∣ 2 ∧ ¬ π ^ (e + 1) ∣ 2) {u : R} (hu : IsUnit u) {k : ℕ} (hk : 1 ≤ k) :
@@ -391,7 +391,7 @@ theorem localDensityForm_hypSum_piUnit_closed {π : R} (hπ : Irreducible π) {e
   have hq : (1 : ℝ) < q R := by exact_mod_cast one_lt_q (R := R)
   rw [localDensityForm_hypSum_piUnit hπ he hu k, prod_rho_one_eq hq hk]
 
-/-- **Closed form, $w = -1$ row** (GHY Table 4, $\delta\notin A^\times$): for every $k$, with $q = q_R$,
+/-- **Closed form, $w = -1$ row** (Gan–Hanke–Yu Table 4, $\delta\notin A^\times$): for every $k$, with $q = q_R$,
 $\beta(\mathbb H^k\perp N) = 4q^{e+1}(1 + q^{-(k+1)})\,\mathrm{ppow}_k(q)$, $N = \langle\pi c\rangle\perp T$. -/
 theorem localDensityForm_hypSum_piUnitT_closed {π : R} (hπ : Irreducible π) {e : ℕ}
     (he : π ^ e ∣ 2 ∧ ¬ π ^ (e + 1) ∣ 2) {c : R} (hc : IsUnit c) (T : QuadForm R 2)

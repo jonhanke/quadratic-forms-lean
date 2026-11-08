@@ -17,7 +17,7 @@ in `Siegel/E8.lean` adapted to level 4):
 * `thetaMF_sumSq_four_eq`: $\Theta_{I_4} = -\tfrac13 G$; `repNum_sumSq_four_sigma`: $r_4(m) = 8\sigma_1(m) - 32\sigma_1(m/4)$;
   **`repNum_sumSq_four`**: $r_4(m) = 8\sum_{d \mid m,\ 4 \nmid d} d$ ($m \ge 1$).
 
-The AWS notes' four-squares inputs (`Literature/AWS/FourSquares.lean`, `AWS.FourSquaresInputs`):
+The Arizona Winter School notes' four-squares inputs (`Literature/AWS/FourSquares.lean`, `AWS.FourSquaresInputs`):
 * `localDensity_Q4_two`: **the field `beta_two`** ($\beta_2(m) = 1$ for odd $m$, Lemma 2.7.6) is proved, from the dyadic
   Remark 3.4.1(a) at level 8 and an enumeration of $(\mathbb{Z}/8)^4$ (`decide +kernel`, no `native_decide`);
   `fourSquaresInputs_of_siegel`: only the field `siegel` remains an input.
@@ -539,7 +539,7 @@ theorem repNum_sumSq_four {m : ℕ} (hm : 1 ≤ m) :
 theorem repNum_sumSq_four_four : repNum (sumSq 4) 4 = 24 := by
   rw [show (4 : ℤ) = ((4 : ℕ) : ℤ) from rfl, repNum_sumSq_four (by norm_num)]; decide
 
-/-! ### The AWS notes' four-squares inputs: $\beta_2(m) = 1$ for odd $m$, and (2.21)–(2.23) from Jacobi -/
+/-! ### The Arizona Winter School notes' four-squares inputs: $\beta_2(m) = 1$ for odd $m$, and (2.21)–(2.23) from Jacobi -/
 
 section AWSInputs
 
@@ -579,7 +579,7 @@ theorem repCount_Q4_eight {m : ℤ} (hm : Odd m) : repCount AWS.Q4 2 3 m = 512 :
     Nat.card_eq_fintype_card, Fintype.card_subtype]
   exact card_sumFourSq_zmod8 _ hc
 
-/-- **Lemma 2.7.6 of the AWS notes: $\beta_2(m) = 1$ for $m$ odd**, for $Q = x_0^2+\dots+x_3^2$.
+/-- **Lemma 2.7.6 of the Arizona Winter School notes: $\beta_2(m) = 1$ for $m$ odd**, for $Q = x_0^2+\dots+x_3^2$.
 *Proof:* dyadic Remark 3.4.1(a) (`DVR.localDensity_unit_unimodular`, level $K = 2e+1 = 3$) gives
 $\beta_2(m) = r_8(m)/8^3$, and $r_8(m) = 512$ by enumerating $(\mathbb{Z}/8)^4$. -/
 @[kb "hanke2011aws" "§2.7.5, Lemma 2.7.6, p. 39"]
@@ -615,7 +615,7 @@ theorem repNum_sumSq_four_odd {m : ℕ} (hm : Odd m) : repNum (sumSq 4) m = 8 * 
   rw [repNum_sumSq_four h1, sigma_one_eq_four]
   simp [h4]
 
-/-- **The AWS notes' (2.21)–(2.23) unconditionally:** $r_Q(t) = 8\prod_{p \mid t}(p+1)$ for odd squarefree $t$, from
+/-- **The Arizona Winter School notes' (2.21)–(2.23) unconditionally:** $r_Q(t) = 8\prod_{p \mid t}(p+1)$ for odd squarefree $t$, from
 Jacobi's theorem (no `FourSquaresInputs` needed; compare `AWS.r4_squarefree`). -/
 @[kb "hanke2011aws" "§2.7.5, (2.21)-(2.23), p. 40"]
 theorem r4_squarefree_of_jacobi (t : ℕ) (ht : Odd t) (hsq : Squarefree t) :

@@ -14,7 +14,7 @@ checks $D = 1$, $\beta_\infty(m) = \pi^2 m$ (`gramDet_Q4`, `betaInf_Q4`).
 
 **Normalization (checked):** Hanke writes $Q(\vec{x}) = \sum_{i,j} c_{ij}x_ix_j$ with $(c_{ij})$ symmetric, so his $D$ is
 the determinant of the Gram matrix $A = H/2$, not of the Hessian $H$ (`gramDet`). With this $D$, (5.5) gives
-$\beta_\infty(m) = \pi^2 m$ for the sum of four squares, matching the AWS notes' (2.9).
+$\beta_\infty(m) = \pi^2 m$ for the sum of four squares, matching the Arizona Winter School notes' (2.9).
 
 **$n = 3$ (open):** the Euler product converges only conditionally; here its value is taken as a
 parameter.
@@ -326,7 +326,7 @@ positive definite $Q$ this is $\frac{d}{dt}\mathrm{Vol}\{\vec{x} \in \mathbb{R}^
 (5.1) at $v = \infty$: proved as `tendsto_volume_shell_div` (`Siegel/Archimedean.lean`).
 
 *Edge cases:* real powers (`Real.rpow`); meaningful for $D > 0$, $m \ge 0$. Example: $\pi^2 m$ for the sum of four
-squares (`betaInf_Q4`, the AWS notes' (2.9)). -/
+squares (`betaInf_Q4`, the Arizona Winter School notes' (2.9)). -/
 @[kb "hanke2004" "(5.5), p. 369"]
 noncomputable def betaInf (Q : QuadForm ℤ n) (m : ℝ) : ℝ :=
   n * unitBallVol n * gramDet Q ^ (-(1 / 2 : ℝ)) / 2 * m ^ (((n : ℝ) - 2) / 2)
@@ -362,7 +362,7 @@ theorem gramDet_Q4 : gramDet AWS.Q4 = 1 := by
   rw [gramDet, this, det_diagonal]
   norm_num
 
-/-- **The AWS notes' (2.9):** $\beta_\infty(m) = \pi^2 m$ for $x_0^2 + x_1^2 + x_2^2 + x_3^2$ ($n = 4$, $D = 1$,
+/-- **The Arizona Winter School notes' (2.9):** $\beta_\infty(m) = \pi^2 m$ for $x_0^2 + x_1^2 + x_2^2 + x_3^2$ ($n = 4$, $D = 1$,
 $\omega_4 = \pi^2/2$). Checks the normalization of (5.5) against `AWS.betaInf_calc`. -/
 @[kb "hanke2011aws" "§2.7.2, (2.9), p. 37"]
 theorem betaInf_Q4 (m : ℝ) : betaInf AWS.Q4 m = Real.pi ^ 2 * m := by

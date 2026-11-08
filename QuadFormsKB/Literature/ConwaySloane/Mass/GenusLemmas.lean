@@ -35,8 +35,9 @@ axioms, and the deductions between them and the easy directions are proved.
 
 **Proved elsewhere:** Lemma 1 (`lemma1Statement_proof`, `Section7HyperbolicMass.lean`), Lemma 3
 (`lemma3Statement_proof`, `GenusLemma3.lean`, which also gives `lemma4_of_lemma2`), remarks 4 and 5 at the symbol level
-(`genera_det_prime`, `genera_det_two_prime`, `GeneraSmallDet.lean`). **Not proved:** Lemma 2 (Kneser–Puppe 1953;
-the paper gives no proof), hence Lemma 4.
+(`genera_det_prime`, `genera_det_two_prime`, `GeneraSmallDet.lean`), Lemma 2 (`Gauss2.lemma2Statement_holds`,
+`GenusLemma2Local.lean`) and Lemma 4 (`Gauss2.lemma4Statement_holds`); the lemmas as plain theorems and the unconditional
+versions of `sameGenus_of_lemma4` and `sameGenus_of_det_two` are in `GenusLemmasHold.lean`.
 -/
 import Mathlib
 import QuadFormsKB.Citation

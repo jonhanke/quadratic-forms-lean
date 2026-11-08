@@ -22,9 +22,9 @@ $\xi' = \xi$ (Shimura's (3.3), per place: `siegelDensity_eq_at`) or $\xi' = $ `x
 for odd $n$, $\tfrac12(1\pm q^{-m})\cdot2(1\mp q^{-m})\prod_{i<m}(1-q^{-2i}) = \prod_{i\le m}(1-q^{-2i})$. The rest is the proof
 of `theorem51` (Theorem 2.1 with $\tau = 2$, the Euler products, the archimedean factors), with $\lambda'$ for $\lambda$.
 
-**Relation to GHY.** GHY's $\lambda_v$ (2.12) is a ratio of volumes of the hyperspecial model and the stabilizer of the
+**Relation to Gan–Hanke–Yu.** Gan–Hanke–Yu's $\lambda_v$ (2.12) is a ratio of volumes of the hyperspecial model and the stabilizer of the
 maximal lattice; on the excluded rows (Table 4, $\delta\notin A^\times$) the quasi-split space with the same discriminant has the
-maximal lattice $\mathbb H^{m}\perp\langle\pi u\rangle$ ($t = 1$) whose $\xi'$ is $2(1-q^{-m})\prod_{i<m}$, so GHY's ratio for
+maximal lattice $\mathbb H^{m}\perp\langle\pi u\rangle$ ($t = 1$) whose $\xi'$ is $2(1-q^{-m})\prod_{i<m}$, so Gan–Hanke–Yu's ratio for
 $w = -1$ is $\xi'(t{=}1)/\xi'(t{=}3) = (1-q^{-m})/(1+q^{-m})$, and $\lambda'_v = \tfrac12(1+q^{-m})\cdot$(that ratio) for
 $t = 3$. Indices are 0-based.
 -/
@@ -61,7 +61,7 @@ variable (v : HeightOneSpectrum (𝓞 F))
 open Classical in
 /-- **The local factor $\lambda'_v$ of Theorem 5.1 without Shimura's hypothesis:** `lambdaOddNonUnit` at a place where $n$ is
 odd and $\det\varphi$ is not a unit times a square (`DetUnitSqAt` fails), Hanke's `lambdaAt` elsewhere. -/
-@[kb "hanke2005crelle" "Theorem 5.1, p. 17 (λ_v), extended to the places excluded by Shimura's hypothesis (GHY 2001, Table 4)"]
+@[kb "hanke2005crelle" "Theorem 5.1, p. 17 (λ_v), extended to the places excluded by Shimura's hypothesis (Gan–Hanke–Yu 2001, Table 4)"]
 def lambdaGen (Q₀ : QuadForm (𝓞 F) n) : ℝ :=
   if Odd n ∧ ¬ DetUnitSqAt v Q₀ then lambdaOddNonUnit (normQ v) n (anisoDim v Q₀) else lambdaAt v Q₀
 
@@ -104,7 +104,7 @@ theorem detUnitSqAt_of_dualIndexAt_eq_one (hodd : Odd n) (Q₀ : QuadForm (𝓞 
 
 /-- **The local factor at every finite place, without Shimura's hypothesis:** $\alpha_\mathfrak p = [\widetilde\Lambda_\mathfrak p:
 \Lambda_\mathfrak p]\,\xi'_\mathfrak p$. -/
-@[kb "hanke2005crelle" "(3.3), p. 8, with GHY 2001 Table 4 at the places excluded by Shimura's hypothesis"]
+@[kb "hanke2005crelle" "(3.3), p. 8, with Gan–Hanke–Yu 2001 Table 4 at the places excluded by Shimura's hypothesis"]
 theorem siegelDensity_eq_gen (hn : 3 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
     NF.siegelDensity v Q₀ Q₀ = dualIndexAt v Q₀ * xiAtGen v Q₀ := by
   unfold xiAtGen
@@ -215,8 +215,8 @@ theorem tprod_siegelDensity_eq_gen (hn : 3 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (
 
 open Classical in
 /-- **The right side of Theorem 5.1 without Shimura's hypothesis** (Hanke thesis, pp. 16–17, with $\lambda'_v$ = `lambdaGen`
-for $\lambda_v$; GHY 2001, Table 4): `theorem51RHS` with $\prod_v\lambda_v$ replaced by $\prod_v\lambda'_v$. -/
-@[kb "hanke2005crelle" "Theorem 5.1, pp. 16–17 (right side), with GHY 2001 Table 4's local factors at the places excluded by Shimura's hypothesis"]
+for $\lambda_v$; Gan–Hanke–Yu 2001, Table 4): `theorem51RHS` with $\prod_v\lambda_v$ replaced by $\prod_v\lambda'_v$. -/
+@[kb "hanke2005crelle" "Theorem 5.1, pp. 16–17 (right side), with Gan–Hanke–Yu 2001 Table 4's local factors at the places excluded by Shimura's hypothesis"]
 def theorem51RHSGen (Q₀ : QuadForm (𝓞 F) n) : ℝ :=
   let d := Module.finrank ℚ F
   let D := |(discr F : ℝ)|
@@ -375,11 +375,11 @@ theorem theorem51RHSGen_eq (Q₀ : QuadForm (𝓞 F) n) (hdet : ShimuraDetHyp Q�
   unfold theorem51RHSGen theorem51RHS
   rw [e]
 
-/-- **Theorem 5.1 without Shimura's hypothesis** (Hanke thesis, Theorem 5.1, pp. 16–19, with the local factors of GHY 2001,
+/-- **Theorem 5.1 without Shimura's hypothesis** (Hanke thesis, Theorem 5.1, pp. 16–19, with the local factors of Gan–Hanke–Yu 2001,
 Table 4, at the places excluded by Shimura's hypothesis): for $n\ge3$ and $Q_0$ nondegenerate over $\mathcal O_F$ (any number
 field, any signature) with $\Lambda = \mathcal O_F^n$ maximal, Hanke's mass is `theorem51RHSGen`. **Unconditional:** no named
 input and no hypothesis on $\det\varphi$. -/
-@[kb "hanke2005crelle" "Theorem 5.1, pp. 16–19, without Shimura's hypothesis (local factors from GHY 2001, Table 4)"]
+@[kb "hanke2005crelle" "Theorem 5.1, pp. 16–19, without Shimura's hypothesis (local factors from Gan–Hanke–Yu 2001, Table 4)"]
 theorem theorem51_general (hn : 3 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
     hankeMass Q₀ hQ = ENNReal.ofReal (theorem51RHSGen Q₀) := by
   have hP := tprod_siegelDensity_pos hn Q₀ hQ
@@ -398,7 +398,7 @@ theorem theorem51_of_general (hn : 3 ≤ n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q
     (hdet : ShimuraDetHyp Q₀) : hankeMass Q₀ hQ = ENNReal.ofReal (theorem51RHS Q₀) := by
   rw [theorem51_general hn Q₀ hQ hmax, theorem51RHSGen_eq Q₀ hdet]
 
-/-- **Theorem 5.1 without Shimura's hypothesis, totally definite case** (Hanke thesis, Theorem 5.1, Part 1, pp. 17–18; GHY
+/-- **Theorem 5.1 without Shimura's hypothesis, totally definite case** (Hanke thesis, Theorem 5.1, Part 1, pp. 17–18; Gan–Hanke–Yu
 2001, Table 4): $F$ totally real, $Q_0$ totally positive definite, $\mathcal O_F^n$ maximal, $n\ge3$:
 $\sum_a[\Gamma_a:1]^{-1} = $ `theorem51RHSGen`. Unconditional. -/
 @[kb "hanke2005crelle" "Theorem 5.1, Part 1, pp. 17–18 (totally definite), without Shimura's hypothesis"]

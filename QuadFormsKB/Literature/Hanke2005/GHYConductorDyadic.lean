@@ -1,24 +1,24 @@
 /-
-# The conductor at a dyadic ramified place; GHY Prop. 7.5 unconditional
+# The conductor at a dyadic ramified place; Gan–Hanke–Yu Prop. 7.5 unconditional
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), Lemma A.1(iv), p. 123;
 §6, (6.3), (6.5), (6.13); Proposition 7.5, p. 119. O. T. O'Meara, *Introduction to quadratic forms*, 91:2.
 
 Let $v$ be a dyadic place ramified in $E_\delta = F_v(\sqrt\delta)$, and $\Lambda = \mathcal O_F^n$ maximal for $Q_0$ of even rank
-$n\ge4$. Following GHY (6.3), (6.5), (6.13), purely locally:
+$n\ge4$. Following Gan–Hanke–Yu (6.3), (6.5), (6.13), purely locally:
 
 * $\Lambda_v\simeq\mathbb H^k\perp N$ with $N$ anisotropic and maximal (`exists_hypSum_shape`, O'Meara 91:2), and
   $[\widetilde\Lambda_v:\Lambda_v] = |\det H_N|^{-1}$;
 * ramification forces $N$ binary with residue zero space of dimension $1$ (`kernel_ram_shape`): a unimodular binary
   (cross coefficient a unit) has unramified discriminant (`isUnramSqrt_binary`), which excludes the kernels $0$, $S$,
   $\pi S$ and $\pi T'\perp T$;
-* then $N\simeq a(x^2 + txy + ny^2)$ is the scaled norm form of $\mathcal O_{E_\delta}$ (`ramBinary_data`, GHY's $A_{E_\delta}$),
+* then $N\simeq a(x^2 + txy + ny^2)$ is the scaled norm form of $\mathcal O_{E_\delta}$ (`ramBinary_data`, Gan–Hanke–Yu's $A_{E_\delta}$),
   $[\widetilde\Lambda_v:\Lambda_v] = q^d$ with $\pi^d\,\|\,4n - t^2$ the discriminant exponent, and the conductor exponent of
-  $E_\delta$ is $d$ (`condExp_eq_disc`, from `isNorm_of_pow_dvd` and `exists_not_isNorm`: GHY Lemma A.1(iv), $U^i\subseteq NE^\times$
+  $E_\delta$ is $d$ (`condExp_eq_disc`, from `isNorm_of_pow_dvd` and `exists_not_isNorm`: Gan–Hanke–Yu Lemma A.1(iv), $U^i\subseteq NE^\times$
   iff $i\ge d$).
 
 Hence `RamifiedDualIndexConductorDyadic` holds (`ramifiedDualIndexConductorDyadic`), so does `RamifiedDualIndexConductor`
-(`ramifiedDualIndexConductor_proved`), and **GHY Proposition 7.5 holds with no named input** (`ghy_prop75_proved`).
+(`ramifiedDualIndexConductor_proved`), and **Gan–Hanke–Yu Proposition 7.5 holds with no named input** (`ghy_prop75_proved`).
 -/
 import QuadFormsKB.Literature.Hanke2005.GHYConductorOdd
 import QuadFormsKB.Literature.Hanke2005.GHYEvenDual
@@ -86,7 +86,7 @@ theorem isUnramSqrt_binary (h2 : ¬ IsUnit (2 : 𝔬)) (S : QuadForm 𝔬 2) (hb
     rw [show ((4 : 𝔬) : Fv) = 4 from map_ofNat (algebraMap 𝔬 Fv) 4]
     ring
 
-/-- **Ramification forces the binary kernel with residue zero space of dimension $1$** (GHY 2001, (6.3)): if the
+/-- **Ramification forces the binary kernel with residue zero space of dimension $1$** (Gan–Hanke–Yu 2001, (6.3)): if the
 anisotropic maximal kernel $N$ (dimension $2$ or $4$) has ramified discriminant, then $N$ is binary and not all its values
 lie in $\mathfrak p$. ($N = \pi S$ and $N\simeq\pi T'\perp T$ have unramified discriminant.) -/
 @[kb "ganhankeyu2001" "§6, (6.3) (E_δ ramified: the anisotropic kernel is the binary A_{E_δ})"]
@@ -152,7 +152,7 @@ theorem kernel_ram_shape (h2 : ¬ IsUnit (2 : 𝔬)) {r : ℕ} (hr : r = 2 ∨ r
     rw [e, isUnramSqrt_mul_sq v _ _ (div_ne_zero hπ0 hu0)]
     exact isUnramSqrt_mul v (isUnramSqrt_binary v h2 T' hbT') (isUnramSqrt_binary v h2 T hbT)
 
-/-- **The conductor exponent of $F_v(\sqrt\delta)$ at a dyadic place is the discriminant exponent $d$** (GHY 2001,
+/-- **The conductor exponent of $F_v(\sqrt\delta)$ at a dyadic place is the discriminant exponent $d$** (Gan–Hanke–Yu 2001,
 Lemma A.1(iv), p. 123: $U^i\subseteq NE^\times$ iff $i\ge d$): for $\delta = (t^2 - 4n)/4$ up to squares, $\pi\mid t$, $\pi\,\|\,n$,
 $\pi^d\,\|\,4n - t^2$. -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123 (f = d at a ramified dyadic place)"]
@@ -192,7 +192,7 @@ theorem condExp_eq_disc (h2 : ¬ IsUnit (2 : 𝔬)) {t nn w : 𝔬} (ht : NF.π 
   rw [dif_pos hex, Nat.find_eq_iff]
   exact ⟨(P d).2 le_rfl, fun m hm h => absurd ((P m).1 h) (by omega)⟩
 
-/-- **The dual index at a ramified dyadic place is the norm of the conductor** (GHY 2001, Lemma A.1(iv), (6.5), (6.13)):
+/-- **The dual index at a ramified dyadic place is the norm of the conductor** (Gan–Hanke–Yu 2001, Lemma A.1(iv), (6.5), (6.13)):
 for even $n\ge4$, $\mathcal O_F^n$ maximal and $v$ dyadic and ramified in $F_v(\sqrt\delta)$,
 $[\widetilde\Lambda_v:\Lambda_v] = q_v^{f_v}$. -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123; (6.5), (6.13) (dual index at a ramified dyadic place)"]
@@ -281,7 +281,7 @@ theorem dualIndexAt_ram_dyadic (hn : 4 ≤ n) (heven : Even n) (Q₀ : QuadForm 
 
 end Local
 
-/-- **`RamifiedDualIndexConductorDyadic` is proved** (GHY 2001, Lemma A.1(iv), (6.5), (6.13); `dualIndexAt_ram_dyadic`). -/
+/-- **`RamifiedDualIndexConductorDyadic` is proved** (Gan–Hanke–Yu 2001, Lemma A.1(iv), (6.5), (6.13); `dualIndexAt_ram_dyadic`). -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123; (6.5), (6.13) (dyadic places)"]
 theorem ramifiedDualIndexConductorDyadic : RamifiedDualIndexConductorDyadic F :=
   ⟨fun hn heven Q₀ hQ hmax v h2 hr => dualIndexAt_ram_dyadic v hn heven Q₀ hQ hmax h2 hr⟩
@@ -291,7 +291,7 @@ theorem ramifiedDualIndexConductorDyadic : RamifiedDualIndexConductorDyadic F :=
 theorem ramifiedDualIndexConductor_proved : RamifiedDualIndexConductor F :=
   ramifiedDualIndexConductor_of_dyadic ramifiedDualIndexConductorDyadic
 
-/-- **GHY 2001, Proposition 7.5 (the mass formula for $\mathrm{SO}$ in even rank $n\ge4$), unconditional:** for $Q_0$
+/-- **Gan–Hanke–Yu 2001, Proposition 7.5 (the mass formula for $\mathrm{SO}$ in even rank $n\ge4$), unconditional:** for $Q_0$
 nondegenerate and totally positive definite over a totally real number field $F$, with $\mathcal O_F^n$ maximal,
 $\sum_i 1/\#\Gamma_i = 2^{-(n/2)[F:\mathbb Q]}\cdot L\cdot 2\cdot\prod_v\lambda_v$ (`lMotiveEven`, `lambdaGHYEvenAt`). -/
 @[kb "ganhankeyu2001" "Proposition 7.5, p. 119 (unconditional)"]

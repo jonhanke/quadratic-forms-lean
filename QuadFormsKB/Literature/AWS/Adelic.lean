@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.2 and §4.5: adelic orthogonal groups and lattices
+# Hanke, Arizona Winter School 2009 notes, §4.2 and §4.5: adelic orthogonal groups and lattices
 
 Concrete definitions for J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`),
 §4.2 (adelizations) and §4.5 (classes in a genus as double cosets). The list D1, D2, … of the
