@@ -3,9 +3,9 @@
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), (6.6), (6.11), Table 4.
 
-For odd rank $n = 2k+1$ and $\delta$ a uniformizer times a unit, GHY's maximal lattice of $V_{\delta,1} = \mathbb H^k\perp F_\delta$
+For odd rank $n = 2k+1$ and $\delta$ a uniformizer times a unit, Gan–Hanke–Yu's maximal lattice of $V_{\delta,1} = \mathbb H^k\perp F_\delta$
 is $\Delta^k\perp A$ with the form $\delta x^2$, i.e. `hypSum (unary (π u)) k` here. This row is excluded by Shimura's
-hypothesis ($\det$ a unit times a square for odd $n$), and is one of the cases GHY add. We compute its local density at a
+hypothesis ($\det$ a unit times a square for odd $n$), and is one of the cases Gan–Hanke–Yu add. We compute its local density at a
 dyadic place, at every level $k$:
 $$\beta(\mathbb H^k\perp\langle\pi u\rangle) = 2q^{e+1}\prod_{j<k}\rho_j(q),\qquad
 \rho_j(Z) = \frac{(q^{j+1}-1)(q^{1+j}+Z)}{q^{2j+2}},$$
@@ -32,7 +32,7 @@ theorem unary_mul_eq_smul (p u : R) : DVR.unary (p * u) = p • DVR.unary u := b
   fin_cases i; fin_cases j
   simp [DVR.unary, QuadForm.diag]
 
-/-- **The density of $\mathbb H^k\perp\langle\pi u\rangle$ at a dyadic prime** (GHY Table 4, $\delta\notin A^\times$, $w = 1$):
+/-- **The density of $\mathbb H^k\perp\langle\pi u\rangle$ at a dyadic prime** (Gan–Hanke–Yu Table 4, $\delta\notin A^\times$, $w = 1$):
 $2q^{e+1}\prod_{j<k}\rho_j(q)$, $\pi^e\,\|\,2$, $u$ a unit. -/
 @[kb "ganhankeyu2001" "(6.6), (6.11), Table 4 (odd rank, δ ∉ A×, w = 1)"]
 theorem localDensityForm_hypSum_piUnit [Finite (IsLocalRing.ResidueField R)]

@@ -7,7 +7,7 @@
 **Defines**
 * `spnGroup Q` $= O(V)\,O'(V_{\mathbb A_f}) \le O(V)(\mathbb A_f)$ (a subgroup since $O'(V_{\mathbb A_f})$ is normal);
 * `latSpinorGenus Q L` $= \mathrm{spn}(L) = \{\sigma\,\Sigma L : \sigma \in O(V),\ \Sigma \in O'(V_{\mathbb A_f})\}$
-  (O'Meara 1963, §102A, p. 298; the AWS notes' abstract `AWS.spinorGenus` with $\Gamma = O(V)$,
+  (O'Meara 1963, §102A, p. 298; the Arizona Winter School notes' abstract `AWS.spinorGenus` with $\Gamma = O(V)$,
   $\kappa = O'(V_{\mathbb A_f})$);
 * `SameSpinorGenus Q L M`: $M \in \mathrm{spn}(L)$.
 
@@ -55,7 +55,7 @@ theorem ratPoints_le_spnGroup : ratPoints Q ≤ spnGroup Q := le_sup_left
 theorem spinorKernelAf_le_spnGroup : spinorKernelAf Q ≤ spnGroup Q := le_sup_right
 
 /-- **The spinor genus** $\mathrm{spn}(L) = \{\sigma\,\Sigma L : \sigma \in O(V),\ \Sigma \in O'(V_{\mathbb A_f})\}$
-(O'Meara 1963, §102A, p. 298): the abstract `AWS.spinorGenus` (AWS notes §3.5, p. 53) with $\Gamma = O(V)$ and
+(O'Meara 1963, §102A, p. 298): the abstract `AWS.spinorGenus` (Arizona Winter School notes §3.5, p. 53) with $\Gamma = O(V)$ and
 $\kappa = O'(V_{\mathbb A_f})$ acting on lattices. -/
 @[kb "omeara1963" "§102A, p. 298 (spn L)"]
 def latSpinorGenus (L : Lat F n) : Set (Lat F n) :=
@@ -142,7 +142,7 @@ theorem latSpinorGenus_subset_genus (L : Lat F n) : latSpinorGenus Q L ⊆ latGe
 /-- **The spinor genera in $\mathrm{gen}(L)$ as double cosets:**
 $$O(V)O'(V_{\mathbb A_f})\backslash O(V)(\mathbb A_f)/O(\hat L) \;\simeq\; \{\text{spinor genera in } \mathrm{gen}(L)\},$$
 where the right side is the set of $O(V)O'(V_{\mathbb A_f})$-orbits on the genus (`sameSpinorGenus_iff`)
-(O'Meara 1963, §102B, proof of 102:7, step 2, p. 301; AWS D16 with $\Gamma = O(V)O'_{\mathbb A}$). -/
+(O'Meara 1963, §102B, proof of 102:7, step 2, p. 301; Arizona Winter School D16 with $\Gamma = O(V)O'_{\mathbb A}$). -/
 @[kb "omeara1963" "§102B, proof of 102:7, step 2, p. 301"]
 def dosetEquivSpinorGenera (L : Lat F n) :
     DoubleCoset.Quotient (spnGroup Q : Set (OAf Q)) (locStab Q L) ≃

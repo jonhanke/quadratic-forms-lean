@@ -1,5 +1,5 @@
 /-
-# The conductor at a non-dyadic ramified place; GHY Prop. 7.5 from the dyadic places alone
+# The conductor at a non-dyadic ramified place; Gan–Hanke–Yu Prop. 7.5 from the dyadic places alone
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), Lemma A.1(iv), (6.5),
 (6.13), Prop. 7.5; O. T. O'Meara, *Introduction to quadratic forms*, §63.
@@ -11,7 +11,7 @@ At a non-dyadic place $v$ ramified in $F_v(\sqrt x)$ (i.e. $x$ of odd order):
 * for even $n\ge4$ and $\mathcal O_F^n$ maximal, $[\widetilde\Lambda_v:\Lambda_v] = q_v$ (`dualIndexAt_ram_nondyadic`; Jordan shape
   $\langle u\rangle\perp\pi W$ with $b = 1$, `oddMaximalShape_at`).
 
-Hence the named input `RamifiedDualIndexConductor` of GHY Prop. 7.5 holds at every non-dyadic place, and it shrinks to its
+Hence the named input `RamifiedDualIndexConductor` of Gan–Hanke–Yu Prop. 7.5 holds at every non-dyadic place, and it shrinks to its
 dyadic part `RamifiedDualIndexConductorDyadic` (`ramifiedDualIndexConductor_of_dyadic`, `ghy_prop75_of_dyadic`).
 -/
 import QuadFormsKB.Literature.Hanke2005.GHYMassFormulaEven
@@ -49,7 +49,7 @@ variable (v : HeightOneSpectrum (𝓞 F))
 local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
-/-- **The conductor exponent at a non-dyadic ramified place is $1$** (GHY 2001, Lemma A.1(iv) with $d = 1$; O'Meara §63). -/
+/-- **The conductor exponent at a non-dyadic ramified place is $1$** (Gan–Hanke–Yu 2001, Lemma A.1(iv) with $d = 1$; O'Meara §63). -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123 (non-dyadic case: f = d = 1)"]
 theorem condExp_eq_one (h2 : IsUnit (2 : 𝔬)) {x : Fv} (hx : x ≠ 0) (hr : ¬ IsUnramSqrt v x) : condExp v x = 1 := by
   classical
@@ -168,7 +168,7 @@ theorem dualIndexAt_ram_nondyadic (hn : 4 ≤ n) (heven : Even n) (Q₀ : QuadFo
 
 end Local
 
-/-- **The dyadic part of `RamifiedDualIndexConductor`** (a **named input**; GHY 2001, Lemma A.1(iv), (6.5), (6.13)): the
+/-- **The dyadic part of `RamifiedDualIndexConductor`** (a **named input**; Gan–Hanke–Yu 2001, Lemma A.1(iv), (6.5), (6.13)): the
 statement of `RamifiedDualIndexConductor` at the dyadic places only (the non-dyadic places are proved,
 `condExp_eq_one`, `dualIndexAt_ram_nondyadic`). Field: `dual_eq`. -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123; (6.5), (6.13) (dyadic places)"]
@@ -192,7 +192,7 @@ theorem ramifiedDualIndexConductor_of_dyadic (I : RamifiedDualIndexConductorDyad
     exact dualIndexAt_ram_nondyadic v hn heven Q₀ hQ hmax h2 hr
   · exact I.dual_eq hn heven Q₀ hQ hmax v h2 hr
 
-/-- **GHY 2001, Proposition 7.5, conditional only on the dyadic places** of the conductor input. -/
+/-- **Gan–Hanke–Yu 2001, Proposition 7.5, conditional only on the dyadic places** of the conductor input. -/
 @[kb "ganhankeyu2001" "Proposition 7.5, p. 119 (conditional on the dyadic conductor input)"]
 theorem ghy_prop75_of_dyadic [IsTotallyReal F] (I : RamifiedDualIndexConductorDyadic F) (hn : 4 ≤ n) (heven : Even n)
     (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F)))

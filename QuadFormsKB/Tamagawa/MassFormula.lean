@@ -97,7 +97,7 @@ theorem isIsometric_cosetLat_iff (L : Lat F n) (x y : OAf Q ⧸ locStab Q L) :
     obtain ⟨γ₀, h⟩ := cosetLat_smul Q L γ x
     exact ⟨γ₀, γ₀.2, by rw [h]; rfl⟩
 
-/-- **The stabilizer of $\alpha O(\hat L)$ in $\Gamma = O(V)(F)$ has the order of $O(\alpha L)$** ((4.11) of the AWS notes
+/-- **The stabilizer of $\alpha O(\hat L)$ in $\Gamma = O(V)(F)$ has the order of $O(\alpha L)$** ((4.11) of the Arizona Winter School notes
 over $F$, `card_autLat_eq`). -/
 theorem card_stabilizer_coset (L : Lat F n) (α : OAf Q) :
     Nat.card (stabilizer (ratPoints Q) (QuotientGroup.mk α : OAf Q ⧸ locStab Q L)) =
@@ -115,7 +115,7 @@ $$\mathrm{Mass}(L) = \sum_{\mathrm{cls}(M)\subseteq\mathrm{gen}(L)}\frac{1}{|O(M
   \sum_{\Gamma\alpha K \in \Gamma\backslash O(V)(\mathbb A_f)/K}\frac{1}{|\Gamma\cap\alpha K\alpha^{-1}|},\qquad
   \Gamma = O(V)(F),\ K = O(\hat L),$$
 for every lattice $L$ (both sides are `finsum`s, matched term by term; they are finite sums for an integral $L$ in a
-totally positive definite space, `genusClasses_finite`) (AWS notes (4.11)–(4.12) over $F$; Weil 1982, §3.5
+totally positive definite space, `genusClasses_finite`) (Arizona Winter School notes (4.11)–(4.12) over $F$; Weil 1982, §3.5
 [unverified locator]). Classes and $O(M)$ include improper isometries (the library's convention). -/
 @[kb "hanke2011aws" "§4.6, (4.11)-(4.12) (over F); cassels1978 App. B, §4, (4.11)–(4.19), pp. 380–382"]
 theorem mass_eq_dcMass (L : Lat F n) :

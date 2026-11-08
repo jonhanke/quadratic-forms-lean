@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.4 and §4.6: realizing $\Theta_{L_j}$ as a theta lift
+# Hanke, Arizona Winter School 2009 notes, §4.4 and §4.6: realizing $\Theta_{L_j}$ as a theta lift
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.4 (theta kernels
 and theta lifts, pp. 60–61) and §4.6 (pp. 63–66). The list D1, D2, … of the notes' derivations is in

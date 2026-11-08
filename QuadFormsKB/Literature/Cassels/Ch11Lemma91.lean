@@ -11,7 +11,8 @@ hypotheses) and deduces the case $n = 4$ of Theorem 1.6 from Lemmas 9.1 and 9.2.
 $x_0, x_1, x_2, x_3$ here, and the substitution (9.26) is $g(\mathbf x) = q^{-m}f(x_0, x_1, q^mx_2, q^mx_3)$.
 
 **Proves** `lemma91_holds : Lemma91`, unconditionally; hence `tartakowskyClassicalAt_four_of_lemma92` (Theorem 1.6 for
-$n = 4$, conditional only on `Lemma92`).
+$n = 4$, conditional only on `Lemma92`; `Lemma92` is proved in `Ch11Lemma92Final.lean`, which gives the unconditional
+`Ch11L92.tartakowskyClassicalAt_four_holds`).
 
 **Proof** (Cassels' proof, pp. 241–242, with one simplification). For $m = 0$ the statement is the hypothesis (applied to
 $f$ itself). Let $m \ge 1$.

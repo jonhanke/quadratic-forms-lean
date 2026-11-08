@@ -1,7 +1,7 @@
 /-
 # Lattices over $\mathcal O_F$: The class set as a double coset space
 
-**Layer:** lattices in $(V, Q) = (F^n, Q)$ over a number field $F$ (`Lattices/Genus.lean`). This generalizes the AWS
+**Layer:** lattices in $(V, Q) = (F^n, Q)$ over a number field $F$ (`Lattices/Genus.lean`). This generalizes the Arizona Winter School
 notes' D15–D16 (`AWS/Adelic.lean`, for $F = \mathbb Q$) to every number field, and **proves** the gluing input
 there (Lemma 4.5.1, `AWS.LatticeGluing`), here `LocFamily.loc_glue`.
 
@@ -16,12 +16,12 @@ there (Lemma 4.5.1, `AWS.LatticeGluing`), here `LocFamily.loc_glue`.
 
 **Proves**
 * `diagF_smul`: a rational $\gamma$ acts by $L \mapsto \gamma L$;
-* `orbit_eq_genus` (AWS Lemma 4.5.2 over $F$): the $O(V)(\mathbb A_f)$-orbit of $L$ is its genus;
+* `orbit_eq_genus` (Arizona Winter School Lemma 4.5.2 over $F$): the $O(V)(\mathbb A_f)$-orbit of $L$ is its genus;
 * `stabilizer_eq_locStab`: $\mathrm{Stab}(L) = O(\hat L)$;
 * `classRel_iff`: two lattices in the genus are in the same $O(V)(F)$-orbit iff they are isometric;
-* `dosetEquivClassesInGenus` (AWS D16 over $F$):
+* `dosetEquivClassesInGenus` (Arizona Winter School D16 over $F$):
   $O(V)(F)\backslash O(V)(\mathbb A_f)/O(\hat L) \simeq \{\text{classes in } \mathrm{gen}(L)\}$;
-* `card_autLat_eq` ((4.11) of the AWS notes over $F$): $|O(V)(F) \cap \alpha O(\hat L)\alpha^{-1}| = |O(\alpha L)|$.
+* `card_autLat_eq` ((4.11) of the Arizona Winter School notes over $F$): $|O(V)(F) \cap \alpha O(\hat L)\alpha^{-1}| = |O(\alpha L)|$.
 -/
 import QuadFormsKB.Lattices.Genus
 import QuadFormsKB.Literature.AWS.DoubleCosets
@@ -95,7 +95,7 @@ def smulFamily (h : OAf Q) (L : Lat F n) : LocFamily F n where
     rw [hL]; exact hv
 
 /-- **$h \cdot L$** for $h \in O(V)(\mathbb A_f)$: the lattice glued from $(h_\mathfrak p L_\mathfrak p)_\mathfrak p$
-(AWS notes pp. 61–62 for $F = \mathbb Q$). -/
+(Arizona Winter School notes pp. 61–62 for $F = \mathbb Q$). -/
 @[kb "hanke2011aws" "§4.5, pp. 61-62 (over F); omeara1963 §101B, 101:6, p. 290; §101D, p. 297 (the lattice Σ L)"]
 def latSMul (h : OAf Q) (L : Lat F n) : Lat F n :=
   ⟨(smulFamily Q h L).glue, (smulFamily Q h L).glue_isLattice⟩
@@ -120,7 +120,7 @@ def latAction : MulAction (OAf Q) (Lat F n) where
 /-- **The image $\gamma L$ as a lattice.** -/
 def Lat.image (γ : GL (Fin n) F) (L : Lat F n) : Lat F n := ⟨glImage γ L.1, glImage_isLattice γ L.2⟩
 
-/-- **A rational isometry acts by $L \mapsto \gamma L$** (AWS notes p. 62 for $F = \mathbb Q$, `AWS.diag_smul`). -/
+/-- **A rational isometry acts by $L \mapsto \gamma L$** (Arizona Winter School notes p. 62 for $F = \mathbb Q$, `AWS.diag_smul`). -/
 @[kb "hanke2011aws" "§4.5, p. 62 (over F); omeara1963 §101B, 101:6, p. 290"]
 theorem diagF_smul (γ : orthGroup Q F) (L : Lat F n) :
     latSMul Q (diagF Q γ) L = Lat.image (γ : GL (Fin n) F) L := by
@@ -135,7 +135,7 @@ theorem diagF_smul (γ : orthGroup Q F) (L : Lat F n) :
 /-- **The genus of $L$** as a set of lattices: the $M$ with `SameGenus Q L M`. -/
 def latGenus (L : Lat F n) : Set (Lat F n) := {M | SameGenus Q L.1 M.1}
 
-/-- **AWS Lemma 4.5.2 over $F$: the orbit of $L$ under $O(V)(\mathbb A_f)$ is the genus of $L$.** For the converse
+/-- **Arizona Winter School Lemma 4.5.2 over $F$: the orbit of $L$ under $O(V)(\mathbb A_f)$ is the genus of $L$.** For the converse
 inclusion take $h_\mathfrak p$ carrying $L_\mathfrak p$ to $M_\mathfrak p$ where $L_\mathfrak p \ne M_\mathfrak p$ (finitely many
 $\mathfrak p$), and $h_\mathfrak p = 1$ elsewhere. -/
 @[kb "hanke2011aws" "§4.5, Lemma 4.5.2, p. 62 (over F); omeara1963 §102A, p. 298 (K ∈ genL if and only if K = Σ L for some Σ ∈ J_V)"]
@@ -182,7 +182,7 @@ def locStab (L : Lat F n) : Subgroup (OAf Q) where
     rw [Subgroup.coe_inv, locAct_eq_iff, inv_inv]
     exact (ha v).symm
 
-/-- **$\mathrm{Stab}_{O(V)(\mathbb A_f)}(L) = O(\hat L)$** (AWS notes p. 62 for $F = \mathbb Q$, `AWS.stabilizer_std`). -/
+/-- **$\mathrm{Stab}_{O(V)(\mathbb A_f)}(L) = O(\hat L)$** (Arizona Winter School notes p. 62 for $F = \mathbb Q$, `AWS.stabilizer_std`). -/
 @[kb "hanke2011aws" "§4.5, p. 62 (over F); omeara1963 §101D, pp. 296–297 (J_L and the stabilizer of L)"]
 theorem stabilizer_eq_locStab (L : Lat F n) :
     @MulAction.stabilizer (OAf Q) (Lat F n) _ (latAction Q) L = locStab Q L := by
@@ -225,7 +225,7 @@ theorem classRel_iff (L : Lat F n) (M M' : @MulAction.orbit (OAf Q) (Lat F n) (l
     rw [diagF_smul]
     exact Lat.ext he
 
-/-- **The class set as a double coset space (AWS D16 over $F$):**
+/-- **The class set as a double coset space (Arizona Winter School D16 over $F$):**
 $$O(V)(F)\backslash O(V)(\mathbb A_f)/O(\hat L) \;\simeq\; \{\text{classes in } \mathrm{gen}(L)\},$$
 where the classes in the genus are the $O(V)(F)$-orbits on the genus `latGenus Q L` (`orbit_eq_genus`), i.e. the
 isometry classes of lattices in the genus (`classRel_iff`). Unconditional: the gluing input of the $\mathbb Q$ version
@@ -256,7 +256,7 @@ theorem diagF_injective : Function.Injective (diagF Q) := by
   ext i j
   exact (algebraMap F (v.adicCompletion F)).injective (congrFun (congrFun h1 i) j)
 
-/-- **The automorphism group of $\alpha L$ ((4.11) of the AWS notes over $F$):** for $\alpha \in O(V)(\mathbb A_f)$, the
+/-- **The automorphism group of $\alpha L$ ((4.11) of the Arizona Winter School notes over $F$):** for $\alpha \in O(V)(\mathbb A_f)$, the
 rational points of $\alpha\,O(\hat L)\,\alpha^{-1}$ are in bijection with $O(\alpha L)$. -/
 @[kb "hanke2011aws" "§4.6, (4.11), p. 64 (over F)"]
 theorem card_autLat_eq (α : OAf Q) (L : Lat F n) :

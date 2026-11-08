@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Ch. 1: Witt's theorem (Thm 1.5.5) and Lemma 1.8.1
+# Hanke, Arizona Winter School 2009 notes, Ch. 1: Witt's theorem (Thm 1.5.5) and Lemma 1.8.1
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, Arizona Winter School 2009 notes, arXiv:1105.5759 v3
 (bibkey `hanke2011aws`; PDF page = printed page). Two items of Chapter 1 not covered by `NotesCh1.lean`:
@@ -27,7 +27,7 @@ theorem associated_eq_polar [Invertible (2 : K)] (Q : QuadraticForm K V) (x y : 
   rw [associated_apply]
   simp [polar, smul_eq_mul]
 
-/-- **Witt's extension theorem** (Hanke, AWS notes, Thm 1.5.5, p. 16): "Suppose that $U$ and $U'$ are non-degenerate
+/-- **Witt's extension theorem** (Hanke, Arizona Winter School notes, Thm 1.5.5, p. 16): "Suppose that $U$ and $U'$ are non-degenerate
 isometric (quadratic) subspaces of a quadratic space $V$. Then any isometry $\alpha : U \to U'$ extends to an
 isometry $\alpha : V \to V$." Here the ambient space may be **degenerate**.
 
@@ -209,7 +209,7 @@ theorem exists_basis_pid {L : Submodule R V} (hL : L.FG) :
   have : Module.Free R L := Module.free_of_finite_type_torsion_free'
   exact ⟨Module.finBasis R L⟩
 
-/-- **Lemma 1.8.1, corrected** (Hanke, AWS notes, §1.8, p. 19). Printed: "Suppose that $R$ is a principal ideal
+/-- **Lemma 1.8.1, corrected** (Hanke, Arizona Winter School notes, §1.8, p. 19). Printed: "Suppose that $R$ is a principal ideal
 domain, $L$ is a quadratic $R$-lattice in the quadratic space $(V,Q)$, and $W$ is a non-degenerate subspace of
 $(V,Q)$. If $\mathrm{Scale}(L \cap W) = \mathrm{Scale}(L)$, then we can write $L = (L\cap W) \oplus (L\cap W^\perp)$."
 

@@ -14,7 +14,7 @@ two; an algorithm (`Siegel/KneserGen.lean`, or any external program) produces th
 - `DetCert` / `DetCert.not_dvd_det`: an integer matrix $X$ with $H X = d\cdot 1$ and $p \nmid d$ certifies $p \nmid \det H$
   (without computing a determinant in the kernel).
 - `NbCert` / `NbCert.sameGenus`: data $(\vec{v}, G, \dots)$ certifying that $Q'$ is the Gram form of the explicit
-  $p$-neighbour $L(\vec{v})$ of $\mathbb{Z}^n$ (`nbLat`) in the basis given by the columns of $\frac1pG$; hence (AWS notes,
+  $p$-neighbour $L(\vec{v})$ of $\mathbb{Z}^n$ (`nbLat`) in the basis given by the columns of $\frac1pG$; hence (Arizona Winter School notes,
   Thm. 1.10.3(1)) **$Q'$ is in the genus of $Q$** (`sameGenus_of_neighbor`).
 
 *The neighbour certificate.* For $\vec{v}$ with $p^2 \mid Q(\vec{v})$, $\vec{v} \not\equiv 0$, put $\vec{u} = H\vec{v}$ and pick $\vec{w}$ with
@@ -219,7 +219,7 @@ theorem NbCert.evalIn_eq (h : c.Valid Q Q' p) (x : Fin n → ℚ) :
 
 /-- **A valid neighbour certificate proves that $Q'$ is in the genus of $Q$** (for an odd prime $p \nmid \det H_Q$):
 $Q'$ is the Gram form of the $p$-neighbour $L(\vec{v})$ (`isNeighbor_nbLat`) in the certified basis, and Gram forms of
-$p$-neighbours are in the genus (`sameGenus_of_neighbor`; AWS notes, Thm. 1.10.3(1)). -/
+$p$-neighbours are in the genus (`sameGenus_of_neighbor`; Arizona Winter School notes, Thm. 1.10.3(1)). -/
 @[kb "hanke2011aws" "Thm. 1.10.3(1), p. 23"]
 theorem NbCert.sameGenus (hp2 : p ≠ 2) (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) (h : c.Valid Q Q' p) :
     SameGenus Q Q' := by

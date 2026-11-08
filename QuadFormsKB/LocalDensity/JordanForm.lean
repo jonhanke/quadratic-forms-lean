@@ -891,7 +891,7 @@ nondegenerate integral form $Q$ and a prime $p$ there is an integral form $Q'$ i
 $p$ (with 2-dimensional blocks only if $p = 2$) such that $r_{p^k}(Q, m) = r_{p^k}(Q', m)$ for all $k, m$.
 
 *Proof.* For odd $p$: `exists_diag_same_counts` and `isJordanForm_diag`. For $p = 2$: the same
-reduction over $\mathbb{Z}_{(2)}$ (Lemma 2.1, following Conway–Sloane, *Sphere Packings, Lattices and Groups*, 3rd ed., Ch. 15, §4.4, Thm. 2, pp. 369–370, cited as [CS] in the paper), splitting off a 2-dimensional
+reduction over $\mathbb{Z}_{(2)}$ (Lemma 2.1, following Conway–Sloane, *Sphere Packings, Lattices and Groups*, 3rd ed., Ch. 15, §4.4, Thm. 2, pp. 369–370, cited as [Conway–Sloane] in the paper), splitting off a 2-dimensional
 block $\begin{pmatrix} 2^\nu\alpha & 2^\nu\beta \\ 2^\nu\beta & 2^\nu\gamma\end{pmatrix}$ when the least valuation is off the
 diagonal, then clear denominators by an odd $d$ and apply `repCount_eq_of_unimodular`. (The remarks
 below about $\mathbb{Z}_p$-approximation are an alternative route.) The counts mod

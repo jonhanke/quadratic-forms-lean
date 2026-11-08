@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.1–§4.2: classical to adelic modular forms for $\mathrm{GL}_2$
+# Hanke, Arizona Winter School 2009 notes, §4.1–§4.2: classical to adelic modular forms for $\mathrm{GL}_2$
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.1 (pp. 55–56) and
 §4.2 (pp. 56–57). The list D1, D2, … of the notes' derivations is in `AWS/Overview.lean`; this file is

@@ -192,7 +192,7 @@ theorem disc_cases (hπ : Irreducible π) {t n w : R} (ht : π ∣ t) (hn : n = 
 
 variable {t n w : R} {e : ℕ} {v2 : R} {d : ℕ}
 
-/-- **Every unit $u\equiv1 \bmod \pi^d$ is a norm** from $\mathcal O_E$ ($\pi^d\,\|\,4n - t^2$; GHY 2001, Lemma A.1(iv),
+/-- **Every unit $u\equiv1 \bmod \pi^d$ is a norm** from $\mathcal O_E$ ($\pi^d\,\|\,4n - t^2$; Gan–Hanke–Yu 2001, Lemma A.1(iv),
 $U^d\subseteq NE^\times$). -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123 (U^i ⊆ N E^× for i ≥ d, E ramified dyadic)"]
 theorem isNorm_of_pow_dvd (hπ : Irreducible π) (ht : π ∣ t) (hn : n = π * w) (hw : IsUnit w)
@@ -271,7 +271,7 @@ theorem exists_not_quad_mod [Finite (IsLocalRing.ResidueField R)] (hπ : Irreduc
   simp only [map_sub, map_add, map_mul, map_pow, sub_eq_zero] at this
   exact this.symm
 
-/-- **Some unit $u\equiv1 \bmod \pi^{d-1}$ is not a norm** from $\mathcal O_E$ (GHY 2001, Lemma A.1(iv): $U^i\subseteq NE^\times$
+/-- **Some unit $u\equiv1 \bmod \pi^{d-1}$ is not a norm** from $\mathcal O_E$ (Gan–Hanke–Yu 2001, Lemma A.1(iv): $U^i\subseteq NE^\times$
 only for $i\ge d$). -/
 @[kb "ganhankeyu2001" "Lemma A.1(iv), p. 123 (U^{d-1} ⊄ N E^×, E ramified dyadic)"]
 theorem exists_not_isNorm [Finite (IsLocalRing.ResidueField R)] (hπ : Irreducible π) (ht : π ∣ t) (hn : n = π * w)

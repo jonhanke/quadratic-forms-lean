@@ -39,7 +39,7 @@ $$m_{\mathfrak p}(\sigma) = \prod_{k<N} M_q(n_k,\varepsilon_k)\cdot\sqrt q^{\,\s
 for an odd symbol $\sigma$ with $k$-th constituent of dimension $n_k$ (`dim`) and sign $\varepsilon_k$ (`sign`),
 trivial from index $N$ on; $e = \chi(-1) \in \{\pm1\}$ is the quadratic character of the residue field at $-1$ and
 $M_q = P_q^{-1}$ is the diagonal factor (`Mq`) of the species of the constituent. -/
-@[kb "hanke2011structure" "Lemma 7.3, p. 29 (m_p: CS (3) with q); conwaysloane1988 (3), p. 263"]
+@[kb "hanke2011structure" "Lemma 7.3, p. 29 (m_p: Conway–Sloane (3) with q); conwaysloane1988 (3), p. 263"]
 def pMassNF (q : ℕ) (e : ℤˣ) (σ : OddSymbol) (N : ℕ) : ℝ :=
   (∏ k ∈ range N, Mq q e (σ k).dim (σ k).sign) * Real.sqrt q ^ crossExp (fun k => (σ k).dim) N
 
@@ -139,7 +139,7 @@ theorem Mw_eq_Mq (p : ℕ) (e : ℤˣ) (he : (e : ℤ) = if p % 4 = 3 then -1 el
 formally), $e = \chi(-1)$ (i.e. $-1$ iff $p \equiv 3 \bmod 4$), an odd symbol $\sigma$ and a cutoff $N$,
 `pMassNF p e σ N = pMassOdd p σ N` (`pMassOdd` is formula (3) of `conwaysloane1988`, proved equal to the §12 mass by
 `pMassFormulaOdd`). -/
-@[kb "hanke2011structure" "Lemma 7.3, p. 29 (F = Q: m_p = CS (3))"]
+@[kb "hanke2011structure" "Lemma 7.3, p. 29 (F = Q: m_p = Conway–Sloane (3))"]
 theorem pMassNF_eq_pMassOdd (p : ℕ) (e : ℤˣ) (he : (e : ℤ) = if p % 4 = 3 then -1 else 1) (σ : OddSymbol)
     (N : ℕ) : pMassNF p e σ N = pMassOdd p σ N := by
   unfold pMassNF pMassOdd

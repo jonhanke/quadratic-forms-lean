@@ -47,7 +47,7 @@ private theorem intCast_mem_iff_aux (w : HeightOneSpectrum (𝓞 ℚ)) (z : ℤ)
     Ideal.mem_comap, intEquiv_symm_intCast_aux]
 
 /-- Two lattices agreeing (inclusion) away from $q$: a power of $p_q$ scales one into the other. -/
-private theorem exists_pow_smul_mem_aux (q : HeightOneSpectrum (𝓞 ℚ)) {L N : Lat ℚ n}
+theorem exists_pow_smul_mem_aux (q : HeightOneSpectrum (𝓞 ℚ)) {L N : Lat ℚ n}
     (h : ∀ w : HeightOneSpectrum (𝓞 ℚ), w ≠ q → loc w N.1 ≤ loc w L.1) :
     ∃ a : ℕ, ∀ y ∈ N.1, (((Rat.HeightOneSpectrum.natGenerator q ^ a : ℕ) : 𝓞 ℚ)) • y ∈ L.1 := by
   obtain ⟨d1, hd1, h1, -⟩ := exists_global_bounds L.2

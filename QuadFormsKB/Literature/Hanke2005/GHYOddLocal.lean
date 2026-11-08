@@ -5,7 +5,7 @@ W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math.
 Table 4 (odd rank, $\delta\notin A^\times$); J. Hanke, *An exact mass formula for quadratic forms over number fields*,
 J. Reine Angew. Math. 584 (2005), (3.3) and Theorem 5.1 (locators: 1999 thesis).
 
-Shimura's (3.3) assumes, for odd $n$, that $\det\varphi$ is locally a unit times a square (`ShimuraDetHyp`). GHY's Table 4
+Shimura's (3.3) assumes, for odd $n$, that $\det\varphi$ is locally a unit times a square (`ShimuraDetHyp`). Gan–Hanke–Yu's Table 4
 also covers the other case, $\delta\notin A^\times$. At a finite place $\mathfrak p$ where $n$ is odd and $\det H/2^n$ is **not** a
 unit times a square (`DetUnitSqAt` fails), we prove, for the maximal lattice $\Lambda = \mathcal O_F^n$, with $m = \lfloor n/2\rfloor$
 and $t = t_\mathfrak p$ (`anisoDim`):
@@ -50,7 +50,7 @@ def DetUnitSqAt (v : HeightOneSpectrum (𝓞 F)) (Q₀ : QuadForm (𝓞 F) n) : 
 theorem shimuraDetHyp_iff (Q₀ : QuadForm (𝓞 F) n) :
     ShimuraDetHyp Q₀ ↔ (Odd n → ∀ v : HeightOneSpectrum (𝓞 F), DetUnitSqAt v Q₀) := Iff.rfl
 
-/-- **GHY's $\xi'$ for odd rank and $\delta\notin A^\times$** (GHY 2001, Table 4, in Shimura's normalization of $\xi$, i.e.
+/-- **Gan–Hanke–Yu's $\xi'$ for odd rank and $\delta\notin A^\times$** (Gan–Hanke–Yu 2001, Table 4, in Shimura's normalization of $\xi$, i.e.
 $\alpha_\mathfrak p = [\widetilde\Lambda_\mathfrak p:\Lambda_\mathfrak p]\,\xi'$), $m = \lfloor n/2\rfloor$:
 $t = 1$: $2(1-q^{-m})\prod_{i=1}^{m-1}(1-q^{-2i})$; otherwise ($t = 3$): $2(1+q^{-m})\prod_{i=1}^{m-1}(1-q^{-2i})$. -/
 @[kb "ganhankeyu2001" "Table 4 (odd rank, δ ∉ A×; Shimura's normalization of ξ)"]
@@ -71,7 +71,7 @@ theorem isGLEquiv_hypSum {r : ℕ} {N N' : QuadForm 𝔬 r} (h : DVR.IsGLEquiv N
   | 0 => h
   | k + 1 => isGLEquiv_orthSum_left _ (isGLEquiv_hypSum h k)
 
-/-- **(3.3) without Shimura's hypothesis: the new places** (GHY 2001, Table 4, $\delta\notin A^\times$; Hanke thesis (3.3)). At a
+/-- **(3.3) without Shimura's hypothesis: the new places** (Gan–Hanke–Yu 2001, Table 4, $\delta\notin A^\times$; Hanke thesis (3.3)). At a
 finite place where $n\ge3$ is odd and $\det H/2^n$ is not a unit times a square, the maximal lattice $\mathcal O_F^n$ has
 $t_\mathfrak p\in\{1,3\}$ and $\alpha_\mathfrak p = [\widetilde\Lambda_\mathfrak p:\Lambda_\mathfrak p]\,\xi'$ (`xiOddNonUnit`). -/
 @[kb "ganhankeyu2001" "(6.6), (6.10), (6.11), Table 4 (odd rank, δ ∉ A×, w = ±1: the local factor)"]

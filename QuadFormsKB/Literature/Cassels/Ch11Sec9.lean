@@ -487,10 +487,11 @@ structure Lemma91 : Prop where
 /-- **Lemma 9.2** (Cassels, Ch. 11, p. 242), named statement, quaternary case. Let $Q$ be a positive definite classically
 integral form in $4$ variables of determinant $d$ and $q \ne 2$ a prime with $d \in U_q^2$. Then there is a constant
 $N_1 = N_1(Q, q)$ such that $\mathcal R(Q, a)$ holds for all integers $a > N_1$ with $q \nmid a$.
-*Not proved:* the proof (pp. 243–249) follows the case $n \ge 5$ with a one-dimensional $g$: local analysis at primes of the finite
-set $P$ using Lemma 9.3 and its Corollary at isotropic primes, an auxiliary prime found by Dirichlet's theorem (avoidable,
-footnote p. 246), Theorem 8.1 to produce a primitive vector with prescribed $p$-adic approximations, the lattice $\Gamma$ of
-one spinor genus (Lemma 3.6, Corollary), Theorem 8.3 and its Corollary (`Lattices.exists_pow_represents_of_isotropic_four`). -/
+*Proved* in `Ch11Lemma92Final.lean` (`Ch11L92.lemma92_holds`), unconditionally. The proof (pp. 243–249) follows the case
+$n \ge 5$ with a one-dimensional $g$: local analysis at primes of the finite set $P$ using Lemma 9.3 and its Corollary at isotropic
+primes, an auxiliary prime found by Dirichlet's theorem (footnote p. 246), Theorem 8.1 to produce a primitive vector with
+prescribed $p$-adic approximations, the lattice $\Gamma$ of one spinor genus (Lemma 3.6, Corollary), Theorem 8.3 and its
+Corollary (`Lattices.exists_pow_represents_of_isotropic_four`). -/
 @[kb "cassels1978" "Ch. 11, Lemma 9.2, p. 242"]
 structure Lemma92 : Prop where
   /-- The statement of Lemma 9.2. -/

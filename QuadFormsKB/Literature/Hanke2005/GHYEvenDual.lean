@@ -1,5 +1,5 @@
 /-
-# The dual index of the maximal lattice at an unramified place, even rank (GHY 2001, (6.5), (6.13))
+# The dual index of the maximal lattice at an unramified place, even rank (Gan–Hanke–Yu 2001, (6.5), (6.13))
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), (6.5), (6.13);
 G. Shimura, *An exact mass formula for orthogonal groups*, Duke Math. J. 97 (1999), (3.2.1).
@@ -46,7 +46,7 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 open DensitySD in
-/-- **Non-dyadic places, even rank** (O'Meara 91:2; GHY 2001 (6.5)): if $2$ is a unit at $v$, $v$ is unramified in
+/-- **Non-dyadic places, even rank** (O'Meara 91:2; Gan–Hanke–Yu 2001 (6.5)): if $2$ is a unit at $v$, $v$ is unramified in
 $K$ and $[\widetilde\Lambda:\Lambda]\ne1$ then $[\widetilde\Lambda:\Lambda]=q^2$. -/
 @[kb "ganhankeyu2001" "(6.5) (the dual index of the maximal lattice, even rank, non-dyadic place)"]
 theorem dualIndex_nondyadic_even {n : ℕ} (hn : 3 ≤ n) (heven : Even n) (Q₀ : QuadForm (𝓞 F) n)
@@ -167,7 +167,7 @@ local notation "Fv" => v.adicCompletion F
 local notation "𝔬" => v.adicCompletionIntegers F
 
 open Classical in
-/-- **The dual index of a maximal lattice of even rank at an unramified place** (GHY 2001, (6.5), (6.13); Shimura 1999,
+/-- **The dual index of a maximal lattice of even rank at an unramified place** (Gan–Hanke–Yu 2001, (6.5), (6.13); Shimura 1999,
 (3.2.1)): for even $n\ge4$ and $v$ not ramified in $K = F(\sqrt\delta)$, $[\widetilde\Lambda_v:\Lambda_v]\in\{1,q^2\}$, and
 it equals $1$ when the anisotropic kernel is zero. -/
 @[kb "ganhankeyu2001" "(6.5), (6.13) (the dual index of the maximal lattice, even rank)"]

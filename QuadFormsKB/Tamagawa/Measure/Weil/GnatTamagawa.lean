@@ -26,7 +26,7 @@ $(SO(V)(\mathbb A), SO(V)(F), \mu_{\mathrm{Tam}})$. It is **not** proved here; i
   `covolume_eq_of_localFactors`). It mentions no Tamagawa number, no covolume and no Siegel formula, so it is not equivalent to
   any conclusion below; it holds for every quaternion algebra (split or not) and every $d$.
 
-From it, with the proved covolume (no Fujisaki, no zeta function of $D$, no CFT):
+From it, with the proved covolume (no Fujisaki, no zeta function of $D$, no class field theory):
 * `tamagawaNumberTwoAdelic_qSq`, `tamagawaNumberTwoAdelic_qNS`: Weil's adelic $\tau(SO(V)) = 2$ for the two model forms (division $D$);
 * **`quaternaryTamagawaTwo_of_gnatComparison`** ($F$ totally real, any class number): $\tau(SO_4) = 2$ for every totally positive definite
   quaternary form over $\mathcal O_F$ (`TamagawaNumberTwo`); every such form is, up to change of lattice, a model form

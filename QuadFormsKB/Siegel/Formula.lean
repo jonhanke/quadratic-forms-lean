@@ -33,7 +33,7 @@ average. Use this structure for $n \ge 4$ only (for $n = 3$ see `SiegelFormula3`
 weights $1/|\mathrm{Aut}(Q')|$, $\mathrm{Aut} \le \mathrm{GL}_n(\mathbb{Z})$ (the convention used here): the genus average is the same
 for $\mathrm{GL}$- and $\mathrm{SL}$-classes, since passing to $\mathrm{SL}$-classes and proper automorphism groups doubles the
 weight of every $\mathrm{GL}$-class. `aE` uses Mathlib's unconditional product (`tprod`), which is the intended value
-only for $n \ge 4$ (`multipliable_eulerFactor`). Not proved here. For the sum of four squares this is the AWS input
+only for $n \ge 4$ (`multipliable_eulerFactor`). Not proved here. For the sum of four squares this is the Arizona Winter School input
 `FourSquaresInputs.siegel` (`fourSquaresInputs_siegel_iff`). -/
 @[kb "siegel1935" "Hauptsatz [unverified]; cassels1978 App. B, (3.13), p. 378"]
 structure SiegelFormula (Q : QuadForm ℤ n) : Prop where

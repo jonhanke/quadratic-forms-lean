@@ -58,7 +58,7 @@ in the first variable, nondegenerate ($y \ne 1 \Rightarrow \exists x,\ B(x,y) = 
 $$\sum_{x\in\Lambda}B(x,y) = \begin{cases}|\Lambda| & y\in\Lambda,\\ 0 & y\notin\Lambda.\end{cases}$$
 *Proof.* For fixed $y$, $x \mapsto B(x,y)$ is a character of $\Lambda$, so the sum is $|\Lambda|\mathbf 1[y\in\Lambda^\perp]$; double
 counting with nondegeneracy gives $|\Lambda|\,|\Lambda^\perp| = |G|$, so $|\Lambda^\perp| = |\Lambda|$, and $\Lambda \subseteq \Lambda^\perp$. -/
-@[kb "weil1982" "§4.5, Lemma 4.5.3, p. 104 (characters of I_k/H_S k^*; here by a perfect pairing, no CFT)"]
+@[kb "weil1982" "§4.5, Lemma 4.5.3, p. 104 (characters of I_k/H_S k^*; here by a perfect pairing, no class field theory)"]
 theorem sum_pairing_eq (hB : ∀ x y, B x y = 1 ∨ B x y = -1) (hmul : ∀ x x' y, B (x * x') y = B x y * B x' y)
     (hsymm : ∀ x y, B x y = B y x) (hnd : ∀ y, y ≠ 1 → ∃ x, B x y = -1)
     (Λ : Subgroup G) [DecidablePred (· ∈ Λ)] (hiso : ∀ x ∈ Λ, ∀ y ∈ Λ, B x y = 1)

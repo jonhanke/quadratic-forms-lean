@@ -13,7 +13,7 @@ For the Eisenstein norm form $N(a,b) = a^2 + tab + nb^2$ over a discrete valuati
   is ramified: the nonzero values of $X^2 - (1+4y)Y^2$ have even valuation (Hensel, `isSquare_one_sub_four_mul_iff`), while
   $N(0, 1) = n$ has valuation $1$.
 
-Sources: O'Meara 1963, §63B (63:3, 63:4, 63:10, 63:11a); GHY 2001, §6. Indices are 0-based.
+Sources: O'Meara 1963, §63B (63:3, 63:4, 63:10, 63:11a); Gan–Hanke–Yu 2001, §6. Indices are 0-based.
 -/
 import QuadFormsKB.Literature.Hanke2005.DyadicR2RamLevel
 

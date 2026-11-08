@@ -21,7 +21,7 @@
 
 These are the discrete content of "volume of $\Gamma\backslash G$" for a group with a compact open subgroup $K$ and
 a discrete $\Gamma$ with finite $\Gamma \cap \alpha K \alpha^{-1}$: $\mathrm{vol}(\Gamma\backslash G) = \mu(K) \cdot \mathrm{dcMass}(\Gamma, K)$,
-independent of $K$ by `dcMass_of_le` (Weil, *Adeles and Algebraic Groups*, §2.4, p. 23 and Lemma 2.4.2, p. 26 (discrete version); Hanke AWS notes §4.6).
+independent of $K$ by `dcMass_of_le` (Weil, *Adeles and Algebraic Groups*, §2.4, p. 23 and Lemma 2.4.2, p. 26 (discrete version); Hanke Arizona Winter School notes §4.6).
 -/
 import Mathlib
 import QuadFormsKB.Citation
@@ -383,7 +383,7 @@ $$\mathrm{dcMass}(\Gamma, K) = \sum_{\Gammalpha K} rac{1}{|\Gamma \cap lpha K
 the mass of $\Gamma$ acting on $G/K$ by left multiplication (the stabilizer of $lpha K$ is $\Gamma \cap lpha Klpha^{-1}$,
 `mem_stabilizer_coset`). For a unimodular locally compact $G$ with compact open $K$ and discrete $\Gamma$ with finite
 $\Gamma \cap lpha Klpha^{-1}$, $\mathrm{vol}(\Gammaackslash G) = \mu(K)\cdot\mathrm{dcMass}(\Gamma, K)$, since
-$\Gammaackslash\Gammalpha K \cong (\Gamma\caplpha Klpha^{-1})ackslashlpha K$ (Weil 1982, §2.4, p. 23 and Lemma 2.4.2, p. 26 (discrete version); AWS notes
+$\Gammaackslash\Gammalpha K \cong (\Gamma\caplpha Klpha^{-1})ackslashlpha K$ (Weil 1982, §2.4, p. 23 and Lemma 2.4.2, p. 26 (discrete version); Arizona Winter School notes
 (4.11)). -/
 @[kb "weil1982" "§2.4, p. 23 (τ = volume of the quotient); Lemma 2.4.2, p. 26 (unfolding over a discrete group, discrete version)"]
 def dcMass (Γ K : Subgroup G) : ℝ := orbitMass Γ (G ⧸ K)

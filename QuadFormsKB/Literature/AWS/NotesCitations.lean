@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes: citations of results the library already proves
+# Hanke, Arizona Winter School 2009 notes: citations of results the library already proves
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed
 page). Most of Chs. 1–3 quote standard results (Cassels, O'Meara, Lam, Shimura, Miyake, Jacobson). This file

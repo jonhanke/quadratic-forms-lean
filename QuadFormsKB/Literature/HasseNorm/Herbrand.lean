@@ -41,7 +41,7 @@ groups of $S$-units and finite products of local groups $\prod_{v \in S} F_v^\ti
    in $F_{S \cup T}^\times$ are global norms; this is `hilbert_eq_one_of_everywhere`.
 
 Why this route: it needs no idèles, no Artin map and no local class field theory (for $n = 2$,
-squares are norms trivially, which replaces Milne's use of local CFT in Lemma 6.4); the only
+squares are norms trivially, which replaces Milne's use of local class field theory in Lemma 6.4); the only
 cohomology is the index identity of step 1.
 
 Locators are from memory and still `[unverified]`.

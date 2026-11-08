@@ -18,7 +18,8 @@ Let $\Lambda$ be a $\mathbb Z$-lattice in $V$, and for every prime $p$ let $\mat
 $\operatorname{Spin}(V_p)$, with $\mathcal U_p = \operatorname{Spin}(\Lambda_p)$ for almost all $p$ (7.3). Then there is
 $u \in \operatorname{Spin}(V)$ with $u \in \mathcal U_p$ for all $p \ne \infty$ (7.4).
 
-**Status: named statement** (`SpinStrongApproximation`, an input, not proved here). The library proves Cassels'
+**Status: PROVED**: `Cassels.spinStrongApproximation_holds : SpinStrongApproximation` (`Ch10/Thm71All.lean`,
+Cassels' own proof, pp. 188–190). The statement `SpinStrongApproximation` remains a named statement here. The library proves Cassels'
 *Corollary* to Theorem 7.1 (strong approximation for $\Theta(V) = O'(V)$, the only form Cassels uses) unconditionally, over
 every number field: `Lattices.strongApproximationSpin` (`StrongApproximationSpin`), with `Lattices.exists_strong_approx` and
 `Lattices.exists_very_strong_approx`. Theorem 7.1 itself is not a formal consequence of the Corollary: a lift of

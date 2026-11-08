@@ -6,7 +6,7 @@ Gram form of a free lattice), lattices are $R$-submodules of $K^n$, the base lat
 prime with finite residue field $k = R/\pi$ (`Res π`) of size $q$, and $\pi \nmid \det H$ ($H$ the Hessian): $L_\mathfrak p$ is
 unimodular, $\mathfrak p = (\pi)$ is a good prime.
 
-**Defines** (Kneser 1957, §1; AWS notes `hanke2011aws`, Def. 1.10.1, p. 22, for $R = \mathbb Z$) the **$\pi$-neighbours** of $L$
+**Defines** (Kneser 1957, §1; Arizona Winter School notes `hanke2011aws`, Def. 1.10.1, p. 22, for $R = \mathbb Z$) the **$\pi$-neighbours** of $L$
 (`IsNbr`): lattices $L'$ with
 $$[L : L \cap L'] = q,\qquad [L' : L \cap L'] = q,\qquad \pi L' \subseteq L,\qquad Q(L') \subseteq R;$$
 and the explicit neighbour (`nbLat`)
@@ -81,7 +81,7 @@ end Basic
 variable (Q : QuadForm R n) (π : R)
 
 /-- **The explicit $\pi$-neighbour** $L(\vec v) = L_{\vec v} + R\frac1\pi\vec v$, $L_{\vec v} = \{\vec y \in R^n : \pi \mid B(\vec y, \vec v)\}$ (Kneser
-1957; AWS notes, §1.10.1, Thm. 1.10.2, p. 22): the vectors $\vec y + \frac c\pi\vec v$ with $\vec y \in R^n$, $\pi \mid B(\vec y, \vec v)$, $c \in R$.
+1957; Arizona Winter School notes, §1.10.1, Thm. 1.10.2, p. 22): the vectors $\vec y + \frac c\pi\vec v$ with $\vec y \in R^n$, $\pi \mid B(\vec y, \vec v)$, $c \in R$.
 A $\pi$-neighbour when $\vec v \not\equiv 0 \pmod \pi$ and $\pi^2 \mid Q(\vec v)$ (`isNbr_nbLat`). -/
 @[kb "kneser1957" "§1, the neighbour L(v) [unverified]"]
 def nbLat (v : Fin n → R) : Submodule R (Fin n → K) where
@@ -491,7 +491,7 @@ end Index
 /-! ### Neighbours -/
 
 variable (K) in
-/-- **$\pi$-neighbours of $L = R^n$** (Kneser 1957, §1; AWS notes, Def. 1.10.1, p. 22, for $R = \mathbb Z$): a lattice $L' \subset K^n$ with
+/-- **$\pi$-neighbours of $L = R^n$** (Kneser 1957, §1; Arizona Winter School notes, Def. 1.10.1, p. 22, for $R = \mathbb Z$): a lattice $L' \subset K^n$ with
 $$[L : L \cap L'] = q,\qquad [L' : L \cap L'] = q,\qquad \pi L' \subseteq L,\qquad Q(L') \subseteq R,$$
 $q = |R/\pi|$. Fields: `relIndex_std` ($[L : L \cap L'] = q$; Mathlib's `relIndex H M` is $[M : H \cap M]$), `relIndex_self`
 ($[L' : L \cap L'] = q$), `smul_mem` ($\pi L' \subseteq L$; automatic over $\mathbb Z$, where it follows from the index), `integral`
@@ -523,7 +523,7 @@ theorem isNbr_nbLat (hdet : ¬ π ∣ Q.hessian.det) {v : Fin n → R}
 theorem one_lt_card_res : 1 < Nat.card (Res π) := by
   rw [Nat.card_eq_fintype_card]; exact Fintype.one_lt_card
 
-/-- **Every $\pi$-neighbour is explicit** (Kneser 1957; AWS notes, §1.10.1, Thm. 1.10.2, p. 22): if $\pi \nmid \det H$ and $L'$ is a
+/-- **Every $\pi$-neighbour is explicit** (Kneser 1957; Arizona Winter School notes, §1.10.1, Thm. 1.10.2, p. 22): if $\pi \nmid \det H$ and $L'$ is a
 $\pi$-neighbour of $R^n$, then $L' = L(\vec v)$ for some $\vec v \in R^n$, $\vec v \not\equiv 0 \pmod\pi$, $\pi^2 \mid Q(\vec v)$
 (namely $\vec v = \pi\vec w$ for any $\vec w \in L' \setminus R^n$). *Proof* as over $\mathbb Z$ (`Siegel.Kneser.exists_eq_nbLat`): integrality
 gives $L \cap L' \subseteq L_{\vec v}$, equal by the index; then $L(\vec v) \subseteq L'$, equal by the index. -/
@@ -746,7 +746,7 @@ theorem sum_neighbors (hdet : ¬ π ∣ Q.hessian.det) {M : Type*} [AddCommMonoi
   rw [Finset.sum_congr rfl fun wb hw => by rw [(Finset.mem_filter.mp hw).2], Finset.sum_const,
     card_fibre_nbOf hπ hdet hv]
 
-/-- **The number of $\pi$-neighbours** (Kneser 1957; AWS Thm. 1.10.4, p. 23): $(q - 1)\cdot\#\{L'\} = \#\{\bar{\vec v} \ne 0 : \bar Q(\bar{\vec v}) = 0\}$. -/
+/-- **The number of $\pi$-neighbours** (Kneser 1957; Arizona Winter School Thm. 1.10.4, p. 23): $(q - 1)\cdot\#\{L'\} = \#\{\bar{\vec v} \ne 0 : \bar Q(\bar{\vec v}) = 0\}$. -/
 @[kb "kneser1957" "§1, number of neighbours = isotropic lines [unverified]"]
 theorem card_neighbors (hdet : ¬ π ∣ Q.hessian.det) :
     (Fintype.card (Res π) - 1) * (neighbors K Q π).card = (isoSet Q π).card := by

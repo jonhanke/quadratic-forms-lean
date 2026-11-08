@@ -5,7 +5,7 @@ $I_4 = x_0^2 + x_1^2 + x_2^2 + x_3^2$ (`AWS.Q4`), $\beta_p(m)$ = `LocalDensity.l
 $\nu = \mathrm{ord}_p(m)$.
 
 * **Odd $p$** (`localDensity_Q4_odd`): $\beta_p(m) = (1 - p^{-2})(1 + p^{-1} + \dots + p^{-\nu})$.
-  *Proof:* $\nu = 0, 1$ are the AWS notes' Lemma 2.7.4 (`AWS.beta_odd_unit`, `AWS.beta_odd_ord_one`). For $\nu \ge 2$
+  *Proof:* $\nu = 0, 1$ are the Arizona Winter School notes' Lemma 2.7.4 (`AWS.beta_odd_unit`, `AWS.beta_odd_ord_one`). For $\nu \ge 2$
   split the solutions mod $p^k$ into Zero type and the rest: the map $\pi_Z$ gives the Zero part $p^{-2}\beta_p(m/p^2)$,
   and the non-Zero part at $p^2T$ is $K = (r_p(0) - 1)/p^3 = \beta_p(p) = (1 - p^{-2})(1 + p^{-1})$ for every $T$
   (`localDensityOf_nonZero_eq`, `localDensityOf_nonZero_diag_sq`), so $\beta_p(p^2T) = p^{-2}\beta_p(T) + K$
@@ -109,7 +109,7 @@ theorem localDensity_Q4_two_of_not_four_dvd (m : ℤ) (hm : ¬ (4 : ℤ) ∣ m) 
   simp only [hm', ↓reduceIte, zero_add]
 
 /-- **The recursion at $p = 2$:** $\beta_2(4T) = \beta_2(T)/4 + r^{\ne 0}_8(4T)/2^9$ for $T \ne 0$ (Zero part by the map
-$\pi_Z$). *Update:* so, contrary to the AWS notes, p. 38, the solutions mod 8 do not
+$\pi_Z$). *Update:* so, contrary to the Arizona Winter School notes, p. 38, the solutions mod 8 do not
 determine $\beta_2(m)$ when $4 \mid m$ (e.g. $\beta_2(8) = 3/8$, while $r^{\ne 0}_8(8) = 0$). -/
 theorem localDensity_Q4_two_four_mul (T : ℤ) (hT : T ≠ 0) :
     localDensity AWS.Q4 2 (4 * T) = localDensity AWS.Q4 2 T / 4 +
@@ -157,7 +157,7 @@ theorem localDensity_Q4_two_pow_mul (a : ℕ) (u : ℤ) (hu : Odd u) :
 
 /-- **Local density of $x_0^2 + \dots + x_3^2$ at $p = 2$** (all $m \ge 1$): with $\nu = \mathrm{ord}_2(m)$,
 $$\beta_2(m) = \begin{cases} 1 & m \text{ odd},\\ 3/2^{\nu} & m \text{ even}.\end{cases}$$
-*Update:* the AWS notes' Lemma 2.7.6 gives only $\nu \le 1$. -/
+*Update:* the Arizona Winter School notes' Lemma 2.7.6 gives only $\nu \le 1$. -/
 @[kb "hanke2011aws" "§2.7.5, Lemma 2.7.6, p. 39 (extended to even m)"]
 theorem localDensity_Q4_two_nat (m : ℕ) (hm : m ≠ 0) :
     localDensity AWS.Q4 2 m =
@@ -235,7 +235,7 @@ theorem localDensity_Q4_odd_pow_mul (hp : p ≠ 2) (a : ℕ) (u : ℤ) (hu : ¬ 
 
 /-- **Local density of $x_0^2 + \dots + x_3^2$ at an odd prime $p$** (all $m \ge 1$): with $\nu = \mathrm{ord}_p(m)$,
 $$\beta_p(m) = \Bigl(1 - \frac1{p^2}\Bigr)\Bigl(1 + \frac1p + \dots + \frac1{p^{\nu}}\Bigr).$$
-For $\nu \le 1$ this is the AWS notes' Lemma 2.7.4. *Update:* the notes give only
+For $\nu \le 1$ this is the Arizona Winter School notes' Lemma 2.7.4. *Update:* the notes give only
 $\nu \le 1$. -/
 @[kb "hanke2011aws" "§2.7.4, Lemma 2.7.4, p. 38 (extended to all m)"]
 theorem localDensity_Q4_odd (hp : p ≠ 2) (m : ℕ) (hm : m ≠ 0) :

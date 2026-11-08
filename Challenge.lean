@@ -54,6 +54,17 @@ import QuadFormsKB.Siegel.LocalProduct
 import QuadFormsKB.Literature.Universal.Basic
 import QuadFormsKB.LocalDensity.FormDensityHyperbolic
 import QuadFormsKB.LocalDensity.NFFormDensity
+import QuadFormsKB.Literature.ConwaySloane.Mass.PMass
+import QuadFormsKB.Literature.ConwaySloane.Mass.StandardMass
+import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemmas
+import QuadFormsKB.Literature.ConwaySloane.TwoAdicForm
+import QuadFormsKB.Literature.ConwaySloane.OddClassification
+import QuadFormsKB.Literature.ConwaySloane.Section9Theorem18
+import QuadFormsKB.Literature.Hanke2005.GHYMassFormula
+import QuadFormsKB.Literature.Hanke2005.GHYMassFormulaEven
+import QuadFormsKB.Literature.Hanke2005.TheoremFiveOneGeneral
+import QuadFormsKB.Literature.OMeara.Sec93E
+import QuadFormsKB.Literature.OMeara.Sec93G
 
 /-!
 # Headline statements
@@ -788,6 +799,204 @@ theorem siegel_ternary_rat_natural (Q : QuadForm ℤ 3) (hQ : IntQF.PosDef Q) {m
 
 end Classical
 
+/-! ## Exact mass formulas
+
+The mass of a genus is the sum of 1/|Aut| over its classes. Siegel's theorem in its general form (the first section)
+expresses it through local densities; the statements below evaluate it exactly. Over ℤ: the Conway–Sloane formula from
+the genus symbols. Over totally real number fields: Shimura's exact formula for the special orthogonal group, as
+computed by Gan, Hanke and Yu, for odd and for even n. Over every number field: Hanke's formula, in a corrected
+general form. In the last three, F is a number field, Q₀ a form in n variables with coefficients in 𝓞 F, and
+L = 𝓞_F^n is a maximal lattice for Q₀ (`Hanke2005.StdIsMaximal Q₀`: Q₀(L) ⊆ 𝓞 F, and no strictly larger lattice
+has this property). The classes counted are the proper classes in the genus of L (`Tamagawa.Indefinite.DC Q₀`, the
+double cosets SO(V)(F)\SO(V)(𝔸_f)/SO(L̂)), with Γ_i = SO(L_i) the unit group of the class i
+(`Tamagawa.Indefinite.unitGroup Q₀ i`). -/
+
+section ExactMass
+
+open scoped ENNReal
+
+open QuadFormsKB.Hanke2005 QuadFormsKB.Tamagawa.Indefinite
+
+/-- **The Conway–Sloane mass formula over ℤ from the genus symbols** (J. H. Conway and N. J. A. Sloane,
+"Low-dimensional lattices IV: the mass formula", 1988, (2), (3), §7 and §9). Let A be a symmetric n × n integer
+matrix, n ≥ 3, such that the form Q(x) = xᵀAx (`LocalDensity.ofMatrixZ A`) is positive definite. Let τ be a 2-adic
+symbol of A (`ConwaySloane.IsTwoSymbolOf`) whose constituents τ_k are trivial for k ≥ N₂, and for every odd prime
+p dividing det A let σ_p be a p-adic symbol of A (`ConwaySloane.IsOddSymbolOf`) whose constituents are trivial
+from N_p on. Then the mass of the genus of Q, ∑_{[Q'] ∈ Gen(Q)} 1/|Aut(Q')| (`Siegel.mass`), is
+  m(Q) = std(n, det A) · ∏_{p | 2 det A} m_p / std_p(n, det A),
+where std is the standard mass (7) (`ConwaySloane.Mass.stdMass`), std_p the standard p-mass (6)
+(`ConwaySloane.Mass.stdP`), and m_p the p-mass of the symbol, formula (3) with Tables 1 and 2: the product of the
+diagonal factors of the constituents (by species), the cross terms, and at p = 2 the type factor
+(`ConwaySloane.Mass.pMassTwo τ N₂`, `ConwaySloane.Mass.pMassOdd p σ_p N_p`). The paper states (3) at p = 2 without
+proof; it is proved here. Moreover the genus of Q has finitely many classes and its mass is positive. -/
+theorem massFormula_genusSymbols {n : ℕ} (hn : 3 ≤ n) {A : Matrix (Fin n) (Fin n) ℤ}
+    (hA : A.IsSymm) (hQ : IntQF.PosDef (LocalDensity.ofMatrixZ A))
+    (τ : ConwaySloane.TwoSymbol) (N₂ : ℕ) (hτ : ConwaySloane.IsTwoSymbolOf (A.map (Int.cast : ℤ → ℚ_[2])) τ)
+    (hτN : τ.SupportedBelow N₂) (σ : ℕ → ConwaySloane.OddSymbol) (N : ℕ → ℕ)
+    (hodd : ∀ p : ℕ, (hp : p.Prime) → p ≠ 2 → (p : ℤ) ∣ A.det →
+      haveI : Fact p.Prime := ⟨hp⟩
+      ConwaySloane.IsOddSymbolOf p (A.map (Int.cast : ℤ → ℚ_[p])) (σ p) ∧
+        ∀ k, N p ≤ k → σ p k = ConwaySloane.OddFactor.trivial) :
+    Siegel.mass (LocalDensity.ofMatrixZ A) = ConwaySloane.Mass.stdMass n A.det *
+      ∏ p ∈ (2 * A.det).natAbs.primeFactors,
+        ((if p = 2 then ConwaySloane.Mass.pMassTwo τ N₂ else ConwaySloane.Mass.pMassOdd p (σ p) (N p)) /
+          (ConwaySloane.Mass.stdP p n A.det : ℝ)) ∧
+      (Siegel.genusClasses (LocalDensity.ofMatrixZ A)).Finite ∧ 0 < Siegel.mass (LocalDensity.ofMatrixZ A) := by
+  sorry
+
+/-- **Shimura's exact mass formula for SO, odd n** (W. T. Gan, J. Hanke and J.-K. Yu, "On an exact mass formula of
+Shimura", 2001, Proposition 7.4, with (7.1)–(7.3)). Let F be a totally real number field of degree d, and Q₀ a
+nondegenerate form in n = 2k + 1 ≥ 3 variables over 𝓞 F, totally positive definite over F, with L = 𝓞_F^n maximal.
+Then
+  ∑_i 1/|Γ_i| = 2^{-kd} · |L(M)| · τ(SO) · ∏_𝔭 λ_𝔭,  τ(SO) = 2,
+the sum over the proper classes i in the genus of L, with |L(M)| = ∏_{r=1}^{k} |ζ_F(1 - 2r)|
+(`Hanke2005.lMotiveOdd F k`; each factor is written through the functional equation as
+|d_F|^{2r-1/2} (2 (2r-1)!/(2π)^{2r})^d ζ_F(2r), `Hanke2005.absZetaNeg`) and λ_𝔭 the local factor of Gan, Hanke and
+Yu at the prime 𝔭 (`Hanke2005.lambdaGHYAt`). The paper's L(M) is read in absolute value: ζ_F(1 - 2r) has sign
+(-1)^{rd}. Moreover there are finitely many classes, every Γ_i is finite, and λ_𝔭 = 1 for all but finitely many
+primes 𝔭. -/
+theorem shimuraMass_odd {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ} (hn : 3 ≤ n) (hodd : Odd n)
+    (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate) (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F)))
+    (hmax : StdIsMaximal Q₀) :
+    ∑' i : DC Q₀, ((Nat.card (unitGroup Q₀ i) : ℝ≥0∞))⁻¹ =
+      ENNReal.ofReal (((2 : ℝ) ^ ((n / 2) * Module.finrank ℚ F))⁻¹ * lMotiveOdd F (n / 2) * 2 *
+        ∏' v : HeightOneSpectrum (𝓞 F), lambdaGHYAt v Q₀) ∧
+      Finite (DC Q₀) ∧ (∀ i : DC Q₀, Finite (unitGroup Q₀ i)) ∧
+      Function.HasFiniteMulSupport fun v : HeightOneSpectrum (𝓞 F) => lambdaGHYAt v Q₀ := by
+  sorry
+
+/-- **Shimura's exact mass formula for SO, even n** (W. T. Gan, J. Hanke and J.-K. Yu, "On an exact mass formula
+of Shimura", 2001, Proposition 7.5, with (7.1)–(7.3)). Let F be a totally real number field of degree d, and Q₀ a
+nondegenerate form in n = 2k ≥ 4 variables over 𝓞 F, totally positive definite over F, with L = 𝓞_F^n maximal.
+Then
+  ∑_i 1/|Γ_i| = 2^{-kd} · |L(M)| · τ(SO) · ∏_𝔭 λ_𝔭,  τ(SO) = 2,
+the sum over the proper classes i in the genus of L, with |L(M)| = ∏_{r=1}^{k-1} |ζ_F(1 - 2r)| · |L_F(1 - k, χ)|
+(`Hanke2005.lMotiveEven Q₀ k`; χ = `Hanke2005.chiK` is the quadratic character of F(√δ), δ = (-1)^k det(H)/2^n
+(`Hanke2005.discK`), H the Hessian of Q₀, and the values at negative integers are written through the functional
+equations, `Hanke2005.absZetaNeg`, `Hanke2005.absLNeg`) and λ_𝔭 the local factor of Gan, Hanke and Yu at the prime
+𝔭 (`Hanke2005.lambdaGHYEvenAt`). The paper's L(M) is read in absolute value. Moreover there are finitely many
+classes, every Γ_i is finite, and λ_𝔭 = 1 for all but finitely many primes 𝔭. -/
+theorem shimuraMass_even {F : Type} [Field F] [NumberField F] [IsTotallyReal F] {n : ℕ} (hn : 4 ≤ n)
+    (heven : Even n) (Q₀ : QuadForm (𝓞 F) n) (hQ : Q₀.Nondegenerate)
+    (hpd : IsTotallyPosDef (Q₀.map (algebraMap (𝓞 F) F))) (hmax : StdIsMaximal Q₀) :
+    ∑' i : DC Q₀, ((Nat.card (unitGroup Q₀ i) : ℝ≥0∞))⁻¹ =
+      ENNReal.ofReal (((2 : ℝ) ^ ((n / 2) * Module.finrank ℚ F))⁻¹ * lMotiveEven Q₀ (n / 2) * 2 *
+        ∏' v : HeightOneSpectrum (𝓞 F), lambdaGHYEvenAt v Q₀) ∧
+      Finite (DC Q₀) ∧ (∀ i : DC Q₀, Finite (unitGroup Q₀ i)) ∧
+      Function.HasFiniteMulSupport fun v : HeightOneSpectrum (𝓞 F) => lambdaGHYEvenAt v Q₀ := by
+  sorry
+
+/-- **Hanke's exact mass formula over number fields, in corrected general form** (J. Hanke, "An exact mass formula
+for quadratic forms over number fields", 2005, Theorem 5.1). Let F be a number field of degree d, D = |d_F|, and Q₀
+a nondegenerate form in n ≥ 3 variables over 𝓞 F, of any signature, with L = 𝓞_F^n maximal. Then Hanke's mass
+(`Hanke2005.hankeMass Q₀ hQ`, (5.4)–(5.6): the sum over the proper classes i in the genus of L of the covolume of
+Γ_i in the archimedean group, divided by the volume vol_C of its maximal compact subgroup) is
+  2 D^{⌊(n-1)²/4⌋} ∏_{j=1}^{⌊(n-1)/2⌋} (D^{1/2} ((2j-1)!/(2π)^{2j})^d ζ_F(2j)) · [L̃ : L]^{(n-1)/2} ∏_𝔭 λ'_𝔭
+    · ∏_{v real} b_v · ∏_{v complex} (2^{-(n-1)(n-2)/2} π^{n(n+1)/4} ∏_{j=1}^{n} Γ(j/2)^{-1})
+    · (2^{-(n-1)d/2} if n is odd; D^{1/2} ((n/2 - 1)! (2π)^{-n/2})^d L_F(n/2, χ) if n is even)
+(`Hanke2005.theorem51RHSGen Q₀`), with [L̃ : L] = ∏_𝔭 [L̃_𝔭 : L_𝔭] the index of L in its dual
+(`Hanke2005.dualIndexAt`), b_v Hanke's factor at a real place (`Hanke2005.bPhi`, from the Witt index
+`Hanke2005.rAt`), and χ the quadratic character of F(√δ) (`Hanke2005.chiK`).
+*Correction to the printed theorem.* Theorem 5.1 as printed omits Shimura's hypothesis "for odd n, the determinant
+of Q₀ is at every prime a unit times a square", and is false without it. This statement has no such hypothesis: at
+the primes where that condition fails (n odd), Hanke's local factor λ_𝔭 is replaced by
+λ'_𝔭 = (1 + q^{-m})/2 if t_𝔭 = 1 and λ'_𝔭 = (1 - q^{-m})/2 if t_𝔭 = 3, where m = ⌊n/2⌋, q = N𝔭 and t_𝔭 is the
+dimension of the anisotropic kernel of Q₀ at 𝔭 (these factors come from Gan, Hanke and Yu, Table 4); at every other
+prime λ'_𝔭 = λ_𝔭 (`Hanke2005.lambdaGen`). Under Shimura's hypothesis the right side is the printed one. Moreover the
+genus of L has finitely many proper classes, and [L̃_𝔭 : L_𝔭] = λ'_𝔭 = 1 for all but finitely many primes 𝔭. -/
+theorem hankeMass_numberField {F : Type} [Field F] [NumberField F] {n : ℕ} (hn : 3 ≤ n) (Q₀ : QuadForm (𝓞 F) n)
+    (hQ : Q₀.Nondegenerate) (hmax : StdIsMaximal Q₀) :
+    hankeMass Q₀ hQ = ENNReal.ofReal (theorem51RHSGen Q₀) ∧ Finite (DC Q₀) ∧
+      (Function.HasFiniteMulSupport fun v : HeightOneSpectrum (𝓞 F) => dualIndexAt v Q₀) ∧
+      Function.HasFiniteMulSupport fun v : HeightOneSpectrum (𝓞 F) => lambdaGen v Q₀ := by
+  sorry
+
+end ExactMass
+
+/-! ## Classification of lattices and genera
+
+O'Meara's classification of lattices over the completion of a number field at a dyadic prime (93:28) and at a prime
+where 2 is prime (93:29); Conway–Sloane's description of the p-adically automorphous numbers (Sphere Packings,
+Lattices and Groups, Chapter 15, Theorem 18) at every prime; and the description of the genus of a positive definite
+integral lattice by its discriminant form (Conway–Sloane 1988, §11, Lemmas 2 and 4). The two O'Meara statements and
+Theorem 18 are named propositions of the library (`OMeara.DyadicClassification`, `OMeara.TwoAdicClassification`,
+`ConwaySloane.Theorem18Statement`), each a single field stating the theorem; the docstrings spell them out. -/
+
+section Classification
+
+/-- **Conway–Sloane, Theorem 18, at every prime** (J. H. Conway and N. J. A. Sloane, Sphere Packings, Lattices and
+Groups, Chapter 15, §9.5; "based on Theorem 81" of Watson). `ConwaySloane.Theorem18Statement` says: for every
+nondegenerate form Q over ℚ in n variables, every lattice L in ℚ^n and every prime p (`v`, a nonzero prime of
+𝓞_ℚ = ℤ), a p-adic unit A ∈ ℚ_p^× is p-adically automorphous, i.e. lies in θ(O⁺(L_p)), the group of spinor norms
+of the proper automorphisms of L_p (`Lattices.localSpinorNormGroup Q hQ v L`), if and only if, up to squares, A is
+the product Q(x_1) ⋯ Q(x_{2k}) of the norms of an even number of p-adic root vectors x_i: vectors with Q(x_i) ≠ 0
+whose reflection maps L_p onto itself (`ConwaySloane.IsRootVector`). The book quotes the theorem without proof;
+both directions are proved here, at p = 2 included. -/
+theorem automorphous_iff_rootVectors : ConwaySloane.Theorem18Statement := by
+  sorry
+
+/-- **O'Meara 93:28: classification of lattices at a dyadic prime** (O. T. O'Meara, Introduction to Quadratic
+Forms, §93F, 93:28). Let F be a number field, 𝔭 = `w` a nonzero prime of 𝓞 F, F_𝔭 the completion with ring of
+integers 𝔬, and V a finite-dimensional quadratic space over F_𝔭 with form Q. `OMeara.DyadicClassification 𝔬 Q`
+says: if 2 is not a unit of 𝔬 (𝔭 is dyadic) and Q is regular, let L and K be lattices on V with Jordan splittings
+L = L_1 ⊥ ⋯ ⊥ L_t and K = K_1 ⊥ ⋯ ⊥ K_t (`OMeara.IsJordanSplitting`) having the same fundamental invariants
+t, dim L_i, 𝔰_i, 𝔴_i, a_i (`OMeara.SameFundamentalInvariants`), and let L_(i) = L_1 ⊥ ⋯ ⊥ L_i and K_(i) be the
+Jordan chains (`OMeara.jordanChain`). Then L and K are isometric (`OMeara.cls Q L = OMeara.cls Q K`) if and only if
+for 1 ≤ i ≤ t - 1:
+1. dL_(i)/dK_(i) ≅ 1 mod 𝔣_i (`OMeara.DiscQuotSqEquivMod`), with 𝔣_i the ideal of §93E (`OMeara.fIdeal`);
+2. FL_(i) → FK_(i) ⊥ ⟨a_{i+1}⟩ (`OMeara.SpanRepresents`) when 𝔣_i ⊊ 4 a_{i+1} 𝔴_{i+1}^{-1};
+3. FL_(i) → FK_(i) ⊥ ⟨a_i⟩ when 𝔣_i ⊊ 4 a_i 𝔴_i^{-1}.
+Indices are 0-based in Lean: the condition for O'Meara's i is stated for the pair i, j = i + 1. -/
+theorem dyadicClassification {F : Type} [Field F] [NumberField F] (w : HeightOneSpectrum (𝓞 F)) {V : Type*}
+    [AddCommGroup V] [Module (w.adicCompletion F) V] [FiniteDimensional (w.adicCompletion F) V]
+    [Module (w.adicCompletionIntegers F) V] [IsScalarTower (w.adicCompletionIntegers F) (w.adicCompletion F) V]
+    (Q : QuadraticForm (w.adicCompletion F) V) :
+    OMeara.DyadicClassification (w.adicCompletionIntegers F) Q := by
+  sorry
+
+/-- **O'Meara 93:29: classification of lattices at a 2-adic prime** (O. T. O'Meara, Introduction to Quadratic
+Forms, §93G, 93:29). Let F be a number field, 𝔭 = `v` a nonzero prime of 𝓞 F, F_𝔭 the completion with ring of
+integers 𝔬, and V a finite-dimensional quadratic space over F_𝔭 with form Q. `OMeara.TwoAdicClassification 𝔬 Q`
+says: if 2 is a prime element of 𝔬 (`OMeara.IsTwoAdic`; for example F_𝔭 = ℚ_2) and Q is regular, let L and K be
+lattices on V with Jordan splittings L = L_1 ⊥ ⋯ ⊥ L_t and K = K_1 ⊥ ⋯ ⊥ K_t having the same Jordan invariants
+t, dim L_i, 𝔰_i, 𝔫_i (`OMeara.SameJordanInvariants`), and let L_(i), K_(i) be the Jordan chains. Then L and K are
+isometric if and only if for 1 ≤ i ≤ t - 1:
+1. dL_(i)/dK_(i) ≅ 1 mod 𝔫_i 𝔫_{i+1}/𝔰_i²;
+2. FL_(i) → FK_(i) ⊥ ⟨2^{u_i}⟩ when 𝔫_{i+1} ⊆ 4 𝔫_i, where 2^{u_i} 𝔬 = 𝔫_i.
+Here 𝔰_i is the scale and 𝔫_i the norm ideal of L_i (`OMeara.scale`, `OMeara.normIdeal`). Indices are 0-based in
+Lean, as in `dyadicClassification`. -/
+theorem twoAdicClassification {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F)) {V : Type*}
+    [AddCommGroup V] [Module (v.adicCompletion F) V] [FiniteDimensional (v.adicCompletion F) V]
+    [Module (v.adicCompletionIntegers F) V] [IsScalarTower (v.adicCompletionIntegers F) (v.adicCompletion F) V]
+    (Q : QuadraticForm (v.adicCompletion F) V) :
+    OMeara.TwoAdicClassification (v.adicCompletionIntegers F) Q := by
+  sorry
+
+/-- **The genus from the discriminant form, modulo the type** (J. H. Conway and N. J. A. Sloane, "Low-dimensional
+lattices IV: the mass formula", 1988, §11, Lemma 2). Two positive definite integral lattices L and M of dimension n,
+given by their Gram matrices A and B (`ConwaySloane.Mass.PosDefGram`), are in the same genus (the forms xᵀAx and
+xᵀBx are in the same genus, `Siegel.SameGenus`) if and only if they have the same type T (T = 1 if the lattice is
+odd, T = 2 if it is even, `ConwaySloane.Mass.gramType`) and there is an isomorphism L*/L ≅ M*/M of the discriminant
+groups preserving norms modulo T (`ConwaySloane.Mass.DiscIso T A B`). -/
+theorem sameGenus_iff_discIso {n : ℕ} {A B : Matrix (Fin n) (Fin n) ℤ} (hA : ConwaySloane.Mass.PosDefGram A)
+    (hB : ConwaySloane.Mass.PosDefGram B) :
+    Siegel.SameGenus (LocalDensity.ofMatrixZ A) (LocalDensity.ofMatrixZ B) ↔
+      (ConwaySloane.Mass.gramType A = ConwaySloane.Mass.gramType B ∧
+        ConwaySloane.Mass.DiscIso (ConwaySloane.Mass.gramType A) A B) := by
+  sorry
+
+/-- **The genus from the discriminant form, modulo 1** (J. H. Conway and N. J. A. Sloane, "Low-dimensional
+lattices IV: the mass formula", 1988, §11, Lemma 4). Two positive definite integral lattices L and M of dimension n
+(Gram matrices A and B) are in the same genus if and only if they have the same type and there is an isomorphism
+L*/L ≅ M*/M of the discriminant groups preserving norms modulo 1 (`ConwaySloane.Mass.DiscIso 1 A B`). -/
+theorem sameGenus_iff_discIso_one {n : ℕ} {A B : Matrix (Fin n) (Fin n) ℤ} (hA : ConwaySloane.Mass.PosDefGram A)
+    (hB : ConwaySloane.Mass.PosDefGram B) :
+    Siegel.SameGenus (LocalDensity.ofMatrixZ A) (LocalDensity.ofMatrixZ B) ↔
+      (ConwaySloane.Mass.gramType A = ConwaySloane.Mass.gramType B ∧ ConwaySloane.Mass.DiscIso 1 A B) := by
+  sorry
+
+end Classification
+
 
 /-! ## Definitions used
 
@@ -928,6 +1137,56 @@ Classical cases over ℚ
 * `Siegel.eulerFactor Q m p`, `Siegel.eulerPartialProd Q m X`, `Siegel.IsEulerProductValue Q m P`,
   `Siegel.betaInf Q m`, `Siegel.aEWith Q m P` (Siegel/LocalProduct.lean): β_p(m); ∏_{p ≤ X} β_p(m); these
   partial products tend to P as X → ∞; β_∞(m); β_∞(m) · P.
+
+Exact mass formulas (paths in `Literature/`)
+* `LocalDensity.ofMatrixZ A` (LocalDensity/JordanForm.lean, outside `Literature/`): the form xᵀAx of an integer
+  matrix A. `Siegel.mass Q`, `Siegel.genusClasses Q` and `IntQF.PosDef Q` as in the classical cases over ℚ.
+* `ConwaySloane.OddFactor`, `ConwaySloane.OddSymbol`, `ConwaySloane.TwoSymbol` (ConwaySloane/Symbol.lean): the
+  p-adic and 2-adic genus symbols, one constituent (dimension, sign, and at p = 2 type and oddity) for each scale p^k;
+  `OddFactor.trivial` is the zero-dimensional constituent; `TwoSymbol.SupportedBelow` (ConwaySloane/Existence.lean):
+  the constituents vanish from the given index on.
+* `ConwaySloane.IsTwoSymbolOf`, `ConwaySloane.IsOddSymbolOf` (ConwaySloane/TwoAdicForm.lean,
+  ConwaySloane/OddClassification.lean): the symbol of the p-adic Jordan decomposition of the matrix over ℚ_p.
+* `ConwaySloane.Mass.stdMass n d` (ConwaySloane/Mass/StandardMass.lean): the standard mass (7),
+  2 π^{-n(n+1)/4} ∏_{j=1}^{n} Γ(j/2) · ζ(2)ζ(4)⋯ζ(2s-2) · (ζ_D(s) if n is even), s = ⌈n/2⌉, D = (-1)^s d.
+* `ConwaySloane.Mass.pMassOdd p σ N`, `ConwaySloane.Mass.pMassTwo τ N`, `ConwaySloane.Mass.stdP p n d`
+  (ConwaySloane/Mass/PMass.lean): the p-mass (3) of a symbol (diagonal factors by Table 1 and 2, cross terms, type
+  factor at p = 2) and the standard p-mass (6).
+* `Hanke2005.StdIsMaximal Q₀` (Hanke2005/MassFormula.lean): 𝓞_F^n is a maximal lattice for Q₀ (O'Meara's maximal
+  lattices, `OMeara.IsMaximal`, Literature/OMeara/).
+* `Tamagawa.Indefinite.DC Q₀`, `Tamagawa.Indefinite.unitGroup Q₀ i` (Tamagawa/Indefinite/ClassicalSetup.lean and
+  ClassicalMeasures.lean, outside `Literature/`): the proper classes in the genus of 𝓞_F^n, and Γ_i = SO(L_i).
+* `Lattices.IsTotallyPosDef` as in the Tamagawa section.
+* `Hanke2005.lMotiveOdd F k`, `Hanke2005.absZetaNeg F r`, `Hanke2005.lambdaGHYAt v Q₀`
+  (Hanke2005/GHYMassFormula.lean): ∏_{r=1}^{k} |ζ_F(1 - 2r)|; |ζ_F(1 - 2r)| through the functional equation; the local
+  factor of Gan, Hanke and Yu for odd n (1 when L_𝔭 is self-dual).
+* `Hanke2005.lMotiveEven Q₀ k`, `Hanke2005.absLNeg Q₀ k`, `Hanke2005.lambdaGHYEvenAt v Q₀`
+  (Hanke2005/GHYMassFormulaEven.lean): ∏_{r=1}^{k-1} |ζ_F(1 - 2r)| · |L_F(1 - k, χ)|; |L_F(1 - k, χ)| through the
+  functional equation (with the norm of the conductor of χ); the local factor of Gan, Hanke and Yu for even n.
+* `Hanke2005.dualIndexAt v Q₀`, `Hanke2005.anisoDim v Q₀`, `Hanke2005.discK Q₀`, `Hanke2005.chiK v Q₀`,
+  `Hanke2005.lambdaAt v Q₀`, `Hanke2005.rAt Q₀ w`, `Hanke2005.hankeMass Q₀ hQ` (Hanke2005/MassFormula.lean):
+  [L̃_𝔭 : L_𝔭] = |det H|_𝔭^{-1}; the dimension t_𝔭 of the anisotropic kernel at 𝔭; δ = (-1)^{n/2} det(H)/2^n; the
+  character of F(√δ) at 𝔭; Hanke's λ_𝔭; the Witt index at a real place; Hanke's mass (5.4)–(5.6).
+* `Hanke2005.lambdaGen v Q₀`, `Hanke2005.lambdaOddNonUnit`, `Hanke2005.theorem51RHSGen Q₀`
+  (Hanke2005/TheoremFiveOneGeneral.lean): the corrected local factor λ'_𝔭 and the right side of the corrected
+  Theorem 5.1; `Hanke2005.DetUnitSqAt v Q₀` (Hanke2005/GHYOddLocal.lean): det(H)/2^n is a unit times a square at 𝔭;
+  `Hanke2005.bPhi` (Hanke2005/Archimedean.lean): Hanke's factor b_v at a real place; `NFEuler.dedekindZetaR`,
+  `NFEuler.LFunctionNF` (Analysis/NFEulerProduct.lean, Analysis/NFLFunctions.lean, outside `Literature/`): ζ_F(s) and L_F(s, χ) as Dirichlet series (s > 1).
+
+Classification of lattices and genera (paths in `Literature/`)
+* `ConwaySloane.Theorem18Statement`, `ConwaySloane.IsRootVector` (ConwaySloane/Section9Theorem18.lean): Theorem 18;
+  p-adic root vectors. `Lattices.localSpinorNormGroup` (OMeara/Sec101D.lean): θ(O⁺(L_𝔭)) as a subgroup of F_𝔭^×.
+  `Lattices.SqClass.mk`, `Lattices.sqClassOf`, `Lattices.valProd` (Lattices/SpinorNorm.lean, Lattices/SpinorKernel.lean,
+  outside `Literature/`): square classes; the product of the values Q(x) over a list of vectors.
+* `OMeara.DyadicClassification` (OMeara/Sec93E.lean): 93:28; with `OMeara.fIdeal`, `OMeara.fundWeight`,
+  `OMeara.SameFundamentalInvariants`, `OMeara.DiscQuotSqEquivMod`, `OMeara.SpanRepresents` (OMeara/Sec93E.lean),
+  `OMeara.SqEquivMod` (OMeara/Sec93.lean), `OMeara.IsJordanSplitting` (OMeara/Sec91Jordan.lean), `OMeara.jordanChain`
+  (OMeara/Sec91Chain.lean), `OMeara.scale`, `OMeara.normIdeal`, `OMeara.cls` (OMeara/Sec82.lean).
+* `OMeara.TwoAdicClassification`, `OMeara.IsTwoAdic`, `OMeara.SameJordanInvariants` (OMeara/Sec93G.lean): 93:29.
+* `ConwaySloane.Mass.PosDefGram`, `ConwaySloane.Mass.gramType`, `ConwaySloane.Mass.DiscIso`
+  (ConwaySloane/Mass/GenusLemmas.lean): positive definite integral Gram matrices; the type (1 odd, 2 even); an
+  isomorphism of discriminant groups preserving norms modulo T. `Siegel.SameGenus` (Siegel/Genus.lean, outside
+  `Literature/`): equivalent over ℝ and over every ℤ_p.
 -/
 
 end QuadFormsKB.Headlines

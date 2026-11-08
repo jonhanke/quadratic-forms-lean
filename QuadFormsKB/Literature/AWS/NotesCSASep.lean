@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Thm 3.1.3 over every field: a finite separable splitting field
+# Hanke, Arizona Winter School 2009 notes, Thm 3.1.3 over every field: a finite separable splitting field
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, notes from the 2009 Arizona Winter School,
 arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed page), §3.1, Thm 3.1.3 (p. 42).

@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Lemma 4.5.1: gluing of lattices over ℚ (proved)
+# Hanke, Arizona Winter School 2009 notes, Lemma 4.5.1: gluing of lattices over ℚ (proved)
 
 **Layer:** the concrete lattices of `AWS/Adelic.lean`: `Lat n` (sets $g\mathbb{Z}^n \subset \mathbb{Q}^n$,
 $g \in \mathrm{GL}_n(\mathbb{Q})$) and `LocLat p n` (sets $g\mathbb{Z}_p^n \subset \mathbb{Q}_p^n$).

@@ -2,7 +2,7 @@
 # Siegel's formula: sanity checks for sums of squares
 
 For $I_n = x_0^2 + \dots + x_{n-1}^2$: $|\mathrm{Aut}(I_n)| = 2^n n!$ over $\mathrm{GL}_n(\mathbb{Z})$ (`card_aut_sumSq`), so
-$|\mathrm{Aut}(I_4)| = 384$ (`card_aut_Q4`). For the sum of four squares, consistency with the AWS notes' file
+$|\mathrm{Aut}(I_4)| = 384$ (`card_aut_Q4`). For the sum of four squares, consistency with the Arizona Winter School notes' file
 `Literature/AWS/FourSquares.lean`: the same Euler factors (`eulerFactor_Q4_odd`), $\beta_\infty(m) = \pi^2 m$
 (`betaInf_Q4`), and `AWS.FourSquaresInputs.siegel` is exactly $r_{I_4}(m) = $ `aE` (`fourSquaresInputs_siegel_iff`).
 Class number one (`FourSquaresClassNumberOne`, under which $a_E = r_{I_4}$, `genusRepAvg_Q4`) is proved in
@@ -19,7 +19,7 @@ variable {n : ℕ}
 /-- **The sum of $n$ squares** $I_n = x_0^2 + \dots + x_{n-1}^2$ (the diagonal form $\langle 1, \dots, 1\rangle$). -/
 def sumSq (n : ℕ) : QuadForm ℤ n := QuadForm.diag fun _ => 1
 
-/-- $I_4$ is the AWS notes' `Q4`. -/
+/-- $I_4$ is the Arizona Winter School notes' `Q4`. -/
 theorem sumSq_four : sumSq 4 = AWS.Q4 := rfl
 
 /-- The Hessian of $I_n$ is $2 I$. -/
@@ -170,7 +170,7 @@ theorem posDef_sumSq : IntQF.PosDef (sumSq n) := by
 /-- $x_0^2+\dots+x_3^2$ is nondegenerate. -/
 theorem nondegenerate_Q4 : AWS.Q4.Nondegenerate := (sumSq_four ▸ posDef_sumSq).nondegenerate
 
-/-- **Consistency with the AWS notes' Lemma 2.7.4:** the Euler factor of `aE` for the sum of four squares at an odd
+/-- **Consistency with the Arizona Winter School notes' Lemma 2.7.4:** the Euler factor of `aE` for the sum of four squares at an odd
 $p \nmid m$ is $1 - p^{-2}$ (`AWS.beta_odd_unit`; both files use `LocalDensity.localDensity`). -/
 theorem eulerFactor_Q4_odd (p : ℕ) [Fact p.Prime] (hp : p ≠ 2) (m : ℤ) (hm : ¬ (p : ℤ) ∣ m) :
     eulerFactor AWS.Q4 m ⟨p, Fact.out⟩ = 1 - 1 / (p : ℝ) ^ 2 :=
@@ -189,7 +189,7 @@ theorem aE_Q4_complex (m : ℕ) (hm : 0 < m) :
   push_cast
   rfl
 
-/-- **The AWS input `FourSquaresInputs.siegel` is Siegel's formula with this file's `aE`:** for $Q = I_4$,
+/-- **The Arizona Winter School input `FourSquaresInputs.siegel` is Siegel's formula with this file's `aE`:** for $Q = I_4$,
 $r_Q(m) = \pi^2 m \prod_p \beta_p(m)$ for all $m \ge 1$ iff $r_Q(m) = \beta_\infty(m)\prod_p\beta_p(m)$ (`aE`) for all $m \ge 1$. -/
 @[kb "hanke2004" "(5.3), p. 368"]
 theorem fourSquaresInputs_siegel_iff :
@@ -205,7 +205,7 @@ theorem fourSquaresInputs_siegel_iff :
 Field:
 - `genus_eq`: `genusClasses Q4` $= \{[Q_4]\}$.
 
-Classical (the AWS notes, `hanke2011aws`, p. 36, state it). *Citation fix (2026-10-21):* this was cited to Conway–Sloane,
+Classical (the Arizona Winter School notes, `hanke2011aws`, p. 36, state it). *Citation fix (2026-10-21):* this was cited to Conway–Sloane,
 *Sphere Packings, Lattices and Groups*, 3rd ed., Table 15.4, but that table (Ch. 15, §8.1, Thm. 12, p. 387) lists all *genera* with
 $|\det| \le 11$ — row 1 is the genus $I_{r,s}$, here $I_{4,0}$ — not class numbers; Ch. 15 does not count the classes of a definite
 genus of determinant 1 (p. 396 refers one-class definite genera to Watson's papers). The class number of $I_4$ follows from the enumeration of unimodular lattices in Ch. 16,

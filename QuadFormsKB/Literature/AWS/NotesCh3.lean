@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, Ch. 3: quaternion algebras and the Hilbert symbol
+# Hanke, Arizona Winter School 2009 notes, Ch. 3: quaternion algebras and the Hilbert symbol
 
 J. Hanke, *Quadratic Forms and Automorphic Forms*, notes from the 2009 Arizona Winter School,
 arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed page), Chapter 3.

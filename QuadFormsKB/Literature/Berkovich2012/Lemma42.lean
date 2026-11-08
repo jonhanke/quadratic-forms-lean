@@ -594,7 +594,7 @@ end QuadFormsKB.Berkovich2012.L42
 
 namespace QuadFormsKB.Berkovich2012
 
-/-- **Lemma 4.2 (BHJ).** For an odd prime $p$, $p \nmid \alpha$ and $m \ne 0$, the local density of
+/-- **Lemma 4.2 (Berkovich–Hanke–Jagy).** For an odd prime $p$, $p \nmid \alpha$ and $m \ne 0$, the local density of
 $\alpha x^2 + \alpha p\, y^2 + p\, z^2$ at $p$ is given by `betaG` with
 $\varepsilon = \left(\frac{-\alpha}{p}\right)$: with $\operatorname{ord}_p(m) = 2k$ or $2k+1$,
 $(1 - \frac1p)(1+\varepsilon) G_k + p^{-k}(1 + \varepsilon\chi)$ resp.

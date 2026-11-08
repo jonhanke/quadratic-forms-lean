@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §2.6, §2.7.1, §2.7.3: mass formulas and canonical local measures
+# Hanke, Arizona Winter School 2009 notes, §2.6, §2.7.1, §2.7.3: mass formulas and canonical local measures
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §2.6 (pp. 34–35) and
 §2.7.1 (p. 36). The list D1, D2, … of the notes' derivations is in `AWS/Overview.lean`; this file is

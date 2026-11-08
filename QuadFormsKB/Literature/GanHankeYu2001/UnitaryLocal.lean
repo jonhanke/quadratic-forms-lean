@@ -3,7 +3,7 @@
 
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), §3, pp. 105–106.
 
-GHY choose the representative $\alpha$ of the discriminant class in $F^\times/NE^\times$ to be a unit or a uniformizer
+Gan–Hanke–Yu choose the representative $\alpha$ of the discriminant class in $F^\times/NE^\times$ to be a unit or a uniformizer
 ("with minimum possible valuation"), and Table 1 (odd unitary groups, $E/F$ unramified) distinguishes the rows by
 "$\alpha\in A^\times$" / "$\alpha\notin A^\times$", while Prop. 4.4 uses "$\alpha\notin NL_v^\times$". The two agree because for
 $E = F(\sqrt\delta)$ unramified over $F$ every unit of $F$ is a norm from $E$ and no uniformizer is, i.e. in terms of the
@@ -84,7 +84,7 @@ theorem exists_unit_defect_four_of_isUnramSqrt {δ : Fv} (hδ : IsUnramSqrt v δ
     · exact h
     · exact absurd (h ▸ hle) (not_le_of_gt hlt)
 
-/-- **GHY 2001, §3 / Table 1: a unit is a norm from the unramified quadratic extension** (O'Meara 63:11a): if
+/-- **Gan–Hanke–Yu 2001, §3 / Table 1: a unit is a norm from the unramified quadratic extension** (O'Meara 63:11a): if
 $F_v(\sqrt\delta)/F_v$ is unramified (`IsUnramSqrt`), then $(u,\delta)_v = 1$ for every unit $u$ of $\mathfrak o_v$. -/
 @[kb "ganhankeyu2001" "§3, p. 105; Table 1, p. 106 (α ∈ A^× iff α ∈ NE^× for E unramified)"]
 theorem hilbertSymbol_unit_of_isUnramSqrt {δ : Fv} (hδ : IsUnramSqrt v δ) {u : 𝔬} (hu : IsUnit u) :
@@ -106,7 +106,7 @@ theorem hilbertSymbol_unit_of_isUnramSqrt {δ : Fv} (hδ : IsUnramSqrt v δ) {u 
     rw [hilbertSymbol_comm, HM3.hilbertSymbol_mul_sq_left _ _ _ _ hc, hilbertSymbol_comm]
     exact OMeara.hilbertSymbol_unit_delta (R := 𝔬) (F := Fv) h2ne hΔu hΔd hu
 
-/-- **GHY 2001, §3 / Table 1: a uniformizer is not a norm from the unramified quadratic extension** (O'Meara 63:11a): if
+/-- **Gan–Hanke–Yu 2001, §3 / Table 1: a uniformizer is not a norm from the unramified quadratic extension** (O'Meara 63:11a): if
 $F_v(\sqrt\delta)/F_v$ is unramified (`IsUnramSqrt`) and $\delta$ is not a square (so $F_v(\sqrt\delta)$ is a field), then
 $(\pi,\delta)_v = -1$ for every prime element $\pi$ of $\mathfrak o_v$. -/
 @[kb "ganhankeyu2001" "§3, p. 105; Table 1, p. 106 (α ∈ A^× iff α ∈ NE^× for E unramified)"]

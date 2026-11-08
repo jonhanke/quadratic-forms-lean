@@ -4,7 +4,7 @@
 W. T. Gan, J. Hanke, J.-K. Yu, *On an exact mass formula of Shimura*, Duke Math. J. 107 (2001), (2.12), p. 104;
 Tables 1–2 (pp. 106–107), Tables 3–4 (pp. 115–116), (8.5)–(8.6), (8.9)–(8.10) (pp. 120–121).
 
-GHY's local factor at a finite place $v$ with residue field $\mathbb F_q$ is the volume ratio (2.12)
+Gan–Hanke–Yu's local factor at a finite place $v$ with residue field $\mathbb F_q$ is the volume ratio (2.12)
 $$\lambda_v = \frac{q^{-N(\overline H{}^0)}\,\#\overline H{}^0(\mathbb F_q)}{q^{-N(\overline G)}\,\#\overline G(\mathbb F_q)},$$
 where $\overline G$ is the maximal reductive quotient of the special fibre of the Bruhat–Tits model of the stabilizer of a maximal
 lattice, $\overline H{}^0$ the same for the quasi-split inner form's special model, and $N(\cdot)$ the number of positive roots
@@ -15,7 +15,7 @@ of $q$ (`RedGrp.card`, the standard orders of the finite classical groups, e.g. 
 Artin, *Geometric algebra*, Ch. III–V) and $N$ (`RedGrp.numPos`). The volume $q^{-N}\#(\cdot)$ is `RedGrp.vol` and (2.12) is
 `lam`. **Every $\lambda$ entry of Tables 1–4, (8.6) and (8.10) is then proved** from (2.12) (`table1_row2`, …, `eq8_10`).
 
-The groups (GHY's notation, p. 106–107): $GL_m$, $U_m$ (unitary, split by $\mathbb F_{q^2}$), $Sp_{2n}$, $SO_{2n+1}$,
+The groups (Gan–Hanke–Yu's notation, p. 106–107): $GL_m$, $U_m$ (unitary, split by $\mathbb F_{q^2}$), $Sp_{2n}$, $SO_{2n+1}$,
 $SO_{2n}$ / ${}^2SO_{2n}$ (split / quasi-split nonsplit), $O_{2n}$ / ${}^2O_{2n}$, $\mathrm{Res}_{\mathbb F_{q^2}/\mathbb F_q}Sp_{2n}$,
 $\mathbb Z/2\mathbb Z$, products, and the index-2 subgroups $S(O\times O')$ of Table 3. Orders:
 $\#GL_m = q^{\binom m2}\prod_{i=1}^m(q^i-1)$, $\#U_m = q^{\binom m2}\prod_{i=1}^m(q^i-(-1)^i)$,
@@ -38,7 +38,7 @@ namespace QuadFormsKB.GanHankeYu2001
 
 open Finset
 
-/-- **The finite reductive groups over $\mathbb F_q$ in GHY's tables** (GHY 2001, notation of pp. 106–107, 115):
+/-- **The finite reductive groups over $\mathbb F_q$ in Gan–Hanke–Yu's tables** (Gan–Hanke–Yu 2001, notation of pp. 106–107, 115):
 `GL m` $= GL_m$; `U m` $= U_m$ (unitary group in $m$ variables, split by $\mathbb F_{q^2}$); `Sp n` $= Sp_{2n}$;
 `SOodd n` $= SO_{2n+1}$; `SOplus n` $= SO_{2n}$ (split); `SOminus n` $= {}^2SO_{2n}$ (quasi-split, nonsplit); `Oplus n` $= O_{2n}$;
 `Ominus n` $= {}^2O_{2n}$; `resSp n` $= \mathrm{Res}_{\mathbb F_{q^2}/\mathbb F_q}Sp_{2n}$; `Z2` $= \mathbb Z/2\mathbb Z$; `prod G H` $= G\times H$;
@@ -74,7 +74,7 @@ def soEvenProd (q : ℝ) (ε : ℝ) (n : ℕ) : ℝ := if n = 0 then 1 else (q ^
 
 namespace RedGrp
 
-/-- **$N(\overline G)$, the number of positive roots over $\overline{\mathbb F}_q$** (GHY 2001, (2.7)). -/
+/-- **$N(\overline G)$, the number of positive roots over $\overline{\mathbb F}_q$** (Gan–Hanke–Yu 2001, (2.7)). -/
 @[kb "ganhankeyu2001" "(2.7), p. 104 (N(G), number of positive roots)"]
 def numPos : RedGrp → ℕ
   | .GL m => m * (m - 1) / 2
@@ -90,7 +90,7 @@ def numPos : RedGrp → ℕ
   | .prod G H => numPos G + numPos H
   | .sKer G => numPos G
 
-/-- **$q^{-N(\overline G)}\#\overline G(\mathbb F_q)$** (GHY 2001, (2.12)), with the standard orders of the finite classical
+/-- **$q^{-N(\overline G)}\#\overline G(\mathbb F_q)$** (Gan–Hanke–Yu 2001, (2.12)), with the standard orders of the finite classical
 groups (module docstring). Equivalently `card G q = q ^ numPos G * vol G q` (`card`). -/
 @[kb "ganhankeyu2001" "(2.12), p. 104 (q^{-N(G)}·#G(F_q))"]
 def vol (q : ℝ) : RedGrp → ℝ
@@ -114,7 +114,7 @@ end RedGrp
 
 open RedGrp
 
-/-- **GHY's local factor (2.12)**: $\lambda = \dfrac{q^{-N(\overline H{}^0)}\#\overline H{}^0(\mathbb F_q)}{q^{-N(\overline G)}\#\overline G(\mathbb F_q)}$. -/
+/-- **Gan–Hanke–Yu's local factor (2.12)**: $\lambda = \dfrac{q^{-N(\overline H{}^0)}\#\overline H{}^0(\mathbb F_q)}{q^{-N(\overline G)}\#\overline G(\mathbb F_q)}$. -/
 @[kb "ganhankeyu2001" "(2.12), p. 104"]
 def lam (H G : RedGrp) (q : ℝ) : ℝ := vol q H / vol q G
 
@@ -245,7 +245,7 @@ theorem vol_Ominus_one : vol q (.Ominus 1) = 2 * (q + 1) := by
 
 end VolLemmas
 
-/-! ### Table 1: odd unitary groups, $m = 2n+1$ (GHY p. 106) -/
+/-! ### Table 1: odd unitary groups, $m = 2n+1$ (Gan–Hanke–Yu p. 106) -/
 
 section Tables
 
@@ -270,7 +270,7 @@ theorem table1_row3 (hq : 1 < q) (n : ℕ) : lam (.SOodd n) (.prod .Z2 (.Sp n)) 
   rw [lam, vol_prod, vol_SOodd, vol_Z2, vol_Sp]
   field_simp
 
-/-! ### Table 2: even unitary groups, $m = 2n$ (GHY p. 107) -/
+/-! ### Table 2: even unitary groups, $m = 2n$ (Gan–Hanke–Yu p. 107) -/
 
 /-- **Table 2, row 2** ($E$ unramified, $\alpha\notin NE^\times$): $\overline G = U_{2n-1}\times U_1$, $\overline H{}^0 = U_{2n}$,
 $\lambda = (q^{2n}-1)/(q+1)$ ($n\ge1$). -/
@@ -296,7 +296,7 @@ theorem table2_row4 (hq : 1 < q) {n : ℕ} (hn : 1 ≤ n) :
   rw [Nat.add_sub_cancel, lam, vol_prod, vol_Sp, vol_Sp, vol_Ominus_one, spProd_succ]
   field_simp
 
-/-! ### Table 3: even special orthogonal groups, $m = 2n$, $n\ge2$ (GHY p. 115) -/
+/-! ### Table 3: even special orthogonal groups, $m = 2n$, $n\ge2$ (Gan–Hanke–Yu p. 115) -/
 
 /-- **Table 3, row 2** ($\delta\in F^{\times2}$, $w = -1$): $\overline G = S({}^2O_{2n-2}\times{}^2O_2)$, $\overline H{}^0 = SO_{2n}$,
 $\lambda = (q^{n-1}-1)(q^n-1)/(2(q+1))$. -/
@@ -337,7 +337,7 @@ theorem table3_row5 (hq : 1 < q) (n : ℕ) : lam (.SOodd (n - 1)) (.prod .Z2 (.S
   rw [lam, vol_prod, vol_SOodd, vol_Z2]
   field_simp
 
-/-! ### Table 4: odd special orthogonal groups, $m = 2n+1$ (GHY p. 116) -/
+/-! ### Table 4: odd special orthogonal groups, $m = 2n+1$ (Gan–Hanke–Yu p. 116) -/
 
 /-- **Table 4, row 2** ($\delta\notin A^\times$, $w = 1$): $\overline G = O_{2n}$, $\overline H{}^0 = SO_{2n+1}$, $\lambda = (q^n+1)/2$
 ($n\ge1$). -/
@@ -376,7 +376,7 @@ theorem table4_row4 (hq : 1 < q) {n : ℕ} (hn : 1 ≤ n) : lam (.SOodd n) (.Omi
   rw [e]
   field_simp
 
-/-! ### Quaternionic hermitian spaces: (8.6) and (8.10) (GHY pp. 120–121) -/
+/-! ### Quaternionic hermitian spaces: (8.6) and (8.10) (Gan–Hanke–Yu pp. 120–121) -/
 
 /-- **(8.6), $m = 2n$**: $\overline G = \mathrm{Res}_{\mathbb F_{q^2}/\mathbb F_q}Sp_{2n}$, $\overline H{}^0 = Sp_{4n}$:
 $\lambda = \prod_{r=1}^n(q^{4r-2}-1)$. -/
@@ -411,7 +411,7 @@ end Tables
 
 /-! ### The local types of the unitary and quaternionic cases, and the printed local factors of §§4, 9 -/
 
-/-- **How a finite place $v$ of $k$ behaves in the quadratic extension $L/k$** (GHY 2001, §4: $L_v = L\otimes_kk_v$ is
+/-- **How a finite place $v$ of $k$ behaves in the quadratic extension $L/k$** (Gan–Hanke–Yu 2001, §4: $L_v = L\otimes_kk_v$ is
 $k_v\times k_v$, an unramified, or a ramified quadratic extension). -/
 @[kb "ganhankeyu2001" "§4, p. 109 (L_v split, unramified or ramified)"]
 inductive LocalExt
@@ -421,7 +421,7 @@ inductive LocalExt
   deriving DecidableEq
 
 open Classical in
-/-- **$\overline G$ for the stabilizer of a maximal hermitian lattice** (GHY 2001, Tables 1–2; split places: $K_v\cong GL_m(A_v)$,
+/-- **$\overline G$ for the stabilizer of a maximal hermitian lattice** (Gan–Hanke–Yu 2001, Tables 1–2; split places: $K_v\cong GL_m(A_v)$,
 §4 p. 109). `isNorm` is "$\alpha\in NE^\times$", $\alpha$ the discriminant of $V_v$ (for $E$ unramified and $\alpha$ a unit or
 a uniformizer, $\alpha\in A^\times$ iff $\alpha\in NE^\times$, which is how Table 1 is read). Odd $m = 2n+1$: $U_{2n+1}$,
 $U_{2n}\times U_1$, $\mathbb Z/2\times Sp_{2n}$; even $m = 2n$: $U_{2n}$, $U_{2n-1}\times U_1$, $Sp_{2n}$, $Sp_{2n-2}\times{}^2O_2$. -/
@@ -435,7 +435,7 @@ def unitaryGbar (m : ℕ) (e : LocalExt) (isNorm : Prop) : RedGrp :=
     else .prod .Z2 (.Sp (m / 2))
 
 open Classical in
-/-- **$\overline H{}^0$ for the unitary group** (GHY 2001, Tables 1–2): $GL_m$ (split), $U_m$ ($E$ unramified),
+/-- **$\overline H{}^0$ for the unitary group** (Gan–Hanke–Yu 2001, Tables 1–2): $GL_m$ (split), $U_m$ ($E$ unramified),
 $SO_{2n+1}$ ($m = 2n+1$, $E$ ramified), $Sp_{2n}$ ($m = 2n$, $E$ ramified). -/
 @[kb "ganhankeyu2001" "Tables 1–2, pp. 106–107 (column H-bar^0)"]
 def unitaryHbar (m : ℕ) (e : LocalExt) : RedGrp :=
@@ -467,7 +467,7 @@ def lambdaProp45 (m : ℕ) (e : LocalExt) (isNorm : Prop) (q : ℝ) : ℝ :=
   if InS45 e isNorm then (if e = .inert then (q ^ m - 1) / (q + 1) else 1 / 2 * ((q ^ m - 1) / (q + 1))) else 1
 
 open Classical in
-/-- **GHY's (2.12) gives Proposition 4.4's $\lambda_v$** ($m = 2n+1$ odd): for the types of Table 1, the volume ratio is
+/-- **Gan–Hanke–Yu's (2.12) gives Proposition 4.4's $\lambda_v$** ($m = 2n+1$ odd): for the types of Table 1, the volume ratio is
 $\frac12$ (ramified), $(q^m+1)/(q+1)$ (unramified, $\alpha\notin NE^\times$) and $1$ otherwise. -/
 @[kb "ganhankeyu2001" "Table 1 and Proposition 4.4, pp. 106, 110"]
 theorem lam_unitary_odd {q : ℝ} (hq : 1 < q) (n : ℕ) (e : LocalExt) (isNorm : Prop) :
@@ -488,7 +488,7 @@ theorem lam_unitary_odd {q : ℝ} (hq : 1 < q) (n : ℕ) (e : LocalExt) (isNorm 
     exact table1_row3 hq n
 
 open Classical in
-/-- **GHY's (2.12) gives Proposition 4.5's $\lambda_v$** ($m = 2n$, $n\ge1$): for the types of Table 2. -/
+/-- **Gan–Hanke–Yu's (2.12) gives Proposition 4.5's $\lambda_v$** ($m = 2n$, $n\ge1$): for the types of Table 2. -/
 @[kb "ganhankeyu2001" "Table 2 and Proposition 4.5, pp. 107, 110"]
 theorem lam_unitary_even {q : ℝ} (hq : 1 < q) {n : ℕ} (hn : 1 ≤ n) (e : LocalExt) (isNorm : Prop) :
     lam (unitaryHbar (2 * n) e) (unitaryGbar (2 * n) e isNorm) q = lambdaProp45 (2 * n) e isNorm q := by
@@ -510,7 +510,7 @@ theorem lam_unitary_even {q : ℝ} (hq : 1 < q) {n : ℕ} (hn : 1 ≤ n) (e : Lo
       simp
 
 open Classical in
-/-- **$\overline G$ for the stabilizer of a maximal quaternionic hermitian lattice** (GHY 2001, (8.5); at $v\notin S_D$ the
+/-- **$\overline G$ for the stabilizer of a maximal quaternionic hermitian lattice** (Gan–Hanke–Yu 2001, (8.5); at $v\notin S_D$ the
 stabilizer is hyperspecial, $\overline G = Sp_{2m}$, §9 p. 121): $\mathrm{Res}\,Sp_{2n}$ ($m = 2n$),
 $\mathrm{Res}\,Sp_{2n}\times U_1$ ($m = 2n+1$) at $v\in S_D$. -/
 @[kb "ganhankeyu2001" "(8.5), p. 120; §9, p. 121"]
@@ -518,7 +518,7 @@ def quatGbar (m : ℕ) (ram : Prop) : RedGrp :=
   if ram then (if Even m then .resSp (m / 2) else .prod (.resSp (m / 2)) (.U 1)) else .Sp m
 
 open Classical in
-/-- **$\overline G$ for the stabilizer of a maximal integral quaternionic hermitian lattice** (GHY 2001, (8.9); hyperspecial
+/-- **$\overline G$ for the stabilizer of a maximal integral quaternionic hermitian lattice** (Gan–Hanke–Yu 2001, (8.9); hyperspecial
 $Sp_{2m}$ at $v\notin S_D$, §9 p. 122): $U_m$ at $v\in S_D$. -/
 @[kb "ganhankeyu2001" "(8.9), p. 121; §9, p. 122"]
 def quatIntGbar (m : ℕ) (ram : Prop) : RedGrp := if ram then .U m else .Sp m
@@ -535,7 +535,7 @@ def lambdaProp93 (m : ℕ) (q : ℝ) : ℝ :=
 def lambdaProp94 (m : ℕ) (q : ℝ) : ℝ := ∏ r ∈ range m, (q ^ (r + 1) + (-1) ^ (r + 1))
 
 open Classical in
-/-- **GHY's (2.12) gives Proposition 9.3's $\lambda_v$**, and $\lambda_v = 1$ at $v\notin S_D$. -/
+/-- **Gan–Hanke–Yu's (2.12) gives Proposition 9.3's $\lambda_v$**, and $\lambda_v = 1$ at $v\notin S_D$. -/
 @[kb "ganhankeyu2001" "(8.6) and Proposition 9.3, pp. 121–122"]
 theorem lam_quat {q : ℝ} (hq : 1 < q) (m : ℕ) (ram : Prop) :
     lam (.Sp m) (quatGbar m ram) q = if ram then lambdaProp93 m q else 1 := by
@@ -552,7 +552,7 @@ theorem lam_quat {q : ℝ} (hq : 1 < q) (m : ℕ) (ram : Prop) :
   · simp [quatGbar, hr, lam_self hq]
 
 open Classical in
-/-- **GHY's (2.12) gives Proposition 9.4's $\lambda_v$**, and $\lambda_v = 1$ at $v\notin S_D$. -/
+/-- **Gan–Hanke–Yu's (2.12) gives Proposition 9.4's $\lambda_v$**, and $\lambda_v = 1$ at $v\notin S_D$. -/
 @[kb "ganhankeyu2001" "(8.10) and Proposition 9.4, pp. 121–122"]
 theorem lam_quatInt {q : ℝ} (hq : 1 < q) (m : ℕ) (ram : Prop) :
     lam (.Sp m) (quatIntGbar m ram) q = if ram then lambdaProp94 m q else 1 := by

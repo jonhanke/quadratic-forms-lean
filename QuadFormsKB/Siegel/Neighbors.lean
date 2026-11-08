@@ -5,23 +5,23 @@
 lattices are $\mathbb{Z}$-submodules of $\mathbb{Q}^n$ (`Submodule ℤ (Fin n → ℚ)`), the base lattice is $L = \mathbb{Z}^n$
 (`stdLat`), so $Q$ itself is the Gram form of $L$ in the standard basis.
 
-**Defines** (AWS notes `hanke2011aws`, Def. 1.10.1, p. 22) the **$p$-neighbours** of $L$ (`IsNeighbor`): lattices $L'$
+**Defines** (Arizona Winter School notes `hanke2011aws`, Def. 1.10.1, p. 22) the **$p$-neighbours** of $L$ (`IsNeighbor`): lattices $L'$
 with $[L : L \cap L'] = [L' : L \cap L'] = p$ on which $Q$ is $\mathbb{Z}$-valued; and the explicit neighbour
-(`nbLat`, AWS §1.10.1, Thm. 1.10.2)
+(`nbLat`, Arizona Winter School §1.10.1, Thm. 1.10.2)
 $$L(\vec{v}) = L_{\vec{v}} + \mathbb{Z}\tfrac{1}{p}\vec{v}, \qquad L_{\vec{v}} = \{\vec{x} \in L : p \mid B(\vec{x}, \vec{v})\},$$
 for $\vec{v} \in \mathbb{Z}^n$ with $\vec{v} \not\equiv 0$, $p^2 \mid Q(\vec{v})$ ($B(\vec{x}, \vec{y}) = \vec{x}^{\mathsf T} H \vec{y}$, $H$ the Hessian).
 
 **Proves**, for an odd prime $p \nmid \det H$:
 - `isNeighbor_nbLat`: $L(\vec{v})$ is a $p$-neighbour;
-- `exists_eq_nbLat` (AWS Thm. 1.10.2): every $p$-neighbour is some $L(\vec{v})$;
+- `exists_eq_nbLat` (Arizona Winter School Thm. 1.10.2): every $p$-neighbour is some $L(\vec{v})$;
 - `mem_nbLat_iff`: $\tfrac1p\vec{y} \in L(\vec{v}) \iff \vec{y} \equiv k\vec{v} \pmod p$ for some $k$ and $p^2 \mid B(\vec{y}, \vec{v})$; so
   $L(\vec{v})$ depends only on the line $\mathbb{F}_p\bar{\vec{v}}$ (`nbLat_eq_of_line`), and different isotropic lines give different
   neighbours (`line_eq_of_nbLat_eq`);
 - `exists_lift`: every nonzero isotropic $\bar{\vec{v}} \in \mathbb{F}_p^n$ lifts to $\vec{v}$ with $p^2 \mid Q(\vec{v})$.
 
-So the $p$-neighbours of $L$ are in bijection with the isotropic lines of $L/pL$ (AWS Thm. 1.10.4; `Siegel/EichlerCommutation.lean`).
+So the $p$-neighbours of $L$ are in bijection with the isotropic lines of $L/pL$ (Arizona Winter School Thm. 1.10.4; `Siegel/EichlerCommutation.lean`).
 
-*Remark (AWS Def. 1.10.1).* The notes also require $H(L, L') \not\subseteq \mathbb{Z}$. It is omitted here: for $p \nmid \det H$ it
+*Remark (Arizona Winter School Def. 1.10.1).* The notes also require $H(L, L') \not\subseteq \mathbb{Z}$. It is omitted here: for $p \nmid \det H$ it
 is automatic ($H(L, L') \subseteq \mathbb{Z}$ would put $L'$ in the dual lattice $L^\#$, which equals $L$ locally at $p$, while $L'$
 agrees with $L$ away from $p$, so $L' \subseteq L$, contradicting $[L' : L \cap L'] = p$). This argument is not formalized; with
 it omitted, the definition and the characterization `exists_eq_nbLat` are what is used.
@@ -128,7 +128,7 @@ end Basic
 
 /-! ### Neighbours -/
 
-/-- **$p$-neighbours of $L = \mathbb{Z}^n$** (AWS notes, Def. 1.10.1, p. 22): a lattice $L' \subset \mathbb{Q}^n$ with
+/-- **$p$-neighbours of $L = \mathbb{Z}^n$** (Arizona Winter School notes, Def. 1.10.1, p. 22): a lattice $L' \subset \mathbb{Q}^n$ with
 $$[L : L \cap L'] = p, \qquad [L' : L \cap L'] = p, \qquad Q(L') \subseteq \mathbb{Z}.$$
 Fields: `relIndex_std` ($[L : L \cap L'] = p$; Mathlib's `relIndex H K` is $[K : H \cap K]$), `relIndex_self`
 ($[L' : L \cap L'] = p$), `integral` ($Q(\vec{x}) \in \mathbb{Z}$ for $\vec{x} \in L'$). The notes' extra condition
@@ -140,7 +140,7 @@ structure IsNeighbor (Q : QuadForm ℤ n) (p : ℕ) (L' : Submodule ℤ (Fin n �
   integral : ∀ x ∈ L', ∃ z : ℤ, Q.evalIn ℚ x = z
 
 /-- **The explicit $p$-neighbour** $L(\vec{v}) = L_{\vec{v}} + \mathbb{Z}\frac1p\vec{v}$, $L_{\vec{v}} = \{\vec{y} \in \mathbb{Z}^n : p \mid B(\vec{y}, \vec{v})\}$
-(AWS notes, §1.10.1, Thm. 1.10.2, p. 22): the vectors $\vec{y} + \frac{k}{p}\vec{v}$ with $\vec{y} \in \mathbb{Z}^n$, $p \mid B(\vec{y}, \vec{v})$,
+(Arizona Winter School notes, §1.10.1, Thm. 1.10.2, p. 22): the vectors $\vec{y} + \frac{k}{p}\vec{v}$ with $\vec{y} \in \mathbb{Z}^n$, $p \mid B(\vec{y}, \vec{v})$,
 $k \in \mathbb{Z}$. A $p$-neighbour when $\vec{v} \not\equiv 0 \pmod p$ and $p^2 \mid Q(\vec{v})$ (`isNeighbor_nbLat`). -/
 @[kb "hanke2011aws" "§1.10.1, Thm. 1.10.2, p. 22"]
 def nbLat (Q : QuadForm ℤ n) (p : ℕ) (v : Fin n → ℤ) : Submodule ℤ (Fin n → ℚ) where
@@ -512,14 +512,14 @@ theorem relIndex_std_nbLat {v : Fin n → ℤ} (hv : (p : ℤ) ^ 2 ∣ Q.eval v)
         have := congrArg (fun u => c⁻¹ • u) this
         simpa [smul_smul, inv_mul_cancel₀ hc0] using this)
 
-/-- **$L(\vec{v})$ is a $p$-neighbour of $\mathbb{Z}^n$** (AWS notes, §1.10.1, proof of Thm. 1.10.2, "by reversing our
+/-- **$L(\vec{v})$ is a $p$-neighbour of $\mathbb{Z}^n$** (Arizona Winter School notes, §1.10.1, proof of Thm. 1.10.2, "by reversing our
 reasoning"): for $p \nmid \det H$, $\vec{v} \not\equiv 0 \pmod p$ and $p^2 \mid Q(\vec{v})$. -/
 @[kb "hanke2011aws" "§1.10.1, Thm. 1.10.2, p. 22"]
 theorem isNeighbor_nbLat (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) {v : Fin n → ℤ}
     (hv : (p : ℤ) ^ 2 ∣ Q.eval v) (hv0 : red p v ≠ 0) : IsNeighbor Q p (nbLat Q p v) :=
   ⟨relIndex_nbLat_std hdet hv hv0, relIndex_std_nbLat hv hv0, nbLat_integral hv⟩
 
-/-- **Every $p$-neighbour is explicit** (AWS notes, §1.10.1, Thm. 1.10.2, p. 22): if $p \nmid \det H$ and $L'$ is a
+/-- **Every $p$-neighbour is explicit** (Arizona Winter School notes, §1.10.1, Thm. 1.10.2, p. 22): if $p \nmid \det H$ and $L'$ is a
 $p$-neighbour of $\mathbb{Z}^n$, then $L' = L(\vec{v})$ for some $\vec{v} \in \mathbb{Z}^n$ with $\vec{v} \not\equiv 0 \pmod p$ and
 $p^2 \mid Q(\vec{v})$ (namely $\vec{v} = p\vec{w}$ for any $\vec{w} \in L' \setminus \mathbb{Z}^n$).
 
@@ -634,7 +634,7 @@ theorem exists_lift (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) {vb : Fin n → ZMod
 
 end Lattice
 
-/-! ### The neighbours as a finite set, indexed by isotropic lines (AWS Thm. 1.10.4) -/
+/-! ### The neighbours as a finite set, indexed by isotropic lines (Arizona Winter School Thm. 1.10.4) -/
 
 section Count
 
@@ -754,7 +754,7 @@ theorem sum_neighbors (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) {M : Type*} [AddCo
   rw [Finset.sum_congr rfl fun wb hw => by rw [(Finset.mem_filter.mp hw).2], Finset.sum_const,
     card_fibre_nbOf hdet hv]
 
-/-- **The number of $p$-neighbours** (AWS Thm. 1.10.4, p. 23): $(p - 1)\cdot\#\{L'\} = \#\{\bar{\vec{v}} \ne 0 : \bar Q(\bar{\vec{v}}) = 0\}$,
+/-- **The number of $p$-neighbours** (Arizona Winter School Thm. 1.10.4, p. 23): $(p - 1)\cdot\#\{L'\} = \#\{\bar{\vec{v}} \ne 0 : \bar Q(\bar{\vec{v}}) = 0\}$,
 i.e. the neighbours correspond to the isotropic lines of $\mathbb{F}_p^n$. -/
 @[kb "hanke2011aws" "Thm. 1.10.4, p. 23"]
 theorem card_neighbors (hdet : ¬ (p : ℤ) ∣ Q.hessian.det) :
@@ -770,7 +770,7 @@ theorem card_isoSet : (isoSet Q p).card + 1 = (Finset.univ.filter fun y => qv Q 
 
 /-- **The number of $p$-neighbours for $n = 4$** ($p$ odd, $p \nmid \det H$, $\varepsilon = \left(\frac{\det H}{p}\right)$):
 $$\#\{p\text{-neighbours of } \mathbb{Z}^4\} = p^2 + p + 1 + \varepsilon p = \begin{cases} (p+1)^2 & \varepsilon = 1, \\ p^2 + 1 & \varepsilon = -1. \end{cases}$$
-*Erratum (AWS notes, p. 23):* the notes say the $p$-neighbour graph is "$p^{n-2}$-regular" for $p \nmid 2\det L$; the
+*Erratum (Arizona Winter School notes, p. 23):* the notes say the $p$-neighbour graph is "$p^{n-2}$-regular" for $p \nmid 2\det L$; the
 number of $p$-neighbours is the number of isotropic lines, $\frac{p^{n-1}-1}{p-1} + \varepsilon p^{n/2-1}$ for even $n$
 ($\sim p^{n-2}$, but not equal to it). -/
 @[kb "hanke2011aws" "Thm. 1.10.4 and the remark after it, p. 23"]

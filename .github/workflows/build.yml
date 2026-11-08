@@ -13,6 +13,7 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 360
     steps:
       - name: Free disk space (the library build and the comparator exports need it)
         run: |
@@ -36,10 +37,44 @@ jobs:
           sudo swapon /swapfile
           free -h
 
-      - name: Build (with the Mathlib cache)
+      # Our own cache around the build (not lean-action's): its save step runs only after a finished build, so a
+      # run stopped by GitHub's 6-hour limit would bank nothing and every later run would start cold again.
+      # Same key scheme as lean-action: toolchain + manifest + commit; fall back to the newest earlier build.
+      - name: Restore the previous build
+        uses: actions/cache/restore@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-
+
+      - name: Set up Lean and the Mathlib cache (no build yet)
         uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
         with:
           use-mathlib-cache: true
+          use-github-cache: false
+          build: false
+
+      # Time-boxed so that the save below always gets to run: if the build is cut off, re-run the workflow and it
+      # continues from the saved files.
+      - name: Build
+        id: build
+        timeout-minutes: 320
+        continue-on-error: true
+        run: lake build
+
+      - name: Save the build (also after a cut-off build)
+        if: always()
+        uses: actions/cache/save@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+
+      - name: Stop if the build did not finish
+        if: steps.build.outcome != 'success'
+        run: |
+          echo "The build did not finish (failed or cut off at 5 h 20 min). Its progress is saved: re-run this workflow to continue."
+          exit 1
 
       - name: Check the axioms of the headline theorems
         shell: bash

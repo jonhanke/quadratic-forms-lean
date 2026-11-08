@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.6: constructing the integral over $\Gamma\backslash G$
+# Hanke, Arizona Winter School 2009 notes, §4.6: constructing the integral over $\Gamma\backslash G$
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.4, (4.3), and §4.6,
 (4.4)–(4.11) (pp. 61–64). This file **constructs** the integral over $\Gamma\backslash G$ assumed by the

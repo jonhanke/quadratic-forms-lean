@@ -13,7 +13,7 @@ $E$ = `omearaE n` of §106E.
   exceptional spot $2$). It is proved in `Sec106Two.lean` (`omeara106_2_holds`, by strong approximation away from
   $2$); the conditional statements below are made unconditional in `Sec106Rank9.lean`.
 * `OMeara106_3` (named statement, Proposition 106:3, p. 326): for $8 \mid n$ every unimodular lattice has even and odd
-  unimodular neighbours. O'Meara's proof uses the dyadic classification (93:18); not proved here.
+  unimodular neighbours. O'Meara's proof uses the dyadic classification (93:18); proved in `Sec106Three.lean`.
 
 **Proves**
 * Proposition 106:4 (`omeara106_4`), unconditionally and by a different proof (see its docstring): a chain of
@@ -56,8 +56,9 @@ non-zero) and let $L$ be a unimodular lattice on $V = I_n$. Then there are an ev
 adjacent to $L$.
 
 O'Meara's proof: $V_2$ is an orthogonal sum of hyperbolic planes, the local classification (Example 93:18) gives the
-shape of $L_2$, a suitable local lattice $K_2$ is chosen and glued with $L_p$ ($p$ odd) by 81:14. It is not proved here
-(it needs the dyadic theory of §93) and is not used below: Proposition 106:4 is proved without it. -/
+shape of $L_2$, a suitable local lattice $K_2$ is chosen and glued with $L_p$ ($p$ odd) by 81:14. It is not used below
+(Proposition 106:4 is proved without it). PROVED in `Sec106Three.lean` (`omeara106_3_holds`, through 93:29 at $2$ and
+explicit global neighbours instead of 93:18). -/
 @[kb "omeara1963" "§106B, 106:3, p. 326"]
 structure OMeara106_3 : Prop where
   /-- Even and odd unimodular neighbours exist when $8 \mid n$. -/

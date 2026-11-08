@@ -1,5 +1,5 @@
 /-
-# Hanke, AWS 2009 notes, §4.3: the adelic exponential is trivial on $\mathbb{Q}$
+# Hanke, Arizona Winter School 2009 notes, §4.3: the adelic exponential is trivial on $\mathbb{Q}$
 
 J. Hanke, *Quadratic Forms and Automorphic Forms* (bibkey `hanke2011aws`), §4.3, p. 59. The list
 D1, D2, … of the notes' derivations is in `AWS/Overview.lean`; this file is **D13**.
