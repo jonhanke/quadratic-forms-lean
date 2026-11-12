@@ -1,5 +1,5 @@
 /-
-# Places of a number field and local conditions (groundwork for #5)
+# Places of a number field and local conditions
 
 For a number field $F$, the **places** of $F$ are its infinite places $w$ (archimedean
 absolute values; Mathlib's `NumberField.InfinitePlace F`, completion $F_w \cong \mathbb{R}$ or

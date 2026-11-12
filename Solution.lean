@@ -1038,5 +1038,155 @@ theorem watson_twoClasses {n : ℕ} (hn : 11 < n) (Q : QuadForm ℤ n) (hQ : Int
 
 end ClassNumbers
 
+/-! ## Quaternion orders
+
+Theorems of J. Voight, *Quaternion Algebras* (2021): maximal orders and their discriminant, the correspondence between
+ternary quadratic forms and quaternion orders, and the Eichler mass formula for maximal orders. -/
+
+section QuaternionOrders
+
+/-- **Maximal orders are the orders of discriminant equal to the discriminant of the algebra** (J. Voight, *Quaternion Algebras*, Graduate Texts in Mathematics 288, Springer, 2021,
+Theorem 15.5.5, p. 249), over every number field F. Let a, b be nonzero elements of the ring of integers 𝓞_F,
+B = (a, b)_F the quaternion algebra with i² = a, j² = b, ij = −ji (`QuatOrder.QuatF F a b`), and O an 𝓞_F-order
+of B (`QuatOrder.IsOrder`: a finitely generated 𝓞_F-submodule and subring spanning B over F) that is free of
+rank 4 as an 𝓞_F-module (automatic when 𝓞_F is a principal ideal domain). Then O is a maximal order
+(`QuatOrder.IsMaximalOrder`: not properly contained in another order) if and only if its reduced discriminant
+is the product of the finite primes at which B ramifies (`QuatOrder.ramFin`): `Voight.HasDiscrd O 𝔇` says that
+for every 𝓞_F-basis e₀, …, e₃ of O the determinant det(trd(e_i e_j)) of the reduced trace form generates the
+ideal 𝔇². -/
+theorem voight_maximal_iff_discriminant {F : Type} [Field F] [NumberField F] (a b : 𝓞 F) (ha : a ≠ 0)
+    (hb : b ≠ 0) (O : Subalgebra (𝓞 F) (QuatOrder.QuatF F a b)) (hO : QuatOrder.IsOrder (𝓞 F) F O)
+    (hfree : Nonempty (Module.Basis (Fin 4) (𝓞 F) (Subalgebra.toSubmodule O))) :
+    QuatOrder.IsMaximalOrder (𝓞 F) F O ↔
+      Voight.HasDiscrd O (∏ v ∈ QuatOrder.ramFin ha hb, v.asIdeal) :=
+  QuadFormsKB.Voight.Disc.maximalIffDiscriminant F a b ha hb O hO hfree
+
+/-- **Ternary quadratic forms and quaternion orders** (J. Voight, *Quaternion Algebras*, Graduate Texts in Mathematics 288, Springer, 2021, Main Theorem 22.4.1, p. 364, due to
+Gross and Lucianovic), for a principal ideal domain R whose fraction field F has 2 ≠ 0. For a ternary form
+Q = ∑_{i ≤ j} c_ij x_i x_j over R (`QuadForm R 3`), `Voight.Clf0 Q` is its even Clifford algebra and
+`Voight.ternaryDisc Q` its half-discriminant 4c₀₀c₁₁c₂₂ + c₁₂c₀₂c₀₁ − c₀₀c₁₂² − c₁₁c₀₂² − c₂₂c₀₁²; Q is
+nondegenerate when this is nonzero. A quaternion R-order (`Voight.IsQuaternionOrder R F O`) is an R-algebra that
+is finitely generated and torsion-free as an R-module and whose extension F ⊗_R O is a quaternion algebra over F.
+Forms Q, Q' are similar (`Voight.Similar`) if Q' is isometric over R to u·Q for a unit u of R. The three
+conjuncts: the even Clifford algebra of a nondegenerate form is a quaternion order; every quaternion order is
+isomorphic to one of them; and two of them are isomorphic exactly when the forms are similar. Together:
+Q ↦ Clf⁰(Q) is a bijection from similarity classes of nondegenerate ternary forms onto isomorphism classes of
+quaternion R-orders. -/
+theorem voight_evenClifford_correspondence (R F : Type) [CommRing R] [IsDomain R] [IsPrincipalIdealRing R]
+    [Field F] [Algebra R F] [IsFractionRing R F] (h2 : (2 : F) ≠ 0) :
+    (∀ Q : QuadForm R 3, Voight.ternaryDisc Q ≠ 0 → Voight.IsQuaternionOrder R F (Voight.Clf0 Q)) ∧
+    (∀ (O : Type) [Ring O] [Algebra R O], Voight.IsQuaternionOrder R F O →
+      ∃ Q : QuadForm R 3, Voight.ternaryDisc Q ≠ 0 ∧ Nonempty (O ≃ₐ[R] Voight.Clf0 Q)) ∧
+    (∀ Q Q' : QuadForm R 3, Voight.ternaryDisc Q ≠ 0 → Voight.ternaryDisc Q' ≠ 0 →
+      (Nonempty (Voight.Clf0 Q ≃ₐ[R] Voight.Clf0 Q') ↔ Voight.Similar Q Q')) :=
+  have h := QuadFormsKB.Voight.evenCliffordCorrespondence_of_two_ne_zero (R := R) h2
+  ⟨h.isQuaternionOrder, fun O _ _ => h.exists_clf0 O, h.nonempty_equiv_iff_similar⟩
+
+/-- **The Eichler mass formula for maximal orders over a totally real number field** (J. Voight, *Quaternion Algebras*, Graduate Texts in Mathematics 288, Springer, 2021,
+Main Theorem 26.1.5 and Theorem 26.1.12 for level one, p. 432–433). Let F be a totally real number field of
+degree n = [F : ℚ] whose ring of integers 𝓞_F is a principal ideal domain, a, b nonzero in 𝓞_F with
+B = (a, b)_F totally definite (`QuatOrder.IsTotDefinite a b`: σ(a) < 0 and σ(b) < 0 for every real embedding σ),
+and O a maximal order of B containing 𝓞_F⟨i, j⟩ (`QuatOrder.stdOrder F a b ≤ O`). Then
+mass(O) = ∑_{[J]} 1/[O_R(J)^× : 𝓞_F^×] (`Voight.classMass O`: the sum over the classes of nonzero left
+ideals J of O under J ~ Jβ, β ∈ B^×, of the inverse index of 𝓞_F^× in the unit group of the right order of J)
+equals 2 ζ_F(2) (2π)^{−2n} |d_F|^{3/2} h_F ∏_{𝔭 | 𝔇} (N𝔭 − 1), with ζ_F the Dedekind zeta function
+(`NFEuler.dedekindZetaR`), d_F the discriminant, h_F the class number and 𝔇 the product of the finite ramified
+primes of B. Moreover (so that every term is meaningful) there are finitely many classes and every index is
+finite. The containment O ⊇ 𝓞_F⟨i, j⟩ and the principal ideal domain hypothesis are restrictions of this
+formalization; Voight's theorem holds for every maximal order and every class number. -/
+theorem eichlerMass_totallyReal {F : Type} [Field F] [NumberField F] [IsTotallyReal F]
+    [IsPrincipalIdealRing (𝓞 F)] {a b : 𝓞 F} (ha : a ≠ 0) (hb : b ≠ 0) (hdef : QuatOrder.IsTotDefinite a b)
+    {O : Subalgebra (𝓞 F) (QuatOrder.QuatF F a b)} (hO : QuatOrder.IsMaximalOrder (𝓞 F) F O)
+    (hstd : QuatOrder.stdOrder F a b ≤ O) :
+    Voight.classMass O = 2 * NFEuler.dedekindZetaR F 2 / (2 * Real.pi) ^ (2 * Module.finrank ℚ F) *
+        |(NumberField.discr F : ℝ)| ^ (3 / 2 : ℝ) * (NumberField.classNumber F : ℝ) *
+        ∏ v ∈ QuatOrder.ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1) ∧
+      Finite (Quotient (QuatOrder.idealSetoid O)) ∧
+      ∀ J : Ideal O, J ≠ ⊥ → (QuatOrder.centralUnitsIn (R := 𝓞 F) J).FiniteIndex :=
+  ⟨QuadFormsKB.Voight.Wave3.classMass_eq_maximal ha hb hdef hO hstd,
+    QuadFormsKB.QuatOrder.Gen.finite_classes ha hb hO
+      (fun _ hx => QuadFormsKB.QuatOrder.eq_zero_of_nrd_eq_zero hdef hx),
+    fun _ hJ => QuadFormsKB.QuatOrder.finiteIndex_centralUnitsIn hdef hO.1 hstd hJ⟩
+
+/-- **The Eichler mass formula over ℚ** (J. Voight, *Quaternion Algebras*, Graduate Texts in Mathematics 288, Springer, 2021, Theorem 25.1.1 = Theorem 25.3.15, p. 415 and 422).
+Let a, b be nonzero integers (in 𝓞_ℚ) with B = (a, b)_ℚ definite (a < 0 and b < 0) and O a maximal order of B
+containing ℤ⟨i, j⟩. Then mass(O) = ∑_{[J]} 1/[O_R(J)^× : {±1}] (`Voight.classMass O`, as in
+`eichlerMass_totallyReal`) equals φ(D)/12 = (1/12) ∏_{p | D} (p − 1), the product over the primes at which B
+ramifies; there are finitely many classes and every index is finite. The containment O ⊇ ℤ⟨i, j⟩ is a
+restriction of this formalization. -/
+theorem eichlerMass_rat {a b : 𝓞 ℚ} (ha : a ≠ 0) (hb : b ≠ 0) (hdef : QuatOrder.IsTotDefinite a b)
+    {O : Subalgebra (𝓞 ℚ) (QuatOrder.QuatF ℚ a b)} (hO : QuatOrder.IsMaximalOrder (𝓞 ℚ) ℚ O)
+    (hstd : QuatOrder.stdOrder ℚ a b ≤ O) :
+    Voight.classMass O = (∏ v ∈ QuatOrder.ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1)) / 12 ∧
+      Finite (Quotient (QuatOrder.idealSetoid O)) ∧
+      ∀ J : Ideal O, J ≠ ⊥ → (QuatOrder.centralUnitsIn (R := 𝓞 ℚ) J).FiniteIndex :=
+  ⟨QuadFormsKB.Voight.Wave3.classMass_eq_rat_maximal ha hb hdef hO hstd,
+    QuadFormsKB.QuatOrder.Gen.finite_classes ha hb hO
+      (fun _ hx => QuadFormsKB.QuatOrder.eq_zero_of_nrd_eq_zero hdef hx),
+    fun _ hJ => QuadFormsKB.QuatOrder.finiteIndex_centralUnitsIn hdef hO.1 hstd hJ⟩
+
+end QuaternionOrders
+
+/-! ## Even unimodular lattices
+
+G. Chenevier and J. Lannes (2019), §1.1: positive definite even unimodular lattices exist exactly in the dimensions
+divisible by 8, and there are finitely many classes in each dimension. -/
+
+section EvenUnimodular
+
+/-- **Even unimodular lattices: dimensions divisible by 8, finitely many classes** (G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*, Ergebnisse der Mathematik und ihrer Grenzgebiete (3. Folge) 69, Springer, 2019, §1.1, p. 1,
+Scholium 2.2.2). An even unimodular lattice of dimension n is here a positive definite integer-valued form Q in
+n variables whose Gram matrix (the Hessian of Q, with even diagonal) has determinant 1
+(`ChenevierLannes.IsEvenUnimodular Q`). Such a form exists if and only if 8 divides n, and the set X_n of their
+GL_n(ℤ)-classes (`Siegel.classOf Q`) is finite. -/
+theorem evenUnimodular_classes (n : ℕ) :
+    ((∃ Q : QuadForm ℤ n, ChenevierLannes.IsEvenUnimodular Q) ↔ 8 ∣ n) ∧
+      {c | ∃ Q : QuadForm ℤ n, ChenevierLannes.IsEvenUnimodular Q ∧ Siegel.classOf Q = c}.Finite :=
+  ⟨⟨fun ⟨Q, hQ⟩ => QuadFormsKB.ChenevierLannes.classSet_nonempty_iff.1 ⟨_, Q, hQ, rfl⟩,
+    fun h => (QuadFormsKB.ChenevierLannes.classSet_nonempty_iff.2 h).elim fun _ ⟨Q, hQ, _⟩ => ⟨Q, hQ⟩⟩,
+    QuadFormsKB.ChenevierLannes.classSet_finite n⟩
+
+end EvenUnimodular
+
+/-! ## Sums of squares and polygonal numbers
+
+Theorems of C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers* (2005): Jacobi's four-squares
+formula, Cauchy's polygonal number theorem and Sprague's theorem on sums of distinct squares. -/
+
+section SumsOfSquares
+
+/-- **Jacobi's four-squares formula** (C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*, Chapman & Hall/CRC, 2005, Theorem 2.6, p. 29). For n ≥ 1, the number
+r₄(n) = #{x ∈ ℤ⁴ : x₀² + x₁² + x₂² + x₃² = n} (`Siegel.repNum (Siegel.sumSq 4) n`) is 8σ(n) for n odd and 24σ(m)
+for n even, where σ is the sum of divisors (`ArithmeticFunction.sigma 1`) and m = n / 2^{v₂(n)} is the largest odd
+divisor of n (`ordCompl[2] n`). Moreover the set of such x is finite. -/
+theorem jacobi_fourSquares (n : ℕ) (hn : 0 < n) :
+    Siegel.repNum (Siegel.sumSq 4) n =
+        (if Odd n then 8 * ArithmeticFunction.sigma 1 n else 24 * ArithmeticFunction.sigma 1 (ordCompl[2] n)) ∧
+      (Siegel.repSet (Siegel.sumSq 4) n).Finite :=
+  ⟨QuadFormsKB.MorenoWagstaff.theorem26 n hn, IntQF.PosDef.repSet_finite Siegel.posDef_sumSq _⟩
+
+/-- **Cauchy's polygonal number theorem** (C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*, Chapman & Hall/CRC, 2005, Theorem 2.9, p. 54). For m ≥ 3, every positive
+integer n is the sum of four polygonal numbers of order m + 2 and a number r ≤ m − 2 (that is, r further
+polygonal numbers equal to 1): n = p(t) + p(u) + p(v) + p(w) + r with p(k) = k + m·k(k − 1)/2
+(`MorenoWagstaff.polygonal (m + 2) k`). So n is a sum of m + 2 polygonal numbers of order m + 2, at most four of
+them different from 0 and 1. -/
+theorem cauchy_polygonalNumbers (m n : ℕ) (hm : 3 ≤ m) (hn : 0 < n) :
+    ∃ t u v w r : ℕ, r ≤ m - 2 ∧
+      n = MorenoWagstaff.polygonal (m + 2) t + MorenoWagstaff.polygonal (m + 2) u +
+        MorenoWagstaff.polygonal (m + 2) v + MorenoWagstaff.polygonal (m + 2) w + r :=
+  QuadFormsKB.MorenoWagstaff.theorem29 m n hm hn
+
+/-- **Sprague's theorem: sums of distinct squares** (R. Sprague, 1948; C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*, Chapman & Hall/CRC, 2005, §8.4, p. 328). A positive
+integer is a sum of distinct positive squares if and only if it is not one of the 31 numbers 2, 3, 6, 7, 8, 11,
+12, 15, 18, 19, 22, 23, 24, 27, 28, 31, 32, 33, 43, 44, 47, 48, 60, 67, 72, 76, 92, 96, 108, 112, 128; in
+particular every integer greater than 128 is. (*Erratum:* the book says 32 exceptions; its list has 31.) -/
+theorem sprague_distinctSquares (n : ℕ) (hn : 0 < n) :
+    (∃ S : Finset ℕ, (∀ k ∈ S, 0 < k) ∧ ∑ k ∈ S, k ^ 2 = n) ↔
+      n ∉ ({2, 3, 6, 7, 8, 11, 12, 15, 18, 19, 22, 23, 24, 27, 28, 31, 32, 33, 43, 44, 47, 48, 60, 67, 72, 76, 92,
+      96, 108, 112, 128} : Finset ℕ) :=
+  QuadFormsKB.MorenoWagstaff.spragueTheorem n hn
+
+end SumsOfSquares
+
 
 end QuadFormsKB.Headlines
