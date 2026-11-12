@@ -28,6 +28,11 @@ project:
     number fields in corrected general form, Conway-Sloane's Theorem 18 at every prime, O'Meara 93:28 and
     93:29, and Lemmas 2 and 4 of Conway-Sloane 1988. Release 0.4.1 adds as a headline Watson's theorem (1963):
     every genus of positive definite integer-valued forms in n > 11 variables has at least two classes.
+    Release 0.5.0 adds five books with statement maps (Voight 2021, Shimura 2004, Kitaoka 1993,
+    Chenevier-Lannes 2019, Moreno-Wagstaff 2005) and eight headlines: Voight's Theorem 15.5.5 and Main Theorem
+    22.4.1, the Eichler mass formula for maximal orders over Q and over totally real fields, even unimodular
+    lattices exist exactly in dimensions divisible by 8, Jacobi's four-squares formula, Cauchy's polygonal
+    number theorem and Sprague's theorem on sums of distinct squares.
     Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
@@ -167,7 +172,7 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 48 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Formalized (the 56 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
     Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
     rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
@@ -198,7 +203,13 @@ status:
     false without the hypothesis); Conway-Sloane Ch. 15 Theorem 18 at every prime; O'Meara 93:28 and 93:29 over
     completions of number fields; Conway-Sloane 1988 Lemmas 2 and 4. Release 0.4.1 (1 new statement): Watson
     1963, Theorem 1 for n >= 12 (every genus of positive definite integer-valued forms in n > 11 variables has at
-    least two classes; Watson's case n = 11 is not included). Not formalized: the Siegel-Weil
+    least two classes; Watson's case n = 11 is not included). Release 0.5.0 (8 new statements): Voight 2021
+    Theorem 15.5.5 for orders free of rank 4 over every number field; Voight Main Theorem 22.4.1 for principal
+    ideal domains with 2 invertible in the fraction field; the Eichler mass formula for maximal orders
+    (Voight Theorems 25.1.1 and 26.1.12) for orders containing Z_F<i,j> in (a,b)_F, a, b integral, Z_F a
+    principal ideal domain (Voight's theorem holds for every maximal order and every class number);
+    Chenevier-Lannes 2019 Section 1.1 (positive definite even unimodular lattices); Moreno-Wagstaff 2005
+    Theorems 2.6 and 2.9 and Sprague's theorem (Section 8.4). Not formalized: the Siegel-Weil
     formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
     the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
     hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
@@ -273,14 +284,15 @@ fidelity:
     have not been checked against the sources.
 
 review:
-  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0, the nine added in 0.4.0 and the one added in 0.4.1 are not yet reviewed"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0, the nine added in 0.4.0, the one added in 0.4.1 and the eight added in 0.5.0 are not yet reviewed"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
     Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
     (October 2026). The 21 headline statements added in release 0.2.0 (nine of them extended in release 0.2.1), the
     one added in release 0.2.1, the three added in release 0.3.0, the nine added in release 0.4.0, the one added
-    in release 0.4.1, and the definitions they use, have not yet been reviewed by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
+    in release 0.4.1, the eight added in release 0.5.0, and the definitions they use, have not yet been reviewed
+    by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -527,6 +539,46 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "Positive definite integer-valued forms in n > 11 variables; also stated that the genus is finite. Added in 0.4.1."
+    - source: "Voight 2021, Quaternion Algebras, Theorem 15.5.5"
+      lean: "QuadFormsKB.Headlines.voight_maximal_iff_discriminant"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Every number field; orders free of rank 4 over the ring of integers. Added in 0.5.0."
+    - source: "Voight 2021, Quaternion Algebras, Main Theorem 22.4.1 (Gross-Lucianovic)"
+      lean: "QuadFormsKB.Headlines.voight_evenClifford_correspondence"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Principal ideal domains whose fraction field has 2 nonzero. Added in 0.5.0."
+    - source: "Voight 2021, Quaternion Algebras, Main Theorem 26.1.5 and Theorem 26.1.12 (level one)"
+      lean: "QuadFormsKB.Headlines.eichlerMass_totallyReal"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Maximal orders containing Z_F<i,j> in (a,b)_F, a, b integral, Z_F a principal ideal domain; also stated that the class set is finite and the unit indices are finite. Added in 0.5.0."
+    - source: "Voight 2021, Quaternion Algebras, Theorem 25.1.1"
+      lean: "QuadFormsKB.Headlines.eichlerMass_rat"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Maximal orders containing Z<i,j> in (a,b)_Q, a, b integers; also stated that the class set is finite and the unit indices are finite. Added in 0.5.0."
+    - source: "Chenevier-Lannes 2019, Automorphic Forms and Even Unimodular Lattices, Section 1.1"
+      lean: "QuadFormsKB.Headlines.evenUnimodular_classes"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Positive definite even unimodular forms over Z. Added in 0.5.0."
+    - source: "Moreno-Wagstaff 2005, Sums of Squares of Integers, Theorem 2.6 (Jacobi)"
+      lean: "QuadFormsKB.Headlines.jacobi_fourSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Also stated that the set of representations is finite. Added in 0.5.0."
+    - source: "Moreno-Wagstaff 2005, Sums of Squares of Integers, Theorem 2.9 (Cauchy)"
+      lean: "QuadFormsKB.Headlines.cauchy_polygonalNumbers"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Polygonal numbers of order m + 2, m >= 3. Added in 0.5.0."
+    - source: "Moreno-Wagstaff 2005, Sums of Squares of Integers, Section 8.4 (Sprague 1948)"
+      lean: "QuadFormsKB.Headlines.sprague_distinctSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "The book's count of 32 exceptions is an erratum; the list has 31. Added in 0.5.0."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

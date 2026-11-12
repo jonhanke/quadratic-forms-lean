@@ -66,3 +66,11 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso
 #print axioms QuadFormsKB.Headlines.sameGenus_iff_discIso_one
 #print axioms QuadFormsKB.Headlines.watson_twoClasses
+#print axioms QuadFormsKB.Headlines.voight_maximal_iff_discriminant
+#print axioms QuadFormsKB.Headlines.voight_evenClifford_correspondence
+#print axioms QuadFormsKB.Headlines.eichlerMass_totallyReal
+#print axioms QuadFormsKB.Headlines.eichlerMass_rat
+#print axioms QuadFormsKB.Headlines.evenUnimodular_classes
+#print axioms QuadFormsKB.Headlines.jacobi_fourSquares
+#print axioms QuadFormsKB.Headlines.cauchy_polygonalNumbers
+#print axioms QuadFormsKB.Headlines.sprague_distinctSquares

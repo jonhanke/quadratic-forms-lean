@@ -49,7 +49,15 @@
     "QuadFormsKB.Headlines.twoAdicClassification",
     "QuadFormsKB.Headlines.sameGenus_iff_discIso",
     "QuadFormsKB.Headlines.sameGenus_iff_discIso_one",
-    "QuadFormsKB.Headlines.watson_twoClasses"
+    "QuadFormsKB.Headlines.watson_twoClasses",
+    "QuadFormsKB.Headlines.voight_maximal_iff_discriminant",
+    "QuadFormsKB.Headlines.voight_evenClifford_correspondence",
+    "QuadFormsKB.Headlines.eichlerMass_totallyReal",
+    "QuadFormsKB.Headlines.eichlerMass_rat",
+    "QuadFormsKB.Headlines.evenUnimodular_classes",
+    "QuadFormsKB.Headlines.jacobi_fourSquares",
+    "QuadFormsKB.Headlines.cauchy_polygonalNumbers",
+    "QuadFormsKB.Headlines.sprague_distinctSquares"
   ],
   "definition_names": [],
   "permitted_axioms": [
