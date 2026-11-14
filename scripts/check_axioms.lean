@@ -74,3 +74,8 @@ fails if any other axiom (in particular `sorryAx`) appears.
 #print axioms QuadFormsKB.Headlines.jacobi_fourSquares
 #print axioms QuadFormsKB.Headlines.cauchy_polygonalNumbers
 #print axioms QuadFormsKB.Headlines.sprague_distinctSquares
+#print axioms QuadFormsKB.Headlines.tamagawa_SLn
+#print axioms QuadFormsKB.Headlines.hardy_sumsOfSquares
+#print axioms QuadFormsKB.Headlines.witt_evenUnimodular_sixteen
+#print axioms QuadFormsKB.Headlines.quadraticReciprocity_polynomial
+#print axioms QuadFormsKB.Headlines.hilbertReciprocity_ratFunc

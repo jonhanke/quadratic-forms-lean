@@ -1188,5 +1188,115 @@ theorem sprague_distinctSquares (n : ℕ) (hn : 0 < n) :
 
 end SumsOfSquares
 
+/-! ## The Tamagawa number of the special linear group
+
+A. Weil (1982): τ(SL_n) = 1 over every number field, with Weil's Tamagawa measure on SL_n(𝔸_F) built by induction
+on n from the self-dual additive measures. -/
+
+section TamagawaSLn
+
+/-- **τ(SL_n) = 1 over every number field** (A. Weil, *Adeles and Algebraic Groups*, Progress in Mathematics 23, Birkhäuser, 1982, Chapter III, with §2.4, Theorem 2.4.3 for the
+measure; proved here by induction on n with Siegel's mean value theorem and the adelic Poisson summation formula).
+Let F be a number field, n = k + 1 ≥ 1 and 𝔸_F the adele ring of F. SL_n(F) acts on SL_n(𝔸_F)
+(`Tamagawa.Measure.Weil.SLn.SLnA F (Fin n)`) by right multiplication through the diagonal embedding. For the
+Tamagawa measure `Tamagawa.Measure.Weil.SLn.muSL F k` of SL_n(𝔸_F) (Weil's fibration measure
+ω_{SL_n} = dy ∧ ω_{SL_{n−1}} ∧ dc for the fibration of SL_n over the nonzero vectors of 𝔸_F^n, with the
+self-dual additive Haar measures; the point mass on SL_1(𝔸_F) = {1}), the quotient SL_n(F)\SL_n(𝔸_F) has a
+measurable fundamental domain, the measure is left invariant, and the covolume is 1. -/
+theorem tamagawa_SLn {F : Type} [Field F] [NumberField F] (k : ℕ) :
+    MeasureTheory.covolume (Matrix.SpecialLinearGroup (Fin (k + 1)) F)
+        (Tamagawa.Measure.Weil.SLn.SLnA F (Fin (k + 1))) (Tamagawa.Measure.Weil.SLn.muSL F k) = 1 ∧
+      MeasureTheory.HasFundamentalDomain (Matrix.SpecialLinearGroup (Fin (k + 1)) F)
+        (Tamagawa.Measure.Weil.SLn.SLnA F (Fin (k + 1))) (Tamagawa.Measure.Weil.SLn.muSL F k) ∧
+      (Tamagawa.Measure.Weil.SLn.muSL F k).IsMulLeftInvariant :=
+  ⟨QuadFormsKB.Tamagawa.Measure.Weil.SLn.tamagawa_SLn k, inferInstance, inferInstance⟩
+
+end TamagawaSLn
+
+/-! ## Hardy's theorem on sums of squares
+
+C. J. Moreno and S. S. Wagstaff, Jr. (2005), Theorem 6.1: the number of representations of n as a sum of s squares
+equals the singular series for 5 ≤ s ≤ 8, and differs from it by O(n^{s/4}) for s > 8. -/
+
+section HardySquares
+
+/-- **Hardy's theorem on sums of squares** (C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*, Chapman & Hall/CRC, 2005, Theorem 6.1, p. 189). For s ≥ 1 let
+r_s(n) = #{x ∈ ℤˢ : x₀² + ⋯ + x_{s−1}² = n} (`Siegel.repNum (Siegel.sumSq s) n`) and let
+ρ_s(n) = n^{s/2−1} π^{s/2} / Γ(s/2) · ∑_{m ≥ 1} A_m(n) be the singular series (`MorenoWagstaff.singularSeriesSq s n`,
+the book's (6.17)), with A_m(n) = ∑_{h mod m, (h, m) = 1} (S_{h,m}/m)^s e^{−2πinh/m} and S_{h,m} the quadratic Gauss
+sum (`Siegel.SingularSeries.ssTerm (Siegel.sumSq s) n m`). Then r_s(n) = ρ_s(n) for 5 ≤ s ≤ 8 and n ≥ 1, and for
+every s > 8 there is a constant C with |r_s(n) − ρ_s(n)| ≤ C n^{s/4} for all n ≥ 1. Moreover (so that every term
+is meaningful) the series ∑_m A_m(n) converges for s ≥ 5 and the set of representations is finite. -/
+theorem hardy_sumsOfSquares :
+    (∀ s n : ℕ, 5 ≤ s → s ≤ 8 → 0 < n →
+      (Siegel.repNum (Siegel.sumSq s) n : ℂ) = MorenoWagstaff.singularSeriesSq s n) ∧
+    (∀ s : ℕ, 8 < s → ∃ C : ℝ, ∀ n : ℕ, 0 < n →
+      ‖(Siegel.repNum (Siegel.sumSq s) n : ℂ) - MorenoWagstaff.singularSeriesSq s n‖ ≤ C * (n : ℝ) ^ ((s : ℝ) / 4)) ∧
+    (∀ s n : ℕ, 5 ≤ s → Summable (Siegel.SingularSeries.ssTerm (Siegel.sumSq s) (n : ℤ))) ∧
+    (∀ s n : ℕ, (Siegel.repSet (Siegel.sumSq s) n).Finite) :=
+  ⟨QuadFormsKB.MorenoWagstaff.theorem61.1, QuadFormsKB.MorenoWagstaff.theorem61.2,
+    fun _ n hs => QuadFormsKB.MorenoWagstaff.summable_ssTerm_sumSq hs n,
+    fun _ _ => IntQF.PosDef.repSet_finite Siegel.posDef_sumSq _⟩
+
+end HardySquares
+
+/-! ## Even unimodular lattices of dimension 16
+
+G. Chenevier and J. Lannes (2019), Corollary 2.3.6 (Witt): E₈ ⊕ E₈ and E₁₆ are, up to isomorphism, the only
+positive definite even unimodular lattices of dimension 16. -/
+
+section EvenUnimodularSixteen
+
+/-- **Witt's classification of even unimodular lattices of dimension 16** (G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*, Ergebnisse der Mathematik und ihrer Grenzgebiete (3. Folge) 69, Springer, 2019, Corollary 2.3.6,
+p. 36, and §3.3.1, pp. 57–58; E. Witt, 1941). With `ChenevierLannes.IsEvenUnimodular` and `Siegel.classOf` as in
+`evenUnimodular_classes`, the set X₁₆ of classes of even unimodular forms in 16 variables is
+{[E₈ ⊕ E₈], [E₁₆]}: `Lattices.twoE8` is the orthogonal sum of two copies of the E₈ form `Lattices.e8`, and
+`Lattices.gamma16` is E₁₆ = D₁₆⁺ (Cassels' Γ₁₆). The two classes are different, and the automorphism groups
+(`Siegel.Aut`, in GL₁₆(ℤ)) have orders |O(E₈ ⊕ E₈)| = 2 · 696729600² and |O(E₁₆)| = 2¹⁵ · 16!. -/
+theorem witt_evenUnimodular_sixteen :
+    {c | ∃ Q : QuadForm ℤ 16, ChenevierLannes.IsEvenUnimodular Q ∧ Siegel.classOf Q = c} =
+        {Siegel.classOf Lattices.twoE8, Siegel.classOf Lattices.gamma16} ∧
+      Siegel.classOf Lattices.twoE8 ≠ Siegel.classOf Lattices.gamma16 ∧
+      Nat.card (Siegel.Aut Lattices.twoE8) = 2 * 696729600 ^ 2 ∧
+      Nat.card (Siegel.Aut Lattices.gamma16) = 2 ^ 15 * Nat.factorial 16 :=
+  ⟨QuadFormsKB.ChenevierLannes.wittRankSixteen,
+    fun h => QuadFormsKB.Lattices.gamma16_not_isometric
+      (Siegel.IsometricGL.symm (Siegel.classOf_eq_classOf_iff.mp h)),
+    by rw [QuadFormsKB.ChenevierLannes.card_aut_twoE8, QuadFormsKB.ChenevierLannes.card_aut_e8_eq],
+    QuadFormsKB.ChenevierLannes.card_aut_gamma16⟩
+
+end EvenUnimodularSixteen
+
+/-! ## Reciprocity laws over the rational function field 𝔽_q(t)
+
+Quadratic reciprocity in 𝔽_q[t] (Dedekind) and the Hilbert reciprocity law over 𝔽_q(t), q odd: the function field
+counterparts of `hilbertReciprocity_numberField`. -/
+
+section RationalFunctionField
+
+/-- **Quadratic reciprocity in 𝔽_q[t]** (M. Rosen, *Number Theory in Function Fields*, Graduate Texts in Mathematics 210, Springer, 2002, Theorem 3.3, due to Dedekind). Let k be a finite
+field with q elements, q odd, and P, P' distinct monic irreducible polynomials in k[t]. With the Legendre
+symbol (a/P) (`RatFuncQR.legendreSym P a`: 0 if P divides a, 1 if a is a nonzero square modulo P, −1
+otherwise), (P'/P)(P/P') = (−1)^{(q−1)/2 · deg P · deg P'}. -/
+theorem quadraticReciprocity_polynomial {k : Type} [Field k] [Fintype k] [DecidableEq k] (hk : ringChar k ≠ 2)
+    (P P' : Polynomial k) (hP : Irreducible P) (hPm : P.Monic) (hP' : Irreducible P') (hP'm : P'.Monic)
+    (hne : P ≠ P') :
+    RatFuncQR.legendreSym P P' * RatFuncQR.legendreSym P' P =
+      (-1) ^ ((Fintype.card k - 1) / 2 * P.natDegree * P'.natDegree) :=
+  QuadFormsKB.RatFuncQR.legendreSym_mul_legendreSym' hk P P' hP hPm hP' hP'm hne
+
+/-- **Hilbert reciprocity over 𝔽_q(t)**, q odd (the function field case of O. T. O'Meara, *Introduction to Quadratic Forms*, Springer, 1963,
+71:18, p. 199). Let k be a finite field of odd characteristic. The places of k(t) (`RatFuncPlace k`) are the
+finite places, one for each nonzero prime ideal of k[t], and the place at infinity; `v.hilbert a b` is the
+Hilbert symbol (a, b)_v over the completion k(t)_v (`hilbertSymbol`: 1 if z² = a x² + b y² has a nonzero
+solution, −1 otherwise). For a, b ∈ k(t)^×, (a, b)_v = −1 at only finitely many places v, and at an even
+number of them: ∏_v (a, b)_v = 1. -/
+theorem hilbertReciprocity_ratFunc {k : Type} [Field k] [Fintype k] (hk : ringChar k ≠ 2) (a b : RatFunc k)
+    (ha : a ≠ 0) (hb : b ≠ 0) :
+    {v : RatFuncPlace k | v.hilbert a b = -1}.Finite ∧ Even {v : RatFuncPlace k | v.hilbert a b = -1}.ncard :=
+  (QuadFormsKB.RatFuncPlace.hilbertReciprocity hk).reciprocity a b ha hb
+
+end RationalFunctionField
+
 
 end QuadFormsKB.Headlines

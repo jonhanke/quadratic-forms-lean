@@ -57,7 +57,12 @@
     "QuadFormsKB.Headlines.evenUnimodular_classes",
     "QuadFormsKB.Headlines.jacobi_fourSquares",
     "QuadFormsKB.Headlines.cauchy_polygonalNumbers",
-    "QuadFormsKB.Headlines.sprague_distinctSquares"
+    "QuadFormsKB.Headlines.sprague_distinctSquares",
+    "QuadFormsKB.Headlines.tamagawa_SLn",
+    "QuadFormsKB.Headlines.hardy_sumsOfSquares",
+    "QuadFormsKB.Headlines.witt_evenUnimodular_sixteen",
+    "QuadFormsKB.Headlines.quadraticReciprocity_polynomial",
+    "QuadFormsKB.Headlines.hilbertReciprocity_ratFunc"
   ],
   "definition_names": [],
   "permitted_axioms": [

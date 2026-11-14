@@ -33,6 +33,10 @@ project:
     22.4.1, the Eichler mass formula for maximal orders over Q and over totally real fields, even unimodular
     lattices exist exactly in dimensions divisible by 8, Jacobi's four-squares formula, Cauchy's polygonal
     number theorem and Sprague's theorem on sums of distinct squares.
+    Release 0.5.1 adds five headlines: tau(SL_n) = 1 over every number field, Hardy's theorem on sums of
+    s squares (singular series, 5 <= s <= 8 exactly, error O(n^(s/4)) for s > 8), Witt's classification of the
+    even unimodular lattices of dimension 16, quadratic reciprocity in F_q[t] and Hilbert reciprocity over
+    F_q(t), q odd; and extends the statement maps of the five books of 0.5.0.
     Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
@@ -172,7 +176,7 @@ related_formalizations:
 
 status:
   scope: >-
-    Formalized (the 56 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
+    Formalized (the 61 statements of Challenge.lean, proved in Solution.lean). Release 0.1.0 (13 statements):
     Siegel's theorem for totally positive definite quadratic lattices over totally real number fields, in every
     rank and every genus (lattices of any Steinitz class), for every totally positive m in O_F: rank >= 4 with the
     unconditional infinite product of local densities, ranks 2 and 3 with the Euler product regularized by
@@ -209,8 +213,12 @@ status:
     (Voight Theorems 25.1.1 and 26.1.12) for orders containing Z_F<i,j> in (a,b)_F, a, b integral, Z_F a
     principal ideal domain (Voight's theorem holds for every maximal order and every class number);
     Chenevier-Lannes 2019 Section 1.1 (positive definite even unimodular lattices); Moreno-Wagstaff 2005
-    Theorems 2.6 and 2.9 and Sprague's theorem (Section 8.4). Not formalized: the Siegel-Weil
-    formula beyond these cases, and Tamagawa numbers of groups other than SO(V). Over a general totally real field
+    Theorems 2.6 and 2.9 and Sprague's theorem (Section 8.4). Release 0.5.1 (5 new statements): tau(SL_n) = 1
+    over every number field (Weil 1982, with Weil's fibration measure); Moreno-Wagstaff 2005 Theorem 6.1
+    (Hardy); Chenevier-Lannes 2019 Corollary 2.3.6 (Witt, dimension 16); Rosen 2002 Theorem 3.3 (quadratic
+    reciprocity in F_q[t], q odd); O'Meara 71:18 for the rational function field F_q(t), q odd (the book
+    states it for number fields). Not formalized: the Siegel-Weil
+    formula beyond these cases, and Tamagawa numbers of groups other than SO(V) and SL_n. Over a general totally real field
     the natural-order (non-regularized) rank-2 and rank-3 statements are proved only conditionally on the
     hypothesis RegProd.NaturalOrderEulerOne; they are not among the Challenge statements. An input of the library,
     AdelicSphereEulerGaussInputs, is false; the three theorems assuming it are vacuous and are not headlines
@@ -284,15 +292,15 @@ fidelity:
     have not been checked against the sources.
 
 review:
-  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0, the nine added in 0.4.0, the one added in 0.4.1 and the eight added in 0.5.0 are not yet reviewed"
+  status: "partially author-reviewed: the 13 release-0.1.0 headline statements in Challenge.lean and the definitions they use are reviewed; the 21 headline statements added in release 0.2.0 (nine of them extended in 0.2.1), the one added in 0.2.1, the three added in 0.3.0, the nine added in 0.4.0, the one added in 0.4.1, the eight added in 0.5.0 and the five added in 0.5.1 are not yet reviewed"
   reviewers:
     - "Jonathan Hanke"
   notes: >-
     Jonathan Hanke reviewed the release-0.1.0 headline statements in Challenge.lean and every definition they use
     (October 2026). The 21 headline statements added in release 0.2.0 (nine of them extended in release 0.2.1), the
     one added in release 0.2.1, the three added in release 0.3.0, the nine added in release 0.4.0, the one added
-    in release 0.4.1, the eight added in release 0.5.0, and the definitions they use, have not yet been reviewed
-    by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
+    in release 0.4.1, the eight added in release 0.5.0, the five added in release 0.5.1, and the definitions they
+    use, have not yet been reviewed by a human; that review is planned for a later release. The rest of the library has not been reviewed by a human, and there has been no
     external review yet. Lean checks the proofs; lake comparator checks that Solution.lean proves exactly
     the Challenge.lean statements using only the standard axioms.
 
@@ -579,6 +587,31 @@ alignment:
       module: "Challenge / Solution"
       status: "proved"
       note: "The book's count of 32 exceptions is an erratum; the list has 31. Added in 0.5.0."
+    - source: "Weil 1982, Adeles and Algebraic Groups, Chapter III (tau(SL_n) = 1)"
+      lean: "QuadFormsKB.Headlines.tamagawa_SLn"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Every number field and n >= 1; Weil's fibration measure built from the self-dual additive measures; also stated that a fundamental domain exists and that the measure is left invariant. Added in 0.5.1."
+    - source: "Moreno-Wagstaff 2005, Sums of Squares of Integers, Theorem 6.1 (Hardy)"
+      lean: "QuadFormsKB.Headlines.hardy_sumsOfSquares"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Also stated that the singular series converges for s >= 5 and that the set of representations is finite. Added in 0.5.1."
+    - source: "Chenevier-Lannes 2019, Automorphic Forms and Even Unimodular Lattices, Corollary 2.3.6 (Witt)"
+      lean: "QuadFormsKB.Headlines.witt_evenUnimodular_sixteen"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Positive definite even unimodular forms in 16 variables; also the two classes are different and the orders of their automorphism groups. Added in 0.5.1."
+    - source: "Rosen 2002, Number Theory in Function Fields, Theorem 3.3"
+      lean: "QuadFormsKB.Headlines.quadraticReciprocity_polynomial"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "Finite fields of odd characteristic. Added in 0.5.1."
+    - source: "O'Meara 1963, Introduction to Quadratic Forms, 71:18 (function field case)"
+      lean: "QuadFormsKB.Headlines.hilbertReciprocity_ratFunc"
+      module: "Challenge / Solution"
+      status: "proved"
+      note: "The rational function field F_q(t), q odd; O'Meara states the law for number fields. Added in 0.5.1."
 
 acknowledgements: >-
   Mathlib and its contributors; the Lean FRO for Lean, Lake and lake comparator; Claude Code (Anthropic).

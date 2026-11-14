@@ -95,33 +95,40 @@ def dedekindPsi (𝔐 : Ideal (𝓞 F)) : ℝ :=
 the totally real field $F$: for $B = (a,b)_F$ totally definite and an Eichler order $\mathcal O$ of level $\mathfrak M$,
 $$\operatorname{mass}(\operatorname{Cls}\mathcal O) = \frac{2\,\zeta_F(2)}{(2\pi)^{2n}}\,|d_F|^{3/2}\,h_F\,
 \varphi(\mathfrak D)\,\psi(\mathfrak M), \qquad \varphi(\mathfrak D) = \prod_{\mathfrak p \mid \mathfrak D}(N\mathfrak p - 1).$$
-Stated, not proved. For $\mathfrak M = R$ (maximal orders) see `MassWave2.classMass_eq_of_maximalOrderDiscriminant`. -/
+The mass is `clsMass O`, over the classes of locally principal (invertible) left ideals, which is the book's
+$\operatorname{Cls}\mathcal O$; *correction:* this statement used `classMass O` (all nonzero left ideals) until
+recently, which differs from the book for $\mathfrak M \ne R$. Stated, not proved. For $\mathfrak M = R$ (maximal orders) see
+`MassWave2.classMass_eq_of_maximalOrderDiscriminant` and `Wave4.clsMass_eq_classMass`. -/
 @[kb "voight2021" "Theorem 26.1.12, p. 433"]
 def EichlerMassFormulaEichlerOrders (F : Type) [Field F] [NumberField F] : Prop :=
   ∀ (a b : 𝓞 F) (ha : a ≠ 0) (hb : b ≠ 0), IsTotDefinite a b →
     ∀ (O : Subalgebra (𝓞 F) (QuatF F a b)) (𝔐 : Ideal (𝓞 F)), IsEichlerOrderOfLevel ha hb O 𝔐 →
-      classMass O = 2 * dedekindZetaR F 2 / (2 * Real.pi) ^ (2 * Module.finrank ℚ F) *
+      clsMass O = 2 * dedekindZetaR F 2 / (2 * Real.pi) ^ (2 * Module.finrank ℚ F) *
         |(NumberField.discr F : ℝ)| ^ (3 / 2 : ℝ) * (NumberField.classNumber F : ℝ) *
         (∏ v ∈ ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1)) * dedekindPsi 𝔐
 
 /-- **The Eichler mass formula for Eichler orders over $\mathbb Q$** (Voight 2021, Theorem 25.3.18), as a named
 proposition: for a definite $B = (a,b)_{\mathbb Q}$ of discriminant $D$ and an Eichler order of level $M$,
-$\sum_{[J]} 1/w_J = \varphi(D)\psi(M)/12$ with $\psi(M) = M\prod_{p \mid M}(1 + 1/p)$. Stated, not proved. -/
+$\sum_{[J] \in \operatorname{Cls}\mathcal O} 1/w_J = \varphi(D)\psi(M)/12$ with $\psi(M) = M\prod_{p \mid M}(1 + 1/p)$ (`clsMass`;
+*correction:* `classMass` before). Stated, not proved. -/
 @[kb "voight2021" "Theorem 25.3.18, p. 423"]
 def EichlerMassFormulaEichlerOrdersRat : Prop :=
   ∀ (a b : 𝓞 ℚ) (ha : a ≠ 0) (hb : b ≠ 0), IsTotDefinite a b →
     ∀ (O : Subalgebra (𝓞 ℚ) (QuatF ℚ a b)) (𝔐 : Ideal (𝓞 ℚ)), IsEichlerOrderOfLevel ha hb O 𝔐 →
-      classMass O = (∏ v ∈ ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1)) * dedekindPsi 𝔐 / 12
+      clsMass O = (∏ v ∈ ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1)) * dedekindPsi 𝔐 / 12
 
 /-- **Eichler's theorem over $\mathbb Q$** (Voight 2021, Theorem 17.8.3 and Corollary 17.8.5; Corollary 28.5.17), as
 a named proposition: if $B = (a,b)_{\mathbb Q}$ is indefinite ($a > 0$ or $b > 0$, so $B \otimes \mathbb R \cong \mathrm M_2(\mathbb R)$)
 and $\mathcal O \subset B$ is a maximal order, then every nonzero left ideal of $\mathcal O$ is principal up to the
-class relation: $\#\operatorname{Cls}\mathcal O = 1$ ($\mathrm{Cl}^+\mathbb Z$ is trivial). Stated, not proved (strong
+class relation: $\#\operatorname{Cls}\mathcal O = 1$ ($\mathrm{Cl}^+\mathbb Z$ is trivial), with $\operatorname{Cls}\mathcal O$ the classes of
+locally principal left ideals (`clsNum`). *Correction:* this counted all nonzero left ideals before, which is
+wrong for indefinite $B$: in $\mathrm M_2(\mathbb Q)$ the left ideal $\mathrm M_2(\mathbb Z)e_{00}$ of $\mathrm M_2(\mathbb Z)$ is nonzero but not a
+lattice, so it gave a second class. Stated, not proved (strong
 approximation, Main Theorem 28.5.3, is not formalized). -/
 @[kb "voight2021" "Theorem 17.8.3, Corollary 17.8.5, p. 292; Corollary 28.5.17, p. 487"]
 def ClassNumberOneIndefiniteRat : Prop :=
   ∀ (a b : 𝓞 ℚ), a ≠ 0 → b ≠ 0 → (0 < (a : ℚ) ∨ 0 < (b : ℚ)) →
     ∀ O : Subalgebra (𝓞 ℚ) (QuatF ℚ a b), IsMaximalOrder (𝓞 ℚ) ℚ O →
-      Nat.card {c : Quotient (idealSetoid O) // c.out ≠ ⊥} = 1
+      clsNum O = 1
 
 end QuadFormsKB.Voight
