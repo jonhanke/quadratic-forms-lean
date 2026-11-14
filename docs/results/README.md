@@ -16,6 +16,7 @@ One page per main result of the repository, with the precise statement, its scop
 | [Mass formulas](mass-formulas.md) | Siegel's general form, and the exact evaluations: Conway–Sloane over ℤ from the genus symbols, Shimura's formula for SO over totally real fields (Gan, Hanke and Yu), Hanke's formula over every number field in corrected general form (new in 0.4.0) |
 | [Classification of lattices and genera](classification.md) | O'Meara 93:28 and 93:29 at the dyadic primes, Conway–Sloane's Theorem 18 at every prime, the genus from the discriminant form (new in 0.4.0); Watson's theorem, at least two classes in every genus in n > 11 variables (new in 0.4.1) |
 | [Quaternion orders, lattices and sums of squares](quaternions-lattices-squares.md) | Voight's Theorem 15.5.5 and Main Theorem 22.4.1, the Eichler mass formula for maximal orders, even unimodular lattices in dimensions divisible by 8, Jacobi's four squares, Cauchy's polygonal numbers, Sprague's distinct squares (new in 0.5.0) |
+| [The special linear group, sums of squares, lattices and reciprocity](sln-squares-lattices-reciprocity.md) | τ(SL_n) = 1, Hardy's theorem on sums of squares, Witt's classification in dimension 16, quadratic and Hilbert reciprocity over 𝔽_q(t) (new in 0.5.1) |
 | [Classical cases over ℚ](classical-cases.md) | Gauss's three squares, Jacobi's two squares, Dirichlet for $`x^2 - 2y^2`$ (new in 0.2.0); the divisor count for $`xy`$ (new in 0.2.1) |
 
 ## Further results

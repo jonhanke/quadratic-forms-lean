@@ -20,3 +20,4 @@ import QuadFormsKB.Literature.MorenoWagstaff.Ch8Pall
 import QuadFormsKB.Literature.MorenoWagstaff.Ch2Legendre
 import QuadFormsKB.Literature.MorenoWagstaff.Ch2Gauss
 import QuadFormsKB.Literature.MorenoWagstaff.Ch6GaussSum
+import QuadFormsKB.Literature.MorenoWagstaff.Wave2.All

@@ -39,15 +39,17 @@ the number field $F$: let $B = (a,b)_F$ be totally definite, $\mathcal O \subset
 with $\mathcal O_w = \mathcal O'_w$ for every finite place $w \ne v$. Then
 $$\operatorname{mass}(\operatorname{Cls}\mathcal O) = [\mathcal O_v'^\times : \mathcal O_v^\times]\,
 \operatorname{mass}(\operatorname{Cls}\mathcal O'),$$
-the index of the unit group of $\mathcal O_v$ (embedded by inclusion) in that of $\mathcal O'_v$. Stated, not proved. -/
+the index of the unit group of $\mathcal O_v$ (embedded by inclusion) in that of $\mathcal O'_v$. The masses are `clsMass`
+(classes of locally principal left ideals, the book's $\operatorname{Cls}$); *correction:* `classMass` before,
+which counts non-invertible ideals of the suborder too. Stated, not proved. -/
 @[kb "voight2021" "Proposition 26.6.4, p. 451"]
 def MassSuborderOnePlace (F : Type) [Field F] [NumberField F] : Prop :=
   ∀ (a b : 𝓞 F), a ≠ 0 → b ≠ 0 → IsTotDefinite a b →
     ∀ (O O' : Subalgebra (𝓞 F) (QuatF F a b)), IsOrder (𝓞 F) F O → IsOrder (𝓞 F) F O' →
       ∀ (hle : O ≤ O') (v : HeightOneSpectrum (𝓞 F)),
         (∀ w : HeightOneSpectrum (𝓞 F), w ≠ v → localOrder (v := w) a b O = localOrder (v := w) a b O') →
-          classMass O = ((Units.map (Subalgebra.inclusion (localOrder_mono hle v)).toMonoidHom).range.index : ℝ) *
-            classMass O'
+          clsMass O = ((Units.map (Subalgebra.inclusion (localOrder_mono hle v)).toMonoidHom).range.index : ℝ) *
+            clsMass O'
 
 /-- **Class number one for maximal orders over $\mathbb Q$** (Voight 2021, Theorem 25.4.1), as a named proposition: for a
 definite quaternion algebra $B = (a,b)_{\mathbb Q}$ ($a, b < 0$) of discriminant $D = \prod_{p \in \operatorname{Ram}_f B}p$ and a

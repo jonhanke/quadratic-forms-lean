@@ -205,6 +205,53 @@ lemma v_infty_poly {p : k[X]} (hp : p ≠ 0) :
     RatFunc.inftyValuation k (algebraMap k[X] (RatFunc k) p) = exp (p.natDegree : ℤ) :=
   RatFunc.inftyValuation.polynomial k hp
 
+/-- **Every integral element at infinity is close to a constant:** for $y \in k((t^{-1}))$ with $v_\infty(y) \le 1$
+there is $c \in k$ with $v_\infty(y - c) < 1$ (the residue field at $\infty$ is $k$). *Proof:* approximate $y$ by
+$g = p/q \in k(t)$ with $\deg p \le \deg q$ and take $c$ the quotient of the coefficients of $t^{\deg q}$. -/
+lemma exists_const_near_infty (y : Ki) (hy : Valued.v y ≤ 1) :
+    ∃ c : k, Valued.v (y - algebraMap (RatFunc k) Ki (RatFunc.C c)) < 1 := by
+  obtain ⟨g, hg⟩ := exists_near (algebraMap (RatFunc k) Ki) denseRange_infty y
+  have hgv : Valued.v (algebraMap (RatFunc k) Ki g) ≤ 1 := v_le_one_of_near hy hg
+  by_cases hg0 : g = 0
+  · refine ⟨0, ?_⟩
+    rw [hg0, map_zero] at hg
+    rwa [map_zero]
+  set p := g.num
+  set q := g.denom
+  have hq0 : q ≠ 0 := g.denom_ne_zero
+  have hp0 : p ≠ 0 := RatFunc.num_ne_zero hg0
+  have hgpq : g = algebraMap k[X] (RatFunc k) p / algebraMap k[X] (RatFunc k) q :=
+    (g.num_div_denom).symm
+  have hqK : algebraMap k[X] (RatFunc k) q ≠ 0 :=
+    (map_ne_zero_iff _ (IsFractionRing.injective k[X] (RatFunc k))).mpr hq0
+  have hdeg : p.natDegree ≤ q.natDegree := by
+    have h1 := hgv
+    rw [v_infty, hgpq, map_div₀, v_infty_poly hp0, v_infty_poly hq0,
+      div_le_one₀ (zero_lt_iff.mpr exp_ne_zero), exp_le_exp] at h1
+    exact_mod_cast h1
+  set d := q.natDegree with hd
+  set c : k := p.coeff d / q.leadingCoeff with hc
+  refine ⟨c, near_trans hg ?_⟩
+  rw [← map_sub, v_infty]
+  have e : g - RatFunc.C c = algebraMap k[X] (RatFunc k) (p - C c * q) /
+      algebraMap k[X] (RatFunc k) q := by
+    rw [hgpq, map_sub, map_mul, sub_div, mul_div_assoc, div_self hqK, mul_one]
+    rfl
+  rw [e, map_div₀, v_infty_poly hq0]
+  by_cases h0 : p - C c * q = 0
+  · rw [h0, map_zero, Valuation.map_zero, zero_div]; exact zero_lt_one
+  · rw [v_infty_poly h0, div_lt_one₀ (zero_lt_iff.mpr exp_ne_zero), exp_lt_exp]
+    have hle : (p - C c * q).natDegree ≤ d :=
+      (natDegree_sub_le _ _).trans (max_le hdeg ((natDegree_C_mul_le _ _).trans le_rfl))
+    have hcoeff : (p - C c * q).coeff d = 0 := by
+      rw [coeff_sub, coeff_C_mul, hc, hd, ← leadingCoeff,
+        div_mul_cancel₀ _ (leadingCoeff_ne_zero.mpr hq0), sub_self]
+    have hne : (p - C c * q).natDegree ≠ d := by
+      intro heq
+      apply h0
+      rw [← leadingCoeff_eq_zero, leadingCoeff, heq, hcoeff]
+    exact_mod_cast lt_of_le_of_ne hle hne
+
 /-- **The odd local axioms at the place at infinity of $k(t)$.** -/
 theorem oddLocalAxioms_infty [Fintype k] (hk : ringChar k ≠ 2) : FF.OddLocalAxioms Ki := by
   haveI := completeSpace_infty (k := k)
@@ -234,47 +281,8 @@ theorem oddLocalAxioms_infty [Fintype k] (hk : ringChar k ≠ 2) : FF.OddLocalAx
       · rw [hr, map_zero, Valuation.map_zero]; exact zero_le_one
       · rw [hρv r hr]) hker hπ ?_
   intro y hy
-  obtain ⟨g, hg⟩ := exists_near (algebraMap (RatFunc k) Ki) denseRange_infty y
-  have hgv : Valued.v (algebraMap (RatFunc k) Ki g) ≤ 1 := v_le_one_of_near hy hg
-  by_cases hg0 : g = 0
-  · refine ⟨0, ?_⟩
-    rw [hg0, map_zero] at hg
-    rwa [map_zero]
-  set p := g.num
-  set q := g.denom
-  have hq0 : q ≠ 0 := g.denom_ne_zero
-  have hp0 : p ≠ 0 := RatFunc.num_ne_zero hg0
-  have hgpq : g = algebraMap k[X] (RatFunc k) p / algebraMap k[X] (RatFunc k) q :=
-    (g.num_div_denom).symm
-  have hqK : algebraMap k[X] (RatFunc k) q ≠ 0 :=
-    (map_ne_zero_iff _ (IsFractionRing.injective k[X] (RatFunc k))).mpr hq0
-  have hdeg : p.natDegree ≤ q.natDegree := by
-    have h1 := hgv
-    rw [v_infty, hgpq, map_div₀, v_infty_poly hp0, v_infty_poly hq0,
-      div_le_one₀ (zero_lt_iff.mpr exp_ne_zero), exp_le_exp] at h1
-    exact_mod_cast h1
-  set d := q.natDegree with hd
-  set c : k := p.coeff d / q.leadingCoeff with hc
-  refine ⟨c, near_trans hg ?_⟩
-  rw [hρ, RingHom.comp_apply, ← map_sub, v_infty]
-  have e : g - RatFunc.C c = algebraMap k[X] (RatFunc k) (p - C c * q) /
-      algebraMap k[X] (RatFunc k) q := by
-    rw [hgpq, map_sub, map_mul, sub_div, mul_div_assoc, div_self hqK, mul_one]
-    rfl
-  rw [e, map_div₀, v_infty_poly hq0]
-  by_cases h0 : p - C c * q = 0
-  · rw [h0, map_zero, Valuation.map_zero, zero_div]; exact zero_lt_one
-  · rw [v_infty_poly h0, div_lt_one₀ (zero_lt_iff.mpr exp_ne_zero), exp_lt_exp]
-    have hle : (p - C c * q).natDegree ≤ d :=
-      (natDegree_sub_le _ _).trans (max_le hdeg ((natDegree_C_mul_le _ _).trans le_rfl))
-    have hcoeff : (p - C c * q).coeff d = 0 := by
-      rw [coeff_sub, coeff_C_mul, hc, hd, ← leadingCoeff,
-        div_mul_cancel₀ _ (leadingCoeff_ne_zero.mpr hq0), sub_self]
-    have hne : (p - C c * q).natDegree ≠ d := by
-      intro heq
-      apply h0
-      rw [← leadingCoeff_eq_zero, leadingCoeff, heq, hcoeff]
-    exact_mod_cast lt_of_le_of_ne hle hne
+  obtain ⟨c, hc⟩ := exists_const_near_infty y hy
+  exact ⟨c, hc⟩
 
 end Infinite
 
