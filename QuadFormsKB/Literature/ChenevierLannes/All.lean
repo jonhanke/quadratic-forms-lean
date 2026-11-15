@@ -10,3 +10,4 @@ import QuadFormsKB.Literature.ChenevierLannes.Classification
 import QuadFormsKB.Literature.ChenevierLannes.Theta
 import QuadFormsKB.Literature.ChenevierLannes.Wave2.All
 import QuadFormsKB.Literature.ChenevierLannes.Wave3.All
+import QuadFormsKB.Literature.ChenevierLannes.Wave4.All

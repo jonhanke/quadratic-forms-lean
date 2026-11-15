@@ -1335,6 +1335,7 @@ import QuadFormsKB.Literature.Cassels.Ch9Examples9
 import QuadFormsKB.Literature.Cassels.Ch9Sec6Four
 import QuadFormsKB.Literature.Cassels.Ch9Sec6Local
 import QuadFormsKB.Tamagawa.InputsFollowup
+import QuadFormsKB.Tamagawa.MassUncond
 import QuadFormsKB.Tamagawa.SiegelFormulaConsumers
 import QuadFormsKB.Siegel.KneserConnectedProof
 -- Cassels and O'Meara: further numbered items
@@ -2234,6 +2235,24 @@ import QuadFormsKB.Literature.Voight.Wave4.EichlerDiscriminant
 import QuadFormsKB.Literature.Voight.Wave4.OptimalEmbeddings
 import QuadFormsKB.Literature.Voight.Wave4.EichlerIndex
 import QuadFormsKB.Literature.Voight.Wave4.EichlerLevel
+import QuadFormsKB.Literature.Voight.Wave5.EichlerNormalizer
+import QuadFormsKB.Literature.Voight.Wave5.ClassNumber
+import QuadFormsKB.Literature.Voight.Wave5.EichlerResidue
+import QuadFormsKB.Literature.Voight.Wave5.ClassNumberOne
+import QuadFormsKB.Literature.Voight.Wave5.EichlerSymbol
+import QuadFormsKB.Literature.Voight.Wave5.UnitIndex
+import QuadFormsKB.Literature.Voight.Wave5.MassGeneral
+import QuadFormsKB.Literature.Voight.Wave5.BrandtMatrix
+import QuadFormsKB.Literature.Voight.Wave5.GenusTypes
+import QuadFormsKB.Literature.Voight.Wave5.Gorenstein
+import QuadFormsKB.Literature.Voight.Wave5.EmbeddingCount
+import QuadFormsKB.Literature.Voight.Wave5.RadicalIdealizer
+import QuadFormsKB.Literature.Voight.Wave5.LatticeBasis
+import QuadFormsKB.Literature.Voight.Wave5.GraphHeight
+import QuadFormsKB.Literature.Voight.Wave5.BruhatTits
+import QuadFormsKB.Literature.Voight.Wave5.BruhatTitsHeight
+import QuadFormsKB.Literature.Voight.Wave5.BruhatTitsDegree
+import QuadFormsKB.Literature.Voight.Wave5.BruhatTitsEichler
 import QuadFormsKB.Literature.MorenoWagstaff.All
 import QuadFormsKB.Tamagawa.Unitary.Adelic
 import QuadFormsKB.Tamagawa.Unitary.Arch

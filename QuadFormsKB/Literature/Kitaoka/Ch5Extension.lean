@@ -17,7 +17,9 @@ regular ($B$ nondegenerate). A submodule $M$ of $L$ may have smaller rank.
 * `dualL Q L` $= L^\sharp = \{x \in V \mid B(x, L) \subseteq R\}$ (§5.1, p. 70);
 * `ExtendsToIsometryOf Q L σ S`: the isometry $\sigma : M \cong N$ extends to an isometry $\tau$ of $L$ ($\tau \in O(V)$,
   $\tau L = L$, $\tau|_M = \sigma$) with $\tau(x) \equiv x \bmod S$ for every $x \in L$;
-* `Theorem534`, `Theorem541`: the statements of Theorems 5.3.4 and 5.4.1 (stated).
+* `Theorem534`, `Theorem541`: the statements of Theorems 5.3.4 and 5.4.1. Theorem 5.3.4 is proved as
+  `theorem534` in `Wave5/Ch5Theorem534.lean` (from Kneser's Theorem 1.2.2); Theorem 5.4.1 is proved as
+  `theorem541` in `Wave5/Ch5Theorem541.lean`.
 -/
 import Mathlib.NumberTheory.Padics.PadicIntegers
 import Mathlib.Algebra.Module.Submodule.Lattice

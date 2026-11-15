@@ -15,3 +15,6 @@ import QuadFormsKB.Literature.Shimura2004.LocalEuler
 import QuadFormsKB.Literature.Shimura2004.Wave2.All
 import QuadFormsKB.Literature.Shimura2004.Wave3.All
 import QuadFormsKB.Literature.Shimura2004.Wave4.All
+import QuadFormsKB.Literature.Shimura2004.Wave5.All
+import QuadFormsKB.Literature.Shimura2004.Wave6.All
+import QuadFormsKB.Literature.Shimura2004.Wave7.All

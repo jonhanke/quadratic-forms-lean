@@ -49,7 +49,12 @@ $M$, $N$ free and $L \supseteq M, N, H$. Suppose
 (only "$\subseteq$" is written; "$\supseteq$" follows from (1));
 and $\sigma : M \cong N$ is an isometry with (3) $\sigma(x) \equiv x \bmod H$ for $x \in M$. Then $\sigma$ extends to an
 element $\tau$ of $O(L)$ (an $R$-linear bijection of $L$ preserving $q$) with (4) $\tau = \mathrm{id}$ on $H^\perp$
-(the $x \in L$ with $b(x, H) = 0$) and (3) for every $x \in L$. -/
+(the $x \in L$ with $b(x, H) = 0$) and (3) for every $x \in L$.
+
+*Status:* proved as `Kitaoka.Kneser.theorem122` (`Wave5/Ch1KneserMain.lean`). *Update:* in Assertion 1 of the proof
+(p. 9, "changing a basis if necessary, we may suppose (17) $h \in Rh_r + K$") a change of basis is not always enough
+when every $b(m_i, h)$ lies in $P$; the proof here replaces $h$ by $h - \sum_{i<r} b(m_i, h)h_i$ in that case
+(`Wave5/Ch1KneserAssertion.lean`). -/
 @[kb "kitaoka1993" "§1.2, Thm. 1.2.2, p. 6"]
 def Theorem122 : Prop :=
   ∀ (R Rt U : Type) [CommRing R] [IsLocalRing R] [CommRing Rt] [Algebra R Rt] [AddCommGroup U] [Module Rt U]
