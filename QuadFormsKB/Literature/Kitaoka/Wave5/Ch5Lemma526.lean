@@ -37,7 +37,8 @@ noncomputable section
 
 namespace QuadFormsKB.Kitaoka.Padic
 
-instance : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
+-- Local: a global copy of Mathlib's `Nat.fact_prime_two` changed how headline statements elaborate (`ℚ_[2]`).
+local instance : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
 
 theorem isUnit_iff_not_dvd (x : ℤ_[2]) : IsUnit x ↔ ¬ (2 : ℤ_[2]) ∣ x := by
   rw [PadicInt.isUnit_iff]
