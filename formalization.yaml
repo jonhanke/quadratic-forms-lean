@@ -37,6 +37,9 @@ project:
     s squares (singular series, 5 <= s <= 8 exactly, error O(n^(s/4)) for s > 8), Witt's classification of the
     even unimodular lattices of dimension 16, quadratic reciprocity in F_q[t] and Hilbert reciprocity over
     F_q(t), q odd; and extends the statement maps of the five books of 0.5.0.
+    Release 0.5.2 adds no headlines; it adds library results (Kitaoka's extension theorems of
+    Kneser and Eichler, Theorems 7.1.1 and 7.5.1; Voight's Bruhat-Tits tree; Shimura Proposition 4.6 and
+    Theorem 7.13; Chenevier-Lannes d-neighbours) and updates the Kitaoka statement map.
     Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,
