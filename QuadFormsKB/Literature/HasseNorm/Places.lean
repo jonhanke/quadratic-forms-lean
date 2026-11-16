@@ -16,6 +16,11 @@ For $L/F$ quadratic with nontrivial automorphism $\sigma$:
 See `Herbrand.lean` for the overall plan. Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.FirstInequality
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
+import Mathlib.NumberTheory.RamificationInertia.Basic
+import Mathlib.Order.CompletePartialOrder
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors

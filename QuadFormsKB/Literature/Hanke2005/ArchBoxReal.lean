@@ -12,6 +12,7 @@ $|M_{ij} - \delta_{ij}|\le\varepsilon < 1/r$ is positive definite (`posDef_of_ne
 -/
 import QuadFormsKB.Literature.Hanke2005.ArchChartReal
 import QuadFormsKB.Literature.Hanke2005.ArchInnerReal
+import Mathlib.Algebra.Order.Chebyshev
 
 open MeasureTheory Matrix Set
 open scoped ENNReal

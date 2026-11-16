@@ -1,4 +1,9 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.OrbitFibration
+import Mathlib.Dynamics.Ergodic.Action.Regular
+import Mathlib.MeasureTheory.Group.FundamentalDomain
+import Mathlib.Topology.Compactness.Paracompact
+import Mathlib.Topology.Metrizable.Urysohn
+import Mathlib.Topology.Separation.CompletelyRegular
 
 /-!
 # Haar measures fibred along a surjective homomorphism, without a section

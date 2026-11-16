@@ -26,7 +26,6 @@ Sources: Hua, *Harmonic analysis of functions of several complex variables in th
 $N > 2r$ of the archimedean factor) [unverified]. The proof by the Schur complement in the first row is the standard
 inductive one (the same reduction as Siegel's computation of the Gaussian of degree $r$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.ArchHuaAlg
 import QuadFormsKB.SiegelWeil.Forms.ArchHuaInt

@@ -1,4 +1,5 @@
 import QuadFormsKB.Binary.ClassBijection
+import Mathlib.Algebra.QuadraticAlgebra.NormDeterminant
 
 /-!
 # Conway–Sloane, Ch. 15, §3.4: normed ideals and the normed ideal class group

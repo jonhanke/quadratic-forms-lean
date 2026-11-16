@@ -21,7 +21,6 @@ $\mathbb R^{\mathrm{UIdx}\,r}$ has dimension $r(r+1)/2$ and Lebesgue measure.
 
 Sources: Siegel, *Symplectic geometry*, Amer. J. Math. 65 (1943), §§ on the Siegel half space [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.ArchGaussR
 import QuadFormsKB.Tamagawa.ArchVolume

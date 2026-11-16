@@ -25,6 +25,7 @@ Indices are 0-based.
 -/
 import QuadFormsKB.FunctionField.RatFuncPlace
 import QuadFormsKB.Equiv.Hilbert
+import Mathlib.FieldTheory.Finite.Basic
 
 open IsDedekindDomain Polynomial
 

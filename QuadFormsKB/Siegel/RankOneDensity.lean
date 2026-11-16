@@ -20,6 +20,7 @@ of an **integer**. If $am$ is a square but $m/a \notin \mathbb Z^2$ (e.g. $a = 4
 and the product is $0$, matching $r(1) = 0$. The divergent case is exactly the represented case $r(m) = 2$.
 -/
 import QuadFormsKB.Siegel.RankOne
+import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 open Matrix Filter Topology
 

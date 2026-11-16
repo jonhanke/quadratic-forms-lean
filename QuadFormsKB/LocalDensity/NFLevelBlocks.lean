@@ -15,6 +15,7 @@ $2\nu_j$); `NF.eq_2_4_2_5_nondyadic` ($\mathfrak p \nmid 2$: verbatim).
 -/
 import QuadFormsKB.LocalDensity.DVRLevelBlocks
 import QuadFormsKB.LocalDensity.NFLocalGeneral
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 
 open NumberField IsDedekindDomain
 

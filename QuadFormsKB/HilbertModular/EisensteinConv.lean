@@ -22,6 +22,7 @@ Ch. 3 [unverified]. The balancing argument is the standard one (Siegel); here it
 `NumberField.Units.unitLattice`.
 -/
 import QuadFormsKB.HilbertModular.EisensteinBasic
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.Summable
 
 open Complex Matrix NumberField UpperHalfPlane Filter Topology
 open NumberField.Units NumberField.Units.dirichletUnitTheorem

@@ -19,7 +19,6 @@ Sources: Siegel 1935 [unverified].
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.FrameSiegelUncond
 

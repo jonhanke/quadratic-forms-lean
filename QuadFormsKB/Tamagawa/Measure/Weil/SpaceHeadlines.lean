@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.ReleaseHeadlines
 import QuadFormsKB.Tamagawa.Measure.Weil.RankOneAdelic
 import QuadFormsKB.Equiv.Mathlib
+import Mathlib.LinearAlgebra.QuadraticForm.Real
 
 /-!
 # $\tau(SO(V)) = 2$ for a quadratic space $(V, Q)$ over a number field

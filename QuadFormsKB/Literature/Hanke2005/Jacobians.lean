@@ -22,8 +22,11 @@ Lemmas A3 and A5.
 **Proves** (2.10) `det_congrSym`, Lemma A2 `det_mulLeft_rect` / `det_mulRight_rect`, Lemma A3 `det_upperMulLeft`,
 Lemma A4 `det_congrSkew`, Lemma A5 `det_skewMulRight`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

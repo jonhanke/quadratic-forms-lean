@@ -12,9 +12,11 @@ Indices are 0-based: an orthogonal basis is $x_0, \dots, x_{n-1}$.
 
 *Update:* O'Meara assumes $V$ regular; none of this needs regularity (only $2$ invertible).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec54Dim
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.LinearAlgebra.CliffordAlgebra.Even
 
 open Module
 

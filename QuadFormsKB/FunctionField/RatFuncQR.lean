@@ -23,8 +23,13 @@ $\operatorname{Res}(P, Q) = (-1)^{\deg P \deg Q} \operatorname{Res}(Q, P)$ (Math
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.FieldTheory.Finite.GaloisField
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Polynomial.Resultant.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Polynomial
 

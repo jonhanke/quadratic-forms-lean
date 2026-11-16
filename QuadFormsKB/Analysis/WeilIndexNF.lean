@@ -1,5 +1,6 @@
 import QuadFormsKB.Analysis.AdelicPoisson
 import QuadFormsKB.Analysis.WeilIndex
+import Mathlib.Analysis.Normed.Ring.Ultra
 
 /-!
 # The Weil index at a finite place of a number field

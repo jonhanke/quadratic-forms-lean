@@ -51,6 +51,7 @@ import Mathlib.LinearAlgebra.ExteriorAlgebra.Basis
 import Mathlib.RingTheory.Artinian.Module
 import Mathlib.GroupTheory.Commutator.Basic
 import QuadFormsKB.Citation
+import Mathlib.Tactic.Positivity
 
 open Module CliffordAlgebra
 open scoped commutatorElement

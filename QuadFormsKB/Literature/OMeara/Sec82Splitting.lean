@@ -21,6 +21,7 @@ orthogonal splitting is `IsOrthSplit` (`Sec82.lean`).
 -/
 import QuadFormsKB.Literature.OMeara.Sec82Modular
 import QuadFormsKB.Literature.OMeara.Sec82Free
+import Mathlib.LinearAlgebra.QuadraticForm.Prod
 
 open QuadraticMap Submodule Module
 

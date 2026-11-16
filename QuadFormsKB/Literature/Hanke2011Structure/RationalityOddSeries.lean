@@ -3,8 +3,9 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Literature.ConwaySloane.Symbol
+import Mathlib.Analysis.Normed.Field.Basic
+import Mathlib.RingTheory.PowerSeries.Basic
 
 /-!
 # Paper 6, Theorem 5.4 at odd primes, every rank: the generating series of Conway–Sloane symbols

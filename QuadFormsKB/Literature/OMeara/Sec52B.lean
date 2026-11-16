@@ -36,8 +36,17 @@ simple Artinian rings (`IsSimpleRing.isIsotypic`), `matrixEquivTensor`, `Matrix.
 Auxiliary (untagged): `nonempty_linearEquiv_of_isSimpleModule`, `vecEndAlgEquiv` ($\mathrm{End}_{M_n(D)}(D^n)
 \cong D^{op}$), `endAlgEquivOfSMul`, `exists_isAtom_end_algEquiv`, `matrixMatrixAlgEquiv`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BrauerGroup.Defs
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Matrix.Action
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleModule.WedderburnArtin
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open scoped TensorProduct
 open Module

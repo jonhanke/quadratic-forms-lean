@@ -17,6 +17,7 @@ $\Theta_Q(i) = (-i)^{k}\,\Theta_Q(i)$. As $\Theta_Q(i) > 0$ (a sum of positive t
 This is elementary (no slash action, no valence formula).
 -/
 import QuadFormsKB.Siegel.LevelCharacter
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Complex Matrix Filter Topology
 

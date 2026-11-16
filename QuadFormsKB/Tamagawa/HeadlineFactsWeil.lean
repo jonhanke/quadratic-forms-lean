@@ -18,7 +18,7 @@ import QuadFormsKB.Tamagawa.FrameHM
 /-!
 # The side conditions of the 0.2.0 headline statements
 
-The Tamagawa measures in the 0.2.0 headlines (`Challenge.lean`) contain the real product
+The Tamagawa measures in the 0.2.0 headlines (the `Challenge_<book>.lean` files) contain the real product
 $\prod'_v\mu_v(SO(L_v))$ (`Measure.finFactor`, a `tprod`, which is $1$ when the product does not converge), and some
 contain $L_F(1,\chi)$ (`RegProd.LOne`, a limit, junk if the limit does not exist). This file collects, in the form
 used by the headlines, the facts that rule out these default values. Each is a short consequence of library lemmas:

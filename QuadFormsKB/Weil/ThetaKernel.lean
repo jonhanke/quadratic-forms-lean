@@ -27,7 +27,6 @@ needs Poisson summation for non-factorizable archimedean components, and for $h_
 `thetaDist_omegaG` to sums of factorizable data; the multiplicativity $\omega_\infty(gg') = \omega_\infty(g)\omega_\infty(g')$
 needs the Weil identity for all Schwartz functions at the archimedean places.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Global
 import QuadFormsKB.HilbertModular.Theta

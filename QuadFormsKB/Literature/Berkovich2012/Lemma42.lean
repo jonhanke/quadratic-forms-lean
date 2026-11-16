@@ -1,8 +1,8 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Berkovich2012.Densities
 import QuadFormsKB.LocalDensity.Table2
 import QuadFormsKB.LocalDensity.LowerBounds
+import Mathlib.Tactic.Cases
 
 /-!
 # Berkovich–Hanke–Jagy, S-genus identities: Lemma 4.2

@@ -21,9 +21,11 @@ Theorem 7.11 reads "When $I(S) = \square$ and $\widetilde S \equiv 1\ (4)$ then 
 $B^*_{n=2}(S) = (-1)^\tau A^*_{n=2}(S)$"; by Remark 7.7 and the statement of the theorem this is the case
 $\widetilde S \equiv 3 \pmod 4$ (for $\widetilde S \equiv 1$ the $B^*$-term vanishes).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.BinarySeries
+import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 namespace QuadFormsKB.Hanke2011Structure
 

@@ -17,6 +17,14 @@ Mathlib v4.35.0 has `Set.unit` and the unit theorem but no rank or finite genera
 See `Herbrand.lean` for the overall plan. Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.Herbrand
+import Mathlib.NumberTheory.NumberField.ClassNumber
+import Mathlib.NumberTheory.NumberField.Units.DirichletTheorem
+import Mathlib.RingTheory.DedekindDomain.Factorization
+import Mathlib.RingTheory.DedekindDomain.SInteger
+import Mathlib.RingTheory.DedekindDomain.SelmerGroup
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 open Module NumberField IsDedekindDomain
 open scoped nonZeroDivisors

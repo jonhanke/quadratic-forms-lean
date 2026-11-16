@@ -35,6 +35,7 @@ $\mathbb Q(\sqrt D)$, a character modulo $k_1 = \lvert\Delta\rvert$ (Table 4):
 (exact rational arithmetic, Python) before the formal proof.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Mass.Table6Abs
+import Mathlib.Tactic.Simproc.Factors
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

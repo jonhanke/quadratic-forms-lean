@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelAmbiguous
 import QuadFormsKB.Binary.RelSiegelGenus

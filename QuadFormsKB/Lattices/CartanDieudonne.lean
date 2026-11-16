@@ -19,6 +19,7 @@ Mathlib proves the analogous statement for real inner product spaces (`LinearIso
 it does not apply to indefinite forms or to other fields, so this file gives the general field version.
 -/
 import QuadFormsKB.Lattices.SpinorKernel
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 
 open Matrix
 

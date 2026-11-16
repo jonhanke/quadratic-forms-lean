@@ -40,7 +40,6 @@ $T^{\mathsf T}FT = G$ for some $T \in \mathrm{GL}_n(\mathbb Z_p)$.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Section7Hyperbolic
 import QuadFormsKB.Literature.ConwaySloane.OddClassification

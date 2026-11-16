@@ -16,8 +16,10 @@ right side is $2\lambda_\infty^{-1}\prod_p\lambda_p^{-1}$: Hanke's correction is
 * `cassels_4_19_printed_false`: (4.17) and (4.18) do not imply the printed $\sum_j1/o_j = 2\lambda_\infty P$ (one class,
   $o = 1$, $\lambda_\infty = 2$, $P = 1$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Algebra.Module.NatInt
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
 
 namespace QuadFormsKB.Hanke2005
 

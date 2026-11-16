@@ -36,6 +36,11 @@ interior, taken inside the space of symmetric matrices, are equivalent).
 import QuadFormsKB.Literature.Cassels.Ch12.Notes
 import QuadFormsKB.Literature.Cassels.Ch12.Sec6
 import QuadFormsKB.Literature.Cassels.Ch12.Sec7
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.LinearAlgebra.Matrix.Permutation
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix
 

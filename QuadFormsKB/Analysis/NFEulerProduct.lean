@@ -35,8 +35,14 @@ proved here is $\zeta_F(s) \ge 1$. Hanke's argument only uses the upper bound.
 Sources: Neukirch, *Algebraic Number Theory*, Ch. VII §5 (Dedekind zeta function, Euler product) and Ch. I §8
 (primes over $p$, $\sum e_i f_i = d$) [unverified locators].
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
+import Mathlib.NumberTheory.LSeries.HurwitzZetaValues
+import Mathlib.NumberTheory.NumberField.DedekindZeta
+import Mathlib.RingTheory.Ideal.Int
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open NumberField IsDedekindDomain Filter Topology
 

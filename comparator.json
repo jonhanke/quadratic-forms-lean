@@ -1,74 +1,122 @@
 {
-  "challenge_module": "Challenge",
-  "solution_module": "Solution",
-  "theorem_names": [
-    "QuadFormsKB.Headlines.siegel_totallyReal",
-    "QuadFormsKB.Headlines.siegel_totallyReal_rank3",
-    "QuadFormsKB.Headlines.siegel_totallyReal_rank3'",
-    "QuadFormsKB.Headlines.siegel_totallyReal_rank2",
-    "QuadFormsKB.Headlines.siegel_totallyReal_rank2'",
-    "QuadFormsKB.Headlines.siegel_totallyReal_rank1",
-    "QuadFormsKB.Headlines.tamagawa_two_totallyReal",
-    "QuadFormsKB.Headlines.massFormula_totallyReal",
-    "QuadFormsKB.Headlines.tamagawa_two_totallyReal_ternary",
-    "QuadFormsKB.Headlines.massFormula_totallyReal_ternary",
-    "QuadFormsKB.Headlines.hilbertReciprocity_numberField",
-    "QuadFormsKB.Headlines.hasseMinkowski_numberField",
-    "QuadFormsKB.Headlines.represents_iff_everywhere_numberField",
-    "QuadFormsKB.Headlines.isometric_iff_everywhere_numberField",
-    "QuadFormsKB.Headlines.hasseMinkowski_rat",
-    "QuadFormsKB.Headlines.tamagawa_two_numberField",
-    "QuadFormsKB.Headlines.tamagawa_two_space",
-    "QuadFormsKB.Headlines.tamagawa_one_rankOne",
-    "QuadFormsKB.Headlines.tamagawa_two_binary",
-    "QuadFormsKB.Headlines.tamagawa_two_space_binary",
-    "QuadFormsKB.Headlines.tamagawa_one_binary_isotropic",
-    "QuadFormsKB.Headlines.tamagawa_one_space_binary_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_numberField",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_numberField",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2",
-    "QuadFormsKB.Headlines.siegel_indefinite_ternary",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_rank2_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_ternary_isotropic",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_corank1",
-    "QuadFormsKB.Headlines.siegel_indefinite_binary",
-    "QuadFormsKB.Headlines.siegel_indefinite_forms_corank0",
-    "QuadFormsKB.Headlines.siegelForms_totallyReal",
-    "QuadFormsKB.Headlines.gauss_threeSquares",
-    "QuadFormsKB.Headlines.jacobi_twoSquares",
-    "QuadFormsKB.Headlines.siegel_twoSquares",
-    "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq",
-    "QuadFormsKB.Headlines.divisorCount_xy",
-    "QuadFormsKB.Headlines.siegel_ternary_rat_natural",
-    "QuadFormsKB.Headlines.massFormula_genusSymbols",
-    "QuadFormsKB.Headlines.shimuraMass_odd",
-    "QuadFormsKB.Headlines.shimuraMass_even",
-    "QuadFormsKB.Headlines.hankeMass_numberField",
-    "QuadFormsKB.Headlines.automorphous_iff_rootVectors",
-    "QuadFormsKB.Headlines.dyadicClassification",
-    "QuadFormsKB.Headlines.twoAdicClassification",
-    "QuadFormsKB.Headlines.sameGenus_iff_discIso",
-    "QuadFormsKB.Headlines.sameGenus_iff_discIso_one",
-    "QuadFormsKB.Headlines.watson_twoClasses",
-    "QuadFormsKB.Headlines.voight_maximal_iff_discriminant",
-    "QuadFormsKB.Headlines.voight_evenClifford_correspondence",
-    "QuadFormsKB.Headlines.eichlerMass_totallyReal",
-    "QuadFormsKB.Headlines.eichlerMass_rat",
-    "QuadFormsKB.Headlines.evenUnimodular_classes",
-    "QuadFormsKB.Headlines.jacobi_fourSquares",
-    "QuadFormsKB.Headlines.cauchy_polygonalNumbers",
-    "QuadFormsKB.Headlines.sprague_distinctSquares",
-    "QuadFormsKB.Headlines.tamagawa_SLn",
-    "QuadFormsKB.Headlines.hardy_sumsOfSquares",
-    "QuadFormsKB.Headlines.witt_evenUnimodular_sixteen",
-    "QuadFormsKB.Headlines.quadraticReciprocity_polynomial",
-    "QuadFormsKB.Headlines.hilbertReciprocity_ratFunc"
+  "description": "One lake comparator check per book or topic (a combined check of all headlines needs far more memory). Run one with: ./scripts/verify-comparator.sh <book>. Each entry's config is a complete lake comparator configuration.",
+  "books": [
+    {
+      "book": "SiegelTotallyReal",
+      "title": "Siegel's theorem over totally real number fields",
+      "config": "comparator/SiegelTotallyReal.json",
+      "challenge_module": "Challenge_SiegelTotallyReal",
+      "solution_module": "Solution_SiegelTotallyReal",
+      "theorems": 7
+    },
+    {
+      "book": "TamagawaTotallyReal",
+      "title": "The Tamagawa number and the mass formula over totally real number fields",
+      "config": "comparator/TamagawaTotallyReal.json",
+      "challenge_module": "Challenge_TamagawaTotallyReal",
+      "solution_module": "Solution_TamagawaTotallyReal",
+      "theorems": 4
+    },
+    {
+      "book": "TamagawaSO",
+      "title": "The Tamagawa number of SO(V) over every number field",
+      "config": "comparator/TamagawaSO.json",
+      "challenge_module": "Challenge_TamagawaSO",
+      "solution_module": "Solution_TamagawaSO",
+      "theorems": 7
+    },
+    {
+      "book": "TamagawaGroups",
+      "title": "Tamagawa numbers of SL_n, GL_n and Sp_2",
+      "config": "comparator/TamagawaGroups.json",
+      "challenge_module": "Challenge_TamagawaGroups",
+      "solution_module": "Solution_TamagawaGroups",
+      "theorems": 3
+    },
+    {
+      "book": "LocalGlobal",
+      "title": "Local–global principles and reciprocity",
+      "config": "comparator/LocalGlobal.json",
+      "challenge_module": "Challenge_LocalGlobal",
+      "solution_module": "Solution_LocalGlobal",
+      "theorems": 7
+    },
+    {
+      "book": "SiegelIndefinite",
+      "title": "Siegel's formula for indefinite forms over every number field",
+      "config": "comparator/SiegelIndefinite.json",
+      "challenge_module": "Challenge_SiegelIndefinite",
+      "solution_module": "Solution_SiegelIndefinite",
+      "theorems": 9
+    },
+    {
+      "book": "SiegelWeil",
+      "title": "The Siegel–Weil formula over ℚ",
+      "config": "comparator/SiegelWeil.json",
+      "challenge_module": "Challenge_SiegelWeil",
+      "solution_module": "Solution_SiegelWeil",
+      "theorems": 1
+    },
+    {
+      "book": "ClassicalCases",
+      "title": "Classical cases over ℚ",
+      "config": "comparator/ClassicalCases.json",
+      "challenge_module": "Challenge_ClassicalCases",
+      "solution_module": "Solution_ClassicalCases",
+      "theorems": 6
+    },
+    {
+      "book": "ExactMass",
+      "title": "Exact mass formulas",
+      "config": "comparator/ExactMass.json",
+      "challenge_module": "Challenge_ExactMass",
+      "solution_module": "Solution_ExactMass",
+      "theorems": 4
+    },
+    {
+      "book": "Classification",
+      "title": "Classification of lattices and genera, and class numbers",
+      "config": "comparator/Classification.json",
+      "challenge_module": "Challenge_Classification",
+      "solution_module": "Solution_Classification",
+      "theorems": 6
+    },
+    {
+      "book": "Voight",
+      "title": "J. Voight, Quaternion Algebras",
+      "config": "comparator/Voight.json",
+      "challenge_module": "Challenge_Voight",
+      "solution_module": "Solution_Voight",
+      "theorems": 5
+    },
+    {
+      "book": "Shimura",
+      "title": "G. Shimura, Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups",
+      "config": "comparator/Shimura.json",
+      "challenge_module": "Challenge_Shimura",
+      "solution_module": "Solution_Shimura",
+      "theorems": 3
+    },
+    {
+      "book": "ChenevierLannes",
+      "title": "G. Chenevier and J. Lannes, Automorphic Forms and Even Unimodular Lattices",
+      "config": "comparator/ChenevierLannes.json",
+      "challenge_module": "Challenge_ChenevierLannes",
+      "solution_module": "Solution_ChenevierLannes",
+      "theorems": 6
+    },
+    {
+      "book": "MorenoWagstaff",
+      "title": "C. J. Moreno and S. S. Wagstaff, Jr., Sums of Squares of Integers",
+      "config": "comparator/MorenoWagstaff.json",
+      "challenge_module": "Challenge_MorenoWagstaff",
+      "solution_module": "Solution_MorenoWagstaff",
+      "theorems": 5
+    }
   ],
-  "definition_names": [],
   "permitted_axioms": [
     "propext",
     "Quot.sound",
     "Classical.choice"
-  ],
-  "enable_nanoda": true
+  ]
 }

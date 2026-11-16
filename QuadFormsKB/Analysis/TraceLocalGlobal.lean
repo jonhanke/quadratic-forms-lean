@@ -1,4 +1,6 @@
 import QuadFormsKB.Analysis.LocalFourierNF
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 /-!
 # Global trace = sum of local traces

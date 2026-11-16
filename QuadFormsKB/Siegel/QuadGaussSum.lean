@@ -13,8 +13,15 @@ product of one-dimensional sums; $g^2 = \chi(-1)|K|$ (Mathlib's `gaussSum_sq`), 
 for the matrix $P$ of the basis. Sources: Lidl–Niederreiter, *Finite Fields*, Thm. 5.33 and §6.2 [unverified];
 Iwaniec, *Topics in Classical Automorphic Forms*, §10.4 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
+import Mathlib.NumberTheory.GaussSum
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Finset Matrix
 

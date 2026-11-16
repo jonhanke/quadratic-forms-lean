@@ -26,7 +26,6 @@ $$1 \le \prod_{\mathfrak p\notin T}\beta_{G_{\mathfrak p},\mathfrak p}(G_{\mathf
   $\zeta^T_F(2)^2 > \zeta^T_F(2)^2/\zeta^T_F(4)$. The correct bound is $\zeta^T_F(2)\cdots\zeta^T_F(n-2)\,\zeta^T_F(n/2)$,
   which still converges for $n \ge 4$, so the convergence conclusion of Lemma 3.6 is unaffected.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.LocalGenera
 import QuadFormsKB.Literature.Hanke2011Structure.BinarySeries

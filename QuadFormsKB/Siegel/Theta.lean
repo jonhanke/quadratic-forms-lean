@@ -18,6 +18,7 @@ and $z$ in the upper half plane $\mathbb{H} = \{\operatorname{Im} z > 0\}$:
 import QuadFormsKB.Analysis.LatticePoisson
 import QuadFormsKB.Siegel.Archimedean
 import QuadFormsKB.Siegel.FourSquares
+import Mathlib.NumberTheory.ModularForms.JacobiTheta.OneVariable
 
 open Complex Matrix Filter Topology
 open QuadFormsKB.Analysis (quadAt)

@@ -1,4 +1,6 @@
 import QuadFormsKB.Binary.GenusLocal
+import Mathlib.Data.Nat.ChineseRemainder
+import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 /-!
 # The number of genera: $2^{t-1}$

@@ -20,6 +20,7 @@ import Mathlib.NumberTheory.NumberField.ClassNumber
 import Mathlib.Algebra.Module.ZLattice.Basic
 import QuadFormsKB.Literature.OMeara.Sec33A
 import QuadFormsKB.Literature.OMeara.Sec65A
+import Mathlib.Analysis.CStarAlgebra.Classes
 
 open NumberField IsDedekindDomain
 

@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelativeCNF
 import QuadFormsKB.Binary.SiegelBinary

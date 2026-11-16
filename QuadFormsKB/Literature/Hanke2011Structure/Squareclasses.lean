@@ -22,7 +22,6 @@ arXiv:1108.3580 (bib key `hanke2011structure`).
   the paper's $\widetilde{\lambda(ab^2)} = \widetilde{\lambda(a)}$, which makes the map $\widetilde\lambda$ of diagram (13) well defined on
   ideal classes modulo squares.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Lattices.Local
 import QuadFormsKB.Lattices.SpinorNorm

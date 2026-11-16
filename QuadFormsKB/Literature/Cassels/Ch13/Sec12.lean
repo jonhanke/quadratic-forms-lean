@@ -15,6 +15,8 @@ $T \in \mathrm{GL}_n(\mathbb{Z})$ (Ch. 12, §7); $T^{-1}g$ is the form $g(T^{-1}
 -/
 import QuadFormsKB.Literature.Cassels.Ch13.Sec11
 import QuadFormsKB.Literature.Cassels.Ch12.Sec7
+import Mathlib.Combinatorics.SimpleGraph.Connectivity.Finite
+import Mathlib.LinearAlgebra.QuadraticForm.Signature
 
 open Matrix
 

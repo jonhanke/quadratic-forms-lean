@@ -31,6 +31,7 @@ and the count is $|\Gamma_i|$ on $\Gamma\alpha_iK$ and $0$ off it (`card_setOf_m
 disjoint double cosets gives $\int_G f$. Only left invariance of $\mu$ is used.
 -/
 import QuadFormsKB.Literature.AWS.Unfolding
+import Mathlib.MeasureTheory.Integral.DominatedConvergence
 
 open MeasureTheory
 open scoped Pointwise ENNReal

@@ -32,8 +32,13 @@ formulas, so no complements or gluing are needed):
 
 Sources: O'Meara §§42–43, pp. 88–111; Elman–Karpenko–Merkurjev (EKM) §7–8; Lam Ch. I §4.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.LinearAlgebra.Dual.Lemmas
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.QuadraticForm.Radical
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Module QuadraticMap
 

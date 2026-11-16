@@ -37,7 +37,6 @@ The global zeta integral, the archimedean factor and the residue at $s = 0$ are 
 
 Sources: A. Weil, *Adeles and Algebraic Groups* (1982), §4.3 (pp. 88–91), §4.4 (pp. 93–94), §4.5 (pp. 101–108).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.LocalZetaGood
 import QuadFormsKB.Analysis.NFEulerProduct

@@ -30,6 +30,10 @@ Oddities of type II forms are $0$ (Conway–Sloane, §7.3); here only their equa
 * `theorem10Cond_iff_moveEquiv`: (i)–(ii) hold iff the symbols are related by sign walking and oddity fusion.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Canonical
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Logic.Equiv.PartialEquiv
+import Mathlib.Tactic.ReduceModChar
 
 namespace QuadFormsKB.ConwaySloane
 

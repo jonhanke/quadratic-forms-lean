@@ -31,6 +31,7 @@ above replaces that inspection.)
 -/
 import QuadFormsKB.Literature.Cassels.Ch10.SpinGroup
 import Mathlib.Topology.Algebra.Module.FiniteDimension
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Module CliffordAlgebra Topology
 

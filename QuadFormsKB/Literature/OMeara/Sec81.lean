@@ -24,6 +24,8 @@ field $F$ is not $2$ will not be used in the first paragraph of this chapter", p
 * `mem_iSup_smul_span_iff` and `coeff_sum_basis` (**81:4**).
 -/
 import QuadFormsKB.Literature.OMeara.Sec91
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.RingTheory.DedekindDomain.Ideal.Basic
 
 open Submodule Module
 

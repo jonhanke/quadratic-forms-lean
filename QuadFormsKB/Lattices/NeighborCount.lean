@@ -17,6 +17,9 @@ $\#\{\bar Q = c\}$ themselves come from Table 1 over $F$ (`LocalDensity.NF.card_
 -/
 import QuadFormsKB.LocalDensity.Hensel
 import QuadFormsKB.LocalDensity.JordanForm
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix
 

@@ -15,6 +15,7 @@ import QuadFormsKB.Siegel.KneserConnectedProof
 import QuadFormsKB.Equiv.Mathlib
 import QuadFormsKB.Tamagawa.OrthFq
 import QuadFormsKB.Literature.Hanke2005.DensityDyadicSelfDual
+import Mathlib.CategoryTheory.Action.Concrete
 
 open QuadraticMap QuadraticForm Module QuadraticForm.Witt
 

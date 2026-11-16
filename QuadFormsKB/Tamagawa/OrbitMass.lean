@@ -23,8 +23,13 @@ These are the discrete content of "volume of $\Gamma\backslash G$" for a group w
 a discrete $\Gamma$ with finite $\Gamma \cap \alpha K \alpha^{-1}$: $\mathrm{vol}(\Gamma\backslash G) = \mu(K) \cdot \mathrm{dcMass}(\Gamma, K)$,
 independent of $K$ by `dcMass_of_le` (Weil, *Adeles and Algebraic Groups*, §2.4, p. 23 and Lemma 2.4.2, p. 26 (discrete version); Hanke Arizona Winter School notes §4.6).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.BigOperators.Finprod
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Algebra.Torsor.Defs
+import Mathlib.GroupTheory.Index
+import Mathlib.Tactic.Group
 
 open MulAction
 

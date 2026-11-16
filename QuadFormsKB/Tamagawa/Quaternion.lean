@@ -34,6 +34,8 @@ import QuadFormsKB.Equiv.Hilbert
 import QuadFormsKB.Equiv.Mathlib
 import QuadFormsKB.Witt.Represents
 import QuadFormsKB.Literature.LocalGlobal.NumberFieldMain
+import Mathlib.Algebra.QuaternionBasis
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Quaternion
 

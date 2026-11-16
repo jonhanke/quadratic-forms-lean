@@ -97,12 +97,15 @@ $$\operatorname{mass}(\operatorname{Cls}\mathcal O) = \frac{2\,\zeta_F(2)}{(2\pi
 \varphi(\mathfrak D)\,\psi(\mathfrak M), \qquad \varphi(\mathfrak D) = \prod_{\mathfrak p \mid \mathfrak D}(N\mathfrak p - 1).$$
 The mass is `clsMass O`, over the classes of locally principal (invertible) left ideals, which is the book's
 $\operatorname{Cls}\mathcal O$; *correction:* this statement used `classMass O` (all nonzero left ideals) until
-recently, which differs from the book for $\mathfrak M \ne R$. Stated, not proved. For $\mathfrak M = R$ (maximal orders) see
+recently, which differs from the book for $\mathfrak M \ne R$. *Update:* the hypothesis that $\mathcal O$ has a
+$\mathbb Z_F$-basis was added: `HasDiscrd` is vacuous for an order without a basis, so the unrestricted statement is false
+(a recorded loose end, pseudo-bases). Stated, not proved. For $\mathfrak M = R$ (maximal orders) see
 `MassWave2.classMass_eq_of_maximalOrderDiscriminant` and `Wave4.clsMass_eq_classMass`. -/
 @[kb "voight2021" "Theorem 26.1.12, p. 433"]
 def EichlerMassFormulaEichlerOrders (F : Type) [Field F] [NumberField F] : Prop :=
   ∀ (a b : 𝓞 F) (ha : a ≠ 0) (hb : b ≠ 0), IsTotDefinite a b →
-    ∀ (O : Subalgebra (𝓞 F) (QuatF F a b)) (𝔐 : Ideal (𝓞 F)), IsEichlerOrderOfLevel ha hb O 𝔐 →
+    ∀ (O : Subalgebra (𝓞 F) (QuatF F a b)) (𝔐 : Ideal (𝓞 F)),
+      Nonempty (Module.Basis (Fin 4) (𝓞 F) (Subalgebra.toSubmodule O)) → IsEichlerOrderOfLevel ha hb O 𝔐 →
       clsMass O = 2 * dedekindZetaR F 2 / (2 * Real.pi) ^ (2 * Module.finrank ℚ F) *
         |(NumberField.discr F : ℝ)| ^ (3 / 2 : ℝ) * (NumberField.classNumber F : ℝ) *
         (∏ v ∈ ramFin ha hb, ((Ideal.absNorm v.asIdeal : ℝ) - 1)) * dedekindPsi 𝔐

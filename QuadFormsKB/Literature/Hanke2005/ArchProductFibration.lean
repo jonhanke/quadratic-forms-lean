@@ -9,8 +9,9 @@ $\big(\prod_ic_i\big)\bigotimes_i\nu_i$.
 * `map_pi_eq_smul_pi`: $(\prod_i F_i)_*\bigotimes_i\mu_i = \big(\prod_ic_i\big)\bigotimes_i\nu_i$ for finitely many factors;
 * `map_prod_eq_smul_prod`: the binary version $(F_1\times F_2)_*(\mu_1\otimes\mu_2) = c_1c_2\,(\nu_1\otimes\nu_2)$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.MeasureTheory.Constructions.Pi
+import Mathlib.MeasureTheory.Measure.WithDensity
 
 open MeasureTheory
 open scoped ENNReal

@@ -27,7 +27,6 @@ statements about the diagonal formula are statements about the space.
   `OMeara/Sec72Local.lean`) and `hasseLocal` the Serre-convention product $\prod_{i<j}(a_i,a_j)$.
   `lemma_5_10` is the version for elements of $F$ viewed in $F_v$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.LocalGlobal.HasseConventionsNF
 import QuadFormsKB.Literature.OMeara.Sec72Local

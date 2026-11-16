@@ -13,7 +13,6 @@
 
 Sources: Schanuel, *Heights in number fields*, Bull. SMF 107 (1979) [unverified]; Weil, Acta Math. 113 (1965), Ch. II [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Convergence
 

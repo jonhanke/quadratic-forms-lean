@@ -21,6 +21,7 @@ import Mathlib.Data.ZMod.Basic
 import Mathlib.Algebra.Group.Subgroup.Basic
 import Mathlib.Tactic.Ring
 import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Module
 
 namespace QuadFormsKB.ChenevierLannes
 

@@ -1,6 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.LerayFiniteNF
+import Mathlib.Topology.MetricSpace.Ultra.Pi
 
 /-!
 # Stabilization of the thickened Leray measures at a finite place

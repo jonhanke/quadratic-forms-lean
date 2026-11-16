@@ -43,7 +43,6 @@ Siegel dans la théorie des groupes classiques*, Acta Math. 113 (1965), Ch. II a
 extensions of the Siegel–Weil formula* (2008), §1 [unverified]; Yang, *An explicit formula for local densities of
 quadratic forms*, J. Number Theory 72 (1998), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Sections
 import QuadFormsKB.LocalDensity.NFLocal

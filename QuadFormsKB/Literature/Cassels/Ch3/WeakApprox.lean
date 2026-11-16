@@ -20,8 +20,11 @@ to $\alpha_p$. Then correct the real place: with $q = \prod_{p \in S} p^K$ ($K$ 
 and a prime $\ell > M$ (so $\ell$ is a $p$-adic unit), the numbers $q u / \ell^j$ with $u \in \mathbb Z$ are $p$-adically
 small and, for $j$ large, form a $q/\ell^j$-net of $\mathbb R$. Take $r = x/M + qu/\ell^j$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
 
 namespace QuadFormsKB.Cassels
 

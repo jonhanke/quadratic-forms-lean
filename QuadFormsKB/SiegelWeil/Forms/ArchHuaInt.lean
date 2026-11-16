@@ -6,7 +6,6 @@ $c_1(\sigma) = \int_{\mathbb R}(1 + t^2)^{-\sigma/2}dt$ (`hc1`, finite for $\sig
 (`hc2`, finite for $2(\sigma - 1) > r$), $\int|(a - q) + iy|^{-\sigma}da = y^{1-\sigma}c_1(\sigma)$, and the linear change of variables
 $\int f = |\det A|\int f(A\,\cdot)$; used by `ArchHua.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.ArchVolume
 

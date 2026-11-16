@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelFormAut
 import QuadFormsKB.Binary.RelativeIdealCount

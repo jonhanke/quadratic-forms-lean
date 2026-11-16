@@ -32,8 +32,21 @@ $a x^{2}$ and $c - b y^{2}$ each have $(q+1)/2$ elements, so they meet), which i
 Cassels' determinant computation: the Gram matrix $\Phi$ satisfies $\Sigma^{\mathsf T}\Phi\Sigma = \Phi$, so
 $(\det\Sigma)^{2}\det\Phi = \det\Phi \neq 0$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.FieldTheory.Finite.Basic
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.LinearAlgebra.QuadraticForm.Prod
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 open Module LinearMap LinearMap.BilinForm Polynomial
 

@@ -1,5 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.Ideles
 import QuadFormsKB.Tamagawa.Measure.Weil.QuotientIntegral
+import Mathlib.Analysis.Matrix.MeasurableSpace
+import Mathlib.Topology.Algebra.Group.Matrix
 
 /-!
 # $\mathrm{SL}_2(\mathbb A_F)$ as a locally compact group, $\mathrm{SL}_2(F)$ discrete

@@ -1,4 +1,5 @@
-import Mathlib
+import Mathlib.MeasureTheory.Constructions.Pi
+import Mathlib.MeasureTheory.Group.LIntegral
 
 /-!
 # The local fibration $\mathrm{GL}_2\to\mathbb G_m$, $X\mapsto\det X$, in the gauge chart

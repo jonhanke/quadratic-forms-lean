@@ -14,8 +14,10 @@ $k$. Cassels states it for any field (the proof needs no restriction on the char
 **Proof.** If $a x^{2} + b y^{2} = 0$ with $(x, y) \neq 0$ then $y \neq 0$ and $-ab = (ax/y)^{2}$; conversely if
 $-ab = t^{2}$ then $(x, y) = (t, a)$ is a zero.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.LinearCombination
 
 namespace QuadFormsKB.Cassels
 

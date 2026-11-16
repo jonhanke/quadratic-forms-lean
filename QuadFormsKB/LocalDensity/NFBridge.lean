@@ -20,6 +20,9 @@ The local density $\beta_\mathfrak p(Q, m)$ over $\mathcal O_F$ and the corollar
 import QuadFormsKB.LocalDensity.DVRLowerBounds
 import QuadFormsKB.LocalDensity.Bridge
 import QuadFormsKB.Literature.HasseNorm.SquareClasses
+import Mathlib.RingTheory.AdicCompletion.Noetherian
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open NumberField IsDedekindDomain WithZero
 

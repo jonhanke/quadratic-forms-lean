@@ -21,6 +21,11 @@ rows $s(0), \dots, s(J-1)$, in any order; reordering only changes the sign). The
 $I = \mathbb Z_p$ are `Siegel.tfae_extends_basis` (`Ch9Sec2.lean`) and `tfae_extends_basis_padic` (`Ch8/Bases.lean`).
 -/
 import QuadFormsKB.Literature.Cassels.Ch7.AdaptedBasis
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.TotallySplit
 
 namespace QuadFormsKB.Cassels
 

@@ -17,8 +17,12 @@ $y_1$ is $\sum_{j} x_{j+1}$ and his $y_{j+1}$ is $x_{j+1} + x_0/n$ ($0 \le j < m
 * `bruck_ryser_diag_injective`: the substitution $\vec x \mapsto \vec y$ is injective (so invertible), hence $g$ and $h$
   are rationally equivalent.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Normed.Field.Lemmas
+import Mathlib.Tactic.Positivity
 
 namespace QuadFormsKB.Cassels.Ch6
 

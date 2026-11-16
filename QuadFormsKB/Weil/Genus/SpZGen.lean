@@ -27,7 +27,6 @@ induction on $g$ and no generation of $\mathrm{GL}_g(\mathbb Z)$ is needed.
 Sources: Klingen, *Introductory lectures on Siegel modular forms* (1990), §I.2, Prop. 1 [unverified]; the proof
 here is a direct Euclidean algorithm and differs from Klingen's.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.ThetaSp
 

@@ -17,6 +17,7 @@ This holds for positive and negative $D$; the library's earlier identification w
 (`Binary.isFormClassGroup`, `Binary.slClassEquiv`) is for fundamental $D < 0$ and positive definite forms.
 -/
 import QuadFormsKB.Literature.Cassels.Ch14.Composition
+import Mathlib.Algebra.Group.MinimalAxioms
 
 namespace QuadFormsKB.Composition
 

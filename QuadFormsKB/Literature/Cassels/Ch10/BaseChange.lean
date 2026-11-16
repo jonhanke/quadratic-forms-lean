@@ -47,7 +47,7 @@ import QuadFormsKB.Literature.Cassels.Ch10.SpinGroup
 import QuadFormsKB.Literature.Cassels.Ch10.IntegralClifford
 import QuadFormsKB.Literature.OMeara.Sec54Dim
 import QuadFormsKB.Tamagawa.Measure.LocalSO
-import Mathlib
+import Mathlib.LinearAlgebra.CliffordAlgebra.BaseChange
 
 open Module CliffordAlgebra
 open scoped TensorProduct

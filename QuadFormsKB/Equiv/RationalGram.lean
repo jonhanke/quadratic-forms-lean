@@ -12,6 +12,7 @@ Over $\mathbb{Z}$ they are not: `gram` leaves $\mathbb{Z}$ exactly when some cro
 odd. That is the "integral vs. classically integral" distinction of `Equiv/Integral.lean`.
 -/
 import QuadFormsKB.Defs.Rational
+import Mathlib.Algebra.Ring.IsFormallyReal
 
 open Matrix
 

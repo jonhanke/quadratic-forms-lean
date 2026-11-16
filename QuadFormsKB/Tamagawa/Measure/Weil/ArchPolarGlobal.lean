@@ -2,6 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.ArchPolar
 import QuadFormsKB.Tamagawa.Measure.PiProdLintegral
 import QuadFormsKB.Tamagawa.Measure.Weil.QuatInfinite
 import QuadFormsKB.Tamagawa.Measure.Weil.IdeleMeasures
+import Mathlib.MeasureTheory.Order.Group.Lattice
 
 /-!
 # Polar coordinates for $(D\otimes F_\infty)^\times$ over all archimedean places

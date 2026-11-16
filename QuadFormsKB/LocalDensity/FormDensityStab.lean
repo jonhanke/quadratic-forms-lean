@@ -25,6 +25,7 @@ so this recovers the stabilization of $r_{\pi^k}(m)$ from $k \ge 2\,\mathrm{ord}
 **Depends on** `FormDensityHensel.lean`.
 -/
 import QuadFormsKB.LocalDensity.FormDensityHensel
+import Mathlib.Data.Sym.Card
 
 namespace QuadFormsKB.LocalDensity.DVR
 

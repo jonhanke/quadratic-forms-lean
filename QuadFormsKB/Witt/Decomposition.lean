@@ -36,6 +36,8 @@ $\mathbb{H}^{k+1} \perp Q'$ is never anisotropic.
 Shimura's *core subspace* is the anisotropic part $Q_{\mathrm{an}}$.
 -/
 import QuadFormsKB.Witt.Cancellation
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open Module QuadraticMap
 

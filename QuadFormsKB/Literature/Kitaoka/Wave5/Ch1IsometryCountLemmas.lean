@@ -18,6 +18,7 @@ and $\langle t\rangle$ is `lineForm t` ($x \mapsto tx^2$ on $F$).
 * `valCount_odd`: for $\dim W = w$ odd and $t \ne 0$, $a(t, W) = q^{w-1} + \chi(W \perp \langle -t\rangle)q^{(w-1)/2}$.
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave5.Ch5Lemma569Proof
+import Mathlib.Algebra.Order.PUnit
 
 open QuadraticMap Module QuadraticForm.Witt
 

@@ -17,8 +17,12 @@ $2 = 2^2 - 2\cdot1^2$ ramifies; a prime $p\equiv\pm1\pmod8$ splits, i.e. is a va
 square mod $p$ and Thue's lemma); a prime $q\equiv\pm3\pmod8$ is inert: $q\mid x_0^2-2x_1^2$ forces $q\mid x_0$, $q\mid x_1$
 (`even_padicValNat_of_pell2_value`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
 
 namespace QuadFormsKB.Tamagawa.Classical
 

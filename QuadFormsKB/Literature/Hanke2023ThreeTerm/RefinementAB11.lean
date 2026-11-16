@@ -1,6 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.RefinementDefs
+import Mathlib.Tactic.Cases
+import Batteries.Tactic.PermuteGoals
 
 /-!
 # Saha–Hanke §6.2: the case tree for $a + b = 2$ (generated, checked by `omega`)

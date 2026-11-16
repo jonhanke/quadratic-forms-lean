@@ -27,6 +27,7 @@ hint's path from $b$ to $a$ must stay among anisotropic vectors of the same sign
 import QuadFormsKB.Literature.OMeara.Sec91Units
 import QuadFormsKB.Literature.Cassels.Ch2.Exercises
 import Mathlib.Topology.Instances.Matrix
+import Mathlib.RingTheory.TotallySplit
 
 open QuadraticMap Module
 

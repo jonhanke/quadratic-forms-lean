@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.LerayCount
+import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-!
 # Local ratios of Haar measures along a locally injective homomorphism

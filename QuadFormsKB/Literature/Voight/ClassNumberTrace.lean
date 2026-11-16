@@ -33,6 +33,7 @@ identity matrix and $h(-4) = h(-3) = 1$; this checks that the two statements are
 -/
 import QuadFormsKB.Literature.Voight.MassFormula
 import QuadFormsKB.Siegel.ThetaCharacter
+import Mathlib.Tactic.NormNum.IsSquare
 
 open NumberField Quaternion
 

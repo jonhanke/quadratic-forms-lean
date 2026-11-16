@@ -23,6 +23,7 @@ $R$ is not used.
 -/
 import QuadFormsKB.Literature.Voight.Wave5.EichlerSymbol
 import QuadFormsKB.Literature.Voight.Wave4.EichlerDiscriminant
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card
 
 set_option linter.unusedSectionVars false
 

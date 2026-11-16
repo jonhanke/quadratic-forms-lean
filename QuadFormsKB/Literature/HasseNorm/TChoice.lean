@@ -14,6 +14,7 @@ For $S$ a finite set of primes and $a \in \mathcal O_F$ not a square, with $\lan
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.GoodPrimes
+import Mathlib.Algebra.Homology.HomotopyCategory.HomComplexCohomology
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors

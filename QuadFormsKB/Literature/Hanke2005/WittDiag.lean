@@ -13,6 +13,8 @@ non-square when $t = 2$, and (given that quaternary forms of non-square determin
 local field) a square when $t = 4$ (`even_disc_of_anisoDim`).
 -/
 import QuadFormsKB.Witt.Bridge
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.RingTheory.TotallySplit
 
 open Module QuadraticMap QuadraticForm
 

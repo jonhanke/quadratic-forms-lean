@@ -29,6 +29,8 @@ The Arizona Winter School notes' four-squares inputs (`Literature/AWS/FourSquare
 import QuadFormsKB.Siegel.ThetaGamma0
 import QuadFormsKB.Siegel.E8
 import QuadFormsKB.LocalDensity.BridgeDyadic
+import Mathlib.NumberTheory.ModularForms.EisensteinSeries.E2.MDifferentiable
+import Mathlib.NumberTheory.ModularForms.NormTrace
 
 open Complex Matrix ModularForm EisensteinSeries
 open UpperHalfPlane hiding I

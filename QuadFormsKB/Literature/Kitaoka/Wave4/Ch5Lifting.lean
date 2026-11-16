@@ -7,6 +7,8 @@ import Mathlib.Algebra.Module.Lattice
 import QuadFormsKB.Literature.Kitaoka.Ch5Extension
 import QuadFormsKB.Literature.OMeara.Sec82Dual
 import QuadFormsKB.Literature.OMeara.Sec82Classes
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 /-!
 # Kitaoka 1993, §§5.3–5.4: Proposition 5.3.2, Proposition 5.3.3, Corollaries 5.4.1, 5.4.2, 5.4.5

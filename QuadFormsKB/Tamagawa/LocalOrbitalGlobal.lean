@@ -32,6 +32,7 @@ non-free lattices allowed); $L = \mathcal O_F e_0 \perp \mathcal O_F^n$; $Q$ tot
 `LocalOrbitalIdentityAt v Q₀' m` at the finitely many $\mathfrak p \mid 2m$.
 -/
 import QuadFormsKB.Tamagawa.LocalOrbital
+import Mathlib.NumberTheory.NumberField.ProductFormula
 
 open NumberField IsDedekindDomain Matrix MulAction
 open scoped RestrictedProduct

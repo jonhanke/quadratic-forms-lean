@@ -19,7 +19,6 @@ $M \otimes \mathbb Z_2$ is isometric iff $g^{\mathsf T}Bg = A$. It *induces* $\v
 (`InducedBy`) iff whenever $\varphi[y] = [z]$ the dual vectors $B^{-1}z$ and $g A^{-1}y$ differ by a vector of
 $\mathbb Z_2^n$ (both read in $\mathbb Q_2^n$). Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemmas
 

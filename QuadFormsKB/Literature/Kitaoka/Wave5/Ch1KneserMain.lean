@@ -15,6 +15,7 @@ hence $v_2$, hence maps $U = \{v_1, v_2\}^\perp$ to itself, and its restriction 
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave5.Ch1KneserAssertion
 import QuadFormsKB.Literature.Kitaoka.Ch1Spaces
+import Mathlib.RingTheory.TotallySplit
 
 open QuadraticMap IsLocalRing Module
 

@@ -12,6 +12,10 @@ J. Hanke, *Quadratic Forms and Automorphic Forms*, Arizona Winter School 2009 no
 import QuadFormsKB.Witt.Extension
 import QuadFormsKB.Literature.Cassels.Ch2.Basic
 import QuadFormsKB.Literature.OMeara.Sec82
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Analysis.Normed.Field.Lemmas
+import Mathlib.RingTheory.FractionalIdeal.Operations
 
 open Module QuadraticMap
 

@@ -11,7 +11,13 @@ $e, f, e + f$ have $q = 1$, or there is a hyperbolic pair ($q(e) = q(f) = 0$). T
 $e, f$ and nonzero exists ($\dim W \ge 3$); if $q(z') = 1$ take $e + z', f + z'$; otherwise $z'$ pairs to $1$ with some
 $g$ orthogonal to $e, f$ with $q(g) = 0$, and $e + f + z'$, $e + f + g$ work.
 -/
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.LinearAlgebra.Dimension.Finite
+import Mathlib.LinearAlgebra.FiniteDimensional.Defs
+import Mathlib.LinearAlgebra.FreeModule.StrongRankCondition
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 set_option linter.unusedSectionVars false
 

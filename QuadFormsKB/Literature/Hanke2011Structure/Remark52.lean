@@ -48,7 +48,6 @@ Conway–Sloane symbol is written $\bar 2 :: \bar 2$. Hence a partial symbol wit
 corresponds to no 2-adic symbol: the correspondence is onto the partial symbols *without* a comma between two
 barred blocks (for $n = 2$ nothing changes: the five symbols of Lemma 7.1 all qualify).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.JordanSymbols
 import QuadFormsKB.Literature.ConwaySloane.Existence

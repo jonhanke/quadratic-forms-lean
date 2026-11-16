@@ -1,7 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.Basic
 import QuadFormsKB.Siegel.Inputs
+import Mathlib.NumberTheory.Real.Irrational
 
 /-!
 # Saha–Hanke, three-term theta relations: irrational relations (Lemma 5.1)

@@ -20,6 +20,7 @@ The fibre of $SO_n(\mathbb C)$ is $c_0$ ($T = 1$, $\sigma = 0$), with $h(c_0) = 
 -/
 import QuadFormsKB.Literature.Hanke2005.ArchCxParam
 import QuadFormsKB.Tamagawa.Measure.Weil.SimilarDet
+import Mathlib.Analysis.Calculus.InverseFunctionTheorem.ContDiff
 
 open MeasureTheory Matrix Complex Set Filter Topology
 open scoped ENNReal

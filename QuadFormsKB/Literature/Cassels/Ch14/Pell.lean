@@ -20,6 +20,11 @@ $\alpha = rs$ solves the negative equation, and $\alpha \in \{r, s\}$ is the rep
 $-f(s)$, excluded by the hypotheses (Cassels' evaluation of $(w/r)$, p. 352, with $w = 1$).
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+import Mathlib.NumberTheory.Pell
 
 namespace QuadFormsKB.Composition
 

@@ -15,6 +15,7 @@ real form with matrix $F$: `realAut F` ($S^{\mathsf T}FS = F$). $D = -d = b^2 - 
 -/
 import QuadFormsKB.Literature.Cassels.Ch13.Basic
 import QuadFormsKB.Siegel.KneserCert
+import Mathlib.NumberTheory.Pell
 
 open Matrix
 

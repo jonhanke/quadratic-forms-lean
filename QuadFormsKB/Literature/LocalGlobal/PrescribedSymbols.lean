@@ -16,6 +16,8 @@ theorem on primes in progressions (Mathlib: `Nat.forall_exists_prime_gt_and_eq_m
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.LocalGlobal.HilbertReciprocity
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.NumberTheory.LSeries.PrimesInAP
 
 namespace QuadFormsKB.Prescribed
 

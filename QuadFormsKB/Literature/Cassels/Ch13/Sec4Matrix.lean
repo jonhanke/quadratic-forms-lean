@@ -1,5 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Basic
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
 
 /-!
 # Cassels, Chapter 13, §4: commensurability of integral automorph groups (Lemma 4.1)

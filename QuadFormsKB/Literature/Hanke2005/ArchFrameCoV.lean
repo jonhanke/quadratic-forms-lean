@@ -13,6 +13,8 @@ $z = \begin{bmatrix}x\\y\end{bmatrix}$ (`frameOf`).
 import QuadFormsKB.Literature.Hanke2005.ArchSymmetricReal
 import QuadFormsKB.Literature.Hanke2005.ArchMeasAux
 import QuadFormsKB.Tamagawa.ArchVolume
+import Mathlib.Analysis.Matrix.MeasurableSpace
+import Mathlib.MeasureTheory.Order.Group.Lattice
 open MeasureTheory Matrix
 open scoped ENNReal
 noncomputable section

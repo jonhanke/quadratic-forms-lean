@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge_Shimura",
+  "solution_module": "Solution_Shimura",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.shimura_theorem11_6_i",
+    "QuadFormsKB.Headlines.shimura_theorem11_6_v",
+    "QuadFormsKB.Headlines.shimura_formula13_18"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

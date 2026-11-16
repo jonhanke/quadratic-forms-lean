@@ -29,7 +29,6 @@ level of Fourier coefficients, not as an identity of functions on $\mathrm{Sp}_{
 Sources: Siegel, Ann. Math. 36 (1935), Hauptsatz [unverified]; Weil, Acta Math. 113 (1965), Ch. II–IV [unverified]; Kudla, *Some
 extensions of the Siegel–Weil formula* (2008), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.GlobalWhittaker
 import QuadFormsKB.SiegelWeil.Forms.DensityProduct

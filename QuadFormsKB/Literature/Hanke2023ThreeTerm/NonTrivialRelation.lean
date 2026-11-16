@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Defs.Binary
 import QuadFormsKB.Siegel.Theta

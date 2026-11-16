@@ -19,6 +19,7 @@ $C_0(V)$ is Mathlib's subalgebra `CliffordAlgebra.even Q`; its canonical involut
   hypotheses of (iii); the statements hold for any homomorphism extending an isomorphism.)
 -/
 import QuadFormsKB.Literature.Cassels.Ch10.Example4
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Module CliffordAlgebra QuadFormsKB.OMeara
 

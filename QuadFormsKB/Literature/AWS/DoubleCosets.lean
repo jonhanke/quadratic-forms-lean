@@ -21,8 +21,12 @@ Main results:
 - `IsAdelicAutomorphic`, `isAdelicAutomorphic_of_biInvariant` (D12, D17, §4.2 conditions 1–3, end of §4.5).
 - `exists_unique_lift`, `lift_mul_right` (D11, §4.2, the adelic lift (4.2) via strong approximation).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Basic.Complex.Basic
+import Mathlib.GroupTheory.DoubleCoset
+import Mathlib.GroupTheory.GroupAction.Quotient
+import Mathlib.LinearAlgebra.FiniteDimensional.Basic
+import Mathlib.Tactic.Group
 
 open MulAction
 

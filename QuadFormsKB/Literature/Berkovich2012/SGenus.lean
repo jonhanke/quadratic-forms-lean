@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Berkovich2012.Lemma63
 import QuadFormsKB.Siegel.LocalProduct

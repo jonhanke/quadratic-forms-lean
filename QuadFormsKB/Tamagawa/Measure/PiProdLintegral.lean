@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.MeasureTheory.Constructions.Pi
 
 /-!
 # Generic product lemmas for finite product measures

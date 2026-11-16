@@ -8,6 +8,7 @@ $[r, 0, -s]$ of discriminant $4rs$. Theorem 5.1 for general discriminants is not
 proved from Mathlib's quadratic reciprocity (`legendreSym.quadratic_reciprocity_three_mod_four`).
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
 
 namespace QuadFormsKB.Composition
 

@@ -45,8 +45,16 @@ confirmed against Gauss).
 
 *Choice of `stepB`.* Written with `Nat.findGreatest` (not `Nat.sqrt`) so that all examples are kernel-evaluable.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.LinearAlgebra.Matrix.Adjugate
+import Mathlib.Logic.Equiv.PartialEquiv
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Positivity
+import Mathlib.Tactic.ReduceModChar
 
 namespace QuadFormsKB
 

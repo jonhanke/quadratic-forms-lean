@@ -29,6 +29,8 @@ Indices are 0-based (Voight's $e_1, e_2, e_3$ are $e_0, e_1, e_2$).
 import QuadFormsKB.Literature.Voight.Functoriality
 import QuadFormsKB.Witt.Bridge
 import Mathlib.RingTheory.TensorProduct.Free
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.TotallySplit
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false

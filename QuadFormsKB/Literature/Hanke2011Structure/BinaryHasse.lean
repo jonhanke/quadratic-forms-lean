@@ -28,7 +28,6 @@ $\prod_{i<j}(a_i,a_j)$ (`hasseLocal`) as in the paper's proof of Lemma 5.10:
 The genera themselves, counted with their Hasse invariants, are in `BinaryGeneraOdd.lean` (via Cassels' count of
 $\mathbb Z_p$-classes); the dyadic table ($F_{\mathfrak p} = \mathbb Q_2$) is in `DyadicHasseTable.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal
 import QuadFormsKB.Literature.Hanke2011Structure.HasseScaling

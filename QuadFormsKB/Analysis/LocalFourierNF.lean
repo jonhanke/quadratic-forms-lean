@@ -1,5 +1,9 @@
 import QuadFormsKB.Analysis.LocalFourier
 import QuadFormsKB.Literature.HasseNorm.SquareClasses
+import Mathlib.Algebra.AffineMonoid.Basic
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.MeasureTheory.Measure.Haar.DistribChar
+import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 /-!
 # The standard character of a completion $F_v$ of a number field

@@ -42,10 +42,10 @@ with the Schrödinger formulas on $n(B)$, $m(A)$, $w$ (`weilRepSp_spN`, `weilRep
 Sources: Weil, Acta Math. 111 (1964), §14 [unverified]; Kudla, *Notes on the local theta correspondence* (1996), §I.1,
 Prop. 1.3 [unverified]; Rao, Pacific J. Math. 157 (1993), §3 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Model
 import QuadFormsKB.Weil.Genus.Relations
+import Mathlib.Analysis.Matrix.MeasurableSpace
 
 open MeasureTheory Matrix
 open scoped MatrixGroups

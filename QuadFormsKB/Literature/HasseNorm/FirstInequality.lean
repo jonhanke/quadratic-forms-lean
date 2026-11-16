@@ -16,6 +16,7 @@ $S$-unit form: $[F_S^\times : N L_{S_L}^\times] = 2^{s'-1}$. See `Herbrand.lean`
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.SUnits
+import Mathlib.NumberTheory.RamificationInertia.Valuation
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors

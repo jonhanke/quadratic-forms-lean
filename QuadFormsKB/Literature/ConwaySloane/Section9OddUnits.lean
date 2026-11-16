@@ -8,7 +8,6 @@ every unit is a square or twice a square, since $2$ is a non-residue mod $5$). B
 every unit is a square or $c$ times a square (residue-field quadratic character plus Hensel lifting,
 `exists_sq_of_residue_isSquare`). Used in the proofs of Thm. 20 (b) and Cor. 22.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SphericalLocal
 import QuadFormsKB.LocalDensity.NFLocal

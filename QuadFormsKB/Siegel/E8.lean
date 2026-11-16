@@ -17,6 +17,8 @@ $\det C = 1$ (Mathlib's `CartanMatrix.E₈_det`), so $Q_{E_8}$ is even unimodula
 Source: Serre, *A Course in Arithmetic*, Ch. VII §6.6, Example 1 (and §6.5 for $E_8$ itself) [unverified].
 -/
 import QuadFormsKB.Siegel.ThetaModular
+import Mathlib.LinearAlgebra.Matrix.Cartan.Basic
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 open Complex Matrix ModularForm EisensteinSeries
 open UpperHalfPlane hiding I

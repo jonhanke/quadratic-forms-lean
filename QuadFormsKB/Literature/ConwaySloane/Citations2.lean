@@ -10,6 +10,7 @@ import QuadFormsKB.Lattices.ClassSet
 import QuadFormsKB.Lattices.SpinorKernel
 import QuadFormsKB.Literature.Cassels.Ch2.WittChain
 import QuadFormsKB.Literature.Cassels.Ch4.ExamplesScan
+import Mathlib.LinearAlgebra.QuadraticForm.Real
 
 namespace QuadFormsKB
 

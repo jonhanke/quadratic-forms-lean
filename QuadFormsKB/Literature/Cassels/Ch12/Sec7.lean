@@ -18,6 +18,7 @@ has codimension $1$, and the sign changes), whose proof needs a general-position
 finite union of sets of codimension $\ge 2$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec5
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
 
 open Matrix
 

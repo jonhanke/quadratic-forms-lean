@@ -17,6 +17,7 @@ $F$, $\mathfrak a_x$ = `coeff F L x`.
 -/
 import QuadFormsKB.Literature.OMeara.Sec81Adapted
 import QuadFormsKB.Literature.OMeara.Sec81Change
+import Mathlib.RingTheory.DedekindDomain.Factorization
 
 open Submodule Module
 

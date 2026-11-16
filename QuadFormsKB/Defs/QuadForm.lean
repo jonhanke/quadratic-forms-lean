@@ -18,8 +18,8 @@ $A = \tfrac12 (C + C^{\mathsf T})$ is equivalent only when $2$ is a unit. Over $
 equivalent in `Equiv/RationalGram.lean`. Mathlib's `QuadraticForm R (Fin n → R)` is proved
 equivalent over every $R$ in `Equiv/Mathlib.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.Matrix.Block
 
 open Matrix
 

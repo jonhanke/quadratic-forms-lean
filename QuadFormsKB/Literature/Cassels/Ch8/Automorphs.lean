@@ -18,6 +18,8 @@ argument: Lemma 3.3 and induction) applied to the lattice $\mathbb Z_p^n$ in the
 $(\mathbb Q_p^n, f)$; the bridge to O'Meara's notation is in `Ch8/LatticeBridge.lean`.
 -/
 import QuadFormsKB.Literature.Cassels.Ch8.LatticeBridge
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 namespace QuadFormsKB.Cassels
 

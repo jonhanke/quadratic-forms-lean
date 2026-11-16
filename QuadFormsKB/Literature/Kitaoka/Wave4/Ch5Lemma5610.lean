@@ -31,6 +31,8 @@ $a \le C$ and $2 \le r_i \le C$ (so $b \le C$); each sign $\pm$ is $\varepsilon_
 import QuadFormsKB.Literature.Kitaoka.Wave3.Ch5Lemma569
 import Mathlib.Data.ZMod.Basic
 import Mathlib.Analysis.SpecialFunctions.Pow.Real
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.GroupTheory.Nilpotent
 
 open QuadraticMap
 

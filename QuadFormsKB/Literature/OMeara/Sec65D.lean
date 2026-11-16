@@ -23,6 +23,7 @@ import QuadFormsKB.Literature.OMeara.Sec65A
 import QuadFormsKB.Literature.OMeara.Sec65B
 import QuadFormsKB.Literature.HasseNorm.GoodPrimes
 import QuadFormsKB.Literature.HasseNorm.KummerSquares
+import Mathlib.Algebra.Lie.OfAssociative
 
 open NumberField IsDedekindDomain
 

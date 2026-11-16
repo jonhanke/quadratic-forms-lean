@@ -26,7 +26,7 @@ The maximal-order and Eichler-order cases are `Voight.EichlerMassFormulaMaximal`
 (Theorem 26.1.12) and `Voight.EichlerMassFormulaEichlerOrdersRat` (Theorem 25.3.18).
 
 *Restricted hypothesis.* Over a general $F$ the reduced discriminant is read through an $R$-basis (`HasDiscrd`), so
-`EichlerMassFormulaGeneral` assumes $\mathcal O$ free over $R$ (LE-QF-0001 for pseudo-bases).
+`EichlerMassFormulaGeneral` assumes $\mathcal O$ free over $R$ (the general case, with pseudo-bases, is open).
 -/
 import QuadFormsKB.Literature.Voight.Wave5.EichlerSymbol
 import QuadFormsKB.Literature.Voight.Wave2.Statements

@@ -39,7 +39,6 @@ Sources: Weil, Acta Math. 113 (1965) [unverified]; Kudla, *Some extensions of th
 [unverified]; Bump (1997), §3.7 (Eisenstein series on $\mathrm{GL}_2$ and the Bruhat decomposition) [unverified];
 Garrett (1990) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.GlobalWhittaker
 import QuadFormsKB.SiegelWeil.ArchWhittaker

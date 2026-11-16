@@ -20,7 +20,6 @@ $P^{\mathsf T}AP = A' \oplus I_1$, where $A'$ is the Gram matrix of the kernel b
 * `sumOne_sumI`, `sumI_zero`, `PosDefGram.sumI`: calculus of $L \oplus I_r$.
 * `exists_sumI_no_norm_one` (**§10, p. 274**): $A \cong L_r \oplus I_{n-r}$ with $L_r$ free of vectors of norm $1$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemma3
 

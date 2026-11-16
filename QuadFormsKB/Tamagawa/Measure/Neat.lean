@@ -30,6 +30,11 @@ $\beta_i^{-1}(\delta^{-1}\gamma\delta)\beta_i \in K_k$, hence $\delta^{-1}\gamma
 of $\ker(GL_n(\mathcal O_\mathfrak p) \to GL_n(\mathcal O/\mathfrak p))$ by the finiteness of the $\Gamma_\alpha$.
 -/
 import QuadFormsKB.Tamagawa.OrbitMass
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Order.Filter.AtTopBot.Basic
+import Mathlib.Order.Filter.Finite
+import Mathlib.Tactic.Monotonicity
 
 open MulAction
 

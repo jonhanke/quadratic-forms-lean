@@ -19,6 +19,7 @@ triangles at each interior vertex), the explicit formula for $T(\xi, \eta)$, and
 upper half plane (Cassels refers to Ch. 13, §8).
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec7
+import Mathlib.LinearAlgebra.Matrix.FixedDetMatrices
 
 open Matrix
 

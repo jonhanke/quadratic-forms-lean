@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Tamagawa.Measure.LerayProps
 import QuadFormsKB.Tamagawa.Measure.FibreLeray
 

@@ -15,7 +15,8 @@ Independent numerical checks, for small $m$, of the classical formulas proved in
   norm-one units $\pm(3+2\sqrt2)^k$, counted in the fundamental domain $x_0>0$, $0\le x_1$, $3x_1<2x_0$, is
   $\sum_{d\mid m}\chi_8(d)$ for $1\le m\le 40$ (`checks_pell2`).
 -/
-import Mathlib
+import Mathlib.Data.Int.Interval
+import Mathlib.Data.Nat.Squarefree
 
 namespace QuadFormsKB.Tamagawa.Classical.Checks
 

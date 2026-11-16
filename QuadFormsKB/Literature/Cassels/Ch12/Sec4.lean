@@ -13,6 +13,7 @@ Cassels, *Rational Quadratic Forms* (1978), Ch. 12, §4, pp. 266–269.
   Lemma 1.3 and Theorem 1.4).
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec3
+import Mathlib.LinearAlgebra.Matrix.AbsoluteValue
 
 open Matrix
 

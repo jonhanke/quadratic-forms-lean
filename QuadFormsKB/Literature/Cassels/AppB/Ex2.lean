@@ -29,6 +29,7 @@ the factorization (`exists_char_factor`); (ii) the corrected identity (`casselsG
 hypothesis $(\psi(m)\phi(l))^2 = 1$ (`casselsGauss_printed`), and for real-valued $\psi, \phi$ (`casselsGauss_printed_real`).
 -/
 import QuadFormsKB.Binary.KroneckerChar
+import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
 
 open Complex
 

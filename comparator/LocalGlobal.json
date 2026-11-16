@@ -1,0 +1,20 @@
+{
+  "challenge_module": "Challenge_LocalGlobal",
+  "solution_module": "Solution_LocalGlobal",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.hilbertReciprocity_numberField",
+    "QuadFormsKB.Headlines.hasseMinkowski_numberField",
+    "QuadFormsKB.Headlines.represents_iff_everywhere_numberField",
+    "QuadFormsKB.Headlines.isometric_iff_everywhere_numberField",
+    "QuadFormsKB.Headlines.hasseMinkowski_rat",
+    "QuadFormsKB.Headlines.quadraticReciprocity_polynomial",
+    "QuadFormsKB.Headlines.hilbertReciprocity_ratFunc"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

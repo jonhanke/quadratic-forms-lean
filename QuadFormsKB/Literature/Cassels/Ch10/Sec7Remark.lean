@@ -24,6 +24,7 @@ $\equiv 1 \pmod 8$.
 -/
 import QuadFormsKB.Literature.OMeara.Sec55
 import QuadFormsKB.Citation
+import Mathlib.Tactic.NormNum.Prime
 
 namespace QuadFormsKB.Cassels
 

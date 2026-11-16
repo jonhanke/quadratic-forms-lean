@@ -7,6 +7,7 @@ $\mathrm{Vol}\{m < Q \le m+\varepsilon\}/\varepsilon \to \beta_\infty(m)$ (`tend
 integral $Q$. This pins down the normalization $D = \det(H/2) = \det H/2^n$ (`gramDet`).
 -/
 import QuadFormsKB.Siegel.LocalProduct
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 
 open Matrix MeasureTheory Filter Topology
 

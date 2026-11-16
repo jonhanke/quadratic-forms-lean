@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge_ExactMass",
+  "solution_module": "Solution_ExactMass",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.massFormula_genusSymbols",
+    "QuadFormsKB.Headlines.shimuraMass_odd",
+    "QuadFormsKB.Headlines.shimuraMass_even",
+    "QuadFormsKB.Headlines.hankeMass_numberField"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

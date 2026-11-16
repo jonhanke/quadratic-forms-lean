@@ -22,6 +22,7 @@ import QuadFormsKB.Literature.Shimura2004.Wave5.Unipotent
 import Mathlib.LinearAlgebra.FiniteDimensional.Lemmas
 import Mathlib.LinearAlgebra.Dual.Lemmas
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Module
 

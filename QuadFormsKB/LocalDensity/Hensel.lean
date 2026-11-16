@@ -10,6 +10,7 @@ primes reduction mod $\pi^k$ does not have uniform fibres on solutions; see `Lem
 **Depends on** `DyadicJordan.lean`.
 -/
 import QuadFormsKB.LocalDensity.DyadicJordan
+import Mathlib.RingTheory.Ideal.Norm.AbsNorm
 
 namespace QuadFormsKB.LocalDensity.DVR
 

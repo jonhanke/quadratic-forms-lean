@@ -28,6 +28,14 @@ Garrett 1990, Ch. 1 [unverified]. The proof here is the standard one (unit scali
 level of coefficients; Fourier inversion (the expansion converging to $f$) is not needed for it.
 -/
 import QuadFormsKB.HilbertModular.Basic
+import Mathlib.Analysis.Complex.Liouville
+import Mathlib.Analysis.Fourier.AddCircleMulti
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Monotonicity
 
 open MeasureTheory Set Metric Filter Topology Complex UpperHalfPlane
 open scoped Real Manifold

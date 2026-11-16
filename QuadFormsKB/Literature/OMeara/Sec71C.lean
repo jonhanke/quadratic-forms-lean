@@ -18,8 +18,9 @@ over a rational prime $p \nmid \operatorname{disc} H$, then $p$ is unramified in
 $e(\mathfrak P \mid p) = e(\mathfrak p \mid p)\,e(\mathfrak P \mid \mathfrak p)$ also $e(\mathfrak P \mid \mathfrak p) = 1$.
 Only finitely many primes $\mathfrak P$ lie over the finitely many $p \mid \operatorname{disc} H$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.AffineMonoid.Basic
+import Mathlib.NumberTheory.NumberField.Discriminant.Different
 
 open NumberField IsDedekindDomain
 

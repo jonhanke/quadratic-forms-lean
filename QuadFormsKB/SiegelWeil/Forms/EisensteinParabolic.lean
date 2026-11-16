@@ -18,7 +18,6 @@ For $r = 1$ these are `borel`, `BQuot` and `eq_cell_of_c_eq_zero` (`SiegelWeil/E
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified]; Kudla, *Some extensions of the Siegel–Weil
 formula* (2008), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Symplectic
 

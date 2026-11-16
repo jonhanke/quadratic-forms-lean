@@ -34,6 +34,7 @@ $SO(V)(F_w)$ is second countable); its value on $K_w$ is the box for $S$. Infini
 Template: AxiomMath's additive `finiteMeasure_chart` (not imported).
 -/
 import QuadFormsKB.Tamagawa.Measure.AdelicSO
+import Mathlib.Probability.ProductMeasure
 
 open MeasureTheory Set Topology
 open scoped ENNReal NNReal RestrictedProduct Pointwise

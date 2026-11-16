@@ -1,4 +1,6 @@
 import QuadFormsKB.Literature.OMeara.Sec82
+import Mathlib.LinearAlgebra.BilinearForm.Hom
+import Mathlib.LinearAlgebra.Determinant
 
 /-!
 # O'Meara §41: representations, matrices and discriminants of quadratic spaces (41:1–41:4)

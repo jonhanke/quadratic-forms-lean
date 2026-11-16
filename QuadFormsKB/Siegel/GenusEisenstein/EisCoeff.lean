@@ -11,6 +11,7 @@ using $\sum_{g \mid \gcd(X, Y)}\mu(g) = [\gcd(X, Y) = 1]$ (`sum_antidiag_moebius
 -/
 import QuadFormsKB.Siegel.GenusEisenstein.QExpansion
 import QuadFormsKB.Siegel.Thm63Inputs
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 open Complex Filter Topology ModularForm ArithmeticFunction
 open UpperHalfPlane hiding I

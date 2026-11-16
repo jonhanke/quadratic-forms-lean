@@ -25,6 +25,8 @@ result is unique and is the canonical symbol: two forms are 2-adically equivalen
 * `moveEquiv_iff_canonical_eq` (**§7.6**): $\sigma \sim \tau$ under the moves iff their canonical symbols are equal.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Symbol
+import Mathlib.Algebra.CharP.Defs
+import Mathlib.Tactic.IntervalCases
 
 namespace QuadFormsKB.ConwaySloane
 

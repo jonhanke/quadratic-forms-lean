@@ -42,6 +42,7 @@ Indices are 0-based throughout (Voight's $e_1, e_2, e_3$ and $x, y, z$ are $e_0,
 $x_0, x_1, x_2$); the names $i, j, k$ and $a, b, c, u, v, w$ are Voight's.
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Quaternion
 
 set_option linter.unusedTactic false
 set_option linter.unreachableTactic false

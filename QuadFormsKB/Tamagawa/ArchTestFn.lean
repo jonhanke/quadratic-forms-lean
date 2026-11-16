@@ -32,7 +32,6 @@ No meromorphic continuation and no complex $s$ are used: the residue in Weil's (
 * `norm_evalIn_le`: $\|P(x)\| \le C\|x\|^2$.
 * **`isArchTestFn_schwartz`**: every family of Schwartz functions $\Phi_w \in \mathcal S(\mathbb R^n, \mathbb R)$ is admissible.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.ZetaResidue
 

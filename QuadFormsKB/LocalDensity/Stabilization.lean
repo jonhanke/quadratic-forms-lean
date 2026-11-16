@@ -9,6 +9,10 @@ and the rescaling identity for $\pi_{B''}$ (`repCount_zeroOn`, p. 359). **Depend
 (induction on $\mathrm{ord}_p(m)$ through Zero, Bad I and Bad II types; Good type by Lemma 3.2).
 -/
 import QuadFormsKB.LocalDensity.Reduction
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.SpecificLimits.Basic
 
 namespace QuadFormsKB.LocalDensity
 

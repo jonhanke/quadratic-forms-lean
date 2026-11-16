@@ -10,6 +10,7 @@ fails at ramified dyadic primes) and $\mathrm{GL}_n(R)$-invariance of counts.
 **Depends on** `JordanReduction.lean` (shared notation: `IsPaired`, `unimodularCoords`, `nuI`, `nuII`).
 -/
 import QuadFormsKB.LocalDensity.JordanReduction
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 namespace QuadFormsKB.LocalDensity.DVR
 

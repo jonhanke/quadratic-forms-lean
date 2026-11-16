@@ -24,6 +24,7 @@ import QuadFormsKB.Tamagawa.RatHeadline3
 import QuadFormsKB.Tamagawa.MassFormula
 import QuadFormsKB.Lattices.SpinorGlobal
 import QuadFormsKB.Literature.OMeara.Sec106Genus9
+import Mathlib.NumberTheory.SumFourSquares
 
 open NumberField IsDedekindDomain Matrix WithZero
 

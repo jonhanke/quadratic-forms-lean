@@ -33,6 +33,8 @@ done in exact arithmetic.
 *Errata/updates:* none found.
 -/
 import QuadFormsKB.Literature.Cassels.Ch9.Ex6Ex15
+import Mathlib.GroupTheory.GroupAction.CardCommute
+import Mathlib.LinearAlgebra.CrossProduct
 
 open Matrix
 

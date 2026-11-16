@@ -14,6 +14,9 @@ $f(\vec a) = \vec a^{t}F\vec a$ and $f(\vec a, \vec b) = \vec a^{t}F\vec b$.
   \pmod 2$ for all $\vec a$, unique modulo $2$, and $f(\vec b)$ is determined modulo $8$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch8.Canonical
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.Tactic.NormNum.Prime
 
 namespace QuadFormsKB.Cassels
 

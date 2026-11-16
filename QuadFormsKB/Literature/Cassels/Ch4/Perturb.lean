@@ -29,8 +29,11 @@ so $D_G = \sigma^{2}$. If $g(\vec c) = 0$ then $\vec c$ is a nontrivial zero. Ot
 $t = (\sigma - L_g) / (2 g(\vec c))$ gives $g(\vec a + t\vec c) = 0$, and $\vec a + t\vec c \neq 0$ since otherwise
 $D_g = 0$, contradicting $D_G \ne 0$ (which holds because $D_G$ is close to $L_f^{2} \ne 0$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.LinearAlgebra.Matrix.Nondegenerate
+import Mathlib.NumberTheory.Padics.LocalField
+import Mathlib.Topology.MetricSpace.Contracting
 
 open Matrix
 

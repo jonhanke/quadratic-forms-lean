@@ -19,8 +19,12 @@ $0, \dots, n-1$ (Cassels: $1, \dots, n$).
 **Conventions.** The relative determinant $d(\Gamma/\Lambda) \in k^\times/U$ is represented by the determinant
 `b.det e` of the basis $e$ of $\Gamma$ in terms of the basis $b$ of $\Lambda$ (Cassels' (3.1)–(3.2)).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.GroupTheory.IndexNSmul
+import Mathlib.LinearAlgebra.Determinant
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 namespace QuadFormsKB.Cassels
 

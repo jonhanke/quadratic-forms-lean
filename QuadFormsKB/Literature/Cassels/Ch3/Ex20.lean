@@ -26,8 +26,16 @@ $c_n \to 0$, and the expansion holds also for $m = 0$.
 Ex. 18 is used in the form of Mathlib's `sub_one_mul_padicValNat_factorial_lt_of_ne_zero`
 (the same fact as `Ch3Ex.ex18_lt`, stated there for $M$ in Cassels' summation form).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.NumberTheory.Padics.PadicIntegers
+import Mathlib.RingTheory.Polynomial.Pochhammer
+import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Mathlib.Topology.UniformSpace.Uniformizable
+import Mathlib.Tactic
 
 open Filter Topology
 

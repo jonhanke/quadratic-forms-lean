@@ -3,9 +3,9 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Literature.Hanke2011Structure.RationalityOddSeries
 import QuadFormsKB.Literature.ConwaySloane.Mass.PMass
+import Mathlib.Algebra.Ring.IsFormallyReal
 
 /-!
 # Paper 6, Theorem 5.4 at odd primes: the weight of a symbol is the normalized Conway–Sloane $p$-mass

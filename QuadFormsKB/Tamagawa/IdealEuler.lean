@@ -14,6 +14,7 @@ to $P$, so $P$ is the least upper bound of the partial sums (`hasSum_of_isLUB_of
 (`fracIdealEquiv`, unique factorization), and $N\mathfrak b = \prod_\mathfrak pN\mathfrak p^{\mathrm{ord}_\mathfrak p\mathfrak b}$ (`idealNorm_eq_finprod`).
 -/
 import QuadFormsKB.Tamagawa.IdeleClass
+import Mathlib.RingTheory.DedekindDomain.Factorization
 
 open Filter Topology
 

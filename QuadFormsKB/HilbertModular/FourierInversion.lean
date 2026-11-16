@@ -26,6 +26,9 @@ Sources: Garrett, *Holomorphic Hilbert Modular Forms* (1990), Ch. 1 [unverified]
 Ch. I §4 [unverified].
 -/
 import QuadFormsKB.HilbertModular.QExpansion
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open MeasureTheory Set Filter Topology Complex UpperHalfPlane UnitAddTorus
 open scoped Real

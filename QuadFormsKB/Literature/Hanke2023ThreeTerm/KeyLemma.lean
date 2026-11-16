@@ -1,5 +1,11 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Data.Nat.GCD.Basic
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.Linarith
+import Mathlib.Tactic.Ring
 
 /-!
 # Saha–Hanke, three-term theta relations: the Key Lemma (Lemma 5.7)

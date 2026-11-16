@@ -1,4 +1,5 @@
 import QuadFormsKB.Analysis.AdelicPoisson
+import Mathlib.Algebra.Quaternion
 
 /-!
 # The additive adele space of a number field and of $F^\iota$

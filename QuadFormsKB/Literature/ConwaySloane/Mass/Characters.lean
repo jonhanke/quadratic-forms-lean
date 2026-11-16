@@ -28,6 +28,8 @@ symbol evaluator) as an explicit list, and the minimality statements are then de
 -/
 import QuadFormsKB.Literature.ConwaySloane.Mass.StandardMass
 import QuadFormsKB.Binary.EulerProductAtOne
+import Mathlib.Analysis.Real.Pi.Leibniz
+import Mathlib.Tactic.NormNum.LegendreSymbol
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

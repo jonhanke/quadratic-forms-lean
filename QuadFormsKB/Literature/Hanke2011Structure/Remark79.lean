@@ -24,7 +24,6 @@ reciprocity). For Lemma 7.8's totally definite binary case, (1) says $\alpha$ is
 `genStar_subset_genStarF`, `detH_isGloballyRational` (with $\alpha = \det H_Q$) and the signature (`sign_of_hasSignature`);
 "if": Lemma 3.7's existence direction `genStarF_subset_genStar`. Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Literature.Hanke2011Structure.Lemma37Exist
 
 namespace QuadFormsKB.Hanke2011Structure

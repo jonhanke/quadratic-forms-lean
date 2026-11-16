@@ -1,6 +1,9 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Berkovich2012.Densities
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Tactic.NormNum.BigOperators
+import Mathlib.Tactic.NormNum.Prime
 
 /-!
 # Berkovich–Hanke–Jagy, Lemma 6.3: two identities between the local density formulas

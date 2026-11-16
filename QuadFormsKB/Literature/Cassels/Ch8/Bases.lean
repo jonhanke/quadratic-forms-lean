@@ -30,8 +30,12 @@ vector, in the coordinates of the basis built so far, has a unit coordinate at o
 (iii) fails with a denominator $p$), which a transposition moves to position $J'$. Cassels' hypothesis that the
 $c_j$ are linearly independent is not needed (each of (i)–(iii) implies it).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.NumberTheory.Padics.PadicIntegers
+import Mathlib.RingTheory.Ideal.BigOperators
 
 namespace QuadFormsKB.Cassels
 

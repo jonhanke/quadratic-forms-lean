@@ -11,6 +11,7 @@ is the splitting field $H$ in $C$ of $x^m - 1$), `existsUnique_isAbsCyclotomic` 
 compositum of cyclotomic extensions is cyclotomic), `sup_le_adjoin_of_isMCyclotomic` ($KL/L$ is $m$-cyclotomic).
 -/
 import QuadFormsKB.Literature.OMeara.Sec71A
+import Mathlib.Tactic.Monotonicity
 
 open Polynomial
 

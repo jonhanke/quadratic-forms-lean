@@ -33,6 +33,7 @@ on $B$; it holds without it. (c) The theorems about matrices and vectors are sta
 the local instances (this topology is the product topology).
 -/
 import QuadFormsKB.Tamagawa.LocalVolume
+import Mathlib.Topology.MetricSpace.Ultra.Pi
 
 open Matrix Topology Filter
 

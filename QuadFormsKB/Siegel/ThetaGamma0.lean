@@ -32,6 +32,9 @@ Sources: Iwaniec, *Topics in Classical Automorphic Forms*, §10.3–10.4 [unveri
 -/
 import QuadFormsKB.Siegel.ThetaModular
 import QuadFormsKB.Siegel.QuadGaussSum
+import Mathlib.Analysis.Normed.Group.Tannery
+import Mathlib.NumberTheory.LSeries.PrimesInAP
+import Mathlib.RingTheory.Etale.Weakly
 
 open Complex Matrix Filter Topology
 open QuadFormsKB.Analysis (quadAt quadAtR)

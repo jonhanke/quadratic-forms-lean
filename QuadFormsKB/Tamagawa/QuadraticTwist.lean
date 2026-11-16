@@ -18,10 +18,10 @@ Hence $\zeta_F^{(B)}(\sigma)L^{(B)}(\sigma,\chi) \le \zeta_E(\sigma)$ outside a 
 $$s\,L(1+s,\chi) \le C\,\frac{s\,\zeta_E(1+s)}{\zeta_F(1+s)} \to \rho_E\cdot 0 = 0\qquad(s \to 0^+)$$
 (**`tendsto_mul_LFunction_zero`**). No analytic continuation of Hecke $L$-functions and no class field theory is used.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SquareClassParam
 import QuadFormsKB.Tamagawa.ZetaResidue
+import Mathlib.Data.Finset.Functor
 
 open NumberField IsDedekindDomain Filter Topology
 open QuadFormsKB.NFEuler

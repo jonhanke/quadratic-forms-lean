@@ -24,7 +24,6 @@ Sources: Weil, Acta Math. 113 (1965), Ch. II–IV [unverified]; Weil, Acta Math.
 Tate's thesis (Cassels–Fröhlich Ch. XV), §4.1, Lemma 4.1.4 and Thm. 4.1.3, pp. 330–331 (the self-dual measure
 and $|d_F|^{1/2}$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.LocalWhittaker
 import QuadFormsKB.Analysis.AdelicPoisson

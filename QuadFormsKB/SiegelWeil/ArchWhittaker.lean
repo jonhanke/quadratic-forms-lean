@@ -36,7 +36,6 @@ Sources: Siegel, Ann. Math. 36 (1935), §§ on the archimedean factor [unverifie
 Kudla (2008), §1 (the archimedean Whittaker function of weight $m$) [unverified]; Hanke 2004, (5.5) (the value of
 $\beta_\infty$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Siegel.ArchimedeanNF
 import QuadFormsKB.Analysis.WeilIndexInf

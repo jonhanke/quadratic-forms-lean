@@ -3,6 +3,7 @@ import QuadFormsKB.Tamagawa.Measure.FibreConst
 import QuadFormsKB.Tamagawa.Measure.LerayUnimodular
 import QuadFormsKB.Tamagawa.Measure.LerayUnimodularC
 import QuadFormsKB.Tamagawa.Measure.ProductSO
+import Mathlib.MeasureTheory.Group.ModularCharacter
 
 /-!
 # Unimodularity of Weil's Tamagawa measure on $SO(V)(\mathbb A)$

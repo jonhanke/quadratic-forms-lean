@@ -9,8 +9,11 @@ $\beta_p(m) = \lim_k r_{p^k}(m)/p^{k(n-1)}$ (`localDensity`, (5.1)–(5.2), p. 3
 the map $\pi_Z$ (`repCountZero_eq`, p. 359) and corrected Remark 3.1.1 (`isGoodType_diag_iff_hessian`).
 **Depends on** `QuadFormsKB.Defs.Integral` only. Indices are 0-based (`Fin n`).
 -/
-import Mathlib
 import QuadFormsKB.Defs.Integral
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Positivity
 
 namespace QuadFormsKB.LocalDensity
 

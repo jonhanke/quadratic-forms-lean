@@ -13,8 +13,11 @@ $\mathrm{Sp}_{2r}(\mathcal O_v)$ by the elements $n(B)$, $m(A)$ and $w$.
 The two auxiliary lemmas are copied from Mathlib's `Mathlib/LinearAlgebra/SymplecticGroup.lean`
 (adapted, Apache 2.0), where they are private.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.SymplecticGroup
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix SymplecticGroup
 

@@ -20,8 +20,12 @@ as to $R = \mathcal{O}_F$.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Defs.Hilbert
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.DedekindDomain.AdicValuation
+import Mathlib.Tactic
 
 open IsDedekindDomain WithZero
 
@@ -276,7 +280,7 @@ theorem exists_sq_mod_of_hilbert (a b : R) (ha : a ∉ v.asIdeal) (hb1 : b ∈ v
         by_cases hu0 : Valued.v u = 0
         · rw [hu0]; simp
         have := le_exp_neg_one_of_lt_one hu0 hu
-        calc Valued.v u ^ 2 ≤ exp (-1 : ℤ) ^ 2 := by gcongr
+        calc Valued.v u ^ 2 ≤ exp (-1 : ℤ) ^ 2 := pow_le_pow_left₀ zero_le' this 2
           _ = exp (-2 : ℤ) := by rw [sq, ← exp_add]; norm_num
       have hAx2 : Valued.v (A * x' ^ 2) ≤ exp (-2 : ℤ) := by
         rw [map_mul, hvA, one_mul]; exact hsmall x' hxlt

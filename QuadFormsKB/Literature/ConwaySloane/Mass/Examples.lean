@@ -21,6 +21,9 @@ evaluates `pMassOdd` and `pMassTwo` on the symbols of these forms and compares w
 The symbols are entered by hand from the paper's decompositions (the $p$-adic computations above).
 -/
 import QuadFormsKB.Literature.ConwaySloane.Mass.PMass
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.NumberTheory.Real.Irrational
+import Mathlib.Tactic.NormNum.LegendreSymbol
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

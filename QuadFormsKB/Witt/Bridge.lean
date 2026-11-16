@@ -31,6 +31,7 @@ needs Witt's theorem over $\mathbb{F}_q$ (now available: `QuadraticForm.exists_i
 import QuadFormsKB.Witt.Decomposition
 import QuadFormsKB.Equiv.Mathlib
 import QuadFormsKB.Defs.Rational
+import Mathlib.LinearAlgebra.Determinant
 
 open Module QuadraticMap Matrix
 

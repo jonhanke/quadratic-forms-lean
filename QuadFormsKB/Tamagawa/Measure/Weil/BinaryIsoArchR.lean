@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BinaryArchSplit
 import QuadFormsKB.Tamagawa.Measure.Weil.SimilarArchReal
 import QuadFormsKB.LocalDensity.FormDensityHyperbolic
+import Mathlib.Tactic.NormNum.RealSqrt
 
 /-!
 # The Leray measure of $SO(x_0x_1)(\mathbb R)\cong\mathbb R^\times$

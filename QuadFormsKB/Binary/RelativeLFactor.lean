@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelativeQuadratic
 import QuadFormsKB.Binary.LFactorization

@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge_MorenoWagstaff",
+  "solution_module": "Solution_MorenoWagstaff",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.jacobi_fourSquares",
+    "QuadFormsKB.Headlines.cauchy_polygonalNumbers",
+    "QuadFormsKB.Headlines.sprague_distinctSquares",
+    "QuadFormsKB.Headlines.hardy_sumsOfSquares",
+    "QuadFormsKB.Headlines.singularSeries_twoK_squares"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

@@ -24,8 +24,16 @@ Cassels: approximate each $z_p$ by an integer $a_p$ modulo $p^{N}$ (`PadicInt.ap
 remainder theorem (`IsDedekindDomain.exists_forall_sub_mem_ideal`), with $2^{-N} < \varepsilon$. Lemma 3.3 is
 Cassels' proof: $\lvert n\rvert_p = p^{-v_p(n)}$ and $\prod_p p^{v_p(n)} = n$ (`Nat.prod_pow_prime_padicValNat`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.NumberTheory.Padics.ValuativeRel
+import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
+import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
+import Mathlib.Topology.Algebra.Valued.ValuativeRel
 
 open Filter Topology
 

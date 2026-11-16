@@ -26,6 +26,11 @@ $\vec{y}$ with the quadric $Q = n$ has the smaller denominator $d'$.
   $m$ rational squares is a sum of $m$ integer squares (rounding gives $Q(\vec{x} - \vec{y}) \le m/4 < 1$).
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Data.Rat.Floor
+import Mathlib.Tactic.Positivity
 
 open Matrix
 

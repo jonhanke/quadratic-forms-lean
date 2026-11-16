@@ -23,6 +23,7 @@ $xy$).
 import QuadFormsKB.Literature.Cassels.Ch8.Canonical
 import QuadFormsKB.Literature.Cassels.Ch8.Primitive
 import QuadFormsKB.Literature.Cassels.Ch8.Congruent
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB.Cassels
 

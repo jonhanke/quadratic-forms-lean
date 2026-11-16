@@ -20,6 +20,7 @@ completions of number fields (no residue field of `adicCompletionIntegers`, no u
 See `Herbrand.lean` for the overall plan. Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.Places
+import Mathlib.Topology.MetricSpace.Contracting
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors

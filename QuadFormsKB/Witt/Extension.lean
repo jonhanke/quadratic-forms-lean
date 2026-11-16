@@ -58,6 +58,8 @@ Sources: EKM Thm 8.3 (extension, all characteristics), §7 (radicals); Lam Ch. I
 Ch. 1 Thm 5.3; O'Meara 42:16–42:17.
 -/
 import QuadFormsKB.Witt.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 open Module QuadraticMap
 

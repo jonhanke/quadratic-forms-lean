@@ -18,6 +18,7 @@ Indices are 0-based.
 -/
 import QuadFormsKB.FunctionField.OddLocalCriteria
 import QuadFormsKB.FunctionField.RatFuncHMFour
+import Mathlib.NumberTheory.FunctionField
 
 open IsDedekindDomain Polynomial WithZero
 

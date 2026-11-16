@@ -1,5 +1,10 @@
 import QuadFormsKB.Literature.Hanke2005.Cor52Field
 import QuadFormsKB.Literature.Hanke2005.Cor52Form
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.NumberTheory.NumberField.ClassNumber
+import Mathlib.Tactic.NormNum.Prime
 
 open Polynomial NumberField Matrix
 

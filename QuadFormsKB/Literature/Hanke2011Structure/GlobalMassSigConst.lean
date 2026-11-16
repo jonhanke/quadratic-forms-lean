@@ -18,7 +18,6 @@ a function of the signature vector alone. Here:
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Literature.Hanke2011Structure.GlobalMassSummed
 import QuadFormsKB.Literature.Hanke2005.ArchNormalForm
 import QuadFormsKB.Literature.Hanke2005.MuArchHankeFactor

@@ -1,6 +1,6 @@
 # Classification of lattices and genera
 
-Headlines added in 0.4.0 (in [`Challenge.lean`](../../Challenge.lean), section "Classification of lattices and genera"; proved in [`Solution.lean`](../../Solution.lean) with only the standard axioms and no unproved input; not yet reviewed by a human).
+Headlines added in 0.4.0 (in the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)), section "Classification of lattices and genera"; proved in the matching `Solution_<book>.lean` with only the standard axioms and no unproved input; not yet reviewed by a human).
 
 | Result | Setting | Lean |
 |---|---|---|
@@ -10,7 +10,7 @@ Headlines added in 0.4.0 (in [`Challenge.lean`](../../Challenge.lean), section "
 | Conway–Sloane 1988, §11, Lemma 2: two positive definite integral lattices are in the same genus if and only if they have the same type $`T`$ and an isomorphism of discriminant groups preserving norms modulo $`T`$ | positive definite integral Gram matrices of the same dimension | `QuadFormsKB.Headlines.sameGenus_iff_discIso` (from `QuadFormsKB.ConwaySloane.Mass.lemma2`) |
 | Conway–Sloane 1988, §11, Lemma 4: the same with norms modulo $`1`$ | the same | `QuadFormsKB.Headlines.sameGenus_iff_discIso_one` (from `QuadFormsKB.ConwaySloane.Mass.lemma4`) |
 
-Headline added in 0.4.1 (section "Class numbers" of [`Challenge.lean`](../../Challenge.lean); proved in [`Solution.lean`](../../Solution.lean) with only the standard axioms and no unproved input; not yet reviewed by a human):
+Headline added in 0.4.1 (section "Class numbers" of the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)); proved in the matching `Solution_<book>.lean` with only the standard axioms and no unproved input; not yet reviewed by a human):
 
 | Result | Setting | Lean |
 |---|---|---|

@@ -49,6 +49,7 @@ import QuadFormsKB.Literature.LocalGlobal.LocalClassificationNF
 import QuadFormsKB.Literature.LocalGlobal.PrescribedSymbols
 import QuadFormsKB.Literature.Cassels.Ch6.Ex8
 import QuadFormsKB.Literature.Cassels.Ch6.Examples
+import Mathlib.Tactic.NormNum.Prime
 
 namespace QuadFormsKB.Cassels.Ch6.Scan
 

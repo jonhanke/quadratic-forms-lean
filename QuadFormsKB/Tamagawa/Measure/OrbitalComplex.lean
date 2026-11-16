@@ -2,6 +2,7 @@ import QuadFormsKB.Tamagawa.Measure.SphereLerayC
 import QuadFormsKB.Tamagawa.Measure.LerayUnimodularC
 import QuadFormsKB.Tamagawa.SplitForm
 import QuadFormsKB.Tamagawa.Measure.Weil.ReflectionSection
+import Mathlib.Analysis.InnerProductSpace.NormDet
 
 /-!
 # The archimedean orbital identity at a complex place

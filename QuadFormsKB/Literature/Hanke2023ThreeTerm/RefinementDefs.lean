@@ -1,5 +1,5 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Data.Int.Order.Basic
 
 /-!
 # Saha–Hanke §6.2–6.3: the counting function used by the verified case trees

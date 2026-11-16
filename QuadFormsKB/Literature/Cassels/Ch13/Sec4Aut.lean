@@ -1,5 +1,11 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Algebra.Basic
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Data.Matrix.Mul
+import Mathlib.GroupTheory.GroupAction.Ring
+import Mathlib.Tactic.Linarith
 
 /-!
 # Cassels, Chapter 13, §4: automorphs fixing a vector (Theorem 4.1)

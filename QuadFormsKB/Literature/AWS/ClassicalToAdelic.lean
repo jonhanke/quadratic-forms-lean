@@ -26,6 +26,10 @@ only if $\chi^2 = 1$ on $K_f(N)$ (`printed_right_equivariance_forces`). Left
 $\Gamma_0(N)$-invariance forces the character $\varepsilon^{-1}$ once $\varepsilon \circ \delta = \chi \circ d$.
 -/
 import QuadFormsKB.Literature.AWS.DoubleCosets
+import Mathlib.NumberTheory.DirichletCharacter.Basic
+import Mathlib.NumberTheory.ModularForms.CongruenceSubgroups
+import Mathlib.NumberTheory.ModularForms.SlashActions
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix ModularForm UpperHalfPlane CongruenceSubgroup
 open scoped MatrixGroups

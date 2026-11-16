@@ -9,11 +9,11 @@ A Lean 4 library (built on Mathlib v4.35.0) for the arithmetic theory of quadrat
 - **Definition equivalences**: competing definitions live side by side in `Defs/`, with
   their comparison (equal, strictly contained, counterexample) proved in `Equiv/`.
 - **What is proved**: every theorem is checked by the Lean kernel; the only `sorry`s in the
-  repository are the deliberate ones in [`Challenge.lean`](Challenge.lean), which states the headline
-  results without proofs. The CI workflow builds the library and checks that the headline theorems depend only
+  repository are the deliberate ones in the headline files `Challenge_<book>.lean` (one per book or topic,
+  listed in [`comparator.json`](comparator.json)), which state the headline results without proofs. The CI workflow builds the library and checks that the headline theorems depend only
   on the standard axioms `propext`, `Classical.choice` and `Quot.sound`
-  ([scripts/check_axioms.lean](scripts/check_axioms.lean)), and runs `lake comparator` to check
-  the proved statements against [`Challenge.lean`](Challenge.lean).
+  ([scripts/check_axioms.lean](scripts/check_axioms.lean)), and runs `lake comparator` once per book to check
+  the proved statements of `Solution_<book>.lean` against `Challenge_<book>.lean`.
 
 ## Highlights
 
@@ -32,9 +32,41 @@ Every result listed here is checked by the Lean kernel with only the standard ax
 - **[Quaternion orders, even unimodular lattices and sums of squares](docs/results/quaternions-lattices-squares.md)** (new in 0.5.0): Voight's Theorem 15.5.5 (an order of a quaternion algebra over a number field is maximal exactly when its discriminant is the product of the finite ramified primes), Voight's Main Theorem 22.4.1 (the bijection between similarity classes of nondegenerate ternary quadratic forms and quaternion orders over a principal ideal domain, 2 ≠ 0), the Eichler mass formula for maximal orders over ℚ and over totally real number fields, the existence of even unimodular lattices exactly in dimensions divisible by 8 (with finitely many classes), Jacobi's four-squares formula, Cauchy's polygonal number theorem and Sprague's theorem on sums of distinct squares.
 - **[The special linear group, sums of squares, lattices and reciprocity](docs/results/sln-squares-lattices-reciprocity.md)** (new in 0.5.1): $`\tau(\mathrm{SL}_n) = 1`$ over every number field (Weil), Hardy's theorem on sums of $`s`$ squares (equal to the singular series for $`5 \le s \le 8`$, with error $`O(n^{s/4})`$ for $`s > 8`$), Witt's classification of the even unimodular lattices of dimension 16 ($`E_8 \oplus E_8`$ and $`E_{16}`$), quadratic reciprocity in $`\mathbb F_q[t]`$ and the Hilbert reciprocity law over $`\mathbb F_q(t)`$ ($`q`$ odd).
 - **[Classical cases over ℚ](docs/results/classical-cases.md)** (new in 0.2.0): Gauss's three-squares theorem, Jacobi's two-squares theorem and Dirichlet's theorem for $`x^2 - 2y^2`$, from Siegel's formula with explicit constants; and (new in 0.2.1) the number of representations of $`m \ne 0`$ by $`xy`$ modulo $`\pm1`$ is the number of divisors of $`|m|`$, from Siegel's formula in its excluded isotropic binary case.
+- **[Siegel–Weil, theta series, Shimura's fundamental theorem and Tamagawa numbers of GL_n and Sp_2](docs/results/siegel-weil-theta-tamagawa.md)** (new in 0.6.0): the Siegel–Weil formula over ℚ in Mathlib's modular forms (the genus theta series of a positive definite form in $`n = 2k \ge 4`$ variables is the Eisenstein series of the genus, with Siegel's local densities as its Fourier coefficients); Shimura's fundamental theorem on representations (Theorem 11.6 (i) and (v)) and his mass formula (13.18), over every number field; the Siegel theta series of an even unimodular lattice is a Siegel modular form of every genus; Venkov's root sums in dimensions 8, 16 and 24; the Kneser–Hecke operators commute; the singular series of $`2k`$ squares as a divisor sum ($`k \ge 4`$ even); $`\tau(\mathrm{GL}_n) = 1`$ and $`\tau(\mathrm{Sp}_2) = 1`$ over every number field; Eichler's mass formula $`\mathrm{mass}(\mathrm{Cls}\,\mathcal O) = \varphi(D)\psi(M)/12`$ for Eichler orders of every level $`M`$ in definite quaternion algebras over ℚ (Voight, Theorem 25.3.18).
 
 
-**Main statements.** To check what is claimed, read one file: [`Challenge.lean`](Challenge.lean) states the results above, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value (since 0.2.1 this includes the finiteness of the number of proper classes in the genus for the indefinite Siegel formulas). [`Solution.lean`](Solution.lean) proves the same statements by appeal to the library theorems, and `lake comparator` (configured by [`comparator.json`](comparator.json)) checks that each proved statement is exactly the one in `Challenge.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
+## Conditional theorems
+
+This theorem is proved from a named input that is not yet proved here. The input is a hypothesis of the Lean statement (a named proposition, never assumed globally), so the theorem says exactly what it depends on; it is in the headline files and checked by `lake comparator` like the others.
+
+- **Witt and Igusa: $`\vartheta_g(E_8 \oplus E_8) = \vartheta_g(E_{16})`$ for $`g \le 3`$** (Chenevier–Lannes, (1.3.2); `wittIgusa_of_cuspVanish` in [`Challenge_ChenevierLannes.lean`](Challenge_ChenevierLannes.lean)), **conditional on** the vanishing of the Siegel cusp forms of weight 8 in genus 2 and 3 (`ChenevierLannes.CuspFormsWeightEightVanish`; Igusa 1962, Tsuyumine 1986).
+
+No conjecture is assumed anywhere in the library; conjectures appear only as stated propositions.
+
+**Main statements.** To check what is claimed, read the headline files: each `Challenge_<book>.lean` (listed in [`comparator.json`](comparator.json)) states the results of one book or topic, with a docstring for each and a list of the library definitions the statements use; every proof there is a deliberate `sorry`. Each headline also states the finiteness and convergence facts (finite genus, finite automorphism groups, convergent products, existence of $`L_F(1,\chi)`$) that make its sums and infinite products meaningful, so that no term relies on a Lean default value (since 0.2.1 this includes the finiteness of the number of proper classes in the genus for the indefinite Siegel formulas). The matching `Solution_<book>.lean` proves the same statements by appeal to the library theorems, and `lake comparator` (configured by `comparator/<book>.json`) checks that each proved statement is exactly the one in `Challenge_<book>.lean` and uses only the standard axioms. [`formalization.yaml`](formalization.yaml) records the scope, sources, divergences from the literature, provenance and review status in the [formalization.yaml](https://github.com/mathlib-initiative/formalization.yaml) format.
+
+## What's new in 0.6.0
+
+- **Twelve new headlines** (73 in total, the 61 headlines of 0.5.2 unchanged; see [Siegel–Weil, theta series, Shimura's fundamental theorem and Tamagawa numbers](docs/results/siegel-weil-theta-tamagawa.md)): the Siegel–Weil formula over ℚ in Mathlib's modular forms; Shimura's Theorem 11.6 (i) and (v) and the mass formula (13.18); Siegel theta series of even unimodular lattices are Siegel modular forms; Venkov's root sums in dimensions 8, 16 and 24; the Kneser–Hecke operators commute; the singular series of $`2k`$ squares; $`\tau(\mathrm{GL}_n) = 1`$ and $`\tau(\mathrm{Sp}_2) = 1`$; Eichler's mass formula for Eichler orders of every level over ℚ (Voight, Theorem 25.3.18). Eleven are unconditional; one, the identity of Witt and Igusa, is a [conditional theorem](#conditional-theorems) with its named input.
+- **One headline file per book or topic**: `Challenge.lean` and `Solution.lean` are replaced by 14 pairs `Challenge_<book>.lean` and `Solution_<book>.lean` (`SiegelTotallyReal`, `TamagawaTotallyReal`, `TamagawaSO`, `TamagawaGroups`, `LocalGlobal`, `SiegelIndefinite`, `SiegelWeil`, `ClassicalCases`, `ExactMass`, `Classification`, `Voight`, `Shimura`, `ChenevierLannes`, `MorenoWagstaff`), indexed by [`comparator.json`](comparator.json), each with its own `lake comparator` configuration in `comparator/`; CI runs the comparator once per book, as a matrix of jobs. Each headline file imports only the modules its statements need, and no file imports all of Mathlib, so that every check loads far less. The theorem names are unchanged.
+- **Statement maps updated**: the [statement maps](docs/results/books/README.md) of the five books added in 0.5.0 now count Voight 40 results (29 proved, 3 in part), Shimura 45 results (31 proved, 11 in part), Kitaoka 68 results (36 proved, 9 in part), Chenevier–Lannes 32 results (11 proved, 11 in part), Moreno–Wagstaff 31 results (30 proved, 0 in part).
+- **New results in the library** (not headlines), each proved with only the standard axioms:
+  - G. Shimura, *Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups*: Theorem 10.5 (the local transitivity theorem for maximal lattices) at every finite place, the dyadic ones included, Theorem 10.3, Theorem 11.6 (ii), the one-class property of the genus of maximal lattices for the sum of $`n = 5, 7, 9`$ squares (§12.12) and with it Theorem 12.14 (iv);
+  - J. Voight, *Quaternion Algebras*: Definition 23.4.1 and Propositions 23.4.2 and 23.4.19 (Eichler orders as intersections of two maximal orders, local–global); Proposition 26.6.4 (the mass of a suborder at one prime) over every totally real number field, and with it the mass formula for every maximal order over ℚ (Theorem 25.1.1) and Theorem 26.1.12 over totally real number fields whose ring of integers is a principal ideal domain;
+  - G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*: theta series with a harmonic polynomial of degree 2 are modular forms of weight $`n/2 + 2`$, Scholium 2.3.4 (rank part), the neighbour counts at $`p = 2`$;
+  - Y. Kitaoka, *Arithmetic of Quadratic Forms*: Theorem 5.6.3 (I) for odd $`p`$;
+  - the Siegel–Weil formula in degree one over every totally real number field for every class number (the genus theta series equals the Eisenstein series of the genus, classical and adelic forms), and the mass of every lattice over totally real fields without inputs.
+- **Historical libraries**: the formalizations of historical works, each a separate Lean library not imported by `QuadFormsKB` and built by `lake build`: Gauss, *Disquisitiones Arithmeticae*, Sections IV–VII, with Arndt, Kronecker and Eisenstein (`QuadFormsKBHistoricalGauss`); Jacobi's *Fundamenta nova* (`QuadFormsKB.Historical.Jacobi`); sums of squares from Jacobi to Eisenstein and Smith (`QuadFormsKB.Historical.SumsOfSquares`); binary forms after Fermat, Gauss, Dirichlet and Smith (`QuadFormsKB.Historical.BinaryForms`); Ramanujan's papers on quadratic forms (`QuadFormsKB.Historical.Ramanujan`); Smith's papers (`QuadFormsKB.Historical.SmithPapers`); Dickson, *History of the Theory of Numbers* III and *Studies in the Theory of Numbers* (`QuadFormsKB.Historical.Dickson`, `QuadFormsKB.Historical.DicksonStudies`). Their results have no headlines; statements not yet proved are named propositions, never assumed.
+- The headline statements added in releases 0.2.0 to 0.6.0 are still **not yet reviewed** by a human (see Provenance).
+- **Known restrictions** of the headlines, stated in their docstrings and hypotheses:
+  - Voight's Theorem 15.5.5 is proved for orders that are free of rank 4 over the ring of integers (automatic when it is a principal ideal domain); the general case, with a pseudo-basis, is not yet formalized.
+  - Voight's Main Theorem 22.4.1 is proved over a principal ideal domain whose fraction field has 2 ≠ 0; the book states it over a Dedekind domain.
+  - The Eichler mass formulas of 0.5.0 are stated for maximal orders containing the order generated by i and j, over ℚ and over totally real number fields whose ring of integers is a principal ideal domain. The new headline for Eichler orders over ℚ (0.6.0) has no such hypothesis.
+  - Sprague's theorem: the book states 32 exceptions, but its list has 31; the formalization uses the list.
+  - Watson's theorem is stated for n > 11; Watson's case n = 11 is not yet formalized.
+  - The two reciprocity laws over function fields are proved for the rational function field 𝔽_q(t) with q odd; Hilbert reciprocity over other global function fields and in characteristic 2 is not yet formalized.
+  - The Siegel–Weil formula over ℚ is stated for an even number n ≥ 4 of variables; odd n (half-integral weight) is not yet formalized.
+  - The Tamagawa measure of GL_n(𝔸_F)^1 is defined through Weil's fibration over the determinant (as for SL_n), not as a restricted product of local measures; their comparison is not yet formalized.
 
 ## What's new in 0.5.2
 
@@ -46,7 +78,7 @@ Every result listed here is checked by the Lean kernel with only the standard ax
   - G. Shimura, *Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups*: Propositions 4.3 and 4.6, Lemma 4.4, Sections 7.3 and 7.4 and Theorem 7.13;
   - G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*: $`d`$-neighbours (Propositions 3.1.3 to 3.1.5) and the holy constructions of the Niemeier lattices;
   - the mass formula $`\mathrm{Mass}(L) = \mu_{\mathrm{Tam}}(K_{SO}(L))^{-1}`$ for every lattice $`L`$ (not necessarily free) on a totally positive definite quadratic space of dimension $`n \ge 3`$ over every totally real number field, without inputs.
-- The headline statements added in releases 0.2.0 to 0.5.1 are still **not yet reviewed** by a human (see Provenance).
+- The headline statements added in releases 0.2.0 to 0.5.1 were **not yet reviewed** by a human at the time of this release (see Provenance).
 - **Known restrictions** of the headlines, stated in their docstrings and hypotheses:
   - Voight's Theorem 15.5.5 is proved for orders that are free of rank 4 over the ring of integers (automatic when it is a principal ideal domain); the general case, with a pseudo-basis, is not yet formalized.
   - Voight's Main Theorem 22.4.1 is proved over a principal ideal domain whose fraction field has 2 ≠ 0; the book states it over a Dedekind domain.
@@ -172,9 +204,11 @@ Detailed statements, with the Lean names, proof outlines and references, are in 
 ## Layout
 
 ```
-Challenge.lean          the headline statements (proofs: deliberate sorry); 0.1.0's reviewed, later not yet
-Solution.lean           the same statements, proved from the library
-comparator.json         configuration for `lake comparator` (Solution against Challenge)
+Challenge_<book>.lean   the headline statements of one book or topic (proofs: deliberate sorry);
+                        0.1.0's reviewed, later not yet
+Solution_<book>.lean    the same statements, proved from the library
+comparator.json         the index of the books: one `lake comparator` check per book
+comparator/<book>.json  the `lake comparator` configuration of one book (Solution against Challenge)
 formalization.yaml      scope, sources, divergences, provenance, review (formalization.yaml v0.4)
 QuadFormsKB/
   Citation.lean         @[kb "<key>" "<locator>"] citation attribute (keys from references.bib)
@@ -194,10 +228,13 @@ QuadFormsKB/
   Lattices/             lattices over number fields: genera, class numbers, spinor norms,
                         strong approximation, Kneser neighbours
   Siegel/, Tamagawa/    Siegel's formula, the Tamagawa number τ(SO) = 2 and the mass formula
+  SiegelWeil/           the Siegel–Weil formula in degree one
+  Historical/           historical works (Gauss, Jacobi, Eisenstein, Smith, Ramanujan, Dickson), one
+                        Lean library per work, not imported by QuadFormsKB
 references.bib          bibliography; the keys used by @[kb]
 docs/results/           statements, Lean names and proof outlines of the main results
 scripts/check_axioms.lean  prints the axioms of the headline theorems (run in CI)
-scripts/verify-comparator.sh  runs `lake comparator` with the toolchain's kernels (run in CI)
+scripts/verify-comparator.sh  runs `lake comparator` for one book with the toolchain's kernels (run in CI)
 ```
 
 ## Usage
@@ -206,7 +243,8 @@ scripts/verify-comparator.sh  runs `lake comparator` with the toolchain's kernel
 lake exe cache get       # once: download prebuilt Mathlib
 lake build               # build and check everything
 lake env lean scripts/check_axioms.lean   # axioms of the headline theorems
-./scripts/verify-comparator.sh            # Solution against Challenge (Linux; needs bubblewrap)
+./scripts/verify-comparator.sh Voight     # Solution_Voight against Challenge_Voight (Linux; needs bubblewrap);
+                                         # the books are listed in comparator.json
 ```
 
 ## Adding a result from the literature
@@ -230,10 +268,10 @@ cost roughly $3,090 (it ran on a flat-rate subscription, the $200/month Max plan
 source repository up to 2026-10-27, including release 0.1.0 and overhead, not only the proofs.
 Jonathan Hanke designed and directed it: he chose the results, the conventions and the proof routes.
 The proofs are checked by the Lean kernel, and CI checks that the headline theorems use only the
-standard axioms. The 13 headline statements of release 0.1.0 in `Challenge.lean`, and the definitions they use, were
+standard axioms. The 13 headline statements of release 0.1.0 (now in the headline files), and the definitions they use, were
 reviewed by Jonathan Hanke. The 21 headline statements added in release 0.2.0 (nine of them
 extended in release 0.2.1 by the finiteness of the proper classes in the genus), the one added in release 0.2.1, the three added in release 0.3.0, the nine added in release 0.4.0, the one added in release
-0.4.1, the eight added in release 0.5.0, the five added in release 0.5.1, and the definitions they use, have **not yet been reviewed** by a human; that review is planned for a later release. `lake comparator` checks that `Solution.lean` proves exactly the statements of `Challenge.lean`. The rest of the library (its other definitions and intermediate results) has not been
+0.4.1, the eight added in release 0.5.0, the five added in release 0.5.1, the twelve added in release 0.6.0, and the definitions they use, have **not yet been reviewed** by a human; that review is planned for a later release. `lake comparator` checks that each `Solution_<book>.lean` proves exactly the statements of its `Challenge_<book>.lean`. The rest of the library (its other definitions and intermediate results) has not been
 reviewed by a human; as with any AI-written formalization, treat it as untrustworthy until checked
 against the literature. Corrections and reports of mis-formalizations are very welcome.
 
@@ -241,6 +279,7 @@ against the literature. Corrections and reports of mis-formalizations are very w
 
 Releases are tagged with semantic versions; `main` continues to develop. The DOI [10.5281/zenodo.23509792](https://doi.org/10.5281/zenodo.23509792) always resolves to the latest release. To cite a specific version, use its release page or the "Cite this repository" button.
 
+- **[v0.6.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.6.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:ZENODO-DOI-v0.6.0](https://doi.org/ZENODO-DOI-v0.6.0). Twelve new headline statements (73 in total; one of them conditional on a named input): the Siegel–Weil formula over ℚ, Shimura's fundamental theorem and mass formula (13.18), Siegel theta series of even unimodular lattices, Venkov's root sums, the commuting Kneser–Hecke operators, the singular series of 2k squares, τ(GL_n) = 1 and τ(Sp_2) = 1, Eichler's mass formula for Eichler orders over ℚ, and the identity of Witt and Igusa (conditional); one headline file and one comparator check per book or topic; the historical libraries.
 - **[v0.5.2](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.5.2)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.24258447](https://doi.org/10.5281/zenodo.24258447). No new headline statements (61 in total); the Kitaoka statement map updated, and new library results from Kitaoka, Voight, Shimura and Chenevier–Lannes.
 - **[v0.5.1](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.5.1)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.24215699](https://doi.org/10.5281/zenodo.24215699). Five new headline statements (61 in total): $`\tau(\mathrm{SL}_n) = 1`$ over every number field (Weil), Hardy's theorem on sums of $`s`$ squares (equal to the singular series for $`5 \le s \le 8`$, with error $`O(n^{s/4})`$ for $`s > 8`$), Witt's classification of the even unimodular lattices of dimension 16 ($`E_8 \oplus E_8`$ and $`E_{16}`$), quadratic reciprocity in $`\mathbb F_q[t]`$ and the Hilbert reciprocity law over $`\mathbb F_q(t)`$ ($`q`$ odd); the statement maps of the five books of 0.5.0 extended.
 - **[v0.5.0](https://github.com/jonhanke/quadratic-forms-lean/releases/tag/v0.5.0)** (Lean and Mathlib v4.35.0), archived on Zenodo as [doi:10.5281/zenodo.24173254](https://doi.org/10.5281/zenodo.24173254). Five new books with statement maps (J. Voight, *Quaternion Algebras* (2021); G. Shimura, *Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups* (2004); Y. Kitaoka, *Arithmetic of Quadratic Forms* (1993); G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices* (2019); and C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers* (2005)) and eight new headline statements (56 in total): Voight's Theorem 15.5.5 (an order of a quaternion algebra over a number field is maximal exactly when its discriminant is the product of the finite ramified primes), Voight's Main Theorem 22.4.1 (the bijection between similarity classes of nondegenerate ternary quadratic forms and quaternion orders over a principal ideal domain, 2 ≠ 0), the Eichler mass formula for maximal orders over ℚ and over totally real number fields, the existence of even unimodular lattices exactly in dimensions divisible by 8 (with finitely many classes), Jacobi's four-squares formula, Cauchy's polygonal number theorem and Sprague's theorem on sums of distinct squares.

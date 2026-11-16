@@ -12,6 +12,7 @@ $x \mapsto x'$, $y \mapsto y'$, $v \mapsto v$ ($v \in W^\perp$) of $Fx + Fy + W^
 -/
 import QuadFormsKB.Literature.OMeara.Sec82
 import QuadFormsKB.Witt.Extension
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 
 open QuadraticMap Submodule Module
 

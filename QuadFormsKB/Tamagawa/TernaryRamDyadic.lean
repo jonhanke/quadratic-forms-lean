@@ -5,6 +5,7 @@ Authors: Jonathan Hanke
 -/
 import QuadFormsKB.Tamagawa.TernaryBadDVR
 import Mathlib.FieldTheory.ChevalleyWarning
+import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 
 /-!
 # The self-density of $\langle u\rangle\perp\pi T$ at a dyadic prime

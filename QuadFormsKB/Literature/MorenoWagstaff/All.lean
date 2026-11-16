@@ -21,3 +21,4 @@ import QuadFormsKB.Literature.MorenoWagstaff.Ch2Legendre
 import QuadFormsKB.Literature.MorenoWagstaff.Ch2Gauss
 import QuadFormsKB.Literature.MorenoWagstaff.Ch6GaussSum
 import QuadFormsKB.Literature.MorenoWagstaff.Wave2.All
+import QuadFormsKB.Literature.MorenoWagstaff.Remark65Even060

@@ -26,6 +26,10 @@ $\Gamma\backslash\Gamma\alpha_iK\alpha_i^{-1}$ ((4.8)) and use right-invariance 
 here, only **left** invariance of $\mu$ (and Weil's formula) is used, and (4.13) follows in one step.
 -/
 import QuadFormsKB.Literature.AWS.DoubleCosets
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.InnerProductSpace.Basic
+import Mathlib.MeasureTheory.Group.Integral
+import Mathlib.MeasureTheory.Integral.Bochner.Set
 
 open MeasureTheory
 open scoped Pointwise

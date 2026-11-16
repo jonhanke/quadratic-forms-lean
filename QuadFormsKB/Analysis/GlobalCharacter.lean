@@ -1,4 +1,6 @@
 import QuadFormsKB.Analysis.TraceLocalGlobal
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.RingTheory.DedekindDomain.FiniteAdeleRing
 
 /-!
 # The global standard character of a number field

@@ -15,6 +15,8 @@ Theorem 30.1.5 (p. 543).
 import QuadFormsKB.Literature.Voight.Wave5.ClassNumber
 import QuadFormsKB.Literature.Voight.Wave4.ClassSet
 import QuadFormsKB.Equiv.NumberFieldRat
+import Mathlib.Tactic.NormNum.LegendreSymbol
+import Mathlib.Tactic.NormNum.Prime
 
 open NumberField IsDedekindDomain Quaternion
 

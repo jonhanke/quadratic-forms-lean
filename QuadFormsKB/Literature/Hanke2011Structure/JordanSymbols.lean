@@ -21,8 +21,11 @@ Indices are 0-based in Lean (the paper's $n_1,\dots,n_r$ are `blocks.blocks[0]`,
   $2$ Jordan block structures and $5$ partial local genus symbols.
 * `exampleSymbol`: the paper's example $(1; 2, 1, \bar 2, 1 :: 3)$ is a partial local genus symbol of size $10$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Combinatorics.Enumerative.Composition
+import Mathlib.Tactic.NormNum
+import Mathlib.Tactic.Ring
 
 namespace QuadFormsKB.Hanke2011Structure
 

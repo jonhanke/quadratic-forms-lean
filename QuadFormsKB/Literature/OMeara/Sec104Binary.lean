@@ -20,6 +20,7 @@ even, so the hypothesis of classical integrality, kept to match the book, is not
 -/
 import QuadFormsKB.Siegel.Genus
 import QuadFormsKB.Defs.Integral
+import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 
 open Matrix
 

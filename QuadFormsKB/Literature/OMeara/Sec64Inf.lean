@@ -13,6 +13,7 @@ $N_{\mathfrak P|\mathfrak p}\colon E_\mathfrak P \to F_\mathfrak p$ (§15B, p. 3
 $\prod_{\mathfrak P|\mathfrak p} N_{\mathfrak P|\mathfrak p}(y) = N_{E/F}(y)$.
 -/
 import QuadFormsKB.Literature.OMeara.Sec64Local
+import Mathlib.NumberTheory.NumberField.Completion.Ramification
 
 open NumberField InfinitePlace
 

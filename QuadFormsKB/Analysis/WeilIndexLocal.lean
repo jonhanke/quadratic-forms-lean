@@ -1,4 +1,6 @@
 import QuadFormsKB.Analysis.WeilIndex
+import Mathlib.Analysis.Normed.Ring.Ultra
+import Mathlib.Topology.Separation.CompletelyRegular
 
 /-!
 # The local identity for the Weil index

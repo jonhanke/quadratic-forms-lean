@@ -23,9 +23,10 @@ characterization of $\tilde\omega_G$ by (2.5)–(2.7) there; the statement is ab
 defining relation $\omega_X(S,P) = c\,\omega_T(dF_1P)$. (iii) Characteristic $0$ is used (skew-symmetric matrices
 have zero diagonal; division by $2$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2005.Jacobians
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 open Matrix
 

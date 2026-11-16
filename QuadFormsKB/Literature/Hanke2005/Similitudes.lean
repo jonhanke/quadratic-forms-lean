@@ -21,8 +21,10 @@ and $\Xi(\varphi) = \{\xi(\tilde g)\}$ the set of multipliers (§6, p. 20).
 * `norm_mem_multipliers` ($t_\mathfrak p = 2$): for the binary form $c\,(x^2 - dy^2)$ ($= c\,N_{K(\sqrt d)/K}$), every nonzero
   norm $a^2 - db^2$ is a multiplier ($K(\sqrt d)^\times\subseteq\widetilde G^{\theta}$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.LinearCombination
 
 open Matrix
 

@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Berkovich2012.SGenus
 import QuadFormsKB.Siegel.UnimodularPadic

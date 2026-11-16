@@ -20,7 +20,6 @@ $(g, q) = (2, 2), (2, 3), (2, 5), (3, 2)$.
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified]; Rao, Pacific J. Math. 157
 (1993), §2 (Bruhat decomposition relative to the Siegel parabolic) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SiegelPresFinite
 

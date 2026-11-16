@@ -24,8 +24,18 @@ i.e. $\Lambda = \{r_0 b_0 + \cdots + r_{n-1} b_{n-1} : r_j \in I\}$ for a $k$-ba
 $\{(1+2\sqrt{-5})x_0 + 3x_1\}^2$ is as transcribed from the page images, and the complement $\Lambda_1$
 is an explicit choice (the book does not give one).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.NumberTheory.Zsqrtd.Basic
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 namespace QuadFormsKB.Cassels
 

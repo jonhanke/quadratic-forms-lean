@@ -18,8 +18,8 @@ isometry (`IsRepresentedBy.refl`, `IsRepresentedBy.trans`, `IsRepresentedBy.of_e
 regular space is automatically injective (`isRepresentedBy_of_isometry`), and representation preserves the
 represented values (`IsRepresentedBy.exists_eq`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.QuadraticForm.Radical
 
 open QuadraticMap
 

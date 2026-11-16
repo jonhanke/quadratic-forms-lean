@@ -1,4 +1,6 @@
 import QuadFormsKB.Literature.Cassels.Ch12.Tessellation
+import Mathlib.Analysis.Matrix.Normed
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # Cassels, Chapter 12, §7: Corollary to Theorem 7.7 for every $n$

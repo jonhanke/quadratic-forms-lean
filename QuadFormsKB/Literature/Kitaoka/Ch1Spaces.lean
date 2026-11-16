@@ -30,6 +30,7 @@ import Mathlib.LinearAlgebra.Determinant
 import Mathlib.NumberTheory.Padics.PadicNumbers
 import QuadFormsKB.Witt.Decomposition
 import QuadFormsKB.Literature.OMeara.Sec6Defs
+import Mathlib.Algebra.CharP.Invertible
 
 open QuadraticMap Quaternion
 

@@ -1,5 +1,6 @@
 import QuadFormsKB.Literature.OMeara.Sec42Iso
 import QuadFormsKB.Literature.OMeara.Sec91
+import Mathlib.LinearAlgebra.Center
 
 /-!
 # O'Meara §43A, §43B, §43E: rotations, prolongations, fixed spaces, isometries fixing all lines

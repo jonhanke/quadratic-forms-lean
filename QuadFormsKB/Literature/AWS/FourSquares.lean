@@ -25,6 +25,8 @@ notes' (2.7) and Lemma 2.7.2 are the same limit).
 -/
 import QuadFormsKB.LocalDensity.LowerBounds
 import QuadFormsKB.Literature.AWS.Adelic
+import Mathlib.NumberTheory.EulerProduct.DirichletLSeries
+import Mathlib.NumberTheory.LSeries.HurwitzZetaValues
 
 open Complex
 

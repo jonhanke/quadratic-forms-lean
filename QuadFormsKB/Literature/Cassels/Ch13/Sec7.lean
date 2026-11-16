@@ -16,6 +16,7 @@ $\mathcal D$ is the image under $\pi$ of the $X$ with $f_0(X) < 0$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch13.Basic
 import QuadFormsKB.Literature.Cassels.Ch13.Sec5
+import Mathlib.Analysis.SpecialFunctions.Arcosh
 
 open Matrix
 

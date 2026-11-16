@@ -41,6 +41,7 @@ over a Dedekind domain the same holds with similarity replaced by twisted simila
 Indices are 0-based (Voight's $x, y, z$ are $x_0, x_1, x_2$).
 -/
 import QuadFormsKB.Literature.Voight.EvenClifford
+import Mathlib.RingTheory.Localization.FractionRing
 
 set_option linter.unusedSectionVars false
 set_option linter.unusedSimpArgs false

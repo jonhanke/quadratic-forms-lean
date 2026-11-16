@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 import QuadFormsKB.Tamagawa.Measure.Weil.Ideles

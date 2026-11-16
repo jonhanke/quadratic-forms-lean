@@ -3,10 +3,10 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelFormsIdeals
 import QuadFormsKB.Literature.Hanke2011Structure.CMKneserGroup
+import Mathlib.RingTheory.PicardGroup
 
 /-!
 # Paper 6, Lemma 8.3: Kneser's group and proper classes of binary lattices

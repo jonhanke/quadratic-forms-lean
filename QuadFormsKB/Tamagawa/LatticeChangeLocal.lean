@@ -17,6 +17,7 @@ measure), up to the Jacobian $\prod_{a\le b}|c\,c_ac_b|_\mathfrak p^{-1}$ of $S 
 -/
 import QuadFormsKB.Tamagawa.LatticeChange
 import QuadFormsKB.Tamagawa.LocalUnimodular
+import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 
 open Matrix
 

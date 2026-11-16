@@ -1,5 +1,5 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-!
 # Splitting a Haar measure along a norm

@@ -33,7 +33,6 @@ translate $V$, rescale $w$ (a factor $s^{-r/2}$) and push $x$ forward to $s = \|
 Sources: Siegel, Ann. of Math. 36 (1935), §1 [unverified]; Muirhead, *Aspects of multivariate statistical theory* (1982),
 Thm 2.1.14 (the Wishart density) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.ArchVolume
 import QuadFormsKB.Literature.Hanke2005.ArchGramAux

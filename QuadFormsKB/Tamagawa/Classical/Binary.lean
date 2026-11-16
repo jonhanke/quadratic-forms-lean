@@ -21,6 +21,8 @@ $\beta_p(m) = \beta_p(1)\sum_{j\le v_p(m)}\chi_D(p)^j$ at odd $p$, $\beta_2(m)\i
 import QuadFormsKB.Tamagawa.Classical.BinaryRatio
 import QuadFormsKB.Tamagawa.Classical.BinaryDensities
 import QuadFormsKB.Tamagawa.Classical.BinaryOrbit
+import Mathlib.NumberTheory.Real.Irrational
+import Mathlib.NumberTheory.SumTwoSquares
 
 open NumberField IsDedekindDomain
 open scoped ENNReal

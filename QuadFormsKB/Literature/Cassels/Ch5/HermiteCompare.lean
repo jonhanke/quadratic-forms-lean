@@ -22,6 +22,7 @@ comparison for fixed $n$ to a polynomial inequality in $\pi$ (checked with $3.14
 $\Gamma(n/2 + 1) \le n^n$ (log-convexity of $\Gamma$) for the asymptotics, which gives $C_n \le 4 n^2$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch5.Background
+import Mathlib.Analysis.Real.Pi.Bounds
 
 namespace QuadFormsKB.Cassels.Ch5
 

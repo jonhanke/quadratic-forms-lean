@@ -9,6 +9,10 @@ Lemma 3.8 *corrected* (p. 363; `anisotropic_iff_zeroType`), Cor. 3.8.2
 **Depends on** `General.lean`.
 -/
 import QuadFormsKB.LocalDensity.General
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.JacobiSum.Basic
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.NumberTheory.Padics.ProperSpace
 
 namespace QuadFormsKB.LocalDensity
 

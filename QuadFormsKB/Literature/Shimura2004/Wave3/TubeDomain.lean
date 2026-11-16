@@ -30,6 +30,8 @@ import QuadFormsKB.Literature.OMeara.Sec82
 import Mathlib.Basic.Complex.Basic
 import Mathlib.LinearAlgebra.FiniteDimensional.Defs
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Field.Basic
 
 open Module
 

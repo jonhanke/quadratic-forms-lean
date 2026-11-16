@@ -3,6 +3,8 @@ import QuadFormsKB.Tamagawa.Measure.Weil.AdditiveChart
 import QuadFormsKB.Tamagawa.Measure.Weil.AdditiveScaling
 import QuadFormsKB.Tamagawa.Measure.Weil.Ideles
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Tamagawa
+import Mathlib.MeasureTheory.Measure.RegularityCompacts
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 /-!
 # The local factors of $\mu_T$ on $\mathrm{SL}_2(\mathbb A_F)$: the box computation

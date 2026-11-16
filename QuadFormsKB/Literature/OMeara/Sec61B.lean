@@ -26,6 +26,7 @@ generators $i, j$ with $i^2 = \alpha$, $j^2 = \beta$, $ij = -ji$) is Mathlib's `
 import QuadFormsKB.Literature.OMeara.Sec6Defs
 import QuadFormsKB.Tamagawa.Measure.Weil.QuatSplitIso
 import QuadFormsKB.Tamagawa.Quaternion
+import Mathlib.LinearAlgebra.QuadraticForm.AlgClosed
 
 open QuadraticMap QuadraticForm Module
 open scoped Quaternion

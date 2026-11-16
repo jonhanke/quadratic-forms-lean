@@ -15,9 +15,10 @@ This is the number-field version of `RatPlace` (`Defs/Rational.lean`). For $F = 
 the two agree (`Equiv/NumberFieldRat.lean`), so the $\mathbb{Q}$ results are the $F = \mathbb{Q}$
 case of the statements here rather than a parallel copy.
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
 import QuadFormsKB.Defs.Hilbert
+import Mathlib.NumberTheory.NumberField.Completion.InfinitePlace
+import Mathlib.RingTheory.DedekindDomain.AdicValuation
 
 open NumberField IsDedekindDomain
 

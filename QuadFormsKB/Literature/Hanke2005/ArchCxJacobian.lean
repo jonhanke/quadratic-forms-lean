@@ -20,6 +20,7 @@ All auxiliary material is in the namespace `QuadFormsKB.Hanke2005.ArchCx.Jac`.
 -/
 import QuadFormsKB.Literature.Hanke2005.ArchCxParam
 import QuadFormsKB.Literature.Hanke2005.InvarianceZC
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Matrix Complex
 

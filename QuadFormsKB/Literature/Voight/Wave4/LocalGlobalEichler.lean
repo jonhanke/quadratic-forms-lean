@@ -106,10 +106,16 @@ number field $F$: let $\mathcal O \subseteq B = (a,b)_F$ be an Eichler order of 
 $\operatorname{discrd}\mathcal O = \mathfrak D\mathfrak M$, $\mathfrak M$ coprime to $\mathfrak D$). Then at every finite place $v$:
 if $v \mid \mathfrak D$ ($v \in \operatorname{Ram}_f B$) the completion $\mathcal O_v$ is the maximal order of $B_v$; if $v \nmid \mathfrak D$
 there is an isomorphism $\varphi : B_v \cong \mathrm M_2(F_v)$ with $\varphi(\mathcal O_v) = \mathcal O_0(\pi_v^{e_v})$,
-$e_v = \operatorname{ord}_v\mathfrak M$ (the multiplicity of $v$ among the prime factors of $\mathfrak M$). Stated, not proved. -/
+$e_v = \operatorname{ord}_v\mathfrak M$ (the multiplicity of $v$ among the prime factors of $\mathfrak M$). Proved as `Wave9.eichlerLocalLevel`.
+
+*Update:* the hypothesis that $\mathcal O$ has a $\mathbb Z_F$-basis (is free) was added. `HasDiscrd` quantifies over
+all bases, so for an order without a basis it holds for every ideal and the unrestricted statement is false (e.g. a maximal
+order without a basis and a prime $\mathfrak M$ coprime to $\mathfrak D$). Voight's discriminant of a non-free order is
+read through a pseudo-basis, which this library does not model. -/
 @[kb "voight2021" "23.4.19, p. 385"]
 def EichlerLocalLevel (F : Type) [Field F] [NumberField F] : Prop :=
   ∀ (a b : 𝓞 F) (ha : a ≠ 0) (hb : b ≠ 0) (O : Subalgebra (𝓞 F) (QuatF F a b)) (𝔐 : Ideal (𝓞 F)),
+    Nonempty (Module.Basis (Fin 4) (𝓞 F) (Subalgebra.toSubmodule O)) →
     IsEichlerOrderOfLevel ha hb O 𝔐 → ∀ v : HeightOneSpectrum (𝓞 F),
       (v ∈ ramFin ha hb → IsMaximalOrder (v.adicCompletionIntegers F) (v.adicCompletion F)
         (localOrder (v := v) a b O)) ∧

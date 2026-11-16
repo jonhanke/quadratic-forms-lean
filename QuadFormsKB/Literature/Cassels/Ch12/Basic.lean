@@ -27,6 +27,15 @@ $SL_n^{\pm}(\mathbb{Z})$, p. 257) acts by $f \mapsto f(T\vec{x})$, i.e. $F \maps
 (`extendsBasis_iff_gcd`).
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.QuadraticDiscriminant
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.Normed.Order.Lattice
+import Mathlib.Analysis.Normed.Ring.Basic
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.LinearAlgebra.Matrix.SchurComplement
+import Mathlib.Tactic.Positivity
 
 open Matrix
 

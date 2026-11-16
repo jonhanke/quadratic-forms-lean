@@ -12,11 +12,11 @@
   product form (from `HN.prod_hilbert_infinite_mul_weilInf`, `HN.finprod_hilbert_finite_mul_weilV` and Weil's
   product formula `weilInf_mul_finprod_weilV`, as in `HN.hilbert_product_formula_nf`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.NonArch
 import QuadFormsKB.Analysis.WeilIndexGlobal
 import QuadFormsKB.Literature.HasseNorm.Reciprocity
+import Mathlib.NumberTheory.NumberField.ProductFormula
 
 open IsDedekindDomain NumberField NumberField.InfinitePlace NumberField.mixedEmbedding Metric
 open QuadFormsKB.Analysis

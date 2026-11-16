@@ -36,7 +36,6 @@ Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 and §II
 $K_0(N)$-invariance of the lattice function) [unverified]; Rallis, *On the Howe duality conjecture*, Compositio
 Math. 51 (1984), §I [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Global
 

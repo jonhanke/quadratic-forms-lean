@@ -12,8 +12,10 @@ file has the two tools the paper's proofs use:
 * `spread_mul_mk`: the "Ferrers diagram" reindexing of the paper's identity (7): a sum over pairs $(a, d)$ weighted by
   $X^{ka+d}$ is the product of the two one-variable series.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.RingTheory.PowerSeries.Basic
 
 namespace QuadFormsKB.Hanke2011Ternary
 

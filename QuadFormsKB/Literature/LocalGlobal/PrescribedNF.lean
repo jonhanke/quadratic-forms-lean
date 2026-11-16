@@ -27,7 +27,6 @@ $(a_i, x)_v = \varepsilon_{i,v}$ for all $i, v$ (Serre III §2.2, Thm. 4, over a
 Locators are from memory and still `[unverified]`, except O'Meara 71:19, checked (see the docstring of
 `exists_prescribed_hilbert`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SquareClassParam
 

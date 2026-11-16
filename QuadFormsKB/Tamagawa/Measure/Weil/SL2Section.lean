@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Adele
+import Mathlib.Tactic.Monotonicity
 
 /-!
 # Coordinates on $\mathrm{SL}_2(\mathbb A_F)$ along the orbit map $g\mapsto g e_1$

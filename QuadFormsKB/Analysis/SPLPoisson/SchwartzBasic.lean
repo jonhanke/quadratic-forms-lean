@@ -5,7 +5,10 @@ Ported to Mathlib for Lean v4.35.0 for QuadFormsKB.
 Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apache License 2.0.
 -/
 import QuadFormsKB.Analysis.SPLPoisson.Lattices
-import Mathlib
+import Mathlib.Algebra.Module.ZLattice.Summable
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
+import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+import Mathlib.Analysis.RCLike.Inner
 
 /-!
 Basic definitions and lemmas for Poisson summation of Schwartz functions on `ℝ^d` over full-rank

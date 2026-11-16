@@ -26,7 +26,6 @@ Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 and §II
 [unverified]; Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 [unverified]; Weil, Acta Math. 113 (1965),
 §§ on the Siegel formula [unverified]; Bump (1997), §3.7 (induced representations of $\mathrm{SL}_2$) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.LocalK0
 import QuadFormsKB.Weil.ProductFormulas

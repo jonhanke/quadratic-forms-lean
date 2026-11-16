@@ -5,9 +5,10 @@ Statements in the form the literature gives them, over $\mathbb{N}$. Where Mathl
 the result, the proof cites the Mathlib lemma, so the registry records it as `proved` with a
 pointer to where the real proof lives.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Classical.ThreeSquares
+import Mathlib.NumberTheory.SumFourSquares
+import Mathlib.NumberTheory.SumTwoSquares
 
 namespace QuadFormsKB.Grosswald
 

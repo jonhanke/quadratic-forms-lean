@@ -3,10 +3,10 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelativeQuadratic
 import QuadFormsKB.Literature.Hanke2011Structure.OrderUnitsCount
+import Mathlib.RingTheory.Ideal.Norm.RelNorm
 
 /-!
 # Paper 6, Remark 8.8 corrected: class numbers of the orders $\mathcal O_F + \mathfrak f\mathcal O_K$

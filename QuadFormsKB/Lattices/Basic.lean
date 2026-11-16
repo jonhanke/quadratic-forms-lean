@@ -24,6 +24,7 @@ O'Meara 1963, §§81–82, pp. 208–238. *Related work (consulted, not imported
 -/
 import QuadFormsKB.Lattices.Local
 import QuadFormsKB.Equiv.Mathlib
+import Mathlib.LinearAlgebra.QuadraticForm.IsometryEquiv
 
 open NumberField Module
 

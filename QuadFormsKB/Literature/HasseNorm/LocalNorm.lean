@@ -17,6 +17,9 @@ and for $L$ at $w$), with no local class field theory.
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.SquareClasses
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors

@@ -26,6 +26,7 @@ Indices are 0-based.
 import QuadFormsKB.Tamagawa.SplitForm
 import QuadFormsKB.Tamagawa.FrameHensel
 import QuadFormsKB.Witt.Extension
+import Mathlib.Analysis.CStarAlgebra.CStarMatrix
 
 open Matrix
 

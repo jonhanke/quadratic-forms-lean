@@ -13,6 +13,7 @@
 Ch. 4, Lemma 2.7 (`isotropic_padic_of_five_le`), so over $\mathbb Q$ by the Strong Hasse Principle (`hasseMinkowski`).
 -/
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowski
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 
 namespace QuadFormsKB.Cassels.Ch6
 

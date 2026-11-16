@@ -27,6 +27,7 @@ $O'$, to avoid confusion with the commutator subgroup).
 -/
 import QuadFormsKB.Lattices.ClassSet
 import QuadFormsKB.Tamagawa.Reflection
+import Mathlib.NumberTheory.NumberField.Completion.InfinitePlace
 
 open NumberField IsDedekindDomain Matrix
 

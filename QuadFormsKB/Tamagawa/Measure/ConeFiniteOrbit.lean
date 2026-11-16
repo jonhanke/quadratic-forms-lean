@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.ConeFiniteGroup
 import QuadFormsKB.Tamagawa.Measure.ConeFiniteChart

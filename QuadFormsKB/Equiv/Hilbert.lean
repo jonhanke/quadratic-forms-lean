@@ -2,6 +2,11 @@
 # Hilbert symbol: comparing the definitions, and the link to isotropy
 -/
 import QuadFormsKB.Defs.Hilbert
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB
 

@@ -20,8 +20,9 @@ sublattice $K$ *splits* $L$ (is a component of $L$) when $L = K \perp J$ for som
 * `Dedekind.exists_lattice_split_scale_norm` (**82:9**, over a Dedekind domain).
 -/
 import QuadFormsKB.Literature.OMeara.Sec81Adapted
-
 import QuadFormsKB.Literature.OMeara.Sec93C
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+
 
 open QuadraticMap Submodule Module
 

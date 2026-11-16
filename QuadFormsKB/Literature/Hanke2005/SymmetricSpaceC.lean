@@ -21,8 +21,14 @@ $G_{\mathbb C}$ fixing every point of $Z_{\mathbb C}$ are $\pm1_n$.
 fixes $Z_{\mathbb C}$ pointwise (`lemmaA1_complex_two_false`). Hanke uses it only for $n\ge3$.
 Not formalized: the invariant volume form (4.3.9) and the volume computation of §4.3 (`volCComplex` is the closed form).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Basic
+import Mathlib.Basic.Complex.BigOperators
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

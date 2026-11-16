@@ -1,5 +1,6 @@
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.NeatCovolume
+import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 /-!
 # Generic measure transport for Tamagawa covolumes

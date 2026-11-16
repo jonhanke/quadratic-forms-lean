@@ -25,6 +25,7 @@ oddity $0$ at $p = 2$). Sums over the constituents are taken over $k < N$.
 * `pExcess_congr`, `oddity_congr`: the sums do not depend on the bound $N$ beyond the support.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Symbol
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
 
 namespace QuadFormsKB.ConwaySloane
 

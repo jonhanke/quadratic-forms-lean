@@ -3,8 +3,11 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Field
+import Mathlib.Topology.Algebra.InfiniteSum.Basic
+import Mathlib.Topology.Algebra.Ring.Real
+import Mathlib.Topology.Metrizable.Uniformity
 
 /-!
 # Sums over tuples of local data with a sign constraint (Hanke 2011, Thm. 4.8, eq. (12))

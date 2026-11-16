@@ -4,6 +4,7 @@ Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
 import QuadFormsKB.Literature.Hanke2011Structure.CMUnitIndex
+import Mathlib.NumberTheory.NumberField.ClassNumber
 
 /-!
 # Paper 6, Lemma 8.4 (generalized Dedekind correspondence), from Kneser's exact sequence

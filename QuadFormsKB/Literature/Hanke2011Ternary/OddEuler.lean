@@ -17,6 +17,7 @@ Here $q > 1$ is the size of the residue field and `ε'` $= \left(\frac{-1}{\math
 * `lemma_3_3_A`, `lemma_3_3_B`: the same for the Euler factors, with an arbitrary unit part in each degree.
 -/
 import QuadFormsKB.Literature.Hanke2011Ternary.OddPrimes
+import Mathlib.RingTheory.PowerSeries.NoZeroDivisors
 
 namespace QuadFormsKB.Hanke2011Ternary
 

@@ -1,5 +1,7 @@
 import QuadFormsKB.Binary.FormsIdeals
 import QuadFormsKB.Siegel.Genus
+import Mathlib.NumberTheory.NumberField.ClassNumber
+import Mathlib.RingTheory.ClassGroup.ExtendedHom
 
 /-!
 # Classes of binary forms and the class group

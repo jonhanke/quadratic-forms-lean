@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 
 /-!

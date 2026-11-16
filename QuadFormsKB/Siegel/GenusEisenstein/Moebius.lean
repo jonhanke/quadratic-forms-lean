@@ -14,6 +14,7 @@ import Mathlib.NumberTheory.ArithmeticFunction.Moebius
 import Mathlib.Analysis.PSeries
 import Mathlib.Data.ZMod.Basic
 import QuadFormsKB.Citation
+import Mathlib.Tactic.Positivity
 
 open Complex Filter Topology ArithmeticFunction
 open scoped ArithmeticFunction.Moebius ArithmeticFunction.zeta

@@ -16,8 +16,8 @@ Fujisaki, the indefinite Tamagawa number) can use it for `Γ = G(k)`, `α = G(�
   mean-value argument). If `Σ_{ξ ∈ X} Φ ξ x ≥ 1` for every `x`, then `covol(Γ, α, μ) ≤ Σ_{orbits q} ∫_{E_q} Φ(r_q, ·)`.
   For `α = G(𝔸)` and `Φ ξ g = f(g⁻¹ ξ)` the right side is the mean value `∫ f` over the orbit-stabilizer quotient.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.MeasureTheory.Group.FundamentalDomain
 
 open MeasureTheory MulAction Set
 open scoped ENNReal Pointwise

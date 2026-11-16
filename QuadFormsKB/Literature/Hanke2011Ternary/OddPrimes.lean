@@ -36,6 +36,7 @@ $u_1, u_2, u_3$ are Lean's `e₁ e₂ e₃` (the names keep the paper's 1-based 
 -/
 import QuadFormsKB.Literature.Hanke2011Ternary.Series
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal
+import Mathlib.Algebra.Order.Star.Rat
 
 namespace QuadFormsKB.Hanke2011Ternary
 

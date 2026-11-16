@@ -18,9 +18,9 @@ $Q$ is a nondegenerate quadratic form over $\mathcal O_v$ (`QuadForm 𝔬 n`), $
 
 Sources: A. Weil, *Adeles and Algebraic Groups* (1982), §4.3, Lemma 4.3.2, pp. 89–90; §4.4, p. 93; §4.5, Lemma 4.5.2, p. 103.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SphericalZeta
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 
 open IsDedekindDomain NumberField MeasureTheory WithZero Filter Topology
 open QuadFormsKB.Analysis

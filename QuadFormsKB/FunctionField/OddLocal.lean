@@ -27,9 +27,9 @@ $\pi'$). In each case the right side is multiplicative in $b$.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Defs.Hilbert
 import QuadFormsKB.Equiv.Hilbert
+import Mathlib.Topology.Algebra.Valued.ValuationTopology
 
 open WithZero
 

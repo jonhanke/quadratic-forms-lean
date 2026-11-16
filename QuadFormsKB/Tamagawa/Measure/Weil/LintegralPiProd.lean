@@ -1,4 +1,4 @@
-import Mathlib
+import Mathlib.MeasureTheory.Constructions.Pi
 
 /-!
 # Tonelli for products over a finite product measure

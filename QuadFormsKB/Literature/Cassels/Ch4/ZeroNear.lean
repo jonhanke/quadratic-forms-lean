@@ -31,9 +31,16 @@ $\vec u = F \vec b \ne \vec 0$. If $h(\vec b) \ne 0$ take $\vec c = \vec b$; so 
    $f(\vec q_\mu) \ne 0$ and $h(\vec q_\mu) \ne 0$. These hold for all small $\mu \ne 0$, and
    $\vec z_\mu \to \vec z_0 = \vec b$ as $\mu \to 0$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Cassels.Ch4.Perturb
+import Mathlib.Analysis.LocallyConvex.WithSeminorms
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Topology.Algebra.Module.PerfectSpace
+import Mathlib.Topology.GDelta.MetrizableSpace
 
 open Matrix Filter Topology
 

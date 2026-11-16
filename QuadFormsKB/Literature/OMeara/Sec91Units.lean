@@ -14,6 +14,9 @@ $\operatorname{cls}^+ L$ (`clsPlus`) (O'Meara 1963, §82C, pp. 222–223).
 * `clsPlus_eq_cls` (**91:4a**, second part, with 82:3): $\operatorname{cls}^+ L = \operatorname{cls} L$.
 -/
 import QuadFormsKB.Literature.OMeara.Sec91Type
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.LinearAlgebra.Determinant
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
 
 open QuadraticMap Submodule Module
 

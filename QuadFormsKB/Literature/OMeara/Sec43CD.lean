@@ -29,6 +29,7 @@ book.
 the abstract (coordinate-free, any field with $2 \ne 0$) version with the sharp bound; the two proofs are different.
 -/
 import QuadFormsKB.Literature.OMeara.Sec92Spinor
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 
 open QuadraticMap Submodule Module
 

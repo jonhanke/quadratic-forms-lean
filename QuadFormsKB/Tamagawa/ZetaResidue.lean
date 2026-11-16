@@ -47,7 +47,6 @@ measure on $V = \{Q \ne 0\}$ from the gauge form $dx_0\cdots dx_{n-1}$ and the c
   $\Phi_w = e^{-aQ_w}$ ($a > 0$; `gaussian`), the condition `IsArchTestFn` is proved (via $Q_w(x) \ge c\sum_ix_i^2$,
   `exists_lower_bound`), so the residue formula holds with no hypothesis beyond nondegeneracy, total positivity, $n \ge 4$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.GlobalZeta
 

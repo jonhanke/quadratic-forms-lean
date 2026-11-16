@@ -20,7 +20,6 @@ coordinates (`Fin.castAdd`) are those of $L$, the last $r$ (`Fin.natAdd`) those 
 * `card_aut_sumI`: $|\mathrm{Aut}(L \oplus I_r)| = 2^r\, r!\,|\mathrm{Aut}(L)|$ (as `Nat.card`).
 * `card_aut_sumI_succ`: $|\mathrm{Aut}(L \oplus I_{r+1})| = 2(r+1)\,|\mathrm{Aut}(L \oplus I_r)|$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemmas
 

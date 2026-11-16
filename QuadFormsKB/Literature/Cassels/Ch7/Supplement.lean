@@ -20,8 +20,15 @@ containing $1$, and $U$ its group of units. Indices are 0-based (`Fin n`).
 extension; `unit_smul_lattice` is the same statement at the generality of Cassels' setting (it is not restated for
 `smulLat`, which is cited for $l\Lambda$ only in that special case).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.NumberTheory.Zsqrtd.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB.Cassels
 

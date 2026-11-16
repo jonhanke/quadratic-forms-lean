@@ -11,6 +11,7 @@ of the DVR theory through `NFBridge.lean`: existence of $\beta_\mathfrak p$ (5.2
 $\varpi$ = `unif v` $\in \mathfrak p \setminus \mathfrak p^2$. Isotropy is over the completion $F_\mathfrak p$.
 -/
 import QuadFormsKB.LocalDensity.NFBridge
+import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 open NumberField IsDedekindDomain WithZero Filter Topology
 

@@ -36,7 +36,6 @@ Sources: Weil, Acta Math. 111 (1964), §§14, 26 [unverified]; Kudla, *Notes on 
 (1996), §I.1 [unverified]; Tate's thesis (Cassels–Fröhlich Ch. XV, §2.2, Thm. 2.2.2, p. 310; the dilation formula as in the proof of
 Thm. 4.2.1, p. 333).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.ThetaKernel
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal

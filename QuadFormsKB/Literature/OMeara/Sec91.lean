@@ -21,6 +21,8 @@ The symmetry $\tau_u x = x - \frac{2B(x,u)}{Q(u)}u$ (O'Meara 1963, §42E, p. 102
 Mathlib's `Module.reflection`.
 -/
 import QuadFormsKB.Literature.OMeara.Sec82
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.LinearAlgebra.Reflection
 
 open QuadraticMap Submodule Module IsLocalRing
 

@@ -42,6 +42,7 @@ p. 57, and Cor. 1, p. 58 (invariance of $c = \prod_{i<j}(a_i,a_j)$, Serre's $\va
 over Fields*, Ch. V §3 (Lam locators [unverified]).
 -/
 import QuadFormsKB.Witt.Represents
+import Mathlib.LinearAlgebra.Matrix.Permutation
 
 set_option linter.unusedSectionVars false
 

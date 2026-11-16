@@ -17,6 +17,7 @@ unimodular forms with unit Hessian) are in `DVRDyadicTable.lean`.
 -/
 import QuadFormsKB.LocalDensity.DVRExplicit
 import QuadFormsKB.LocalDensity.Table2
+import Mathlib.RingTheory.Henselian
 
 namespace QuadFormsKB.LocalDensity.DVR
 

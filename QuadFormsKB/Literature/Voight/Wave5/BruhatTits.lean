@@ -23,6 +23,8 @@ $V = F^2$; lattices are $R$-lattices in $V$ (`Lat R K`, Mathlib's `Submodule.IsL
   The tree part (`bruhatTits_isTree`) and the distance (Lemma 23.5.15, `dist_diag`) are in `Wave5/BruhatTitsHeight.lean`.
 -/
 import QuadFormsKB.Literature.Voight.Wave5.LatticeBasis
+import Mathlib.Combinatorics.SimpleGraph.Metric
+import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 
 set_option linter.unusedSectionVars false
 set_option linter.overlappingInstances false

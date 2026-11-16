@@ -19,8 +19,11 @@ $$\#\{X : X^{\mathsf T}AX = A\} = |R|^{ab}\cdot\#\{Y : Y^{\mathsf T}UY = U\}\cdo
 At $p = 2$ the identity `card_fromBlocks_eq_sum` still holds, but the perturbed forms need not be congruent to $U$ and
 $\pi B$. Indices of the blocks are arbitrary finite types; there is no 1-based shift.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Dynamics.Newton
+import Mathlib.LinearAlgebra.Matrix.InvariantBasisNumber
+import Mathlib.LinearAlgebra.Matrix.NonsingularInverse
+import Mathlib.RingTheory.FiniteType
 
 set_option linter.unusedSectionVars false
 

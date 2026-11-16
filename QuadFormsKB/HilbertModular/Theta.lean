@@ -1,6 +1,7 @@
 import QuadFormsKB.HilbertModular.DiagGaussian
 import QuadFormsKB.HilbertModular.KoecherCusps
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Analysis.Complex.LocallyUniformLimit
 
 /-!
 # Theta series over a totally real field I: definition, convergence, holomorphy, $q$-expansion

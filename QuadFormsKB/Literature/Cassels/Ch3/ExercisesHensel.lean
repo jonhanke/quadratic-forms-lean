@@ -16,9 +16,15 @@ Source: J. W. S. Cassels, *Rational Quadratic Forms* (1978), Chapter 3, *Example
 Indices are $0$-based. "Infinite order" for a matrix $A$ means $A^{k} \ne I$ for all $k \ge 1$, as in
 `Ch3Ex.ex14_i`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Cassels.Ch3.Exercises
+import Mathlib.LinearAlgebra.Eigenspace.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Filter Topology
 

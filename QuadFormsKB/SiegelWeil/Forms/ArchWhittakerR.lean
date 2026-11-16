@@ -31,7 +31,6 @@ Sources: Siegel, *Über die analytische Theorie der quadratischen Formen*, Ann. 
 *Some extensions of the Siegel–Weil formula* (2008), §1 [unverified]; Shimura, *Confluent hypergeometric functions on tube domains*,
 Math. Ann. 260 (1982), §1 (the integral of $\det(Y+iX)^{-k}e(-\operatorname{tr}TX)$) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.ArchGaussR
 import QuadFormsKB.SiegelWeil.Forms.ArchGram

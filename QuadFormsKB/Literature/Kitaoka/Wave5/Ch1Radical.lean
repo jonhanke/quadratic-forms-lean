@@ -25,6 +25,8 @@ hyperbolic planes, `QuadraticForm.hyperbolicSpace F k` ($(x_i, y_i)_{i<k} \mapst
 import QuadFormsKB.Witt.Extension
 import QuadFormsKB.Witt.Decomposition
 import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.RingTheory.TotallySplit
 
 open QuadraticMap Module
 

@@ -17,6 +17,7 @@ preserves $N$; since the polar form of $N$ is nondegenerate, $\varphi$ is inject
 $\dim C = \dim D = 4$ it is bijective.
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch1Quaternion152
+import Mathlib.Algebra.QuaternionBasis
 
 open QuadraticMap Quaternion
 

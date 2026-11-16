@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BinaryArchSplit
 import QuadFormsKB.Tamagawa.Measure.Weil.BinaryArchComplex
+import Mathlib.Analysis.SpecialFunctions.Arsinh
 
 /-!
 # Two integrals against the Leray measures of $SO(\langle1,D\rangle)$ at an archimedean place

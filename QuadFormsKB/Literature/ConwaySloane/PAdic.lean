@@ -32,11 +32,11 @@ $\mathbb Z_p$-equivalence. The book's statement also covers singular forms; that
 **Deviations.** The factor $\left(\frac{\nu}{-1}\right) = 1$ is not written (it is $1$ by the book whenever the symbol is
 defined); $\left(\frac{\nu}{2}\right)$ is Mathlib's `ZMod.χ₈` on $\nu \bmod 8$, which equals the book's $\pm1$ for odd $\nu$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.LocalGlobal.ConwaySloane
 import QuadFormsKB.Literature.Cassels.Ch8.CanonicalExists
 import QuadFormsKB.Literature.Cassels.Ch8.Dyadic
+import Mathlib.Tactic.NormNum.Prime
 
 namespace QuadFormsKB
 namespace ConwaySloane

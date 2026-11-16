@@ -1,6 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelativeLFactor
+import Mathlib.NumberTheory.NumberField.CMField
 
 /-!
 # The relative class number formula for a CM extension $E/F$

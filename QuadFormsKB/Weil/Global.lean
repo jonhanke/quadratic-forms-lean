@@ -27,7 +27,6 @@ $\prod_u(t, (-1)^m\det V)_u = 1$ and $|t|_{\mathbb A} = 1$ (`thetaDist_gM`); $w$
 **the product formula for the Weil index** $\prod_u\gamma_{V,u} = 1$ (`prod_gammaV_eq_one`, `thetaDist_gW`); then the
 Bruhat cells. Only $n(b)$ and $m(t)$ need no purity; $w$ needs the coordinate factorization, which $n(b)$ preserves.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.ProductFormulas
 import QuadFormsKB.Analysis.AdelicPoisson

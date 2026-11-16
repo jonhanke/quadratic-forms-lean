@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BaseChangeNorm
 import QuadFormsKB.Tamagawa.Measure.Weil.QuatTamagawaGlobal
+import Mathlib.Algebra.QuadraticAlgebra.Defs
 
 /-!
 # Base change for a quadratic extension: rings, quaternion units, transport of covolumes

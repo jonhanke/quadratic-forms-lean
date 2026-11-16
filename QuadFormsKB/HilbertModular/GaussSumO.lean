@@ -1,4 +1,6 @@
 import QuadFormsKB.Siegel.QuadGaussSum
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.RingTheory.Ideal.Norm.AbsNorm
 
 /-!
 # Quadratic Gauss sums over $\mathcal{O}/\mathfrak m$ at good moduli

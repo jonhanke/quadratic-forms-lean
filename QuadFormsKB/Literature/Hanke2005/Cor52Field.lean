@@ -1,4 +1,11 @@
-import Mathlib
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Polynomial.Eval.Irreducible
+import Mathlib.Algebra.Polynomial.SpecificDegree
+import Mathlib.NumberTheory.NumberField.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # The cubic field of the counterexample to Hanke's Corollary 5.2(ii)

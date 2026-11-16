@@ -30,6 +30,7 @@ import QuadFormsKB.Literature.OMeara.Sec102
 import QuadFormsKB.Literature.OMeara.Sec106Defs
 import QuadFormsKB.Literature.OMeara.Sec106E
 import QuadFormsKB.HilbertModular.HeckeGenusLocal
+import Mathlib.NumberTheory.SumFourSquares
 
 open NumberField IsDedekindDomain Matrix WithZero
 

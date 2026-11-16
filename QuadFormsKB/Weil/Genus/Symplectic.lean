@@ -31,9 +31,10 @@ Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverif
 d'opérateurs unitaires*, Acta Math. 111 (1964), §§1–2 [unverified]; Rao, Pacific J. Math. 157 (1993), §2 (Bruhat
 decomposition relative to the Siegel parabolic) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.SL2Cells
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.LinearAlgebra.SymplecticGroup
 
 open Matrix
 open scoped MatrixGroups

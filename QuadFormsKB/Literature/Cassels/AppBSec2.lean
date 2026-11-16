@@ -14,6 +14,8 @@ distinct prime factors), and this series has the Euler product on the right. Thi
 (`euler_product_two_pow_omega`); the first (Lemma 2.2 in terms of orbits of representations) is not formalized.
 -/
 import QuadFormsKB.Binary.KroneckerChar
+import Mathlib.NumberTheory.EulerProduct.Basic
+import Mathlib.NumberTheory.LSeries.Dirichlet
 
 open Real
 

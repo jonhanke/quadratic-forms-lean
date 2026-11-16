@@ -1,6 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.LFactorization
+import Mathlib.NumberTheory.LSeries.DirichletContinuation
 
 /-!
 # Dirichlet's class number formula for quadratic fields

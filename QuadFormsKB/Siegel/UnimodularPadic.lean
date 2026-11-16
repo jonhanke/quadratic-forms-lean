@@ -17,6 +17,7 @@ coefficient is determined up to unit squares by $\det H$.
 -/
 import QuadFormsKB.Siegel.Genus
 import QuadFormsKB.LocalDensity.DVRUnimodular
+import Mathlib.NumberTheory.Padics.Hensel
 
 open Matrix
 

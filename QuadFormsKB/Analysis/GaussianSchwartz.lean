@@ -8,8 +8,11 @@ Sphere-Packing-Lean (Apache-2.0), math-inc/Sphere-Packing-Lean commit 1e98fb4,
 `SpherePacking/Dim24/Uniqueness/Rigidity/Classify/EvenUnimodular/ThetaTransform.lean`.
 Ported to Mathlib for Lean v4.35.0 for QuadFormsKB.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Archimedean.Real.Hom
+import Mathlib.Analysis.Distribution.SchwartzSpace.Basic
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # Complex Gaussians as Schwartz functions

@@ -1,5 +1,8 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Analysis.Matrix.MeasurableSpace
+import Mathlib.LinearAlgebra.Matrix.SchurComplement
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.LinearCombination
 
 /-!
 # Orbits of $\mathrm{SO}(V)$ on the quadrics $\{q = c\}$, $c\ne0$, with an explicit measurable section

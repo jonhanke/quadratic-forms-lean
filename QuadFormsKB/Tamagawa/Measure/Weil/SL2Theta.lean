@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BasisPoisson
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Approx
+import Mathlib.Topology.Compactification.OnePoint.ProjectiveLine
 
 /-!
 # Poisson summation on $F_\infty^2$ for the lattices $M\mathcal O_F^2$, $M\in\mathrm{SL}_2(F_\infty)$

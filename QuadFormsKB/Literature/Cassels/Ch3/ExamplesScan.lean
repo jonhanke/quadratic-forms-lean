@@ -27,6 +27,8 @@ them); they were found numerically and are checked by the proofs. Ex. 9: see the
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiThree
 import QuadFormsKB.Literature.Cassels.Ch3.ExerciseTen
+import Mathlib.Analysis.SpecificLimits.Normed
+import Mathlib.Tactic.NormNum.Prime
 
 open Filter Topology
 

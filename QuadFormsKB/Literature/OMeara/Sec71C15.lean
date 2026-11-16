@@ -11,6 +11,10 @@ This file has Proposition 71:15 (O'Meara's proof: $\ell$ with $N\mathfrak p$ of 
 * Proposition 71:15 (p. 197): `infinite_setOf_cyclotomic_localDegree_two`.
 -/
 import QuadFormsKB.Literature.OMeara.Sec71A
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Frobenius
+import Mathlib.Tactic.Monotonicity
 
 set_option linter.unusedSectionVars false
 

@@ -5,6 +5,7 @@ Authors: Jonathan Hanke
 -/
 import QuadFormsKB.Tamagawa.Dyadic7Classify
 import QuadFormsKB.Tamagawa.Dyadic7Units
+import Mathlib.Data.Set.Finite.List
 
 /-!
 # Paper 6 at $p = 2$: finitely many local genera of a given determinant, every rank

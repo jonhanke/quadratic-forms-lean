@@ -35,8 +35,11 @@ the last $r$ negative); indices are 0-based.
 * `actR` (the action (4.2.1)–(4.2.2), $\alpha z = \mathrm{zOf}(\alpha P(z))$) and `FR_mul`:
   $F_{\mathbb R}(\alpha\beta) = \alpha F_{\mathbb R}(\beta)$ for $\beta\in O(\varphi_v)$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Basic
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.Tactic.Positivity
 
 open Matrix
 

@@ -18,6 +18,9 @@ of $\mathbb Q_p$ (`unitQ p u`), and $\bar u \in \mathbb F_p^{\times}$ is its res
 -/
 import QuadFormsKB.Literature.Cassels.Ch2.WittRing
 import QuadFormsKB.Literature.Cassels.Ch2.WittFinite
+import Mathlib.Data.ZMod.Units
+import Mathlib.NumberTheory.Padics.Hensel
+import Mathlib.NumberTheory.Padics.RingHoms
 
 open QuadraticMap
 

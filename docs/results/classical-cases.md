@@ -19,7 +19,7 @@ Classical theorems on representation numbers recovered from Siegel's formula and
 
 ## In Lean
 
-The headline statements are in [`Challenge.lean`](../../Challenge.lean), section "Classical special cases over ℚ". Each statement with a representation number $`r_k(m)`$ also states that the set of solutions is finite; the statement for $`x^2 + y^2`$ with constants also states that $`L(1,\chi_{-4})`$ exists and is positive and that the product converges.
+The headline statements are in the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)), section "Classical special cases over ℚ". Each statement with a representation number $`r_k(m)`$ also states that the set of solutions is finite; the statement for $`x^2 + y^2`$ with constants also states that $`L(1,\chi_{-4})`$ exists and is positive and that the product converges.
 
 - `QuadFormsKB.Headlines.gauss_threeSquares` (from `QuadFormsKB.Tamagawa.Classical.gauss_three_squares`).
 - `QuadFormsKB.Headlines.jacobi_twoSquares` (from `QuadFormsKB.Tamagawa.Classical.dirichlet_sumTwoSq_r2`).

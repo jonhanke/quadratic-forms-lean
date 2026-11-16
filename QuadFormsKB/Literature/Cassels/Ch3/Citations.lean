@@ -8,7 +8,6 @@ Each declaration here is a thin comparison lemma: its proof is the corresponding
 `padicNorm`, `Padic`, `PadicInt`, `IsUltrametricDist`), stated in Cassels' form so that the book item has a Lean
 counterpart. Indices are $0$-based. The last section cites existing library declarations for Chapter 4, §2–3.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Witt.Bridge
 import QuadFormsKB.Literature.Cassels.Ch4.Witt

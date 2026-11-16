@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.FibrationTwoWays
 import QuadFormsKB.Tamagawa.Measure.Weil.IdeleShell
 import QuadFormsKB.Tamagawa.Measure.Weil.Fujisaki
+import Mathlib.Topology.Algebra.ProperAction.Basic
 
 /-!
 # $G^\natural$ abstractly: $\tau(G^\natural/\mathbb G_m) = 2\,\tau(\ker\nu)$ by Weil's two fibrations

@@ -15,7 +15,10 @@ sums (Tannery) gives $c_j = 0$.
 Source: Bohr, *Fastperiodische Funktionen* (1932) (the mean value of an almost periodic function) [unverified]; used here for
 the uniqueness of Fourier expansions on $\mathbb H_r^d$ (`FourierUnique.lean`).
 -/
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Normed.Group.Tannery
+import Mathlib.Analysis.SpecialFunctions.Integrals.Basic
 
 open MeasureTheory Complex
 open scoped Real

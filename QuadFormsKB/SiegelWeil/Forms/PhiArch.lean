@@ -23,6 +23,7 @@ Source: Klingen, *Introductory lectures on Siegel modular forms* (1990), §5 (Φ
 Freitag, *Siegelsche Modulfunktionen* (1983), Ch. I [unverified].
 -/
 import QuadFormsKB.Weil.Genus.SiegelSpace
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix Complex Filter Topology
 open QuadFormsKB.WeilRep.Genus

@@ -23,7 +23,6 @@ For $r = 1$ these are the degree-one `globalConst_eq` and `hasProd_whittakerV` (
 Sources: Weil, *Sur la formule de Siegel dans la théorie des groupes classiques*, Acta Math. 113 (1965), Ch. II–IV [unverified];
 Weil, Acta Math. 111 (1964), §30, Prop. 5 [unverified]; Siegel, Ann. Math. 36 (1935), Hauptsatz [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.LocalWhittaker
 import QuadFormsKB.SiegelWeil.GlobalWhittaker

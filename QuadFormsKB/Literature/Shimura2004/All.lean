@@ -18,3 +18,9 @@ import QuadFormsKB.Literature.Shimura2004.Wave4.All
 import QuadFormsKB.Literature.Shimura2004.Wave5.All
 import QuadFormsKB.Literature.Shimura2004.Wave6.All
 import QuadFormsKB.Literature.Shimura2004.Wave7.All
+import QuadFormsKB.Literature.Shimura2004.Fundamental.All
+import QuadFormsKB.Literature.Shimura2004.SumSquaresOneClass
+import QuadFormsKB.Literature.Shimura2004.SumSquaresCodes
+import QuadFormsKB.Literature.Shimura2004.SumSquaresSeven
+import QuadFormsKB.Literature.Shimura2004.SumSquaresNine
+import QuadFormsKB.Literature.Shimura2004.SumSquaresNineE8

@@ -17,6 +17,12 @@ Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Equiv.Hilbert
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.Algebra.MvPolynomial.Funext
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Data.Nat.Squarefree
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
+import Mathlib.NumberTheory.NumberField.Basic
 
 namespace QuadFormsKB.HM3
 

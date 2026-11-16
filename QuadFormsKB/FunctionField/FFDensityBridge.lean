@@ -29,6 +29,9 @@ import QuadFormsKB.LocalDensity.DVRLowerBounds
 import QuadFormsKB.LocalDensity.Bridge
 import QuadFormsKB.FunctionField.RatFuncLocal
 import QuadFormsKB.FunctionField.DedekindLocal
+import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
+import Mathlib.RingTheory.AdicCompletion.Noetherian
+import Mathlib.RingTheory.Flat.TorsionFree
 
 open IsDedekindDomain WithZero Polynomial
 

@@ -36,6 +36,8 @@ for determinants, cancels on both sides). Over $\mathbb Q$, $F$ is `RatQF.gram`.
   (`representsOver_map_iff`).
 -/
 import QuadFormsKB.Siegel.Genus
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix
 

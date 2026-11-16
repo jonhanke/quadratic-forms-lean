@@ -1,19 +1,27 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Judge Solution against Challenge the way Palomar does: with the `lake
-# comparator` that ships in this project's own toolchain, replaying the proof
-# through Lean's kernel and the toolchain's bundled independent kernels
-# (NanoDa and con-ron). Nothing is built from a pin; everything that judges
-# comes from `lean-toolchain`, which Palomar requires to be v4.35.0-rc2 or
-# later.
+# Usage: ./scripts/verify-comparator.sh BOOK      (BOOK: one of the books listed in comparator.json)
 #
-# Adapted from PalomarRegistry/PalomarTemplate (Apache-2.0). Local addition: with
-# COMPARATOR_NO_SANDBOX=1 the check runs without the bwrap sandbox (for machines
-# without bubblewrap, e.g. macOS). That is weaker than Palomar's check and is
-# meant only for a trusted local checkout; CI always runs with the sandbox.
+# Judge Solution_BOOK against Challenge_BOOK the way Palomar does: with the `lake comparator` that ships in this
+# project's own toolchain, replaying the proof through Lean's kernel and the toolchain's bundled independent kernels
+# (NanoDa and con-ron). Nothing is built from a pin; everything that judges comes from `lean-toolchain`.
+#
+# One check per book (configured by comparator/BOOK.json; comparator.json lists the books): a single check of all
+# headline statements loads every book at once and needs far more memory.
+#
+# Copied from elementary-number-theory-lean; adapted from algebraic-number-theory-lean v0.1.0, itself adapted from PalomarRegistry/PalomarTemplate
+# (Apache-2.0). Local addition: with COMPARATOR_NO_SANDBOX=1 the check runs without the bwrap sandbox (for machines
+# without bubblewrap, e.g. macOS). That is weaker than Palomar's check and is meant only for a trusted local
+# checkout; CI always runs with the sandbox.
 repository_root=$(cd "$(dirname "$0")/.." && pwd)
 cd "$repository_root"
+
+if [ $# -ne 1 ] || [ ! -f "comparator/$1.json" ]; then
+  echo "usage: $0 BOOK, where comparator/BOOK.json exists (books: $(ls comparator | sed 's/\.json$//' | tr '\n' ' '))" >&2
+  exit 2
+fi
+book_config="comparator/$1.json"
 
 sandbox_flag=()
 required_commands=(bwrap lake lean python3)
@@ -41,11 +49,11 @@ for tool in lake leanexport leanchecker nanoda_bin con-ron; do
 done
 
 # Palomar ignores `enable_nanoda` and rejects `external_kernels` in a submitted
-# comparator.json: it registers the toolchain's bundled kernels itself. This
+# comparator configuration: it registers the toolchain's bundled kernels itself. This
 # generated copy does the same, so the local check judges as the registry does.
 config=$(mktemp "${TMPDIR:-/tmp}/palomar-comparator.XXXXXX")
 trap 'rm -f "$config"' EXIT
-python3 - comparator.json "$config" "$prefix" <<'PY'
+python3 - "$book_config" "$config" "$prefix" <<'PY'
 import json
 import pathlib
 import sys

@@ -13,8 +13,11 @@ $c_j = t_{j0}b_0 + \cdots + t_{jj}b_j$ with $t_{jj} \ne 0$ (`exists_triangular_b
 ideal (`triIdeal`) containing $d$; choose $c_j$ realizing a generator $t_{jj}$. Every element of $\Gamma$ is then reduced
 to $0$ by subtracting multiples of $c_{n-1}, c_{n-2}, \dots$; independence comes from the nonzero diagonal.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.GroupTheory.GroupAction.Ring
+import Mathlib.LinearAlgebra.Basis.Basic
+import Mathlib.LinearAlgebra.DFinsupp
+import Mathlib.RingTheory.PrincipalIdealDomain
 
 namespace QuadFormsKB.Cassels
 

@@ -25,8 +25,18 @@ O'Meara's minimal-length argument, with a fixed basis of $B$ in place of the cha
 The cancellation law quoted after 52:10 (p. 129), "$A \otimes B \sim A' \otimes B$ implies $A \sim A'$", is
 `CSA52.isBrauerEquivalent_of_tensor` in `Sec52F.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Azumaya.Defs
+import Mathlib.Algebra.Central.Defs
+import Mathlib.LinearAlgebra.Basis.MulOpposite
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TwoSidedIdeal.Instances
 
 open scoped TensorProduct
 open Module

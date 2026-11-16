@@ -43,12 +43,12 @@ counts) [unverified]; Weil, *Sur la formule de Siegel dans la théorie des group
 [unverified]; Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 ($W_{T,v}(e, s_0, \Phi_v)$) [unverified];
 Kudla–Rallis, J. reine angew. Math. 387 (1988), §4 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.Sections
 import QuadFormsKB.SiegelWeil.LocalWhittaker
 import QuadFormsKB.LocalDensity.FormDensityStab
 import QuadFormsKB.LocalDensity.NFFormDensity
+import Mathlib.CategoryTheory.Countable
 
 open IsDedekindDomain NumberField MeasureTheory WithZero Filter Topology Matrix
 open QuadFormsKB.Analysis QuadFormsKB.WeilRep QuadFormsKB.WeilRep.LocalData QuadFormsKB.WeilRep.Genus

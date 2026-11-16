@@ -43,7 +43,6 @@ hypotheses of the conditions cannot be dropped.
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified]; Weil, Acta Math. 111 (1964),
 §§1–2 (the big-cell construction) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SiegelPresSmall
 

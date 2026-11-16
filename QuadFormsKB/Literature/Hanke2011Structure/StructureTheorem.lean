@@ -30,9 +30,10 @@ $T \smallsetminus \mathbb S$, which may be empty (e.g. $F = \mathbb{Q}$, $\mathb
 assumes a nonempty set. The conclusion (12) still holds in that case: both sides equal $1$ if
 $C_{\varepsilon_\infty,\vec c_{\mathbb S}} = 1$ and $0$ otherwise (`sum_sign_prod_half`, which covers every finite set).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.SignSum
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 namespace QuadFormsKB.Hanke2011Structure
 

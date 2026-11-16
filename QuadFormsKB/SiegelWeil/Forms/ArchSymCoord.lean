@@ -15,7 +15,6 @@ $\{(i,j) : 0 \le i \le j < r\}$ (`UIdx r`); indices are 0-based.
   $$\int F(c \cdot b)\,db = 2^{-r(r-1)/2}\int F(u)\,du,$$
   and $F \circ \text{scaleU}$ is integrable exactly when $F$ is.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.Weil.SimilarDet
 

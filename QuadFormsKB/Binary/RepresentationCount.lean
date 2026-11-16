@@ -1,5 +1,6 @@
 import QuadFormsKB.Binary.FormAut
 import QuadFormsKB.Binary.LFactorization
+import Mathlib.Algebra.QuadraticAlgebra.NormDeterminant
 
 /-!
 # Representation numbers of binary forms and Dirichlet's formula

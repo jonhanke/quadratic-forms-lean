@@ -4,10 +4,11 @@ file `SpherePacking/CohnElkies/PoissonSummationLattices/PoissonSummation.lean`, 
 Ported to Mathlib for Lean v4.35.0 for QuadFormsKB.
 Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apache License 2.0.
 -/
-import Mathlib
-
 import QuadFormsKB.Analysis.SPLPoisson.UnitAddTorus
 import QuadFormsKB.Analysis.SPLPoisson.FourierLinearEquiv
+import Mathlib.Algebra.Module.ZLattice.Basic
+import Mathlib.LinearAlgebra.BilinearForm.DualLattice
+
 
 /-!
 # Poisson summation for `ℤ`-lattices

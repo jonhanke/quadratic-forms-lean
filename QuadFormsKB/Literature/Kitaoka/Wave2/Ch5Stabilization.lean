@@ -39,6 +39,9 @@ $\beta_p(M, N)$, which is what `betaP` defines.
 import QuadFormsKB.Literature.Kitaoka.Ch5Densities
 import Mathlib.Data.Sym.Card
 import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.Monotonicity
 
 open Matrix Filter
 

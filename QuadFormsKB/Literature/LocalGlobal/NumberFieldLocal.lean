@@ -19,6 +19,10 @@ Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.LocalGlobal.NumberFieldInputs
 import QuadFormsKB.Literature.LocalGlobal.FieldGeneral
+import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
+import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
+import Mathlib.RingTheory.DedekindDomain.FiniteAdeleRing
+import Mathlib.Topology.MetricSpace.Contracting
 
 open NumberField IsDedekindDomain
 

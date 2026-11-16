@@ -27,8 +27,9 @@ Also: the local types of the unitary (Tables 1–2) and quaternionic ((8.5), (8.
 printed (`lambdaProp44`, …), proved equal to (2.12) for these types (`lam_unitary_odd`, …). Indices are 0-based where
 they index products: $\prod_{i=1}^m$ is `∏ i ∈ Finset.range m` with `i + 1`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Archimedean.Real.Basic
+import Mathlib.Algebra.Ring.IsFormallyReal
 
 set_option linter.unusedSectionVars false
 

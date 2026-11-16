@@ -17,8 +17,9 @@ $\vec b_0 = c\,g_0$, $c \ne 0$ (`exists_basis_smul_zero`). The remaining vectors
 onto $R^{n-1}$ (the coordinates $1, \dots, n-1$ with respect to $g$); the projections stay linearly independent; the
 induction hypothesis gives an adapted basis of $R^{n-1}$, which is glued to $g_0$ (`exists_basis_cons`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.RingTheory.Flat.TorsionFree
 
 namespace QuadFormsKB.Cassels
 

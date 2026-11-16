@@ -34,6 +34,13 @@ definition ($Q(x) \in \dot F^{2}$ for $x \ne 0$) by `posDef_iff_isSquare`.
 -/
 import QuadFormsKB.Literature.OMeara.Sec6Defs
 import QuadFormsKB.Witt.Decomposition
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.QuadraticDiscriminant
+import Mathlib.Analysis.RCLike.Lemmas
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.QuadraticForm.Real
+import Mathlib.LinearAlgebra.QuadraticForm.Signature
+import Mathlib.RingTheory.TotallySplit
 
 open QuadraticMap QuadraticForm Module
 

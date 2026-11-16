@@ -41,7 +41,14 @@ $(t_{ij})$"), checked numerically on random integral Gram matrices before being 
 -/
 import QuadFormsKB.Literature.Cassels.Ch10.Clifford
 import QuadFormsKB.Literature.Cassels.Ch7.Thm31
-import Mathlib
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.LinearAlgebra.CliffordAlgebra.SpinGroup
+import Mathlib.LinearAlgebra.Dimension.OrzechProperty
+import Mathlib.NumberTheory.Padics.PadicIntegers
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Module CliffordAlgebra
 

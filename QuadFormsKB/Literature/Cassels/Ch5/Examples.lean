@@ -17,6 +17,12 @@ $\frac{\pi^2}{2}(2m)^2 = 2\pi^2m^2 > 2^4m^2$ ($\Lambda$ is cut out by congruence
 respectively $m^2$).
 -/
 import QuadFormsKB.Literature.Cassels.Ch5.Minkowski
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.Analysis.SpecialFunctions.Gamma.BohrMollerup
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
+import Mathlib.NumberTheory.LegendreSymbol.Basic
 
 namespace QuadFormsKB.Cassels.Ch5
 

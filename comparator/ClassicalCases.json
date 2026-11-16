@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge_ClassicalCases",
+  "solution_module": "Solution_ClassicalCases",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.gauss_threeSquares",
+    "QuadFormsKB.Headlines.jacobi_twoSquares",
+    "QuadFormsKB.Headlines.siegel_twoSquares",
+    "QuadFormsKB.Headlines.dirichlet_xSqMinusTwoYSq",
+    "QuadFormsKB.Headlines.divisorCount_xy",
+    "QuadFormsKB.Headlines.siegel_ternary_rat_natural"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

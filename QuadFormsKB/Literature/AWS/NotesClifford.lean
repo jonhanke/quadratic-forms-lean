@@ -22,6 +22,7 @@ Indices are 0-based (`Fin n`).
 -/
 import QuadFormsKB.Literature.OMeara.Sec54
 import QuadFormsKB.Literature.OMeara.Sec54Dim
+import Mathlib.Algebra.Central.Defs
 
 open CliffordAlgebra QuadFormsKB.OMeara QuadFormsKB.OMeara.Cl54
 

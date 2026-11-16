@@ -15,6 +15,7 @@ Cassels, *Rational Quadratic Forms* (1978), Ch. 14, Examples, pp. 358–359.
   text and was read from the page image (p. 359).
 -/
 import QuadFormsKB.Siegel.ThetaCharacter
+import Mathlib.NumberTheory.FundamentalDiscriminant
 
 namespace QuadFormsKB.Composition
 
