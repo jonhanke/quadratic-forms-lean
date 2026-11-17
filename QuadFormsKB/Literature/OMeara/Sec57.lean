@@ -37,6 +37,7 @@ of $F$; `Quat.mul_star_eq_nrd`), and the trace is $Tx = x + \bar x = 2\xi_0$ (`Q
 -/
 import QuadFormsKB.Tamagawa.QuaternionSO3
 import QuadFormsKB.Literature.OMeara.Sec91
+import Mathlib.LinearAlgebra.CliffordAlgebra.Equivs
 
 open Quaternion QuadFormsKB.Quat
 

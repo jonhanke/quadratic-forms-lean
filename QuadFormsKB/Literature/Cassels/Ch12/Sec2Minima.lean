@@ -11,6 +11,7 @@ $\vec{m}_0, \dots, \vec{m}_{n-1}$ here, so "$M_j$ is the least $M$ for which $\{
 dimension $\ge j$" reads "$M_j$ is the least $M$ for which it spans a space of dimension $\ge j+1$".
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec2
+import Mathlib.RingTheory.FiniteLength
 
 open Matrix
 

@@ -34,7 +34,6 @@ Sources: Weil, Acta Math. 111 (1964), §§14, 29–30 [unverified]; Kudla, *Note
 (1996), §I.4 [unverified]; Bump, *Automorphic Forms and Representations* (1997), §4.8 [unverified]; Rallis (1984)
 [unverified]; Shimura, Ann. of Math. 97 (1973), §2 (the character of $\theta_Q$) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.LocalK0
 import QuadFormsKB.Weil.ArchTheta

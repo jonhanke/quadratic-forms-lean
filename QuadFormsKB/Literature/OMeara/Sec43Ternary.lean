@@ -1,6 +1,7 @@
 import QuadFormsKB.Literature.OMeara.Sec43A
 import QuadFormsKB.Literature.OMeara.Sec42Iso
 import QuadFormsKB.Literature.OMeara.Sec91Units
+import Mathlib.RingTheory.TotallySplit
 
 /-!
 # O'Meara §43: rotations of a ternary space fixing an isotropic vector (43:5)

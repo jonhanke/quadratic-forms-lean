@@ -1,6 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelativeQuadratic
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.RingTheory.Ideal.Norm.RelNorm
 
 /-!
 # Ideals of $\mathcal O_E$ with given relative norm

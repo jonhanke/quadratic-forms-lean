@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.QuatUnits
 import QuadFormsKB.Tamagawa.Measure.Weil.IdeleMeasures
+import Mathlib.Dynamics.Ergodic.Action.Regular
 
 /-!
 # Haar measures on $(\mathbb H\otimes\mathbb A)^\times$ and $\mathbb H_{\mathbb A}^1$

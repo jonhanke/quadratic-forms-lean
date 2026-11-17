@@ -36,8 +36,14 @@ O'Meara's local Eisenstein argument. 71:14 follows
 O'Meara's proof: an odd prime $p$ dividing $a^{2^k} + 1$ (which exists, as $a^{2^k}+1 > 2$ is not divisible by $4$)
 gives $a$ of order exactly $2^{k+1}$ mod $p$; since this order divides $p - 1$, these primes are unbounded.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Lie.OfAssociative
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.NumberField.Cyclotomic.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Polynomial
 

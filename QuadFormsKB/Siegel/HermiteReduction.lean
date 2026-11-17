@@ -31,6 +31,7 @@ the route here; Conway–Sloane, *Sphere Packings, Lattices and Groups*,
 determinant, p. 397). The book uses Minkowski reduction, not Hermite's; the finiteness statement is the same.
 -/
 import QuadFormsKB.Siegel.Genus
+import Mathlib.LinearAlgebra.Matrix.Permutation
 
 open Matrix
 

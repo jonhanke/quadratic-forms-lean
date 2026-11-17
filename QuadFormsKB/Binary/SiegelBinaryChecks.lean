@@ -1,5 +1,6 @@
 import QuadFormsKB.Binary.SiegelBinary
 import QuadFormsKB.LocalDensity.BridgeDyadic
+import Mathlib.Tactic.NormNum.LegendreSymbol
 
 /-!
 # Cross-checks of Siegel's formula for $n = 2$: $D = -4$ and $D = -20$

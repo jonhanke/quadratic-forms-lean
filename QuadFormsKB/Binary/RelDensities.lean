@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelNormDisc
 import QuadFormsKB.Siegel.NFGoodPrime

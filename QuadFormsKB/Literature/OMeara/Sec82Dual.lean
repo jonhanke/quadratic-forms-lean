@@ -23,6 +23,7 @@ condition at a place of a number field, `IsUnimodularAt`; `dual` is the general 
 -/
 import QuadFormsKB.Literature.OMeara.Sec82Volume
 import QuadFormsKB.Literature.OMeara.Sec82Radical
+import Mathlib.RingTheory.DedekindDomain.Factorization
 
 open QuadraticMap Submodule Module
 open scoped Matrix

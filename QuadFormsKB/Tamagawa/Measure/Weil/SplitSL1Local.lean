@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.SplitSL1Arch
 import QuadFormsKB.Tamagawa.Measure.Weil.QuatLocalVolume
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card
 
 /-!
 # The finite local factors of the box, for split $D$

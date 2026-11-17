@@ -9,6 +9,7 @@
 * `lemma61` (Lemma 6.1, **proved**): injectivity by the Chinese-remainder argument, then equal cardinalities.
 -/
 import QuadFormsKB.Literature.MorenoWagstaff.Ch6to8Statements
+import Mathlib.NumberTheory.PythagoreanTriples
 
 namespace QuadFormsKB.MorenoWagstaff
 

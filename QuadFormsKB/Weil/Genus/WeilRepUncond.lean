@@ -19,7 +19,6 @@ genus, `Weil/Genus/HaarGL.lean`).
 Sources: Weil, Acta Math. 111 (1964), §14 [unverified]; Kudla, *Notes on the local theta correspondence* (1996),
 §I.1, Prop. 1.3 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Model
 import QuadFormsKB.Weil.Genus.SiegelPres

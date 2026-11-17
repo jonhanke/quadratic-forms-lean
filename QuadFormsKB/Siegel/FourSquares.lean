@@ -9,6 +9,8 @@ Class number one (`FourSquaresClassNumberOne`, under which $a_E = r_{I_4}$, `gen
 `Siegel/FourSquaresClassNumber.lean` (`fourSquaresClassNumberOne`, `genusRepAvg_Q4'`).
 -/
 import QuadFormsKB.Siegel.LocalProduct
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

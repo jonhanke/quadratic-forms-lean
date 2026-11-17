@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.IdeleClassVolume
 import QuadFormsKB.Tamagawa.Measure.Weil.PDMeasure
+import Mathlib.Topology.Algebra.ProperAction.Basic
 
 /-!
 # $\tau(PD^\times) = 2$ for quaternion division algebras over number fields

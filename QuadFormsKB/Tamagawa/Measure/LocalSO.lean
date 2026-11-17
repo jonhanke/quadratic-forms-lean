@@ -46,6 +46,7 @@ $\mu_v$ (that needs the $p$-adic Leray functional of `LerayPadic.lean`).
 import QuadFormsKB.Tamagawa.LocalVolume
 import QuadFormsKB.Tamagawa.LatticeChangeNF
 import QuadFormsKB.Analysis.LocalFourierNF
+import Mathlib.Topology.Algebra.ClopenNhdofOne
 
 open MeasureTheory Measure TopologicalSpace Topology
 open scoped ENNReal NNReal Pointwise

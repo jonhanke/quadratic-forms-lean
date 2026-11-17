@@ -52,6 +52,7 @@ $[1,5,7]$; they agree with the printed caption (page image, p. 274: $D = (\tfrac
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Remarks2
 import QuadFormsKB.Literature.Cassels.Ch12.Sec6
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
 
 open Matrix
 

@@ -17,7 +17,6 @@ $r_\mathfrak p = P_1/P_0$. Then:
    `globalZeta` and whose other terms are $o(1/s)$ (`QTwist.tendsto_mul_LFunction_zero`).
 3. (**(8)**, p. 108) letting $S \to \infty$, $\mu(S), \mu'(S) \to 1$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SphericalLocal
 import QuadFormsKB.Tamagawa.SphericalSum

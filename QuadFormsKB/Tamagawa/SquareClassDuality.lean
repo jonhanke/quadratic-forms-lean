@@ -16,7 +16,6 @@ which is the identity Weil uses.
 $B : G \times G \to \{\pm1\}$ and a subgroup $\Lambda$ with $B(\Lambda,\Lambda) = 1$ and $|\Lambda|^2 = |G|$:
 $\sum_{x\in\Lambda}B(x,y) = |\Lambda|\cdot\mathbf 1[y\in\Lambda]$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.HasseNorm.Reciprocity
 

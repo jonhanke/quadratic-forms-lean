@@ -27,6 +27,7 @@ choosing signs.
 -/
 import QuadFormsKB.Literature.MorenoWagstaff.Ch2Proofs
 import QuadFormsKB.Literature.MorenoWagstaff.Ch2ProofsD
+import Mathlib.Data.Pi.Interval
 
 namespace QuadFormsKB.MorenoWagstaff
 

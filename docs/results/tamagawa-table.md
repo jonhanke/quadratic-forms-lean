@@ -35,7 +35,7 @@ takes the values in the table. The same holds for every quadratic space $`(V, Q)
 
 ## In Lean
 
-The headline statements are in [`Challenge.lean`](../../Challenge.lean), section "The Tamagawa number of SO(V) over every number field". Each also states that the product of the local masses in $`\mu_f`$ converges unconditionally and, for $`n = 2`$ anisotropic, that $`L_F(1,\chi_E)`$ exists and is positive (lemmas in `QuadFormsKB/Tamagawa/HeadlineFactsWeil.lean`).
+The headline statements are in the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)), section "The Tamagawa number of SO(V) over every number field". Each also states that the product of the local masses in $`\mu_f`$ converges unconditionally and, for $`n = 2`$ anisotropic, that $`L_F(1,\chi_E)`$ exists and is positive (lemmas in `QuadFormsKB/Tamagawa/HeadlineFactsWeil.lean`).
 
 - `QuadFormsKB.Headlines.tamagawa_two_numberField` (from `QuadFormsKB.Tamagawa.Measure.Weil.tauTwoAll_release_uncond`): $`n \ge 3`$, forms.
 - `QuadFormsKB.Headlines.tamagawa_two_space` (from `QuadFormsKB.Tamagawa.Measure.Weil.tauTwo_space_uncond`): $`n \ge 3`$, quadratic spaces.

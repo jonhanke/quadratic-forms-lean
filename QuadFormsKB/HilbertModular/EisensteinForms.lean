@@ -25,6 +25,8 @@ For an admissible weight $W$ (`EisWeight`) and $k \ge 3$:
 Sources: Freitag (1990), Ch. I §5 [unverified]; Garrett (1990), Ch. 3 [unverified]; Shimura (Duke 1978), §3 [unverified].
 -/
 import QuadFormsKB.HilbertModular.EisensteinConv
+import Mathlib.Analysis.Complex.LocallyUniformLimit
+import Mathlib.Analysis.Normed.Group.Tannery
 
 open Complex Matrix NumberField UpperHalfPlane Filter Topology
 open scoped MatrixGroups ModularForm nonZeroDivisors

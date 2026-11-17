@@ -32,8 +32,23 @@ norm `‖·‖` on `ℚ_[p]` (on rationals, `padicNorm p`). Matrices are `Matrix
 `HilbertLocal.hilbertSymbol_odd_formula`), Ex. 22, 23, 24 (the book calls Ex. 17–24 "unrelated to the main theme of
 the book", p. 51; out of scope for now).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Field.Instances
+import Mathlib.Data.Nat.Choose.Dvd
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Card
+import Mathlib.NumberTheory.Padics.Hensel
+import Mathlib.NumberTheory.Padics.LocalField
+import Mathlib.RingTheory.PowerSeries.Binomial
+import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.GDelta.MetrizableSpace
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open Filter Topology
 

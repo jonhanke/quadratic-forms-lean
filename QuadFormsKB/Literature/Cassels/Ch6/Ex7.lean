@@ -31,6 +31,10 @@ sharp for $q = 2$ (signed permutation matrices of determinant $1$ preserving $\s
 import QuadFormsKB.Literature.Cassels.Ch2.Ex13Counts
 import QuadFormsKB.Literature.Cassels.Ch3.Exercises
 import QuadFormsKB.Equiv.RationalGram
+import Mathlib.NumberTheory.Basic
+import Mathlib.NumberTheory.LSeries.PrimesInAP
+import Mathlib.NumberTheory.Multiplicity
+import Mathlib.RingTheory.ZMod.UnitsCyclic
 
 set_option linter.unusedSectionVars false
 

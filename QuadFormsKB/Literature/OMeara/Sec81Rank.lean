@@ -21,6 +21,7 @@ vector space over $F$, and a lattice in $V$ is a finitely generated $R$-submodul
   on $V$, and only finitely many lattices lie between $K$ and $L$.
 -/
 import QuadFormsKB.Literature.OMeara.Sec81Adapted
+import Mathlib.Tactic.Monotonicity
 
 open Submodule Module
 

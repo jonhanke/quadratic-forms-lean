@@ -33,6 +33,9 @@ The result is unconditional (no named input hypotheses).
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5Stabilization
 import QuadFormsKB.Literature.Cassels.Ch8.Congruent
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.LinearAlgebra.Matrix.Rank
+import Mathlib.Tactic
 
 open Matrix Filter
 

@@ -1,5 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.NumberTheory.LegendreSymbol.Basic
+import Mathlib.NumberTheory.Padics.PadicVal.Basic
 
 /-!
 # Berkovich–Hanke–Jagy, S-genus identities: the explicit local density formulas

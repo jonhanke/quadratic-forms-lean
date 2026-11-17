@@ -21,6 +21,10 @@ two Lagrangians, i.e. hyperbolic), by shearing $L'$ along $L$.
 -/
 import QuadFormsKB.Literature.Hanke2013Algorithms.FiniteField
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open Module
 

@@ -19,6 +19,7 @@ $Q_U(x) + 2x^{\mathsf T}d = Q_U(x + \lambda) - Q_U(\lambda)$, $\lambda = U^{-1}d
 Indices are 0-based.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Mass.TwoAdicReduced
+import Mathlib.Algebra.Category.Grp.AB
 
 set_option linter.unusedSectionVars false
 

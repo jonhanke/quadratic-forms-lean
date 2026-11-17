@@ -14,8 +14,17 @@ $\sum a_jp^{j} = \sum b_jp^{j}$ then the natural numbers $\sum_{j<N} a_jp^{j}$ a
 are congruent modulo $p^{N}$ (the tails are divisible by $p^{N}$ in $\mathbb Z_p$), hence equal for all $N$, which forces
 $a_N = b_N$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.Analysis.SpecificLimits.Basic
+import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.Tactic.Positivity
+import Mathlib.Topology.Algebra.InfiniteSum.Nonarchimedean
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 open Filter Topology
 

@@ -1,6 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.QuadraticField
+import Mathlib.NumberTheory.DirichletCharacter.Basic
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
 
 /-!
 # The Kronecker character $\chi_D$ of a fundamental discriminant

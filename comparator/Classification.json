@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge_Classification",
+  "solution_module": "Solution_Classification",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.automorphous_iff_rootVectors",
+    "QuadFormsKB.Headlines.dyadicClassification",
+    "QuadFormsKB.Headlines.twoAdicClassification",
+    "QuadFormsKB.Headlines.sameGenus_iff_discIso",
+    "QuadFormsKB.Headlines.sameGenus_iff_discIso_one",
+    "QuadFormsKB.Headlines.watson_twoClasses"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

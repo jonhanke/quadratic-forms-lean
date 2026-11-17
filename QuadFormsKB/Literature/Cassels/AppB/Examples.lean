@@ -14,6 +14,10 @@ sum (2.20) of `Sec2Lemmas.lean` is proved in `AppB/GaussSum.lean`. Not formalize
 $n \equiv 0 \pmod 4$ (only $\pm(1+i)\sqrt n$).
 -/
 import QuadFormsKB.Binary.KroneckerChar
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.SpecialFunctions.Complex.CircleAddChar
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 
 open Complex
 

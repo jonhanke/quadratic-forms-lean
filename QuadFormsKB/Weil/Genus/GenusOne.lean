@@ -12,7 +12,6 @@ of $\mathrm{SL}_2(k)$** under $\mathrm{Sp}_2(k) \cong \mathrm{SL}_2(k)$ (`sp1ToS
 
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Model
 

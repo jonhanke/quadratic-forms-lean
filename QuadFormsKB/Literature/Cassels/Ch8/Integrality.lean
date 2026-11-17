@@ -19,6 +19,7 @@ integer-valued one "make a difference only when $p = 2$")
 -/
 import QuadFormsKB.Literature.Cassels.Ch8.Primitive
 import QuadFormsKB.Literature.Cassels.Ch8.Bases
+import Mathlib.Analysis.Normed.Group.Ultra
 
 namespace QuadFormsKB.Cassels
 

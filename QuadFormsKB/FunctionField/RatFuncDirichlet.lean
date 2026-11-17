@@ -16,8 +16,12 @@ The monic polynomials of degree $n$ are parametrized by their lower coefficients
 
 Indices are 0-based: $c : \mathrm{Fin}\, n \to k$ gives $t^n + c_0 + c_1 t + \dots + c_{n-1} t^{n-1}$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.NumberTheory.MulChar.Basic
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.PowerSeries.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Polynomial Finset
 

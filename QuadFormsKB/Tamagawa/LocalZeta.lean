@@ -41,7 +41,6 @@ Sources: A. Weil, *Adeles and Algebraic Groups* (1982), §4.3, Lemma 4.3.2 and i
 decomposition $Z_\mathfrak p(s) = q^{-m}(q^m - 1 - N_1) + \sum_{\nu\ge 1}q^{-\nu s}(q^{-m\nu}N_\nu - q^{-m(\nu+1)}N_{\nu+1})$ is Weil's,
 there at good places); J. Igusa, *An Introduction to the Theory of Local Zeta Functions* (2000), Ch. 8, 10 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.LocalDensity.NFLocal
 import QuadFormsKB.LocalDensity.NFDepth

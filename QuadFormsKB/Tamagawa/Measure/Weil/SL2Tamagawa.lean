@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Gauss
+import Mathlib.Algebra.Lie.OfAssociative
 
 /-!
 # The Tamagawa number of $\mathrm{SL}_2$ over a number field is $1$

@@ -14,7 +14,6 @@ product of such elements. For $r = 1$ this is `weilRepV_oneS_of_good` (`Weil/Loc
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.4 (the unramified vector is $K$-fixed) [unverified];
 Rallis, *On the Howe duality conjecture*, Compositio Math. 51 (1984), §5 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.LocalWhittaker
 import QuadFormsKB.SiegelWeil.Forms.EisensteinHeight

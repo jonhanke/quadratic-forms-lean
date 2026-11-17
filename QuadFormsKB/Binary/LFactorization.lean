@@ -1,7 +1,11 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.KroneckerChar
 import QuadFormsKB.Analysis.NFEulerProduct
+import Mathlib.Algebra.Polynomial.SpecificDegree
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.LSeries.Injectivity
+import Mathlib.NumberTheory.NumberField.Ideal.KummerDedekind
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 /-!
 # $\zeta_K(s) = \zeta(s)\,L(s, \chi_D)$ for a quadratic field

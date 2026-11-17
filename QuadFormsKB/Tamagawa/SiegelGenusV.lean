@@ -5,6 +5,7 @@ Authors: Jonathan Hanke
 -/
 import QuadFormsKB.Tamagawa.SiegelQuadSpace
 import QuadFormsKB.Lattices.FreeBridge
+import Mathlib.LinearAlgebra.QuadraticForm.TensorProduct
 
 /-!
 # The genus of a lattice intrinsically in a quadratic space, and Siegel's formula

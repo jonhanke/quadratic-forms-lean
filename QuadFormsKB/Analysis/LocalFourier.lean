@@ -1,5 +1,12 @@
 import QuadFormsKB.Analysis.GaussianSchwartz
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Homology.HomotopyCategory.HomComplexCohomology
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Fourier.Inversion
+import Mathlib.Analysis.SpecialFunctions.Complex.Circle
+import Mathlib.NumberTheory.Padics.LocalField
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 /-!
 # Local Fourier analysis on $\mathbb{Q}_p$ and $\mathbb{R}$

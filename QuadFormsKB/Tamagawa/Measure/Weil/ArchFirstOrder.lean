@@ -1,5 +1,6 @@
 import Mathlib.MeasureTheory.Function.Jacobian
 import Mathlib.Analysis.Calculus.InverseFunctionTheorem.FDeriv
+import Mathlib.Tactic.Positivity
 
 /-!
 # First-order volume asymptotics of a strictly differentiable map

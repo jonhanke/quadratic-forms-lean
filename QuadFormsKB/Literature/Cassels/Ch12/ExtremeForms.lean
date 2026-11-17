@@ -26,6 +26,8 @@ minimum $1$); Cassels' $n$ is at least $1$.
 import QuadFormsKB.Literature.Cassels.Ch12.NotesVoronoi
 import QuadFormsKB.Literature.Cassels.Ch12.Sec2Minima
 import QuadFormsKB.Literature.Cassels.Ch12.Sec3
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix Filter Topology
 

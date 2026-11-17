@@ -28,7 +28,6 @@ $(-1)^m\det V$ has sign $(-1)^m$ at every real place.
 Sources: Weil, Acta Math. 111 (1964), §§14, 26 [unverified]; Kudla, *Notes on the local theta correspondence*
 (1996), §I.4 (the Gaussian is the $K_\infty$-type of weight $n/2$) [unverified]; Bump (1997), §4.8 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.ThetaKernel
 

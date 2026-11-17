@@ -14,6 +14,7 @@ import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiThree
 import QuadFormsKB.Literature.LocalGlobal.RankFive
 import QuadFormsKB.Witt.Represents
 import QuadFormsKB.Literature.LocalGlobal.PadicClassification
+import Mathlib.NumberTheory.Padics.LocalField
 
 namespace QuadFormsKB
 

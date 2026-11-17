@@ -26,6 +26,8 @@ $$\mathfrak d(\xi) = \bigcap_{\xi = \eta^2 + \alpha} \alpha\mathfrak o = \bigcap
   (`quadDefect_one_add`), Remark 63:6 (`exists_quadDefect_nondyadic`, `exists_quadDefect_dyadic`).
 -/
 import QuadFormsKB.Literature.OMeara.Sec91
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.FieldTheory.Finite.Basic
 
 open Submodule IsLocalRing
 

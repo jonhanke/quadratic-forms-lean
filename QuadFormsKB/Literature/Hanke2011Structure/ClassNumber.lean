@@ -32,7 +32,6 @@ with $Q(cx) = N_{K/F}(c)\,Q(x)$.
   $K^+$, as a statement about the limit $\lim_{s\to1^+}L(s,\chi_{K/K^+})$ of the Euler product (the repository's
   `relLR`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.FormAut
 import QuadFormsKB.Binary.ClassNumberFormula

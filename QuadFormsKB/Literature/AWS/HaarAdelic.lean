@@ -26,6 +26,7 @@ the topology of $O(V)(\mathbb{R}) \subseteq \mathrm{GL}_n(\mathbb{R})$ and the r
 import QuadFormsKB.Literature.AWS.HaarLocal
 import QuadFormsKB.Literature.AWS.HaarInfty
 import QuadFormsKB.Literature.AWS.QuotientIntegral
+import Mathlib.Topology.Algebra.RestrictedProduct.TopologicalSpace
 
 open MeasureTheory Matrix
 

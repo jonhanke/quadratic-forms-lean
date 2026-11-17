@@ -27,8 +27,8 @@ Cassels, *Rational Quadratic Forms* (1978), Appendix B (*Analytic methods*), §5
 * Erratum for (5.13): see `eisenstein_fourier_series` and `eisenstein_all_pairs_fourier_series`.
 * Cassels' $q$-variable is written $e^{2\pi i t}$; $t$ is a point of the upper half plane `ℍ`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.NumberTheory.ModularForms.LevelOne.DimensionFormula
 
 open Complex
 open UpperHalfPlane hiding I

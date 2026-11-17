@@ -21,6 +21,7 @@ $\widetilde\omega_G$ uses Gram coordinates and is $2^{n(n-1)/2}$ times it).
 -/
 import QuadFormsKB.Literature.Hanke2005.ArchSymmetricReal
 import QuadFormsKB.Tamagawa.Measure.LerayReal
+import Mathlib.Analysis.Matrix.MeasurableSpace
 
 open MeasureTheory Measure Matrix Set Filter Topology
 open scoped ENNReal NNReal

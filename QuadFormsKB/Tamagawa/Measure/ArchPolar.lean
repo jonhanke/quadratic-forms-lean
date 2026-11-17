@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.SphereLeray
 import QuadFormsKB.Tamagawa.Measure.SphereLerayC
+import Mathlib.Analysis.InnerProductSpace.NormDet
 
 /-!
 # Polar coordinates for the quaternion units at one archimedean place

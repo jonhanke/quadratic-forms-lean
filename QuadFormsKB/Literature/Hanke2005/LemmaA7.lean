@@ -18,8 +18,8 @@ fundamental domain $E$ of $\Gamma$ in $X$:
 $$s\cdot\mu_X(E) = c\cdot\mu_Y(D),\qquad\text{i.e.}\qquad \mu_X(\Gamma\backslash X) = \frac{c}{s}\,\mu_Y(\Gamma\backslash Y),$$
 which is Lemma A7 with $\mu_C((\Gamma\cap S)\backslash C) = c/|\Gamma\cap S|$. Unconditional.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.MeasureTheory.Group.FundamentalDomain
 
 open MeasureTheory
 open scoped ENNReal

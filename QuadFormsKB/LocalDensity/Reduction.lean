@@ -9,6 +9,7 @@ type is empty when $p \nmid m$ (`repCountBad_eq_zero`). **Depends on** `Basic.le
 version is `JordanReduction.lean`; the DVR version is `DVRReductions.lean`.
 -/
 import QuadFormsKB.LocalDensity.Basic
+import Mathlib.Algebra.Divisibility.Finite
 
 namespace QuadFormsKB.LocalDensity
 

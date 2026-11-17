@@ -23,7 +23,6 @@ The Gaussian case is `weilInf_identity`.
 Sources: Weil, Acta Math. 111 (1964), §14, Thm. 2 and §26 [unverified]; Kudla, *Notes on the local theta
 correspondence* (1996), §I.1 [unverified]; Folland, *Harmonic analysis in phase space* (1989), Ch. 4 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Archimedean
 

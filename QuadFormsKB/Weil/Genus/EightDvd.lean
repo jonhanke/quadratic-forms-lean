@@ -20,7 +20,6 @@ Consequently the hypothesis $4 \mid k$ of `thetaG_sp` is automatic (`thetaG_sp'`
 
 Sources: Serre, *A Course in Arithmetic* (1973), Ch. VII, §6.1, Thm. 2 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SpZGen
 

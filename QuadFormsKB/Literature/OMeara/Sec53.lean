@@ -28,10 +28,13 @@ the proof needs it (53.r17, 53.r18 use a finite base).  Indices are 0-based.
 * `gram_baseChange`, `det_gram_baseChange`, `disc_baseChange` (53.r18): $V$ and $EV$ have the same matrix
   in a base of $V$, hence the discriminants correspond.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec82
 import QuadFormsKB.Literature.OMeara.Sec58Bases
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.LinearAlgebra.TensorProduct.Decomposition
+import Mathlib.RingTheory.TensorProduct.Free
+import Mathlib.RingTheory.TensorProduct.IsBaseChangeFree
 
 open scoped TensorProduct
 open Module

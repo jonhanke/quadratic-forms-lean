@@ -4,6 +4,7 @@ import QuadFormsKB.Witt.Extension
 import QuadFormsKB.Literature.OMeara.Sec41Extra
 import QuadFormsKB.Literature.OMeara.Sec42Extra
 import QuadFormsKB.Literature.OMeara.Sec58Bases
+import Mathlib.Algebra.Order.PUnit
 
 /-!
 # O'Meara §42D, §42F, §42G: the index, 42:12, and effective orthogonalization

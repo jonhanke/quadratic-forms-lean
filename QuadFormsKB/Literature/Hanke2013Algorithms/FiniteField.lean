@@ -29,8 +29,14 @@ $\vec w\mapsto\vec w - B(\vec v,\vec w)\vec v = \vec w - \vec v$ gives $Q_B = B(
 works is $\vec w\mapsto\vec w - \frac{B(\vec w,\vec w)}2\vec v$ (characteristic $\ne2$). *Erratum (proof of Algorithm 3.12):*
 "some $B(\vec v,\vec v_i) = 0$" should read "$\ne0$".
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.FieldTheory.Finite.Basic
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Module Polynomial
 

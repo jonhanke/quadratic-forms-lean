@@ -1,0 +1,17 @@
+{
+  "challenge_module": "Challenge_TamagawaTotallyReal",
+  "solution_module": "Solution_TamagawaTotallyReal",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.tamagawa_two_totallyReal",
+    "QuadFormsKB.Headlines.massFormula_totallyReal",
+    "QuadFormsKB.Headlines.tamagawa_two_totallyReal_ternary",
+    "QuadFormsKB.Headlines.massFormula_totallyReal_ternary"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

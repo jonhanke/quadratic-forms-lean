@@ -19,9 +19,14 @@ This is how the genus-$g$ Weil relation is reduced to $g$ copies of the one-vari
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified]; Lam, *Introduction to quadratic
 forms over fields* (2005), Ch. I, Cor. 2.4 (diagonalization) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Symplectic
+import Mathlib.Algebra.Group.Pi.Units
+import Mathlib.LinearAlgebra.Determinant
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open Matrix
 

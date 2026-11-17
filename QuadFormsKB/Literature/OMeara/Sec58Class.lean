@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec58Hasse
 import QuadFormsKB.Literature.OMeara.Sec57Iso

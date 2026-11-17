@@ -1,7 +1,7 @@
 # The special linear group, sums of squares, lattices and reciprocity (new in 0.5.1)
 
-Five headline results added in release 0.5.1. Each is stated in [`Challenge.lean`](../../Challenge.lean) (section
-names below) and proved in [`Solution.lean`](../../Solution.lean) from the library theorem named here, with only the
+Five headline results added in release 0.5.1. Each is stated in the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)) (section
+names below) and proved in the matching `Solution_<book>.lean` from the library theorem named here, with only the
 standard axioms (`propext`, `Classical.choice`, `Quot.sound`) and no unproved input.
 
 | Headline (section) | Statement | Library theorem | Restrictions of the Lean statement |

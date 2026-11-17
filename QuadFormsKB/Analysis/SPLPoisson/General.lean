@@ -7,8 +7,8 @@ Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apa
 import QuadFormsKB.Analysis.SPLPoisson.Standard
 import QuadFormsKB.Analysis.SPLPoisson.SchwartzBasic
 import QuadFormsKB.Analysis.SPLPoisson.FourierLinearEquiv
+import Mathlib.Algebra.Module.ZLattice.Covolume
 
-import Mathlib
 
 /-!
 # Poisson summation for general lattices

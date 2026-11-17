@@ -36,6 +36,7 @@ $G$, so covol $= \mu_\infty(G_\infty)\,\mu_f(K')\,h'$ with $h' = \#(\Gamma_f\bac
 Weil 1982, §2.4, p. 23 defines $\tau(G)$ as this covolume.
 -/
 import QuadFormsKB.Tamagawa.Measure.Neat
+import Mathlib.MeasureTheory.Group.FundamentalDomain
 
 open MeasureTheory MulAction Set
 open scoped ENNReal Pointwise

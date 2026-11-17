@@ -15,8 +15,10 @@ $E_{\lambda\mu} = e_{ij} \otimes f_{kl}$), followed by the reindexing $\mathrm{F
 \mathrm{Fin}(mn)$ (`finProdFinEquiv`). The book needs $n \ge 1$ implicitly (for $n = 0$ the algebra is $0$, which is
 not simple). Indices are $0$-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Azumaya.Basic
+import Mathlib.Algebra.Central.Matrix
+import Mathlib.RingTheory.TotallySplit
 
 open scoped TensorProduct
 

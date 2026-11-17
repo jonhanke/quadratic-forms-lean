@@ -10,6 +10,7 @@ decomposition (`LDL.lower_conj_diag`) with $C = L^{\mathsf T}$. Consequences use
 $\vec{a}$ whose last nonzero coordinate is $a_k$ (proof of Lemma 4.1, p. 267).
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Basic
+import Mathlib.Analysis.Matrix.LDL
 
 open Matrix
 

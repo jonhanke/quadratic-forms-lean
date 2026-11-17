@@ -14,6 +14,9 @@ class number formula `NumberField.tendsto_sub_one_mul_dedekindZeta_nhdsGT`).
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiNF
+import Mathlib.NumberTheory.NumberField.DedekindZeta
+import Mathlib.NumberTheory.RamificationInertia.Basic
+import Mathlib.RingTheory.Ideal.Norm.RelNorm
 
 open NumberField IsDedekindDomain
 

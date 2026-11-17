@@ -8,6 +8,7 @@ $\beta_p$ at units (Remark 3.4.1(a), p. 361; `localDensity_unit`), Table 2 (p. 3
 `localConstC` ((5.8), p. 370). **Depends on** `Explicit.lean`. No errata found in Table 2.
 -/
 import QuadFormsKB.LocalDensity.Explicit
+import Mathlib.Tactic.Monotonicity
 
 namespace QuadFormsKB.LocalDensity
 

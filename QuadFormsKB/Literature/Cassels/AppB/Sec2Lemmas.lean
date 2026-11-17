@@ -40,6 +40,7 @@ import QuadFormsKB.Binary.ClassNumberFormula
 import QuadFormsKB.Binary.FormAut
 import QuadFormsKB.Literature.Cassels.AppBSec2
 import QuadFormsKB.Literature.Cassels.Ch14.Group
+import Mathlib.Analysis.Complex.AbelLimit
 
 open Filter Topology Matrix
 open scoped Real

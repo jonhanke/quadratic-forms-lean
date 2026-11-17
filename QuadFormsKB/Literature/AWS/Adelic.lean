@@ -51,6 +51,10 @@ finite adelic orthogonal group is a restricted product over `PrimeIdx`; we do no
 (decision pending) and use matrices instead of its `QuadraticForm` isometries.
 -/
 import QuadFormsKB.Literature.AWS.DoubleCosets
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.NumberTheory.Padics.PadicIntegers
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Topology.Algebra.RestrictedProduct.Basic
 
 open Matrix
 open scoped RestrictedProduct Pointwise

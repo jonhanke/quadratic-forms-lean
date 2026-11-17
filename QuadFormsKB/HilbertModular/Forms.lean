@@ -32,6 +32,8 @@ $f \in M_k(\Gamma)$ (ours, $\Gamma$ viewed in $\mathrm{SL}_2(\mathbb{Q})$) iff $
 (`InfinitePlace ℚ` is `Unique`), this covers our spaces over $F = \mathbb{Q}$ (`realEmb ℚ`).
 -/
 import QuadFormsKB.HilbertModular.Congruence
+import Mathlib.NumberTheory.ModularForms.Basic
+import Mathlib.NumberTheory.MulChar.Basic
 
 open Matrix NumberField UpperHalfPlane ModularForm Filter OnePoint
 open scoped MatrixGroups Manifold

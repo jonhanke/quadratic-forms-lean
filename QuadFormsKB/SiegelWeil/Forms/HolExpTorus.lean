@@ -25,7 +25,11 @@ $$c_n(y) = \int_{(0,1]^\iota} f(x + iy)\,e^{-2\pi i\,n\cdot(x + iy)}\,dx$$
 
 Source: Freitag, *Siegelsche Modulfunktionen* (1983), Ch. I (Fourier expansion and Koecher's principle) [unverified].
 -/
-import Mathlib
+import Mathlib.Analysis.Complex.CauchyIntegral
+import Mathlib.Analysis.Fourier.AddCircleMulti
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open MeasureTheory Complex Set
 open scoped Real

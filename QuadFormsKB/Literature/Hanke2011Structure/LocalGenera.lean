@@ -46,7 +46,6 @@ not yet confirmed by the author):
   $\chi((-1)^r \det H)$ (`chiDisc_even`). Counterexample: $Q = x^2+y^2$ at $q = 3$ (`density_binary_unit_diag`,
   `chi_neg_one_zmod_three`). See the docstring of `density_binary_unit_diag`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Lattices.UnimodularDVR
 import QuadFormsKB.Tamagawa.OrthFq

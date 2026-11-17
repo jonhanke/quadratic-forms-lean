@@ -36,6 +36,7 @@ import QuadFormsKB.Literature.Cassels.Ch5.Supplement
 import Mathlib.MeasureTheory.Constructions.HaarToSphere
 import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 import Mathlib.MeasureTheory.Measure.Haar.InnerProductSpace
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 open MeasureTheory Matrix Set Metric
 

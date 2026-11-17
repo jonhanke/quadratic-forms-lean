@@ -25,6 +25,8 @@ $s = \lvert T\rvert + r_\infty$, $r_\infty$ the number of infinite spots, and $(
   `finrank_sqrtSUnitField` ($[F(\sqrt{\mathfrak u}) : F] = 2^{s}$).
 -/
 import QuadFormsKB.Literature.HasseNorm.SUnits
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Ring.Star
 
 open NumberField IsDedekindDomain Module
 

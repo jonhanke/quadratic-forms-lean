@@ -1,7 +1,7 @@
 # Quaternion orders, even unimodular lattices and sums of squares (new in 0.5.0)
 
 Eight headline results from the five books added in release 0.5.0. Each is stated in
-[`Challenge.lean`](../../Challenge.lean) (section names below) and proved in [`Solution.lean`](../../Solution.lean)
+the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)) (section names below) and proved in the matching `Solution_<book>.lean`
 from the library theorem named here, with only the standard axioms (`propext`, `Classical.choice`, `Quot.sound`) and
 no unproved input. The other central results of these books that are stated in Lean, and their status, are listed in
 the [statement maps](books/README.md).

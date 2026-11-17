@@ -32,10 +32,11 @@ Sources: Freitag, *Siegelsche Modulfunktionen* (1983), Ch. I §0 and Anhang (The
 [unverified]; Klingen, *Introductory lectures on Siegel modular forms* (1990), §I.? [unverified]; Kudla, *Notes on the
 local theta correspondence* (1996), §I.4 (the classical theta series as a theta distribution) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.HilbertModular.DiagGaussian
 import QuadFormsKB.Weil.Genus.SiegelSpace
+import Mathlib.Algebra.Field.ZMod
+import Mathlib.Algebra.Ring.IsFormallyReal
 
 open Matrix Complex
 open scoped Real Kronecker

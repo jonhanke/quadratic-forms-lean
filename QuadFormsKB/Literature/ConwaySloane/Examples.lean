@@ -42,7 +42,6 @@ with Gram matrix $\begin{pmatrix} 2&1&1\\1&2&1\\1&1&2\end{pmatrix}$ is Minkowski
 (`counterexample_printed48`). The printed system therefore describes a subset of the reduced forms (still containing a
 representative of every class up to changing signs of the basis vectors, which is how the table is used).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Cassels.Ch12.LemmaOneTwo
 

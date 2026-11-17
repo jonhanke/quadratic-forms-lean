@@ -22,6 +22,11 @@ place $P$, and $R = \kappa = \mathbb{F}_q$ at infinity (`RatFuncLocal.lean`).
 Indices are 0-based.
 -/
 import QuadFormsKB.FunctionField.OddLocal
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Data.Int.WithZero
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.Topology.Algebra.Valued.NormedValued
+import Mathlib.Topology.MetricSpace.Contracting
 
 open WithZero
 

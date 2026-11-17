@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.FibreSO
 import QuadFormsKB.Tamagawa.Measure.ConeReal

@@ -58,8 +58,17 @@ quotient measure (Weil §2.4, Lemma 2.4.1, pp. 25–26), so the choice of $C$ an
 (`map_norm_div_restrict_cone`); with Mathlib's $\operatorname{vol}(C_{\le1}) = 2^{r_1}\pi^{r_2}R_K$ each class contributes
 $2^{r_1}\pi^{r_2}R_K\int_0^\infty f\,dt/t$, and $h_K\cdot|d_K|^{-1/2}2^{r_2}w_K^{-1}\cdot2^{r_1}\pi^{r_2}R_K = \rho_K$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.NumberTheory.NumberField.DedekindZeta
+import Mathlib.RingTheory.Complex
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open NumberField NumberField.mixedEmbedding NumberField.InfinitePlace NumberField.Units
 open MeasureTheory Set ENNReal NumberField.mixedEmbedding.fundamentalCone

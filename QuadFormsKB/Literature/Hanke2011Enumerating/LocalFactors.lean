@@ -28,8 +28,10 @@ $\lambda_p\ge1/2$ always (`half_le_lambdaOdd`, `half_le_lambdaEven`).
 a unit $\delta\equiv3\bmod4$ (e.g. $\delta = -1$) also gives a ramified $E_\delta$; the type is determined by ramification
 (as in Gan–Hanke–Yu Prop. 7.5 and in the proof of Thm. 4.2: "$E_\delta/\mathbb Q_p$ is ramified iff $p\mid\mathrm{Cond}(\chi)$").
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Tactic.Positivity
 
 set_option linter.unusedSectionVars false
 

@@ -19,7 +19,6 @@ For $r = 1$ this is `exists_norm_secS_le_Sn` (`SiegelWeil/EisensteinAdelic.lean`
 Sources: Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 [unverified]; Weil, Acta Math. 113 (1965), Ch. II
 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.EisensteinIwasawa
 import QuadFormsKB.SiegelWeil.Forms.EisensteinGlobal

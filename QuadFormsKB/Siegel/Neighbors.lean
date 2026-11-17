@@ -27,6 +27,9 @@ agrees with $L$ away from $p$, so $L' \subseteq L$, contradicting $[L' : L \cap 
 it omitted, the definition and the characterization `exists_eq_nbLat` are what is used.
 -/
 import QuadFormsKB.Siegel.NeighborCount
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

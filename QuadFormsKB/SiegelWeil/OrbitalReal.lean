@@ -26,7 +26,6 @@ $$\rho_\Phi(t) = \int_{S_t}\Phi\,d\sigma_t\qquad(\texttt{orbI}).$$
 The Weil-representation section is $f_\Phi(wn(b)) = \gamma_Vc_B\int\Phi(x)\psi(bQ(x))\,dx$ (`SiegelWeil.sec_wMat_nMat`), so
 $W_\infty(m,\Phi) = \gamma_Vc_B\,\rho_\Phi(m)$: the archimedean analogue of `whittakerV_eq_localDensity`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.SphereLeray
 

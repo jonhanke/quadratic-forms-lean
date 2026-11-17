@@ -1,7 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.SiegelBinaryF
 import QuadFormsKB.Binary.RelGenusHilbert
+import Mathlib.RingTheory.PicardGroup
 
 /-!
 # The discriminant tower and the determinant of the norm lattice

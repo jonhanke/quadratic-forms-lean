@@ -43,6 +43,7 @@ rest of Thm 5.9 concern $a_H$ (cusp forms, Schulze-Pillot): global. Remark 5.7.1
 $t\mathbb{Z}^2$) is built into the $\mathbb{Q}$ layer. Remark 5.8.1 is a consequence of Lemma 5.8 (global).
 -/
 import QuadFormsKB.LocalDensity.Table2
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
 
 namespace QuadFormsKB.LocalDensity
 

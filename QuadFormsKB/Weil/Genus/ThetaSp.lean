@@ -25,9 +25,10 @@ $J^{-1} = J^3$ and the inverse of a translation is a translation, the subgroup g
 Sources: Freitag, *Siegelsche Modulfunktionen* (1983), Ch. I and Anhang [unverified]; Klingen, *Introductory lectures on
 Siegel modular forms* (1990), §I.2 (generators of $\mathrm{Sp}_n(\mathbb Z)$) and §I.3 (theta series) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Theta
+import Mathlib.LinearAlgebra.SymplecticGroup
+import Mathlib.Tactic
 
 open Matrix Complex
 

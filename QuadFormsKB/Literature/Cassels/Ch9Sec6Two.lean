@@ -20,6 +20,7 @@ $4$; one root modulo $2$).
 -/
 import QuadFormsKB.Literature.Cassels.Ch9Sec5Squares
 import QuadFormsKB.Literature.Cassels.Ch9Sec6
+import Mathlib.RingTheory.ZMod.UnitsCyclic
 
 open Matrix
 

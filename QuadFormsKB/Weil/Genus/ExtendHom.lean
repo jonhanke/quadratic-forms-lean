@@ -20,8 +20,8 @@ and $\varphi(h) = \rho(hz)\rho(z)^{-1}$, so $\varphi(g)\varphi(h) = \varphi(gh)$
 This is the device that turns the big-cell formula for the Weil representation into a representation of
 $\mathrm{Sp}_{2g}(k)$ (`Weil/Genus/SiegelPres.lean`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Tactic.Group
 
 namespace QuadFormsKB.WeilRep.Genus
 

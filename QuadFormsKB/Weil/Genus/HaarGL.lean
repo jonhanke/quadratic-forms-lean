@@ -26,9 +26,9 @@ $D.\mu$ a Haar measure (instance `[D.μ.IsAddHaarMeasure]`; true of the self-dua
 
 Sources: Weil, Acta Math. 111 (1964), §14 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.NonArchSg
+import Mathlib.MeasureTheory.Measure.Haar.MulEquivHaarChar
 
 open MeasureTheory Matrix
 open scoped MatrixGroups NNReal

@@ -19,7 +19,6 @@ $Q(x) Q(y) = \alpha Q(y)^2 \equiv \alpha$. No local theory and no Hasse principl
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.FunctionField.GlobalTsen
 import QuadFormsKB.Literature.OMeara.Sec55
 

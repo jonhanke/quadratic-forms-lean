@@ -32,6 +32,7 @@ $W = h^\perp$, then $W \subseteq W^\perp = Fh$, which is impossible for $\dim W 
 import QuadFormsKB.Literature.OMeara.Sec91Units
 import QuadFormsKB.Witt.Extension
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 
 open Module
 

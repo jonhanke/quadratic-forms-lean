@@ -1,6 +1,6 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Analysis.NFEulerProduct
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 /-!
 # Splitting of primes in a relative quadratic extension $E/F$

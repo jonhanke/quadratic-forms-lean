@@ -43,8 +43,12 @@ functions of $X$. A rational identity $f = P/D$ is stated as the power series id
   ($\mathfrak p \nmid 2$); $B^* = 0$ ($\mathfrak p \mid 2$, $u \equiv 1$); $B^* = -A^*$ for $\nu = 0$, $A^*$ for $\nu$ even
   $\ge 2$, $0$ for $\nu$ odd ($\mathfrak p \mid 2$, $u \equiv 3$). `remark_7_7` multiplies these over finitely many primes.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.RingTheory.PowerSeries.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.IntervalCases
+import Mathlib.Tactic.LinearCombination
 
 namespace QuadFormsKB.Hanke2011Structure
 

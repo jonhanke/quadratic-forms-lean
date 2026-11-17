@@ -31,7 +31,6 @@ $\frac12$ (checked in a 200 dpi scan, p. 102). With the factor $\frac12$ the res
 
 The comparison theorem (Weil's (4)–(8), pp. 106–108) is in `SphericalResidue.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.ZetaResidue
 

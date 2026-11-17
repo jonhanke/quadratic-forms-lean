@@ -15,6 +15,8 @@ Serre, *A Course in Arithmetic*, IV §2.2, Thm. 6 (Cor. 2). Plan:
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiThree
+import Mathlib.Data.Fin.Tuple.Sort
+import Mathlib.Tactic.Monotonicity
 
 namespace QuadFormsKB.RankFive
 

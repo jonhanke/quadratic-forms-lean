@@ -27,11 +27,11 @@ a monoid homomorphism with the Schrödinger-model formulas on $n(b)$, $m(t)$, $w
 Sources: Weil, Acta Math. 111 (1964), §14 [unverified]; Kudla, *Notes on the local theta correspondence*, §I.1
 [unverified]; Rao (1993), §3 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Model
 import QuadFormsKB.Analysis.WeilIndexNF
 import QuadFormsKB.Literature.HasseNorm.Reciprocity
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 open MeasureTheory Metric
 open scoped NNReal MatrixGroups

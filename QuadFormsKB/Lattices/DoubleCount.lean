@@ -16,8 +16,13 @@ $N(x, x')|G_{x'}| = N(x', x)|G_x|$ (`nbCount_mul_card_stab`). Group $N(x)$ by or
 
 Over $\mathbb Q$ this is `Siegel.Kneser.card_nbMats` / `genus_sum_neighbors`, done there with matrices.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.BigOperators
+import Mathlib.Basic.Complex.Basic
+import Mathlib.GroupTheory.GroupAction.Defs
+import Mathlib.SetTheory.Cardinal.Finite
+import Mathlib.Tactic.FieldSimp
+import Mathlib.Tactic.LinearCombination
 
 set_option linter.unusedSectionVars false
 

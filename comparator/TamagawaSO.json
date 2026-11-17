@@ -1,0 +1,20 @@
+{
+  "challenge_module": "Challenge_TamagawaSO",
+  "solution_module": "Solution_TamagawaSO",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.tamagawa_two_numberField",
+    "QuadFormsKB.Headlines.tamagawa_two_space",
+    "QuadFormsKB.Headlines.tamagawa_one_rankOne",
+    "QuadFormsKB.Headlines.tamagawa_two_binary",
+    "QuadFormsKB.Headlines.tamagawa_two_space_binary",
+    "QuadFormsKB.Headlines.tamagawa_one_binary_isotropic",
+    "QuadFormsKB.Headlines.tamagawa_one_space_binary_isotropic"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

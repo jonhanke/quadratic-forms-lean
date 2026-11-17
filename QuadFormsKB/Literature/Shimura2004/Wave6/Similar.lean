@@ -39,6 +39,11 @@ import Mathlib.LinearAlgebra.Matrix.BilinearForm
 import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
 import QuadFormsKB.Defs.NumberField
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Module
 

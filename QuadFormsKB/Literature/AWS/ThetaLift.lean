@@ -44,6 +44,9 @@ in the order $W(n(x))\,W(m(\sqrt y))$); (4.26) is then correct as printed.
 import QuadFormsKB.Literature.AWS.Unfolding
 import QuadFormsKB.Literature.AWS.Adelic
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.UpperHalfPlane.MoebiusAction
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix MeasureTheory Complex Real
 open scoped Pointwise UpperHalfPlane

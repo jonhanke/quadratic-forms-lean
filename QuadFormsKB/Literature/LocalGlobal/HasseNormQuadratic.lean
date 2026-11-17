@@ -11,6 +11,7 @@ $x_0 + x_1 s$ is $x_0^2 - a x_1^2$, and $(a,b)_M = 1$ iff $b = x_0^2 - a x_1^2$ 
 (`hilbertSymbol_eq_one_iff_conic`, with $z^2 = a x^2 + b y^2$ rearranged).
 -/
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiNF
+import Mathlib.RingTheory.Flat.TorsionFree
 
 open NumberField
 

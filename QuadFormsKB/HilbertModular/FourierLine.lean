@@ -9,7 +9,10 @@ $q$-expansion of Hilbert Eisenstein series ($s = 0$) and Hecke's trick in weight
 * `integral_shift_strip`: **contour shift** across a horizontal strip for holomorphic functions decaying uniformly at
   $\operatorname{Re}w \to \pm\infty$ (from `Complex.integral_boundary_rect_eq_zero_of_differentiableOn`).
 -/
-import Mathlib
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Fourier.Inversion
+import Mathlib.Tactic.Monotonicity
 
 open Complex MeasureTheory Filter Topology Set FourierTransform
 open scoped Real

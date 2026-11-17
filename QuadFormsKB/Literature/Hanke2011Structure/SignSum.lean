@@ -21,8 +21,11 @@ $$\sum_{\substack{(\varepsilon_i)_{i\in T} \in \mu_N^{T} \\ \prod_i \varepsilon_
 * `massSum_eq_half`: formula (5) of Definition 4.6, $\widetilde M^{*,\varepsilon} = (A^* + \varepsilon B^*)/2$ for
   $A^* = \widetilde M^{*,+} + \widetilde M^{*,-}$ and $B^* = \widetilde M^{*,+} - \widetilde M^{*,-}$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Polynomial.Basic
+import Mathlib.RingTheory.RootsOfUnity.AlgebraicallyClosed
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB.Hanke2011Structure
 

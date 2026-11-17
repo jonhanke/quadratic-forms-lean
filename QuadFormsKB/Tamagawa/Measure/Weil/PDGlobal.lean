@@ -21,6 +21,8 @@ Source: Weil 1982, §3.7(a), p. 63 (the isomorphism $SO_3 \cong D^\times/G_m$ of
 $G_k\subset G_{\mathbb A}$ discrete).
 -/
 import QuadFormsKB.Tamagawa.Measure.Weil.PDArch
+import Mathlib.Topology.Algebra.Group.OpenMapping
+import Mathlib.Topology.Baire.LocallyCompactRegular
 
 open Matrix Quaternion NumberField NumberField.InfinitePlace NumberField.mixedEmbedding IsDedekindDomain Topology
 

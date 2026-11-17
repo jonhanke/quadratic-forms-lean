@@ -23,6 +23,7 @@ $[L_1:L_0] = [L_2:L_0]$ and $[W:L_0] = |D_1| = |D_2|$, so the $\pi_i$ are biject
 -/
 import QuadFormsKB.Literature.Hanke2013Algorithms.Maximal
 import QuadFormsKB.Literature.OMeara.Sec81Rank
+import Mathlib.RingTheory.Ideal.Quotient.Index
 
 open QuadraticMap Submodule Module
 

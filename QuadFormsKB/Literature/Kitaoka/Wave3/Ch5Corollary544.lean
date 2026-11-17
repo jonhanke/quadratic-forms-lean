@@ -5,6 +5,12 @@ import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5Stabilization
 import Mathlib.Topology.Sequences
 import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.NumberTheory.Padics.ProperSpace
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 /-!
 # Kitaoka, Corollary 5.4.4: a symmetric matrix close to $A$ is equivalent to $A$

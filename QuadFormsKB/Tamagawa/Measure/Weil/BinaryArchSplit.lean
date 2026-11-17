@@ -1,4 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BinaryArchLeray
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
+import Mathlib.MeasureTheory.Order.Group.Lattice
 
 /-!
 # The Leray measure of the hyperbola $x_0^2 - \delta x_1^2 = 1$

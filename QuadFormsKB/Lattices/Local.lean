@@ -31,6 +31,8 @@ $\mathcal O_F/\mathfrak p^k \cong \mathfrak o_\mathfrak p/\mathfrak p^k$) and de
 are removed by the Chinese remainder theorem (`exists_crt`).
 -/
 import QuadFormsKB.LocalDensity.NFBridge
+import Mathlib.Algebra.Module.Lattice
+import Mathlib.RingTheory.DedekindDomain.FiniteAdeleRing
 
 open NumberField IsDedekindDomain WithZero Matrix
 open scoped Pointwise

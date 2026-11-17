@@ -29,6 +29,10 @@ The same theorem over any number field is `Lattices.LocFamily.loc_glue`; this di
 bridge between `ℚ_[p]` and Mathlib's `adicCompletion ℚ v` and between the two lattice types.
 -/
 import QuadFormsKB.Literature.AWS.ThetaLift
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.NumberTheory.Padics.RingHoms
 
 open Matrix
 

@@ -1,4 +1,5 @@
 import QuadFormsKB.Binary.ClassBijection
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # Automorphism groups of binary forms

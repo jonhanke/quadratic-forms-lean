@@ -1,4 +1,6 @@
 import QuadFormsKB.Binary.SiegelBinary
+import Mathlib.Analysis.SpecialFunctions.Log.Monotone
+import Mathlib.NumberTheory.Chebyshev
 
 /-!
 # The Euler product of $L(s,\chi)$ at $s = 1$ in the natural order

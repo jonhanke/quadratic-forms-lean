@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.FibreLeray
 import QuadFormsKB.Tamagawa.Measure.FibreDecomp

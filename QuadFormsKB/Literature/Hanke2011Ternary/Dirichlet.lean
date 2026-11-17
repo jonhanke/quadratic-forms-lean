@@ -15,6 +15,9 @@ A formal Dirichlet series $\sum_{n \ge 1} a_n n^{-s}$ with rational coefficients
   multiplicative (`localSeries_mul`), and a multiplicative $f$ is determined by its Euler factors.
 -/
 import QuadFormsKB.Literature.Hanke2011Ternary.Series
+import Mathlib.Algebra.GCDMonoid.Nat
+import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
+import Mathlib.NumberTheory.ArithmeticFunction.Moebius
 
 namespace QuadFormsKB.Hanke2011Ternary
 

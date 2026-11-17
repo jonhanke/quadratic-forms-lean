@@ -28,7 +28,6 @@ $\nu$ any translation-invariant measure on $F_v$ finite on compacts, $dx = \nu^{
 Sources: A. Weil, *Adeles and Algebraic Groups* (1982), §4.3, Lemmas 4.3.1–4.3.2, pp. 88–90; §4.5, pp. 101–107;
 Hanke 2004, Table 1, p. 363 and Lemma 3.4, p. 361.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.LocalZeta
 import QuadFormsKB.Tamagawa.LocalIdentity

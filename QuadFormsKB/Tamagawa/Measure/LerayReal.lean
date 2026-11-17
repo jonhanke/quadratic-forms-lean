@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.ArchSO
 import QuadFormsKB.Tamagawa.Measure.LeraySlice
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 /-!
 # The Leray (gauge-form) measure on $SO(Q)(\mathbb R)$ for a real form of any signature

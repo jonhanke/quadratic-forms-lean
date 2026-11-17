@@ -12,8 +12,8 @@ The places of $\mathbb{Q}$ are `RatPlace` ($\infty$ and the primes $p$). A local
 written `atPlace P v`, for a predicate `P` on fields of characteristic $0$. The number-field
 version generalizes this shape, with $K_v$ in place of $\mathbb{Q}_v$.
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.NumberTheory.Padics.PadicNumbers
 
 open Matrix
 

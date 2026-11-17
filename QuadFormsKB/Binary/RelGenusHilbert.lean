@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelGenus
 import QuadFormsKB.Literature.LocalGlobal.NumberFieldMain

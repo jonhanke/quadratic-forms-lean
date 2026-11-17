@@ -30,7 +30,6 @@ product `CSA52.tensor` and the quaternion algebras `CSA52.quaternion` come from 
 *Not formalized:* the $E$-ification rule $S(EV) \cong E\,S(V)$ of 58:3 (needs the base change of central simple
 algebras and of quaternion algebras).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec52F
 import QuadFormsKB.Literature.OMeara.Sec57Iso

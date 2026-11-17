@@ -40,6 +40,7 @@ exactly `Cassels.mellinFormal` (an abbreviation for `LSeries`, `AppB/Modular.lea
 import QuadFormsKB.Binary.RepresentationCount
 import QuadFormsKB.Siegel.Inputs
 import QuadFormsKB.Binary.GenusMass
+import Mathlib.Data.FunLike.Fintype
 
 open NumberField
 

@@ -25,8 +25,14 @@ $2\,\mathfrak sL \subseteq \mathfrak nL$ (§82E, p. 227), the scale of a lattice
 p. 227), the volume from a base (§82E, p. 229), the matrix criterion for $\alpha$-modular lattices (82:13, p. 231,
 for any scale), and the splitting criterion 82:15 (p. 232) with its corollary 82:15a.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.Lattice
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open QuadraticMap Submodule Module
 open scoped Matrix

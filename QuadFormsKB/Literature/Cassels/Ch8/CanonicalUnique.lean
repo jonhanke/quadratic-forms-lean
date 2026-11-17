@@ -10,6 +10,9 @@ squares, which determines $\varepsilon_j$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch8.Canonical
 import QuadFormsKB.Literature.Cassels.Ch8.LatticeBridge
+import Mathlib.Topology.Algebra.Ring.Compact
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 namespace QuadFormsKB.Cassels
 

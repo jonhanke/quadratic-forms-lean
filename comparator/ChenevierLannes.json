@@ -1,0 +1,19 @@
+{
+  "challenge_module": "Challenge_ChenevierLannes",
+  "solution_module": "Solution_ChenevierLannes",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.evenUnimodular_classes",
+    "QuadFormsKB.Headlines.witt_evenUnimodular_sixteen",
+    "QuadFormsKB.Headlines.siegelTheta_modular",
+    "QuadFormsKB.Headlines.venkov_rootSum",
+    "QuadFormsKB.Headlines.heckeT_comm",
+    "QuadFormsKB.Headlines.wittIgusa_of_cuspVanish"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

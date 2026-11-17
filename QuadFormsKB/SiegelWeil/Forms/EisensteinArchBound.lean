@@ -26,10 +26,10 @@ The constant $c$ depends only on $Z$ (not on $C$, $D$, $h$).
 Sources: standard (cf. Siegel, *Symplectic geometry*, Amer. J. Math. 65 (1943); Freitag, *Siegelsche Modulfunktionen* (1983),
 Ch. I) [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SiegelSpace
 import QuadFormsKB.SiegelWeil.Forms.ThetaR
+import Mathlib.Data.Matrix.ColumnRowPartitioned
 
 open Matrix Polynomial
 

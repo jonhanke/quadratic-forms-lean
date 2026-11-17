@@ -18,6 +18,7 @@ Sources: Hecke (1927) [unverified]; Shimura (Duke 1978), §3, Prop. 3.4 (the cas
 Ch. 3 [unverified]; Freitag (1990), Ch. I §5 [unverified].
 -/
 import QuadFormsKB.HilbertModular.EisensteinQExp
+import Mathlib.Analysis.SumIntegralComparisons
 
 open Complex Matrix NumberField UpperHalfPlane Filter Topology MeasureTheory Set
 open scoped MatrixGroups ModularForm nonZeroDivisors Real Nat

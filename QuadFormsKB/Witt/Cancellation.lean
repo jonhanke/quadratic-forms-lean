@@ -31,6 +31,8 @@ $V_0 \times 0$ pointwise, hence maps its orthogonal complement $0 \times V_1$ on
 Sources: EKM Thm 8.4; Lam Ch. I §4; Scharlau Ch. 1 §5; O'Meara 42:16.
 -/
 import QuadFormsKB.Witt.Extension
+import Mathlib.LinearAlgebra.QuadraticForm.Prod
+import Mathlib.RingTheory.Finiteness.Prod
 
 open Module QuadraticMap
 

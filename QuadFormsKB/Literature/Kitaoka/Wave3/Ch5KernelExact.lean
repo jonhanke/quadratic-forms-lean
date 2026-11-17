@@ -23,6 +23,7 @@ $\#(\mathbb Z_p^n / C\mathbb Z_p^n) = \lVert\det C\rVert_p^{-1}$.
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5KernelCount
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5Stabilization
+import Mathlib.RingTheory.Etale.Weakly
 
 open Matrix
 

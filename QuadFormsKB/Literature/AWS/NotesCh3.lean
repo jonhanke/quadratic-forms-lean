@@ -22,6 +22,8 @@ import QuadFormsKB.Literature.LocalGlobal.PadicClassification
 import QuadFormsKB.Literature.OMeara.Sec57Iso
 import QuadFormsKB.Tamagawa.Quaternion
 import QuadFormsKB.Lattices.CartanDieudonne
+import Mathlib.Algebra.Algebra.Subalgebra.Centralizer
+import Mathlib.RingTheory.SimpleModule.IsAlgClosed
 
 open Matrix Quaternion QuadFormsKB.Quat
 

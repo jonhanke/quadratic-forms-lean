@@ -7,6 +7,10 @@ via completing the square. Also, $\operatorname{disc}(f) = -\det$ of the Hessian
 -/
 import QuadFormsKB.Defs.Binary
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.Tactic.Positivity
 
 namespace QuadFormsKB.BinQF
 

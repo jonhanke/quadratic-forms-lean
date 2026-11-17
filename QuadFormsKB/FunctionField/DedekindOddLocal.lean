@@ -18,6 +18,7 @@ completions of $F$ at the places of $\mathcal{O}_F$. The places of $F$ above $\i
 Indices are 0-based.
 -/
 import QuadFormsKB.FunctionField.OddLocalClassification
+import Mathlib.RingTheory.Finiteness.Quotient
 
 open IsDedekindDomain WithZero Polynomial
 

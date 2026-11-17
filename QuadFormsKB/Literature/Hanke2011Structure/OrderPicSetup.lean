@@ -13,6 +13,7 @@ $\mathcal O_F$, $\mathfrak m \ne 0$ an ideal of $\mathcal O$ with $\mathfrak m \
 Source: Neukirch, *Algebraic Number Theory*, Ch. I, §12, (12.9)–(12.12), pp. 78–79.
 -/
 import QuadFormsKB.Literature.Hanke2011Structure.OrderClassNumber
+import Mathlib.RingTheory.FractionalIdeal.Extended
 
 open NumberField IsDedekindDomain FractionalIdeal
 open scoped nonZeroDivisors

@@ -9,10 +9,13 @@ definition: O'Meara's notion of an algebra *compatible* with $V$, which the libr
 Notation: $B$ is `QuadFormsKB.OMeara.bil Q` $=$ `QuadraticMap.associated Q`; the quaternion algebra $(\alpha,\beta)$
 is `ℍ[F,α,0,β]`; indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec82
 import QuadFormsKB.Literature.OMeara.Sec52B
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Quaternion
+import Mathlib.LinearAlgebra.CliffordAlgebra.Even
+import Mathlib.LinearAlgebra.QuadraticForm.TensorProduct
 
 noncomputable section
 

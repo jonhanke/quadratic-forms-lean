@@ -18,8 +18,15 @@ coefficients vanish, so $Q(x) = 0$ with $x \ne 0$.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.FieldTheory.ChevalleyWarning
+import Mathlib.FieldTheory.RatFunc.Basic
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.Monotonicity
 
 open Polynomial
 

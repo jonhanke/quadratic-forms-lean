@@ -20,6 +20,7 @@ $\mathfrak G(K/F)$ is `K ≃ₐ[F] K`, commutative by Mathlib's `IsCyclotomicExt
 -/
 import QuadFormsKB.Literature.OMeara.Sec71A
 import QuadFormsKB.Tamagawa.SquareClassParam
+import Mathlib.RingTheory.Frobenius
 
 open NumberField IsDedekindDomain
 

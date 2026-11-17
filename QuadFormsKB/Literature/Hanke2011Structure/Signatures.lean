@@ -19,7 +19,6 @@ arXiv:1108.3580 (bib key `hanke2011structure`).
   $(2,0)$ or $(0,2)$ at a nonempty set of real places gives $0$; this is why the $B^*$-terms cancel in the proof of
   Theorem 8.6 (and, by Lemma 8.3, whenever the signature is definite somewhere).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.HasseScaling
 

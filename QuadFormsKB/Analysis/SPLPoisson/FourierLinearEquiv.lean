@@ -4,7 +4,10 @@ file `SpherePacking/ForMathlib/FourierLinearEquiv.lean`, commit 1e98fb493088948c
 Ported to Mathlib for Lean v4.35.0 for QuadFormsKB.
 Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apache License 2.0.
 -/
-import Mathlib
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Fourier.FourierTransform
+import Mathlib.Analysis.InnerProductSpace.Adjoint
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
 
 
 /-!

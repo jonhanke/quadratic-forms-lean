@@ -1,4 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.BinaryIsotropic
+import Mathlib.Topology.Algebra.Group.OpenMapping
+import Mathlib.Topology.Baire.LocallyCompactRegular
 
 /-!
 # The hyperbolic plane: $SO(H)\cong\mathbb G_m$ on adelic points

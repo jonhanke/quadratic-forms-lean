@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.NSArchDensityC
 import QuadFormsKB.Tamagawa.Measure.Weil.NSArchGroup
+import Mathlib.Analysis.SpecialFunctions.Complex.Analytic
 
 /-!
 # The Cayley chart of the complex norm-one quaternions and its cone density

@@ -20,6 +20,7 @@ valuation $h$ equal to (value)$\cdot X^h$ (`DyadicTables.lean`). Rational identi
 -/
 import QuadFormsKB.Literature.Hanke2011Ternary.DyadicTables
 import QuadFormsKB.Literature.Hanke2011Ternary.OddEuler
+import Mathlib.RingTheory.LaurentSeries
 
 namespace QuadFormsKB.Hanke2011Ternary
 

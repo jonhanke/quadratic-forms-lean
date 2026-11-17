@@ -11,6 +11,9 @@ Hilbert Eisenstein series.
   fundamental domain, `ZSpan.isAddFundamentalDomain`).
 -/
 import QuadFormsKB.HilbertModular.FourierInversion
+import Mathlib.Algebra.Module.ZLattice.Basic
+import Mathlib.Dynamics.Ergodic.Action.Regular
+import Mathlib.MeasureTheory.Measure.Haar.Unique
 
 open Complex MeasureTheory Filter Topology Set UnitAddTorus
 open scoped Real

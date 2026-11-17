@@ -6,6 +6,8 @@ Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apa
 -/
 import QuadFormsKB.Analysis.SPLPoisson.Lattices
 import QuadFormsKB.Analysis.SPLPoisson.SchwartzBasic
+import Mathlib.Analysis.Distribution.SchwartzSpace.Fourier
+import Mathlib.Topology.Separation.CompletelyRegular
 
 
 /-!

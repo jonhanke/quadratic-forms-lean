@@ -28,6 +28,8 @@ $N = n[F:\mathbb Q]$ with the positive definite integral Gram matrix $G = (\math
 -/
 import QuadFormsKB.Lattices.ClassSet
 import QuadFormsKB.Siegel.GenusFinite
+import Mathlib.Algebra.AffineMonoid.Basic
+import Mathlib.Algebra.Module.StablyFree.Basic
 
 open NumberField IsDedekindDomain WithZero Matrix Module
 open scoped ComplexOrder

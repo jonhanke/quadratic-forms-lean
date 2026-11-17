@@ -7,6 +7,7 @@ import QuadFormsKB.Tamagawa.LocalOrbital
 import QuadFormsKB.Tamagawa.OrbitHensel
 import QuadFormsKB.Tamagawa.OrbitCount
 import QuadFormsKB.Tamagawa.OrthFq
+import Mathlib.LinearAlgebra.CrossProduct
 
 /-!
 # Self-densities of ternary lattices $\langle m\rangle\perp T$ with $T$ unimodular, at every prime

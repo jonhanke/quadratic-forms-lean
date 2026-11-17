@@ -52,9 +52,12 @@ Sources: Weil, *Sur certains groupes d'opérateurs unitaires*, Acta Math. 111 (1
 Kudla, *Notes on the local theta correspondence* (1996), §I.1–I.3 [unverified]; Rao (1993), Thm. 3.6 [unverified];
 Bump (1997), §4.8 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.SL2Cells
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.Circle
+import Mathlib.MeasureTheory.Integral.Pi
 
 open MeasureTheory
 open scoped MatrixGroups

@@ -93,3 +93,4 @@ import QuadFormsKB.Literature.Kitaoka.Wave5.Ch1Prop133Char2
 import QuadFormsKB.Literature.Kitaoka.Wave5.Ch1KneserMain
 import QuadFormsKB.Literature.Kitaoka.Wave5.Ch5Theorem534
 import QuadFormsKB.Literature.Kitaoka.Wave5.Ch5Theorem541
+import QuadFormsKB.Literature.Kitaoka.Mass060.Theorem563Odd

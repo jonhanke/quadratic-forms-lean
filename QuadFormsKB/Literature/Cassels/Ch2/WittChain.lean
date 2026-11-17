@@ -21,7 +21,6 @@ associated bilinear form is $\phi$ since $2$ is invertible, and forget adjacency
 **Formulation.** "Consecutive bases have at least $n-2$ vectors in common" is expressed positionally: the two bases
 agree at every index outside a set of at most two indices (`DifferInAtMostTwo`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec58Bases
 

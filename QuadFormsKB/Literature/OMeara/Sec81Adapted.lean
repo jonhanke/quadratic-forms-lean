@@ -18,6 +18,7 @@ $y_i \in Fx_1 + \cdots + Fx_i$ reads `y i ∈ span F (x '' Set.Iic i)`.
   every lattice is free when the class number is $1$).
 -/
 import QuadFormsKB.Literature.OMeara.Sec81
+import Mathlib.LinearAlgebra.Dual.Lemmas
 
 open Submodule Module
 

@@ -10,6 +10,8 @@ $F = \mathbb{Q}$ cases of the number-field statements from the $\mathbb{Q}$ theo
 -/
 import QuadFormsKB.Literature.LocalGlobal.NumberField
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowski
+import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
+import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 open NumberField
 

@@ -14,6 +14,7 @@ stabilization, `DVR.localDensity_eventually_eq`). The non-dyadic explicit values
 `DVRTable2.lean`. **Depends on** `DVRGeneral.lean`.
 -/
 import QuadFormsKB.LocalDensity.DVRGeneral
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB.LocalDensity.DVR
 

@@ -21,8 +21,10 @@ Mathlib's `IsTensorProduct` agree, and that the book's constructions for algebra
 * `existsUnique_algHom_of_isMultiplicative` (p. 117): the universal property of the tensor product of algebras;
 * `tprodList_singleton`, `tprodList_append`, `tprodList_perm` (p. 118): iterated tensor products.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Category.AlgCat.Basic
+import Mathlib.LinearAlgebra.TensorProduct.Basis
+import Mathlib.RingTheory.IsTensorProduct
 
 open scoped TensorProduct
 

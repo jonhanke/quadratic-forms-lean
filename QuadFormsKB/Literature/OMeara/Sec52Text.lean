@@ -15,7 +15,6 @@ bundled `CSA F`, similarity is `IsBrauerEquivalent`.
 * `isBrauerEquivalent_iff_nonempty_algEquiv_of_finrank_eq` (**52.r18**, p. 128): for central simple algebras
   of the same dimension, $A \sim A'$ iff $A \cong A'$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec52F
 import QuadFormsKB.Literature.OMeara.Sec52B

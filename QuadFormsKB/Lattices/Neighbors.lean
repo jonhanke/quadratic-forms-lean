@@ -23,6 +23,9 @@ for $\vec v \in R^n$, $\vec v \not\equiv 0 \pmod\pi$, $\pi^2 \mid Q(\vec v)$.
 These generalize `Siegel/Neighbors.lean` ($R = \mathbb Z$) verbatim, with $p \mapsto \pi$, $\mathbb F_p \mapsto k$.
 -/
 import QuadFormsKB.Lattices.NeighborCount
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

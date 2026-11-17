@@ -6,7 +6,12 @@ the elements of norm $m$ by multiplication (`normSet`). For $\mathbb Z[i]$ the f
 elements, so $\#\{z : N(z) = m\} = 4\,\#(\text{orbits})$ (`card_normSet_gaussian`); for $\mathbb Z[\sqrt2]$ the norm-one units
 are $\pm(3+2\sqrt2)^k$ (`pell2_units`).
 -/
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.NumberTheory.Pell
+import Mathlib.NumberTheory.Zsqrtd.GaussianInt
+import Mathlib.Order.SuccPred.Int
+import Mathlib.RingTheory.DedekindDomain.Basic
 
 open MulAction
 open scoped ENNReal

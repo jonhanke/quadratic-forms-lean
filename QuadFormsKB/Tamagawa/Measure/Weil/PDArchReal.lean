@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.PDArchSlice
 import QuadFormsKB.Tamagawa.Measure.OrbitalReal
+import Mathlib.Analysis.InnerProductSpace.NormDet
 
 /-!
 # The archimedean comparison at a real place, any signature

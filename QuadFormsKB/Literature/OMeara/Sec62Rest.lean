@@ -11,8 +11,10 @@ and $\dot F^{2}$ is the range of the squaring homomorphism $\varphi : x \mapsto 
 * `card_sq_units`: $\dot F^{2}$ has $(q-1)/2$ elements (stated as $2\,\lvert\dot F^{2}\rvert = q - 1$);
 * `index_sq_units`: $(\dot F : \dot F^{2}) = 2$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 set_option linter.unusedSectionVars false
 

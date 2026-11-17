@@ -33,7 +33,6 @@ definite and indefinite forms:
 
 No erratum: the statement holds as printed (including definite forms, where the cycle has one or two forms, (9)–(10)).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Binary
 import QuadFormsKB.Literature.ConwaySloane.BinaryExtra

@@ -9,6 +9,8 @@ identities for $\pi_{B'}$ (`repCountBadI_eq_J`) and $\pi_{B''}$ (`repCountBadII_
 `DVRReductions.lean` and `DVRGeneral.lean`.
 -/
 import QuadFormsKB.LocalDensity.JordanForm
+import Mathlib.Algebra.Divisibility.Finite
+import Mathlib.Algebra.Order.Star.Int
 
 namespace QuadFormsKB.LocalDensity
 

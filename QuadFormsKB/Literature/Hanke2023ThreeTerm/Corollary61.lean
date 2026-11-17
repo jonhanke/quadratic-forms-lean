@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.Reduction
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.Irrational

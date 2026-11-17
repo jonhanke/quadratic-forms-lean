@@ -36,7 +36,6 @@ that of $\det$ of the combined basis for the chosen ordering `e` of coordinates,
 (iii) Characteristic $0$ is used (division by $2$, skew matrices have zero diagonal). (iv) The remark after (2.8)
 (change of basis $\psi\mapsto{}^tA\psi A$) is not treated here.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2005.InvariantForms
 

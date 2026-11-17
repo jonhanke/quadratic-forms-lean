@@ -22,7 +22,6 @@
 This replaces the citation of O'Meara §93 (dyadic Jordan splittings) by a purely local argument that is uniform in
 $\mathfrak p$ (it also re-proves the nondyadic case `RatND.genera_finite_nd`). Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Tamagawa.OrbitHensel
 import QuadFormsKB.LocalDensity.NFBridge
 import QuadFormsKB.Literature.Hanke2011Structure.GeneraFiniteNondyadic

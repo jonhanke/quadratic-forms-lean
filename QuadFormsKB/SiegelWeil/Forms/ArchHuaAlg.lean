@@ -5,7 +5,6 @@
 `hH b` $= \mathrm{symU}(b) + iI$; `det_hH_asm` is the Schur complement in the first row and `exists_im_quad` the
 normalization of the imaginary part of $u^{\mathsf T}(B' + iI)^{-1}u$, both used by `ArchHua.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.ArchDetBound
 

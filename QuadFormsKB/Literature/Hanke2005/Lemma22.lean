@@ -23,6 +23,7 @@ Lattices: every $\mathfrak o_v$-lattice of full rank in $F_v^n$ is $B\,\mathfrak
 -/
 import QuadFormsKB.Literature.Hanke2005.LocalDensity
 import QuadFormsKB.Literature.Hanke2005.Jacobians
+import Mathlib.CategoryTheory.Countable
 
 open IsDedekindDomain NumberField MeasureTheory Filter Topology WithZero Matrix
 open scoped ENNReal NNReal

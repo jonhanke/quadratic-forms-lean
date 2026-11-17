@@ -8,8 +8,8 @@ $x \in V$ (hypothesis `hj`, as in `Sec54Dim.lean`). $A$ is nontrivial ($1_A \ne 
 **Proves** (54.r4, p. 132): `isUnit_iff_anisotropic`, a vector $x$ is invertible in $A$ if and only if it is
 anisotropic, and `mul_inv_eq_one`, `inv_mul_eq_one`: then $x^{-1} = Q(x)^{-1}x$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
 
 noncomputable section
 

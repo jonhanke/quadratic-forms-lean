@@ -25,6 +25,8 @@ even element, where $\alpha(g) = g$.
 import QuadFormsKB.Literature.OMeara.Sec92Spinor
 import Mathlib.LinearAlgebra.CliffordAlgebra.Conjugation
 import Mathlib.LinearAlgebra.CliffordAlgebra.Grading
+import Mathlib.LinearAlgebra.CliffordAlgebra.Contraction
+import Mathlib.LinearAlgebra.CliffordAlgebra.Even
 
 open CliffordAlgebra
 

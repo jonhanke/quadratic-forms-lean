@@ -17,6 +17,7 @@ IV §3.2 Cor. 1 and §3.3 Thm. 9). $F$ is a field, $K$ any field with `Algebra F
 -/
 import QuadFormsKB.Witt.Bridge
 import QuadFormsKB.Literature.LocalGlobal.FieldGeneral
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
 
 open Module QuadraticMap Matrix
 

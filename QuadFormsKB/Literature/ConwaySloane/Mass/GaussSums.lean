@@ -32,6 +32,7 @@ Here $G(\psi) = \sum_{r=1}^{k_1}\psi(r)e^{2\pi i r/k_1}$ is `gaussSum ψ stdAddC
 import QuadFormsKB.Literature.ConwaySloane.Mass.ZetaFormula
 import QuadFormsKB.Tamagawa.Classical.LValues
 import QuadFormsKB.Tamagawa.SiegelBinaryAllRat
+import Mathlib.Tactic.NormNum.IsCoprime
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

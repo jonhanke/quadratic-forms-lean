@@ -29,7 +29,6 @@ extends $\mathrm{Mass}^+$ to every lattice (`massPlusLat`).
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Literature.Hanke2011Structure.GlobalMassSigConst
 import QuadFormsKB.Lattices.SpinorGlobal
 import QuadFormsKB.Lattices.Steinitz

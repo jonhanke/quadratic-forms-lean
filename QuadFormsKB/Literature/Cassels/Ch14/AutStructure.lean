@@ -46,6 +46,7 @@ $4$ if $D > 0$ is not a perfect square and $2$ otherwise.
 import QuadFormsKB.Literature.Cassels.Ch14.Ambiguous
 import QuadFormsKB.Literature.Cassels.Ch13.Examples
 import QuadFormsKB.Binary.FormAut
+import Mathlib.LinearAlgebra.Matrix.CharP
 
 open Matrix
 

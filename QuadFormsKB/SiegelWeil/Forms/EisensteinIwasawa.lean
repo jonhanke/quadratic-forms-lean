@@ -23,9 +23,9 @@ For $r = 1$ this is the degree-one `iwasawa` (`SiegelWeil/Convergence.lean`).
 Sources: Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 ($G(\mathbb A) = P(\mathbb A)K$) [unverified]. The proof
 here (max-minor normalization and explicit symplectic completion) is written for this library.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.EisensteinHeight
+import Mathlib.Data.Matrix.ColumnRowPartitioned
 
 open Matrix IsDedekindDomain NumberField
 

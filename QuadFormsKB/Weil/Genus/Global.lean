@@ -29,7 +29,6 @@ representation `weilRepSp` give $\Theta\circ\omega(\gamma) = \Theta$ for all $\g
 Sources: Weil, Acta Math. 111 (1964), §§29–30 [unverified]; Kudla, *Notes on the local theta correspondence* (1996),
 §I.4 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Global
 import QuadFormsKB.Weil.ArchimedeanWeil

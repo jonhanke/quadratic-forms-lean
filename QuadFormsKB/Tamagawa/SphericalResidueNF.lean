@@ -28,7 +28,6 @@
 * **`tendsto_mul_sphericalZetaNF_zero_schwartz`**: the same for Schwartz $\Phi_w \in \mathcal S(\mathbb R^n)$, $\Psi_w \in \mathcal S(\mathbb C^n)$, unconditional.
 * `tendsto_mul_globalZetaNF_zero(_schwartz)`: the residue with the complex places, $n \ge 4$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.ArchTestFn
 import QuadFormsKB.Tamagawa.SphericalResidue

@@ -29,6 +29,7 @@ which the Gram form is again $I_4$. The output `certsI4` (16 neighbour certifica
   formalized).
 -/
 import QuadFormsKB.Siegel.KneserAut
+import Mathlib.Tactic.NormNum.Prime
 
 open Matrix
 

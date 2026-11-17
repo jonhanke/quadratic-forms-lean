@@ -10,6 +10,9 @@ $\mathrm{GL}_n(\mathbb{Z}_p)$ (`repCount_eq_of_unimodular`). **Depends on** `Bas
 `DVR.IsJordanFormW` (`Bridge.lean`: `isJordanForm_iff_isJordanFormW_padic`).
 -/
 import QuadFormsKB.LocalDensity.Basic
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Data.ZMod.Units
+import Mathlib.LinearAlgebra.Matrix.SchurComplement
 
 namespace QuadFormsKB.LocalDensity
 

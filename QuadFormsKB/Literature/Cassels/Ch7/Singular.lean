@@ -19,8 +19,20 @@ $T$ mapped to $k$).
   $\{(1 + 2\sqrt{-5})x_1 + 3x_2\}^{2}$ (ideal $(3, 1 + 2\sqrt{-5})$): it is formalized as
   `not_equiv_one_var_printed` (`Ch7/Supplement.lean`); the example here is a second illustration of the same point.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.LinearAlgebra.FreeModule.PID
+import Mathlib.NumberTheory.Zsqrtd.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.HopfAlgebra.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 namespace QuadFormsKB.Cassels
 

@@ -30,6 +30,9 @@ $\tfrac12 g^{*}(0)$ is not an integer. We therefore assume $n \ge 1$ in `ex16_ii
 -/
 import QuadFormsKB.Literature.Cassels.Ch3.Exercises
 import QuadFormsKB.Literature.Cassels.Ch2.Exercises
+import Mathlib.NumberTheory.LSeries.PrimesInAP
+import Mathlib.NumberTheory.Multiplicity
+import Mathlib.RingTheory.ZMod.UnitsCyclic
 
 open Finset Matrix
 

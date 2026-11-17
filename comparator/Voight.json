@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge_Voight",
+  "solution_module": "Solution_Voight",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.voight_maximal_iff_discriminant",
+    "QuadFormsKB.Headlines.voight_evenClifford_correspondence",
+    "QuadFormsKB.Headlines.eichlerMass_totallyReal",
+    "QuadFormsKB.Headlines.eichlerMass_rat",
+    "QuadFormsKB.Headlines.eichlerMass_eichlerOrders_rat"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

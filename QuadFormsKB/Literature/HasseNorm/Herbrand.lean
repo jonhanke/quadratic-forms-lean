@@ -46,8 +46,14 @@ cohomology is the index identity of step 1.
 
 Locators are from memory and still `[unverified]`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Basic
+import Mathlib.Analysis.Normed.Ring.Lemmas
+import Mathlib.GroupTheory.FiniteAbelian.Basic
+import Mathlib.GroupTheory.IndexNSmul
+import Mathlib.LinearAlgebra.Dimension.Torsion.Basic
+import Mathlib.LinearAlgebra.Dimension.Torsion.Finite
+import Mathlib.RingTheory.RegularLocalRing.Defs
 
 open Module
 

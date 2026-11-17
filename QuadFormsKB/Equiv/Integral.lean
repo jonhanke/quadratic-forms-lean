@@ -12,6 +12,9 @@
 * the inclusion is strict: $x_0^2 + x_0 x_1 + x_1^2$ is not classically integral.
 -/
 import QuadFormsKB.Defs.Integral
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
 
 open Matrix
 

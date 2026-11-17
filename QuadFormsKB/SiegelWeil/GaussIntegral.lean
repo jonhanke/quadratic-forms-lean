@@ -21,7 +21,6 @@ which is the integral in $f_v(wn(b)) = \gamma_Vc_B\,I_v(b)$ (`wfun_eq`).
 Sources: Siegel, *Über die analytische Theorie der quadratischen Formen*, Ann. Math. 36 (1935), §3 [unverified]; Weil, Acta
 Math. 113 (1965), Ch. II [unverified]; Tate's thesis (Cassels–Fröhlich Ch. XV), §4.1, Lemma 4.1.5 (the product formula for $\psi$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.LocalWhittaker
 import QuadFormsKB.SiegelWeil.Eisenstein

@@ -26,6 +26,7 @@ Sources: Weil 1982, §3.4 [unverified]; Kitaoka 1993, §5.6 [unverified]; Hanke 
 Indices are 0-based ($e_0$ is the first basis vector).
 -/
 import QuadFormsKB.Tamagawa.GeneralFactor
+import Mathlib.Algebra.GroupWithZero.Submonoid.CancelMulZero
 
 open Matrix MulAction
 

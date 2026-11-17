@@ -1,4 +1,5 @@
 import QuadFormsKB.Analysis.GlobalCharacter
+import Mathlib.NumberTheory.NumberField.Discriminant.Different
 
 /-!
 # Fractional ideals by local exponents; the different

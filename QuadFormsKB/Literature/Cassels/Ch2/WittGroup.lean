@@ -44,6 +44,15 @@ orthogonal sum is block diagonal (`toMatrix'_add`). Lemma 5.8 follows Cassels: $
 of $\det$.
 -/
 import QuadFormsKB.Witt.Cancellation
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Real.Sqrt
+import Mathlib.GroupTheory.MonoidLocalization.GrothendieckGroup
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.LinearAlgebra.QuadraticForm.Signature
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open QuadraticMap Module
 

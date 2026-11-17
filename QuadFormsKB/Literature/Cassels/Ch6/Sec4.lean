@@ -26,6 +26,8 @@ Cassels does, except that the last step uses `hasseMinkowski_three` in place of 
 -/
 import QuadFormsKB.Literature.Cassels.Ch5.Minkowski
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowski
+import Mathlib.Analysis.Real.Pi.Bounds
+import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 
 namespace QuadFormsKB.Cassels.Ch6
 

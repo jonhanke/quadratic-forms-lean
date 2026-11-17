@@ -26,6 +26,10 @@ representations of $Q$ by $Q''$. The two agree here (both are $\#\mathrm{Aut}(Q)
 displayed case formula is for $r_{Q''}(Q)$.
 -/
 import QuadFormsKB.LocalDensity.Basic
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.MeasureTheory.Group.Measure
+import Mathlib.NumberTheory.Padics.RingHoms
 
 open Matrix MeasureTheory
 

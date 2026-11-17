@@ -18,7 +18,6 @@ For a finite set $S$ of finite places containing a set $S_0$ whose primes genera
 
 Orders: `ordL v x` $= \log v(x) \in \mathbb Z$ (Mathlib's multiplicative valuation $v(x) = \exp(-\operatorname{ord}_v x)$; only parity matters).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.SquareClassDuality
 

@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Analysis.NFLFunctions
 import QuadFormsKB.Binary.RelativeLFactor

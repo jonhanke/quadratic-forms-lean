@@ -3,7 +3,6 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Literature.Hanke2011Structure.RationalityTwoNFTransport
 import QuadFormsKB.Tamagawa.LocalZeta
 import QuadFormsKB.Literature.Hanke2011Structure.RationalityNondyadicSeries

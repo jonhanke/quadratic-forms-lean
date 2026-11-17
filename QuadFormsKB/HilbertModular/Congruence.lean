@@ -37,6 +37,11 @@ arguments; the two are conjugate by $\mathrm{diag}(1, \delta)$-type elements of 
 involved are principal with totally positive generators, so we fix Shimura's.
 -/
 import QuadFormsKB.HilbertModular.Basic
+import Mathlib.NumberTheory.NumberField.InfinitePlace.TotallyRealComplex
+import Mathlib.RingTheory.DedekindDomain.Different
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix NumberField
 open scoped MatrixGroups nonZeroDivisors

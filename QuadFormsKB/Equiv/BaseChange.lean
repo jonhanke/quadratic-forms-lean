@@ -3,6 +3,9 @@
 -/
 import QuadFormsKB.Defs.Rational
 import QuadFormsKB.Equiv.Mathlib
+import Mathlib.Algebra.CharP.Invertible
+import Mathlib.LinearAlgebra.QuadraticForm.TensorProduct
+import Mathlib.LinearAlgebra.TensorProduct.Pi
 
 open Matrix
 

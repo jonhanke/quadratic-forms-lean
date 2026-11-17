@@ -57,6 +57,7 @@ import QuadFormsKB.Literature.Cassels.Ch9Sec8Int
 import QuadFormsKB.Literature.Cassels.Ch9Examples6
 import QuadFormsKB.Witt.Bridge
 import QuadFormsKB.Siegel.ThetaCuspidal
+import Mathlib.Data.Matrix.ColumnRowPartitioned
 
 open Matrix Module
 

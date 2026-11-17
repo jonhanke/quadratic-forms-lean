@@ -24,7 +24,7 @@ Here $`\delta = -\det H_{Q_0}\det H_{T_0}`$, $`\chi_\delta`$ its quadratic chara
 
 ## In Lean
 
-The headline statements are in [`Challenge.lean`](../../Challenge.lean), section "Siegel's formula for indefinite forms over every number field":
+The headline statements are in the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)), section "Siegel's formula for indefinite forms over every number field":
 
 - `QuadFormsKB.Headlines.siegel_indefinite_numberField` (from `QuadFormsKB.Tamagawa.Indefinite.siegelIndefinite_uncond`): numbers, $`N \ge 4`$.
 - `QuadFormsKB.Headlines.siegel_indefinite_forms_numberField` (`siegelIndefiniteForms_uncond`): forms, $`n' \ge 3`$.

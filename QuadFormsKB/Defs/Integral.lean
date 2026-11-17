@@ -14,7 +14,6 @@ statements that need it.
 
 The link to Mathlib's `QuadraticForm ℤ (Fin n → ℤ)` is the bijection in `Equiv/Mathlib.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Defs.Rational
 
 open Matrix

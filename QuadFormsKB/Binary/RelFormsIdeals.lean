@@ -1,6 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Binary.RelForms
+import Mathlib.RingTheory.ClassGroup.ExtendedHom
+import Mathlib.RingTheory.Ideal.Norm.RelNorm
 
 /-!
 # Binary lattices of type $E$ over $\mathcal O_F$ and ideal classes of $E$

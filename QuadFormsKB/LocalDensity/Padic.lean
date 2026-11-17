@@ -9,6 +9,7 @@ from `DVR.repCountGood_add`. **Depends on** `Lemma32.lean`. The full dictionary 
 `Bridge.lean`.
 -/
 import QuadFormsKB.LocalDensity.Lemma32
+import Mathlib.NumberTheory.Padics.RingHoms
 
 namespace QuadFormsKB.LocalDensity
 

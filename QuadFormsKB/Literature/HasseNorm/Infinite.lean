@@ -11,6 +11,8 @@
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.HasseNorm.LocalNorm
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.NumberTheory.NumberField.Completion.InfinitePlace
 
 open Module NumberField IsDedekindDomain WithZero
 open scoped nonZeroDivisors TensorProduct

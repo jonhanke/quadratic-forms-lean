@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.LerayComplex
+import Mathlib.RingTheory.Finiteness.ModuleFinitePresentation
 
 /-!
 # Leray measures on the complex spheres $\{Q = c\}$

@@ -23,8 +23,8 @@ and step 2) of **Theorem 5.6** in part: the lattice $L' = L'' + \mathfrak p^{-1}
 and contains $L''$ (`theorem_5_6_valued`), and $L\cap L' = L''$ (`theorem_5_6_inter`). The index statements of
 Theorem 5.6 and Lemma 4.5 are not formalized.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.QuadraticForm.Basic
 
 open QuadraticMap Submodule
 

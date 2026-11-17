@@ -14,6 +14,9 @@ direct counts:
 -/
 import QuadFormsKB.LocalDensity.Bridge
 import QuadFormsKB.LocalDensity.DVRDyadicTable
+import Mathlib.Topology.Algebra.Ring.Compact
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 namespace QuadFormsKB.LocalDensity
 

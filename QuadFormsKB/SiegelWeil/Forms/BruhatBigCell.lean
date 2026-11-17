@@ -21,7 +21,6 @@ For $r = 1$ the big cell is the $c \ne 0$ part of `BQuot` (`SiegelWeil/Eisenstei
 Sources: Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 (the Bruhat decomposition $P\backslash G = \bigsqcup_jP w_jN$)
 [unverified]; Weil, *Sur la formule de Siegel dans la théorie des groupes classiques*, Acta Math. 113 (1965), Ch. II [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.EisensteinParabolic
 

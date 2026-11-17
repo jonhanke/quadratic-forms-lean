@@ -41,7 +41,6 @@ $z^{\mathsf T}B^{-1}z - y^{\mathsf T}A^{-1}y \in T\mathbb Z$ whenever $\varphi[y
 
 **Inputs:** none for the "only if" half (standard axioms only).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemmas
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemma3

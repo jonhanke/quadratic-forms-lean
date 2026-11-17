@@ -66,6 +66,7 @@ None: everything is proved from Mathlib (no hypotheses beyond positive definiten
 -/
 import QuadFormsKB.Siegel.ArchimedeanNF
 import QuadFormsKB.Tamagawa.RankOneNF
+import Mathlib.CategoryTheory.Countable
 
 open MeasureTheory Matrix Filter Topology Set
 open scoped ENNReal

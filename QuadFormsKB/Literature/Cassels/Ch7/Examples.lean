@@ -20,8 +20,13 @@ $k^{\times}/U$) are represented by the ideals they generate.
 Examples 1–3 are, as Cassels says, "concepts which are important in the classical theory but which are not needed in
 this book".
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.RCLike.Basic
+import Mathlib.LinearAlgebra.Matrix.PosDef
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 namespace QuadFormsKB.Cassels
 

@@ -1,5 +1,10 @@
 name: build
 
+# Copied from elementary-number-theory-lean (main, 2026-11-16; itself from algebraic-number-theory-lean v0.1.0),
+# with the book matrix of this repository. lake comparator runs once per book (Challenge_<book> against Solution_<book>), as a matrix of jobs after the build, so that no single
+# check has to load the statements of every book (a combined check needs far more memory than a runner has).
+# Installed as .github/workflows/build.yml.
+
 on:
   push:
     paths-ignore: ['**.md', 'docs/**']
@@ -99,6 +104,55 @@ jobs:
           fi
           echo "all headline theorems use only propext, Classical.choice, Quot.sound"
 
+
+  comparator:
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    strategy:
+      fail-fast: false
+      matrix:
+        book: [SiegelTotallyReal, TamagawaTotallyReal, TamagawaSO, TamagawaGroups, LocalGlobal, SiegelIndefinite, SiegelWeil, ClassicalCases, ExactMass, Classification, Voight, Shimura, ChenevierLannes, MorenoWagstaff]
+    steps:
+      - name: Free disk space (the comparator exports need it)
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /usr/local/.ghcup \
+            /opt/hostedtoolcache/CodeQL /usr/share/swift
+          df -h /
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Add swap space
+        run: |
+          sudo swapoff -a
+          sudo rm -f /swapfile
+          sudo fallocate -l 16G /swapfile
+          sudo chmod 600 /swapfile
+          sudo mkswap /swapfile
+          sudo swapon /swapfile
+          free -h
+
+      # The build job saved its finished build under a key that begins with this commit's prefix.
+      - name: Restore the build of this commit
+        uses: actions/cache/restore@v5
+        with:
+          path: .lake
+          key: lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain') }}-${{ hashFiles('lake-manifest.json') }}-${{ github.sha }}-
+
+      - name: Set up Lean and the Mathlib cache (no build yet)
+        uses: leanprover/lean-action@38fbc41a8c28c4cbaec22d7f7de508ec2e7c0dd9
+        with:
+          use-mathlib-cache: true
+          use-github-cache: false
+          build: false
+
+      - name: Build the challenge and solution of this book (already built by the build job)
+        run: lake build Challenge_${{ matrix.book }} Solution_${{ matrix.book }}
+
       - name: Install bubblewrap for lake comparator's sandbox
         run: |
           sudo apt-get update -qq >/dev/null
@@ -107,5 +161,5 @@ jobs:
           # which bubblewrap needs. This affects only the throwaway CI runner.
           sudo sysctl -w kernel.apparmor_restrict_unprivileged_userns=0
 
-      - name: Check Solution against Challenge with lake comparator
-        run: ./scripts/verify-comparator.sh
+      - name: Check Solution_${{ matrix.book }} against Challenge_${{ matrix.book }} with lake comparator
+        run: ./scripts/verify-comparator.sh ${{ matrix.book }}

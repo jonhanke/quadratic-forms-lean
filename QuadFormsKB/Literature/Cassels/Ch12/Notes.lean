@@ -17,6 +17,7 @@ $n = 7$ (Tammela); Venkov's theorem that $V(h_0)$ is bounded by finitely many hy
 Voronoi's algorithm and the characterization of extreme forms as perfect and eutactic; the tables of reduced forms.
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec5
+import Mathlib.Analysis.InnerProductSpace.Positive
 
 open Matrix
 

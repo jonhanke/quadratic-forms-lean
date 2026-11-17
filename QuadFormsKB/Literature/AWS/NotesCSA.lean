@@ -12,6 +12,7 @@ arXiv:1105.5759 v3 (bibkey `hanke2011aws`; PDF page = printed page), §3.1.
   (whose determinant is the $n$-th power of the notes' norm, as in the notes' proof).
 -/
 import QuadFormsKB.Literature.AWS.NotesCh3
+import Mathlib.Algebra.Lie.OfAssociative
 
 open TensorProduct
 

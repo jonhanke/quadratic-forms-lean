@@ -34,9 +34,12 @@ and the identification of the two are in other files.
 **Proves** Table 2 entry by entry, (17), the independence of the bound $N$, and that the 2-adic $p$-mass is invariant
 under sign walking and oddity fusion (`pMassTwo_moveEquiv`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Symbol
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.NumberTheory.LegendreSymbol.JacobiSymbol
+import Mathlib.Tactic
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

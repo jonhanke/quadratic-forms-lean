@@ -333,6 +333,10 @@ open IsLocalRing IsLocalization Polynomial
 variable {R K : Type*} [CommRing R] [IsDomain R] [IsDiscreteValuationRing R] [HenselianLocalRing R]
   [Field K] [Algebra R K] [IsFractionRing R K] {a b : K}
 
+-- `maximalIdeal R` below uses the local ring structure of `HenselianLocalRing R`, so that `trd_mem_of_nrd_mem` does
+-- not need `IsDiscreteValuationRing R`; without this, which instance is found depends on the imports.
+attribute [local instance high] HenselianLocalRing.toIsLocalRing
+
 theorem nrd_sub_algebraMap (x : ℍ[K,a,b]) (c : K) :
     nrd (x - algebraMap K ℍ[K,a,b] c) = nrd x - c * trd x + c ^ 2 := by
   simp [nrd, trd, QuaternionAlgebra.algebraMap_eq]; ring

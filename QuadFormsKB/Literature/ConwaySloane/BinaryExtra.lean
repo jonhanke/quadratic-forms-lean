@@ -18,11 +18,11 @@
 **Stated here, proved in `Section3Det7.lean`.** `Det7ClassesStatement` (every form of determinant $-7$ is in one of the
 two classes; `det7_classes`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Binary
 import QuadFormsKB.Literature.ConwaySloane.Examples
 import QuadFormsKB.Literature.ConwaySloane.Table152
+import Mathlib.NumberTheory.Zsqrtd.Basic
 
 namespace QuadFormsKB
 

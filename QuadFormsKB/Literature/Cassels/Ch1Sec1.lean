@@ -32,6 +32,7 @@ import QuadFormsKB.Literature.Cassels.Ch1Sec2
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowski
 import QuadFormsKB.Siegel.UnimodularPadic
 import QuadFormsKB.Binary.GenusLocal
+import Mathlib.NumberTheory.Pell
 
 open Matrix
 

@@ -23,6 +23,7 @@ $A_j = a_j - ba_{j-1}$ satisfies $\sum_j A_j^2 = a_0^2$, hence $\lvert A_j\rvert
 $\lvert a_{n-1}\rvert \ge \lvert a_0\rvert\,(b^{n-1} - b^{n-2} - \cdots - 1)$.
 -/
 import QuadFormsKB.Literature.Cassels.Ch5.Minkowski
+import Mathlib.Algebra.Order.Star.Int
 
 namespace QuadFormsKB.Cassels.Ch6
 

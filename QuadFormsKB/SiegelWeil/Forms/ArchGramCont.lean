@@ -18,7 +18,6 @@ Indices are 0-based.
 
 Sources: Siegel, Ann. of Math. 36 (1935), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.SiegelWeil.Forms.ArchGram
 
 open MeasureTheory Matrix Set Filter Topology

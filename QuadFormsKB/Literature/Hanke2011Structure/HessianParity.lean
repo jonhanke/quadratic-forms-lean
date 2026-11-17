@@ -28,9 +28,10 @@ The first assertion of Lemma 2.5, $I(\det_H(L)) \subseteq \mathcal O_F$, is the 
 of an $\mathcal O_{\mathfrak p}$-valued form lies in $\mathcal O_{\mathfrak p}$, which holds by construction here
 (`QuadForm.hessian` has entries in $R$).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.LinearAlgebra.Matrix.Permutation
+import Mathlib.RingTheory.MvPolynomial.Basic
 
 namespace QuadFormsKB.Hanke2011Structure
 

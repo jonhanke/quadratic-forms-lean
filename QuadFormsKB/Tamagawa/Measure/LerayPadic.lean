@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.LocalSO
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 import QuadFormsKB.Tamagawa.LocalZeta
+import Mathlib.Analysis.Matrix.MeasurableSpace
 
 /-!
 # The $p$-adic Leray (gauge-form) measure on $O(V)(F_v)$ is `muLoc`

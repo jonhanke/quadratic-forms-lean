@@ -7,6 +7,9 @@ everything above it (prescribed symbols, Hasse–Minkowski) can use it.
 -/
 import QuadFormsKB.Literature.LocalGlobal.HilbertLocal
 import QuadFormsKB.Equiv.Hilbert
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticReciprocity
+import Mathlib.Order.CompletePartialOrder
 
 namespace QuadFormsKB
 

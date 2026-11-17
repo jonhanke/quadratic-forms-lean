@@ -22,6 +22,10 @@ Helper declarations live in the sub-namespace `QuadFormsKB.OMeara.Sp58`.
 -/
 import QuadFormsKB.Literature.OMeara.Sec82
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.LinearAlgebra.QuadraticForm.TensorProduct
+import Mathlib.Tactic.Monotonicity
 
 open QuadraticMap Module
 

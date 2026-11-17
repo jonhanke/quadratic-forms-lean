@@ -23,8 +23,15 @@ $\mathfrak o_\mathfrak p$, and $\mathfrak o$ is $\mathfrak p$-adically dense in 
 (`HeightOneSpectrum.exists_valuation_sub_lt_of_integer`); multiplying by $a_0$ gives the general case. O'Meara proves only
 the closedness explicitly; the density is implicit in his use of the closure.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.NumberTheory.NumberField.Completion.FinitePlace
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open IsDedekindDomain NumberField Topology
 

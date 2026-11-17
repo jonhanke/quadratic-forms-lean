@@ -37,8 +37,11 @@ Sources: Shimura, *The special values of the zeta functions associated with Hilb
 Math. J. 45 (1978), §1 [unverified]; Garrett, *Holomorphic Hilbert Modular Forms* (1990), Ch. 1 [unverified];
 Freitag, *Hilbert Modular Forms* (1990), Ch. I [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Analysis.CStarAlgebra.Classes
+import Mathlib.Analysis.Complex.UpperHalfPlane.Manifold
+import Mathlib.Geometry.Manifold.MFDeriv.SpecificFunctions
+import Mathlib.NumberTheory.ModularForms.BoundedAtCusp
 
 open Complex UpperHalfPlane Matrix Filter
 open scoped MatrixGroups Manifold ModularForm Topology

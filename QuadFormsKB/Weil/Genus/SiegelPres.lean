@@ -21,7 +21,6 @@ $n(B) = (n(B)w)w^{-1}$, $m(a) = (m(a)w)w^{-1}$.
 Sources: Weil, Acta Math. 111 (1964), §§1–2 [unverified]; Kudla, *Notes on the local theta correspondence* (1996),
 §I.1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.ExtendHom
 import QuadFormsKB.Weil.Genus.SiegelCell

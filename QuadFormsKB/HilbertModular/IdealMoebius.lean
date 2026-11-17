@@ -16,6 +16,7 @@ Sources: Hecke, *Vorlesungen über die Theorie der algebraischen Zahlen* (1923),
 ideals) [unverified]; Neukirch, *Algebraic Number Theory*, Ch. VII §5 [unverified].
 -/
 import QuadFormsKB.Analysis.NFEulerProduct
+import Mathlib.RingTheory.DedekindDomain.Factorization
 
 open NumberField IsDedekindDomain
 

@@ -29,6 +29,7 @@ factors of 2). Convert to Mathlib's to use its library: isometries, base change,
 `Anisotropic`, Sylvester's law, and so on.
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.LinearAlgebra.QuadraticForm.Basis
 
 open Matrix
 

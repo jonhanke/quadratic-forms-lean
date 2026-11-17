@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Berkovich2012.Theorem61
 import QuadFormsKB.Literature.ConwaySloane.Mass.TwoAdicFinal

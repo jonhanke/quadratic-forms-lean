@@ -21,9 +21,12 @@ variables, so the system version applies.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
 import QuadFormsKB.FunctionField.RatFuncTsen
+import Mathlib.Algebra.Module.StablyFree.Basic
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.LinearAlgebra.QuadraticForm.Basis
+import Mathlib.NumberTheory.FunctionField
 
 open Polynomial
 

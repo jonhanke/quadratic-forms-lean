@@ -11,6 +11,7 @@ Conventions as in `Ch13/Sec2.lean`: a real binary form is its symmetric matrix $
 $\vec{x} = (x_0, x_1)$ (Cassels' $(x, y)$).
 -/
 import QuadFormsKB.Literature.Cassels.Ch13.Basic
+import Mathlib.Data.Pi.Interval
 
 open Matrix
 

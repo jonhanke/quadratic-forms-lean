@@ -52,6 +52,10 @@ may exceed $p/2$; here this is done with the endomorphism "multiplication by $\l
 here it is not re-derived.
 -/
 import QuadFormsKB.Literature.Cassels.Ch4.Witt
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.RingTheory.Int.Basic
 
 open QuadraticMap
 

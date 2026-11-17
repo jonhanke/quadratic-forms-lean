@@ -3,9 +3,13 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.HasseNorm.Herbrand
+import Mathlib.NumberTheory.NumberField.CMField
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Paper 6, Lemma 8.4: the unit index $[\mathcal O_F^\times : N_{K/F}\mathcal O_K^\times] = 2^{[F:\mathbb Q]}/Q_{K/F}$

@@ -11,6 +11,9 @@ $L^{\mathsf T}F + FL = 0$ (7.8) — *a collection of linear conditions on the co
 transform; Cassels' $T'$ is the transpose $T^{\mathsf T}$).
 -/
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

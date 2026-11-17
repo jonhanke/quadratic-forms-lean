@@ -39,7 +39,6 @@ definite $A$, $B$, $\det A = \det B$ follows from `DiscIso` ($\det A = |\mathbb 
 
 **Inputs:** none for the odd primes (standard axioms only). Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemma2Easy
 

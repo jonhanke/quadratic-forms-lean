@@ -26,6 +26,9 @@ the maximal ideals of $R$ (when $R$ is not a field).
   $\mathfrak a_{\mathfrak p}$-maximal).
 -/
 import QuadFormsKB.Literature.OMeara.Sec82Volume
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.DedekindDomain.Ideal.Lemmas
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open QuadraticMap Submodule Module
 

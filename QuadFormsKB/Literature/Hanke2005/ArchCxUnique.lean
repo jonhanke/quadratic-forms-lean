@@ -10,7 +10,11 @@ set $O$ and give the same finite integral to every continuous, nonnegative, comp
 $\operatorname{tsupport}\varphi\subseteq O$ are equal. (Approximate $1_K$ for compact $K\subseteq O$ from above by such $\varphi$,
 then use the $\pi$-system of compact subsets of $O$ and measurable subsets of $O^c$.)
 -/
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Analysis.Normed.Module.FiniteDimension
+import Mathlib.MeasureTheory.Integral.Lebesgue.DominatedConvergence
+import Mathlib.Order.CompletePartialOrder
+import Mathlib.Tactic.Positivity
 
 open MeasureTheory Set Filter Topology Metric
 open scoped ENNReal

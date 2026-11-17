@@ -1,6 +1,7 @@
 import QuadFormsKB.Tamagawa.Measure.OrbitImage
 import QuadFormsKB.Tamagawa.Measure.Weil.PDArchComplex
 import QuadFormsKB.Tamagawa.BinaryNormOne
+import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
 
 /-!
 # The Leray measure of $SO(\langle1,D\rangle)(\mathbb C)$ on rotations

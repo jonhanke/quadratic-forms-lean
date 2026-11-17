@@ -13,6 +13,9 @@ Cassels, *Rational Quadratic Forms* (1978), Ch. 12, §2, pp. 260–261.
 The successive minima, Lemma 2.1 and Theorem 2.2 are in `Sec2Minima.lean`.
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.Sec1
+import Mathlib.Algebra.Module.ZLattice.Basic
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.MeasureTheory.Group.GeometryOfNumbers
 
 open Matrix
 

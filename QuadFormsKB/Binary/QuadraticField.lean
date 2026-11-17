@@ -1,5 +1,20 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.AffineMonoid.Basic
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.QuadraticAlgebra.Int
+import Mathlib.Algebra.QuadraticAlgebra.IsQuadraticExtension
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.NumberTheory.FundamentalDiscriminant
+import Mathlib.NumberTheory.NumberField.Discriminant.Defs
+import Mathlib.NumberTheory.NumberField.Units.Regulator
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.RingTheory.TotallySplit
+import Mathlib.Tactic.NormNum.Prime
 
 open QuadraticAlgebra NumberField Polynomial
 

@@ -32,7 +32,6 @@ $L^*/L \cong M^*/M$ preserving norms mod $T$" is `DiscIso T A B`.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemma2Local
 

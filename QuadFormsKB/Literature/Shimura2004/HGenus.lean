@@ -297,7 +297,8 @@ structure SumSquaresOneClass : Prop where
     ∀ M ∈ soGenus (sosQ n) L, SOClassRel (sosQ n) L M
 
 /-- **Cited input: Theorem 11.6 (i)** (the fundamental theorem, `Theorem11_6_i`), as a named structure so that its use
-as a hypothesis is explicit. Stated, not proved here. -/
+as a hypothesis is explicit. Proved (unconditionally) as `fundamentalTheorem11_6_of_local` in
+`Fundamental/HClassFinite.lean`. -/
 @[kb "shimura2004" "Thm. 11.6 (i) and (11.7), p. 104 (as an input)"]
 structure FundamentalTheorem11_6 : Prop where
   holds : Theorem11_6_i

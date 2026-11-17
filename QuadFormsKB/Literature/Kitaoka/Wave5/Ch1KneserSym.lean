@@ -21,6 +21,7 @@ import Mathlib.LinearAlgebra.QuadraticForm.Basic
 import Mathlib.RingTheory.LocalRing.ResidueField.Defs
 import Mathlib.Tactic.LinearCombination
 import Mathlib.Tactic.Ring
+import Mathlib.Tactic.Monotonicity
 
 open QuadraticMap
 

@@ -36,7 +36,6 @@ $\omega(\gamma_1)\omega(\gamma_2) = \sigma(\gamma_1,\gamma_2)\,\omega(\gamma_1\g
 Sources: Weil, Acta Math. 111 (1964), §§14, 43 [unverified]; Kubota, *On automorphic functions and the reciprocity
 law in a number field* (1969), §2 [unverified]; Rao, Pacific J. Math. 157 (1993), §5 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Model
 

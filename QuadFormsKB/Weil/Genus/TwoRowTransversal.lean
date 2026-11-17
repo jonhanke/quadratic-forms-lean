@@ -30,9 +30,11 @@ $X$ to $\kappa \setminus \{i_0\}$, and `KerLE1 N` says that the kernel of $N$ is
 Sources: elementary linear algebra; the statement is the transversality fact behind Kudla, *Notes on the local theta
 correspondence* (1996), §I.1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SiegelTwoCell
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 open Matrix
 

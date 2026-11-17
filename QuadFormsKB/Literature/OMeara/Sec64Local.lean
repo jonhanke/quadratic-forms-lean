@@ -22,6 +22,7 @@ O'Meara's normalized valuations $\lvert\cdot\rvert_\mathfrak p$ (§33A). $e = e(
 -/
 import QuadFormsKB.Analysis.LocalFourierNF
 import QuadFormsKB.Literature.OMeara.Sec64
+import Mathlib.Tactic.Monotonicity
 
 open NumberField IsDedekindDomain WithZero WithZeroMulInt
 

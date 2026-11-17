@@ -8,7 +8,7 @@ Auxiliary measure-theory lemmas for the archimedean volume computations of §4.2
   $(V^q\times V^r, \mathrm{vol}\otimes\mathrm{vol})\to(V^{q+r}, \mathrm{vol})$;
 * `lintegral_finAppend`: $\int_{V^{q+r}}G = \int_{V^r}\int_{V^q}G(\mathrm{append}(x, y))\,dx\,dy$ (Tonelli).
 -/
-import Mathlib
+import Mathlib.MeasureTheory.Constructions.Pi
 
 open MeasureTheory
 open scoped ENNReal

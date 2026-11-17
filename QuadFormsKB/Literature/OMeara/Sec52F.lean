@@ -32,11 +32,11 @@ similarity can be stated for them.
 which needs 57:10 (4), proved elsewhere; and the $t$-fold statement $A_1 \otimes \cdots \otimes A_t \sim
 A_1' \otimes \cdots \otimes A_t'$ (it follows from the two-factor case by induction).
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.OMeara.Sec52A
 import QuadFormsKB.Literature.OMeara.Sec52B
 import QuadFormsKB.Literature.OMeara.Sec57
+import Mathlib.Algebra.Azumaya.Basic
 
 open scoped TensorProduct
 open Quaternion

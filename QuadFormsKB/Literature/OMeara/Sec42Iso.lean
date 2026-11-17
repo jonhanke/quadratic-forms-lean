@@ -1,5 +1,10 @@
 import QuadFormsKB.Literature.OMeara.Sec42
 import QuadFormsKB.Literature.OMeara.Sec91Jordan
+import Mathlib.LinearAlgebra.BilinearForm.Orthogonal
+import Mathlib.LinearAlgebra.Matrix.BilinearForm
+import Mathlib.LinearAlgebra.QuadraticForm.Prod
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 /-!
 # O'Meara §42B, §42D: dual bases, hyperbolic planes, isotropy (42:5, 42:9, 42:11, 42:13)

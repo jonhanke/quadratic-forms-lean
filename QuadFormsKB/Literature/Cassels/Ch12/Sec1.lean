@@ -15,6 +15,8 @@ Cassels, *Rational Quadratic Forms* (1978), Ch. 12, §1, pp. 255–260.
 Indices are 0-based: Cassels' $e_1, \dots, e_n$, $f_{11}, \dots$ are $e_0, \dots, e_{n-1}$, $f_{00}, \dots$ here.
 -/
 import QuadFormsKB.Literature.Cassels.Ch12.SquareDecomp
+import Mathlib.ModelTheory.Arithmetic.Presburger.Semilinear.Defs
+import Mathlib.Tactic.Monotonicity
 
 open Matrix
 

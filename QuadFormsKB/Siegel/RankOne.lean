@@ -38,6 +38,7 @@ Siegel's $\varepsilon = \tfrac12$ for $r = n$ appears as $\mathrm{Mass}(\langle 
 -/
 import QuadFormsKB.Siegel.Mass
 import QuadFormsKB.Siegel.LocalProduct
+import Mathlib.LinearAlgebra.Matrix.Unique
 
 open Matrix Filter Topology
 

@@ -22,9 +22,11 @@ nonzero polynomials has a non-root over an infinite field.
 
 Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Symplectic
+import Mathlib.LinearAlgebra.Matrix.ToLinearEquiv
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open Matrix Polynomial
 

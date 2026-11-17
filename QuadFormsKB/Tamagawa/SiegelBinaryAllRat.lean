@@ -2,6 +2,7 @@ import QuadFormsKB.Tamagawa.SiegelBinaryTotallyReal
 import QuadFormsKB.Tamagawa.BinaryTauRat
 import QuadFormsKB.Binary.SiegelNonPrimitive
 import QuadFormsKB.Binary.SiegelBinaryChecks
+import Mathlib.RingTheory.Prime
 
 /-!
 # The classical binary Siegel formula over ℚ for every positive definite form

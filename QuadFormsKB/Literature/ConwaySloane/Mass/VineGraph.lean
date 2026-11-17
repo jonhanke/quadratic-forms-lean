@@ -37,10 +37,10 @@ $n + 1$, so the graph is the graph of the map "genus of $L$ $\mapsto$ genus of $
   $L_r$ marked on the vine (no vectors of norm $1$); from `exists_sumI_no_norm_one` (`VineLattices.lean`). This does
   not use Part I's enumeration.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.ConwaySloane.Mass.GenusLemmasHold
 import QuadFormsKB.Literature.ConwaySloane.Mass.VineLattices
+import Mathlib.Combinatorics.SimpleGraph.Acyclic
 
 set_option linter.unusedSectionVars false
 

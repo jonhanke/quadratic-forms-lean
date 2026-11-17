@@ -39,7 +39,6 @@ axioms, and the deductions between them and the easy directions are proved.
 `GenusLemma2Local.lean`) and Lemma 4 (`Gauss2.lemma4Statement_holds`); the lemmas as plain theorems and the unconditional
 versions of `sameGenus_of_lemma4` and `sameGenus_of_det_two` are in `GenusLemmasHold.lean`.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Siegel.Genus
 import QuadFormsKB.LocalDensity.JordanForm

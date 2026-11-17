@@ -3,6 +3,7 @@ import QuadFormsKB.Literature.Cassels.Ch9Sec6Local
 import QuadFormsKB.Literature.Cassels.Ch9Sec4Congr
 import QuadFormsKB.Siegel.FourSquaresClassNumber
 import QuadFormsKB.Siegel.NeighborGenus
+import Mathlib.Analysis.Matrix.LDL
 
 open Matrix
 

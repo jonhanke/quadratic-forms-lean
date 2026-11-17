@@ -26,7 +26,6 @@ No further hypothesis is used: all four results are unconditional given `hS` and
 
 Sources: Weil, Acta Math. 111 (1964), §14 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.Model
 import QuadFormsKB.Weil.NonArch

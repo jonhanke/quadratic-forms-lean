@@ -13,6 +13,9 @@ and, as corollaries, the $\mathbb{Q}$ results re-derived from the DVR ones: Lemm
 -/
 import QuadFormsKB.LocalDensity.Bridge
 import QuadFormsKB.LocalDensity.DVRTable2
+import Mathlib.Topology.Algebra.Ring.Compact
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 namespace QuadFormsKB.LocalDensity
 

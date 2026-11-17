@@ -18,8 +18,8 @@ The universal property quantifies over algebras $A$ in a fixed universe (the uni
 **Proof notes.** O'Meara's argument: the two universal maps $C \to C'$, $C' \to C$ compose to homomorphisms that are
 the identity on $V$, hence (by uniqueness) the identity. Regularity of $V$, assumed in the book, is not used.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.CliffordAlgebra.Basic
 
 noncomputable section
 

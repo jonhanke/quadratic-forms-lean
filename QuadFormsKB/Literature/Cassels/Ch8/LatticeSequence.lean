@@ -35,6 +35,7 @@ $p^{-1}\vec b_j \in \Lambda$, impossible for a basis vector.
 import QuadFormsKB.Literature.Cassels.Ch8.LatticeBridge
 import QuadFormsKB.Literature.OMeara.Sec82Max
 import QuadFormsKB.Literature.OMeara.Sec92
+import Mathlib.Analysis.Normed.Group.Ultra
 
 namespace QuadFormsKB.Cassels
 

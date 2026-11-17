@@ -20,6 +20,8 @@ $\beta_\infty(m) = \pi^2 m$ for the sum of four squares, matching the Arizona Wi
 parameter.
 -/
 import QuadFormsKB.Siegel.Mass
+import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.MeasureTheory.Measure.Lebesgue.VolumeOfBalls
 
 open Matrix Filter Topology
 

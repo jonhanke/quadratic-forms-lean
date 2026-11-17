@@ -12,7 +12,8 @@ Hessian matrix $H = C + C^{\mathsf T}$ of a quadratic form (`QuadForm.hessian`).
 (`IsHess.cong`) and under taking the inverse (`IsHess.inv`), and a symmetric block matrix with an invertible Hessian
 corner splits off that corner (`exists_cong_fromBlocks`, the Schur complement).
 -/
-import Mathlib
+import Mathlib.LinearAlgebra.FreeModule.StrongRankCondition
+import Mathlib.LinearAlgebra.Matrix.SchurComplement
 
 open Matrix
 

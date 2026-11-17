@@ -32,6 +32,7 @@ import QuadFormsKB.Tamagawa.QuatOrderLocal
 import QuadFormsKB.Tamagawa.MatOrder
 import QuadFormsKB.Tamagawa.OrderNormForm
 import QuadFormsKB.LocalDensity.NFBridge
+import Mathlib.RingTheory.Valuation.LocalSubring
 
 open NumberField IsDedekindDomain Quaternion Polynomial
 

@@ -1,5 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.MeasureTheory.Measure.Haar.Unique
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # The abstract chart lemma for Haar measures on restricted products

@@ -28,6 +28,9 @@ determinant and the same squared trace; the sign needs one more input.
 Dimension $n \ge 1$ (`NeZero n`); Cassels assumes $n > 1$, which is not needed.
 -/
 import QuadFormsKB.Literature.Cassels.AppB.Examples
+import Mathlib.LinearAlgebra.Eigenspace.Semisimple
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open Complex Module Finset
 

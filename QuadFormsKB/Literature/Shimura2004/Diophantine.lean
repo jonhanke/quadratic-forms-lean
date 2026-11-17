@@ -32,7 +32,8 @@ $F$-space `V` with `Q : QuadraticForm F V`, $\varphi[x] = Q(x)$, $\varphi(x,y)$ 
 
 **States** (named propositions, not proved here: they need the local structure theory of §§6–8 and, for 13.14, the
 mass formula of Shimura 1999 plus the representation numbers of Shimura 2002)
-* `Theorem10_3`: local finiteness, $\{x\in\Lambda \mid \varphi[x]=\varphi[h]\} = \bigsqcup_{\alpha\in A}h\alpha D$.
+* `Theorem10_3`: local finiteness, $\{x\in\Lambda \mid \varphi[x]=\varphi[h]\} = \bigsqcup_{\alpha\in A}h\alpha D$ ($n > 1$);
+  proved in `Fundamental/Theorem103.lean`.
 * `Theorem10_5`: the key local theorem: for a $\mathfrak g$-maximal $L$ under (8.1), $\varphi[h]=\varphi[k]\ne0$ and
   $\varphi(h,L)=\varphi(k,L)$ imply $k = h\gamma$ with $\gamma\in C$ (with the stated exception).
 * `Theorem11_1_i`: global finiteness of the $\Gamma$-orbits on $\{k\in\Lambda\mid\varphi[k]=\varphi[h]\}$.
@@ -185,8 +186,12 @@ end Local
 finite prime $v$ with maximal order $\mathfrak g$, $(V, \varphi)$ nondegenerate, $\Lambda$ a $\mathfrak g$-lattice,
 $h \in \Lambda$ with $\varphi[h] \ne 0$, and $D = \{\gamma \in SO^\varphi \mid \Lambda\gamma = \Lambda\}$. Then there
 is a finite subset $A$ of $SO^\varphi$ with $\{x \in \Lambda \mid \varphi[x] = \varphi[h]\} = \bigcup_{\alpha\in A}
-h\alpha D$ (a disjoint union for a suitable $A$). *Stated, not proved.* (The book allows any nonarchimedean local
-field of characteristic $0$ in §10; here the completions of number fields.) -/
+h\alpha D$ (a disjoint union for a suitable $A$), for $n = \dim V > 1$. *Proved* (`theorem10_3_holds`,
+`Fundamental/Theorem103.lean`). (The book allows any nonarchimedean local field of characteristic $0$ in §10; here
+the completions of number fields.)
+
+*Erratum (of the formalization, 2026-11-16):* the first version had no hypothesis $n > 1$ and was false for $n = 1$:
+then $SO^\varphi = \{1\}$ while $\{x \in \Lambda \mid \varphi[x] = \varphi[h]\} = \{h, -h\}$. -/
 @[kb "shimura2004" "Thm. 10.3, p. 94 (local finiteness of the orbits on {x ∈ Λ | φ[x] = φ[h]})"]
 def Theorem10_3 : Prop :=
   ∀ (K : Type) [Field K] [NumberField K] (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers K))
@@ -194,6 +199,7 @@ def Theorem10_3 : Prop :=
     [Module (v.adicCompletionIntegers K) V] [IsScalarTower (v.adicCompletionIntegers K) (v.adicCompletion K) V]
     (_ : Invertible (2 : v.adicCompletion K))
     (Q : QuadraticForm (v.adicCompletion K) V), (QuadraticMap.associated Q).Nondegenerate →
+    1 < finrank (v.adicCompletion K) V →
     ∀ Λ : Submodule (v.adicCompletionIntegers K) V, Λ.IsLattice (v.adicCompletion K) →
     ∀ h ∈ Λ, Q h ≠ 0 →
       ∃ A : Finset (V ≃ₗ[v.adicCompletion K] V), (∀ α ∈ A, α ∈ orthPlus Q) ∧
@@ -203,8 +209,17 @@ def Theorem10_3 : Prop :=
 finite prime $v$, $\mathfrak g$ its maximal order, $\mathfrak p$ its maximal ideal, $(V,\varphi)$ nondegenerate of
 dimension $n > 1$ satisfying (8.1), $L$ a $\mathfrak g$-maximal lattice and $C = \{\gamma\in SO^\varphi \mid
 L\gamma = L\}$ (10.1). If $\varphi[h] = \varphi[k] \ne 0$ and $\varphi(h, L) = \varphi(k, L)$, then $k = h\gamma$ for
-some $\gamma \in C$, except when $n = 2r = 2$ (a hyperbolic plane) and $\varphi[h] \in \mathfrak p$, in which case
-$k = h\alpha$ for some $\alpha \in O^\varphi$ with $L\alpha = L$. *Stated, not proved.* -/
+some $\gamma \in C$, except when $n = 2r = 2$ (a hyperbolic plane) and $\varphi[h] \in 4\varphi(h, L)^2\mathfrak p$
+(written $|\varphi[h]| < |2\varphi(h, y)|^2$ for some $y \in L$), in which case $k = h\alpha$ for some
+$\alpha \in O^\varphi$ with $L\alpha = L$. For $(\varphi, L)$-primitive $h$ ($2\varphi(h, L) = \mathfrak g$) the
+exceptional condition is the book's $\varphi[h] \in \mathfrak p$. *Proved* in `Fundamental/Theorem105.lean`
+(`theorem10_5_holds`).
+
+*Erratum (of the formalization, 2026-11-16):* the first version of this statement had the exceptional condition
+$\varphi[h] \in \mathfrak p$ for every $h$. That is not invariant under $h \mapsto ch$ and made the statement false for
+$n = 2$: with $\varphi[xe + yf] = xy$, $L = \mathfrak ge + \mathfrak gf$, $h = \pi^{-1}e + f$, $k = e + \pi^{-1}f$ one
+has $\varphi[h] = \varphi[k] = \pi^{-1} \notin \mathfrak p$ and $\varphi(h, L) = \varphi(k, L)$, but the only rotation
+with $\gamma h = k$ is $\mathrm{diag}(\pi, \pi^{-1})$, which does not preserve $L$. -/
 @[kb "shimura2004" "Thm. 10.5, p. 96 (φ[h] = φ[k], φ(h, L) = φ(k, L) ⇒ k ∈ hC, L maximal)"]
 def Theorem10_5 : Prop :=
   ∀ (K : Type) [Field K] [NumberField K] (v : IsDedekindDomain.HeightOneSpectrum (NumberField.RingOfIntegers K))
@@ -215,7 +230,8 @@ def Theorem10_5 : Prop :=
     1 < finrank (v.adicCompletion K) V → Cond81 (v.adicCompletionIntegers K) Q →
     ∀ L : Submodule (v.adicCompletionIntegers K) V, IsMaximal Q 1 L →
     ∀ h k : V, Q h = Q k → Q h ≠ 0 → phiIdeal Q h L = phiIdeal Q k L →
-      let exceptional : Prop := finrank (v.adicCompletion K) V = 2 ∧ (∃ x ≠ 0, Q x = 0) ∧ Valued.v (Q h) < 1
+      let exceptional : Prop := finrank (v.adicCompletion K) V = 2 ∧ (∃ x ≠ 0, Q x = 0) ∧
+        ∃ y ∈ L, Valued.v (Q h) < Valued.v (2 * bil Q h y) ^ 2
       (¬ exceptional → ∃ γ ∈ orthLatPlus Q L, γ h = k) ∧
       (exceptional → ∃ α ∈ orthLat Q L, α h = k)
 

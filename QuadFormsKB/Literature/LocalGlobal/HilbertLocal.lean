@@ -14,6 +14,15 @@ $p$-adic unit, so everything is stated for such products.
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Defs.Hilbert
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.NumberTheory.LegendreSymbol.QuadraticChar.Basic
+import Mathlib.NumberTheory.Padics.Hensel
+import Mathlib.NumberTheory.Padics.RingHoms
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB.HilbertLocal
 

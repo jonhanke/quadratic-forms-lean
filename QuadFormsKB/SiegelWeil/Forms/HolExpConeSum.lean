@@ -1,4 +1,9 @@
-import Mathlib
+import Mathlib.Algebra.BigOperators.Fin
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Complex.Exponential
+import Mathlib.Analysis.Normed.Ring.InfiniteSum
+import Mathlib.Analysis.SpecificLimits.Basic
+import Mathlib.Tactic.Positivity
 
 /-!
 # Exponential sums over the dual cone

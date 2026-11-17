@@ -1,4 +1,7 @@
-import Mathlib
+import Mathlib.Algebra.QuaternionBasis
+import Mathlib.LinearAlgebra.Matrix.Determinant.Basic
+import Mathlib.RingTheory.SimpleRing.Principal
+import Mathlib.Tactic.FieldSimp
 
 /-!
 # Split quaternion algebras: $\mathbb H[R,a,b]\cong M_2(R)$ when $b$ is a norm from $R[\sqrt a]$

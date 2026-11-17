@@ -27,6 +27,7 @@ Sources: Serre, *A Course in Arithmetic*, Ch. VII §6.5–6.6 [unverified]. The 
 form from $S$- and $T$-invariance follows Mathlib's `CuspForm.discriminant` (generators `slash_action_generators_SL2Z`).
 -/
 import QuadFormsKB.Siegel.Theta
+import Mathlib.NumberTheory.ModularForms.LevelOne.Basic
 
 open Complex Matrix Filter Topology ModularForm
 open UpperHalfPlane hiding I

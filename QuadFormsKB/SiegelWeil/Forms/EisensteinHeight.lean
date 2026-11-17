@@ -21,7 +21,6 @@ change of variables of `Weil/Genus/HaarGL.lean` is stated on $M_{2m\times r}$.) 
 Sources: Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 (the standard section $\Phi(g, s) = \Phi(g)|a(g)|^{s-s_0}$)
 [unverified]; Weil, Acta Math. 113 (1965), §§ 39–41 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.SiegelWeil.Forms.EisensteinParabolic
 import QuadFormsKB.Weil.Genus.HaarGL

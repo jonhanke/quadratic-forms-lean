@@ -1,0 +1,16 @@
+{
+  "challenge_module": "Challenge_TamagawaGroups",
+  "solution_module": "Solution_TamagawaGroups",
+  "theorem_names": [
+    "QuadFormsKB.Headlines.tamagawa_SLn",
+    "QuadFormsKB.Headlines.tamagawa_GLn",
+    "QuadFormsKB.Headlines.tamagawa_Sp2"
+  ],
+  "definition_names": [],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ],
+  "enable_nanoda": true
+}

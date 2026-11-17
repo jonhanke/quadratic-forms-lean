@@ -661,6 +661,8 @@ import QuadFormsKB.SiegelWeil.GaussIntegral
 import QuadFormsKB.SiegelWeil.SiegelWeilFormula
 import QuadFormsKB.SiegelWeil.Convergence
 import QuadFormsKB.SiegelWeil.SiegelWeilLattice
+import QuadFormsKB.SiegelWeil.ClassNumber
+import QuadFormsKB.SiegelWeil.RatModular
 import QuadFormsKB.SiegelWeil.EisensteinAdelic
 import QuadFormsKB.SiegelWeil.LatticeDatum
 import QuadFormsKB.SiegelWeil.WhittakerS
@@ -1335,6 +1337,7 @@ import QuadFormsKB.Literature.Cassels.Ch9Examples9
 import QuadFormsKB.Literature.Cassels.Ch9Sec6Four
 import QuadFormsKB.Literature.Cassels.Ch9Sec6Local
 import QuadFormsKB.Tamagawa.InputsFollowup
+import QuadFormsKB.Tamagawa.MassLatUncond
 import QuadFormsKB.Tamagawa.MassUncond
 import QuadFormsKB.Tamagawa.SiegelFormulaConsumers
 import QuadFormsKB.Siegel.KneserConnectedProof
@@ -2286,6 +2289,15 @@ import QuadFormsKB.Tamagawa.Exceptional.G2
 import QuadFormsKB.Tamagawa.Exceptional.G2Det
 import QuadFormsKB.Tamagawa.Exceptional.Octonion
 import QuadFormsKB.Tamagawa.Exceptional.Spin7
+import QuadFormsKB.Tamagawa.Measure.Weil.Sp2Tamagawa
+import QuadFormsKB.Tamagawa.Measure.Weil.GLnTamagawa
+import QuadFormsKB.Literature.Voight.Wave9.EichlerMerge
+import QuadFormsKB.Literature.Voight.Wave9.LocalLattice
+import QuadFormsKB.Literature.Voight.Wave9.EichlerLocalGlobal
+import QuadFormsKB.Literature.Voight.Wave9.EichlerLevel
+import QuadFormsKB.Literature.Voight.Wave10.EichlerMass
+import QuadFormsKB.Literature.Voight.Wave10.MaximalMass
+import QuadFormsKB.Literature.Voight.Wave11.MassSuperorder
 import QuadFormsKB.Literature.LocalGlobal.IsometricBaseChange
 import QuadFormsKB.Tamagawa.HeadlineFacts
 import QuadFormsKB.Tamagawa.HeadlineFactsWeil

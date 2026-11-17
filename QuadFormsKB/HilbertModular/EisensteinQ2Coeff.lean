@@ -25,6 +25,7 @@ Sources: Hecke (1927) [unverified]; Siegel (1935), §§3–5 [unverified]; Shimu
 $\mathbb Q$: `Siegel.GenusEis.hasSum_eisQCoeff`.
 -/
 import QuadFormsKB.SiegelWeil.SingularSeriesNF2
+import Mathlib.Topology.UniformSpace.Uniformizable
 
 open Complex Matrix NumberField UpperHalfPlane Filter Topology IsDedekindDomain
 open scoped MatrixGroups ModularForm nonZeroDivisors Real

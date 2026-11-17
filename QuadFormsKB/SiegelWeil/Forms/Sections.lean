@@ -24,7 +24,6 @@ Sources: Kudla, *Notes on the local theta correspondence* (1996), §II.1 [unveri
 Siegel–Weil formula* (2008), §1 [unverified]; Weil, *Sur la formule de Siegel dans la théorie des groupes classiques*,
 Acta Math. 113 (1965), Ch. II [unverified]; Kudla–Rallis, J. reine angew. Math. 387 (1988), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.WeilRepUncond
 

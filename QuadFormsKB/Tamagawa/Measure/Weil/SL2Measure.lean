@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.SL2Prim
 import QuadFormsKB.Weil.SL2Cells
+import Mathlib.MeasureTheory.Group.ModularCharacter
 
 /-!
 # The fibration (Tamagawa) measure on $\mathrm{SL}_2(\mathbb A_F)$

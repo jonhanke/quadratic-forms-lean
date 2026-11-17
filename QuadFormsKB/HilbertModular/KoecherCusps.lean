@@ -21,6 +21,7 @@ $\Gamma$-invariant function is a Hilbert modular form: the cusp condition in `mo
 Sources: Freitag, *Hilbert Modular Forms* (1990), Ch. I §4 [unverified].
 -/
 import QuadFormsKB.HilbertModular.KoecherBounded
+import Mathlib.LinearAlgebra.FreeModule.IdealQuotient
 
 open Matrix NumberField UpperHalfPlane
 open scoped MatrixGroups nonZeroDivisors ModularForm

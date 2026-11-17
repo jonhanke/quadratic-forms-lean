@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.AdditiveAdele
+import Mathlib.Probability.ProductMeasure
 
 /-!
 # The product (chart) description of the self-dual measure on $\mathbb A_f$

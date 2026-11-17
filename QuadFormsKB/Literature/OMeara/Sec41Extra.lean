@@ -1,5 +1,6 @@
 import QuadFormsKB.Literature.OMeara.Sec41
 import QuadFormsKB.Defs.QuadForm
+import Mathlib.LinearAlgebra.QuadraticForm.IsometryEquiv
 
 /-!
 # O'Meara §41: the remaining identities and restatements (pp. 83–87)

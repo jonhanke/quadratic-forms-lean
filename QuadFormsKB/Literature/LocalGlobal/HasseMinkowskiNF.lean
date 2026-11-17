@@ -21,6 +21,8 @@ The structure follows the $\mathbb{Q}$ proof (Serre IV §3), except for $n \ge 5
 Locators are from memory and still `[unverified]`.
 -/
 import QuadFormsKB.Literature.LocalGlobal.NumberFieldLocal
+import Mathlib.Algebra.Polynomial.SpecificDegree
+import Mathlib.NumberTheory.NumberField.Completion.LiesOverInstances
 
 open NumberField
 

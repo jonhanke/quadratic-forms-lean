@@ -1,4 +1,3 @@
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.MainTheorem
 import QuadFormsKB.Literature.Hanke2023ThreeTerm.RefinementCount

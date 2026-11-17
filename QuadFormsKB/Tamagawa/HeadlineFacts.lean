@@ -10,7 +10,7 @@ import QuadFormsKB.Tamagawa.LocalOrbitalGlobal
 /-!
 # The side conditions of the headline statements
 
-The headline formulas (`Challenge.lean`) are written with `∑ᶠ` (zero over an infinite set), `Nat.card` (zero for an
+The headline formulas (the `Challenge_<book>.lean` files) are written with `∑ᶠ` (zero over an infinite set), `Nat.card` (zero for an
 infinite type), `∏'` (one for a non-multipliable product) and `LOne` (a `limUnder`, junk if the limit does not exist).
 This file collects, in the form used by the headlines, the facts that rule out these default values:
 

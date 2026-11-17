@@ -11,6 +11,9 @@ solution in $K$; O'Meara's $(\alpha, \beta)_\mathfrak p$ over a local field, §6
 -/
 import QuadFormsKB.Defs.Hilbert
 import QuadFormsKB.Citation
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 namespace QuadFormsKB
 

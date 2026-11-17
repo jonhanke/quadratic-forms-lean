@@ -1,6 +1,6 @@
 name = "QuadFormsKB"
-version = "0.5.2"
-defaultTargets = ["QuadFormsKB", "Challenge", "Solution"]
+version = "0.6.0"
+defaultTargets = ["QuadFormsKB", "Challenge_SiegelTotallyReal", "Solution_SiegelTotallyReal", "Challenge_TamagawaTotallyReal", "Solution_TamagawaTotallyReal", "Challenge_TamagawaSO", "Solution_TamagawaSO", "Challenge_TamagawaGroups", "Solution_TamagawaGroups", "Challenge_LocalGlobal", "Solution_LocalGlobal", "Challenge_SiegelIndefinite", "Solution_SiegelIndefinite", "Challenge_SiegelWeil", "Solution_SiegelWeil", "Challenge_ClassicalCases", "Solution_ClassicalCases", "Challenge_ExactMass", "Solution_ExactMass", "Challenge_Classification", "Solution_Classification", "Challenge_Voight", "Solution_Voight", "Challenge_Shimura", "Solution_Shimura", "Challenge_ChenevierLannes", "Solution_ChenevierLannes", "Challenge_MorenoWagstaff", "Solution_MorenoWagstaff", "QuadFormsKBHistoricalGauss", "QuadFormsKB.Historical.Jacobi", "QuadFormsKB.Historical.SumsOfSquares", "QuadFormsKB.Historical.BinaryForms", "QuadFormsKB.Historical.Ramanujan", "QuadFormsKB.Historical.SmithPapers", "QuadFormsKB.Historical.DicksonStudies", "QuadFormsKB.Historical.Dickson"]
 
 [leanOptions]
 pp.unicode.fun = true
@@ -15,9 +15,147 @@ rev = "v4.35.0"
 name = "QuadFormsKB"
 
 [[lean_lib]]
-name = "Challenge"
-roots = ["Challenge"]
+name = "Challenge_SiegelTotallyReal"
+roots = ["Challenge_SiegelTotallyReal"]
 
 [[lean_lib]]
-name = "Solution"
-roots = ["Solution"]
+name = "Solution_SiegelTotallyReal"
+roots = ["Solution_SiegelTotallyReal"]
+
+[[lean_lib]]
+name = "Challenge_TamagawaTotallyReal"
+roots = ["Challenge_TamagawaTotallyReal"]
+
+[[lean_lib]]
+name = "Solution_TamagawaTotallyReal"
+roots = ["Solution_TamagawaTotallyReal"]
+
+[[lean_lib]]
+name = "Challenge_TamagawaSO"
+roots = ["Challenge_TamagawaSO"]
+
+[[lean_lib]]
+name = "Solution_TamagawaSO"
+roots = ["Solution_TamagawaSO"]
+
+[[lean_lib]]
+name = "Challenge_TamagawaGroups"
+roots = ["Challenge_TamagawaGroups"]
+
+[[lean_lib]]
+name = "Solution_TamagawaGroups"
+roots = ["Solution_TamagawaGroups"]
+
+[[lean_lib]]
+name = "Challenge_LocalGlobal"
+roots = ["Challenge_LocalGlobal"]
+
+[[lean_lib]]
+name = "Solution_LocalGlobal"
+roots = ["Solution_LocalGlobal"]
+
+[[lean_lib]]
+name = "Challenge_SiegelIndefinite"
+roots = ["Challenge_SiegelIndefinite"]
+
+[[lean_lib]]
+name = "Solution_SiegelIndefinite"
+roots = ["Solution_SiegelIndefinite"]
+
+[[lean_lib]]
+name = "Challenge_SiegelWeil"
+roots = ["Challenge_SiegelWeil"]
+
+[[lean_lib]]
+name = "Solution_SiegelWeil"
+roots = ["Solution_SiegelWeil"]
+
+[[lean_lib]]
+name = "Challenge_ClassicalCases"
+roots = ["Challenge_ClassicalCases"]
+
+[[lean_lib]]
+name = "Solution_ClassicalCases"
+roots = ["Solution_ClassicalCases"]
+
+[[lean_lib]]
+name = "Challenge_ExactMass"
+roots = ["Challenge_ExactMass"]
+
+[[lean_lib]]
+name = "Solution_ExactMass"
+roots = ["Solution_ExactMass"]
+
+[[lean_lib]]
+name = "Challenge_Classification"
+roots = ["Challenge_Classification"]
+
+[[lean_lib]]
+name = "Solution_Classification"
+roots = ["Solution_Classification"]
+
+[[lean_lib]]
+name = "Challenge_Voight"
+roots = ["Challenge_Voight"]
+
+[[lean_lib]]
+name = "Solution_Voight"
+roots = ["Solution_Voight"]
+
+[[lean_lib]]
+name = "Challenge_Shimura"
+roots = ["Challenge_Shimura"]
+
+[[lean_lib]]
+name = "Solution_Shimura"
+roots = ["Solution_Shimura"]
+
+[[lean_lib]]
+name = "Challenge_ChenevierLannes"
+roots = ["Challenge_ChenevierLannes"]
+
+[[lean_lib]]
+name = "Solution_ChenevierLannes"
+roots = ["Solution_ChenevierLannes"]
+
+[[lean_lib]]
+name = "Challenge_MorenoWagstaff"
+roots = ["Challenge_MorenoWagstaff"]
+
+[[lean_lib]]
+name = "Solution_MorenoWagstaff"
+roots = ["Solution_MorenoWagstaff"]
+
+# Historical libraries: one lean_lib per historical work, not imported by `QuadFormsKB`.
+
+[[lean_lib]]
+name = "QuadFormsKBHistoricalGauss"
+roots = ["QuadFormsKB.Historical.Gauss"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.Jacobi"
+roots = ["QuadFormsKB.Historical.Jacobi"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.SumsOfSquares"
+roots = ["QuadFormsKB.Historical.SumsOfSquares", "QuadFormsKB.Historical.SumsOfSquares.Siegel", "QuadFormsKB.Historical.SumsOfSquares.Eisenstein", "QuadFormsKB.Historical.SumsOfSquares.JacobiCounts", "QuadFormsKB.Historical.SumsOfSquares.OddSquares", "QuadFormsKB.Historical.SumsOfSquares.SixSquares", "QuadFormsKB.Historical.SumsOfSquares.SixSquaresAll", "QuadFormsKB.Historical.SumsOfSquares.FiveSquares", "QuadFormsKB.Historical.SumsOfSquares.FiveSevenFour", "QuadFormsKB.Historical.SumsOfSquares.PositiveOddSquares"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.BinaryForms"
+roots = ["QuadFormsKB.Historical.BinaryForms", "QuadFormsKB.Historical.BinaryForms.Dirichlet", "QuadFormsKB.Historical.BinaryForms.Smith", "QuadFormsKB.Historical.BinaryForms.Primes"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.Ramanujan"
+roots = ["QuadFormsKB.Historical.Ramanujan", "QuadFormsKB.Historical.Ramanujan.Ternary", "QuadFormsKB.Historical.Ramanujan.Quaternary", "QuadFormsKB.Historical.Ramanujan.Papers", "QuadFormsKB.Historical.Ramanujan.Reductions", "QuadFormsKB.Historical.Ramanujan.SquaresDivisorSums", "QuadFormsKB.Historical.Ramanujan.Exceptions", "QuadFormsKB.Historical.Ramanujan.Asymptotic"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.SmithPapers"
+roots = ["QuadFormsKB.Historical.SmithPapers.Ternary", "QuadFormsKB.Historical.SmithPapers.Values"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.DicksonStudies"
+roots = ["QuadFormsKB.Historical.DicksonStudies.Ternary", "QuadFormsKB.Historical.DicksonStudies.UniversalZeroForms"]
+
+[[lean_lib]]
+name = "QuadFormsKB.Historical.Dickson"
+roots = ["QuadFormsKB.Historical.Dickson", "QuadFormsKB.Historical.Dickson.Legendre", "QuadFormsKB.Historical.Dickson.Minima", "QuadFormsKB.Historical.Dickson.Universal", "QuadFormsKB.Historical.Dickson.Elementary"]

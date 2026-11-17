@@ -14,8 +14,10 @@ Weil's comparison of the spherical sum with the plain zeta integral (A. Weil, *A
 * `tendsto_mul_of_sandwich` (**the limit $S \to \infty$**, Weil's (8), p. 108): if for every $\varepsilon > 0$ the function is
   eventually between $\mu Y$ and $\mu'Y$ with $1 - \varepsilon \le \mu$, $\mu' \le 1 + \varepsilon$ and $sY(s) \to L$, then $sZ(s) \to L$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.SpecialFunctions.Log.Summable
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open Filter Topology
 

@@ -10,8 +10,8 @@ quaternion algebra $B$ over $F$ with main involution $x \mapsto x^\iota$ and $d 
 $\varphi[x] = d\,xx^\iota$ on $Z = B$. Here $B$ is Mathlib's `ℍ[F, c₀, c₁]` (`QuaternionAlgebra F c₀ 0 c₁`: basis
 $1, i, j, k = ij$ with $i^2 = c_0$, $j^2 = c_1$, $ij = -ji$), with $c_0c_1 \ne 0$, and $x^\iota$ is `star x`.
 *Restriction:* every quaternion algebra over a field of characteristic $\ne 2$ has this form, but that
-classification is not in Mathlib, so the results are stated for $B$ given in this standard form
-(loose end LE-QF-0995). The reduced norm $N(x) = xx^\iota$ is `nrd x`
+classification is not in Mathlib, so the results are stated for $B$ given in this standard form.
+The reduced norm $N(x) = xx^\iota$ is `nrd x`
 ($= x_0^2 - c_0x_1^2 - c_1x_2^2 + c_0c_1x_3^2$ in the coordinates $x = x_0 + x_1i + x_2j + x_3k$), and $\varphi$ is
 `quatForm c₀ c₁ d` with `quatForm c₀ c₁ d x = d * nrd x`. As in `CliffordGroups.lean`: $A(Z)$ = `CliffordAlgebra φ`,
 $A^+(Z)$ = `evenOdd φ 0`, $a \mapsto a^*$ = `reverse`, $G^+(Z)$ = `M0 φ`, $G^1(Z)$ = `spinGroupG1 φ`, $\nu$ =

@@ -1,6 +1,6 @@
 # Mass formulas
 
-The **mass** of a genus of positive definite lattices is $`\sum_{L'} 1/|\mathrm{Aut}(L')|`$, the sum over the classes $`L'`$ in the genus. The library proves the mass formula in two kinds of form: Siegel's general form, which expresses the mass through local densities, and exact evaluations, which compute it in closed form from local invariants of the lattice. Every statement below is a headline of [`Challenge.lean`](../../Challenge.lean) (proved in [`Solution.lean`](../../Solution.lean)), checked by the Lean kernel with only the standard axioms and no unproved input. The headlines added in 0.4.0 are not yet reviewed by a human (see the README, Provenance).
+The **mass** of a genus of positive definite lattices is $`\sum_{L'} 1/|\mathrm{Aut}(L')|`$, the sum over the classes $`L'`$ in the genus. The library proves the mass formula in two kinds of form: Siegel's general form, which expresses the mass through local densities, and exact evaluations, which compute it in closed form from local invariants of the lattice. Every statement below is a headline of the headline files `Challenge_<book>.lean` (listed in [`comparator.json`](../../comparator.json)) (proved in the matching `Solution_<book>.lean`), checked by the Lean kernel with only the standard axioms and no unproved input. The headlines added in 0.4.0 are not yet reviewed by a human (see the README, Provenance).
 
 ## Siegel's general form (since 0.2.0)
 

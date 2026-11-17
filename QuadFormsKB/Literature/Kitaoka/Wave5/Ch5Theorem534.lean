@@ -17,6 +17,7 @@ import QuadFormsKB.Literature.Kitaoka.Wave5.Ch1KneserMain
 import QuadFormsKB.Literature.Kitaoka.Ch5Extension
 import Mathlib.LinearAlgebra.FreeModule.PID
 import Mathlib.RingTheory.Noetherian.Basic
+import Mathlib.RingTheory.Etale.Weakly
 
 open QuadraticMap
 

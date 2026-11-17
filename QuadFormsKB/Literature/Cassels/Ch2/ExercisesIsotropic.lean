@@ -14,6 +14,9 @@ nondegenerate, autometries are `OMeara.orth Q`.
 * Ex. 16, 17 (p. 33): isotropy over $k(\sqrt D)$, written over $k$ (`ex16`, `ex17`).
 -/
 import QuadFormsKB.Literature.OMeara.Sec43CD
+import Mathlib.LinearAlgebra.Matrix.FiniteDimensional
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 open QuadraticMap Module
 

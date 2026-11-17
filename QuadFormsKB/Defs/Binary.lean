@@ -6,7 +6,6 @@ coefficient matrix `!![a, b; 0, c]`. The classical names `a, b, c` are accessors
 `BinQF.mk a b c` builds a form. `b` is not required to be even (Gauss required it; the
 integer-coefficient convention here does not).
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
 
 namespace QuadFormsKB

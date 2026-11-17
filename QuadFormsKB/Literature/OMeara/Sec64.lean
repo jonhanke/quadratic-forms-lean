@@ -26,8 +26,8 @@ components (`mem_ideleSupportedAt_iff`); $\dot F_\mathfrak p \to I_\mathfrak p$ 
 (`ideleSupportedAtEquiv`); $I_\mathfrak p \subseteq J^S$ if and only if $\mathfrak p \notin S$
 (`ideleSupportedAt_le_sIdeles_iff`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.NumberTheory.NumberField.AdeleRing
 
 open NumberField IsDedekindDomain
 

@@ -13,8 +13,8 @@
 Sources: Freitag, *Siegelsche Modulfunktionen* (1983), Ch. I §1 [unverified]; Klingen, *Introductory lectures on
 Siegel modular forms* (1990), §I.1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Analysis.Matrix.Order
 
 open Matrix Complex
 

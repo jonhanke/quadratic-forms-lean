@@ -29,8 +29,16 @@ $\mathbb Z^n$ (the kernel of $\mathbb Z^n \to \prod_l \mathbb Z/m_l$), so $d(\La
 parallelepiped $\lvert L_j(\vec x)\rvert \le t_j$; the strict inequalities for $j \ne 0$ follow by Cassels' limiting
 argument (finitely many integral points in a bounded parallelepiped, `finite_bounded`).
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Module.ZLattice.Covolume
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Dynamics.Ergodic.Action.Regular
+import Mathlib.LinearAlgebra.Matrix.SchurComplement
+import Mathlib.MeasureTheory.Group.GeometryOfNumbers
+import Mathlib.Tactic.Positivity
 
 namespace QuadFormsKB.Cassels
 

@@ -29,6 +29,9 @@ $r - s + 2 \equiv t$ ($e = +$), $r - s + 6 \equiv t$ ($e = -$) (type I), and $r 
 is forced by (29) (`det3Data`). The oddity cast $r - s \in \mathbb Z/8$ is taken in `ZMod 8`.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Existence
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Ring.IsFormallyReal
 
 namespace QuadFormsKB.ConwaySloane
 

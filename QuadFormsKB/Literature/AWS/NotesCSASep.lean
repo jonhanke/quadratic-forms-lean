@@ -20,6 +20,7 @@ The notes cite [GS06, Prop 2.2.5] for the proof; we use the following purely alg
    subextension $K \subseteq F^{\mathrm{sep}}$ that already splits $A$; it is separable over $F$.
 -/
 import QuadFormsKB.Literature.AWS.NotesCSA
+import Mathlib.Algebra.Central.Matrix
 
 open TensorProduct
 

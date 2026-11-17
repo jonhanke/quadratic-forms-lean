@@ -37,7 +37,6 @@ evaluation $\zeta_{-3}(1) = \pi/(2\sqrt3)$ in `Table6.lean` (`zetaD_neg_three_on
 **Table 3 check.** The printed rational constants of Table 3 were recomputed independently (exact fractions) from (7) for
 $1 \le n \le 25$ and agree with the printed values in every case; the Lean statements below are the printed values.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.MassCheck
 

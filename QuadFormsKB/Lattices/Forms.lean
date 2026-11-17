@@ -19,6 +19,7 @@ equivalent), so they are omitted.
 -/
 import QuadFormsKB.Lattices.Basic
 import QuadFormsKB.Siegel.Genus
+import Mathlib.NumberTheory.Padics.HeightOneSpectrum
 
 open NumberField IsDedekindDomain Matrix
 

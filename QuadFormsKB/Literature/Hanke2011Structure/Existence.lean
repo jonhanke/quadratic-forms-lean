@@ -27,7 +27,6 @@ $(u,u)_{\mathfrak p} = 1$ (`remark_5_8_hasse`). With the counting step `LocalGen
 $B^*_{\mathfrak p;n}(uS_{\mathfrak p}) = B^*_{\mathfrak p;n}(S_{\mathfrak p})$, i.e. the Euler factors depend only on
 $\operatorname{ord}_{\mathfrak p}(S_{\mathfrak p})$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Literature.Hanke2011Structure.HessianParity
 import QuadFormsKB.Literature.Hanke2011Structure.LocalGenera

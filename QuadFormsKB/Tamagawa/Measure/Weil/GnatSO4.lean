@@ -31,6 +31,7 @@ Involutions* (1998), §15 [unverified]; Voight 2021, §4.5 [unverified].
 -/
 import QuadFormsKB.Tamagawa.QuaternionSO3
 import QuadFormsKB.Literature.LocalGlobal.PadicClassification
+import Mathlib.Algebra.QuadraticAlgebra.Basic
 
 open Quaternion Matrix
 open scoped QuadraticAlgebra

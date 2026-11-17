@@ -14,7 +14,7 @@ the Hausdorff property are not used.
 with `V V⁻¹ ⊆ W`. By second countability (Lindelöf) the open sets `V g` cover `G` by countably many `U_n = V g_n`, and
 `γ U_n ∩ U_n ≠ ∅ → γ = 1` for `γ ∈ Γ`. Put `D = ⋃_n (U_n ∖ ⋃_{m<n} Γ U_m)`.
 -/
-import Mathlib
+import Mathlib.MeasureTheory.Group.FundamentalDomain
 
 open MeasureTheory Set Pointwise
 

@@ -1,5 +1,17 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.Algebra.Order.Star.Int
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Normed.Group.Ultra
+import Mathlib.Analysis.Normed.Order.Lattice
+import Mathlib.GroupTheory.Nilpotent
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.NumberTheory.Padics.ProperSpace
+import Mathlib.Tactic.Monotonicity
+import Mathlib.Tactic.Positivity
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 /-!
 # Cassels, Chapter 8, Lemma 5.1: forms congruent modulo a high power of $p$ are $\mathbb Z_p$-equivalent

@@ -9,8 +9,8 @@ For each book formalized in this library, a table from the items of the book to 
 
 Statement maps (the central results of the book that are stated in Lean, with their status; not a complete map of the book):
 
-- [J. Voight, *Quaternion Algebras*](voight2021.md): 40 central results; proved: 24; proved in part: 3; conditional: 1; stated: 12.
-- [G. Shimura, *Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups*](shimura2004.md): 44 central results; proved: 25; proved in part: 10; conditional: 2; stated: 7.
-- [Y. Kitaoka, *Arithmetic of Quadratic Forms*](kitaoka1993.md): 68 central results; proved: 36; proved in part: 8; stated: 24.
-- [G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*](chenevierlannes2019.md): 32 central results; proved: 6; proved in part: 12; conditional: 3; stated: 11.
-- [C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*](morenowagstaff2005.md): 31 central results; proved: 29; proved in part: 1; stated: 1.
+- [J. Voight, *Quaternion Algebras*](voight2021.md): 40 central results; proved: 29; proved in part: 3; conditional: 1; stated: 7.
+- [G. Shimura, *Arithmetic and Analytic Theories of Quadratic Forms and Clifford Groups*](shimura2004.md): 45 central results; proved: 31; proved in part: 11; stated: 3.
+- [Y. Kitaoka, *Arithmetic of Quadratic Forms*](kitaoka1993.md): 68 central results; proved: 36; proved in part: 9; stated: 23.
+- [G. Chenevier and J. Lannes, *Automorphic Forms and Even Unimodular Lattices*](chenevierlannes2019.md): 32 central results; proved: 11; proved in part: 11; conditional: 2; stated: 8.
+- [C. J. Moreno and S. S. Wagstaff, Jr., *Sums of Squares of Integers*](morenowagstaff2005.md): 31 central results; proved: 30; stated: 1.

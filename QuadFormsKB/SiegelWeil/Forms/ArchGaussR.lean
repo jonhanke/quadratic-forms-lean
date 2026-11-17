@@ -26,10 +26,15 @@ Sources: Siegel, *Über die analytische Theorie der quadratischen Formen*, Ann. 
 [unverified]; Siegel, *Einführung in die Theorie der Modulfunktionen n-ten Grades*, Math. Ann. 116 (1939), §6 (the integral
 $\int e^{\pi i\operatorname{tr}(X^{\mathsf T}SXZ)}dX$) [unverified]; Kudla, *Some extensions of the Siegel–Weil formula* (2008), §1 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.SiegelSpace
 import QuadFormsKB.Tamagawa.Measure.PiProdLintegral
+import Mathlib.Analysis.LocallyConvex.AbsConvexOpen
+import Mathlib.Analysis.SpecialFunctions.Gaussian.GaussianIntegral
+import Mathlib.MeasureTheory.Integral.Pi
+import Mathlib.RingTheory.Etale.Weakly
+import Mathlib.RingTheory.Flat.TorsionFree
+import Mathlib.RingTheory.TotallySplit
 
 open MeasureTheory Matrix Complex
 open scoped Real

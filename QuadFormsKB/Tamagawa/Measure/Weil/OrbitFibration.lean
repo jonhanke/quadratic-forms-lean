@@ -1,5 +1,7 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.MeasureTheory.Measure.Haar.Basic
+import Mathlib.MeasureTheory.Measure.WithDensity
+import Mathlib.Order.CompletePartialOrder
 
 /-!
 # The orbit fibration of a Haar measure

@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 import QuadFormsKB.Tamagawa.Measure.Weil.FundamentalDomain
+import Mathlib.LinearAlgebra.Basis.MulOpposite
 
 /-!
 # The idele group $\mathbb A_F^\times$

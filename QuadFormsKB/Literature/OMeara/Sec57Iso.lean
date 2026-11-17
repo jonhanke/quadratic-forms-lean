@@ -20,6 +20,7 @@ $Q(x) = Nx$ (`Quaternions57.nrdQuadraticForm`), and O'Meara's bilinear form $B$ 
 import QuadFormsKB.Literature.OMeara.Sec57
 import QuadFormsKB.Literature.OMeara.Sec52A
 import QuadFormsKB.Witt.Cancellation
+import Mathlib.RingTheory.SimpleRing.Congr
 
 open Quaternion QuadFormsKB.Quat QuadFormsKB.OMeara.Quaternions57 TensorProduct
 

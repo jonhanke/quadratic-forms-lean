@@ -24,6 +24,8 @@ exist) and $S'$ symmetric.
 -/
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5Stabilization
 import QuadFormsKB.Literature.Kitaoka.Wave2.Ch5KernelCount
+import Mathlib.Analysis.Normed.Order.Lattice
+import Mathlib.Tactic
 
 open Matrix Filter
 

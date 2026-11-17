@@ -1,4 +1,8 @@
 import QuadFormsKB.Literature.AWS.Adelic
+import Mathlib.NumberTheory.Padics.LocalField
+import Mathlib.Topology.Connected.Separation
+import Mathlib.Topology.Instances.Matrix
+import Mathlib.Topology.MetricSpace.Ultra.TotallySeparated
 
 open Matrix
 

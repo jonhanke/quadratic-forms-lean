@@ -1,4 +1,5 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.PDArchRatio
+import Mathlib.Tactic
 
 /-!
 # $\tau(SO(D^0))$ for every quaternion algebra, split or not, from $\tau(\mathrm{SL}_1(D))$

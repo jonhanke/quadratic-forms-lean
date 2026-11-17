@@ -3,8 +3,12 @@ Copyright (c) 2026 Jonathan Hanke. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
 Authors: Jonathan Hanke
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Group.Pi.Units
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Ideal.Norm.AbsNorm
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # The number of units of $\mathcal O/I$ for a Dedekind domain (Euler's function for ideals)

@@ -8,7 +8,9 @@ formula, not the proof): $m = x_0^2 - 2x_1^2$ has a solution in the box $0\le x_
 $q\equiv3,5\pmod8$ divides $m$ to an even power. The box suffices: for $m>0$ some solution has
 $0\le x_1\le\sqrt{m/2}\le7$ (reduce by the unit $3+2\sqrt2$), hence $x_0^2 = m + 2x_1^2\le198$.
 -/
-import Mathlib
+import Mathlib.Data.Nat.PadicValNat
+import Mathlib.Data.Nat.PrimeFin
+import Mathlib.Order.Interval.Finset.Nat
 
 namespace QuadFormsKB.Tamagawa.Classical.Checks
 

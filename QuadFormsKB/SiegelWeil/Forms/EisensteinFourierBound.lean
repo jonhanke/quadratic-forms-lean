@@ -17,7 +17,6 @@ vanishes at $Y$ as soon as some entry of $Y$ has norm $> R'$ ($R'$ independent o
 where $\psi(2a_iH_{ij}Y_{ij}) \ne 1$; (4) $|\omega(w)\varphi(Y)| \le |\gamma_V^rc_B^r|\int|\varphi|$. So the integrand is bounded by a
 constant times the indicator of a compact box.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Weil.Genus.NonArchSg
 import QuadFormsKB.Weil.Genus.WeilRepUncond

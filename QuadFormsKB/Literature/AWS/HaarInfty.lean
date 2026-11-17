@@ -1,4 +1,7 @@
 import QuadFormsKB.Literature.AWS.Adelic
+import Mathlib.Algebra.Order.Star.Real
+import Mathlib.Analysis.Matrix.PosDef
+import Mathlib.Topology.Algebra.Group.Units
 
 open Matrix
 

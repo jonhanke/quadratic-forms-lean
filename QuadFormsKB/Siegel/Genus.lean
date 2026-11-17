@@ -16,6 +16,8 @@ work, not imported); **$\mathrm{GL}_n(\mathbb{Z})$-classes** and $\mathrm{Aut} \
 import QuadFormsKB.Literature.Universal.Basic
 import QuadFormsKB.Literature.AWS.Measures
 import QuadFormsKB.LocalDensity.LowerBounds
+import Mathlib.Algebra.Order.Star.Rat
+import Mathlib.Topology.Separation.CompletelyRegular
 
 open Matrix
 

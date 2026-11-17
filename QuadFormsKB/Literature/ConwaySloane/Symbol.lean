@@ -35,8 +35,13 @@ exactly Conway–Sloane's walk (the oddities of the individual members are then 
 the book, intermediate symbols may contain impossible constituents (p. 382: "Transformations involving such impossible
 constituents are quite legal provided the end results are meaningful").
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.BigOperators.Ring.Finset
+import Mathlib.Data.ZMod.Defs
+import Mathlib.Order.Interval.Finset.Nat
+import Mathlib.Tactic.Abel
+import Mathlib.Tactic.LinearCombination
+import Mathlib.Tactic.Ring
 
 namespace QuadFormsKB.ConwaySloane
 

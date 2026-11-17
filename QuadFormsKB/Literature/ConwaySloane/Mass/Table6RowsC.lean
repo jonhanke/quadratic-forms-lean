@@ -40,6 +40,7 @@ the trivial character modulo $1$ (`(1 : DirichletCharacter ℂ 1)`).
 (exact rational arithmetic, Python) before the formal proof.
 -/
 import QuadFormsKB.Literature.ConwaySloane.Mass.Table6Abs
+import Mathlib.Tactic.Simproc.Factors
 
 namespace QuadFormsKB.ConwaySloane.Mass
 

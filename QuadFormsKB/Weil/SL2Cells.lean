@@ -36,8 +36,11 @@ Sources: Kudla, *Notes on the local theta correspondence* (1996), §I.1 (generat
 [unverified]; Bump, *Automorphic Forms and Representations* (1997), Prop. 4.8.x (the Weil representation
 defined on generators) [unverified]; Lang, *SL₂(ℝ)*, Ch. XI §2 [unverified].
 -/
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.LinearAlgebra.Matrix.SpecialLinearGroup
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open Matrix
 open scoped MatrixGroups

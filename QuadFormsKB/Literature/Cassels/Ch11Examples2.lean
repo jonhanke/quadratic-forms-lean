@@ -21,7 +21,8 @@ unit, $t \in p\mathbb Z_p$); for other $a$, write a representation as $p^jx'$ wi
 $M = k + 1$ works.
 -/
 import QuadFormsKB.Defs.QuadForm
-import Mathlib
+import Mathlib.Algebra.Order.Ring.Star
+import Mathlib.NumberTheory.Padics.PadicIntegers
 
 open scoped Matrix
 

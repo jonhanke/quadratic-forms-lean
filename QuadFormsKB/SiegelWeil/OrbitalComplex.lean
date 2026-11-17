@@ -27,10 +27,10 @@ $\psi_{\mathbb C}(z) = e(\operatorname{Tr}_{\mathbb C/\mathbb R}z) = e^{2\pi i\c
 * **`whittakerC_gaussMajC_eq_orbCR`**: for the Gaussian of the majorant $e^{-2\pi\sum_i|a_i||x_i|^2}$ of
   $Q = \sum_ia_ix_i^2$, $n\ge3$, the Whittaker integral converges absolutely and equals $\tfrac14\rho_\Phi(m)$, $m\ne0$.
 -/
-import Mathlib
 import QuadFormsKB.Citation
 import QuadFormsKB.Tamagawa.Measure.SphereLerayC
 import QuadFormsKB.SiegelWeil.OrbitalReal
+import Mathlib.Analysis.Complex.Isometry
 
 open MeasureTheory Measure Set Filter Topology Complex
 open scoped ENNReal FourierTransform RealInnerProductSpace NNReal

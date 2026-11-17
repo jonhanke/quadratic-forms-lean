@@ -18,6 +18,7 @@ Weil 1982, §3.3, Lemma 3.3.2 (uses Eichler) [unverified page].
 -/
 import QuadFormsKB.Tamagawa.LocalRankFive
 import QuadFormsKB.Tamagawa.Measure.Weil.GnatSO4
+import Mathlib.NumberTheory.NumberField.InfiniteAdeleRing
 
 open Quaternion NumberField IsDedekindDomain
 open scoped QuadraticAlgebra

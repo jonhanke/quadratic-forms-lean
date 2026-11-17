@@ -1,5 +1,10 @@
-import Mathlib
 import QuadFormsKB.Citation
+import Mathlib.Algebra.Ring.IsFormallyReal
+import Mathlib.LinearAlgebra.Matrix.GeneralLinearGroup.Defs
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.Int.Basic
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 /-!
 # Cassels, Chapter 13, §5: the ternary form $x_0x_2 - x_1^{2}$ and binary forms

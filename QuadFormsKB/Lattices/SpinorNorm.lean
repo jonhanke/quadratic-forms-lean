@@ -29,6 +29,7 @@ of the words.) Then $g = c \in K$ and $c^2 = g^tg = \prod Q(x_i)$. Mathlib's `li
 -/
 import QuadFormsKB.Lattices.CartanDieudonne
 import QuadFormsKB.Witt.Bridge
+import Mathlib.LinearAlgebra.CliffordAlgebra.Contraction
 
 open Matrix CliffordAlgebra
 

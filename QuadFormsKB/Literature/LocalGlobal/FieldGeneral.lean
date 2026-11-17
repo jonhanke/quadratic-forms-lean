@@ -12,6 +12,8 @@ Indices are 0-based (`Fin n`).
 -/
 import QuadFormsKB.Literature.LocalGlobal.HasseMinkowskiFour
 import QuadFormsKB.Literature.LocalGlobal.RankFive
+import Mathlib.RingTheory.Coalgebra.IsFrobenius
+import Mathlib.RingTheory.HopfAlgebra.Basic
 
 namespace QuadFormsKB.FieldGen
 

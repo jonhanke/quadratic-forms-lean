@@ -23,10 +23,13 @@ field is $k$, so $c$ is a square in $k$.
 
 Indices are 0-based.
 -/
-import Mathlib
 import QuadFormsKB.Defs.QuadForm
 import QuadFormsKB.Defs.Hilbert
 import QuadFormsKB.FunctionField.DedekindLocal
+import Mathlib.FieldTheory.RatFunc.Valuation
+import Mathlib.RingTheory.Henselian
+import Mathlib.RingTheory.RegularLocalRing.Defs
+import Mathlib.RingTheory.SimpleRing.Principal
 
 open IsDedekindDomain Polynomial WithZero
 

@@ -4,7 +4,7 @@ file `SpherePacking/CohnElkies/PoissonSummationLattices/UnitAddTorus.lean`, comm
 Ported to Mathlib for Lean v4.35.0 for QuadFormsKB.
 Original copyright: the Sphere-Packing-Lean contributors. Licensed under the Apache License 2.0.
 -/
-import Mathlib
+import Mathlib.Analysis.Fourier.AddCircleMulti
 
 /-!
 Helper lemmas about the quotient map `(Fin n → ℝ) → (ℝ/ℤ)^n` used in the Poisson summation
