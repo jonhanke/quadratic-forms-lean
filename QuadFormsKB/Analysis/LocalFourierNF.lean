@@ -396,15 +396,18 @@ instance : MeasurableSpace Fv := borel Fv
 
 instance : BorelSpace Fv := ⟨rfl⟩
 
-/-- $F_v$ is locally compact (it is a finite-dimensional $\mathbb{Q}_p$-vector space). -/
-instance : LocallyCompactSpace Fv :=
-  ((Module.finBasis ℚ_[resChar v] Fv).equivFun.toContinuousLinearEquiv).toHomeomorph.isOpenEmbedding.locallyCompactSpace
-
 /-- $F_v$ is a nontrivially normed field ($0 < \|\varpi\| < 1$). -/
 instance : NontriviallyNormedField Fv :=
   .ofNormNeOne ⟨HN.ϖ v, HN.ϖ_ne_zero v, (norm_ϖ_lt_one v).ne⟩
 
-instance : ProperSpace Fv := .of_nontriviallyNormedField_of_weaklyLocallyCompactSpace Fv
+/-- $F_v$ is locally compact (it is a finite-dimensional $\mathbb{Q}_p$-vector space). Not an instance: local
+compactness comes from `ProperSpace Fv` below through Mathlib's instance. -/
+theorem locallyCompactSpace_adicCompletion : LocallyCompactSpace Fv :=
+  ((Module.finBasis ℚ_[resChar v] Fv).equivFun.toContinuousLinearEquiv).toHomeomorph.isOpenEmbedding.locallyCompactSpace
+
+instance : ProperSpace Fv :=
+  have := locallyCompactSpace_adicCompletion v
+  .of_nontriviallyNormedField_of_weaklyLocallyCompactSpace Fv
 
 /-- $\mathfrak p_v^k$ is the closed ball of radius $\|\varpi^k\|$. -/
 lemma coe_latticeV (k : ℤ) : (latticeV v k : Set Fv) = Metric.closedBall 0 ‖HN.ϖ v ^ k‖ := by

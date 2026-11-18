@@ -70,7 +70,7 @@ variable (F) in
 /-- $\mathrm{GL}_n(\mathbb A_F)$, $n = k + 1$: the units of $M_n(\mathbb A_F)$ with the units topology. -/
 abbrev GLA : Type := GL (Fin (k + 1)) (Adeles F)
 
-instance : T2Space (GLA F k) := inferInstance
+local instance : T2Space (GLA F k) := inferInstance
 
 instance : SecondCountableTopology (Matrix ι ι (Adeles F))ᵐᵒᵖ :=
   (MulOpposite.opHomeomorph (M := Matrix ι ι (Adeles F))).symm.isEmbedding.secondCountableTopology
@@ -110,15 +110,25 @@ instance : LocallyCompactSpace (GLOne F k) :=
 
 instance : SecondCountableTopology (GLOne F k) := TopologicalSpace.Subtype.secondCountableTopology _
 
-instance measurableSpace_GLOne : MeasurableSpace (GLOne F k) := borel _
-instance : BorelSpace (GLOne F k) := ⟨rfl⟩
+/-- $\mathrm{GL}_n(\mathbb A)$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace` over the product σ-algebra of
+$M_n(\mathbb A)$), which is its Borel σ-algebra (`borelSpace_units`). $\mathrm{GL}_n(\mathbb A)^1$ then carries
+Mathlib's subspace σ-algebra, again Borel (`Subtype.borelSpace`). -/
+instance : BorelSpace (GLA F k) :=
+  have : BorelSpace (ι → Adeles F) := inferInstance
+  have : SecondCountableTopology (ι → Adeles F) := inferInstance
+  have : BorelSpace (Matrix ι ι (Adeles F)) := inferInstanceAs (BorelSpace (ι → ι → Adeles F))
+  borelSpace_units (Matrix ι ι (Adeles F))
+
+/-- $\mathrm{GL}_n(\mathbb A)^1$ with Mathlib's subspace σ-algebra is Borel (`Subtype.borelSpace`, through the set
+coercion of the subgroup). -/
+instance : BorelSpace (GLOne F k) := inferInstanceAs (BorelSpace (GLOneSub F k : Set (GLA F k)))
 
 instance : StandardBorelSpace (GLOne F k) := by
   have := polishSpace_of_isTopologicalGroup (GLOne F k)
   infer_instance
 
 instance : MeasurableMul₂ (GLOne F k) := ContinuousMul.measurableMul₂
-instance : MeasurableInv (GLOne F k) := ContinuousInv.measurableInv
+local instance : MeasurableInv (GLOne F k) := ContinuousInv.measurableInv
 instance : MeasurableMul (GLOne F k) := inferInstance
 
 variable (F) in

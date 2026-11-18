@@ -215,7 +215,7 @@ variable (Q : QuadForm ℝ n)
 instance : Group (ArchSO Q) := inferInstanceAs (Group (soReal Q))
 instance : TopologicalSpace (ArchSO Q) := inferInstanceAs (TopologicalSpace (soReal Q))
 instance : IsTopologicalGroup (ArchSO Q) := inferInstanceAs (IsTopologicalGroup (soReal Q))
-instance : T2Space (ArchSO Q) := inferInstanceAs (T2Space (soReal Q))
+local instance : T2Space (ArchSO Q) := inferInstanceAs (T2Space (soReal Q))
 
 local instance secondCountable_matrix : SecondCountableTopology (Matrix (Fin n) (Fin n) ℝ) :=
   inferInstanceAs (SecondCountableTopology (Fin n → Fin n → ℝ))
@@ -226,7 +226,7 @@ local instance secondCountable_op : SecondCountableTopology (Matrix (Fin n) (Fin
 local instance secondCountable_GL : SecondCountableTopology (GL (Fin n) ℝ) :=
   (Units.isEmbedding_embedProduct (M := Matrix (Fin n) (Fin n) ℝ)).secondCountableTopology
 
-instance : SecondCountableTopology (ArchSO Q) :=
+local instance : SecondCountableTopology (ArchSO Q) :=
   (Topology.IsEmbedding.subtypeVal (p := fun g : GL (Fin n) ℝ => g ∈ soReal Q)).secondCountableTopology
 instance : MeasurableSpace (ArchSO Q) := borel _
 instance : BorelSpace (ArchSO Q) := ⟨rfl⟩
@@ -281,9 +281,9 @@ instance : (mu Q).IsHaarMeasure :=
   Measure.IsHaarMeasure.smul _
     (by simpa using archVolSO_pos n (gramDetR_pos hQ.out)) ENNReal.ofReal_ne_top
 
-instance : IsFiniteMeasure (mu Q) := Measure.smul_finite _ ENNReal.ofReal_ne_top
+local instance : IsFiniteMeasure (mu Q) := Measure.smul_finite _ ENNReal.ofReal_ne_top
 
-instance : (mu Q).IsMulLeftInvariant := by unfold mu; infer_instance
+local instance : (mu Q).IsMulLeftInvariant := by unfold mu; infer_instance
 
 end ArchSO
 
@@ -483,7 +483,7 @@ abbrev ArchSOProd : Type _ := ∀ i, ArchSO (Q i)
 /-- **The measure $\mu_\infty$** on $\prod_\sigma SO(Q_\sigma)(\mathbb R)$: the product measure of the $\mu_\sigma$. -/
 def muInf : Measure (ArchSOProd Q) := Measure.pi fun i => ArchSO.mu (Q i)
 
-instance : IsFiniteMeasure (muInf Q) := by unfold muInf; infer_instance
+local instance : IsFiniteMeasure (muInf Q) := by unfold muInf; infer_instance
 
 instance : (muInf Q).IsHaarMeasure := by unfold muInf; infer_instance
 

@@ -61,11 +61,11 @@ variable {R : Type*} [CommRing R] {a b c : R}
 theorem ext {x y : Octonion R a b c} (h₁ : x.fst = y.fst) (h₂ : x.snd = y.snd) : x = y := by
   cases x; cases y; simp_all
 
-instance : Zero (Octonion R a b c) := ⟨⟨0, 0⟩⟩
+local instance : Zero (Octonion R a b c) := ⟨⟨0, 0⟩⟩
 instance : One (Octonion R a b c) := ⟨⟨1, 0⟩⟩
-instance : Add (Octonion R a b c) := ⟨fun x y => ⟨x.fst + y.fst, x.snd + y.snd⟩⟩
-instance : Neg (Octonion R a b c) := ⟨fun x => ⟨-x.fst, -x.snd⟩⟩
-instance : Sub (Octonion R a b c) := ⟨fun x y => ⟨x.fst - y.fst, x.snd - y.snd⟩⟩
+local instance : Add (Octonion R a b c) := ⟨fun x y => ⟨x.fst + y.fst, x.snd + y.snd⟩⟩
+local instance : Neg (Octonion R a b c) := ⟨fun x => ⟨-x.fst, -x.snd⟩⟩
+local instance : Sub (Octonion R a b c) := ⟨fun x y => ⟨x.fst - y.fst, x.snd - y.snd⟩⟩
 instance {S : Type*} [SMul S ℍ[R,a,b]] : SMul S (Octonion R a b c) := ⟨fun r x => ⟨r • x.fst, r • x.snd⟩⟩
 
 /-- The Cayley–Dickson product $(p, q)(r, s) = (pr + c\,\bar s q,\ sp + q\bar r)$. -/

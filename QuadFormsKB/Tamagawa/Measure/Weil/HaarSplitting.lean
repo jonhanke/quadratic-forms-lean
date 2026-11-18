@@ -58,7 +58,7 @@ theorem dtt_ofAdd_Icc : dtt (Multiplicative.toAdd ⁻¹' Icc (0 : ℝ) 1) = 1 :=
   change volume (Icc (0 : ℝ) 1) = 1
   simp
 
-instance : dtt.IsMulLeftInvariant := by
+local instance : dtt.IsMulLeftInvariant := by
   refine ⟨fun g => ?_⟩
   ext A hA
   rw [Measure.map_apply (measurable_const_mul g) hA, dtt_apply, dtt_apply]
@@ -66,12 +66,12 @@ instance : dtt.IsMulLeftInvariant := by
       (fun x : ℝ => Multiplicative.toAdd g + x) ⁻¹' (Multiplicative.ofAdd ⁻¹' A) := rfl
   rw [this, measure_preimage_add]
 
-instance : IsFiniteMeasureOnCompacts dtt := by
+local instance : IsFiniteMeasureOnCompacts dtt := by
   refine ⟨fun K hK => ?_⟩
   rw [dtt_apply]
   exact (show IsCompact (X := ℝ) K from hK).measure_lt_top
 
-instance : dtt.IsOpenPosMeasure := by
+local instance : dtt.IsOpenPosMeasure := by
   refine ⟨fun U hU hne => ?_⟩
   rw [dtt_apply]
   exact (show IsOpen (X := ℝ) U from hU).measure_ne_zero volume hne

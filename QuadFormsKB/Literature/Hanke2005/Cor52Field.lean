@@ -68,7 +68,7 @@ theorem poly_monic : poly.Monic := by
 theorem poly_natDegree : poly.natDegree = 3 := by
   unfold poly; compute_degree!
 
-instance : NumberField K where
+local instance : NumberField K where
   to_charZero := charZero_of_injective_algebraMap (algebraMap ℚ K).injective
   to_finiteDimensional := (AdjoinRoot.powerBasis poly_irreducible.ne_zero).finite
 

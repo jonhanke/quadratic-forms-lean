@@ -243,7 +243,7 @@ theorem gTilde_shift (m j : ℕ) {z z' : Fin n × Fin n → 𝔬} (h : ∀ p, π
 abbrev solG (m j : ℕ) : Type :=
   {z : Fin n × Fin n → RQ v j // ∀ p, πv ^ j ∣ gTilde v Q₀ m (liftI πv j z) p}
 
-instance (m j : ℕ) : Finite (solG v Q₀ m j) := by
+local instance (m j : ℕ) : Finite (solG v Q₀ m j) := by
   have := DVR.finite_vec (ι := Fin n × Fin n) πv (NF.irreducible_π v) j
   infer_instance
 

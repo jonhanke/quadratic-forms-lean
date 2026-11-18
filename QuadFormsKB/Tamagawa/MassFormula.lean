@@ -390,7 +390,9 @@ $\mu_{\mathbb A} = c_F\,\mu_\infty\times\mu_f$ (`Measure.tauSO_eq_covolume`, `Ta
 def tauSO : ℝ :=
   tamagawaK Q₀ * dcMass ((ratPoints QF).subgroupOf (soAf QF)) ((locStab QF (stdLat F n)).subgroupOf (soAf QF))
 
-/-- **Cited input: the Tamagawa number of $SO(V)$ is $2$** (Weil 1982, Thm 4.5.? [unverified]; Siegel; for $n \ge 2$).
+/-- **Cited input: the Tamagawa number of $SO(V)$ is $2$** (Weil 1982, Thm 4.5.? [unverified]; Siegel). It holds for $n \ge 3$,
+and for $n = 2$ when $V$ is anisotropic (e.g. positive definite); $\tau(SO(V)) = 1$ for $n = 1$ (`covolume_muTam_rankOne`) and for
+isotropic binary spaces (`tauOne_binary_isotropic_uncond`), where this hypothesis is false and a result assuming it is vacuous.
 It is a *hypothesis*, not an axiom.
 
 *Meaning.* `tauSO` is defined as $\mu_{\mathrm{Tam}}(K_{SO})\cdot\mathrm{mass}_{SO}$, and this is now a

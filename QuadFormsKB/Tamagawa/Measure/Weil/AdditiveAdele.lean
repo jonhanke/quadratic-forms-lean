@@ -104,8 +104,6 @@ instance : LocallyCompactSpace AF :=
 instance : SecondCountableTopology AF :=
   RestrictedProduct.secondCountableTopology_of_isOpen isOpen_adicCompletionIntegers
 
-instance : IsTopologicalAddGroup AF := inferInstance
-
 instance measurableSpace_finiteAdeleRing : MeasurableSpace AF := borel AF
 
 instance : BorelSpace AF := ⟨rfl⟩
@@ -485,7 +483,7 @@ instance measurableAdd_adeles : MeasurableAdd (Adeles F) := ContinuousAdd.measur
 
 instance : (muAddVec F ι).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
 
-instance : MeasurableAdd (AdeleSpace F ι) := Pi.measurableAdd
+local instance : MeasurableAdd (AdeleSpace F ι) := Pi.measurableAdd
 
 instance : MeasurableConstVAdd (diagVecSub F ι) (AdeleSpace F ι) :=
   AddSubgroup.instMeasurableConstVAdd _

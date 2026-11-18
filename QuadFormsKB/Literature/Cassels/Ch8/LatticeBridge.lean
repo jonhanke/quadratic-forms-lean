@@ -24,7 +24,7 @@ open Matrix Submodule
 variable {n : ℕ} {p : ℕ} [hp : Fact p.Prime]
 
 /-- $2$ is invertible in $\mathbb Q_p$ (needed by O'Meara's bilinear form $B = \frac12$ polar form). -/
-noncomputable instance invertibleTwoPadic : Invertible (2 : ℚ_[p]) := invertibleOfNonzero two_ne_zero
+noncomputable local instance invertibleTwoPadic : Invertible (2 : ℚ_[p]) := invertibleOfNonzero two_ne_zero
 
 /-- Cassels' form $f(\vec x) = \vec x^{t}F\vec x$ as a Mathlib quadratic form on $\mathbb Q_p^n$. -/
 noncomputable abbrev qfForm (F : Matrix (Fin n) (Fin n) ℚ_[p]) : QuadraticForm ℚ_[p] (Fin n → ℚ_[p]) :=

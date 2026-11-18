@@ -46,7 +46,9 @@ $\mu_v$ (that needs the $p$-adic Leray functional of `LerayPadic.lean`).
 import QuadFormsKB.Tamagawa.LocalVolume
 import QuadFormsKB.Tamagawa.LatticeChangeNF
 import QuadFormsKB.Analysis.LocalFourierNF
+import QuadFormsKB.Tamagawa.Measure.UnitsBorel
 import Mathlib.Topology.Algebra.ClopenNhdofOne
+import Mathlib.Analysis.Matrix.MeasurableSpace
 
 open MeasureTheory Measure TopologicalSpace Topology
 open scoped ENNReal NNReal Pointwise
@@ -375,10 +377,17 @@ instance : TotallyDisconnectedSpace (orthGroup Q Fv) := by
     (Units.continuous_val.comp continuous_subtype_val).continuousOn
     (fun a b h => Subtype.ext (Units.ext h)) (isTotallyDisconnected_of_totallyDisconnectedSpace _)⟩
 
-/-- The Borel $\sigma$-algebra on $O(V)(F_v)$. -/
-instance : MeasurableSpace (orthGroup Q Fv) := borel _
+/-- $\mathrm{GL}_n(F_v)$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace` over the product σ-algebra of
+$M_n(F_v)$), which is its Borel σ-algebra (`borelSpace_units_of_secondCountable`). $O(V)(F_v)$ then carries
+Mathlib's subspace σ-algebra (`Subtype.instMeasurableSpace`), again its Borel σ-algebra (`Subtype.borelSpace`). -/
+instance [MeasurableSpace Fv] [BorelSpace Fv] : BorelSpace (GL (Fin n) Fv) :=
+  have : BorelSpace (Matrix (Fin n) (Fin n) Fv) := inferInstanceAs (BorelSpace (Fin n → Fin n → Fv))
+  borelSpace_units_of_secondCountable (Matrix (Fin n) (Fin n) Fv)
 
-instance : BorelSpace (orthGroup Q Fv) := ⟨rfl⟩
+/-- $O(V)(F_v)$ with Mathlib's subspace σ-algebra is Borel (Mathlib's `Subtype.borelSpace`, through the set
+coercion of the subgroup, which instance search does not see by itself). -/
+instance [MeasurableSpace Fv] [BorelSpace Fv] : BorelSpace (orthGroup Q Fv) :=
+  inferInstanceAs (BorelSpace (orthGroup Q Fv : Set (GL (Fin n) Fv)))
 
 /-- **Preimages of compact sets of $\mathrm{GL}_n(F_v)$ are compact** in $O(V)(F_v)$ (it is closed). -/
 theorem isCompact_preimage_val {T : Set (GL (Fin n) Fv)} (hT : IsCompact T) :
@@ -593,9 +602,8 @@ instance : LocallyCompactSpace (SOv v Q₀) :=
 
 instance : SecondCountableTopology (SOv v Q₀) := Topology.IsEmbedding.subtypeVal.secondCountableTopology
 
-/-- $SO(V)(F_v)$ carries the subspace $\sigma$-algebra (Mathlib's `Subtype.instMeasurableSpace`), which is its Borel
-$\sigma$-algebra. -/
-instance : BorelSpace (SOv v Q₀) := inferInstanceAs (BorelSpace (soSub QF Fv : Set (orthGroup QF Fv)))
+/- $SO(V)(F_v)$ carries the subspace $\sigma$-algebra (Mathlib's `Subtype.instMeasurableSpace`), which is its Borel
+$\sigma$-algebra (Mathlib's `Subtype.borelSpace`). -/
 
 /-- **$SO(L_v)$ as a subgroup of $SO(V)(F_v)$.** -/
 def soStabSO : Subgroup (SOv v Q₀) := (stdStab QF v).subgroupOf (soSub QF Fv)

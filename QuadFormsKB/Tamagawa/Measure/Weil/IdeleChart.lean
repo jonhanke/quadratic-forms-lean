@@ -31,7 +31,7 @@ variable {F : Type} [Field F] [NumberField F]
 
 local notation "AF" => FiniteAdeleRing (𝓞 F) F
 
-instance (v : HeightOneSpectrum (𝓞 F)) : LocallyCompactSpace (v.adicCompletion F)ˣ :=
+local instance (v : HeightOneSpectrum (𝓞 F)) : LocallyCompactSpace (v.adicCompletion F)ˣ :=
   (isOpenEmbedding_val_adic v).locallyCompactSpace
 
 instance (v : HeightOneSpectrum (𝓞 F)) : SecondCountableTopology (v.adicCompletion F)ˣ :=

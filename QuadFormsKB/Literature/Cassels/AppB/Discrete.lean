@@ -55,7 +55,7 @@ variable {F : Type} [Field F] [NumberField F] {n : ℕ}
 
 /-- Helper: the finite-adelic orthogonal group is Hausdorff (it embeds continuously and injectively into the product of
 the local groups). -/
-instance t2Space_OAf (Q : QuadForm F n) : T2Space (OAf Q) :=
+local instance t2Space_OAf (Q : QuadForm F n) : T2Space (OAf Q) :=
   T2Space.of_injective_continuous
     (f := fun h : OAf Q => (h : (v : HeightOneSpectrum (𝓞 F)) → orthGroup Q (v.adicCompletion F)))
     (fun a b h => by ext1 v; exact congrFun h v) RestrictedProduct.continuous_coe

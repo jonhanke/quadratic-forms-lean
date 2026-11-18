@@ -64,7 +64,7 @@ theorem mem_rightInvSub {μ : Measure G} {g : G} : g ∈ rightInvSub μ ↔ μ.m
 variable (μ : Measure G) [SigmaFinite μ] [μ.IsMulLeftInvariant]
 
 /-- Right translates of a left-invariant measure are left invariant. -/
-instance isMulLeftInvariant_map_mul_right (g : G) : (μ.map (· * g)).IsMulLeftInvariant := by
+local instance isMulLeftInvariant_map_mul_right (g : G) : (μ.map (· * g)).IsMulLeftInvariant := by
   refine ⟨fun a => ?_⟩
   rw [Measure.map_map (measurable_const_mul a) (measurable_mul_const g)]
   have : (fun x : G => a * x) ∘ (fun x => x * g) = (fun x => x * g) ∘ (fun x => a * x) := by
@@ -262,7 +262,7 @@ theorem measurable_SLnA_entry (i j : ι) :
   measurable_SLnA_iff.mp measurable_id i j
 
 instance : MeasurableMul₂ (SLnA F ι) := ContinuousMul.measurableMul₂
-instance : MeasurableInv (SLnA F ι) := ContinuousInv.measurableInv
+local instance : MeasurableInv (SLnA F ι) := ContinuousInv.measurableInv
 instance : MeasurableMul (SLnA F ι) := inferInstance
 
 /-! ### The discrete subgroup $\mathrm{SL}_\iota(F)$ -/

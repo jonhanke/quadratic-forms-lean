@@ -212,9 +212,9 @@ instance measurableSpace_quatLoc : MeasurableSpace (QuatLoc a b) := borel _
 
 instance : BorelSpace (QuatLoc a b) := ⟨rfl⟩
 
-instance measurableSpace_quatLocUnits : MeasurableSpace (QuatLoc a b)ˣ := borel _
-
-instance : BorelSpace (QuatLoc a b)ˣ := ⟨rfl⟩
+/-- $\mathbb H_K^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`), which is its Borel σ-algebra
+(`borelSpace_units_of_secondCountable`) when $K$ is Hausdorff. -/
+instance [T2Space K] : BorelSpace (QuatLoc a b)ˣ := borelSpace_units_of_secondCountable (QuatLoc a b)
 
 /-- $\operatorname{nrd}:\mathbb H_K^\times\to K^\times$. -/
 def nrdLocUnit : (QuatLoc a b)ˣ →* Kˣ := Units.map (nrdLocHom a b)

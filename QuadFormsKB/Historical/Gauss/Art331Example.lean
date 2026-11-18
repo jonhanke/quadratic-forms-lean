@@ -2,7 +2,6 @@ import QuadFormsKB.Historical.Gauss.SectionSix
 
 /-!
 # Gauss, *Disquisitiones Arithmeticae* Art. 331: the six residues of $997331$ leave only the prime $127$
-
 .  Gauss shows that the residues $-6, 13, -14, 17, 37, -53$ of $997331$ exclude every
 odd prime below $998$ except $127$ (a prime divisor of $997331$ must have each of them as a quadratic residue).
 

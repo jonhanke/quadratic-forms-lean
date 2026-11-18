@@ -326,7 +326,7 @@ theorem finite_not_isIntegralGL (M : GL ι AF) :
 
 /-! ### The Haar character on $\mathbb A_f^n$ -/
 
-instance borelSpace_finVec : BorelSpace (ι → AF) := Pi.borelSpace
+local instance borelSpace_finVec : BorelSpace (ι → AF) := Pi.borelSpace
 
 /-- $\hat{\mathcal O}^n$. -/
 def OHatVec : Set (ι → AF) := Set.univ.pi fun _ => OHat

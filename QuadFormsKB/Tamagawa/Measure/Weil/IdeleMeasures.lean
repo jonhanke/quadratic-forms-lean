@@ -43,9 +43,9 @@ local notation "AF" => FiniteAdeleRing (𝓞 F) F
 
 /-! ### $\omega_\infty$ on $F_\infty^\times$ -/
 
-instance measurableSpace_infUnits : MeasurableSpace (mixedSpace F)ˣ := borel _
-
-instance : BorelSpace (mixedSpace F)ˣ := ⟨rfl⟩
+/-- $F_\infty^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`), which is its Borel σ-algebra
+(`borelSpace_units`). -/
+instance : BorelSpace (mixedSpace F)ˣ := borelSpace_units (mixedSpace F)
 
 theorem continuous_distribHaarChar_mixedSpace :
     Continuous (distribHaarChar (mixedSpace F) : (mixedSpace F)ˣ → ℝ≥0) := by
@@ -79,9 +79,10 @@ theorem omegaInf_eq : omegaInf F = ((Analysis.selfDualInf (F := F)).comap Units.
 
 /-! ### $\omega_v$ on $F_v^\times$ -/
 
-instance measurableSpace_unitsAt (v : HeightOneSpectrum (𝓞 F)) : MeasurableSpace (v.adicCompletion F)ˣ := borel _
-
-instance (v : HeightOneSpectrum (𝓞 F)) : BorelSpace (v.adicCompletion F)ˣ := ⟨rfl⟩
+/-- $F_v^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`), which is its Borel σ-algebra
+(`borelSpace_units_of_secondCountable`). -/
+instance (v : HeightOneSpectrum (𝓞 F)) : BorelSpace (v.adicCompletion F)ˣ :=
+  borelSpace_units_of_secondCountable (v.adicCompletion F)
 
 theorem isOpenEmbedding_val_adic (v : HeightOneSpectrum (𝓞 F)) :
     IsOpenEmbedding (Units.val : (v.adicCompletion F)ˣ → v.adicCompletion F) := by

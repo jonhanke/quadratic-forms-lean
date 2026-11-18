@@ -740,7 +740,7 @@ structure SphSectionC (c : ℂ) (Q' : QuadForm ℂ m) where
   measurable : Measurable toFun
   spec : ∀ x, ArchSOC.mat _ (toFun x) *ᵥ (e₀ : Fin (m + 1) → ℂ) = (x : Fin (m + 1) → ℂ)
 
-instance {n : ℕ} (Q : QuadForm ℂ n) : MeasurableMul₂ (ArchSOC Q) := ContinuousMul.measurableMul₂
+local instance {n : ℕ} (Q : QuadForm ℂ n) : MeasurableMul₂ (ArchSOC Q) := ContinuousMul.measurableMul₂
 
 /-- **The orbit map** $(x, h) \mapsto s(x)\,\mathrm{diag}(1, h)$, $S_c \times SO(Q') \to SO(Q)$. -/
 def orbC {c : ℂ} {Q' : QuadForm ℂ m} (s : SphSectionC c Q') (p : SphC (splitForm c Q') c × ArchSOC Q') :

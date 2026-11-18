@@ -30,7 +30,7 @@ abbrev Realized (k s : ℕ) : Prop := ∃ t u v w : ℕ, k = t^2+u^2+v^2+w^2 ∧
 ($3k < s^2+2s+4$, i.e. $6a + s < s^2 + 4$; and $s^2 < 4k$, i.e. $s^2 < 8a + 4s$). -/
 abbrev Adm (a s : ℕ) : Prop := Odd s ∧ 6 * a + s < s ^ 2 + 4 ∧ s ^ 2 < 8 * a + 4 * s
 
-instance (a s : ℕ) : Decidable (Adm a s) := by unfold Adm; infer_instance
+local instance (a s : ℕ) : Decidable (Adm a s) := by unfold Adm; infer_instance
 
 /-- Cauchy's lemma in the form needed here: admissible pairs are realized. -/
 theorem adm_realized {a s : ℕ} (h : Adm a s) : Realized (2 * a + s) s := by

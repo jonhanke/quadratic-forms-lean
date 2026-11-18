@@ -1,5 +1,5 @@
 /-
-# Chenevier–Lannes 2019, waves 4 to 6 (issue #1, jobs qf-chenevierlannes-s4, -s5, -s6)
+# Chenevier–Lannes 2019: Weyl vectors of Niemeier lattices, neighbours and the theta filtration
 
 Root import for `QuadFormsKB/Literature/ChenevierLannes/Wave4/`: Weyl vectors of Niemeier lattices (Propositions
 3.4.2.1–3.4.2.4 and the integrality of $h$, conditional on Venkov's identity), reflections and neighbours

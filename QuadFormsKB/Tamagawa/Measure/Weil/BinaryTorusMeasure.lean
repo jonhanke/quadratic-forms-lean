@@ -166,8 +166,11 @@ abbrev QuadT : Type := (QuadAdele F d)ˣ ⧸ (quadScalar d).range
 
 instance : MeasurableSpace (QuadAdele F d)ˣ := borel _
 instance : BorelSpace (QuadAdele F d)ˣ := ⟨rfl⟩
-instance : MeasurableSpace (QuadT d) := borel _
-instance : BorelSpace (QuadT d) := ⟨rfl⟩
+/-- $T(\mathbb A)$ carries Mathlib's quotient σ-algebra (`QuotientGroup.measurableSpace`), which is its Borel σ-algebra
+(`QuotientGroup.borelSpace`: a Polish group modulo a closed normal subgroup). -/
+instance : BorelSpace (QuadT d) := by
+  have := polishSpace_of_isTopologicalGroup ((QuadAdele F d)ˣ)
+  exact QuotientGroup.borelSpace
 
 instance : StandardBorelSpace (QuadAdele F d)ˣ := by
   have := polishSpace_of_isTopologicalGroup ((QuadAdele F d)ˣ)

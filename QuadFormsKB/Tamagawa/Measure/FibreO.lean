@@ -34,8 +34,7 @@ theorem measurable_of_pair {α : Type*} [MeasurableSpace α] {f : α → orthGro
     (inferInstance : BorelSpace (Matrix (Fin N) (Fin N) Fv × Matrix (Fin N) (Fin N) Fv)).measurable_eq.symm
   have hpair : Measurable fun a => orthPair v Q (f a) := h1.prodMk h2
   rw [measurable_iff_comap_le]
-  change MeasurableSpace.comap f (borel (orthGroup Q Fv)) ≤ _
-  rw [hb, hbs, MeasurableSpace.comap_comp]
+  rw [(inferInstance : BorelSpace (orthGroup Q Fv)).measurable_eq, hb, hbs, MeasurableSpace.comap_comp]
   exact measurable_iff_comap_le.1 hpair
 
 

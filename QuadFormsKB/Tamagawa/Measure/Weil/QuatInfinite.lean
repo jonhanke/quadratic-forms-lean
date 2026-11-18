@@ -144,9 +144,9 @@ instance measurableSpace_quatInf : MeasurableSpace (QuatInf a b) := borel _
 
 instance : BorelSpace (QuatInf a b) := ⟨rfl⟩
 
-instance measurableSpace_quatInfUnits : MeasurableSpace (QuatInf a b)ˣ := borel _
-
-instance : BorelSpace (QuatInf a b)ˣ := ⟨rfl⟩
+/-- $(D\otimes F_\infty)^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`), which is its Borel
+σ-algebra (`borelSpace_units_of_secondCountable`). -/
+instance : BorelSpace (QuatInf a b)ˣ := borelSpace_units_of_secondCountable (QuatInf a b)
 
 instance : SecondCountableTopology (QuatInf a b)ᵐᵒᵖ :=
   (MulOpposite.opHomeomorph (M := QuatInf a b)).symm.isEmbedding.secondCountableTopology

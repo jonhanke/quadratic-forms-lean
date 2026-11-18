@@ -102,10 +102,6 @@ variable (F) in
 /-- $\mathrm{Sp}_2(\mathbb A_F)$, with the subspace topology from $M_2(\mathbb A_F)$ (blocks `Fin 1 ⊕ Fin 1`). -/
 abbrev Sp2A : Type := symplecticGroup (Fin 1) (Adeles F)
 
-instance measurableSpace_Sp2A : MeasurableSpace (Sp2A F) :=
-  inferInstanceAs (MeasurableSpace {A : Matrix (Fin 1 ⊕ Fin 1) (Fin 1 ⊕ Fin 1) (Adeles F) //
-    A ∈ symplecticGroup (Fin 1) (Adeles F)})
-
 instance : BorelSpace (Sp2A F) :=
   inferInstanceAs (BorelSpace {A : Matrix (Fin 1 ⊕ Fin 1) (Fin 1 ⊕ Fin 1) (Adeles F) //
     A ∈ symplecticGroup (Fin 1) (Adeles F)})
@@ -132,7 +128,7 @@ theorem spSLEquivA_apply (g : Sp2A F) : spSLEquivA F g = spSLEquiv (Adeles F) g 
 instance : Countable (Matrix (Fin 1 ⊕ Fin 1) (Fin 1 ⊕ Fin 1) F) :=
   inferInstanceAs (Countable (Fin 1 ⊕ Fin 1 → Fin 1 ⊕ Fin 1 → F))
 
-instance : Countable (symplecticGroup (Fin 1) F) :=
+local instance : Countable (symplecticGroup (Fin 1) F) :=
   Function.Injective.countable (f := fun g : symplecticGroup (Fin 1) F =>
     (g : Matrix (Fin 1 ⊕ Fin 1) (Fin 1 ⊕ Fin 1) F)) Subtype.val_injective
 

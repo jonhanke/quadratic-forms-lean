@@ -180,9 +180,9 @@ theorem mulG_gen_aux (c : Kˣ) : mulG (gG c) = (mulByG c : G K →+ G K) :=
 theorem mulG_gen (a b : Kˣ) : mulG (gG a) (gG b) = (gG (a * b) : G K) := by
   rw [mulG_gen_aux, mulByG_gen]
 
-instance : Mul (G K) := ⟨fun x y => mulG x y⟩
+local instance : Mul (G K) := ⟨fun x y => mulG x y⟩
 
-instance : One (G K) := ⟨gG 1⟩
+local instance : One (G K) := ⟨gG 1⟩
 
 theorem G_mul_def (x y : G K) : x * y = mulG x y := rfl
 
@@ -306,9 +306,9 @@ theorem mulW_gen_aux (c : Kˣ) : mulW (gW c) = (mulByW c : W K →+ W K) :=
 theorem mulW_gen (a b : Kˣ) : mulW (gW a) (gW b) = (gW (a * b) : W K) := by
   rw [mulW_gen_aux, mulByW_gen]
 
-instance : Mul (W K) := ⟨fun x y => mulW x y⟩
+local instance : Mul (W K) := ⟨fun x y => mulW x y⟩
 
-instance : One (W K) := ⟨gW 1⟩
+local instance : One (W K) := ⟨gW 1⟩
 
 theorem W_mul_def (x y : W K) : x * y = mulW x y := rfl
 

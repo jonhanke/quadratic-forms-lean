@@ -615,11 +615,11 @@ variable (Q : QuadForm ℂ n)
 instance : Group (ArchSOC Q) := inferInstanceAs (Group (soC Q))
 instance : TopologicalSpace (ArchSOC Q) := inferInstanceAs (TopologicalSpace (soC Q))
 instance : IsTopologicalGroup (ArchSOC Q) := inferInstanceAs (IsTopologicalGroup (soC Q))
-instance : T2Space (ArchSOC Q) := inferInstanceAs (T2Space (soC Q))
+local instance : T2Space (ArchSOC Q) := inferInstanceAs (T2Space (soC Q))
 instance : LocallyCompactSpace (ArchSOC Q) :=
   show LocallyCompactSpace (soC Q) from (isClosed_soC Q).isClosedEmbedding_subtypeVal.locallyCompactSpace
 instance : PolishSpace (ArchSOC Q) := show PolishSpace (soC Q) from (isClosed_soC Q).polishSpace
-instance : SecondCountableTopology (ArchSOC Q) := inferInstance
+local instance : SecondCountableTopology (ArchSOC Q) := inferInstance
 instance : MeasurableSpace (ArchSOC Q) := borel _
 instance : BorelSpace (ArchSOC Q) := ⟨rfl⟩
 
@@ -680,11 +680,11 @@ variable (P : GL (Fin n) ℂ)
 instance : Group (SliceB P) := inferInstanceAs (Group (sliceGroup P))
 instance : TopologicalSpace (SliceB P) := inferInstanceAs (TopologicalSpace (sliceGroup P))
 instance : IsTopologicalGroup (SliceB P) := inferInstanceAs (IsTopologicalGroup (sliceGroup P))
-instance : T2Space (SliceB P) := inferInstanceAs (T2Space (sliceGroup P))
+local instance : T2Space (SliceB P) := inferInstanceAs (T2Space (sliceGroup P))
 instance : LocallyCompactSpace (SliceB P) :=
   show LocallyCompactSpace (sliceGroup P) from (isClosed_sliceGroup P).isClosedEmbedding_subtypeVal.locallyCompactSpace
 instance : PolishSpace (SliceB P) := show PolishSpace (sliceGroup P) from (isClosed_sliceGroup P).polishSpace
-instance : SecondCountableTopology (SliceB P) := inferInstance
+local instance : SecondCountableTopology (SliceB P) := inferInstance
 instance : MeasurableSpace (SliceB P) := borel _
 instance : BorelSpace (SliceB P) := ⟨rfl⟩
 
@@ -1289,7 +1289,7 @@ theorem lerayC_ne_zero : lerayC D ≠ 0 := by
   rw [lerayDC, h0, ENNReal.coe_zero, zero_smul, Measure.zero_prod] at h
   exact tauM_ne_zero D h
 
-instance : IsFiniteMeasureOnCompacts (lerayDC D) := ⟨fun K hK => by
+local instance : IsFiniteMeasureOnCompacts (lerayDC D) := ⟨fun K hK => by
   rw [lerayDC, Measure.smul_apply, smul_eq_mul]
   exact ENNReal.mul_lt_top ENNReal.coe_lt_top hK.measure_lt_top⟩
 

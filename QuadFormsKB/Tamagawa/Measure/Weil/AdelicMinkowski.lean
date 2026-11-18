@@ -190,7 +190,7 @@ set_option synthInstance.maxHeartbeats 400000
 
 /-! ### $A = F$: Minkowski on $\mathbb A_F = F_\infty\times\mathbb A_f$ -/
 
-instance : MeasurableConstVAdd (diagSub F) (Adeles F) := AddSubgroup.instMeasurableConstVAdd _
+local instance : MeasurableConstVAdd (diagSub F) (Adeles F) := AddSubgroup.instMeasurableConstVAdd _
 
 instance : VAddInvariantMeasure (diagSub F) (Adeles F) ((Analysis.selfDualInf (F := F)).prod (muFin F)) :=
   inferInstanceAs (VAddInvariantMeasure (diagSub F).toAddSubmonoid (Adeles F)
@@ -284,7 +284,7 @@ instance borelSpace_infVec : BorelSpace (ι → mixedSpace F) := Pi.borelSpace
 
 instance measurableAdd_mixedSpace : MeasurableAdd (mixedSpace F) := ContinuousAdd.measurableAdd
 
-instance isAddHaarMeasure_muInfVec :
+local instance isAddHaarMeasure_muInfVec :
     (Measure.pi fun _ : ι => Analysis.selfDualInf (F := F)).IsAddHaarMeasure :=
   Measure.pi.isAddHaarMeasure _
 

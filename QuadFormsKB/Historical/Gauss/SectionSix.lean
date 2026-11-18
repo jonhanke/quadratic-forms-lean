@@ -64,8 +64,7 @@ theorem art155_value_sq (a b c m n μ ν : ℤ) (h : μ * m + ν * n = 1) :
   unfold art155Value gaussDet
   linear_combination (-(b ^ 2 - a * c) * (μ * m + ν * n + 1)) * h
 
-/-- **$v m \equiv m b + n c \pmod M$**: the division-free form of "$v \equiv (m b + n c)/m$" (the historical sources
-; *Disq. Arith.* Art. 155).  Valid for arbitrary integers. -/
+/-- **$v m \equiv m b + n c \pmod M$**: the division-free form of "$v \equiv (m b + n c)/m$" (the historical sources; *Disq. Arith.* Art. 155).  Valid for arbitrary integers. -/
 @[kb "gauss1801" "Art. 155"]
 theorem art155_value_mul_left (a b c m n μ ν : ℤ) (h : μ * m + ν * n = 1) :
     (art155Value a b c m n μ ν) * m ≡ m * b + n * c [ZMOD (gaussForm a b c).eval m n] := by
@@ -74,8 +73,7 @@ theorem art155_value_mul_left (a b c m n μ ν : ℤ) (h : μ * m + ν * n = 1) 
   unfold art155Value
   linear_combination (-(m * b + n * c)) * h
 
-/-- **$v n \equiv -(m a + n b) \pmod M$**: the division-free form of "$v \equiv -(m a + n b)/n$" (the historical sources
-; *Disq. Arith.* Art. 155).  Valid for arbitrary integers. -/
+/-- **$v n \equiv -(m a + n b) \pmod M$**: the division-free form of "$v \equiv -(m a + n b)/n$" (the historical sources; *Disq. Arith.* Art. 155).  Valid for arbitrary integers. -/
 @[kb "gauss1801" "Art. 155"]
 theorem art155_value_mul_right (a b c m n μ ν : ℤ) (h : μ * m + ν * n = 1) :
     (art155Value a b c m n μ ν) * n ≡ -(m * a + n * b) [ZMOD (gaussForm a b c).eval m n] := by
