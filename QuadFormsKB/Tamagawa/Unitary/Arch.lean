@@ -80,7 +80,7 @@ instance [Fact (IsPosDefR (traceQR D H₀ ρ))] : CompactSpace (UReal D H₀ ρ)
 
 instance : SecondCountableTopology (UReal D H₀ ρ) := Topology.IsEmbedding.subtypeVal.secondCountableTopology
 
-instance : BorelSpace (UReal D H₀ ρ) :=
+local instance : BorelSpace (UReal D H₀ ρ) :=
   inferInstanceAs (BorelSpace (uReal D H₀ ρ : Set (ArchSO (traceQR D H₀ ρ))))
 
 /-! ### The archimedean Leray density -/

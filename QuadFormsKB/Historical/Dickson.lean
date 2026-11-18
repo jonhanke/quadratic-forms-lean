@@ -8,8 +8,7 @@ Root of the lean_lib `QuadFormsKB.Historical.Dickson` (not imported by `QuadForm
 * `Minima.lean`: Hermite's inequality, Gauss–Seeber,
   Korkine–Zolotarev, unimodular forms of rank at most $7$;
 * `Universal.lean`: Dickson's universal diagonal ternary forms;
-* `Elementary.lean`: sums of three squares and quaternary representation numbers
- .
+* `Elementary.lean`: sums of three squares and quaternary representation numbers.
 -/
 import QuadFormsKB.Historical.Dickson.Legendre
 import QuadFormsKB.Historical.Dickson.Minima

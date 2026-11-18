@@ -64,13 +64,13 @@ def ofQuat (q : ℍ[K,A,B]) (hq : nrd q = 1) : NormOne K A B := ⟨qVec q, by
   show (normForm A B).eval (qVec q) = 1
   rw [eval_normForm_qVec, hq]⟩
 
-instance : Mul (NormOne K A B) where
+local instance : Mul (NormOne K A B) where
   mul x y := ofQuat (vecQ x.1 * vecQ y.1) (by rw [nrd_mul, nrd_val, nrd_val, one_mul])
 
-instance : One (NormOne K A B) where
+local instance : One (NormOne K A B) where
   one := ofQuat 1 nrd_one
 
-instance : Inv (NormOne K A B) where
+local instance : Inv (NormOne K A B) where
   inv x := ofQuat (star (vecQ x.1)) (by rw [nrd_star, nrd_val])
 
 theorem mul_val (x y : NormOne K A B) : (x * y).1 = qVec (vecQ x.1 * vecQ y.1 : ℍ[K,A,B]) := rfl

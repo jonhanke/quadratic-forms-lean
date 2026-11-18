@@ -70,7 +70,7 @@ structure Good {m : ℕ} (μ : Measure (SLnA F (Fin m))) : Prop where
   rightInv : ∀ γ : SpecialLinearGroup (Fin m) F, slnEmb F (Fin m) γ ∈ rightInvSub μ
   ne_zero : μ ≠ 0
 
-instance subsingleton_SL1 {R : Type*} [CommRing R] : Subsingleton (SpecialLinearGroup (Fin 1) R) := by
+local instance subsingleton_SL1 {R : Type*} [CommRing R] : Subsingleton (SpecialLinearGroup (Fin 1) R) := by
   refine ⟨fun a b => Subtype.ext ?_⟩
   have ha := a.2
   have hb := b.2

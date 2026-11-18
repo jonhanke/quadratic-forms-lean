@@ -66,7 +66,7 @@ theorem mul_eq_sphMap (x y : Sph (normForm A B) 1) :
   show qVec (vecQ (x : Fin 4 → ℝ) * vecQ (y : Fin 4 → ℝ) : ℍ[ℝ,A,B]) = lmat _ *ᵥ (y : Fin 4 → ℝ)
   rw [lmat_mulVec]
 
-instance : (sig (normForm A B) 1).IsMulLeftInvariant := by
+local instance : (sig (normForm A B) 1).IsMulLeftInvariant := by
   refine ⟨fun x => ?_⟩
   have e : (fun y : Sph (normForm A B) 1 => x * y) = sphMap (normForm A B) 1
       (lmat (vecQ (x : Fin 4 → ℝ) : ℍ[ℝ,A,B]))
@@ -79,7 +79,7 @@ theorem norm_le_of_isCompact {K : Set (Sph (normForm A B) 1)} (hK : IsCompact K)
   obtain ⟨R, hR⟩ := (hK.image continuous_subtype_val).isBounded.subset_closedBall 0
   exact ⟨R, fun x hx => by simpa using hR ⟨x, hx, rfl⟩⟩
 
-instance : IsFiniteMeasureOnCompacts (sig (normForm A B) 1) := by
+local instance : IsFiniteMeasureOnCompacts (sig (normForm A B) 1) := by
   refine ⟨fun K hK => ?_⟩
   obtain ⟨R, hR⟩ := norm_le_of_isCompact hK
   refine lt_of_le_of_lt (measure_mono hR) ?_
@@ -143,7 +143,7 @@ theorem eventually_nu_cayBall_pos : ∀ᶠ δ in 𝓝[>] (0 : ℝ), 0 < (nu (nor
     rwa [lt_div_iff₀ hv] at hδ
   linarith [mul_pos (by norm_num : (0 : ℝ) < 1 / 2) hv]
 
-instance : (sig (normForm A B) 1).IsOpenPosMeasure := by
+local instance : (sig (normForm A B) 1).IsOpenPosMeasure := by
   obtain ⟨δ, hδ, hδr⟩ := ((eventually_nu_cayBall_pos (A := A) (B := B)).and
     (nhdsWithin_le_nhds (Iic_mem_nhds (radR_pos A B)))).exists
   refine isOpenPosMeasure_of_mulLeftInvariant_of_compact _ (isCompact_normLe (A := A) (B := B) 2) ?_

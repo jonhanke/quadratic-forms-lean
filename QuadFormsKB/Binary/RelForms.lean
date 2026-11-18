@@ -39,7 +39,7 @@ variable (F E : Type*) [Field F] [Field E] [Algebra F E] [CharZero F] [Algebra.I
 
 theorem charZero_top (F E : Type*) [Field F] [Field E] [Algebra F E] [CharZero F] : CharZero E := charZero_of_injective_algebraMap (algebraMap F E).injective
 
-instance : FiniteDimensional F E :=
+local instance : FiniteDimensional F E :=
   Module.finite_of_finrank_eq_succ (Algebra.IsQuadraticExtension.finrank_eq_two F E)
 
 theorem card_aut : Nat.card (E ≃ₐ[F] E) = 2 :=

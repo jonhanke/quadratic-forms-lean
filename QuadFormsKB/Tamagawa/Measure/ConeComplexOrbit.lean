@@ -354,7 +354,7 @@ theorem sec_coneMap (s' : SphSectionC (-c) Q') {q : ℂ} (hq : q ≠ 0) (y : Sph
   congr 1
   exact mat_ext' (by rw [mat_dG, mat_dG, coe_coneMap hc hq, coneVec_zero])
 
-instance : SFinite (muP hc hQ') := by
+local instance : SFinite (muP hc hQ') := by
   have := isHaarMeasure_lerayMeasureC hQ'
   unfold muP; infer_instance
 

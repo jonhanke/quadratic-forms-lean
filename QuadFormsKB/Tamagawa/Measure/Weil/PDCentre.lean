@@ -138,8 +138,11 @@ instance quatScalar_range_normal' : ((quatScalar a b).range).Normal := by
 /-- $PD^\times(\mathbb A) = (D\otimes\mathbb A)^\times/\mathbb A^\times$ (`PDAdele` for $a, b\in\mathcal O_F$). -/
 abbrev PDA : Type := (QuatAdele a b)ˣ ⧸ (quatScalar a b).range
 
-instance : MeasurableSpace (PDA a b) := borel _
-instance : BorelSpace (PDA a b) := ⟨rfl⟩
+/-- $PD^\times(\mathbb A)$ carries Mathlib's quotient σ-algebra (`QuotientGroup.measurableSpace`), which is its Borel
+σ-algebra (`QuotientGroup.borelSpace`: a Polish group modulo a closed normal subgroup). -/
+instance : BorelSpace (PDA a b) := by
+  have := polishSpace_of_isTopologicalGroup ((QuatAdele a b)ˣ)
+  exact QuotientGroup.borelSpace
 
 instance : StandardBorelSpace (QuatAdele a b)ˣ := by
   have := polishSpace_of_isTopologicalGroup ((QuatAdele a b)ˣ)

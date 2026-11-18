@@ -163,7 +163,7 @@ group and the lattice-theoretic group $G(\mathcal O_K)$ of Lemma 8.3 (the equiva
 @[kb "hanke2011structure" "Lemma 8.3, p. 34 (G(O_K), ideal-theoretic form; Kneser 1982 §6)"]
 def KneserGroup : Type _ := (kneserCon K).Quotient
 
-instance : CommMonoid (KneserGroup K) := inferInstanceAs (CommMonoid (kneserCon K).Quotient)
+local instance : CommMonoid (KneserGroup K) := inferInstanceAs (CommMonoid (kneserCon K).Quotient)
 
 /-- The class of a pair. -/
 def kmk : kneserMonoid K →* KneserGroup K := (kneserCon K).mk'

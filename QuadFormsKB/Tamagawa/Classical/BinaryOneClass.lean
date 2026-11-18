@@ -95,7 +95,7 @@ section Rat
 
 open QuadFormsKB.Binary QuadFormsKB.Binary.Rel QuadFormsKB.Tamagawa.BinaryCM
 
-instance isQuadraticExtension_QField (D : ℤ) [IsQuadDisc D] : Algebra.IsQuadraticExtension ℚ (QField D) :=
+local instance isQuadraticExtension_QField (D : ℤ) [IsQuadDisc D] : Algebra.IsQuadraticExtension ℚ (QField D) :=
   ⟨finrank_eq⟩
 
 /-- A square root $\theta\notin\mathbb Q$ of a rational number is sent to $-\theta$ by the conjugation. -/

@@ -1,5 +1,6 @@
 import QuadFormsKB.Tamagawa.Measure.Weil.GLScaling
 import QuadFormsKB.Tamagawa.Measure.Weil.FundamentalDomain
+import QuadFormsKB.Tamagawa.Measure.UnitsBorel
 import Mathlib.LinearAlgebra.Basis.MulOpposite
 
 /-!
@@ -91,9 +92,9 @@ instance : LocallyCompactSpace AFˣ :=
 
 instance : SecondCountableTopology AFˣ := Units.isEmbedding_embedProduct.secondCountableTopology
 
-instance measurableSpace_finUnits : MeasurableSpace AFˣ := borel AFˣ
-
-instance : BorelSpace AFˣ := ⟨rfl⟩
+/-- $\mathbb A_f^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`, the pullback along
+$\mathbb A_f^\times\to\mathbb A_f$), which is its Borel σ-algebra (`borelSpace_units`, Lusin–Souslin). -/
+instance : BorelSpace AFˣ := borelSpace_units AF
 
 instance : LocallyCompactSpace (mixedSpace F)ˣ := Units.isOpenEmbedding_val.locallyCompactSpace
 
@@ -104,9 +105,9 @@ instance : LocallyCompactSpace (Adeles F)ˣ := Homeomorph.prodUnits.isOpenEmbedd
 
 instance : SecondCountableTopology (Adeles F)ˣ := Homeomorph.prodUnits.isEmbedding.secondCountableTopology
 
-instance measurableSpace_ideles : MeasurableSpace (Adeles F)ˣ := borel (Adeles F)ˣ
-
-instance : BorelSpace (Adeles F)ˣ := ⟨rfl⟩
+/-- $\mathbb A_F^\times$ carries Mathlib's σ-algebra (`Units.instMeasurableSpace`, the pullback along
+$\mathbb A_F^\times\to\mathbb A_F$), which is its Borel σ-algebra for the idele topology (`borelSpace_units`). -/
+instance : BorelSpace (Adeles F)ˣ := borelSpace_units (Adeles F)
 
 /-! ### $F^\times$ in $\mathbb A_F^\times$ -/
 

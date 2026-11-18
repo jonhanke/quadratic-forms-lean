@@ -59,7 +59,7 @@ variable {V : Type*} [AddCommGroup V] [Module ℝ V] [FiniteDimensional ℝ V] {
 
 local notation "A" => CliffordAlgebra Q
 
-instance : Invertible (2 : ℝ) := invertibleOfNonzero two_ne_zero
+local instance : Invertible (2 : ℝ) := invertibleOfNonzero two_ne_zero
 
 /-- $\nu$ restricted to $G^+(V)$. -/
 def multiplierM0 (hQ : (QuadraticMap.associated Q).Nondegenerate) : M0 Q →* ℝˣ :=

@@ -1,8 +1,7 @@
 /-
 # Ramanujan, *Collected Papers* (1927): further ternary laws, $x^2 + y^2 + z^2 + nu^2$, and Liouville's forms
 
-**Library** `QuadFormsKB.Historical.Ramanujan` (historical library, not imported by `QuadFormsKB`).  Targets
-, all from Ramanujan, *On the
+**Library** `QuadFormsKB.Historical.Ramanujan` (historical library, not imported by `QuadFormsKB`).  Targets, all from Ramanujan, *On the
 expression of a number in the form $ax^2 + by^2 + cz^2 + du^2$*, Proc. Cambridge Philos. Soc. 19 (1917), 11–21,
 *Collected Papers* (1927), No. 20:
 

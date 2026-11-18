@@ -572,7 +572,7 @@ def orb {c : ℝ} {Q' : QuadForm ℝ m} (s : SphSection c Q') (p : Sph (splitFor
     ArchSO (splitForm c Q') :=
   s.toFun p.1 * iota c Q' p.2
 
-instance {n : ℕ} (Q : QuadForm ℝ n) : MeasurableMul₂ (ArchSO Q) := ContinuousMul.measurableMul₂
+local instance {n : ℕ} (Q : QuadForm ℝ n) : MeasurableMul₂ (ArchSO Q) := ContinuousMul.measurableMul₂
 
 theorem measurable_orb {c : ℝ} {Q' : QuadForm ℝ m} (s : SphSection c Q') : Measurable (orb s) :=
   (s.measurable.comp measurable_fst).mul ((continuous_iota c Q').measurable.comp measurable_snd)
@@ -737,7 +737,7 @@ section Orbital
 
 variable {c : ℝ} (hc : c ≠ 0) {Q' : QuadForm ℝ m} (hQ' : gramDetR Q' ≠ 0)
 
-instance {n : ℕ} {Q : QuadForm ℝ n} (D : Diag Q) : SigmaFinite (kappa0 D) := inferInstance
+local instance {n : ℕ} {Q : QuadForm ℝ n} (D : Diag Q) : SigmaFinite (kappa0 D) := inferInstance
 
 /-- **The archimedean orbital identity at a real place, any signature** (Weil's $\omega_G = \omega_{G/H}\wedge\omega_H$
 for $G = SO(Q)$, $H = SO(Q') = \mathrm{Stab}(e_0)$, $G/H \cong S_c$): for $Q = \langle c\rangle \perp Q'$ nondegenerate

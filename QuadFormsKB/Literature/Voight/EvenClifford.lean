@@ -83,17 +83,17 @@ def equivProd (a b c u v w : R) : EvenClf R a b c u v w ≃ R × R × R × R whe
   toFun x := ⟨x.1, x.2, x.3, x.4⟩
   invFun x := ⟨x.1, x.2.1, x.2.2.1, x.2.2.2⟩
 
-instance : Zero (EvenClf R a b c u v w) := ⟨⟨0, 0, 0, 0⟩⟩
-instance : One (EvenClf R a b c u v w) := ⟨⟨1, 0, 0, 0⟩⟩
-instance : Add (EvenClf R a b c u v w) := ⟨fun x y => ⟨x.1 + y.1, x.2 + y.2, x.3 + y.3, x.4 + y.4⟩⟩
-instance : Neg (EvenClf R a b c u v w) := ⟨fun x => ⟨-x.1, -x.2, -x.3, -x.4⟩⟩
-instance : Sub (EvenClf R a b c u v w) := ⟨fun x y => ⟨x.1 - y.1, x.2 - y.2, x.3 - y.3, x.4 - y.4⟩⟩
+local instance : Zero (EvenClf R a b c u v w) := ⟨⟨0, 0, 0, 0⟩⟩
+local instance : One (EvenClf R a b c u v w) := ⟨⟨1, 0, 0, 0⟩⟩
+local instance : Add (EvenClf R a b c u v w) := ⟨fun x y => ⟨x.1 + y.1, x.2 + y.2, x.3 + y.3, x.4 + y.4⟩⟩
+local instance : Neg (EvenClf R a b c u v w) := ⟨fun x => ⟨-x.1, -x.2, -x.3, -x.4⟩⟩
+local instance : Sub (EvenClf R a b c u v w) := ⟨fun x y => ⟨x.1 - y.1, x.2 - y.2, x.3 - y.3, x.4 - y.4⟩⟩
 instance {S : Type*} [SMul S R] : SMul S (EvenClf R a b c u v w) :=
   ⟨fun s x => ⟨s • x.1, s • x.2, s • x.3, s • x.4⟩⟩
 
 /-- **Multiplication** (Voight (22.3.7), (22.3.8)): for $\alpha = t + x i + y j + z k$ and
 $\beta = t' + x' i + y' j + z' k$, expand bilinearly using the table in the module docstring. -/
-instance : Mul (EvenClf R a b c u v w) := ⟨fun p q =>
+local instance : Mul (EvenClf R a b c u v w) := ⟨fun p q =>
   ⟨p.1 * q.1 - b * c * p.2 * q.2 - a * c * p.3 * q.3 - a * b * p.4 * q.4
       + a * u * p.3 * q.4 + b * v * p.4 * q.2 + c * w * p.2 * q.3
       - v * w * p.4 * q.3 - u * w * p.2 * q.4 - u * v * p.3 * q.2,
@@ -141,14 +141,14 @@ variable (x y : EvenClf R a b c u v w)
     + v * x.k * y.j + u * x.i * y.k + c * x.j * y.i := rfl
 end
 
-instance : AddCommGroup (EvenClf R a b c u v w) := by
+local instance : AddCommGroup (EvenClf R a b c u v w) := by
   apply (equivProd a b c u v w).injective.addCommGroup <;> intros <;> rfl
 
-instance : Module R (EvenClf R a b c u v w) := by
+local instance : Module R (EvenClf R a b c u v w) := by
   refine (equivProd a b c u v w).injective.module R
     ⟨⟨equivProd a b c u v w, rfl⟩, fun _ _ => rfl⟩ fun _ _ => rfl
 
-instance : AddCommGroupWithOne (EvenClf R a b c u v w) where
+local instance : AddCommGroupWithOne (EvenClf R a b c u v w) where
   natCast n := ⟨n, 0, 0, 0⟩
   natCast_zero := by show (⟨((0 : ℕ) : R), 0, 0, 0⟩ : EvenClf R a b c u v w) = ⟨0, 0, 0, 0⟩; simp
   natCast_succ n := by

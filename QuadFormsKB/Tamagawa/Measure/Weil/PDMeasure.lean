@@ -166,10 +166,67 @@ theorem nondegenerate_pureFormO (ha : a ≠ 0) (hb : b ≠ 0) : (Q₀).Nondegene
 
 /-! ### Measures and covolumes -/
 
-instance : MeasurableSpace (PDInf a b) := borel _
-instance : BorelSpace (PDInf a b) := ⟨rfl⟩
-instance : MeasurableSpace (PDFin a b) := borel _
-instance : BorelSpace (PDFin a b) := ⟨rfl⟩
+/-- The units of $\mathbb H[R, c_1, 0, c_3]$ in the image of $R^\times$ are those with vanishing imaginary parts. -/
+theorem mem_range_unitsMap_algebraMap_iff {R : Type*} [CommRing R] (c₁ c₃ : R) (g : (ℍ[R, c₁, 0, c₃])ˣ) :
+    g ∈ (Units.map (algebraMap R ℍ[R, c₁, 0, c₃]).toMonoidHom).range ↔
+      (g : ℍ[R, c₁, 0, c₃]).imI = 0 ∧ (g : ℍ[R, c₁, 0, c₃]).imJ = 0 ∧ (g : ℍ[R, c₁, 0, c₃]).imK = 0 := by
+  constructor
+  · rintro ⟨c, rfl⟩
+    simp [QuaternionAlgebra.algebraMap_eq]
+  · rintro ⟨h1, h2, h3⟩
+    have hre : ∀ h : ℍ[R, c₁, 0, c₃], (g * h : ℍ[R, c₁, 0, c₃]).re = (g : ℍ[R, c₁, 0, c₃]).re * h.re := by
+      intro h; simp [QuaternionAlgebra.re_mul, h1, h2, h3]
+    have hu1 : (g : ℍ[R, c₁, 0, c₃]).re * ((g⁻¹ : (ℍ[R, c₁, 0, c₃])ˣ) : ℍ[R, c₁, 0, c₃]).re = 1 := by
+      rw [← hre, Units.mul_inv, QuaternionAlgebra.re_one]
+    let c : Rˣ := ⟨(g : ℍ[R, c₁, 0, c₃]).re, ((g⁻¹ : (ℍ[R, c₁, 0, c₃])ˣ) : ℍ[R, c₁, 0, c₃]).re, hu1,
+      by rw [mul_comm]; exact hu1⟩
+    refine ⟨c, Units.ext ?_⟩
+    ext <;> simp [c, h1, h2, h3, QuaternionAlgebra.algebraMap_eq]
+
+/-- The central scalars $F_\infty^\times$ are closed in $(D\otimes F_\infty)^\times$. -/
+theorem isClosed_range_infScalar (A B : F) : IsClosed ((infScalar A B).range : Set (QuatInf A B)ˣ) := by
+  have : ((infScalar A B).range : Set (QuatInf A B)ˣ) =
+      (fun g : (QuatInf A B)ˣ => (g : QuatInf A B).imI) ⁻¹' {0} ∩
+      ((fun g : (QuatInf A B)ˣ => (g : QuatInf A B).imJ) ⁻¹' {0} ∩
+      (fun g : (QuatInf A B)ˣ => (g : QuatInf A B).imK) ⁻¹' {0}) := by
+    ext g
+    simp only [SetLike.mem_coe, Set.mem_inter_iff, Set.mem_preimage, Set.mem_singleton_iff]
+    exact mem_range_unitsMap_algebraMap_iff _ _ g
+  rw [this]
+  exact (isClosed_singleton.preimage ((continuous_iimI A B).comp Units.continuous_val)).inter
+    ((isClosed_singleton.preimage ((continuous_iimJ A B).comp Units.continuous_val)).inter
+      (isClosed_singleton.preimage ((continuous_iimK A B).comp Units.continuous_val)))
+
+/-- The central scalars $\mathbb A_f^\times$ are closed in $(D\otimes\mathbb A_f)^\times$. -/
+theorem isClosed_range_finScalar (A B : F) : IsClosed ((finScalar A B).range : Set (QuatFin A B)ˣ) := by
+  have : ((finScalar A B).range : Set (QuatFin A B)ˣ) =
+      (fun g : (QuatFin A B)ˣ => (g : QuatFin A B).imI) ⁻¹' {0} ∩
+      ((fun g : (QuatFin A B)ˣ => (g : QuatFin A B).imJ) ⁻¹' {0} ∩
+      (fun g : (QuatFin A B)ˣ => (g : QuatFin A B).imK) ⁻¹' {0}) := by
+    ext g
+    simp only [SetLike.mem_coe, Set.mem_inter_iff, Set.mem_preimage, Set.mem_singleton_iff]
+    exact mem_range_unitsMap_algebraMap_iff _ _ g
+  rw [this]
+  exact (isClosed_singleton.preimage ((continuous_fimI A B).comp Units.continuous_val)).inter
+    ((isClosed_singleton.preimage ((continuous_fimJ A B).comp Units.continuous_val)).inter
+      (isClosed_singleton.preimage ((continuous_fimK A B).comp Units.continuous_val)))
+
+instance : IsClosed ((infScalar (a : F) (b : F)).range : Set (QuatInf (a : F) (b : F))ˣ) :=
+  isClosed_range_infScalar _ _
+
+instance : IsClosed ((finScalar (a : F) (b : F)).range : Set (QuatFin (a : F) (b : F))ˣ) :=
+  isClosed_range_finScalar _ _
+
+/-- $PD^\times(F_\infty)$ and $PD^\times(\mathbb A_f)$ carry Mathlib's quotient σ-algebra
+(`QuotientGroup.measurableSpace`), which is their Borel σ-algebra (`QuotientGroup.borelSpace`: a Polish group modulo
+a closed normal subgroup). -/
+instance : BorelSpace (PDInf a b) := by
+  have := QuadFormsKB.Tamagawa.Measure.polishSpace_of_locallyCompact_group ((QuatInf (a : F) (b : F))ˣ)
+  exact QuotientGroup.borelSpace
+
+instance : BorelSpace (PDFin a b) := by
+  have := QuadFormsKB.Tamagawa.Measure.polishSpace_of_locallyCompact_group ((QuatFin (a : F) (b : F))ˣ)
+  exact QuotientGroup.borelSpace
 
 instance countable_pdGammaSplit (ha : a ≠ 0) (hb : b ≠ 0) : Countable (pdGammaSplit a b ha hb) := by
   have h1 : Countable (pdGamma a b) := by

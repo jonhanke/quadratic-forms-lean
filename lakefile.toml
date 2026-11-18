@@ -1,5 +1,5 @@
 name = "QuadFormsKB"
-version = "0.6.0"
+version = "0.6.1"
 defaultTargets = ["QuadFormsKB", "Challenge_SiegelTotallyReal", "Solution_SiegelTotallyReal", "Challenge_TamagawaTotallyReal", "Solution_TamagawaTotallyReal", "Challenge_TamagawaSO", "Solution_TamagawaSO", "Challenge_TamagawaGroups", "Solution_TamagawaGroups", "Challenge_LocalGlobal", "Solution_LocalGlobal", "Challenge_SiegelIndefinite", "Solution_SiegelIndefinite", "Challenge_SiegelWeil", "Solution_SiegelWeil", "Challenge_ClassicalCases", "Solution_ClassicalCases", "Challenge_ExactMass", "Solution_ExactMass", "Challenge_Classification", "Solution_Classification", "Challenge_Voight", "Solution_Voight", "Challenge_Shimura", "Solution_Shimura", "Challenge_ChenevierLannes", "Solution_ChenevierLannes", "Challenge_MorenoWagstaff", "Solution_MorenoWagstaff", "QuadFormsKBHistoricalGauss", "QuadFormsKB.Historical.Jacobi", "QuadFormsKB.Historical.SumsOfSquares", "QuadFormsKB.Historical.BinaryForms", "QuadFormsKB.Historical.Ramanujan", "QuadFormsKB.Historical.SmithPapers", "QuadFormsKB.Historical.DicksonStudies", "QuadFormsKB.Historical.Dickson"]
 
 [leanOptions]

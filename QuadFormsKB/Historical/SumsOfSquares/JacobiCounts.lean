@@ -1,8 +1,7 @@
 /-
 # Jacobi's counts for four and eight squares, in Eisenstein's and Smith's wording (wrappers)
 
-**Library** `QuadFormsKB.Historical.SumsOfSquares` (historical library, not imported by `QuadFormsKB`).  Targets
-, all **wrappers** of theorems already proved in this library:
+**Library** `QuadFormsKB.Historical.SumsOfSquares` (historical library, not imported by `QuadFormsKB`).  Targets, all **wrappers** of theorems already proved in this library:
 
 * (Eisenstein, *Mathematische Abhandlungen* (1847), 6. *Neue Theoreme der höhern Arithmetik*, p. 193,
   `eisenstein1847-abhandlungen:p193.5`): $r_4(m) = 8\sigma(m)$ for odd $m$ (`four_squares_odd`), wrapper of

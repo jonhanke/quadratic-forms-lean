@@ -6,7 +6,7 @@ import Mathlib.Topology.Algebra.Group.Matrix
 /-!
 # $\mathrm{SL}_2(\mathbb A_F)$ as a locally compact group, $\mathrm{SL}_2(F)$ discrete
 
-$F$ is any number field (no total reality, no PID). $\mathrm{SL}_2(\mathbb A_F)$ = `SL2A F` is Mathlib's
+$F$ is any number field (no total reality, no principal ideal domain). $\mathrm{SL}_2(\mathbb A_F)$ = `SL2A F` is Mathlib's
 `Matrix.SpecialLinearGroup (Fin 2) (Adeles F)` with the subspace topology of $M_2(\mathbb A_F)$; it is closed there, so
 it is a locally compact, second-countable, Hausdorff topological group (its Borel σ-algebra makes it a measurable group;
 Haar measures exist).
@@ -136,7 +136,7 @@ theorem measurable_SL2A_entry (i j : Fin 2) :
   measurable_SL2A_iff.mp measurable_id i j
 
 instance : MeasurableMul₂ (SL2A F) := ContinuousMul.measurableMul₂
-instance : MeasurableInv (SL2A F) := ContinuousInv.measurableInv
+local instance : MeasurableInv (SL2A F) := ContinuousInv.measurableInv
 instance : MeasurableMul (SL2A F) := inferInstance
 
 /-! ### The discrete subgroup $\mathrm{SL}_2(F)$ -/

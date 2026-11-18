@@ -1,8 +1,7 @@
 /-
 # Ramanujan's exact exceptional sets for $x^2 + y^2 + z^2 + n u^2$ and $2(x^2 + y^2 + z^2) + n u^2$
 
-**Library** `QuadFormsKB.Historical.Ramanujan` (historical library, not imported by `QuadFormsKB`).  Targets
-, Ramanujan, *On the expression of a number in the form
+**Library** `QuadFormsKB.Historical.Ramanujan` (historical library, not imported by `QuadFormsKB`).  Targets, Ramanujan, *On the expression of a number in the form
 $ax^2 + by^2 + cz^2 + du^2$* (1917), §§ 5-8, *Collected Papers* (1927) No. 20:
 
 * : when the exceptional set of $x^2 + y^2 + z^2 + n u^2$ is finite, it is given exactly by five

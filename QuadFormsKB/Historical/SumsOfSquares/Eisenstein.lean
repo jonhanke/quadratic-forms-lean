@@ -1,8 +1,7 @@
 /-
 # Eisenstein's finite-sum formulas for three, seven and ten squares (stated)
 
-**Library** `QuadFormsKB.Historical.SumsOfSquares` (historical library, not imported by `QuadFormsKB`). Targets taken from the historical sources
-. Each statement below is a named
+**Library** `QuadFormsKB.Historical.SumsOfSquares` (historical library, not imported by `QuadFormsKB`). Targets taken from the historical sources. Each statement below is a named
 `Prop`, **stated, not proved** and assumed nowhere; each was checked numerically for every admissible argument $\le 400$
 (by brute-force counts). Reasons they are out of reach here are recorded in the docstrings.
 
@@ -55,8 +54,7 @@ def EisensteinThreeSquares : Prop :=
     (m % 4 = 1 → (sqRep 3 m : ℤ) = 24 * jacobiPowerSum m 1 ((m - 1) / 4) 0) ∧
     (m % 8 = 3 → (sqRep 3 m : ℤ) = 8 * jacobiPowerSum m 1 ((m - 1) / 2) 0)
 
-/-- **Eisenstein's formulas for proper representations by three squares, as reported by Dickson** (the historical sources
-; Dickson, *History* II, ch. VII, p. 263, fn. 25): for squarefree $m > 1$, the number $\varphi(m)$ of
+/-- **Eisenstein's formulas for proper representations by three squares, as reported by Dickson** (the historical sources; Dickson, *History* II, ch. VII, p. 263, fn. 25): for squarefree $m > 1$, the number $\varphi(m)$ of
 proper representations of $m$ by $x^2 + y^2 + z^2$ is $24\sum_{s=1}^{[m/4]}\bigl(\frac sm\bigr)$ for
 $m \equiv 1 \pmod 4$ and $8\sum_{s=1}^{[m/2]}\bigl(\frac sm\bigr)$ for $m \equiv 3 \pmod 8$. **Stated**; equivalent to
 `EisensteinThreeSquares` (`dicksonThreeSquaresProper_iff`). -/

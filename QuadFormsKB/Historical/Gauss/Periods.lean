@@ -105,8 +105,7 @@ theorem sum_zmod_eq {M : Type*} [AddCommMonoid M] (F : ZMod p → M) :
 
 /-! ### Periods of a subgroup -/
 
-/-- **Period of a subgroup** $H \le (\mathbb{Z}/p)^\times$ at the exponent $x \in \mathbb{Z}/p$ (the historical sources
-; Gauss's period $(f, \lambda)$ when $H$ has $f$ elements and $x = \lambda$;
+/-- **Period of a subgroup** $H \le (\mathbb{Z}/p)^\times$ at the exponent $x \in \mathbb{Z}/p$ (the historical sources; Gauss's period $(f, \lambda)$ when $H$ has $f$ elements and $x = \lambda$;
 *Disq. Arith.* Art. 343): $\sum_{h \in H} \zeta^{x h}$. For $x = 0$ every term is $1$, so the value is
 $|H| = f$, which is Gauss's convention $(f, 0) := f$ of Art. 345. -/
 @[kb "gauss1801" "Art. 343"]

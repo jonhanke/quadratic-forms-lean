@@ -83,7 +83,7 @@ abbrev okT (u v a b c h00 h01 h10 h11 : ZMod (2 ^ 3)) : Prop :=
   u * h00 * (h00 * (a * b) + h01) + v * h10 * (h10 * (a * b) + h11) = b ∧
   u * (h00 * (a * b) + h01) * (h00 * (a * b) + h01) + v * (h10 * (a * b) + h11) * (h10 * (a * b) + h11) = c
 
-instance (u v a b c h00 h01 h10 h11 : ZMod (2 ^ 3)) : Decidable (okT u v a b c h00 h01 h10 h11) := by
+local instance (u v a b c h00 h01 h10 h11 : ZMod (2 ^ 3)) : Decidable (okT u v a b c h00 h01 h10 h11) := by
   unfold okT; infer_instance
 
 set_option synthInstance.maxSize 1000 in

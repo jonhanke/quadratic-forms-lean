@@ -107,17 +107,17 @@ theorem continuous_quad_iff {X : Type*} [TopologicalSpace X] (d : k) {f : X → 
   ⟨fun h => ⟨(continuous_quad_re d).comp h, (continuous_quad_im d).comp h⟩,
     fun ⟨h0, h1⟩ => continuous_induced_rng.mpr (h0.prodMk h1)⟩
 
-instance (d : k) : ContinuousAdd (QuadAdele k d) := ⟨by
+local instance (d : k) : ContinuousAdd (QuadAdele k d) := ⟨by
   have h0 := continuous_quad_re d; have h1 := continuous_quad_im d
   refine (continuous_quad_iff d).mpr ⟨?_, ?_⟩ <;>
     simp only [QuadraticAlgebra.re_add, QuadraticAlgebra.im_add] <;> fun_prop⟩
 
-instance (d : k) : ContinuousNeg (QuadAdele k d) := ⟨by
+local instance (d : k) : ContinuousNeg (QuadAdele k d) := ⟨by
   have h0 := continuous_quad_re d; have h1 := continuous_quad_im d
   refine (continuous_quad_iff d).mpr ⟨?_, ?_⟩ <;>
     simp only [QuadraticAlgebra.re_neg, QuadraticAlgebra.im_neg] <;> fun_prop⟩
 
-instance (d : k) : ContinuousMul (QuadAdele k d) := ⟨by
+local instance (d : k) : ContinuousMul (QuadAdele k d) := ⟨by
   have h0 := continuous_quad_re d; have h1 := continuous_quad_im d
   refine (continuous_quad_iff d).mpr ⟨?_, ?_⟩ <;>
     simp only [QuadraticAlgebra.re_mul, QuadraticAlgebra.im_mul] <;> fun_prop⟩

@@ -48,6 +48,10 @@ project:
     and Igusa for genus g <= 3 (on the vanishing of Siegel cusp forms of weight 8 in genus 2 and 3). The
     headlines are split into one Challenge/Solution pair per book or topic, and the historical libraries
     (Gauss, Jacobi, Eisenstein, Smith, Ramanujan, Dickson) are included as separate Lean libraries.
+    Release 0.6.1 adds no headlines and leaves the 73 headline statements unchanged; it removes global
+    instances that duplicated Mathlib's (Mathlib's sigma-algebras on unit groups and subgroups, proved to be
+    Borel), adds fifteen files of the historical Gauss library (Disquisitiones Arithmeticae), and
+    corrects the summary of Cassels Ch. 2 (1.2) in the statement map (1/4, not 1/2).
     Further results include Witt's theorems over every
     field (characteristic 2 included), the classification of forms over p-adic fields, Jordan
     decompositions and local densities at every prime (dyadic included), finiteness of class numbers,

@@ -162,7 +162,7 @@ theorem map_mul_left_muT (g₀ : SL2A F) : Measure.map (g₀ * ·) (muT F) = muT
   rw [e1, e2, ← Measure.map_map measurable_ofCoord hmeasT, hT.map_eq]
   rfl
 
-instance : (muT F).IsMulLeftInvariant := ⟨map_mul_left_muT⟩
+local instance : (muT F).IsMulLeftInvariant := ⟨map_mul_left_muT⟩
 
 /-! ### Comparison with Haar measure -/
 

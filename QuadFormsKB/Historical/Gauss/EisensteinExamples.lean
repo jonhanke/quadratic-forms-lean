@@ -6,7 +6,6 @@ import Mathlib.Tactic.LinearCombination
 
 /-!
 # Eisenstein's worked examples for $\delta$, proved (Eisenstein 1851, § 6, pp. 164-165)
-
 . For each of the eight worked examples of `eisensteinDelta_examples`, the number
 `automorphCount` of proper automorphs ($g \in \mathrm{SL}_3(\mathbb{Z})$ with $Q(gv) = Q(v)$) is computed and shown
 to equal `eisensteinDelta`, the table value (24, 24, 24, 12, 8, 4, 2, 1).

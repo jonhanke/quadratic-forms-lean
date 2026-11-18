@@ -203,7 +203,7 @@ theorem primComp_b (g₁ g₂ : PrimForm D) (hc : Concordant g₁.1 g₂.1) :
 /-- **The composition of two classes** (Cassels, Ch. 14, Thm. 2.1, p. 337): the class of $\operatorname{comp}(g_1, g_2)$
 for concordant representatives $g_1 \in \mathfrak C_1$, $g_2 \in \mathfrak C_2$ (Lemma 2.3, chosen), well defined by
 Lemma 2.4 (`mk_mul_mk`). -/
-noncomputable instance : Mul (FormClass D) := ⟨fun x y =>
+noncomputable local instance : Mul (FormClass D) := ⟨fun x y =>
   mk (PrimForm.comp (exists_concordant_reps x y).choose (exists_concordant_reps x y).choose_spec.choose
     (exists_concordant_reps x y).choose_spec.choose_spec.2.2)⟩
 
@@ -212,7 +212,7 @@ def principal (D : ℤ) [NonzeroDisc D] : PrimForm D :=
   ⟨principalForm D, principalForm_spec NonzeroDisc.mod_four⟩
 
 /-- **The unit class $\mathfrak E$**: the class of the principal form (1.11). -/
-instance : One (FormClass D) := ⟨mk (principal D)⟩
+local instance : One (FormClass D) := ⟨mk (principal D)⟩
 
 theorem one_def : (1 : FormClass D) = mk (principal D) := rfl
 

@@ -208,13 +208,13 @@ theorem exists_normedIdeal_iff (J : Ideal (SqrtRing d)) (N : ℤ) :
 (\mathcal I\mathcal J)_{NM}$; well defined since $N(\mathcal I\mathcal J) = N(\mathcal I)N(\mathcal J)$
 (`Ideal.absNorm` is multiplicative). -/
 @[kb "conwaysloane1999" "Ch. 15, §3.4, (13), p. 365"]
-instance : Mul (NormedIdeal d) where
+local instance : Mul (NormedIdeal d) where
   mul I J := ⟨I.ideal * J.ideal, I.norm * J.norm,
     by rw [Int.natAbs_mul, I.natAbs_norm, J.natAbs_norm, map_mul],
     mul_ne_zero I.norm_ne_zero J.norm_ne_zero⟩
 
 /-- The unit normed ideal $\mathbb{Z}[\sqrt{-d}]_1$. -/
-instance : One (NormedIdeal d) where
+local instance : One (NormedIdeal d) where
   one := ⟨⊤, 1, by rw [Ideal.absNorm_top, Int.natAbs_one], one_ne_zero⟩
 
 /-- (13), ideal part: the ideal of $\mathcal I_N\mathcal J_M$ is $\mathcal I\mathcal J$. -/

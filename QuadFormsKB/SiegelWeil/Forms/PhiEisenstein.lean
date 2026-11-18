@@ -329,7 +329,7 @@ theorem eisHolR_actU (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos
 
 /-! ### Degree $0$ -/
 
-instance : Subsingleton (Sp 0 F) :=
+local instance : Subsingleton (Sp 0 F) :=
   ⟨fun g h => Subtype.ext (Matrix.ext fun i _ => by cases i <;> exact (Fin.elim0 ‹_›))⟩
 
 /-- **$\mathcal E^{(0)} = 1$**: in degree $0$ there is one coset, $j = 1$ and $f_f = 1$. -/

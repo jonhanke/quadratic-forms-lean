@@ -33,9 +33,9 @@ variables ($V = F^n$ with $Q = Q_0\otimes F$, any signature at the real places, 
 * **specialization** (`map_muAdele_eq_muTam`, `covolume_muTam_eq_covolume_muAdele`): for $F$ totally real and $Q$ totally
   positive definite, a measurable group isomorphism $SO(V)(\mathbb A)_{\mathrm{emb}}\cong SO(V)(\mathbb A)$ (reindexing real
   embeddings by real places) carries `GammaSO` to `GammaSOAdele` and `muAdele` to `muTam`; hence
-  **`tamagawaNumberTwoAdelic_iff`**: `TamagawaNumberTwoAdelic Q₀ ↔ TamagawaNumberTwo Q₀` (no PID, no class-number hypothesis),
+  **`tamagawaNumberTwoAdelic_iff`**: `TamagawaNumberTwoAdelic Q₀ ↔ TamagawaNumberTwo Q₀` (no principal ideal domain, no class-number hypothesis),
   and the corollaries `tamagawaNumberTwoAdelic_ternary` (every totally real $F$), `tamagawaNumberTwoAdelic_all_ranks`
-  ($\mathcal O_F$ a PID, $[F:\mathbb Q]\ge2$, $n\ge3$), `tamagawaNumberTwoAdelic_all_ranks_of_rankFour` (given
+  ($\mathcal O_F$ a principal ideal domain, $[F:\mathbb Q]\ge2$, $n\ge3$), `tamagawaNumberTwoAdelic_all_ranks_of_rankFour` (given
   `RankFourUnitSiegel F`).
 -/
 
@@ -446,7 +446,7 @@ instance secondCountable_SOAf : SecondCountableTopology (SOAf Q₀) := by
   exact secondCountable_of_openSubgroup (KSO Q₀) (isOpen_KSO Q₀)
 
 /-- **$SO(V)(\mathbb A)$ is second countable.** -/
-instance secondCountable_SOAdele : SecondCountableTopology (SOAdele Q₀) := inferInstance
+local instance secondCountable_SOAdele : SecondCountableTopology (SOAdele Q₀) := inferInstance
 
 /-- **$SO(V)(F)\backslash SO(V)(\mathbb A)$ has a measurable fundamental domain** for every measure (any signature;
 `exists_isFundamentalDomain` for the discrete countable subgroup `GammaSOAdele`), so the covolume is the measure of any
@@ -669,7 +669,7 @@ theorem covolume_muTam_eq_covolume_muAdele (hQ : Q₀.Nondegenerate) (hn : 0 < n
     (map_GammaSO Q₀) _ _ (map_muAdele_eq_muTam Q₀ hQ hn hpd lam)).symm
 
 /-- **`TamagawaNumberTwoAdelic` specializes to `TamagawaNumberTwo`** (totally real $F$, $Q$ totally positive definite,
-$n\ge1$; no PID or class-number hypothesis): Weil's adelic statement for the Tamagawa measure `muTam` is the library's
+$n\ge1$; no principal ideal domain or class-number hypothesis): Weil's adelic statement for the Tamagawa measure `muTam` is the library's
 $\tau(SO(Q_0)) = 2$. -/
 @[kb "weil1982" "§2.4, p. 23; Thm 3.7.1, Thm 4.5.1 (τ(SO) = 2)"]
 theorem tamagawaNumberTwoAdelic_iff (hQ : Q₀.Nondegenerate) (hn : 0 < n) (hpd : IsTotallyPosDef QF)

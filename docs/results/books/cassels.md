@@ -37,7 +37,7 @@ Rows: 522. proved: 501; formalized as a definition, in Mathlib, or inside proofs
 
 | Item | Page | Statement | Lean declaration | Status |
 |---|---|---|---|---|
-| 2, text 1 | 11–12 | Definition of a quadratic space over $k$ ($\operatorname{char}k \ne 2$): a finite-dimensional vector space with a symmetric bilinear form; the function $\phi(u)$ determines the bilinear form by $\phi(u_1,u_2) = \tfrac12\{\phi(u_1+u_2) - \phi(u_1-u_2)\}$ (1.2) | `QuadForm.polar_eq_hessian` | proved |
+| 2, text 1 | 11–12 | Definition of a quadratic space over $k$ ($\operatorname{char}k \ne 2$): a finite-dimensional vector space with a symmetric bilinear form; the function $\phi(u)$ determines the bilinear form by $\phi(u_1,u_2) = \tfrac14\{\phi(u_1+u_2) - \phi(u_1-u_2)\}$ (1.2) | `QuadForm.polar_eq_hessian` | proved |
 | 2:Lemma 1.1 | 11 | If the bilinear form is not identically zero, some $\phi(u) \ne 0$ | `QuadraticForm.Witt.exists_polar_ne_zero` | proved |
 | 2, text 2 | 12 | Every basis gives a quadratic form (1.3); a change of basis gives an equivalent form (1.4); every form arises from a space | `QuadForm.isometricIn_of_orthSum` | proved |
 | 2, text 3 | 12 | Definition: $U$ is *regular* if $U \to \operatorname{Hom}(U,k)$ is an isomorphism | `Cassels.regular_tfae` | proved |

@@ -60,7 +60,7 @@ instance : PolishSpace ℂˣ := by
 theorem measurableEmbedding_val : MeasurableEmbedding (Units.val : ℂˣ → ℂ) :=
   isEmbedding_val.measurableEmbedding (by rw [range_val]; exact (isOpen_ne).measurableSet)
 
-instance : MeasurableMul₂ ℂˣ := ContinuousMul.measurableMul₂
+local instance : MeasurableMul₂ ℂˣ := ContinuousMul.measurableMul₂
 
 /-- Lebesgue measure on $\mathbb C$, restricted to $\mathbb C^\times$. -/
 def volU : Measure ℂˣ := Measure.comap Units.val volume
@@ -159,9 +159,9 @@ instance : IsFiniteMeasureOnCompacts volU := ⟨fun _ hK => volU_compact_lt_top 
 /-- **The reference Haar measure** $d^2\beta/|\beta|^2$ on $\mathbb C^\times$. -/
 def haarU : Measure ℂˣ := volU.withDensity (wt (-2))
 
-instance : haarU.IsMulLeftInvariant := isMulLeftInvariant_withDensity volU 2 map_mul_volU
+local instance : haarU.IsMulLeftInvariant := isMulLeftInvariant_withDensity volU 2 map_mul_volU
 
-instance : IsFiniteMeasureOnCompacts haarU := withDensity_isFiniteMeasureOnCompacts _ _
+local instance : IsFiniteMeasureOnCompacts haarU := withDensity_isFiniteMeasureOnCompacts _ _
 
 theorem withDensity_wt_pos {U : Set ℂˣ} (hU : IsOpen U) (hne : U.Nonempty) (k : ℤ) :
     0 < volU.withDensity (wt k) U := by
@@ -171,7 +171,7 @@ theorem withDensity_wt_pos {U : Set ℂˣ} (hU : IsOpen U) (hne : U.Nonempty) (k
   rw [this, volU_apply hU.measurableSet]
   exact (Units.isOpenMap_val U hU).measure_ne_zero volume (hne.image _)
 
-instance : IsOpenPosMeasure haarU := ⟨fun U hU hne => (withDensity_wt_pos hU hne (-2)).ne'⟩
+local instance : IsOpenPosMeasure haarU := ⟨fun U hU hne => (withDensity_wt_pos hU hne (-2)).ne'⟩
 
 instance : haarU.IsHaarMeasure := ⟨⟩
 

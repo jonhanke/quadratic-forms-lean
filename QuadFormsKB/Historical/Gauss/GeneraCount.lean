@@ -23,8 +23,7 @@ Two formalizations of Gauss's "characters" are available in the library, and bot
 * **Characters, fundamental negative discriminants** (`Binary.formChar`): the product of the assigned characters is
   $1$ (`assigned_characters_product`), and the number of genera is $2^{t - 1}$ (`card_genera_eq`).
 
-The identification of Gauss's characters with the local classes for an arbitrary determinant is not formalized
-.
+The identification of Gauss's characters with the local classes for an arbitrary determinant is not formalized.
 -/
 
 namespace QuadFormsKB.Historical.Gauss

@@ -714,12 +714,12 @@ variable (P : GL (Fin n) ℝ)
 instance : Group (SliceB P) := inferInstanceAs (Group (sliceGroup P))
 instance : TopologicalSpace (SliceB P) := inferInstanceAs (TopologicalSpace (sliceGroup P))
 instance : IsTopologicalGroup (SliceB P) := inferInstanceAs (IsTopologicalGroup (sliceGroup P))
-instance : T2Space (SliceB P) := inferInstanceAs (T2Space (sliceGroup P))
+local instance : T2Space (SliceB P) := inferInstanceAs (T2Space (sliceGroup P))
 instance : LocallyCompactSpace (SliceB P) :=
   show LocallyCompactSpace (sliceGroup P) from
     (isClosed_sliceGroup P).isClosedEmbedding_subtypeVal.locallyCompactSpace
 instance : PolishSpace (SliceB P) := show PolishSpace (sliceGroup P) from (isClosed_sliceGroup P).polishSpace
-instance : SecondCountableTopology (SliceB P) := inferInstance
+local instance : SecondCountableTopology (SliceB P) := inferInstance
 instance : MeasurableSpace (SliceB P) := borel _
 instance : BorelSpace (SliceB P) := ⟨rfl⟩
 
@@ -1198,7 +1198,7 @@ theorem lerayFibration : Measure.comap (chart D) volume = (lerayD D).prod (kappa
 
 /-! ### The density of $\kappa_0$ in coefficient space, the Haar property -/
 
-instance : Nonempty (SliceB D.P) := ⟨1⟩
+local instance : Nonempty (SliceB D.P) := ⟨1⟩
 
 /-- The inverse $\beta^{-1} : U \to B$ of the orbit map (a homeomorphism onto the open set $U = \beta(B)$). -/
 def sec : (UIdx n → ℝ) → SliceB D.P := ((isOpenEmbedding_beta D).toOpenPartialHomeomorph (beta D)).symm
@@ -1245,11 +1245,11 @@ theorem kappa0_preimage {E : Set (UIdx n → ℝ)} (hE : MeasurableSet E) :
   rw [← (measurableEmbedding_beta D).lintegral_map, (measurableEmbedding_beta D).map_comap,
     lintegral_indicator hE, Measure.restrict_restrict hE]
 
-instance : IsFiniteMeasureOnCompacts (lerayD D) := ⟨fun K hK => by
+local instance : IsFiniteMeasureOnCompacts (lerayD D) := ⟨fun K hK => by
   rw [lerayD, Measure.smul_apply, smul_eq_mul]
   exact ENNReal.mul_lt_top ENNReal.coe_lt_top hK.measure_lt_top⟩
 
-instance : (lerayD D).IsMulLeftInvariant := by
+local instance : (lerayD D).IsMulLeftInvariant := by
   unfold lerayD; infer_instance
 
 theorem tauM_univ_ne_zero : tauM D univ ≠ 0 := by
@@ -1424,7 +1424,7 @@ theorem continuous_chart_swap {f : (Fin n → Fin n → ℝ) → ℝ} (hf : Cont
 def fibreInt (f : (Fin n → Fin n → ℝ) → ℝ) (b : SliceB D.P) : ℝ :=
   ∫ g, f (chart D (g, b)) ∂lerayD D
 
-instance : IsLocallyFiniteMeasure (lerayD D) := inferInstance
+local instance : IsLocallyFiniteMeasure (lerayD D) := inferInstance
 
 theorem continuous_fibreInt {f : (Fin n → Fin n → ℝ) → ℝ} (hf : Continuous f) (hfc : HasCompactSupport f) :
     Continuous (fibreInt D f) := by

@@ -242,7 +242,7 @@ abbrev unitQuot := (𝓞 F)ˣ ⧸ normUnits F E
 
 /-- $U_{E/F}$ is finite: it is a quotient of $\mathcal O_F^\times/\mathcal O_F^{\times 2}$, finite since $\mathcal O_F^\times$ is finitely
 generated (Dirichlet). -/
-instance finite_unitQuot : Finite (unitQuot F E) := by
+local instance finite_unitQuot : Finite (unitQuot F E) := by
   have : Group.FG (𝓞 F)ˣ := Group.fg_iff_monoid_fg.mpr inferInstance
   have h2 := Subgroup.finiteIndex_range_powMonoidHom_of_fg (𝓞 F)ˣ (n := 2) two_ne_zero
   have hle : (powMonoidHom (α := (𝓞 F)ˣ) 2).range ≤ normUnits F E := by

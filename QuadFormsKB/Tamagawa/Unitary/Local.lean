@@ -64,7 +64,7 @@ instance : LocallyCompactSpace (Uv D H₀ v) := (isClosed_Uv D H₀ v).isClosedE
 instance : SecondCountableTopology (Uv D H₀ v) := Topology.IsEmbedding.subtypeVal.secondCountableTopology
 
 /-- $U(V)(F_v)$ carries the subspace $\sigma$-algebra, which is its Borel $\sigma$-algebra. -/
-instance : BorelSpace (Uv D H₀ v) :=
+local instance : BorelSpace (Uv D H₀ v) :=
   inferInstanceAs (BorelSpace (unitaryOrth D H₀ Fv : Set (orthGroup (traceQFF D H₀) Fv)))
 
 /-- **$U(\Lambda_v)$**: the stabilizer in $U(V)(F_v)$ of $\Lambda_v = \mathcal O_v[\omega]^m$ ($=\mathcal O_v^{2m}$ in the coordinates of
