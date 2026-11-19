@@ -55,7 +55,10 @@ theorem volV_three : volV 3 = π ^ 2 := by
   rw [key, show (π : ℝ) ^ (3 : ℝ) = π ^ (3 : ℕ) by exact_mod_cast rpow_natCast π 3]
   field_simp
 
-/-- The inverse product $\prod_p\beta_{Q,p}(Q)^{-1}$ of Hanke's local densities of an integral form $Q$ (Gram coordinates). -/
+/-- The inverse product $\prod_p\beta_{Q,p}(Q)^{-1}$ of Hanke's local densities of an integral form $Q$ (Gram coordinates).
+**Restriction:** the type puts no hypothesis on $Q$ under which the infinite product over $p$ is multipliable (the
+intended use is a positive definite ternary $Q$, as in the genus-mass statements); where it is not multipliable `∏'`
+is $1$ by Lean's convention, so the value is $1^{-1} = 1$, not the intended value. -/
 def invDensityProd {n : ℕ} (Q : QuadForm ℤ n) : ℝ := (∏' v, localBeta v (Tamagawa.RatBridge.up Q))⁻¹
 
 theorem hessian_det_formF_up {n : ℕ} (Q : QuadForm ℤ n) :

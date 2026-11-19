@@ -626,7 +626,10 @@ theorem tprod_zf_sandwich (hQ : Q.Nondegenerate) (hn : 5 ≤ n) (S : Finset (Hei
     simp only [thetaV] at *
     nlinarith
 
-/-- $B_S(s) = \prod_{\mathfrak p\notin S}P_0(\mathfrak p)$. -/
+/-- $B_S(s) = \prod_{\mathfrak p\notin S}P_0(\mathfrak p)$.
+**Restriction:** the product is multipliable for $n \ge 5$, $s \ge 0$ and $Q$ good at all places outside $S$
+(`multipliable_Pe`); where it is not multipliable the value is $1$ by Lean's `tprod` convention, not the intended
+value. -/
 def BSe (Q : QuadForm (𝓞 F) n) (S : Finset (HeightOneSpectrum (𝓞 F))) (s : ℝ) : ℝ := ∏' p : PS S, Pe Q p.1 s
 
 /-- $r_\mathfrak p = P_1(\mathfrak p)/P_0(\mathfrak p)$. -/

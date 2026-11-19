@@ -166,7 +166,10 @@ def harmPoly (Q : QuadForm ℤ n) (u : Fin n → ℝ) (x : Fin n → ℤ) : ℝ 
 def thetaLin (Q : QuadForm ℤ n) (u : Fin n → ℝ) (z : ℂ) : ℂ :=
   ∑' x : Fin n → ℤ, ((latDot Q x u ^ 2 : ℝ) : ℂ) * cexp (2 * Real.pi * I * z * (Q.eval x : ℂ))
 
-/-- $g(z) = \sum_{x \in \mathbb{Z}^n} (x \cdot x)\, e^{2\pi i z Q(x)}$, $x \cdot x = 2Q(x)$. -/
+/-- $g(z) = \sum_{x \in \mathbb{Z}^n} (x \cdot x)\, e^{2\pi i z Q(x)}$, $x \cdot x = 2Q(x)$.
+**Restriction:** the series converges for $\operatorname{Im} z > 0$ when $Q$ is positive definite (neither enforced
+by the type; `summable_thetaNorm_term`); where it does not converge the value is $0$ by Lean's `tsum` convention, not
+the analytic continuation or the intended value. -/
 def thetaNorm (Q : QuadForm ℤ n) (z : ℂ) : ℂ :=
   ∑' x : Fin n → ℤ, ((2 * (Q.eval x : ℝ) : ℝ) : ℂ) * cexp (2 * Real.pi * I * z * (Q.eval x : ℂ))
 

@@ -255,7 +255,10 @@ def sphericalZetaAtNF (Q : QuadForm (𝓞 F) n) (Φ : RealPlace F → (Fin n →
   sphericalZetaAt Q Φ ρ s * ∏ w, 2 * cplxZetaAt Q w (Ψ w) s
 
 /-- **Weil's zeta function of the quadratic form, all places** (Weil 1982, §4.5, (2), p. 102):
-$Z(s) = \sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho)$ (no factor $\frac12$). -/
+$Z(s) = \sum_{\rho\in F^\times/F^{\times2}}Z(s,\rho)$ (no factor $\frac12$).
+**Restriction:** the sum over square classes is shown to converge for $s > 0$, $Q$ nondegenerate, $n \ge 5$ and
+nonnegative `Φ` (`summable_sphericalZetaAtNF`); where it does not converge the value is $0$ by Lean's `tsum`
+convention, not the analytic continuation of $Z(s)$. -/
 @[kb "weil1982" "§4.5, (2), p. 102 (Z(s) = Σ_ρ Z(s,ρ))"]
 def sphericalZetaNF (Q : QuadForm (𝓞 F) n) (Φ : RealPlace F → (Fin n → ℝ) → ℝ)
     (Ψ : ComplexPlace F → (Fin n → ℂ) → ℝ) (s : ℝ) : ℝ :=

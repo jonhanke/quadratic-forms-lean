@@ -155,7 +155,10 @@ lemma eisTerm_out {W : F × F → ℂ} {k : ℤ} (hW : IsUnitEquivariant W k) (x
   obtain ⟨ε, hε⟩ := exists_smul_out x
   rw [← hε, eisTerm_smul hW]
 
-/-- **The Eisenstein series on $\mathbb{C}^\iota$**: $\sum_{o \in U\backslash F^2}W(x_o)N(c_oZ + d_o)^{-k}$, $x_o$ = `o.out`. -/
+/-- **The Eisenstein series on $\mathbb{C}^\iota$**: $\sum_{o \in U\backslash F^2}W(x_o)N(c_oZ + d_o)^{-k}$, $x_o$ = `o.out`.
+**Restriction:** the series converges (absolutely) for parallel weight $k > 2$ and $Z$ in the product of upper
+half-planes when `W` is bounded and supported on a lattice in $F^2$ (none of which the type enforces); where it does
+not converge the value is $0$ by Lean's `tsum` convention, not the analytic continuation or the intended value. -/
 noncomputable def eisSeriesC (W : F × F → ℂ) (k : ℤ) (Z : InfinitePlace F → ℂ) : ℂ :=
   ∑' o : UOrbit F, eisTerm W k o.out Z
 

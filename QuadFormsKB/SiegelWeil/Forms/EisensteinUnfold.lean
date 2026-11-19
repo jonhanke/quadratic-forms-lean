@@ -92,7 +92,10 @@ lemma bigCellTerm_eq (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (Z : I
 
 /-! ### Definitions -/
 
-/-- **The big-cell part of $E(g_Z, s_0, \Phi)$**: $\sum_{B\in\mathrm{Sym}_r(F)}f_\infty(w\,n(B)g_Z, s_0)\,f_f(w\,n(B), s_0)$. -/
+/-- **The big-cell part of $E(g_Z, s_0, \Phi)$**: $\sum_{B\in\mathrm{Sym}_r(F)}f_\infty(w\,n(B)g_Z, s_0)\,f_f(w\,n(B), s_0)$.
+**Restriction:** the series is proved to converge absolutely for $r \ge 1$, $m > 4r^2$ and $Z$ in the Siegel upper
+half-space (see `EisensteinBigCell`; not enforced by the type); where it does not converge the value is $0$ by Lean's
+`tsum` convention, not the analytic continuation or the intended value. -/
 def eisBigR (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (Z : InfinitePlace F → Matrix (Fin r) (Fin r) ℂ) : ℂ :=
   ∑' B : SymMat r F, bigCellTerm b hb Z B
 

@@ -55,7 +55,10 @@ omit [NeZero N] in
 lemma wt_add_N_left (W : ZMod N → ZMod N → ℂ) (c d : ℤ) : wt W (c + N) d = wt W c d := by
   simp [wt]
 
-/-- The **Hecke-regularized series** $H_W(z, s) = \sum_{(c,d)} W(c, d)\,(cz+d)^{-2}|cz+d|^{-2s}$. -/
+/-- The **Hecke-regularized series** $H_W(z, s) = \sum_{(c,d)} W(c, d)\,(cz+d)^{-2}|cz+d|^{-2s}$.
+**Restriction:** the series converges absolutely for $s > 0$ and $z$ in the upper half-plane (which the type does not
+enforce); where it is not summable the value is $0$ by Lean's `tsum` convention, not the analytic continuation in
+$s$. -/
 noncomputable def heckeSum (W : ZMod N → ZMod N → ℂ) (s : ℝ) (z : ℂ) : ℂ :=
   ∑' p : ℤ × ℤ, wt W p.1 p.2 * fs s (p.1 * z + p.2)
 

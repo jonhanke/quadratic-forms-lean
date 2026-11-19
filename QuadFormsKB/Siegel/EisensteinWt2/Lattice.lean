@@ -109,7 +109,9 @@ lemma norm_fs_le_rpow {s : ℝ} (_hs : 0 ≤ s) (u : ℂ) : ‖fs s u‖ ≤ ‖
 
 /-! ### The row sums $\sum_d (cz+d)^{-2}$ and their decay -/
 
-/-- The row sum $R_s(c) = \sum_d f_s(cz + d)$. -/
+/-- The row sum $R_s(c) = \sum_d f_s(cz + d)$.
+**Restriction:** the series converges absolutely only for $s > -1/2$; for $s \le -1/2$ (or other non-summable cases)
+the value is $0$ by Lean's `tsum` convention, not an analytic continuation. -/
 noncomputable def rowSum (s : ℝ) (c : ℤ) : ℂ := ∑' d : ℤ, fs s ((c : ℂ) * z + d)
 
 lemma rowSum_neg (s : ℝ) (c : ℤ) : rowSum z s (-c) = rowSum z s c := by
