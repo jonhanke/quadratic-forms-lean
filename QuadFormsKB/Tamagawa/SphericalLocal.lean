@@ -925,7 +925,10 @@ theorem abs_two_clsSet_sub_le (Q : QuadForm 𝔬 n) (hn : 3 ≤ n) (h2 : ¬ πv 
     _ = _ := by ring
 
 /-- **The parity series** $P_{j_0}(Y) = \sum_{j\equiv j_0 \bmod 2}Y^jd_j$. With $Y = q^{-s}$, $(1-q^{-1})^{-1}P_{j_0}$ is Weil's
-$H_\mathfrak p$-restricted integral $\int_{F(x)\in\pi^{j_0}k_\mathfrak p^{\times2}U_\mathfrak p}|F|^s\Phi_\mathfrak p\,d'x$ (p. 106, $H_\mathfrak p = k_\mathfrak p^{\times2}U_\mathfrak p$). -/
+$H_\mathfrak p$-restricted integral $\int_{F(x)\in\pi^{j_0}k_\mathfrak p^{\times2}U_\mathfrak p}|F|^s\Phi_\mathfrak p\,d'x$ (p. 106, $H_\mathfrak p = k_\mathfrak p^{\times2}U_\mathfrak p$).
+**Restriction:** the series is shown to converge for $|Y| \le 1$ (with $Q$ nondegenerate, $1 \le n$;
+`hasSum_parSeries`); for $|Y| > 1$ it need not converge, and then the value is $0$ by Lean's `tsum` convention, not
+the analytic continuation. -/
 def parSeries (Q : QuadForm 𝔬 n) (j₀ : ℕ) (Y : ℝ) : ℝ := ∑' j, if j % 2 = j₀ then Y ^ j * dSeq v Q j else 0
 
 lemma hasSum_parSeries (Q : QuadForm 𝔬 n) (hQ : Q.Nondegenerate) (hn : 1 ≤ n) (j₀ : ℕ) {Y : ℝ}

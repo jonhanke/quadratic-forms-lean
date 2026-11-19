@@ -630,7 +630,10 @@ theorem norm_tsum_lt {f : ℕ → ℤ_[p]} (hf : Tendsto f atTop (𝓝 0)) {B : 
       exact this.le)
 
 /-- The coefficients of the quotient $g$ in $f(x) - f(a) = (x - a)g(x)$ for $f = \sum c_n x^{n}$:
-$g = \sum_k d_k x^{k}$ with $d_k = \sum_{n > k} c_n a^{n-1-k}$. -/
+$g = \sum_k d_k x^{k}$ with $d_k = \sum_{n > k} c_n a^{n-1-k}$.
+**Restriction:** the sum converges in $\mathbb Z_p$ when $c_n \to 0$ $p$-adically (not enforced by the type; $\|a\|
+\le 1$ holds automatically in $\mathbb Z_p$); where it does not converge the value is $0$ by Lean's `tsum`
+convention, not the intended value. -/
 def quo (c : ℕ → ℤ_[p]) (a : ℤ_[p]) (k : ℕ) : ℤ_[p] := ∑' n, if k < n then c n * a ^ (n - 1 - k) else 0
 
 theorem norm_quo_term_le (c : ℕ → ℤ_[p]) {a : ℤ_[p]} (ha : ‖a‖ ≤ 1) (k n : ℕ) :

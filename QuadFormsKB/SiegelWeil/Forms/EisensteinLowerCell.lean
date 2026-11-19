@@ -407,7 +407,10 @@ lemma exists_cube_majorant (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0)
 
 /-! ### The kernel families and their coefficients -/
 
-/-- **The sum $G_K(Z)$ of the terms of $E(g_Z, s_0)$ over the cosets with $\ker C = K$.** -/
+/-- **The sum $G_K(Z)$ of the terms of $E(g_Z, s_0)$ over the cosets with $\ker C = K$.**
+**Restriction:** the series is proved to converge absolutely for $r \ge 1$, $m > 4r^2$ and $Z$ in the Siegel upper
+half-space (see `EisensteinBigCell`; not enforced by the type); where it does not converge the value is $0$ by Lean's
+`tsum` convention, not the analytic continuation or the intended value. -/
 def fibSum (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos : ∀ i v, 0 < realEmb F v (ιO (b i)))
     (K : Submodule F (Fin r → F)) (Z : InfinitePlace F → Matrix (Fin r) (Fin r) ℂ) : ℂ :=
   ∑' x : {q : PQuot r F // kerQ q = K}, eisTermR b hb hbpos Z x.1
@@ -460,7 +463,10 @@ lemma fibSum_bot (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos : �
 /-! ### The comparison -/
 
 /-- **The Siegel Eisenstein series $E(g_Z, s_0, \Phi)$ of degree $r$** as the sum of its terms over $P(F)\backslash\mathrm{Sp}_{2r}(F)$
-(`eisR_eq_eisensteinR`). -/
+(`eisR_eq_eisensteinR`).
+**Restriction:** the series is proved to converge absolutely for $r \ge 1$, $m > 4r^2$ and $Z$ in the Siegel upper
+half-space (see `EisensteinBigCell`; not enforced by the type); where it does not converge the value is $0$ by Lean's
+`tsum` convention, not the analytic continuation or the intended value. -/
 def eisR (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos : ∀ i v, 0 < realEmb F v (ιO (b i)))
     (Z : InfinitePlace F → Matrix (Fin r) (Fin r) ℂ) : ℂ :=
   ∑' q : PQuot r F, eisTermR b hb hbpos Z q

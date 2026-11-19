@@ -355,7 +355,10 @@ theorem sep_KSO : ∀ s ∈ KSO Q₀, s ≠ 1 → ∃ N : Subgroup (SOAf Q₀), 
 /-! ### Part 3: the measure $\mu_f$ on $SO(V)(\mathbb A_f)$ -/
 
 /-- **The finite-adelic normalizing constant** $\prod'_v \mu_v(SO(L_v))$, the product of the masses of the local Tamagawa
-measures `muLocSO v Q₀ λ_v` on $SO(L_v)$; it equals $\prod'_v \alpha_v(L, L)/\lambda_v$ (`finFactor_eq`). -/
+measures `muLocSO v Q₀ λ_v` on $SO(L_v)$; it equals $\prod'_v \alpha_v(L, L)/\lambda_v$ (`finFactor_eq`).
+**Restriction:** the product converges for suitable `lam` and $Q_0$ (e.g. $Q_0$ nondegenerate and $\lambda_v > 0$
+with $\prod'_v\alpha_v/\lambda_v$ multipliable), which the type does not enforce; where it is not multipliable the
+value is $1$ by Lean's `tprod` convention, not the intended value. -/
 @[kb "weil1982" "§2.3, p. 21 (Tamagawa measure ∏_v λ_v^{-1} ω_v)"]
 def finFactor (lam : HeightOneSpectrum (𝓞 F) → ℝ) : ℝ :=
   ∏' v, (muLocSO v Q₀ (lam v) (soStabSO v Q₀ : Set (SOv v Q₀))).toReal

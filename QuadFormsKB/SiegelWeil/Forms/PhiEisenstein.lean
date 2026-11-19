@@ -77,7 +77,10 @@ lemma holQ_mk (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos : ∀ 
     holQ b hb hbpos Z (Quotient.mk _ γ) = holTermR b hb Z γ := by
   rw [holQ, eisTermR_mk, mul_div_cancel_left₀ _ (prodIm_ne_zero hZ)]
 
-/-- **The holomorphic Siegel Eisenstein series of degree $r$**, $\mathcal E^{(r)}(Z) = \sum_{\gamma}j(\gamma, Z)^{-m}f_f(\gamma, s_0)$. -/
+/-- **The holomorphic Siegel Eisenstein series of degree $r$**, $\mathcal E^{(r)}(Z) = \sum_{\gamma}j(\gamma, Z)^{-m}f_f(\gamma, s_0)$.
+**Restriction:** the series is proved to converge absolutely for $r \ge 1$, $m > 4r^2$ and $Z$ in the Siegel upper
+half-space (see `EisensteinBigCell`; not enforced by the type); where it does not converge the value is $0$ by Lean's
+`tsum` convention, not the analytic continuation or the intended value. -/
 def eisHolR (b : Fin (2 * m) → 𝓞 F) (hb : ∀ i, b i ≠ 0) (hbpos : ∀ i v, 0 < realEmb F v (ιO (b i)))
     (Z : InfinitePlace F → Matrix (Fin r) (Fin r) ℂ) : ℂ :=
   ∑' q, holQ b hb hbpos Z q
